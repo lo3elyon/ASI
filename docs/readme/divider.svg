@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="36" viewBox="0 0 1200 36">
+<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#14b8a6"/><stop offset=".33" stop-color="#22d3ee"/><stop offset=".66" stop-color="#f59e0b"/><stop offset="1" stop-color="#10b981"/></linearGradient></defs>
+<style>.w{animation:m 6s linear infinite}@keyframes m{to{transform:translateX(-400px)}}</style>
+<g class="w"><path d="M0 18 Q50 0 100 18 T200 18 T300 18 T400 18 T500 18 T600 18 T700 18 T800 18 T900 18 T1000 18 T1100 18 T1200 18 T1300 18 T1400 18 T1500 18 T1600 18" fill="none" stroke="url(#g)" stroke-width="3"/>
+<path d="M0 18 Q50 36 100 18 T200 18 T300 18 T400 18 T500 18 T600 18 T700 18 T800 18 T900 18 T1000 18 T1100 18 T1200 18 T1300 18 T1400 18 T1500 18 T1600 18" fill="none" stroke="url(#g)" stroke-opacity=".35" stroke-width="2"/></g>
+</svg>

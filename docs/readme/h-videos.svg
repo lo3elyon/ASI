@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="96" viewBox="0 0 1200 96">
+<defs><linearGradient id="h" x1="0" x2="1"><stop offset="0" stop-color="#ef4444"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+<style>.k{font-family:'Segoe UI', 'Helvetica Neue', Helvetica, Arial, sans-serif;} .u{animation:u 2.4s ease-in-out infinite alternate}@keyframes u{from{width:60px}to{width:240px}}
+.d{animation:b 1.6s ease-in-out infinite}@keyframes b{0%,100%{opacity:.3}50%{opacity:1}}</style>
+<rect width="1200" height="96" rx="16" fill="#07111f"/>
+<circle cx="34" cy="48" r="9" fill="#ef4444" class="d"/><circle cx="34" cy="48" r="16" fill="none" stroke="#f59e0b" stroke-opacity=".6"/>
+<text x="64" y="38" class="k" fill="#ef4444" font-size="13" font-weight="700" letter-spacing="4">05  WATCH</text>
+<text x="64" y="70" class="k" fill="url(#h)" font-size="30" font-weight="800">Talks in focus mode</text>
+<rect x="64" y="82" height="4" rx="2" fill="url(#h)" class="u"/>
+</svg>
