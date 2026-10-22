@@ -1,40 +1,46 @@
-# Two Futures for AI — AI 2027 & AI 2040, Explained Simply
+# ASI — Interactive AI, AGI & Superintelligence Explainers
 
-An interactive, animated, single-page explainer of the two big scenarios from the **AI Futures Project** (Daniel Kokotajlo and team):
+A growing hub of colorful, animated, interactive explainers about **Artificial Intelligence**, **Artificial General Intelligence (AGI)** and **Artificial Superintelligence (ASI)** — big ideas made simple. New explainers are added regularly, each on its own route.
 
-- **[AI 2027](https://ai-2027.com/)** (published Apr 3, 2025): a *prediction* of where the AI race might take us, with two endings, **Race** and **Slowdown**.
-- **[AI 2040: Plan A](https://ai-2040.com/)** (published Jul 9, 2026): a *recommendation*, an international, verified deal that delays superintelligence to 2040.
+**Live site:** https://lo3elyon.github.io/ASI/ (after GitHub Pages is enabled)
 
-> Independent, unofficial explainer. All scenario content © AI Futures Project, summarized in simple words. Images are AI-generated illustrations.
+## Explainers
 
-## Features
+| Route | Explainer | Status |
+|---|---|---|
+| [`/ai-2027-2040/`](ai-2027-2040/) | **AI 2027 & AI 2040 Explained** — the race to superintelligence, and Plan A to change the ending (12 videos, quiz, timelines) | Live (2026-10-22) |
+| — | What is AGI, really? | Coming soon |
+| — | How LLMs actually work | Coming soon |
+| — | The AI alignment problem, simply | Coming soon |
+| — | Timeline of AI breakthroughs | Coming soon |
 
-- Animated particle and neural-network hero that reacts to the mouse
-- Scroll-reveal animations, a scroll progress bar, parallax images, animated counters and flowing wave dividers
-- Jargon buster with flip cards (AGI, ASI, alignment, compute, weights, neuralese…)
-- Interactive **AI 2027 timeline** (Mid 2025 → Oct 2027) plus the milestone ladder (4x → 2000x R&D multiplier)
-- **Choose your ending**: a Race vs Slowdown switch
-- 8 key takeaways
-- **AI 2040 Plan A**: the 4 principles, 3 key steps and the **five paths** selector (Plans D, C, B, A, S)
-- **AI 2040 year-by-year timeline** (2027 → 2040) and the alignment track
-- AI 2027 vs AI 2040 comparison table
-- 6-question quiz with a score ring and confetti
-- **Video gallery**: 12 talks and interviews (Dwarkesh, Hard Fork, Diary of a CEO, 80,000 Hours, Lawfare, MLST, Sam Harris, GZERO, FLI, Palisade…) that play in place via YouTube embeds, with All / AI 2027 / AI 2040 filters
-- Links to every original source (sites, summaries, PDFs, model, blog, podcast)
-- Fully responsive, respects `prefers-reduced-motion`, and the palette has no purple or pink
+## Landing page features
+
+- Particle neural-network hero that reacts to the mouse, shimmering headline, rotating AI → AGI → ASI subtitle
+- Explainer library built from one `PAGES` list: featured card, search, tag filters, Newest / A–Z sort, "NEW" badges, coming-soon tiles
+- Interactive AI → AGI → ASI ladder with an intelligence meter
+- Auto-generated "Latest" timeline
+- Fully responsive, respects `prefers-reduced-motion`, no purple or pink in the palette
 
 ## Structure
 
 ```
-index.html        # the whole page (HTML + inline CSS/JS)
-css/hark.css      # base design system styles
-css/hark-hero.css # hero styles
-js/hark.js        # base interactions
-assets/*.jpg      # hero, race, slowdown, deal, future illustrations
-.nojekyll         # serve files as-is on GitHub Pages
+index.html              # landing page (home route)
+css/ js/ assets/        # landing page styles, scripts, images
+ai-2027-2040/           # explainer: AI 2027 & AI 2040 (own index.html, css, js, assets, README)
+.nojekyll               # serve files as-is on GitHub Pages
 ```
 
-No build step and no dependencies to install. Fonts and YouTube load from their CDNs.
+## Add a new explainer
+
+1. Create a folder, e.g. `my-topic/`, with its own `index.html` (and its own `css/`, `js/`, `assets/` if needed). It is served at `/ASI/my-topic/`.
+2. Open the root `index.html`, find the `PAGES` array near the top of the script, and add one object:
+   ```js
+   { slug: "my-topic/", title: "My Topic", tagline: "One line", tags: ["AGI"], date: "2026-10-23",
+     cover: "my-topic.jpg", videos: 0, readMins: 10, status: "live", accent: "#10b981" }
+   ```
+   Put the cover image in the root `assets/` folder.
+3. Commit and push to `main`. The library, counters and Latest timeline update automatically.
 
 ## Run locally
 
@@ -45,17 +51,10 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
-(Opening `index.html` directly also works, but some browsers block YouTube embeds on `file://`, so a local server is better.)
-
 ## Deploy on GitHub Pages
 
 Settings → Pages → Source: **Deploy from a branch** → Branch: `main`, folder `/ (root)` → Save.
-The site goes live at `https://lo3elyon.github.io/ASI/`.
 
-## Sources
+## Credits
 
-- AI 2027: https://ai-2027.com/ · Summary: https://ai-2027.com/summary · PDF: https://ai-2027.com/ai-2027.pdf
-- AI 2040: Plan A: https://ai-2040.com/ · Summary: https://ai-2040.com/summary · PDF: https://ai-2040.com/AI-2040.pdf
-- AI Futures Project: https://ai-futures.org/ · Model: https://www.aifuturesmodel.com/ · Blog: https://blog.aifutures.org/
-
-Built by **Aniruddha Adak**.
+Built by Aniruddha Adak. Explainers summarize public sources, linked on each page. Images are AI-generated illustrations.
