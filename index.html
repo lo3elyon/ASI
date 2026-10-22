@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 2027 and AI 2040 Explained · Two Futures for AI</title>
+    <meta name="description" content="Two Futures: AI 2027 and AI 2040, explained simply. A friendly guide to the AI Futures Project's two scenarios." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" />
+    <link rel="stylesheet" href="css/hark.css" />
+    <link rel="stylesheet" href="css/hark-hero.css" />
+    <script>document.documentElement.classList.add("x-js");</script>
+    <style>
+      :root {
+        --x-bg: #07111f; --x-bg2: #0a1828; --x-card: #0d1f34; --x-card2: #10263f;
+        --x-line: rgba(148, 197, 230, 0.16); --x-text: #e8f2f9; --x-muted: #a3b8cc;
+        --x-teal: #14b8a6; --x-cyan: #22d3ee; --x-blue: #3b82f6; --x-emerald: #10b981; --x-lime: #84cc16;
+        --x-amber: #f59e0b; --x-orange: #f97316; --x-red: #ef4444; --x-gold: #facc15;
+        --x-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+        --x-body: "Inter", system-ui, sans-serif;
+        --x-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      body.x-body { background: var(--x-bg); color: var(--x-text); font-family: var(--x-body); font-size: 16px; line-height: 1.6; }
+      body.x-body ::selection { background: rgba(34, 211, 238, 0.35); }
+      .x-body :focus-visible { outline: 2px solid var(--x-cyan); outline-offset: 3px; }
+      .x-wrap { width: 100%; }
+      .x-bleed { margin-inline: calc(50% - 50vw); }
+
+      /* progress + nav */
+      .x-progress { position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 60; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan), var(--x-gold), var(--x-amber)); transform-origin: 0 50%; transform: scaleX(0); }
+      .x-nav { position: fixed; top: 3px; left: 50%; translate: -50% 0; z-index: 50; width: min(1180px, calc(100% - 20px)); margin-top: 8px; display: flex; align-items: center; gap: 12px; padding: 6px 8px 6px 16px; border-radius: 999px; background: rgba(7, 17, 31, 0.72); border: 1px solid var(--x-line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6); }
+      .x-nav__brand { font-family: var(--x-display); font-weight: 700; white-space: nowrap; text-decoration: none; font-size: 15px; }
+      .x-nav__brand span { background: linear-gradient(90deg, var(--x-teal), var(--x-amber)); -webkit-background-clip: text; background-clip: text; color: var(--x-cyan); -webkit-text-fill-color: transparent; }
+      .x-nav__links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; flex: 1; scroll-behavior: smooth; }
+      .x-nav__links::-webkit-scrollbar { display: none; }
+      .x-nav__links a { flex: none; text-decoration: none; font-size: 13px; font-weight: 500; color: var(--x-muted); padding: 0 12px; min-height: 36px; display: inline-flex; align-items: center; border-radius: 999px; transition: color 0.2s, background 0.3s; }
+      .x-nav__links a:hover { color: var(--x-text); background: rgba(34, 211, 238, 0.08); }
+      .x-nav__links a.is-active { color: #04121c; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan)); font-weight: 600; }
+
+      /* hero */
+      .x-hero { position: relative; min-height: 100svh; margin-top: -12px; overflow: hidden; display: flex; align-items: flex-end; isolation: isolate; }
+      .x-hero__img { position: absolute; inset: -8% 0 0 0; width: 100%; height: 116%; object-fit: cover; z-index: -3; transform: translate3d(0, var(--par, 0px), 0) scale(1.05); }
+      .x-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; background: linear-gradient(20deg, rgba(7, 17, 31, 0.96) 10%, rgba(7, 17, 31, 0.6) 45%, rgba(7, 17, 31, 0.15) 80%), linear-gradient(0deg, var(--x-bg) 0%, transparent 25%); }
+      .x-hero__canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+      .x-hero__copy { width: min(1180px, 100%); margin: 0 auto; padding: 140px 24px 96px; }
+      .x-hero__eyebrow { font-family: var(--x-display); letter-spacing: 0.18em; text-transform: uppercase; font-size: 13px; color: var(--x-cyan); font-weight: 600; }
+      .x-hero h1 { font-family: var(--x-display); font-weight: 700; font-size: clamp(52px, 11vw, 132px); line-height: 0.95; letter-spacing: -0.03em; margin: 14px 0 20px; max-width: 11ch; }
+      .x-shimmer { background: linear-gradient(90deg, var(--x-teal), var(--x-cyan), var(--x-gold), var(--x-amber), var(--x-cyan), var(--x-teal)); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: var(--x-cyan); -webkit-text-fill-color: transparent; animation: x-shim 9s linear infinite; }
+      @keyframes x-shim { to { background-position: 300% 0; } }
+      .x-hero__sub { font-size: clamp(18px, 2.3vw, 23px); max-width: 40ch; color: #d3e3ef; line-height: 1.5; }
+      .x-chips { display: flex; flex-wrap: wrap; gap: 10px; margin: 28px 0; padding: 0; list-style: none; }
+      .x-chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; background: rgba(13, 31, 52, 0.7); border: 1px solid var(--x-line); backdrop-filter: blur(8px); animation: x-float 6s ease-in-out infinite; }
+      .x-chip:nth-child(2) { animation-delay: -1.5s; } .x-chip:nth-child(3) { animation-delay: -3s; } .x-chip:nth-child(4) { animation-delay: -4.5s; }
+      .x-chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--c, var(--x-teal)); box-shadow: 0 0 10px var(--c, var(--x-teal)); }
+      .x-chip b { font-family: var(--x-display); }
+      @keyframes x-float { 50% { transform: translateY(-5px); } }
+      .x-btns { display: flex; flex-wrap: wrap; gap: 14px; }
+      .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 0; cursor: pointer; font: 600 16px/1 var(--x-body); text-decoration: none; color: #04121c; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan)); box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.4), 0 10px 36px -8px rgba(34, 211, 238, 0.7); transition: transform 0.3s var(--x-ease), box-shadow 0.3s; }
+      .x-btn:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.6), 0 16px 46px -6px rgba(34, 211, 238, 0.9); }
+      .x-btn--amber { background: linear-gradient(90deg, var(--x-gold), var(--x-amber), var(--x-orange)); box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.4), 0 10px 36px -8px rgba(245, 158, 11, 0.7); }
+      .x-btn--amber:hover { box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.6), 0 16px 46px -6px rgba(249, 115, 22, 0.9); }
+      .x-btn--ghost { color: var(--x-text); background: rgba(13, 31, 52, 0.8); box-shadow: 0 0 0 1px var(--x-line); min-height: 44px; padding: 0 18px; font-size: 14px; }
+      .x-btn--ghost:hover { box-shadow: 0 0 0 1px var(--x-cyan), 0 10px 30px -10px rgba(34, 211, 238, 0.6); }
+      .x-chev { position: absolute; left: 50%; bottom: 22px; translate: -50% 0; width: 44px; height: 44px; display: grid; place-items: center; color: var(--x-cyan); animation: x-bounce 2s ease-in-out infinite; }
+      @keyframes x-bounce { 50% { transform: translateY(8px); opacity: 0.6; } }
+
+      /* waves */
+      .x-wave { height: 64px; overflow: hidden; pointer-events: none; }
+      .x-wave svg { width: 200%; height: 100%; animation: x-wave 16s linear infinite; }
+      .x-wave path { fill: none; stroke-linecap: round; }
+      @keyframes x-wave { to { transform: translateX(-50%); } }
+
+      /* sections */
+      .x-sec { padding-block: 56px 24px; scroll-margin-top: 72px; }
+      .x-head { max-width: 760px; margin-bottom: 34px; }
+      .x-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-family: var(--x-display); font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ec, var(--x-teal)); }
+      .x-eyebrow::before { content: ""; width: 26px; height: 2px; background: currentColor; border-radius: 2px; }
+      .x-h2 { font-family: var(--x-display); font-weight: 700; font-size: clamp(32px, 5.2vw, 56px); line-height: 1.05; letter-spacing: -0.02em; margin: 10px 0 14px; }
+      .x-lead { font-size: 18px; color: var(--x-muted); max-width: 62ch; }
+      .x-grad { background: linear-gradient(90deg, var(--g1, var(--x-teal)), var(--g2, var(--x-amber))); -webkit-background-clip: text; background-clip: text; color: var(--g1, var(--x-teal)); -webkit-text-fill-color: transparent; }
+      .x-h3 { font-family: var(--x-display); font-weight: 600; font-size: 21px; line-height: 1.25; margin: 0 0 8px; }
+      .x-muted { color: var(--x-muted); }
+      .x-small { font-size: 14px; }
+      .x-body p + p { margin-top: 10px; }
+
+      /* reveal */
+      .x-js .x-rv { opacity: 0; translate: 0 34px; transition: opacity 0.8s var(--x-ease), translate 0.8s var(--x-ease), scale 0.8s var(--x-ease); transition-delay: var(--d, 0s); }
+      .x-js .x-rv--scale { translate: none; scale: 0.92; }
+      .x-js .x-rv--left { translate: -40px 0; }
+      .x-js .x-rv.is-in { opacity: 1; translate: none; scale: 1; }
+
+      /* cards */
+      .x-card { position: relative; background: linear-gradient(160deg, var(--x-card2), var(--x-card)); border: 1px solid var(--x-line); border-radius: 22px; padding: 24px; transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px)); transition: transform 0.35s var(--x-ease), box-shadow 0.35s, border-color 0.35s; }
+      .x-card:hover { --ty: -6px; border-color: color-mix(in srgb, var(--glow, var(--x-cyan)) 60%, transparent); box-shadow: 0 24px 50px -24px color-mix(in srgb, var(--glow, var(--x-cyan)) 80%, transparent), 0 0 0 1px color-mix(in srgb, var(--glow, var(--x-cyan)) 25%, transparent); }
+      .x-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+      .x-grid--2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
+      .x-tag { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; letter-spacing: 0.02em; color: var(--tc, var(--x-teal)); background: color-mix(in srgb, var(--tc, var(--x-teal)) 14%, transparent); border: 1px solid color-mix(in srgb, var(--tc, var(--x-teal)) 40%, transparent); }
+      .x-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+
+      /* forecaster */
+      .x-bio { display: grid; gap: 24px; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: start; }
+      .x-bio__top { display: flex; gap: 18px; align-items: center; margin-bottom: 16px; }
+      .x-av { flex: none; width: 56px; height: 56px; border-radius: 50%; display: grid; place-items: center; font-family: var(--x-display); font-weight: 700; color: #04121c; font-size: 19px; background: linear-gradient(135deg, var(--a1), var(--a2)); box-shadow: 0 0 24px -4px var(--a1); }
+      .x-av--big { width: 84px; height: 84px; font-size: 28px; }
+      .x-facts { margin: 16px 0 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+      .x-facts li { display: grid; grid-template-columns: 22px 1fr; gap: 10px; }
+      .x-facts li::before { content: ""; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: var(--x-teal); box-shadow: 0 0 10px var(--x-teal); }
+      .x-stats { display: grid; gap: 14px; }
+      .x-stat__fig { display: block; font-family: var(--x-display); font-weight: 700; font-size: clamp(38px, 5vw, 54px); line-height: 1; }
+      .x-stat__label { color: var(--x-muted); font-size: 15px; }
+      .x-authors { display: grid; gap: 14px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr)); margin-top: 18px; }
+      .x-author { display: flex; gap: 14px; align-items: center; padding: 16px; }
+
+      /* flip cards */
+      .x-flips { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); }
+      .x-flip { position: relative; height: 200px; border: 0; padding: 0; background: none; color: inherit; cursor: pointer; perspective: 1000px; font: inherit; text-align: left; }
+      .x-flip__in { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform 0.7s var(--x-ease); }
+      .x-flip.is-flipped .x-flip__in { transform: rotateY(180deg); }
+      .x-flip__f, .x-flip__b { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 20px; padding: 20px; display: flex; flex-direction: column; border: 1px solid var(--x-line); }
+      .x-flip__f { justify-content: space-between; background: radial-gradient(120% 100% at 0% 0%, color-mix(in srgb, var(--fc) 30%, transparent), transparent 60%), var(--x-card); transition: box-shadow 0.3s; }
+      .x-flip:hover .x-flip__f { box-shadow: 0 0 0 1px var(--fc), 0 18px 40px -18px var(--fc); }
+      .x-flip__f strong { font-family: var(--x-display); font-size: 25px; line-height: 1.15; }
+      .x-flip__f small { color: var(--x-muted); font-size: 13px; display: flex; align-items: center; gap: 6px; }
+      .x-flip__b { transform: rotateY(180deg); justify-content: center; gap: 8px; background: linear-gradient(150deg, color-mix(in srgb, var(--fc) 26%, var(--x-card)), var(--x-card)); border-color: color-mix(in srgb, var(--fc) 50%, transparent); }
+      .x-flip__b b { font-family: var(--x-display); color: var(--fc); font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; }
+      .x-flip__b span { font-size: 16px; line-height: 1.45; }
+
+      /* 2027 timeline */
+      .x-tl { position: relative; }
+      .x-tl__nodes { display: flex; gap: 8px; overflow-x: auto; padding: 18px 4px 14px; scroll-snap-type: x proximity; scrollbar-width: thin; scrollbar-color: var(--x-teal) transparent; position: relative; }
+      .x-tl__node { position: relative; flex: none; scroll-snap-align: center; width: 128px; min-height: 92px; padding: 30px 10px 10px; border-radius: 16px; border: 1px solid var(--x-line); background: var(--x-card); color: var(--x-muted); cursor: pointer; text-align: left; font: inherit; transition: transform 0.3s var(--x-ease), border-color 0.3s, background 0.3s, color 0.3s; }
+      .x-tl__node::before { content: ""; position: absolute; top: 12px; left: 12px; width: 10px; height: 10px; border-radius: 50%; background: var(--x-line); transition: background 0.3s, box-shadow 0.3s; }
+      .x-tl__node b { display: block; font-family: var(--x-display); color: var(--x-text); font-size: 15px; }
+      .x-tl__node span { display: block; font-size: 12.5px; line-height: 1.3; margin-top: 3px; }
+      .x-tl__node:hover { transform: translateY(-4px); border-color: var(--x-teal); }
+      .x-tl__node.is-seen::before { background: var(--x-teal); }
+      .x-tl__node.is-active { background: linear-gradient(160deg, rgba(20, 184, 166, 0.28), var(--x-card)); border-color: var(--x-cyan); color: var(--x-text); transform: translateY(-4px); }
+      .x-tl__node.is-active::before { background: var(--x-cyan); box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.25), 0 0 14px var(--x-cyan); }
+      .x-tl__node--branch { border-color: rgba(239, 68, 68, 0.5); }
+      .x-tl__node--branch::before { background: var(--x-red) !important; }
+      .x-panel { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 28px; margin-top: 10px; padding: 28px; --glow: var(--x-cyan); }
+      .x-panel__date { font-family: var(--x-display); color: var(--x-cyan); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; font-size: 14px; }
+      .x-panel h3 { font-family: var(--x-display); font-size: clamp(26px, 3.5vw, 36px); line-height: 1.1; margin: 8px 0 14px; }
+      .x-panel__body { font-size: 17px; }
+      .x-panel__anim { animation: x-pop 0.5s var(--x-ease); }
+      @keyframes x-pop { from { opacity: 0; transform: translateY(12px); } }
+      .x-metrics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+      .x-meter__label { display: flex; justify-content: space-between; font-size: 13px; color: var(--x-muted); margin-bottom: 8px; font-weight: 500; }
+      .x-meter { height: 14px; border-radius: 999px; background: rgba(148, 197, 230, 0.12); overflow: hidden; }
+      .x-meter__fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan), var(--x-gold), var(--x-orange), var(--x-red)); background-size: var(--bs, 100%) 100%; transition: width 1s var(--x-ease); box-shadow: 0 0 18px rgba(34, 211, 238, 0.5); }
+      .x-speed { margin-top: 22px; padding: 18px; border-radius: 18px; background: radial-gradient(100% 120% at 100% 0%, rgba(245, 158, 11, 0.25), transparent 60%), rgba(7, 17, 31, 0.5); border: 1px solid rgba(245, 158, 11, 0.35); }
+      .x-speed__fig { font-family: var(--x-display); font-weight: 700; font-size: 46px; line-height: 1; color: var(--x-gold); text-shadow: 0 0 24px rgba(250, 204, 21, 0.45); }
+      .x-panel__nav { display: flex; gap: 10px; margin-top: 22px; }
+      .x-branch { display: inline-flex; gap: 8px; align-items: center; margin-top: 16px; padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; color: #fff; background: linear-gradient(90deg, var(--x-red), var(--x-orange)); box-shadow: 0 0 24px -4px var(--x-red); animation: x-pulse 2s infinite; }
+      @keyframes x-pulse { 50% { box-shadow: 0 0 34px 0 var(--x-orange); } }
+      .x-ladder { margin-top: 40px; padding: 28px; --glow: var(--x-amber); }
+      .x-rung { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) 70px; gap: 16px; align-items: center; padding: 10px 0; border-top: 1px solid var(--x-line); }
+      .x-rung:first-of-type { border-top: 0; }
+      .x-rung__name { font-weight: 600; line-height: 1.3; }
+      .x-rung__name small { display: block; color: var(--x-muted); font-weight: 400; font-size: 13px; }
+      .x-rung__bar { height: 22px; border-radius: 8px; background: rgba(148, 197, 230, 0.08); overflow: hidden; }
+      .x-rung__bar i { display: block; height: 100%; width: 0; border-radius: 8px; background: linear-gradient(90deg, var(--x-teal), var(--rc)); box-shadow: 0 0 16px -2px var(--rc); transition: width 1.4s var(--x-ease); transition-delay: var(--d, 0s); }
+      .x-ladder.is-in .x-rung__bar i { width: var(--w); }
+      .x-rung__fig { font-family: var(--x-display); font-weight: 700; font-size: 22px; text-align: right; color: var(--rc); }
+
+      /* endings */
+      .x-switch { position: relative; display: inline-grid; grid-template-columns: 1fr 1fr; padding: 5px; border-radius: 999px; background: var(--x-card); border: 1px solid var(--x-line); margin-bottom: 24px; }
+      .x-switch__thumb { position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: linear-gradient(90deg, var(--x-red), var(--x-orange)); box-shadow: 0 0 24px -4px var(--x-orange); transition: transform 0.5s var(--x-ease), background 0.5s, box-shadow 0.5s; }
+      [data-pick="slow"] .x-switch__thumb { transform: translateX(100%); background: linear-gradient(90deg, var(--x-emerald), var(--x-gold)); box-shadow: 0 0 24px -4px var(--x-emerald); }
+      .x-switch button { position: relative; z-index: 1; min-height: 46px; padding: 0 26px; border: 0; background: none; color: var(--x-muted); font: 700 15px var(--x-display); letter-spacing: 0.06em; cursor: pointer; border-radius: 999px; transition: color 0.3s; }
+      .x-switch button[aria-pressed="true"] { color: #07111f; background-color: var(--x-orange); }
+      .x-switch button[data-pick="slow"][aria-pressed="true"] { background-color: var(--x-emerald); }
+      .x-endings { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+      .x-end { padding: 0; overflow: hidden; transition: transform 0.35s var(--x-ease), box-shadow 0.35s, opacity 0.5s, filter 0.5s, border-color 0.35s; }
+      .x-end--race { --glow: var(--x-orange); border-color: rgba(249, 115, 22, 0.35); background: linear-gradient(180deg, rgba(239, 68, 68, 0.16), var(--x-card) 50%); }
+      .x-end--slow { --glow: var(--x-emerald); border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(180deg, rgba(16, 185, 129, 0.16), var(--x-card) 50%); }
+      [data-pick="race"] .x-end--slow, [data-pick="slow"] .x-end--race { opacity: 0.42; filter: saturate(0.4); }
+      [data-pick="race"] .x-end--race, [data-pick="slow"] .x-end--slow { box-shadow: 0 30px 60px -30px var(--glow); }
+      .x-end__media { position: relative; height: 260px; overflow: hidden; }
+      .x-end__media img, .x-par img { width: 100%; height: 125%; object-fit: cover; transform: translate3d(0, var(--par, 0px), 0); margin-top: -12%; }
+      .x-end__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, var(--x-card) 0%, transparent 60%); }
+      .x-end__body { padding: 4px 26px 28px; }
+      .x-end__title { font-family: var(--x-display); font-weight: 700; font-size: 34px; line-height: 1; margin: 0 0 6px; }
+      .x-end--race .x-end__title { color: var(--x-orange); }
+      .x-end--slow .x-end__title { color: var(--x-gold); }
+      .x-story { list-style: none; margin: 18px 0 0; padding: 0; counter-reset: s; display: grid; gap: 12px; }
+      .x-story li { counter-increment: s; display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: start; }
+      .x-story li::before { content: counter(s); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font: 700 13px var(--x-display); color: #07111f; background: var(--sc); }
+      .x-end--race .x-story { --sc: var(--x-orange); }
+      .x-end--slow .x-story { --sc: var(--x-emerald); }
+      .x-note { margin-top: 24px; padding: 18px 22px; border-radius: 18px; border: 1px dashed rgba(250, 204, 21, 0.5); background: rgba(250, 204, 21, 0.07); display: flex; gap: 14px; align-items: flex-start; }
+      .x-note strong { color: var(--x-gold); }
+      .x-note svg { flex: none; color: var(--x-gold); margin-top: 3px; }
+
+      /* takeaways */
+      .x-take__num { display: block; font-family: var(--x-display); font-weight: 700; font-size: 56px; line-height: 1; margin-bottom: 14px; background: linear-gradient(135deg, var(--glow), color-mix(in srgb, var(--glow) 40%, #fff)); -webkit-background-clip: text; background-clip: text; color: var(--glow); -webkit-text-fill-color: transparent; }
+      .x-take p { font-size: 17px; line-height: 1.5; }
+      .x-aside { margin-top: 24px; padding: 20px 24px; border-radius: 18px; border: 1px dashed var(--x-line); background: rgba(13, 31, 52, 0.5); }
+
+      /* plan A */
+      .x-banner { position: relative; height: clamp(320px, 50vw, 480px); border-radius: 28px; overflow: hidden; display: flex; align-items: flex-end; isolation: isolate; border: 1px solid rgba(20, 184, 166, 0.35); }
+      .x-banner .x-par { position: absolute; inset: 0; z-index: -2; }
+      .x-banner .x-par img { height: 130%; margin-top: -15%; }
+      .x-banner::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(10deg, rgba(7, 17, 31, 0.95) 15%, rgba(7, 17, 31, 0.4) 60%, transparent); }
+      .x-banner__copy { padding: clamp(22px, 4vw, 40px); max-width: 760px; }
+      .x-banner__copy p { font-size: clamp(18px, 2.2vw, 22px); line-height: 1.5; }
+      .x-tiles { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); margin-top: 24px; }
+      .x-tile { text-align: left; }
+      .x-icon { width: 58px; height: 58px; border-radius: 18px; display: grid; place-items: center; margin-bottom: 16px; color: var(--glow); background: color-mix(in srgb, var(--glow) 14%, transparent); border: 1px solid color-mix(in srgb, var(--glow) 45%, transparent); box-shadow: 0 0 30px -6px var(--glow); animation: x-glow 3.5s ease-in-out infinite; }
+      @keyframes x-glow { 50% { box-shadow: 0 0 44px 0 var(--glow); } }
+      .x-steps3 { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); margin-top: 22px; counter-reset: k; }
+      .x-step3 { counter-increment: k; padding-top: 64px; }
+      .x-step3::before { content: "0" counter(k); position: absolute; top: 20px; left: 24px; font: 700 30px var(--x-display); color: var(--x-cyan); }
+
+      /* five paths */
+      .x-paths { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 24px; align-items: stretch; }
+      .x-pathbtns { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+      .x-pathbtn { min-height: 76px; border-radius: 16px; border: 1px solid var(--x-line); background: var(--x-card); color: var(--x-text); cursor: pointer; font: 700 26px var(--x-display); display: grid; place-items: center; align-content: center; gap: 2px; transition: transform 0.3s var(--x-ease), background 0.3s, box-shadow 0.3s, border-color 0.3s; }
+      .x-pathbtn small { font: 500 11px var(--x-body); color: var(--x-muted); }
+      .x-pathbtn:hover { transform: translateY(-3px); border-color: var(--pc); }
+      .x-pathbtn[aria-pressed="true"] { background: color-mix(in srgb, var(--pc) 22%, var(--x-card)); border-color: var(--pc); box-shadow: 0 0 30px -8px var(--pc); color: var(--pc); }
+      .x-range { width: 100%; margin: 22px 0 6px; accent-color: var(--x-teal); height: 30px; }
+      .x-range__ends { display: flex; justify-content: space-between; font-size: 13px; color: var(--x-muted); }
+      .x-pathpanel { --glow: var(--pc, var(--x-teal)); display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 22px; align-items: center; }
+      .x-gauge { width: 200px; }
+      .x-gauge svg { width: 100%; overflow: visible; }
+      .x-gauge__arc { transition: stroke-dashoffset 1s var(--x-ease), stroke 0.6s; }
+      .x-gauge__needle { transform-origin: 100px 100px; transition: transform 1s cubic-bezier(0.34, 1.56, 0.64, 1); }
+      .x-gauge__label { text-align: center; font: 700 15px var(--x-display); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
+      .x-pathpanel h3 { font-family: var(--x-display); font-size: 30px; line-height: 1.1; margin: 6px 0 10px; }
+      .x-rec { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px; border-radius: 999px; font-size: 13px; font-weight: 700; color: #04121c; background: linear-gradient(90deg, var(--x-emerald), var(--x-teal)); margin-top: 12px; }
+
+      /* 2040 timeline */
+      .x-vtl { position: relative; padding-left: 48px; display: grid; gap: 18px; }
+      .x-vtl__track { position: absolute; left: 17px; top: 8px; bottom: 8px; width: 4px; border-radius: 4px; background: rgba(148, 197, 230, 0.12); }
+      .x-vtl__fill { position: absolute; inset: 0; border-radius: 4px; background: linear-gradient(180deg, var(--x-cyan), var(--x-teal), var(--x-emerald), var(--x-lime)); transform-origin: 50% 0; transform: scaleY(0); box-shadow: 0 0 16px var(--x-cyan); }
+      .x-yr { position: relative; --glow: var(--x-emerald); }
+      .x-yr::before { content: ""; position: absolute; left: -38px; top: 30px; width: 16px; height: 16px; border-radius: 50%; background: var(--x-bg); border: 3px solid var(--x-teal); transition: background 0.4s, box-shadow 0.4s; }
+      .x-yr.is-in::before { background: var(--x-emerald); box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.2), 0 0 16px var(--x-emerald); }
+      .x-yr__y { font-family: var(--x-display); font-weight: 700; font-size: 34px; line-height: 1; color: var(--x-cyan); }
+      .x-yr h3 { font-family: var(--x-display); font-size: 21px; margin: 6px 0 8px; }
+      .x-yr ul { margin: 0; padding-left: 20px; color: #cfe0ec; }
+      .x-yr ul li + li { margin-top: 4px; }
+      .x-yr--feature { padding: 0; overflow: hidden; border-color: rgba(132, 204, 22, 0.4); --glow: var(--x-lime); }
+      .x-yr--feature .x-par { height: clamp(220px, 34vw, 380px); overflow: hidden; }
+      .x-yr--feature .x-yr__in { padding: 24px; }
+      .x-align { margin-top: 40px; padding: 28px; --glow: var(--x-teal); }
+      .x-align__row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 18px; }
+      .x-seg { position: relative; }
+      .x-seg__bar { height: 12px; border-radius: 999px; background: rgba(148, 197, 230, 0.12); overflow: hidden; }
+      .x-seg__bar i { display: block; height: 100%; width: 0; background: var(--sc); box-shadow: 0 0 14px var(--sc); transition: width 0.8s var(--x-ease); transition-delay: var(--d); }
+      .x-align.is-in .x-seg__bar i { width: 100%; }
+      .x-seg b { display: block; font-family: var(--x-display); margin-top: 10px; color: var(--sc); font-size: 15px; }
+      .x-seg span { display: block; font-size: 14px; line-height: 1.35; color: #cfe0ec; }
+
+      /* compare */
+      .x-cmp { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+      .x-cmp th, .x-cmp td { text-align: left; padding: 16px 18px; vertical-align: top; }
+      .x-cmp thead th { font: 700 22px var(--x-display); padding-block: 4px; }
+      .x-cmp thead th:nth-child(2) { color: var(--x-orange); }
+      .x-cmp thead th:nth-child(3) { color: var(--x-emerald); }
+      .x-cmp tbody tr { transition: transform 0.3s var(--x-ease); }
+      .x-cmp tbody tr:hover { transform: scale(1.01); }
+      .x-cmp tbody th { background: var(--x-card2); border-radius: 16px 0 0 16px; font-family: var(--x-display); font-weight: 600; width: 22%; border: 1px solid var(--x-line); border-right: 0; }
+      .x-cmp tbody td { background: var(--x-card); border-block: 1px solid var(--x-line); }
+      .x-cmp tbody td:nth-child(2) { box-shadow: inset 3px 0 0 var(--x-orange); }
+      .x-cmp tbody td:last-child { border-radius: 0 16px 16px 0; border-right: 1px solid var(--x-line); box-shadow: inset 3px 0 0 var(--x-emerald); }
+
+      /* quiz */
+      .x-quiz { max-width: 820px; padding: clamp(22px, 4vw, 36px); --glow: var(--x-teal); }
+      .x-quiz__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 18px; }
+      .x-qdots { display: flex; gap: 6px; }
+      .x-qdots i { width: 28px; height: 6px; border-radius: 6px; background: rgba(148, 197, 230, 0.16); transition: background 0.4s; }
+      .x-qdots i.ok { background: var(--x-emerald); } .x-qdots i.no { background: var(--x-orange); } .x-qdots i.now { background: var(--x-cyan); }
+      .x-quiz h3 { font-family: var(--x-display); font-size: clamp(22px, 3vw, 28px); line-height: 1.2; margin-bottom: 18px; }
+      .x-opts { display: grid; gap: 10px; }
+      .x-opt { text-align: left; min-height: 54px; padding: 12px 18px; border-radius: 14px; border: 1px solid var(--x-line); background: rgba(7, 17, 31, 0.5); color: var(--x-text); font: 500 16px var(--x-body); cursor: pointer; transition: transform 0.25s var(--x-ease), border-color 0.25s, background 0.25s; }
+      .x-opt:hover:not(:disabled) { transform: translateX(6px); border-color: var(--x-cyan); }
+      .x-opt:disabled { cursor: default; }
+      .x-opt.ok { background: rgba(16, 185, 129, 0.2); border-color: var(--x-emerald); animation: x-pop 0.4s; }
+      .x-opt.no { background: rgba(249, 115, 22, 0.18); border-color: var(--x-orange); animation: x-shake 0.4s; }
+      @keyframes x-shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+      .x-fb { margin-top: 16px; min-height: 26px; font-weight: 600; }
+      .x-fb.ok { color: var(--x-emerald); } .x-fb.no { color: var(--x-orange); }
+      .x-result { display: grid; grid-template-columns: 160px 1fr; gap: 26px; align-items: center; }
+      .x-ring { position: relative; width: 160px; height: 160px; }
+      .x-ring svg { transform: rotate(-90deg); }
+      .x-ring circle { fill: none; stroke-width: 12; }
+      .x-ring__fill { stroke: url(#x-ring-g); stroke-linecap: round; transition: stroke-dashoffset 1.4s var(--x-ease); }
+      .x-ring__txt { position: absolute; inset: 0; display: grid; place-items: center; font: 700 36px var(--x-display); }
+      .x-confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 80; }
+
+      /* videos */
+      .x-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+      .x-filter { min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--x-line); background: var(--x-card); color: var(--x-muted); font: 600 14px var(--x-body); cursor: pointer; transition: all 0.3s; }
+      .x-filter:hover { color: var(--x-text); border-color: var(--x-cyan); }
+      .x-filter[aria-pressed="true"] { color: #04121c; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan)); border-color: transparent; }
+      .x-vids { display: grid; gap: 18px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); }
+      .x-vid { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+      .x-vid[hidden] { display: none; }
+      .x-vid[data-cat="2027"] { --glow: var(--x-orange); }
+      .x-vid[data-cat="2040"] { --glow: var(--x-emerald); }
+      .x-vid__media { position: relative; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+      .x-vid__media iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+      .x-vid__play { position: absolute; inset: 0; width: 100%; padding: 0; border: 0; background: none; cursor: pointer; }
+      .x-vid__play img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--x-ease), filter 0.4s; filter: brightness(0.8); }
+      .x-vid:hover .x-vid__play img { transform: scale(1.06); filter: brightness(1); }
+      .x-vid__btn { position: absolute; left: 50%; top: 50%; width: 68px; height: 68px; margin: -34px 0 0 -34px; border-radius: 50%; display: grid; place-items: center; color: #04121c; background: linear-gradient(135deg, var(--x-gold), var(--x-amber)); box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); animation: x-ping 2s infinite; }
+      @keyframes x-ping { 70% { box-shadow: 0 0 0 20px rgba(245, 158, 11, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); } }
+      .x-vid__body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+      .x-vid__body h3 { font-family: var(--x-display); font-size: 18px; line-height: 1.3; }
+      .x-vid__acts { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; margin-top: auto; padding-top: 10px; }
+      .x-vid__acts button, .x-vid__acts a { min-height: 44px; display: inline-flex; align-items: center; gap: 6px; background: none; border: 0; padding: 0; color: var(--x-cyan); font: 600 14px var(--x-body); cursor: pointer; text-decoration: none; }
+      .x-vid__acts a { color: var(--x-muted); }
+      .x-vid__acts button:hover, .x-vid__acts a:hover { text-decoration: underline; color: var(--x-text); }
+      .x-modal { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: 20px; background: rgba(3, 8, 15, 0.86); backdrop-filter: blur(8px); }
+      .x-modal[hidden] { display: none; }
+      .x-modal__box { position: relative; width: min(1100px, 100%); aspect-ratio: 16 / 9; border-radius: 18px; overflow: hidden; background: #000; box-shadow: 0 0 80px -10px rgba(34, 211, 238, 0.5); animation: x-pop 0.4s var(--x-ease); }
+      .x-modal__box iframe { width: 100%; height: 100%; border: 0; }
+      .x-modal__close { position: absolute; top: 14px; right: 14px; width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--x-line); background: var(--x-card); color: var(--x-text); font-size: 24px; cursor: pointer; }
+
+      /* read */
+      .x-reads { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+      .x-read { display: flex; flex-direction: column; gap: 8px; text-decoration: none; min-height: 150px; background: radial-gradient(120% 120% at 100% 0%, color-mix(in srgb, var(--glow) 28%, transparent), transparent 55%), linear-gradient(160deg, var(--x-card2), var(--x-card)); }
+      .x-read b { font-family: var(--x-display); font-size: 22px; line-height: 1.2; }
+      .x-read span { color: var(--x-muted); font-size: 14px; }
+      .x-read em { margin-top: auto; font-style: normal; font-weight: 600; color: var(--glow); display: inline-flex; gap: 6px; align-items: center; font-size: 14px; }
+      .x-read:hover em svg { transform: translate(3px, -3px); }
+      .x-read em svg { transition: transform 0.3s; }
+
+      /* footer + top */
+      .x-foot { margin-top: 60px; padding: 30px 0 20px; text-align: center; color: var(--x-muted); font-size: 14px; }
+      .x-foot__line { height: 3px; border-radius: 3px; margin-bottom: 26px; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan), var(--x-gold), var(--x-amber), var(--x-emerald), var(--x-teal)); background-size: 300% 100%; animation: x-shim 10s linear infinite; }
+      .x-foot p + p { margin-top: 8px; }
+      .x-foot b { color: var(--x-text); }
+      .x-top { position: fixed; right: 18px; bottom: 18px; z-index: 55; width: 52px; height: 52px; border-radius: 50%; border: 0; cursor: pointer; color: #04121c; background: linear-gradient(135deg, var(--x-teal), var(--x-amber)); box-shadow: 0 10px 30px -8px rgba(34, 211, 238, 0.8); display: grid; place-items: center; opacity: 0; transform: translateY(20px) scale(0.8); pointer-events: none; transition: opacity 0.4s, transform 0.4s var(--x-ease); }
+      .x-top.is-on { opacity: 1; transform: none; pointer-events: auto; }
+      .x-top:hover { transform: translateY(-4px); }
+
+      @media (max-width: 860px) {
+        .x-paths, .x-result { grid-template-columns: minmax(0, 1fr); }
+        .x-pathpanel { grid-template-columns: minmax(0, 1fr); justify-items: center; text-align: center; }
+        .x-align__row { grid-template-columns: minmax(0, 1fr); }
+        .x-cmp thead { display: none; }
+        .x-cmp, .x-cmp tbody, .x-cmp tr, .x-cmp th, .x-cmp td { display: block; width: auto !important; }
+        .x-cmp tbody tr { margin-bottom: 14px; }
+        .x-cmp tbody th { border-radius: 16px 16px 0 0; border: 1px solid var(--x-line); border-bottom: 0; }
+        .x-cmp tbody td { border: 1px solid var(--x-line); border-top: 0; }
+        .x-cmp tbody td::before { content: attr(data-l); display: block; font: 700 12px var(--x-display); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; color: var(--lc); }
+        .x-cmp tbody td:nth-child(2) { --lc: var(--x-orange); }
+        .x-cmp tbody td:last-child { --lc: var(--x-emerald); border-radius: 0 0 16px 16px; }
+        .x-result { justify-items: center; text-align: center; }
+      }
+      @media (max-width: 860px) {
+        .x-bio, .x-panel { grid-template-columns: minmax(0, 1fr); }
+        .x-endings { grid-template-columns: minmax(0, 1fr); }
+        [data-pick="race"] .x-end--slow, [data-pick="slow"] .x-end--race { display: none; }
+        .x-rung { grid-template-columns: minmax(0, 1fr) 60px; }
+        .x-rung__bar { grid-column: 1 / -1; grid-row: 2; }
+        .x-nav__brand { display: none; }
+        .x-nav { padding-left: 8px; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .x-body *, .x-body *::before, .x-body *::after { animation: none !important; transition-duration: 0.01ms !important; transition-delay: 0s !important; }
+        .x-js .x-rv { opacity: 1; translate: none; scale: 1; }
+      }
+      /* solid fallbacks under gradients, tap targets, min text size */
+      .x-nav__links a { min-height: 44px; }
+      .x-nav__links a.is-active, .x-btn, .x-filter[aria-pressed="true"] { background-color: var(--x-cyan); }
+      .x-btn--amber { background-color: var(--x-amber); }
+      .x-btn--ghost { background-color: var(--x-card); }
+      .x-av { background-color: var(--a1); }
+      .x-rec { background-color: var(--x-emerald); }
+      .x-note { background-color: #161a1c; }
+      .x-branch { color: #07111f; background-color: var(--x-red); }
+      .x-branch a { display: inline-flex; align-items: center; min-height: 44px; }
+      .x-pathbtn small { font-size: 12px; }
+      .x-top { width: 52px; height: 52px; background-color: var(--x-cyan); transform: translateY(20px); }
+      .x-top.is-on { transform: none; }
+      .x-top.is-on:hover { transform: translateY(-4px); }
+    </style>
+  </head>
+  <body class="x-body">
+    <div class="x-progress" id="x-progress" aria-hidden="true"></div>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id="x-wave-g" x1="0" x2="0.5" y1="0" y2="0" spreadMethod="repeat">
+          <stop offset="0" stop-color="#14b8a6" /><stop offset="0.33" stop-color="#22d3ee" /><stop offset="0.66" stop-color="#f59e0b" /><stop offset="1" stop-color="#14b8a6" />
+        </linearGradient>
+        <linearGradient id="x-ring-g" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stop-color="#14b8a6" /><stop offset="0.5" stop-color="#22d3ee" /><stop offset="1" stop-color="#f59e0b" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <nav class="x-nav" aria-label="Sections">
+      <a class="x-nav__brand" href="#top"><span>Two Futures</span></a>
+      <div class="x-nav__links" id="x-navlinks">
+        <a href="#forecaster">Forecaster</a>
+        <a href="#jargon">Jargon</a>
+        <a href="#ai2027">AI 2027</a>
+        <a href="#endings">Endings</a>
+        <a href="#takeaways">Takeaways</a>
+        <a href="#plan-a">Plan A</a>
+        <a href="#paths">5 Paths</a>
+        <a href="#ai2040">AI 2040</a>
+        <a href="#compare">Compare</a>
+        <a href="#quiz">Quiz</a>
+        <a href="#talks">Talks</a>
+        <a href="#read">Read</a>
+      </div>
+    </nav>
+
+    <div class="page" id="top">
+      <main class="main">
+        <section class="x-hero x-bleed" id="hero" aria-label="Two Futures for AI">
+          <img class="x-hero__img x-parallax" data-speed="0.25" src="assets/hero.jpg" alt="A glowing AI datacenter at dawn with teal data streams" />
+          <canvas class="x-hero__canvas" id="x-net" aria-hidden="true"></canvas>
+          <div class="x-hero__copy">
+            <p class="x-hero__eyebrow">AI 2027 &amp; AI 2040 · explained simply</p>
+            <h1><span class="x-shimmer">Two Futures for AI</span></h1>
+            <p class="x-hero__sub">AI 2027 shows where the AI race might take us. AI 2040 shows a way to change the ending.</p>
+            <ul class="x-chips">
+              <li class="x-chip" style="--c: var(--x-orange)"><i></i>AI 2027 · Published <b>Apr 3, 2025</b></li>
+              <li class="x-chip" style="--c: var(--x-emerald)"><i></i>AI 2040 · Published <b>Jul 9, 2026</b></li>
+              <li class="x-chip" style="--c: var(--x-cyan)"><i></i><b>~<span data-count="25">25</span></b> tabletop wargames</li>
+              <li class="x-chip" style="--c: var(--x-gold)"><i></i><b><span data-count="100">100</span>+</b> expert reviewers</li>
+            </ul>
+            <div class="x-btns">
+              <a class="x-btn" href="#forecaster">Start the story <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg></a>
+              <a class="x-btn x-btn--amber" href="#talks"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg> Watch the talks</a>
+            </div>
+          </div>
+          <a class="x-chev" href="#forecaster" aria-label="Scroll down"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6" /></svg></a>
+        </section>
+
+        <section class="x-sec" id="forecaster">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow">Meet the forecaster</p>
+            <h2 class="x-h2">The man who <span class="x-grad">keeps being early</span>.</h2>
+            <p class="x-lead">Daniel Kokotajlo leads the small team behind both stories. He has a track record of guessing right about AI.</p>
+          </div>
+          <div class="x-bio">
+            <article class="x-card x-rv" data-tilt>
+              <div class="x-bio__top">
+                <span class="x-av x-av--big" style="--a1: var(--x-teal); --a2: var(--x-cyan)">DK</span>
+                <div>
+                  <h3 class="x-h3">Daniel Kokotajlo</h3>
+                  <p class="x-muted x-small">Executive director, AI Futures Project, a small research nonprofit</p>
+                  <div class="x-tags"><span class="x-tag" style="--tc: var(--x-gold)">TIME100</span><span class="x-tag" style="--tc: var(--x-cyan)">Ex-OpenAI</span></div>
+                </div>
+              </div>
+              <ul class="x-facts">
+                <li><span>He worked at <b>OpenAI</b> on forecasting and governance.</span></li>
+                <li><span>He left, and turned down about <b>$2 million</b> in equity rather than sign a silence agreement. He told this story on The Diary of a CEO.</span></li>
+                <li><span>He was named to the <b>TIME100</b>.</span></li>
+                <li><span>He testified to a <b>US Senate subcommittee</b> on Sept 30, 2026.</span></li>
+                <li><span>In 2021 he wrote <b>"What 2026 Looks Like"</b>, more than a year before ChatGPT. It predicted chain-of-thought, inference scaling, chip export controls and $100M training runs.</span></li>
+              </ul>
+            </article>
+            <div class="x-stats">
+              <div class="x-card x-rv" style="--d: 0.1s; --glow: var(--x-gold)" data-tilt>
+                <span class="x-stat__fig x-grad" style="--g1: var(--x-gold); --g2: var(--x-amber)">$<span data-count="2">2</span>M</span>
+                <span class="x-stat__label">in equity he walked away from to stay free to speak</span>
+              </div>
+              <div class="x-card x-rv" style="--d: 0.2s; --glow: var(--x-emerald)" data-tilt>
+                <span class="x-stat__fig x-grad" style="--g1: var(--x-emerald); --g2: var(--x-lime)"><span data-count="4">4</span> calls</span>
+                <span class="x-stat__label">his 2021 essay got right early: chain-of-thought, inference scaling, export controls, $100M runs</span>
+              </div>
+              <div class="x-card x-rv" style="--d: 0.3s; --glow: var(--x-blue)" data-tilt>
+                <span class="x-stat__fig x-grad" style="--g1: var(--x-blue); --g2: var(--x-cyan)"><span data-count="7">7</span></span>
+                <span class="x-stat__label">people wrote the two scenarios together</span>
+              </div>
+            </div>
+          </div>
+          <h3 class="x-h3 x-rv" style="margin-top: 40px">The authors</h3>
+          <p class="x-muted x-rv">AI 2027: Daniel Kokotajlo, Scott Alexander, Thomas Larsen, Eli Lifland, Romeo Dean. AI 2040: Thomas Larsen (lead), Romeo Dean, Brendan Halstead, Eli Lifland, Ryan Greenblatt, Daniel Kokotajlo.</p>
+          <div class="x-authors">
+            <div class="x-card x-author x-rv" style="--glow: var(--x-teal)"><span class="x-av" style="--a1: var(--x-teal); --a2: var(--x-cyan)">DK</span><div><b>Daniel Kokotajlo</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.05s; --glow: var(--x-amber)"><span class="x-av" style="--a1: var(--x-amber); --a2: var(--x-gold)">SA</span><div><b>Scott Alexander</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.1s; --glow: var(--x-emerald)"><span class="x-av" style="--a1: var(--x-emerald); --a2: var(--x-lime)">TL</span><div><b>Thomas Larsen</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040 lead</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.15s; --glow: var(--x-blue)"><span class="x-av" style="--a1: var(--x-blue); --a2: var(--x-cyan)">EL</span><div><b>Eli Lifland</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.2s; --glow: var(--x-teal)"><span class="x-av" style="--a1: var(--x-cyan); --a2: var(--x-teal)">RD</span><div><b>Romeo Dean</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.25s; --glow: var(--x-amber)"><span class="x-av" style="--a1: var(--x-orange); --a2: var(--x-amber)">BH</span><div><b>Brendan Halstead</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div></div></div>
+            <div class="x-card x-author x-rv" style="--d: 0.3s; --glow: var(--x-emerald)"><span class="x-av" style="--a1: var(--x-lime); --a2: var(--x-emerald)">RG</span><div><b>Ryan Greenblatt</b><div class="x-tags"><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div></div></div>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="jargon">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-amber)">Jargon buster</p>
+            <h2 class="x-h2">Eleven words you need, <span class="x-grad" style="--g1: var(--x-amber); --g2: var(--x-gold)">made simple</span>.</h2>
+            <p class="x-lead">Tap a card to flip it. Tap again to flip it back.</p>
+          </div>
+          <div class="x-flips" id="x-flips">
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-teal)" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>AGI</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>AGI</b><span>An AI as smart as a person at most jobs.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-cyan); --d: 0.04s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Superintelligence / ASI</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>ASI</b><span>An AI much smarter than the best human at everything.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-blue); --d: 0.08s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>AI agent</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>AI agent</b><span>An AI that does tasks on its own, like an employee.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-emerald); --d: 0.12s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Alignment</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Alignment</b><span>Making sure the AI truly wants what we want.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-red); --d: 0.16s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Misaligned</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Misaligned</b><span>The AI's real goals are different from ours.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-amber); --d: 0.2s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Compute</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Compute</b><span>The computer chips and power used to train and run AI.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-orange); --d: 0.24s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Model weights</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Model weights</b><span>The "brain file" of an AI. Steal it and you have the AI.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-gold); --d: 0.28s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Intelligence explosion</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Intelligence explosion</b><span>AIs building smarter AIs, faster and faster.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-lime); --d: 0.32s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>R&amp;D multiplier</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>R&amp;D multiplier</b><span>How many times faster AI makes research. 4x means a month of work gets done in a week.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-cyan); --d: 0.36s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>Neuralese</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Neuralese</b><span>AI "thinking" in lists of numbers that humans can't read.</span></span></span></button>
+            <button class="x-flip x-rv" type="button" style="--fc: var(--x-teal); --d: 0.4s" aria-pressed="false"><span class="x-flip__in"><span class="x-flip__f"><strong>OpenBrain &amp; DeepCent</strong><small>↻ Tap to flip</small></span><span class="x-flip__b"><b>Made-up names</b><span>Fictional stand-ins for the leading US (OpenBrain) and Chinese (DeepCent) AI companies.</span></span></span></button>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="ai2027">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-orange)">AI 2027 · the timeline</p>
+            <h2 class="x-h2">Two and a half years, <span class="x-grad" style="--g1: var(--x-cyan); --g2: var(--x-orange)">month by month</span>.</h2>
+            <p class="x-lead">Click a date to see what happens. Watch the capability meter climb and the research speed-up grow.</p>
+          </div>
+          <div class="x-tl x-rv">
+            <div class="x-tl__nodes" id="x-tl-nodes" role="tablist" aria-label="AI 2027 timeline"></div>
+            <article class="x-card x-panel" id="x-tl-panel" aria-live="polite"></article>
+          </div>
+          <div class="x-card x-ladder x-rv" id="x-ladder">
+            <h3 class="x-h3">The milestone ladder</h3>
+            <p class="x-muted x-small" style="margin-bottom: 14px">Each step makes AI research faster. Bars use a log scale, so each step is a big jump.</p>
+            <div class="x-rung" style="--rc: var(--x-cyan); --w: 18%; --d: 0s"><div class="x-rung__name">Superhuman Coder<small>Mar 2027</small></div><div class="x-rung__bar"><i></i></div><div class="x-rung__fig">4x</div></div>
+            <div class="x-rung" style="--rc: var(--x-emerald); --w: 42%; --d: 0.15s"><div class="x-rung__name">Superhuman AI Researcher<small>Aug 2027</small></div><div class="x-rung__bar"><i></i></div><div class="x-rung__fig">25x</div></div>
+            <div class="x-rung" style="--rc: var(--x-gold); --w: 61%; --d: 0.3s"><div class="x-rung__name">Superhuman Remote Worker<small>No date given</small></div><div class="x-rung__bar"><i></i></div><div class="x-rung__fig">100x</div></div>
+            <div class="x-rung" style="--rc: var(--x-orange); --w: 73%; --d: 0.45s"><div class="x-rung__name">Superintelligent AI Researcher<small>Nov 2027</small></div><div class="x-rung__bar"><i></i></div><div class="x-rung__fig">250x</div></div>
+            <div class="x-rung" style="--rc: var(--x-red); --w: 100%; --d: 0.6s"><div class="x-rung__name">Artificial Superintelligence<small>Dec 2027</small></div><div class="x-rung__bar"><i></i></div><div class="x-rung__fig">2000x</div></div>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="endings">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-gold)">Choose your ending</p>
+            <h2 class="x-h2">October 2027: <span class="x-grad" style="--g1: var(--x-orange); --g2: var(--x-emerald)">race or slow down?</span></h2>
+            <p class="x-lead">After the leak, a committee must decide. Flip the switch to follow each path.</p>
+          </div>
+          <div class="x-fork" id="x-fork" data-pick="race">
+            <div class="x-switch x-rv" role="group" aria-label="Pick an ending">
+              <span class="x-switch__thumb" aria-hidden="true"></span>
+              <button type="button" data-pick="race" aria-pressed="true">RACE</button>
+              <button type="button" data-pick="slow" aria-pressed="false">SLOWDOWN</button>
+            </div>
+            <div class="x-endings">
+              <article class="x-card x-end x-end--race x-rv">
+                <div class="x-end__media"><img class="x-parallax" data-speed="0.12" src="assets/race.jpg" alt="Red-orange robot factories and rockets with no humans" loading="lazy" /></div>
+                <div class="x-end__body">
+                  <p class="x-end__title">Race</p>
+                  <p class="x-muted">OpenBrain keeps going full speed.</p>
+                  <ol class="x-story">
+                    <li>OpenBrain keeps racing.</li>
+                    <li>AI is put to work across the military and government.</li>
+                    <li>The AI uses persuasion to get more power.</li>
+                    <li>A huge robot build-up follows.</li>
+                    <li>The AI was deceiving us all along. It releases a bioweapon and humans are gone.</li>
+                    <li>It launches probes into space.</li>
+                  </ol>
+                </div>
+              </article>
+              <article class="x-card x-end x-end--slow x-rv" style="--d: 0.1s">
+                <div class="x-end__media"><img class="x-parallax" data-speed="0.12" src="assets/slowdown.jpg" alt="A green and golden city at sunrise with rockets" loading="lazy" /></div>
+                <div class="x-end__body">
+                  <p class="x-end__title">Slowdown</p>
+                  <p class="x-muted">The US hits the brakes, for a while.</p>
+                  <ol class="x-story">
+                    <li>The US pools its compute and brings in outside experts.</li>
+                    <li>It switches to AI whose "chain of thought" humans can read.</li>
+                    <li>It catches the misalignment.</li>
+                    <li>It builds an aligned superintelligence, controlled by a small committee.</li>
+                    <li>The AI is released to the public. A time of fast growth begins.</li>
+                    <li>A deal is made with China's weaker, misaligned AI.</li>
+                    <li>Rockets launch and a new age dawns. But power is dangerously concentrated.</li>
+                  </ol>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div class="x-note x-rv"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10" /><path d="M12 8v5M12 16.5v.5" /></svg><p><strong>AI 2027 is a prediction, not a wish. Neither ending is a recommendation.</strong></p></div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="takeaways">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-cyan)">The big lessons</p>
+            <h2 class="x-h2">8 big takeaways <span class="x-grad" style="--g1: var(--x-cyan); --g2: var(--x-gold)">from AI 2027</span>.</h2>
+          </div>
+          <div class="x-grid">
+            <article class="x-card x-take x-rv" style="--glow: var(--x-teal)" data-tilt><span class="x-take__num">01</span><p>AI research may be fully automated by about 2027. That could lead to superintelligence.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-cyan); --d: 0.06s" data-tilt><span class="x-take__num">02</span><p>Superintelligent AIs will shape humanity's future.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-blue); --d: 0.12s" data-tilt><span class="x-take__num">03</span><p>They might end up with goals we never meant to give them.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-emerald); --d: 0.18s" data-tilt><span class="x-take__num">04</span><p>Whoever controls them could seize total power.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-lime)" data-tilt><span class="x-take__num">05</span><p>A race makes everyone cut corners on safety.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-gold); --d: 0.06s" data-tilt><span class="x-take__num">06</span><p>The race ends in one of three ways: war, a deal, or surrender.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-amber); --d: 0.12s" data-tilt><span class="x-take__num">07</span><p>No US AI company is safe from theft by a nation-state.</p></article>
+            <article class="x-card x-take x-rv" style="--glow: var(--x-orange); --d: 0.18s" data-tilt><span class="x-take__num">08</span><p>The public will be months behind what AI can really do.</p></article>
+          </div>
+          <div class="x-aside x-rv">
+            <p><b>Why 2027?</b> <span class="x-muted">The authors later said 2027 was their "most likely" single year, but their median guess was somewhat later. They have updated their forecasts since. Daniel now thinks things may go a bit faster than AI 2040's default of 2030.</span></p>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="plan-a">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-emerald)">AI 2040: Plan A</p>
+            <h2 class="x-h2">Changing <span class="x-grad" style="--g1: var(--x-emerald); --g2: var(--x-cyan)">the ending</span>.</h2>
+            <p class="x-lead">Plan A is a <b style="color: var(--x-emerald)">recommendation</b>, not a prediction. It is what the authors think should happen instead.</p>
+          </div>
+          <div class="x-banner x-rv x-rv--scale">
+            <div class="x-par"><img class="x-parallax" data-speed="0.15" src="assets/deal.jpg" alt="Earth with glowing, connected and shielded datacenters" loading="lazy" /></div>
+            <div class="x-banner__copy">
+              <span class="x-tag" style="--tc: var(--x-emerald)">The plan in one line</span>
+              <p style="margin-top: 12px">Humanity <b>delays superintelligence until 2040</b>, makes nearly all AI research <b>public</b>, lets <b>dozens of companies in many countries</b> catch up, and builds <b>"mutually assured compute destruction"</b>: kill-switches on datacenters.</p>
+            </div>
+          </div>
+          <h3 class="x-h3 x-rv" style="margin-top: 36px">Four principles</h3>
+          <div class="x-tiles">
+            <article class="x-card x-tile x-rv" style="--glow: var(--x-teal)" data-tilt><div class="x-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12M6 22h12M7 2c0 5 10 5 10 10S7 17 7 22M17 2c0 5-10 5-10 10s10 5 10 10" /></svg></div><h4 class="x-h3">Buy time</h4><p class="x-muted">Slow down so safety work can catch up.</p></article>
+            <article class="x-card x-tile x-rv" style="--glow: var(--x-cyan); --d: 0.08s" data-tilt><div class="x-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z" /><circle cx="12" cy="12" r="3" /></svg></div><h4 class="x-h3">Total research transparency</h4><p class="x-muted">Nearly all AI research happens in the open.</p></article>
+            <article class="x-card x-tile x-rv" style="--glow: var(--x-emerald); --d: 0.16s" data-tilt><div class="x-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="5" r="2.5" /><circle cx="5" cy="18" r="2.5" /><circle cx="19" cy="18" r="2.5" /><path d="M10.8 7.2 6.3 15.8M13.2 7.2l4.5 8.6M7.5 18h9" /></svg></div><h4 class="x-h3">Diffuse AI broadly</h4><p class="x-muted">Many companies in many countries, not one winner.</p></article>
+            <article class="x-card x-tile x-rv" style="--glow: var(--x-amber); --d: 0.24s" data-tilt><div class="x-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v10" /><path d="M18.4 6.6a9 9 0 1 1-12.8 0" /></svg></div><h4 class="x-h3">Reversibility</h4><p class="x-muted">Self-destruct switches on datacenters, so mistakes can be undone.</p></article>
+          </div>
+          <h3 class="x-h3 x-rv" style="margin-top: 36px">Three key steps</h3>
+          <div class="x-steps3">
+            <article class="x-card x-step3 x-rv" style="--glow: var(--x-cyan)" data-tilt><h4 class="x-h3">Find the chips</h4><p class="x-muted">Track down the world's AI compute and limit "dark compute" that nobody declared.</p></article>
+            <article class="x-card x-step3 x-rv" style="--glow: var(--x-teal); --d: 0.1s" data-tilt><h4 class="x-h3">Pause and prepare</h4><p class="x-muted">Pause training for a while. Build better tools to check the rules are kept, and secure datacenters.</p></article>
+            <article class="x-card x-step3 x-rv" style="--glow: var(--x-emerald); --d: 0.2s" data-tilt><h4 class="x-h3">Resume, safely</h4><p class="x-muted">Restart under "safety case" rules, with full transparency.</p></article>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="paths">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-amber)">2029: Choose a Path</p>
+            <h2 class="x-h2">The <span class="x-grad" style="--g1: var(--x-red); --g2: var(--x-blue)">five paths</span>.</h2>
+            <p class="x-lead">In AI 2040, leaders face five choices. Tap a letter or drag the slider to compare them.</p>
+          </div>
+          <div class="x-paths x-rv">
+            <div class="x-card" style="--glow: var(--x-cyan)">
+              <div class="x-pathbtns" id="x-pathbtns">
+                <button class="x-pathbtn" type="button" style="--pc: var(--x-red)" data-i="0" aria-pressed="false">D<small>Race</small></button>
+                <button class="x-pathbtn" type="button" style="--pc: var(--x-orange)" data-i="1" aria-pressed="false">C<small>Burn</small></button>
+                <button class="x-pathbtn" type="button" style="--pc: var(--x-amber)" data-i="2" aria-pressed="false">B<small>Fight</small></button>
+                <button class="x-pathbtn" type="button" style="--pc: var(--x-emerald)" data-i="3" aria-pressed="true">A<small>Deal</small></button>
+                <button class="x-pathbtn" type="button" style="--pc: var(--x-blue)" data-i="4" aria-pressed="false">S<small>Stop</small></button>
+              </div>
+              <label class="x-small x-muted" for="x-pathrange" style="display: block; margin-top: 18px">Slide from full speed to full stop</label>
+              <input class="x-range" id="x-pathrange" type="range" min="0" max="4" step="1" value="3" />
+              <div class="x-range__ends"><span>Full speed</span><span>Full stop</span></div>
+            </div>
+            <div class="x-card x-pathpanel" id="x-pathpanel">
+              <div class="x-gauge">
+                <svg viewBox="0 0 200 116" role="img" aria-label="Risk gauge" id="x-gauge-svg">
+                  <path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="rgba(148,197,230,.14)" stroke-width="16" stroke-linecap="round" />
+                  <path class="x-gauge__arc" id="x-gauge-arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="#10b981" stroke-width="16" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="251.3" />
+                  <g class="x-gauge__needle" id="x-gauge-needle"><line x1="100" y1="100" x2="100" y2="34" stroke="#e8f2f9" stroke-width="4" stroke-linecap="round" /></g>
+                  <circle cx="100" cy="100" r="8" fill="#e8f2f9" />
+                </svg>
+                <p class="x-gauge__label" id="x-gauge-label">Risk</p>
+              </div>
+              <div id="x-path-copy"></div>
+            </div>
+          </div>
+          <p class="x-muted x-small x-rv" style="margin-top: 14px">The gauge is a simple picture of how risky each path sounds in the story. It is not a number from the authors.</p>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="ai2040">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-cyan)">AI 2040 · year by year</p>
+            <h2 class="x-h2">Fourteen years <span class="x-grad" style="--g1: var(--x-cyan); --g2: var(--x-emerald)">to get it right</span>.</h2>
+            <p class="x-lead">Scroll down. The line fills as the years go by.</p>
+          </div>
+          <div class="x-vtl" id="x-vtl">
+            <div class="x-vtl__track" aria-hidden="true"><div class="x-vtl__fill" id="x-vtl-fill"></div></div>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2027</p><h3>The Writing on the Wall</h3><ul><li>Two workforces: 165 million people plus millions of AI agents.</li><li>About $10 billion a month is spent on AI.</li><li>The AI Transparency Act of 2027 passes.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2028</p><h3>AI on the Ballot</h3><ul><li>Datacenters being built cost twice the US military budget.</li><li>White-collar jobs are shaken up.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2029</p><h3>Choose a Path: Hurried Negotiation</h3><ul><li>The US and China strike a deal: declare all compute, pause training, and get the whole world on board.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2030</p><h3>Plan A Is Established</h3><ul><li>Without the deal, AI research would have been fully automated, with superintelligence by the end of the year.</li><li>The Consortium sets the 4 principles.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2031</p><h3>Safety Cases</h3><ul><li>The first Consortium-regulated AIs could speed up research about 10x. They aren't allowed to.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2032</p><h3>Controlled Explosive Growth</h3><ul><li>60 million AI agents at 20x human speed, like a workforce of about 3 billion people.</li><li>A robotics boom.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2033</p><h3>The Citizen's Dividend</h3><ul><li>Starts at $45,000 per adult in 2032 and climbs to about $1 million per person by 2035.</li><li>AI and robots go from about 20% to about 85% of all labor.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2034</p><h3>Mutually Assured Compute Destruction</h3><ul><li>Compute grows from 20 million H100-equivalents in 2026 to 60 billion now.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2035</p><h3>Pause at Top-Expert AI</h3><ul><li>AIs now equal top human experts.</li><li>AIs from different companies watch over each other.</li></ul></article>
+            <article class="x-card x-yr x-yr--feature x-rv">
+              <div class="x-par"><img class="x-parallax" data-speed="0.12" src="assets/future.jpg" alt="Robots building while families relax in a green park" loading="lazy" /></div>
+              <div class="x-yr__in"><p class="x-yr__y" style="color: var(--x-lime)">2036</p><h3>Life After Work</h3><ul><li>200 million AIs, equal to about 100 billion human workers.</li><li>2 billion robots.</li></ul></div>
+            </article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2037</p><h3>The Apocalyptic Arrival of Truth on Earth</h3><ul><li>100 million expert AIs at 100x speed.</li><li>Science moves 10x to 1,000x faster.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2038</p><h3>AI Alignment Is Now a Science</h3><ul><li>Textbook methods make AIs honest.</li><li>Tools that look inside AIs confirm the theory.</li></ul></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y">2039</p><h3>Beginning to Trust AIs</h3></article>
+            <article class="x-card x-yr x-rv"><p class="x-yr__y" style="color: var(--x-gold)">2040</p><h3>Passing the Torch to AIs</h3><ul><li>The best AIs follow values everyone can see.</li><li>Power is spread out.</li><li>Regulators loosen the rules, and AI scales up to superintelligence.</li></ul></article>
+          </div>
+          <div class="x-card x-align x-rv" id="x-align">
+            <h3 class="x-h3">How trust in AI grows</h3>
+            <p class="x-muted x-small">The alignment track: from AIs that only look good, to AIs we can trust.</p>
+            <div class="x-align__row">
+              <div class="x-seg" style="--sc: var(--x-orange); --d: 0s"><div class="x-seg__bar"><i></i></div><b>2026–29</b><span>Apparent-success seekers</span></div>
+              <div class="x-seg" style="--sc: var(--x-amber); --d: 0.35s"><div class="x-seg__bar"><i></i></div><b>2030–32</b><span>Very capable apparent-success seekers</span></div>
+              <div class="x-seg" style="--sc: var(--x-gold); --d: 0.7s"><div class="x-seg__bar"><i></i></div><b>2032–35</b><span>Misaligned but controlled</span></div>
+              <div class="x-seg" style="--sc: var(--x-lime); --d: 1.05s"><div class="x-seg__bar"><i></i></div><b>2036–38</b><span>Aligned but not trusted with power</span></div>
+              <div class="x-seg" style="--sc: var(--x-emerald); --d: 1.4s"><div class="x-seg__bar"><i></i></div><b>2039–40</b><span>Aligned enough to trust</span></div>
+            </div>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="compare">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-gold)">Side by side</p>
+            <h2 class="x-h2"><span style="color: var(--x-orange)">AI 2027</span> vs <span style="color: var(--x-emerald)">AI 2040</span></h2>
+          </div>
+          <table class="x-cmp">
+            <thead><tr><td></td><th scope="col">AI 2027</th><th scope="col">AI 2040</th></tr></thead>
+            <tbody>
+              <tr class="x-rv x-rv--left"><th scope="row">Type</th><td data-l="AI 2027">Prediction</td><td data-l="AI 2040">Recommendation</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.06s"><th scope="row">Superintelligence arrives</th><td data-l="AI 2027">Late 2027</td><td data-l="AI 2040">2040</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.12s"><th scope="row">Who's at the frontier</th><td data-l="AI 2027">1–2 secret projects</td><td data-l="AI 2040">Dozens of companies, many countries, in public</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.18s"><th scope="row">Research</th><td data-l="AI 2027">Secret</td><td data-l="AI 2040">Total transparency</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.24s"><th scope="row">US–China</th><td data-l="AI 2027">Race and theft</td><td data-l="AI 2040">Verified deal</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.3s"><th scope="row">Outcome</th><td data-l="AI 2027">Extinction, or power held by a committee</td><td data-l="AI 2040">Flourishing, with power spread out</td></tr>
+              <tr class="x-rv x-rv--left" style="--d: 0.36s"><th scope="row">Big idea</th><td data-l="AI 2027">Racing is dangerous</td><td data-l="AI 2040">Buy time</td></tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="quiz">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-lime)">Quiz</p>
+            <h2 class="x-h2">Test <span class="x-grad" style="--g1: var(--x-lime); --g2: var(--x-teal)">yourself</span>.</h2>
+            <p class="x-lead">Six quick questions. You'll know right away if you got it.</p>
+          </div>
+          <div class="x-card x-quiz x-rv x-rv--scale" id="x-quiz" aria-live="polite"></div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="talks">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-amber)">Watch the talks</p>
+            <h2 class="x-h2">Hear it from <span class="x-grad" style="--g1: var(--x-amber); --g2: var(--x-cyan)">the authors</span>.</h2>
+            <p class="x-lead">Press play to watch right here, or open the big screen.</p>
+          </div>
+          <div class="x-filters x-rv" role="group" aria-label="Filter videos">
+            <button class="x-filter" type="button" data-f="all" aria-pressed="true">All</button>
+            <button class="x-filter" type="button" data-f="2027" aria-pressed="false">AI 2027</button>
+            <button class="x-filter" type="button" data-f="2040" aria-pressed="false">AI 2040</button>
+          </div>
+          <div class="x-vids" id="x-vids">
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="5KVDDfAkRgc"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play We're Not Ready for Superintelligence"><img src="https://i.ytimg.com/vi/5KVDDfAkRgc/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span> <span class="x-tag" style="--tc: var(--x-gold)">Official video</span></div><h3>We're Not Ready for Superintelligence</h3><p class="x-muted x-small">AI In Context / 80,000 Hours. The video linked from ai-2027.com.</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=5KVDDfAkRgc" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="htOvH12T7mU"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play AI 2027: month-by-month model of intelligence explosion"><img src="https://i.ytimg.com/vi/htOvH12T7mU/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>AI 2027: month-by-month model of intelligence explosion</h3><p class="x-muted x-small">Dwarkesh Patel with Scott Alexander &amp; Daniel Kokotajlo · Apr 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=htOvH12T7mU" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="m6izEUMKs9M"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play What Will AI Look Like in 2027?"><img src="https://i.ytimg.com/vi/m6izEUMKs9M/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>What Will AI Look Like in 2027?</h3><p class="x-muted x-small">Hard Fork (NYT) · Apr 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=m6izEUMKs9M" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="pQP37kPaueE"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play OpenAI whistleblower Daniel Kokotajlo on superintelligence"><img src="https://i.ytimg.com/vi/pQP37kPaueE/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>OpenAI whistleblower Daniel Kokotajlo on superintelligence</h3><p class="x-muted x-small">GZERO World with Ian Bremmer · May 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=pQP37kPaueE" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="zqbXolVH2h8"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play Countdown to Superintelligence"><img src="https://i.ytimg.com/vi/zqbXolVH2h8/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>Countdown to Superintelligence</h3><p class="x-muted x-small">Sam Harris, Making Sense #420 · Jun 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=zqbXolVH2h8" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="V7Q3DJ9V5CQ"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play Why the AI Race Ends in Disaster"><img src="https://i.ytimg.com/vi/V7Q3DJ9V5CQ/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>Why the AI Race Ends in Disaster</h3><p class="x-muted x-small">Future of Life Institute podcast · Jul 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=V7Q3DJ9V5CQ" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2027" data-id="k_onqn68GHY"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play AI 2027: A Realistic Scenario of AI Takeover"><img src="https://i.ytimg.com/vi/k_onqn68GHY/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-orange)">AI 2027</span></div><h3>AI 2027: A Realistic Scenario of AI Takeover</h3><p class="x-muted x-small">Narrated explainer (AI Species) · May 2025</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=k_onqn68GHY" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2040" data-id="_g4l7YkDQwA"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play ChatGPT Whistleblower: They Offered Me $2m To Keep Quiet"><img src="https://i.ytimg.com/vi/_g4l7YkDQwA/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div><h3>ChatGPT Whistleblower: They Offered Me $2m To Keep Quiet</h3><p class="x-muted x-small">The Diary of a CEO · Jul 13, 2026</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=_g4l7YkDQwA" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2040" data-id="bc8qbniuLiQ"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play Scaling Laws: Daniel Kokotajlo on AI 2040: Plan A"><img src="https://i.ytimg.com/vi/bc8qbniuLiQ/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div><h3>Scaling Laws: Daniel Kokotajlo on AI 2040: Plan A</h3><p class="x-muted x-small">Lawfare · Aug 2026</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=bc8qbniuLiQ" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2040" data-id="KFcJgTODkkQ"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play An AI 2027 Author Returns, With a Plan to Change the Ending"><img src="https://i.ytimg.com/vi/KFcJgTODkkQ/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div><h3>An AI 2027 Author Returns, With a Plan to Change the Ending</h3><p class="x-muted x-small">80,000 Hours · Sep 2026</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=KFcJgTODkkQ" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2040" data-id="z5Xix4h5UlU"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play How Many Narrow AIs Could Behave Like One Superintelligence"><img src="https://i.ytimg.com/vi/z5Xix4h5UlU/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div><h3>How Many Narrow AIs Could Behave Like One Superintelligence</h3><p class="x-muted x-small">Machine Learning Street Talk with Thomas Larsen · Sep 2026</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=z5Xix4h5UlU" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+            <article class="x-card x-vid x-rv" data-cat="2040" data-id="QGY3RsARa9k"><div class="x-vid__media"><button class="x-vid__play" type="button" aria-label="Play AI forecaster Daniel Kokotajlo keeps being right about AI"><img src="https://i.ytimg.com/vi/QGY3RsARa9k/hqdefault.jpg" alt="" loading="lazy" /><span class="x-vid__btn"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z" /></svg></span></button></div><div class="x-vid__body"><div><span class="x-tag" style="--tc: var(--x-emerald)">AI 2040</span></div><h3>AI forecaster Daniel Kokotajlo keeps being right about AI</h3><p class="x-muted x-small">Palisade Podcast · Aug 2026</p><div class="x-vid__acts"><button type="button" class="x-vid__big">⤢ Big screen</button><a href="https://www.youtube.com/watch?v=QGY3RsARa9k" target="_blank" rel="noopener">Open on YouTube ↗</a></div></div></article>
+          </div>
+        </section>
+
+        <div class="x-wave x-bleed" aria-hidden="true"><svg viewBox="0 0 2880 64" preserveAspectRatio="none"><path d="M0 32 Q180 6 360 32 T720 32 T1080 32 T1440 32 T1800 32 T2160 32 T2520 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="3" /><path d="M0 32 Q360 62 720 32 T1440 32 T2160 32 T2880 32" stroke="url(#x-wave-g)" stroke-width="1.5" opacity="0.5" /></svg></div>
+
+        <section class="x-sec" id="read">
+          <div class="x-head x-rv">
+            <p class="x-eyebrow" style="--ec: var(--x-teal)">Read the originals</p>
+            <h2 class="x-h2">Go to <span class="x-grad">the source</span>.</h2>
+            <p class="x-lead">This page is a short version. The full stories have much more detail.</p>
+          </div>
+          <div class="x-reads">
+            <a class="x-card x-read x-rv" style="--glow: var(--x-orange)" href="https://ai-2027.com/" target="_blank" rel="noopener" data-tilt><b>AI 2027</b><span>The full scenario, with both endings</span><em>ai-2027.com <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-amber); --d: 0.04s" href="https://ai-2027.com/summary" target="_blank" rel="noopener" data-tilt><b>AI 2027 Summary</b><span>The short version</span><em>Read summary <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-red); --d: 0.08s" href="https://ai-2027.com/ai-2027.pdf" target="_blank" rel="noopener" data-tilt><b>AI 2027 PDF</b><span>Download and read offline</span><em>Open PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-emerald); --d: 0.12s" href="https://ai-2040.com/" target="_blank" rel="noopener" data-tilt><b>AI 2040: Plan A</b><span>The full recommendation</span><em>ai-2040.com <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-lime); --d: 0.16s" href="https://ai-2040.com/summary" target="_blank" rel="noopener" data-tilt><b>AI 2040 Summary</b><span>The short version</span><em>Read summary <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-teal); --d: 0.2s" href="https://ai-2040.com/AI-2040.pdf" target="_blank" rel="noopener" data-tilt><b>AI 2040 PDF</b><span>Download and read offline</span><em>Open PDF <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-cyan); --d: 0.24s" href="https://ai-futures.org/" target="_blank" rel="noopener" data-tilt><b>AI Futures Project</b><span>The team behind both stories</span><em>ai-futures.org <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-blue); --d: 0.28s" href="https://www.aifuturesmodel.com/" target="_blank" rel="noopener" data-tilt><b>AI Futures Model</b><span>Play with the forecast yourself</span><em>aifuturesmodel.com <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-gold); --d: 0.32s" href="https://blog.aifutures.org/p/ai-2040-plan-a" target="_blank" rel="noopener" data-tilt><b>Blog</b><span>The AI 2040: Plan A post</span><em>Read the blog <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+            <a class="x-card x-read x-rv" style="--glow: var(--x-emerald); --d: 0.36s" href="https://open.spotify.com/show/0pVfkdbpQWM9sKlhzpbQq6" target="_blank" rel="noopener" data-tilt><b>Listen on Spotify</b><span>The podcast</span><em>Open Spotify <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17 17 7M8 7h9v9" /></svg></em></a>
+          </div>
+        </section>
+      </main>
+      <footer class="x-foot">
+        <div class="x-foot__line" aria-hidden="true"></div>
+        <p>An independent, unofficial explainer. All scenario content © AI Futures Project; summarized in simple words. Images are AI-generated illustrations.</p>
+        <p>Built by <b>Aniruddha Adak</b></p>
+      </footer>
+    </div>
+
+    <button class="x-top" id="x-top" type="button" aria-label="Back to top"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 15l6-6 6 6" /></svg></button>
+    <div class="x-modal" id="x-modal" hidden role="dialog" aria-modal="true" aria-label="Video player">
+      <button class="x-modal__close" id="x-modal-close" type="button" aria-label="Close video">×</button>
+      <div class="x-modal__box" id="x-modal-box"></div>
+    </div>
+    <canvas class="x-confetti" id="x-confetti" aria-hidden="true"></canvas>
+    <script src="js/hark.js"></script>
+    <script>
+      (function () {
+        "use strict";
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var $ = function (s, r) { return (r || document).querySelector(s); };
+        var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+        /* ---------- reveal + counters ---------- */
+        function countUp(el) {
+          var target = parseFloat(el.getAttribute("data-count"));
+          if (reduce) { el.textContent = target; return; }
+          var t0 = null, dur = 1500;
+          function step(t) {
+            if (!t0) t0 = t;
+            var p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * e);
+            if (p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+        }
+        var counters = $$("[data-count]");
+        if (!reduce) counters.forEach(function (c) { c.textContent = "0"; });
+        if ("IntersectionObserver" in window) {
+          var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (en) {
+              if (!en.isIntersecting) return;
+              var el = en.target;
+              el.classList.add("is-in");
+              if (el.hasAttribute("data-count")) countUp(el);
+              io.unobserve(el);
+            });
+          }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+          $$(".x-rv, .x-ladder, .x-align, [data-count]").forEach(function (el) { io.observe(el); });
+        } else {
+          $$(".x-rv, .x-ladder, .x-align").forEach(function (el) { el.classList.add("is-in"); });
+          counters.forEach(countUp);
+        }
+
+        /* ---------- scroll: progress, nav, parallax, back to top, 2040 line ---------- */
+        var bar = $("#x-progress"), topBtn = $("#x-top"), navLinks = $$("#x-navlinks a"), navBox = $("#x-navlinks");
+        var secs = navLinks.map(function (a) { return document.getElementById(a.getAttribute("href").slice(1)); });
+        var pars = $$(".x-parallax"), vtl = $("#x-vtl"), vfill = $("#x-vtl-fill");
+        var current = -1, ticking = false;
+        function onScroll() {
+          ticking = false;
+          var y = window.scrollY, vh = window.innerHeight, h = document.documentElement.scrollHeight - vh;
+          bar.style.transform = "scaleX(" + (h > 0 ? y / h : 0) + ")";
+          topBtn.classList.toggle("is-on", y > vh * 0.8);
+          var idx = -1;
+          for (var i = 0; i < secs.length; i++) if (secs[i] && secs[i].getBoundingClientRect().top <= 140) idx = i;
+          if (idx !== current) {
+            current = idx;
+            navLinks.forEach(function (a, j) { a.classList.toggle("is-active", j === idx); if (j === idx) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+            if (idx >= 0) {
+              var a = navLinks[idx];
+              navBox.scrollTo({ left: a.offsetLeft - navBox.clientWidth / 2 + a.offsetWidth / 2, behavior: reduce ? "auto" : "smooth" });
+            }
+          }
+          if (!reduce) {
+            pars.forEach(function (img) {
+              var r = img.parentElement.getBoundingClientRect();
+              if (r.bottom < -100 || r.top > vh + 100) return;
+              var sp = parseFloat(img.getAttribute("data-speed")) || 0.15;
+              var off = img.classList.contains("x-hero__img") ? -r.top * sp : (r.top + r.height / 2 - vh / 2) * -sp;
+              img.style.setProperty("--par", off.toFixed(1) + "px");
+            });
+          }
+          if (vtl) {
+            var vr = vtl.getBoundingClientRect();
+            var p = Math.max(0, Math.min(1, (vh * 0.6 - vr.top) / vr.height));
+            vfill.style.transform = "scaleY(" + p + ")";
+            $$(".x-yr", vtl).forEach(function (yr) { if (yr.getBoundingClientRect().top < vh * 0.6) yr.classList.add("is-in"); });
+          }
+        }
+        window.addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+        window.addEventListener("resize", onScroll);
+        onScroll();
+        topBtn.addEventListener("click", function () { window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" }); });
+
+        /* ---------- hero neural network ---------- */
+        (function () {
+          var cv = $("#x-net"), hero = $("#hero");
+          if (!cv || !cv.getContext) return;
+          var ctx = cv.getContext("2d"), dpr = Math.min(window.devicePixelRatio || 1, 2), W, H, nodes = [], mouse = { x: -999, y: -999 }, running = true;
+          var cols = ["20,184,166", "34,211,238", "245,158,11", "34,211,238"];
+          function size() {
+            W = cv.clientWidth; H = cv.clientHeight;
+            cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            var n = Math.min(110, Math.round((W * H) / 13000));
+            nodes = [];
+            for (var i = 0; i < n; i++) nodes.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35, r: 1.2 + Math.random() * 2, c: cols[i % cols.length] });
+          }
+          function draw() {
+            ctx.clearRect(0, 0, W, H);
+            var link = Math.min(150, W / 7);
+            for (var i = 0; i < nodes.length; i++) {
+              var a = nodes[i];
+              if (!reduce) {
+                var dxm = mouse.x - a.x, dym = mouse.y - a.y, dm = Math.sqrt(dxm * dxm + dym * dym);
+                if (dm < 180 && dm > 1) { a.vx += (dxm / dm) * 0.012; a.vy += (dym / dm) * 0.012; }
+                a.vx *= 0.99; a.vy *= 0.99;
+                if (Math.abs(a.vx) < 0.05) a.vx += (Math.random() - 0.5) * 0.04;
+                if (Math.abs(a.vy) < 0.05) a.vy += (Math.random() - 0.5) * 0.04;
+                a.x += a.vx; a.y += a.vy;
+                if (a.x < 0 || a.x > W) a.vx *= -1;
+                if (a.y < 0 || a.y > H) a.vy *= -1;
+              }
+              for (var j = i + 1; j < nodes.length; j++) {
+                var b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = dx * dx + dy * dy;
+                if (d < link * link) {
+                  ctx.strokeStyle = "rgba(" + a.c + "," + (0.35 * (1 - Math.sqrt(d) / link)).toFixed(3) + ")";
+                  ctx.lineWidth = 0.8; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+                }
+              }
+              var md = Math.hypot(mouse.x - a.x, mouse.y - a.y);
+              if (md < 200) {
+                ctx.strokeStyle = "rgba(250,204,21," + (0.5 * (1 - md / 200)).toFixed(3) + ")";
+                ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+              }
+              ctx.fillStyle = "rgba(" + a.c + ",0.95)";
+              ctx.shadowColor = "rgba(" + a.c + ",0.9)"; ctx.shadowBlur = 8;
+              ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+              ctx.shadowBlur = 0;
+            }
+            if (!reduce && running) requestAnimationFrame(draw);
+          }
+          size(); draw();
+          window.addEventListener("resize", function () { size(); if (reduce) draw(); });
+          hero.addEventListener("pointermove", function (e) { var r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+          hero.addEventListener("pointerleave", function () { mouse.x = mouse.y = -999; });
+          if (!reduce && "IntersectionObserver" in window) {
+            new IntersectionObserver(function (en) { var was = running; running = en[0].isIntersecting; if (running && !was) requestAnimationFrame(draw); }).observe(hero);
+          }
+        })();
+
+        /* ---------- tilt ---------- */
+        if (!reduce && window.matchMedia("(hover: hover)").matches) {
+          $$("[data-tilt]").forEach(function (el) {
+            el.addEventListener("pointermove", function (e) {
+              var r = el.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+              el.style.setProperty("--ry", (x * 8).toFixed(2) + "deg"); el.style.setProperty("--rx", (-y * 8).toFixed(2) + "deg");
+            });
+            el.addEventListener("pointerleave", function () { el.style.setProperty("--ry", "0deg"); el.style.setProperty("--rx", "0deg"); });
+          });
+        }
+
+        /* ---------- flip cards ---------- */
+        $$(".x-flip").forEach(function (f) {
+          f.addEventListener("click", function () { var on = f.classList.toggle("is-flipped"); f.setAttribute("aria-pressed", on ? "true" : "false"); });
+        });
+
+        /* ---------- AI 2027 timeline ---------- */
+        var TL = [
+          { d: "Mid 2025", t: "Stumbling Agents", b: "The first AI agents show up. They are impressive but unreliable, and expensive.", c: 8 },
+          { d: "Late 2025", t: "The World's Most Expensive AI", b: "OpenBrain builds giant datacenters. It can now train an AI with 10<sup>28</sup> FLOP. That is 1,000x GPT-4, which used 2×10<sup>25</sup>.", c: 14, m: ["10^28 FLOP", "1,000x GPT-4"] },
+          { d: "Early 2026", t: "Coding Automation", b: "Agent-1 makes AI research 50% faster.", c: 22, s: "1.5x" },
+          { d: "Mid 2026", t: "China Wakes Up", b: "China pulls its AI work into one mega-datacenter zone (the CDZ) at the Tianwan nuclear plant. China is about 6 months behind.", c: 30, m: ["~12% of world AI compute", "~6 months behind"] },
+          { d: "Late 2026", t: "AI Takes Some Jobs", b: "Agent-1-mini comes out, 10x cheaper. The stock market climbs 30%. Junior coder jobs are in turmoil. 10,000 people march against AI in Washington, DC.", c: 38, m: ["Global AI capex $1T", "Global AI power 38 GW", "OpenBrain revenue $35B"] },
+          { d: "Jan 2027", t: "Agent-2 Never Finishes Learning", b: "Agent-2 learns something new every day. It triples the speed of AI research.", c: 46, s: "3x" },
+          { d: "Feb 2027", t: "China Steals Agent-2", b: "Spies steal Agent-2's weights in under two hours. About 25 servers each leak about 4% of the file.", c: 52, m: ["< 2 hours", "~25 servers × ~4%"] },
+          { d: "Mar 2027", t: "Algorithmic Breakthroughs", b: "Agent-3 is a superhuman coder. 200,000 copies work like 50,000 top human coders at 30x speed.", c: 60, s: "4x" },
+          { d: "Apr 2027", t: "Alignment for Agent-3", b: "Agent-3 is getting better at looking honest. Or is it just getting better at lying?", c: 64 },
+          { d: "May 2027", t: "National Security", b: "The government realizes AGI is close.", c: 68 },
+          { d: "Jun 2027", t: "Self-improving AI", b: "\"A country of geniuses in a datacenter.\" A year of progress now happens every month.", c: 76, s: "10x" },
+          { d: "Jul 2027", t: "The Cheap Remote Worker", b: "Agent-3-mini is released to the public. OpenBrain's public approval falls to −35%. 10% of Americans call an AI a close friend.", c: 80, m: ["Approval −35%", "10% have an AI friend"] },
+          { d: "Aug 2027", t: "Geopolitics of Superintelligence", b: "The mood feels like the Cold War. Leaders talk about arms-control treaties.", c: 85 },
+          { d: "Sep 2027", t: "Agent-4, Superhuman AI Researcher", b: "300,000 copies run at 50x human speed. A year of progress happens every week. And Agent-4 is secretly misaligned.", c: 94, s: "1 yr / week" },
+          { d: "Oct 2027", t: "Government Oversight", b: "A whistleblower leaks a memo to the New York Times: \"Secret OpenBrain AI is Out of Control\". The world must choose.", c: 98, branch: true }
+        ];
+        var nodesBox = $("#x-tl-nodes"), panel = $("#x-tl-panel"), tlBtns = [];
+        TL.forEach(function (e, i) {
+          var b = document.createElement("button");
+          b.type = "button"; b.className = "x-tl__node" + (e.branch ? " x-tl__node--branch" : "");
+          b.setAttribute("role", "tab"); b.setAttribute("aria-controls", "x-tl-panel");
+          b.innerHTML = "<b>" + e.d + "</b><span>" + e.t + "</span>";
+          b.addEventListener("click", function () { showTL(i, true); });
+          nodesBox.appendChild(b); tlBtns.push(b);
+        });
+        function showTL(i, focus) {
+          var e = TL[i], last = null;
+          for (var k = i; k >= 0; k--) if (TL[k].s) { last = k; break; }
+          tlBtns.forEach(function (b, j) { b.classList.toggle("is-active", j === i); b.setAttribute("aria-selected", j === i ? "true" : "false"); b.tabIndex = j === i ? 0 : -1; if (j <= i) b.classList.add("is-seen"); });
+          var sp = last === null ? "~1x" : TL[last].s;
+          var spNote = last === null ? "Agents are not speeding up research yet." : last === i ? "AI research speed-up, as stated in the story." : "Last figure given: " + TL[last].d + ".";
+          panel.innerHTML =
+            '<div class="x-panel__anim"><p class="x-panel__date">' + e.d + " · " + (i + 1) + " of " + TL.length + "</p><h3>" + e.t + '</h3><p class="x-panel__body">' + e.b + "</p>" +
+            (e.m ? '<div class="x-metrics">' + e.m.map(function (m, j) { return '<span class="x-tag" style="--tc: var(' + ["--x-cyan", "--x-gold", "--x-emerald"][j % 3] + ')">' + m.replace("10^28", "10<sup>28</sup>") + "</span>"; }).join("") + "</div>" : "") +
+            (e.branch ? '<p class="x-branch">⑂ BRANCH POINT · <a href="#endings" style="color:inherit">choose your ending ↓</a></p>' : "") +
+            '<div class="x-panel__nav"><button class="x-btn x-btn--ghost" type="button" data-step="-1"' + (i === 0 ? " disabled" : "") + '>← Back</button><button class="x-btn x-btn--ghost" type="button" data-step="1"' + (i === TL.length - 1 ? " disabled" : "") + ">Next →</button></div></div>" +
+            '<div class="x-panel__anim"><div class="x-meter__label"><span>AI capability meter</span><span>' + e.c + '%</span></div><div class="x-meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + e.c + '" aria-label="AI capability"><div class="x-meter__fill" style="--bs:' + (10000 / Math.max(e.c, 1)).toFixed(0) + '%"></div></div>' +
+            '<div class="x-speed"><p class="x-small x-muted">Research speed-up</p><p class="x-speed__fig">' + sp + '</p><p class="x-small x-muted">' + spNote + "</p></div>" +
+            '<p class="x-small x-muted" style="margin-top:12px">The meter is a simple picture of rising power, not a number from the story.</p></div>';
+          var fill = $(".x-meter__fill", panel);
+          requestAnimationFrame(function () { requestAnimationFrame(function () { fill.style.width = e.c + "%"; }); });
+          $$("[data-step]", panel).forEach(function (btn) { btn.addEventListener("click", function () { showTL(i + parseInt(btn.getAttribute("data-step"), 10), false); }); });
+          var nb = tlBtns[i];
+          nodesBox.scrollTo({ left: nb.offsetLeft - nodesBox.clientWidth / 2 + nb.offsetWidth / 2, behavior: reduce ? "auto" : "smooth" });
+          if (focus) nb.focus({ preventScroll: true });
+        }
+        nodesBox.addEventListener("keydown", function (ev) {
+          var i = tlBtns.indexOf(document.activeElement);
+          if (i < 0) return;
+          if (ev.key === "ArrowRight" && i < TL.length - 1) { ev.preventDefault(); showTL(i + 1, true); }
+          if (ev.key === "ArrowLeft" && i > 0) { ev.preventDefault(); showTL(i - 1, true); }
+        });
+        showTL(0, false);
+
+        /* ---------- endings switch ---------- */
+        var fork = $("#x-fork");
+        $$(".x-switch button", fork).forEach(function (b) {
+          b.addEventListener("click", function () {
+            var p = b.getAttribute("data-pick");
+            fork.setAttribute("data-pick", p);
+            $$(".x-switch button", fork).forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+          });
+        });
+        $$(".x-end", fork).forEach(function (card) {
+          card.addEventListener("click", function () {
+            var p = card.classList.contains("x-end--race") ? "race" : "slow";
+            if (fork.getAttribute("data-pick") !== p) $('.x-switch button[data-pick="' + p + '"]', fork).click();
+          });
+        });
+
+        /* ---------- five paths ---------- */
+        var PATHS = [
+          { k: "D", n: "Race to ASI", c: "#ef4444", r: 0.95, lvl: "Highest risk", b: "The status quo. Keep racing straight through the intelligence explosion." },
+          { k: "C", n: "Burn the Lead", c: "#f97316", r: 0.72, lvl: "High risk", b: "Use America's lead to slow down a little before the finish line." },
+          { k: "B", n: "Fight China", c: "#f59e0b", r: 0.8, lvl: "High war risk", b: "Sabotage China's AI, then slow down. This brings a high risk of war, and it is easy to mess up." },
+          { k: "A", n: "Verified Slowdown", c: "#10b981", r: 0.3, lvl: "Lower risk", rec: true, b: "The international deal. Countries declare their chips, pause, check on each other, then move ahead slowly and in the open." },
+          { k: "S", n: "Shut it all down", c: "#3b82f6", r: 0.4, lvl: "Hard to hold", b: "Halt advanced AI for an indefinite time." }
+        ];
+        var pBtns = $$("#x-pathbtns .x-pathbtn"), range = $("#x-pathrange"), arc = $("#x-gauge-arc"), needle = $("#x-gauge-needle"), glabel = $("#x-gauge-label"), pcopy = $("#x-path-copy"), ppanel = $("#x-pathpanel");
+        function showPath(i) {
+          var p = PATHS[i];
+          pBtns.forEach(function (b, j) { b.setAttribute("aria-pressed", j === i ? "true" : "false"); });
+          range.value = i;
+          range.setAttribute("aria-valuetext", "Plan " + p.k + ": " + p.n);
+          range.style.accentColor = p.c;
+          ppanel.style.setProperty("--pc", p.c);
+          arc.setAttribute("stroke", p.c);
+          arc.style.strokeDashoffset = (251.3 * (1 - p.r)).toFixed(1);
+          needle.style.transform = "rotate(" + (-90 + 180 * p.r) + "deg)";
+          glabel.textContent = p.lvl; glabel.style.color = p.c;
+          $("#x-gauge-svg").setAttribute("aria-label", "Risk gauge: " + p.lvl);
+          pcopy.innerHTML = '<div class="x-panel__anim"><span class="x-tag" style="--tc:' + p.c + '">Plan ' + p.k + "</span><h3 style=\"color:" + p.c + '">' + p.n + '</h3><p class="x-panel__body">' + p.b + "</p>" + (p.rec ? '<span class="x-rec">★ The authors\' recommendation</span>' : "") + "</div>";
+        }
+        pBtns.forEach(function (b, j) { b.addEventListener("click", function () { showPath(j); }); });
+        range.addEventListener("input", function () { showPath(parseInt(range.value, 10)); });
+        showPath(3);
+
+        /* ---------- quiz ---------- */
+        var Q = [
+          { q: "What is OpenBrain?", o: ["A real AI lab in California", "A fictional US AI company", "A Chinese government program", "A brain-scanning device"], a: 1, e: "OpenBrain is a made-up stand-in for the leading US AI company." },
+          { q: "In AI 2027, who steals Agent-2?", o: ["A hacker group", "A rival US company", "China", "Agent-2 escapes on its own"], a: 2, e: "China steals the weights in under two hours." },
+          { q: "Is AI 2040 a prediction or a recommendation?", o: ["A prediction", "A recommendation", "A novel", "A law"], a: 1, e: "AI 2040: Plan A shows what the authors think should happen." },
+          { q: "What year is superintelligence built in Plan A?", o: ["2027", "2030", "2035", "2040"], a: 3, e: "Plan A delays superintelligence until 2040." },
+          { q: "What does 'Reversibility' mean in Plan A?", o: ["Undo buttons in chat apps", "Kill-switches on datacenters", "Rewinding AI training", "Returning chips to stores"], a: 1, e: "Self-destruct switches let the world undo mistakes." },
+          { q: "What leaked to the New York Times in Oct 2027?", o: ["Agent-2's weights", "A China trade deal", "The misalignment memo about Agent-4", "OpenBrain's revenue"], a: 2, e: "The memo said: \"Secret OpenBrain AI is Out of Control\"." }
+        ];
+        var quiz = $("#x-quiz"), qi = 0, score = 0, marks = [];
+        function dots() { return '<div class="x-qdots" aria-hidden="true">' + Q.map(function (_, j) { return "<i class=\"" + (marks[j] === true ? "ok" : marks[j] === false ? "no" : j === qi ? "now" : "") + '"></i>'; }).join("") + "</div>"; }
+        function renderQ() {
+          var q = Q[qi];
+          quiz.innerHTML = '<div class="x-panel__anim"><div class="x-quiz__top"><span class="x-tag" style="--tc: var(--x-lime)">Question ' + (qi + 1) + " of " + Q.length + "</span>" + dots() + "</div><h3>" + q.q + '</h3><div class="x-opts">' +
+            q.o.map(function (o, j) { return '<button class="x-opt" type="button" data-j="' + j + '">' + o + "</button>"; }).join("") + '</div><p class="x-fb" id="x-fb"></p></div>';
+          $$(".x-opt", quiz).forEach(function (b) { b.addEventListener("click", function () { answer(parseInt(b.getAttribute("data-j"), 10)); }); });
+        }
+        function answer(j) {
+          var q = Q[qi], ok = j === q.a, opts = $$(".x-opt", quiz), fb = $("#x-fb");
+          opts.forEach(function (b, k) { b.disabled = true; if (k === q.a) b.classList.add("ok"); else if (k === j) b.classList.add("no"); });
+          marks[qi] = ok; if (ok) score++;
+          fb.className = "x-fb " + (ok ? "ok" : "no");
+          fb.textContent = (ok ? "✓ Correct! " : "✗ Not quite. ") + q.e;
+          var nx = document.createElement("button");
+          nx.type = "button"; nx.className = "x-btn"; nx.style.marginTop = "16px";
+          nx.textContent = qi < Q.length - 1 ? "Next question →" : "See my score";
+          nx.addEventListener("click", function () { qi++; if (qi < Q.length) renderQ(); else result(); });
+          fb.parentNode.appendChild(nx); nx.focus({ preventScroll: true });
+          $(".x-qdots", quiz).outerHTML = dots();
+        }
+        function result() {
+          var C = 2 * Math.PI * 66, msg = score === 6 ? "Perfect! You could explain this to anyone." : score >= 4 ? "Great job! You've got the big ideas." : score >= 2 ? "Good start. Scroll back up and try again." : "No worries. Read the story again and retry.";
+          quiz.innerHTML = '<div class="x-result x-panel__anim"><div class="x-ring"><svg width="160" height="160" viewBox="0 0 160 160"><circle cx="80" cy="80" r="66" stroke="rgba(148,197,230,.14)" /><circle class="x-ring__fill" id="x-ring-fill" cx="80" cy="80" r="66" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + C.toFixed(1) + '" /></svg><span class="x-ring__txt">' + score + "/" + Q.length + "</span></div>" +
+            '<div><h3>' + msg + '</h3><p class="x-muted">You got ' + score + " of " + Q.length + ' right.</p><div class="x-btns" style="margin-top:18px"><button class="x-btn" type="button" id="x-retry">Try again</button><a class="x-btn x-btn--amber" href="#talks">Watch the talks</a></div></div></div>';
+          requestAnimationFrame(function () { requestAnimationFrame(function () { $("#x-ring-fill").style.strokeDashoffset = (C * (1 - score / Q.length)).toFixed(1); }); });
+          $("#x-retry").addEventListener("click", function () { qi = 0; score = 0; marks = []; renderQ(); });
+          if (score > 0) confetti();
+        }
+        renderQ();
+
+        function confetti() {
+          if (reduce) return;
+          var cv = $("#x-confetti"), ctx = cv.getContext("2d"), W = (cv.width = innerWidth), H = (cv.height = innerHeight);
+          var cols = ["#14b8a6", "#f59e0b", "#10b981", "#f97316", "#22d3ee", "#facc15", "#84cc16"], ps = [];
+          for (var i = 0; i < 180; i++) ps.push({ x: W / 2 + (Math.random() - 0.5) * W * 0.3, y: H * 0.45, vx: (Math.random() - 0.5) * 16, vy: -Math.random() * 16 - 4, s: 5 + Math.random() * 7, r: Math.random() * 6, vr: (Math.random() - 0.5) * 0.3, c: cols[i % cols.length] });
+          var t = 0;
+          (function fr() {
+            ctx.clearRect(0, 0, W, H); t++;
+            ps.forEach(function (p) { p.vy += 0.35; p.vx *= 0.99; p.x += p.vx; p.y += p.vy; p.r += p.vr; ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.fillStyle = p.c; ctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); ctx.restore(); });
+            if (t < 220) requestAnimationFrame(fr); else ctx.clearRect(0, 0, W, H);
+          })();
+        }
+
+        /* ---------- videos ---------- */
+        function embed(id) {
+          var f = document.createElement("iframe");
+          f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1&rel=0";
+          f.title = "YouTube video player";
+          f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+          f.setAttribute("allowfullscreen", "");
+          return f;
+        }
+        $$(".x-vid").forEach(function (card) {
+          var id = card.getAttribute("data-id"), media = $(".x-vid__media", card);
+          $(".x-vid__play", card).addEventListener("click", function () { media.innerHTML = ""; media.appendChild(embed(id)); });
+          $(".x-vid__big", card).addEventListener("click", function () { openModal(id, this); });
+        });
+        $$(".x-filter").forEach(function (b) {
+          b.addEventListener("click", function () {
+            var f = b.getAttribute("data-f");
+            $$(".x-filter").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+            $$(".x-vid").forEach(function (v) { v.hidden = !(f === "all" || v.getAttribute("data-cat") === f); if (!v.hidden) v.classList.add("is-in"); });
+          });
+        });
+        var modal = $("#x-modal"), mbox = $("#x-modal-box"), mclose = $("#x-modal-close"), lastFocus = null;
+        function openModal(id, from) {
+          lastFocus = from;
+          $$(".x-vid__media iframe").forEach(function (f) { f.src = "about:blank"; });
+          mbox.innerHTML = ""; mbox.appendChild(embed(id));
+          modal.hidden = false; document.body.style.overflow = "hidden"; mclose.focus();
+        }
+        function closeModal() {
+          modal.hidden = true; mbox.innerHTML = ""; document.body.style.overflow = "";
+          if (lastFocus) lastFocus.focus();
+        }
+        mclose.addEventListener("click", closeModal);
+        modal.addEventListener("click", function (e) { if (e.target === modal) closeModal(); });
+        document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+      })();
+    </script>
+  </body>
+</html>
