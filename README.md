@@ -8,7 +8,8 @@
 
 <a href="https://lo3elyon.github.io/ASI/"><img src="https://img.shields.io/badge/Live%20site-lo3elyon.github.io%2FASI-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Live site"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><img src="https://img.shields.io/badge/Explainer-AI%202027%20%26%202040-f59e0b?style=for-the-badge&logo=readthedocs&logoColor=white&labelColor=07111f" alt="AI 2027 and 2040 explainer"></a>
-<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-12%20talks-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="12 videos"></a>
+<a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
+<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-21%20talks-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="21 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS3-animated-3b82f6?style=flat-square&logo=css3&logoColor=white&labelColor=07111f" alt="CSS3">
@@ -27,6 +28,7 @@
 <td align="center"><a href="#02-visual-tour"><b>Visual tour</b></a></td>
 <td align="center"><a href="#03-the-library"><b>Explainers</b></a></td>
 <td align="center"><a href="#04-deep-dive"><b>Deep dive</b></a></td>
+<td align="center"><a href="#04b-black-october"><b>Black October</b></a></td>
 <td align="center"><a href="#05-watch"><b>Videos</b></a></td>
 <td align="center"><a href="#06-people"><b>Team</b></a></td>
 <td align="center"><a href="#07-architecture"><b>Architecture</b></a></td>
@@ -45,14 +47,14 @@
 <a id="01-overview"></a>
 <img src="docs/readme/h-overview.svg" width="100%" alt="01 Overview: What ASI is">
 
-**ASI** is an open source hub of colorful, animated and interactive explainers about Artificial Intelligence, Artificial General Intelligence (AGI) and Artificial Superintelligence (ASI). Every big idea gets its own page on its own route, written in simple words, with real sources, playable videos, quizzes and motion that makes the concept stick. The home page is a living library: new explainers are added regularly and appear automatically in the library, the counters and the Latest timeline.
+**ASI** is an open source hub of colorful, animated and interactive explainers about Artificial Intelligence, Artificial General Intelligence (AGI), Artificial Superintelligence (ASI), and the real-world AI and cybersecurity news that shapes them. Every big idea gets its own page on its own route, written in simple words, with real sources, playable videos, quizzes and motion that makes the concept stick. The home page is a living library: new explainers are added regularly and appear automatically in the library, the counters and the Latest timeline.
 
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/1-live%20explainer-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/2-live%20explainers-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/12-playable%20talks-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/21-playable%20talks-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
 </tr>
 </table>
@@ -65,6 +67,7 @@ flowchart LR
     H --> G["AI to AGI to ASI<br/>ladder and meter"]
     H --> T["Latest timeline"]
     L --> E1["AI 2027 and AI 2040<br/>/ai-2027-2040/"]
+    L --> E6["Black October 2026<br/>/black-october-2026/"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -76,7 +79,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1 live
+    class E1,E6 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -97,6 +100,12 @@ flowchart LR
 <b>The AI 2027 and AI 2040 explainer</b><br>
 <sub>Nine scenes from the first explainer, played as a slideshow.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><img src="docs/readme/carousel-explainer.svg" width="92%" alt="Explainer carousel"></a>
+
+<br><br>
+
+<b>The Black October 2026 explainer</b><br>
+<sub>30 incidents, animated attack chains, charts, a self-check and a quiz.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="assets/black-october.jpg" width="92%" alt="Black October 2026 hero"></a>
 
 <br><br>
 
@@ -159,6 +168,13 @@ flowchart LR
 <td><sub>15 scene timeline, Race or Slowdown switch, five paths gauge, year by year to 2040, team carousel, quiz, 12 talks in focus mode</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-22</sub></td>
+</tr>
+<tr>
+<td><a href="black-october-2026/"><code>/black-october-2026/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/black-october-2026/"><b>Black October 2026</b></a><br><sub>Every big hack and AI incident of October 2026, in plain words</sub></td>
+<td><sub>Incident explorer (30 incidents, search, filters, animated attack chains), 4 attack-pattern diagrams, charts, week by week October news, AI news board, 13 flip-card themes, X and YouTube pulse, Am I affected? checker, quiz, glossary, every source linked</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-10-24</sub></td>
 </tr>
 <tr>
 <td><code>/what-is-agi/</code></td>
@@ -325,6 +341,86 @@ flowchart TD
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
+<a id="04b-black-october"></a>
+<h2>04b. Deep dive: Black October 2026</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="assets/black-october.jpg" width="100%" alt="Black October 2026"></a></td>
+<td width="55%" valign="top">
+<img src="https://img.shields.io/badge/type-news%20explainer-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/researched-Oct%2024%2C%202026-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/incidents-30-14b8a6?style=flat-square&labelColor=07111f" alt=""><br><br>
+<b>"Black October"</b> is an informal label coined on X by AISafetyMemes on 22 Oct 2026 for a pile-up of security disclosures between 19 and 22 October: PHP2Shell, the eMudhra certificate keys, the poisoned LiteLLM release, a CVSS 10.0 GitLab bug, and breaches at Railway and Zeabur. CNBC used the name on 23 Oct. The key point: it was a <b>disclosure wave, not one attack</b>. Many of these breaches had been running for weeks or months.
+</td>
+</tr>
+</table>
+
+<div align="center">
+<table>
+<tr>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/3%25-of%20all%20critical%20CVEs%20ever-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>disclosed in the last month (Chris Krebs, CNBC)</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/~49k-poisoned%20downloads-f97316?style=for-the-badge&labelColor=07111f" alt=""><br><sub>LiteLLM v1.107.0 on PyPI and Docker</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/11.7M-accounts-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Capcom ID exposure</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/1%2C413-flaws-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>a record Microsoft Patch Tuesday</sub></td>
+</tr>
+</table>
+</div>
+
+```mermaid
+timeline
+    title Black October: attack clock vs disclosure clock
+    Weeks or months earlier : Attacks begin quietly : ETS from 22 May : AOMEI updates tampered in May and July
+    19 to 22 Oct : Disclosures pile up : PHP2Shell, eMudhra, LiteLLM : GitLab, Railway, Zeabur
+    22 Oct : AISafetyMemes coins Black October on X
+    23 Oct : CNBC uses the name : Krebs gives the 3 percent figure
+```
+
+```mermaid
+flowchart LR
+    A["GitHub tokens leaked<br/>into internal logs"] --> B["Release pipeline<br/>hijacked"]
+    B --> C["Poisoned LiteLLM v1.107.0<br/>on PyPI and Docker"]
+    C --> D["~49,000 downloads"]
+    D --> E["AWS keys stolen"]
+    E --> F["Keys tested on Amazon Bedrock<br/>about 4.5 hours later"]
+    classDef bad fill:#3a0d0d,stroke:#ef4444,stroke-width:2px,color:#fee2e2
+    classDef mid fill:#2a1d05,stroke:#f59e0b,stroke-width:2px,color:#fde68a
+    class A,B mid
+    class C,D,E,F bad
+```
+
+<details>
+<summary><b>Top incidents of the week (18 to 24 Oct)</b></summary>
+<br>
+<table>
+<tr><th align="left">#</th><th align="left">Incident</th><th align="left">What happened, simply</th></tr>
+<tr><td>1</td><td>PHP2Shell</td><td>Two unauthenticated remote code execution bugs in PHP core (CVE-2026-109618, CVE-2026-109619).</td></tr>
+<tr><td>2</td><td>LiteLLM</td><td>Release pipeline hijacked; a poisoned v1.107.0 shipped on PyPI and Docker.</td></tr>
+<tr><td>3</td><td>eMudhra</td><td>Eight intermediate CA private keys could be recomputed in milliseconds.</td></tr>
+<tr><td>4</td><td>State Bank of India</td><td>3,897 customer records with personal data found on the dark web.</td></tr>
+<tr><td>5</td><td>Capcom</td><td>11.7 million CAPCOM ID accounts exposed.</td></tr>
+<tr><td>6</td><td>Railway and Zeabur</td><td>Customer environment variables (often API keys) accessed; Zeabur is shutting down.</td></tr>
+<tr><td>7</td><td>Nikkei</td><td>1.83 million records stolen via a compromised cloud service credential.</td></tr>
+</table>
+</details>
+
+<details>
+<summary><b>What the page has</b></summary>
+<br>
+<table>
+<tr><th align="left">Section</th><th align="left">What you can do</th></tr>
+<tr><td><b>Incident Explorer</b></td><td>Search and filter 30 incidents (This week, Security, AI, India, Ransomware, Supply chain, Zero-day). Open a card to play its attack chain step by step.</td></tr>
+<tr><td><b>How these attacks work</b></td><td>Four clickable flows: supply-chain poisoning, prompt injection against AI agents, stolen credentials, the zero-day race.</td></tr>
+<tr><td><b>October in charts</b></td><td>Incidents by category and the ransomware trackers that disagree (813, 823, 274).</td></tr>
+<tr><td><b>Week by week</b></td><td>Tabs for each week of October plus a markets tab.</td></tr>
+<tr><td><b>AI news board</b></td><td>20 releases and deals with verification badges, plus 5 legal and regulatory actions.</td></tr>
+<tr><td><b>Big themes</b></td><td>13 flip cards: 8 security themes and 5 AI themes.</td></tr>
+<tr><td><b>What people said</b></td><td>Top 10 X posts, 5 trending topics and 9 YouTube videos.</td></tr>
+<tr><td><b>Am I affected?</b></td><td>Tick what you use (PHP, LiteLLM, GitLab, Plex, WordPress plugins, SBI and more) to get the steps to take.</td></tr>
+<tr><td><b>Quiz, caveats, glossary</b></td><td>Six questions, an honest list of what is not certain, and plain definitions.</td></tr>
+</table>
+</details>
+
+<img src="docs/readme/divider.svg" width="100%" alt="">
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -350,6 +446,20 @@ On the site every talk opens in a full screen focus mode player with a large clo
 <td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=KFcJgTODkkQ"><img src="https://img.youtube.com/vi/KFcJgTODkkQ/hqdefault.jpg" width="100%" alt="An AI 2027 Author Returns, With a Plan to Change the Ending"></a><br><img src="https://img.shields.io/badge/AI%202040-10b981?style=flat-square" alt=""><br><b><sub>An AI 2027 Author Returns, With a Plan to Change the Ending</sub></b><br><sub>80,000 Hours , Sep 2026</sub></td>
 <td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=z5Xix4h5UlU"><img src="https://img.youtube.com/vi/z5Xix4h5UlU/hqdefault.jpg" width="100%" alt="How Many Narrow AIs Could Behave Like One Superintelligence"></a><br><img src="https://img.shields.io/badge/AI%202040-10b981?style=flat-square" alt=""><br><b><sub>How Many Narrow AIs Could Behave Like One Superintelligence</sub></b><br><sub>Machine Learning Street Talk with Thomas Larsen , Sep 2026</sub></td>
 <td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=QGY3RsARa9k"><img src="https://img.youtube.com/vi/QGY3RsARa9k/hqdefault.jpg" width="100%" alt="AI forecaster Daniel Kokotajlo keeps being right about AI"></a><br><img src="https://img.shields.io/badge/AI%202040-10b981?style=flat-square" alt=""><br><b><sub>AI forecaster Daniel Kokotajlo keeps being right about AI</sub></b><br><sub>Palisade Podcast , Aug 2026</sub></td>
+</tr>
+</table>
+
+<b>Black October 2026: this week in cyber and AI</b>
+
+<table>
+<tr>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=TVRCcMlvR10"><img src="https://img.youtube.com/vi/TVRCcMlvR10/hqdefault.jpg" width="100%" alt="AI News: 24 Things You Need To Know This Week"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>AI News: 24 Things You Need To Know This Week</sub></b><br><sub>Matt Wolfe, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=umGZrkyTRtw"><img src="https://img.youtube.com/vi/umGZrkyTRtw/hqdefault.jpg" width="100%" alt="11 AI Breakthroughs You Didn&#x27;t Know Existed"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>11 AI Breakthroughs You Didn&#x27;t Know Existed</sub></b><br><sub>Matt Wolfe, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=vDYqh1FGrgQ"><img src="https://img.youtube.com/vi/vDYqh1FGrgQ/hqdefault.jpg" width="100%" alt="AI News: Claude Duet Crushes; Grok Bot Updates; NotebookLM Upgrade"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>AI News: Claude Duet Crushes; Grok Bot Updates; NotebookLM Upgrade</sub></b><br><sub>Paul J Lipsky, Oct 2026</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=tqpOfHS5-VY"><img src="https://img.youtube.com/vi/tqpOfHS5-VY/hqdefault.jpg" width="100%" alt="Make your AI agent pay for itself (and this week&#x27;s biggest AI news)"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>Make your AI agent pay for itself (and this week&#x27;s biggest AI news)</sub></b><br><sub>The Next New Thing, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=-XIgyMsZZxY"><img src="https://img.youtube.com/vi/-XIgyMsZZxY/hqdefault.jpg" width="100%" alt="AI Just Broke The Internet. For Real This Time."></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>AI Just Broke The Internet. For Real This Time.</sub></b><br><sub>AI For Humans, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=osaRbgqkVYg"><img src="https://img.youtube.com/vi/osaRbgqkVYg/hqdefault.jpg" width="100%" alt="Oct 16&#x27;s Top Cyber News NOW! Ep 1267"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>Oct 16&#x27;s Top Cyber News NOW! Ep 1267</sub></b><br><sub>Simply Cyber, Gerald Auger PhD, Oct 2026</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=s9dnUH2iNnw"><img src="https://img.youtube.com/vi/s9dnUH2iNnw/hqdefault.jpg" width="100%" alt="AI finds &#x27;unprecedented&#x27; cyber security threat in thousands of websites"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>AI finds &#x27;unprecedented&#x27; cyber security threat in thousands of websites</sub></b><br><sub>ITV News, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=JJLGDQLvs74"><img src="https://img.youtube.com/vi/JJLGDQLvs74/hqdefault.jpg" width="100%" alt="ECDSA&#x27;s Curves Origins: When AI Becomes the Attacker"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>ECDSA&#x27;s Curves Origins: When AI Becomes the Attacker</sub></b><br><sub>Security Now, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=9nfy5x4EYh0"><img src="https://img.youtube.com/vi/9nfy5x4EYh0/hqdefault.jpg" width="100%" alt="Patch Tuesday Nightmares and Cybersecurity News"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>Patch Tuesday Nightmares and Cybersecurity News</sub></b><br><sub>PDQ, Oct 2026</sub></td>
 </tr>
 </table>
 
@@ -393,6 +503,11 @@ flowchart TB
             A1["css/ js/ assets/"]
             RM1["README.md"]
         end
+        subgraph R2["/black-october-2026/"]
+            I2["index.html"]
+            A2["hark.css hark-hero.css hark.js hero.png"]
+            RM2["README.md"]
+        end
         subgraph RN["/next-topic/"]
             IN["index.html"]
         end
@@ -402,6 +517,8 @@ flowchart TB
     PAGES -->|"renders cards, counters, Latest"| ROOT
     ROOT --> RA
     PAGES -->|"slug"| I1
+    PAGES -->|"slug"| I2
+    I2 --> A2
     PAGES -.->|"slug"| IN
     I1 --> A1
     REPO -->|"git push"| GH["GitHub Pages<br/>lo3elyon.github.io/ASI"]
@@ -411,7 +528,7 @@ flowchart TB
     classDef deploy fill:#0c2a12,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class ROOT,RA,DOCS hub
     class PAGES data
-    class I1,A1,RM1,IN page
+    class I1,A1,RM1,I2,A2,RM2,IN page
     class GH deploy
 ```
 
@@ -424,10 +541,14 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, card covers)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
+│   └── README.md
+├── black-october-2026/        explainer route: October 2026 hacks and AI incidents
+│   ├── index.html
+│   ├── hark.css  hark-hero.css  hark.js  hero.png
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
 ├── README.md
@@ -572,8 +693,13 @@ A local server is better than opening the file directly, because some browsers b
 </details>
 
 <details>
+<summary><b>How is Black October 2026 researched</b></summary>
+<br>Every fact on the page links to its source. Items marked ✅ were read in full, 🔎 rest on search excerpts plus other outlets, and a "What's not certain" box lists disputed claims. X posts came from public search because X search needs a login. Dates are as sources report them, mostly US and EU time.
+</details>
+
+<details>
 <summary><b>Are the images real</b></summary>
-<br>The team portraits come from the AI Futures Project. The scene illustrations and the hero art are AI generated.
+<br>The team portraits come from the AI Futures Project. The scene illustrations, the hero art and the Black October server-room image are AI generated.
 </details>
 
 <details>
@@ -595,6 +721,7 @@ A local server is better than opening the file directly, because some browsers b
 <tr><th align="left">Source</th><th align="left">Links</th></tr>
 <tr><td><b>AI 2027</b></td><td><a href="https://ai-2027.com/">Site</a>, <a href="https://ai-2027.com/summary">Summary</a>, <a href="https://ai-2027.com/ai-2027.pdf">PDF</a>, <a href="https://ai-2027.com/about">About</a></td></tr>
 <tr><td><b>AI 2040: Plan A</b></td><td><a href="https://ai-2040.com/">Site</a>, <a href="https://ai-2040.com/summary">Summary</a>, <a href="https://ai-2040.com/AI-2040.pdf">PDF</a></td></tr>
+<tr><td><b>Black October 2026</b></td><td><a href="https://www.securitytoday.de/en/2026/10/22/black-october-many-attacks-had-been-running-for-months/">SecurityToday</a>, <a href="https://forkast.news/black-october-is-a-disclosure-wave-the-label-hides-the-clock/">Forkast</a>, plus about 100 sources listed on the <a href="https://lo3elyon.github.io/ASI/black-october-2026/">page itself</a></td></tr>
 <tr><td><b>AI Futures Project</b></td><td><a href="https://ai-futures.org/">Home</a>, <a href="https://ai-futures.org/about/">Team</a>, <a href="https://www.aifuturesmodel.com/">AI Futures Model</a>, <a href="https://blog.aifutures.org/">Blog</a></td></tr>
 </table>
 
@@ -605,7 +732,7 @@ A local server is better than opening the file directly, because some browsers b
 <a href="https://github.com/lo3elyon/ASI"><img src="https://img.shields.io/badge/Built%20by-Aniruddha%20Adak-14b8a6?style=for-the-badge&logo=github&logoColor=white&labelColor=07111f" alt="Built by Aniruddha Adak"></a>
 <a href="https://github.com/lo3elyon/ASI/stargazers"><img src="https://img.shields.io/github/stars/lo3elyon/ASI?style=for-the-badge&color=f59e0b&labelColor=07111f" alt="Stars"></a>
 
-<sub>Independent explainer. Scenario content belongs to the AI Futures Project. Images marked as AI generated are illustrations.</sub>
+<sub>Independent explainers. Scenario content belongs to the AI Futures Project; news content belongs to the linked outlets. Images marked as AI generated are illustrations.</sub>
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
