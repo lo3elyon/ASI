@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · recommendations + fuzzy search + filters. */
+/* AI Safety Full Episodes · recommendations + fuzzy search + filters. */
 (function (A) {
   "use strict";
   const { STATE, fold, LENGTHS } = A;
