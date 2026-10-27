@@ -263,11 +263,11 @@
     const pct = h().pctOf(e.id);
     return `<li class="pick" data-id="${e.id}" tabindex="0" aria-roledescription="draggable pick" aria-label="${esc(e.title)}. Alt plus arrow keys to reorder.">
       <span class="pick__grip" aria-hidden="true" title="Drag to reorder">⋮⋮</span>
-      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}" draggable="false">${ui().thumbImg(e)}<span class="thumb__dur">${esc(e.durStr)}</span><span class="thumb__play">${ui().ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}" draggable="false">${ui().thumbImg(e)}${ui().thumbBadges(e)}<span class="thumb__play">${ui().ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
       <div class="pick__body">
         <p class="pick__why">${ui().ICON.spark}<span>${esc(it.why || "Picked for you")}</span></p>
         <button class="card__title" data-act="open" title="${esc(e.title)}">${esc(e.title)}</button>
-        <p class="card__meta"><span>${esc(ui().whoLine(e, 2))}</span><span>${esc(e.durStr)}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span></p>
+        ${ui().cardMeta(e, `<span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span><span class="pick__who">${esc(ui().whoLine(e, 2))}</span>`)}
         <div class="pick__act">
           <button class="pk__btn pk__btn--done" data-pk="done" aria-label="Mark as watched" title="Mark as watched">${ui().ICON.check}<span>Watched</span></button>
           <button class="pk__btn" data-pk="replace" aria-label="Replace with another pick" title="Replace">↻</button>
