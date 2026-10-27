@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 243 verified full-length episodes, Jul–Oct 2026"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 306 verified full-length episodes, Jul–Oct 2026"></a>
 
 <img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
@@ -11,19 +11,19 @@
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
 <img src="https://img.shields.io/badge/updated-2026--10--28-f59e0b?style=flat-square&labelColor=07111f" alt="updated Oct 28, 2026">
-<img src="https://img.shields.io/badge/episodes-243-14b8a6?style=flat-square&labelColor=07111f" alt="243 episodes">
-<img src="https://img.shields.io/badge/runtime-~267%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 267 hours">
-<img src="https://img.shields.io/badge/researchers%20%26%20guests-132-22d3ee?style=flat-square&labelColor=07111f" alt="132 researchers and guests">
-<img src="https://img.shields.io/badge/hosts-98-64748b?style=flat-square&labelColor=07111f" alt="98 hosts">
-<img src="https://img.shields.io/badge/chapters-2%2C701-10b981?style=flat-square&labelColor=07111f" alt="2,701 chapters">
-<img src="https://img.shields.io/badge/claims%20tracked-65-ef4444?style=flat-square&labelColor=07111f" alt="65 claims">
+<img src="https://img.shields.io/badge/episodes-306-14b8a6?style=flat-square&labelColor=07111f" alt="306 episodes">
+<img src="https://img.shields.io/badge/runtime-~331%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 331 hours">
+<img src="https://img.shields.io/badge/researchers%20%26%20guests-167-22d3ee?style=flat-square&labelColor=07111f" alt="167 researchers and guests">
+<img src="https://img.shields.io/badge/hosts-120-64748b?style=flat-square&labelColor=07111f" alt="120 hosts">
+<img src="https://img.shields.io/badge/chapters-3%2C317-10b981?style=flat-square&labelColor=07111f" alt="3,317 chapters">
+<img src="https://img.shields.io/badge/claims%20tracked-66-ef4444?style=flat-square&labelColor=07111f" alt="66 claims">
 <img src="https://img.shields.io/badge/window-Jul%201%E2%80%93Oct%2027%2C%202026-3b82f6?style=flat-square&labelColor=07111f" alt="Jul 1 to Oct 27, 2026">
 <br>
 <img src="https://img.shields.io/badge/JavaScript-vanilla%2C%20modular-facc15?style=flat-square&logo=javascript&logoColor=07111f&labelColor=07111f" alt="Vanilla JS">
 <img src="https://img.shields.io/badge/bundle-terser%20%2B%20csso-10b981?style=flat-square&labelColor=07111f" alt="Minified bundle">
 <img src="https://img.shields.io/badge/pre--rendered-24%20cards%20%2B%20noscript%20list-22d3ee?style=flat-square&labelColor=07111f" alt="Pre-rendered HTML">
 <img src="https://img.shields.io/badge/CSP-strict%20script--src-ef4444?style=flat-square&labelColor=07111f" alt="Strict CSP">
-<img src="https://img.shields.io/badge/JSON--LD-243%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
+<img src="https://img.shields.io/badge/JSON--LD-306%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
 <img src="https://img.shields.io/badge/PWA-installable-14b8a6?style=flat-square&labelColor=07111f" alt="Installable PWA">
 <img src="https://img.shields.io/badge/Fullscreen-cinema%20player-f59e0b?style=flat-square&labelColor=07111f" alt="Fullscreen cinema player">
 <img src="https://img.shields.io/badge/Float%20window-Document%20PiP%20remote-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture remote">
@@ -31,9 +31,9 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-218%2F218%20passing-10b981?style=flat-square&labelColor=07111f" alt="218 of 218 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-220%2F220%20passing-10b981?style=flat-square&labelColor=07111f" alt="220 of 220 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
-<img src="https://img.shields.io/badge/speaker%20photos-227%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="227 real face photos">
+<img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
 
 </div>
@@ -42,7 +42,33 @@
 
 ## Contents
 
-[Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026): library expansion, 306 episodes
+
+A coverage sweep for July–October 2026 found **63 more verified full-length episodes** (from 66 candidates; 3 were the same event as an episode already here or a re-upload of an older one). They are merged into the same data file, so every feature works on them unchanged: picks, recommendations, search and filters, speaker hub, heatmaps, insights, the "I've watched these" checklist, JSON-LD and the sitemap.
+
+| Month | Before | Added | **Now** | Hours now |
+|---|---:|---:|---:|---:|
+| July 2026 | 43 | +8 | **51** | 50.5 |
+| August 2026 | 64 | +5 | **69** | 83.2 |
+| September 2026 | 84 | +24 | **108** | 102.5 |
+| October 2026 | 52 | +26 | **78** | 94.5 |
+| **Total** | **243** | **+63** | **306** | **330.6** |
+
+```mermaid
+pie showData title Episodes per month after the expansion
+  "July" : 51
+  "August" : 69
+  "September" : 108
+  "October" : 78
+```
+
+**What came in.** Research talks and lectures that the first pass under-covered: the IPAM workshop at UCLA (Christopher Potts, Jacob Steinhardt, Sam Eisenstat, Michael Winer, Dmitry Vaintrob, Jacob Tsimerman, Paul Riechers), the Schwartz Reisman Post-AGI Workshop (Anders Sandberg, Richard Ngo, Beren Millidge), MLSS 2026 (Jonas Geiping, Zhijing Jin), Boaz Barak's Harvard AI Safety course and Aaron Roth's Mathematical Foundations of AI Alignment, the Simons Institute (Jascha Sohl-Dickstein), Berkeley EECS and IASEAI (Brian Christian); plus podcasts and interviews with Scott Aaronson (4), Nick Bostrom (3), Tom Davidson, Will MacAskill, Eric Ho, Kevin Esvelt, Meia Chita-Tegmark, Nate Soares, Robert Long, Patrick Butlin and Jack Lindsey, Ajeya Cotra on Hard Fork, and German-language interviews with Connor Leahy and Jonas Freund.
+
+**Kept out on purpose (one copy per event, inside the window).** `if-0UXc66dY` is the Alex Turner segment of the Aug 17 AI in the AM show already listed as `QroUVYVZxbE`; `l4JibLry2po` is a Spanish-language upload of the Jon Hernández interview with Stuart Russell already listed as `ewr4vwqsbzM`; `G9lL9ogZXkk` is a July re-upload of a Diary Of A CEO episode first released on Dec 4, 2025. The two Post-AGI Workshop talks on Sep 11 (`DB6uKUtOmec`, William MacAskill, 16:34; `Syap5xAvY5U`, Richard Ngo, 19:11) are different talks, so both stay.
+
+**Speakers.** 58 new people, every one with a real face photo checked against their own episode with face detection and face matching (SFace), then by eye on a contact sheet: 27 new curated portraits with bios (the roster grows from 49 to 76), clean headshots from people's own sites and org pages for the rest, and face crops from their own episode for unnamed channel hosts. Hosts are named where the episode itself says who they are: Gus Docker (FLI Podcast), Shane Farnsworth (Escaped Sapiens, on-screen caption), Prachi Garella and Bhavay Tyagi (The Knowmads Podcast), and D. Scott Phoenix for Progress by Fifty Years (from the episode description). Two older photos were corrected (Jack Lindsey and Alan Chan had the wrong person). Name variants are merged, so "Will MacAskill" and "Chris Potts" resolve to William MacAskill and Christopher Potts.
 
 ## What's new (Oct 28, 2026): picks, Explore and polish
 
@@ -81,13 +107,13 @@ flowchart LR
 | Player controls | YouTube's own controls | **Custom cinema controls**: big play, ±10 s (and ±5/30 via keys), frame step when paused, speed 0.25–3× in 0.05 steps (clamped to YouTube's 2× embed limit), quality menu, volume slider, captions, A–B loop, chapter ticks + bookmarks on the seek bar, buffered bar, hover preview (time + chapter + nearest YouTube frame), sleep timer (15/30/60 min, end of chapter, end of episode), skip intro, auto-skip to the researcher in hearings, double-click/double-tap seek, touch swipe for seek and volume, `?` overlay. A "YouTube's own controls" switch is in Settings for ads or YouTube menus. |
 | Mini player | Fixed bottom-right | **Draggable anywhere** (pointer + touch), **snaps to the nearest corner**, remembers corner and size (`asfe:mini:v3`), **corner resize handle**, double-click to expand. |
 | Error handling | Message only | **Fallback card** for codes 2 / 5 / 100 / 101 / 150 / 153 and API-blocked: Open on YouTube (at your second), **Mark as watched**, Try again, Next episode. |
-| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 243 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
+| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 306 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
 | History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
 | Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
 | Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
 | Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
 | Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
-| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 243), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 243 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
+| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 306), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 306 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
 | Storage | `:v2` keys | **Schema 3** (`:v3` keys). v1 and v2 keys stay untouched as backups. |
 
 ## The cinema player
@@ -139,7 +165,7 @@ Moving the live iframe into the float window would reload it inside the about:bl
 
 ## I've watched these
 
-Every card, the episode drawer, the theater and the error card have **Mark as watched** (and **Mark unwatched**). A mark writes a full-completion record (watched seconds = duration, 100 %, completed, `source: "manual"`, timestamp now) that counts toward stats, XP, badges, streaks and the watch heatmap on the day you mark it. Manual minutes are stored separately (`manualDaily`) so heatmap cells say "x played + y marked as watched" and show a dot. The record keeps a snapshot of what was there before, so unmarking restores it exactly. "Watched up to mm:ss" logs partial viewing. The checklist page (`#/watched`, `G W`) groups all 243 by month with thumbnails and speakers; tick rows, a whole month, a speaker, or every search result, then **Mark selected as watched** with **Undo**. CSV import accepts any file with an `id` or YouTube `url` column (plus optional `completed`, `percent`, `position`).
+Every card, the episode drawer, the theater and the error card have **Mark as watched** (and **Mark unwatched**). A mark writes a full-completion record (watched seconds = duration, 100 %, completed, `source: "manual"`, timestamp now) that counts toward stats, XP, badges, streaks and the watch heatmap on the day you mark it. Manual minutes are stored separately (`manualDaily`) so heatmap cells say "x played + y marked as watched" and show a dot. The record keeps a snapshot of what was there before, so unmarking restores it exactly. "Watched up to mm:ss" logs partial viewing. The checklist page (`#/watched`, `G W`) groups all 306 by month with thumbnails and speakers; tick rows, a whole month, a speaker, or every search result, then **Mark selected as watched** with **Undo**. CSV import accepts any file with an `id` or YouTube `url` column (plus optional `completed`, `percent`, `position`).
 
 ```mermaid
 flowchart LR
@@ -175,7 +201,7 @@ flowchart LR
 | **Months** | Switch between All, July, August, September and October with per-month stats (episodes, hours, speakers, chapters, top speakers). Default is All. |
 | **Release heatmap** | A contributions-style grid of every day Jul 1 – Oct 31, 2026: colour intensity = episodes released, the number is shown in larger cells and on hover, month headers show totals and active days, a Less→More legend; click a day or a month to filter the library. |
 | **Watch heatmap** | The same grid for your own minutes watched per day (strict playback only); click a day in History to see just that day. |
-| **Speakers hub** | 49 curated researcher portraits with organisation and a factual one-line bio, plus every other guest and host with a real photo (see [photos](#speaker-photo-grid)). Episode count, total hours, "watched x of y", group filters, search, sort, a collapsible Hosts section. |
+| **Speakers hub** | 76 curated researcher portraits with organisation and a factual one-line bio, plus every other guest and host with a real photo (see [photos](#speaker-photo-grid)). Episode count, total hours, "watched x of y", group filters, search, sort, a collapsible Hosts section. |
 | **Speaker profile** | Big photo, bio, stats, first→last appearance, **Follow**, **Play all** (fills the queue), every stated number (P(doom), timelines, other figures) linked to the moment, sortable episode list, "Often appears with". |
 | **Episode report** | Every chapter with time, title and detail (click to seek), key claims with timestamps and speakers, numbers, people and organisations mentioned (click to filter), tags, level, why watch, evidence, speakers with photos, your history and notes, "More like this". |
 | **Deep links** | `#ep=<id>&t=<sec>` opens the episode and plays from that second. "Copy link at current time" (`C`) and Share (native share sheet when available). |
@@ -192,7 +218,7 @@ flowchart LR
 
 ## A taste of the library
 
-Three of the biggest episodes from each month (click to open on YouTube; every one of the 243 plays inside the app):
+Three of the biggest episodes from each month (click to open on YouTube; every one of the 306 plays inside the app):
 
 <table>
 <tr>
@@ -219,7 +245,7 @@ Three of the biggest episodes from each month (click to open on YouTube; every o
 
 ## Speaker photo grid
 
-Every one of the 231 speakers has a photo in `assets/speakers/<slug>.jpg`, mapped by name in `data/photos.json`: **227 real face photos** (curated portraits for the roster, plus verified face crops for every co-speaker, host and interviewer) and a neutral accent-coloured silhouette for 4 anonymous channel hosts (Carneades, Sazzad Hossain Sumon's channel, Eleanor of *Alive to This*, Sarah). `ui.photoOf` never falls back to a video thumbnail, cover art or initials.
+Every one of the 288 speakers has a photo in `assets/speakers/<slug>.jpg`, mapped by name in `data/photos.json`: **283 real face photos** (curated portraits for the roster, plus verified face crops for every co-speaker, host and interviewer) and a neutral accent-coloured silhouette for 5 channel hosts who never appear on camera and have no public face (Carneades, Sazzad Hossain Sumon's channel, Eleanor of *Alive to This*, Sarah, Ryan Dsouza). `ui.photoOf` never falls back to a video thumbnail, cover art or initials.
 
 <table>
 <tr>
@@ -291,11 +317,11 @@ Every one of the 231 speakers has a photo in `assets/speakers/<slug>.jpg`, mappe
 
 | Month | Episodes | Hours | Notes |
 |---|---:|---:|---|
-| July 2026 | 43 | 41.7 | chapters parsed from timestamped topics |
-| August 2026 | 64 | 76.1 | chapters parsed from timestamped topics |
-| September 2026 | 84 | 79.1 | includes the Sep 27–30 items that were "just outside" in v1 |
-| October 2026 | 52 | 69.8 | richest: hand-written chapters, quotes, numbers, tags, level, views |
-| **Total** | **243** | **266.8** | 92 release days · 2,701 chapters |
+| July 2026 | 51 | 50.5 | chapters parsed from timestamped topics |
+| August 2026 | 69 | 83.2 | chapters parsed from timestamped topics |
+| September 2026 | 108 | 102.5 | includes the Sep 27–30 items that were "just outside" in v1, and the IPAM and Post-AGI workshop talks |
+| October 2026 | 78 | 94.5 | richest: hand-written chapters, quotes, numbers, tags, level, views |
+| **Total** | **306** | **330.6** | 100 release days · 3,317 chapters |
 
 ## Architecture
 
@@ -453,7 +479,7 @@ ai-safety-full-episodes/
 ├── sw.js                   offline-friendly service worker (cache bumped for this update)
 ├── manifest.webmanifest    installable PWA (standalone, maskable icon, shortcuts)
 ├── favicon.svg · favicon.ico · apple-touch-icon.png
-├── robots.txt · sitemap.xml   (sitemap includes video entries for all 243)
+├── robots.txt · sitemap.xml   (sitemap includes video entries for all 306)
 ├── README.md               this file
 ├── assets/
 │   ├── app.min.css         minified app.css + v3.css (what the page loads)
@@ -477,9 +503,9 @@ ai-safety-full-episodes/
 │   │   └── extras.js       Explore: learning paths, quote wall, debate mode, speaker map
 │   ├── data-inline.js      inline data copy for file://
 │   ├── cover.jpg
-│   └── speakers/           227 face photos + neutral.svg (one per speaker, verified)
+│   └── speakers/           283 face photos + neutral.svg (one per speaker, verified)
 └── data/
-    ├── episodes.json       243 verified full episodes, Jul–Oct 2026
+    ├── episodes.json       306 verified full episodes, Jul–Oct 2026
     ├── roster.json         curated researchers with bios
     ├── photos.json         name → photo file
     ├── manifest.json       daily files to merge
@@ -494,8 +520,8 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 | | What is done |
 |---|---|
-| **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 243 with links. The app hydrates over it. |
-| **Structured data** | JSON-LD `WebSite` + `ItemList` of 243 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
+| **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 306 with links. The app hydrates over it. |
+| **Structured data** | JSON-LD `WebSite` + `ItemList` of 306 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
 | **CSP** | `script-src 'self' https://www.youtube.com https://s.ytimg.com` (no inline scripts), `frame-src` YouTube only, `img-src` self + ytimg, fonts from Google Fonts, `object-src 'none'`, `base-uri 'self'`. Styles allow inline because the UI sets CSS variables in `style` attributes. |
 | **No inline handlers** | Image load/error handling uses capture-phase listeners; the jsdom test checks the live DOM for any `on*` attribute. |
 | **Escaping & imports** | All data goes through `esc()` before `innerHTML`; imported JSON is rebuilt key by key (valid 11-char IDs, finite numbers, clipped strings, known keys only); CSV import is parsed defensively and exports neutralise spreadsheet formulas. External links use `rel="noopener noreferrer"`; referrer policy `strict-origin-when-cross-origin`. |
@@ -504,7 +530,7 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 ## Tests
 
-`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 218 checks, all passing. It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Focus + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. It also checks Today's picks (daily stability, discard / replace / more, drag reorder, dock, bin, carry-over, log), free mini-player placement, sticky mini on scroll, in-place card updates, the 31 themes' contrast audit, Focus naming, About and Explore, the separate Miniplayer / Theater / Fullscreen buttons, and that every speaker has a real face photo (except 4 anonymous hosts) with no thumbnail fallback. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
+`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 220 checks, all passing (including the merged episodes, the excluded duplicates and alias-free speaker resolution). It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Focus + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. It also checks Today's picks (daily stability, discard / replace / more, drag reorder, dock, bin, carry-over, log), free mini-player placement, sticky mini on scroll, in-place card updates, the 31 themes' contrast audit, Focus naming, About and Explore, the separate Miniplayer / Theater / Fullscreen buttons, and that every speaker has a real face photo (except 4 anonymous hosts) with no thumbnail fallback. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
 
 ## Method
 
@@ -540,6 +566,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-28 | **Library expansion**: 63 more verified full episodes (306 total: Jul 51 · Aug 69 · Sep 108 · Oct 78, about 331 hours); 3 candidates kept out as same-event copies or an old re-upload; 58 new speakers with verified face photos and 27 new curated bios (roster 76); hosts named from their own episodes (Gus Docker, Shane Farnsworth, Prachi Garella, Bhavay Tyagi, D. Scott Phoenix); Jack Lindsey and Alan Chan photos corrected; 220-check jsdom test. No feature or design changes. |
 | 2026-10-28 | **Picks, Explore and polish**: Today's picks (5 a day, mark watched, discard with reason, replace, generate more without limit, shuffle, guidance bar, drag and drop from anywhere, bin, carry-over, log); free-placement draggable mini player with grab / grabbing cursors and resize; separate Miniplayer (i) / Theater (t) / Fullscreen (f) buttons; episode page without inner scrollbars and a sticky mini player on scroll; delight effects and confetti with a Celebrations toggle; in-place card updates; Recently watched on its own page; 31 contrast-checked themes; square-circle avatar fix; Zen renamed Focus; honest quality / speed / caption controls; About and Explore pages (learning paths, quote wall, debate mode, speaker map); a real face photo for every speaker (227 of 231, the rest are anonymous hosts with an accent silhouette); 218-check jsdom test. |
 | 2026-10-28 | **v3 · cinema update**: fixed the pop-out "Error 153" (float window is now a remote; the only player stays on the page; iframes built with referrer policy, origin and widget_referrer on youtube.com); expand button now toggles true fullscreen on the player shell with overlay controls and chapter rail; custom cinema controls (frame step, 0.25–3× fine speed, quality, captions, A–B loop, bookmarks, buffered bar, hover previews, sleep timer, skip intro, hearing auto-skip, gestures); draggable, snapping, resizable mini player; fallback card for errors 2/5/100/101/150/153; Mark as watched + "I've watched these" bulk checklist with undo and partial; history timeline with filters, search and JSON/CSV export/import; Continue banner, Recently watched, daily goal + streak; playlists, Watch later, ratings, personal tags, context menu, monthly recap, share-card images, Focus mode (then called Zen), headphones mode; aurora design with 6 accent themes, styled scrollbars and carousels; new logo and full favicon/PWA set, OG image; pre-rendered HTML, JSON-LD, sitemap, robots, strict CSP, minified bundle; schema 3 migration keeping v1/v2 backups; 136-check jsdom test. |
 | 2026-10-27 | **v2.0**: 243 verified full episodes Jul–Oct 2026 (replaces the 52 + 8 set); pop-out always-on-top player (Document PiP), audio mode, Media Session, persistent dock, never pauses on tab switch; month switcher; GitHub-style release and watch heatmaps; speaker hub with a real photo for every person (49 curated portraits, 98 host channel avatars, thumbnail crops for the rest), bios, follow, profile pages, Play all and stated numbers; full episode reports with deep links at the current second; fuzzy search, 10 filter groups, 8 sorts, grid/list and saved filters; smarter recommendations with reasons; insights dashboard and claims tracker; 12 levels and 29 badges with XP animation; command palette, shortcuts overlay, dark/light/system theme, mobile bottom nav, service worker; 8 JS modules; v1→v2 storage migration; jsdom smoke test. |
