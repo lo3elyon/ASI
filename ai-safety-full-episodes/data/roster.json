@@ -1,0 +1,345 @@
+[
+ {
+  "name": "Eliezer Yudkowsky",
+  "photo": "eliezer-yudkowsky.jpg",
+  "org": "MIRI",
+  "group": "miri",
+  "bio": "Co-founder of the Machine Intelligence Research Institute and co-author of If Anyone Builds It, Everyone Dies."
+ },
+ {
+  "name": "Nate Soares",
+  "photo": "nate-soares.jpg",
+  "org": "MIRI",
+  "group": "miri",
+  "bio": "President of the Machine Intelligence Research Institute and co-author of If Anyone Builds It, Everyone Dies."
+ },
+ {
+  "name": "Malo Bourgon",
+  "photo": "malo-bourgon.jpg",
+  "org": "MIRI",
+  "group": "miri",
+  "bio": "CEO of the Machine Intelligence Research Institute, focused on AI policy and governance outreach."
+ },
+ {
+  "name": "Connor Leahy",
+  "photo": "connor-leahy.jpg",
+  "org": "ControlAI",
+  "group": "pause",
+  "bio": "US Director of ControlAI; founded Conjecture and co-founded EleutherAI."
+ },
+ {
+  "name": "Andrea Miotti",
+  "photo": "andrea-miotti.jpg",
+  "org": "ControlAI",
+  "group": "pause",
+  "bio": "Founder and CEO of ControlAI, which campaigns for a prohibition on superintelligence."
+ },
+ {
+  "name": "Holly Elmore",
+  "photo": "holly-elmore.jpg",
+  "org": "PauseAI US",
+  "group": "pause",
+  "bio": "Founder and Executive Director of PauseAI US."
+ },
+ {
+  "name": "Geoffrey Hinton",
+  "photo": "geoffrey-hinton.jpg",
+  "org": "University of Toronto",
+  "group": "academics",
+  "bio": "Professor emeritus at the University of Toronto; 2024 Nobel laureate in Physics for foundational work on neural networks."
+ },
+ {
+  "name": "Yoshua Bengio",
+  "photo": "yoshua-bengio.jpg",
+  "org": "Mila / LawZero",
+  "group": "academics",
+  "bio": "Université de Montréal professor, Mila founder and LawZero scientific director; chairs the International AI Safety Report."
+ },
+ {
+  "name": "Stuart Russell",
+  "photo": "stuart-russell.jpg",
+  "org": "UC Berkeley",
+  "group": "academics",
+  "bio": "UC Berkeley professor, co-author of AI: A Modern Approach and president of IASEAI."
+ },
+ {
+  "name": "Roman Yampolskiy",
+  "photo": "roman-yampolskiy.jpg",
+  "org": "University of Louisville",
+  "group": "academics",
+  "bio": "University of Louisville computer scientist who works on AI safety and the limits of controllability."
+ },
+ {
+  "name": "Nick Bostrom",
+  "photo": "nick-bostrom.jpg",
+  "org": "Macrostrategy Research Initiative",
+  "group": "academics",
+  "bio": "Philosopher, founding director of Oxford's Future of Humanity Institute and author of Superintelligence."
+ },
+ {
+  "name": "Max Tegmark",
+  "photo": "max-tegmark.jpg",
+  "org": "MIT / FLI",
+  "group": "academics",
+  "bio": "MIT physics professor and co-founder and president of the Future of Life Institute."
+ },
+ {
+  "name": "David Krueger",
+  "photo": "david-krueger.jpg",
+  "org": "Université de Montréal / Mila",
+  "group": "academics",
+  "bio": "Assistant professor at Université de Montréal and Mila; founder of Evitable."
+ },
+ {
+  "name": "Toby Ord",
+  "photo": "toby-ord.jpg",
+  "org": "Oxford AI Governance Initiative",
+  "group": "academics",
+  "bio": "Senior researcher at Oxford and author of The Precipice."
+ },
+ {
+  "name": "William MacAskill",
+  "photo": "william-macaskill.jpg",
+  "org": "Forethought",
+  "group": "academics",
+  "bio": "Philosopher at Forethought researching AGI preparedness; co-founder of effective altruism."
+ },
+ {
+  "name": "Jaan Tallinn",
+  "photo": "jaan-tallinn.jpg",
+  "org": "Future of Life Institute",
+  "group": "policy",
+  "bio": "Co-founder of Skype, the Future of Life Institute and the Centre for the Study of Existential Risk."
+ },
+ {
+  "name": "Helen Toner",
+  "photo": "helen-toner.jpg",
+  "org": "Georgetown CSET",
+  "group": "policy",
+  "bio": "Executive Director of Georgetown's Center for Security and Emerging Technology; former OpenAI board member."
+ },
+ {
+  "name": "Anthony Aguirre",
+  "photo": "anthony-aguirre.jpg",
+  "org": "Future of Life Institute",
+  "group": "policy",
+  "bio": "Executive Director and co-founder of the Future of Life Institute; UC Santa Cruz physicist."
+ },
+ {
+  "name": "Miles Brundage",
+  "photo": "miles-brundage.jpg",
+  "org": "AVERI",
+  "group": "policy",
+  "bio": "Founder and Executive Director of AVERI; led policy research at OpenAI for six years."
+ },
+ {
+  "name": "Stephen Casper",
+  "photo": "stephen-casper.jpg",
+  "org": "Harvard",
+  "group": "orgs",
+  "bio": "AI safety and governance researcher at Harvard; formerly at the UK AI Security Institute."
+ },
+ {
+  "name": "Dan Hendrycks",
+  "photo": "dan-hendrycks.jpg",
+  "org": "Center for AI Safety",
+  "group": "orgs",
+  "bio": "Director of the Center for AI Safety (CAIS)."
+ },
+ {
+  "name": "Adam Gleave",
+  "photo": "adam-gleave.jpg",
+  "org": "FAR.AI",
+  "group": "orgs",
+  "bio": "Co-founder and CEO of FAR.AI, an AI safety research non-profit."
+ },
+ {
+  "name": "Jeffrey Ladish",
+  "photo": "jeffrey-ladish.jpg",
+  "org": "Palisade Research",
+  "group": "orgs",
+  "bio": "Executive Director of Palisade Research; previously worked on security at Anthropic."
+ },
+ {
+  "name": "Chris Painter",
+  "photo": "chris-painter.jpg",
+  "org": "METR",
+  "group": "orgs",
+  "bio": "Senior leader at METR, credited in 2026 episodes as its president and as its director of policy."
+ },
+ {
+  "name": "Marius Hobbhahn",
+  "photo": "marius-hobbhahn.jpg",
+  "org": "Apollo Research",
+  "group": "orgs",
+  "bio": "Founder and CEO of Apollo Research, which studies deceptive behaviour in AI models."
+ },
+ {
+  "name": "Ajeya Cotra",
+  "photo": "ajeya-cotra.jpg",
+  "org": "METR",
+  "group": "orgs",
+  "bio": "Works on loss-of-control threat modelling at METR; co-author of the METR/Redwood investigation of the OpenAI–Hugging Face incident."
+ },
+ {
+  "name": "Buck Shlegeris",
+  "photo": "buck-shlegeris.jpg",
+  "org": "Redwood Research",
+  "group": "orgs",
+  "bio": "CEO of Redwood Research, a pioneer of AI control research."
+ },
+ {
+  "name": "Ryan Greenblatt",
+  "photo": "ryan-greenblatt.jpg",
+  "org": "Redwood Research",
+  "group": "orgs",
+  "bio": "Chief Scientist at Redwood Research; lead empirical researcher on the METR/Redwood incident investigation."
+ },
+ {
+  "name": "Paul Christiano",
+  "photo": "paul-christiano.jpg",
+  "org": "Alignment Research Center",
+  "group": "orgs",
+  "bio": "Founder of the Alignment Research Center; formerly led OpenAI's alignment team and safety at the US AI Safety Institute."
+ },
+ {
+  "name": "Owain Evans",
+  "photo": "owain-evans.jpg",
+  "org": "Truthful AI",
+  "group": "orgs",
+  "bio": "Director of Truthful AI and AI alignment researcher affiliated with UC Berkeley."
+ },
+ {
+  "name": "Rosie Campbell",
+  "photo": "rosie-campbell.jpg",
+  "org": "Eleos AI Research",
+  "group": "orgs",
+  "bio": "Managing Director of Eleos AI Research; former OpenAI policy researcher."
+ },
+ {
+  "name": "Daniel Kokotajlo",
+  "photo": "daniel-kokotajlo.jpg",
+  "org": "AI Futures Project",
+  "group": "insiders",
+  "bio": "Executive Director of the AI Futures Project and lead author of AI 2027; former OpenAI researcher."
+ },
+ {
+  "name": "Eli Lifland",
+  "photo": "eli-lifland.jpg",
+  "org": "AI Futures Project",
+  "group": "insiders",
+  "bio": "AI Futures Project researcher, co-author of AI 2027 and Samotsvety forecaster."
+ },
+ {
+  "name": "Thomas Larsen",
+  "photo": "thomas-larsen.jpg",
+  "org": "AI Futures Project",
+  "group": "insiders",
+  "bio": "AI Futures Project researcher and lead author of AI 2040."
+ },
+ {
+  "name": "Jacob Coxon",
+  "photo": "jacob-coxon.jpg",
+  "org": "Former Anthropic & OpenAI",
+  "group": "insiders",
+  "bio": "Former Anthropic and OpenAI pre-training researcher who went public as a whistleblower."
+ },
+ {
+  "name": "Alex Turner",
+  "photo": "alex-turner.jpg",
+  "org": "Former Google DeepMind",
+  "group": "insiders",
+  "bio": "Former Google DeepMind AGI safety research scientist who resigned over safety concerns."
+ },
+ {
+  "name": "Steven Adler",
+  "photo": "steven-adler.jpg",
+  "org": "Guidelight AI",
+  "group": "insiders",
+  "bio": "Co-founder of Guidelight AI; OpenAI policy and safety researcher from 2020 to 2024."
+ },
+ {
+  "name": "Geoffrey Irving",
+  "photo": "geoffrey-irving.jpg",
+  "org": "Resolution",
+  "group": "insiders",
+  "bio": "Former chief scientist of the UK AI Security Institute; previously led safety work at OpenAI and Google DeepMind."
+ },
+ {
+  "name": "Victoria Krakovna",
+  "photo": "victoria-krakovna.jpg",
+  "org": "Google DeepMind",
+  "group": "labs",
+  "bio": "Research scientist on Google DeepMind's alignment team and co-founder of the Future of Life Institute."
+ },
+ {
+  "name": "Neel Nanda",
+  "photo": "neel-nanda.jpg",
+  "org": "Google DeepMind",
+  "group": "labs",
+  "bio": "Leads mechanistic interpretability at Google DeepMind."
+ },
+ {
+  "name": "Mikita Balesni",
+  "photo": "mikita-balesni.jpg",
+  "org": "Apollo Research",
+  "group": "insiders",
+  "bio": "Co-founder of Apollo Research and former OpenAI alignment-evaluations and monitoring researcher."
+ },
+ {
+  "name": "Tomek Korbak",
+  "photo": "tomek-korbak.jpg",
+  "org": "Former OpenAI",
+  "group": "insiders",
+  "bio": "Former OpenAI safety researcher, previously at the UK AI Security Institute."
+ },
+ {
+  "name": "Benjamin Weinstein-Raun",
+  "photo": "benjamin-weinstein-raun.jpg",
+  "org": "Palisade Research",
+  "group": "orgs",
+  "bio": "Head of Research at Palisade Research."
+ },
+ {
+  "name": "Aengus Lynch",
+  "photo": "aengus-lynch.jpg",
+  "org": "Theorem",
+  "group": "insiders",
+  "bio": "AI safety researcher at Theorem and lead author of Anthropic's Agentic Misalignment study."
+ },
+ {
+  "name": "Emmanuel Ameisen",
+  "photo": "emmanuel-ameisen.jpg",
+  "org": "Anthropic",
+  "group": "labs",
+  "bio": "Interpretability researcher at Anthropic."
+ },
+ {
+  "name": "Dylan Hadfield-Menell",
+  "photo": "dylan-hadfield-menell.jpg",
+  "org": "MIT",
+  "group": "academics",
+  "bio": "Associate professor at MIT working on AI alignment."
+ },
+ {
+  "name": "Katja Grace",
+  "photo": "katja-grace.jpg",
+  "org": "AI Impacts",
+  "group": "orgs",
+  "bio": "Co-founder of AI Impacts, known for its surveys of AI researchers."
+ },
+ {
+  "name": "Oliver Habryka",
+  "photo": "oliver-habryka.jpg",
+  "org": "Lightcone Infrastructure",
+  "group": "orgs",
+  "bio": "Runs Lightcone Infrastructure, which operates LessWrong."
+ },
+ {
+  "name": "Tom McGrath",
+  "photo": "tom-mcgrath.jpg",
+  "org": "Goodfire",
+  "group": "labs",
+  "bio": "Co-founder and Chief Scientist of Goodfire; formerly at Google DeepMind."
+ }
+]
