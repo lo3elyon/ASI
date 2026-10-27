@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · app: router, global events, command palette, shortcuts, theme, deep links, boot.
+/* AI Safety Full Episodes · app: router, global events, command palette, shortcuts, theme, deep links, boot.
  * Built by Aniruddha Adak. Module order: core → history → recs → ui → player → views → insights → app. */
 (function (A) {
   "use strict";
@@ -14,7 +14,7 @@
     if (!m) return { view: "home" };
     return { view: m[1], arg: m[2] ? decodeURIComponent(m[2]) : null, qs: m[3] || "" };
   }
-  const VIEWS = ["home", "browse", "months", "speakers", "speaker", "insights", "history", "queue", "profile", "notes", "about"];
+  const VIEWS = ["home", "browse", "months", "speakers", "speaker", "insights", "history", "queue", "profile", "notes", "about", "watched", "playlists", "wrapped"];
   function route() {
     const r = parseHash();
     if (r.deep) {
@@ -25,25 +25,36 @@
       else A.ui.toast("That episode is not in the library", { icon: "⚠️" });
       return;
     }
+    if (r.view === "playlist") { r.view = "playlists"; }
     let v = VIEWS.includes(r.view) ? r.view : "home";
     if (v === "browse" && r.qs) A.views.applyQuery(r.qs);
     show(v, r.arg);
   }
   function show(v, arg) {
     const changed = v !== VIEW || arg !== ARG;
+    if (changed && document.startViewTransition && !A.RM && document.documentElement.classList.contains("is-ready") && !document.hidden) {
+      try { document.startViewTransition(() => doShow(v, arg, changed)); return; } catch (e) {}
+    }
+    doShow(v, arg, changed);
+  }
+  function doShow(v, arg, changed) {
     VIEW = v; ARG = arg;
     $$(".view").forEach((s) => (s.hidden = s.dataset.view !== v));
+    $$(".view").forEach((s) => s.classList.toggle("view--in", s.dataset.view === v && changed));
     $$("[data-tab]").forEach((a) => { const on = a.dataset.tab === v || (v === "speaker" && a.dataset.tab === "speakers"); a.classList.toggle("is-on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
     if (A.views.drawerOpen()) A.views.closeDrawer();
     if (A.P.mode === "theater" && A.P.cur && changed) A.player.minimize();
     renderCurrent();
     if (changed) window.scrollTo({ top: 0, behavior: "auto" });
-    document.title = `${{ home: "Home", browse: "Browse", months: "Months", speakers: "Speakers", speaker: (STATE.bySlug.get(arg) || { name: "Speaker" }).name, insights: "Insights", history: "History", queue: "Queue", profile: "Profile", notes: "Notes", about: "About & method" }[v]} · AI Safety Full Episodes v2`;
+    document.title = `${{ home: "Home", browse: "Browse", months: "Months", speakers: "Speakers", speaker: (STATE.bySlug.get(arg) || { name: "Speaker" }).name, insights: "Insights", history: "History", queue: "Queue", profile: "Profile", notes: "Notes", about: "About & method", watched: "I've watched these", playlists: "Playlists", wrapped: "Monthly recap" }[v]} · AI Safety Full Episodes`;
   }
   function renderCurrent() {
     const V = A.views;
     try {
-      ({ home: V.renderHome, browse: () => V.renderBrowse(true), months: V.renderMonths, speakers: V.renderSpeakers, speaker: () => V.renderSpeaker(ARG), insights: () => A.insights.render($('.view[data-view="insights"]')), history: V.renderHistory, queue: V.renderQueue, profile: V.renderProfile, notes: V.renderNotes, about: V.renderAbout }[VIEW] || V.renderHome)();
+      ({ home: V.renderHome, browse: () => V.renderBrowse(true), months: V.renderMonths, speakers: V.renderSpeakers, speaker: () => V.renderSpeaker(ARG), insights: () => A.insights.render($('.view[data-view="insights"]')), history: A.feat.renderHistory, queue: V.renderQueue, profile: V.renderProfile, notes: V.renderNotes, about: V.renderAbout,
+        watched: A.feat.renderWatched, playlists: () => A.feat.renderPlaylists(ARG), wrapped: A.feat.renderWrapped }[VIEW] || V.renderHome)();
+      if (VIEW === "home") A.feat.paintHomeTop();
+      A.feat.enhance($(`.view[data-view="${VIEW}"]`));
     } catch (err) { console.error(err); $(`.view[data-view="${VIEW}"]`).innerHTML = `<div class="emptybig"><p>Something went wrong rendering this view.</p><pre class="muted">${esc(err.message)}</pre></div>`; }
   }
   function rerender() { renderCurrent(); A.views.paintQueueCount(); h().checkAwards(true); }
@@ -68,7 +79,7 @@
       return;
     }
     const sc = t.closest("[data-scroll]");
-    if (sc) { const row = sc.closest(".shelf").querySelector(".shelf__row"); row.scrollBy({ left: Number(sc.dataset.scroll) * row.clientWidth * 0.85, behavior: A.RM ? "auto" : "smooth" }); return; }
+    if (sc) { const row = sc.closest(".shelf").querySelector(".shelf__row"); if (row) row.scrollBy({ left: Number(sc.dataset.scroll) * row.clientWidth * 0.85, behavior: A.RM ? "auto" : "smooth" }); return; }
     const hmD = t.closest("[data-hmday]");
     if (hmD && !t.closest('[data-hm="watch"]')) { const day = hmD.dataset.hmday; if (!STATE.days.get(day)) { A.ui.toast(`No episodes released on ${A.fmtDate(day)}`, { ms: 1500 }); return; } const f = A.recs.emptyFilter(); f.day = day; A.recs.setFilter(f); location.hash = "#/browse"; if (VIEW === "browse") A.views.renderBrowse(true); return; }
     if (hmD && t.closest('[data-hm="watch"]') && VIEW !== "history") { location.hash = "#/history"; return; }
@@ -83,6 +94,7 @@
       if (a === "open") A.views.openDrawer(id);
       if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); A.ui.toast(on ? "Added to queue" : "Removed from queue", { icon: on ? "➕" : "➖", ms: 1400 }); A.views.refreshCardsFor(id); if (VIEW === "queue") A.views.renderQueue(); }
       if (a === "fav") { const on = h().toggleFav(id); A.ui.toast(on ? "Favourited" : "Unfavourited", { icon: on ? "❤️" : "🤍", ms: 1200 }); A.views.refreshCardsFor(id); }
+      if (["watched", "menu", "later", "playlist", "sharecard", "playnext"].includes(a)) A.feat.act(a, id, act);
       return;
     }
     const dr = t.closest("[data-dr]");
@@ -100,19 +112,29 @@
     { label: "Speakers hub", kw: "speakers researchers people", run: () => (location.hash = "#/speakers") },
     { label: "Insights dashboard", kw: "insights stats charts dashboard", run: () => (location.hash = "#/insights") },
     { label: "Claims tracker (P(doom), timelines)", kw: "claims pdoom p(doom) timeline numbers", run: () => { location.hash = "#/insights"; setTimeout(() => { const el = $("#claimsPanel"); el && el.scrollIntoView(); }, 120); } },
-    { label: "Watch history", kw: "history watched", run: () => (location.hash = "#/history") },
+    { label: "Watch history (timeline, export CSV/JSON)", kw: "history watched timeline export csv", run: () => (location.hash = "#/history") },
+    { label: "I've watched these (bulk mark as watched)", kw: "already watched youtube mark bulk checklist import", run: () => (location.hash = "#/watched") },
+    { label: "Playlists & Watch later", kw: "playlists watch later library", run: () => (location.hash = "#/playlists") },
+    { label: "Monthly recap (wrapped)", kw: "wrapped recap month stats", run: () => (location.hash = "#/wrapped") },
     { label: "Queue", kw: "queue up next", run: () => (location.hash = "#/queue") },
     { label: "Profile, levels & badges", kw: "profile level xp badges achievements", run: () => (location.hash = "#/profile") },
     { label: "Notes", kw: "notes", run: () => (location.hash = "#/notes") },
     { label: "About & method", kw: "about method data privacy", run: () => (location.hash = "#/about") },
     { label: "Play / pause", kw: "play pause toggle", run: () => A.player.togglePlay(), needs: true },
     { label: "Next episode", kw: "next skip", run: () => A.player.playNext(), needs: true },
-    { label: "Pop-out player (always on top)", kw: "pip picture in picture pop out minimise", run: () => A.player.popOut(), needs: true },
-    { label: "Audio mode", kw: "audio listen background", run: () => A.player.audioMode(), needs: true },
+    { label: "Fullscreen cinema player", kw: "fullscreen cinema expand pop out big", run: () => A.player.toggleFs(), needs: true },
+    { label: "Float window (always on top remote)", kw: "pip picture in picture float window minimise", run: () => A.player.popOut(), needs: true },
+    { label: "Headphones mode (audio only)", kw: "audio listen background headphones", run: () => A.player.audioMode(), needs: true },
+    { label: "Zen focus mode (Pomodoro, do not disturb)", kw: "zen focus pomodoro dnd do not disturb", run: () => A.player.toggleZen(), needs: true },
+    { label: "Mark current episode as watched", kw: "mark watched done complete", run: () => A.player.toggleWatchedCur(), needs: true },
+    { label: "Bookmark this moment", kw: "bookmark", run: () => A.player.bookmark(), needs: true },
+    { label: "Sleep timer: 30 minutes", kw: "sleep timer", run: () => A.player.setSleep("30"), needs: true },
+    { label: "Toggle captions", kw: "captions subtitles cc", run: () => A.player.toggleCC(), needs: true },
     { label: "Theater / mini player", kw: "theater mini expand", run: () => (A.P.mode === "theater" ? A.player.minimize() : A.player.expand()), needs: true },
     { label: "Add a note at this moment", kw: "note", run: () => A.player.openNote(), needs: true },
     { label: "Copy link at current time", kw: "copy link share timestamp", run: () => A.views.copyLinkAt(A.P.cur.id, A.player.curTime()), needs: true },
     { label: "Toggle theme (dark / light / system)", kw: "theme dark light system", run: () => cycleTheme() },
+    ...[["amber", "Amber"], ["teal", "Teal"], ["emerald", "Emerald"], ["sky", "Sky"], ["coral", "Coral"], ["lime", "Lime"]].map(([id, n]) => ({ label: `Accent colour: ${n}`, kw: "accent colour color theme " + id, run: () => A.feat.setAccent(id) })),
     { label: "Keyboard shortcuts", kw: "keyboard shortcuts help", run: () => openHelp() },
     { label: "Surprise me (random unwatched)", kw: "random surprise shuffle", run: () => { const l = STATE.all.filter((e) => h().stateOf(e.id) === "none"); if (l.length) A.player.play(l[Math.floor(Math.random() * l.length)].id); } },
   ];
@@ -145,10 +167,14 @@
   /* ---------------------------------------------------------------- shortcuts + theme */
   const KEYS = [
     ["Ctrl/⌘ K", "Command palette: episodes, speakers, actions"], ["/", "Search (Browse)"], ["?", "This overlay"],
-    ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater)"],
-    ["Shift P", "Previous chapter"], ["Shift ]", "Next chapter"], ["Shift N", "Next episode"], ["0–9", "Jump to 0%–90%"], [", / .", "Slower / faster"],
-    ["M", "Mute"], ["F", "Fullscreen"], ["T", "Theater ↔ mini player"], ["A", "Audio mode"], ["I", "Pop-out player (always on top)"], ["N", "Note at this moment"],
-    ["C", "Copy link at current time"], ["G then H / B / S / I", "Go to Home / Browse / Speakers / Insights"], ["Esc", "Close / minimise"],
+    ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
+    [", / .", "Frame step when paused (speed −/+ 0.25× while playing)"], ["< / >", "Slower / faster"], ["0–9", "Jump to 0%–90%"], ["Home / End", "Start / end (on the seek bar)"],
+    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode"], ["S", "Skip intro (first chapter)"],
+    ["F", "Fullscreen cinema (Esc to leave)"], ["T", "Theater ↔ mini player"], ["A", "Headphones mode"], ["I", "Float window (always on top)"], ["Z", "Zen focus mode"],
+    ["C", "Captions on / off"], ["M", "Mute"], ["B", "Bookmark this moment"], ["N", "Note at this moment"], ["[ / ] / \\", "Loop start / loop end / clear"],
+    ["W", "Mark focused card (or current episode) watched"], ["Shift F10", "Card menu (or right-click)"], ["Arrow keys on cards", "Move between cards"],
+    ["Double-click / double-tap", "Left or right third: −/+10 s · middle: fullscreen · mini: expand"], ["Swipe on video (touch)", "Sideways seeks · up/down on the right half sets volume"],
+    ["G then H / B / S / I / W / L / R / Y", "Go to Home / Browse / Speakers / Insights / Watched / Playlists / Recap / History"], ["Esc", "Close / exit fullscreen / minimise"],
   ];
   function openHelp() { $("#keysBody").innerHTML = `<dl>${KEYS.map(([k, d]) => `<div><dt>${k.split(" / ").map((x) => `<kbd>${esc(x)}</kbd>`).join(" / ")}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>`; $("#help").hidden = false; $("#help [data-close]").focus(); }
   function setTheme(pref) {
@@ -177,6 +203,9 @@
     if (ev.key === "Escape") {
       if (!$("#help").hidden) { $("#help").hidden = true; return; }
       if (!$("#levelup").hidden) { $("#levelup").hidden = true; return; }
+      if (A.P.menu) { A.player.closeMenu(); return; }
+      if (A.P.fs) { A.player.exitFs(); return; }
+      if (A.P.zen) { A.player.toggleZen(false); return; }
       if (!$("#countdown").hidden) { A.player.hideCountdown(); return; }
       if (A.views.drawerOpen()) { A.views.closeDrawer(); return; }
       if (typing) { ev.target.blur(); return; }
@@ -187,7 +216,7 @@
     const k = ev.key;
     if (gPending && Date.now() - gPending < 1200) {
       gPending = 0;
-      const to = { h: "home", b: "browse", s: "speakers", i: "insights", m: "months", q: "queue", p: "profile", n: "notes" }[k.toLowerCase()];
+      const to = { h: "home", b: "browse", s: "speakers", i: "insights", m: "months", q: "queue", p: "profile", n: "notes", w: "watched", l: "playlists", r: "wrapped", y: "history" }[k.toLowerCase()];
       if (to) { location.hash = "#/" + to; return; }
     }
     if (k === "g") { gPending = Date.now(); return; }
@@ -195,37 +224,53 @@
     if (k === "/") { ev.preventDefault(); if (VIEW !== "browse") location.hash = "#/browse"; setTimeout(() => { const q = $("#q"); q && q.focus(); }, 60); return; }
     if (!A.P.cur) return;
     const inBtn = tag === "button" || tag === "a";
-    const S = h().L.SETTINGS, speeds = [0.75, 1, 1.25, 1.5, 1.75, 2];
+    const S = h().L.SETTINGS;
+    const P0 = A.P, pl = A.player;
     switch (k) {
-      case " ": if (inBtn) return; ev.preventDefault(); A.player.togglePlay(); break;
-      case "k": case "K": A.player.togglePlay(); break;
-      case "j": case "J": A.player.seek(-10); break;
-      case "l": case "L": A.player.seek(10); break;
-      case "ArrowLeft": ev.preventDefault(); A.player.seek(ev.shiftKey ? -30 : -10); break;
-      case "ArrowRight": ev.preventDefault(); A.player.seek(ev.shiftKey ? 30 : 10); break;
-      case "ArrowUp": if (A.P.mode === "theater") { ev.preventDefault(); A.player.setVol(S.vol + 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
-      case "ArrowDown": if (A.P.mode === "theater") { ev.preventDefault(); A.player.setVol(S.vol - 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
-      case "N": A.player.playNext(); break;
-      case "n": A.player.openNote(); break;
-      case "P": A.player.prevChapter(); break;
-      case "}": case "]": A.player.nextChapter(); break;
-      case "m": case "M": A.player.toggleMute(); break;
-      case "f": case "F": { const d = $("#dock"); if (document.fullscreenElement) document.exitFullscreen(); else if (d.requestFullscreen) d.requestFullscreen().catch(() => {}); break; }
-      case "t": case "T": A.P.mode === "theater" ? A.player.minimize() : A.player.expand(); break;
-      case "a": case "A": A.player.audioMode(); break;
-      case "i": case "I": A.player.popOut(); break;
-      case "c": case "C": A.views.copyLinkAt(A.P.cur.id, A.player.curTime()); break;
-      case ",": A.player.setSpeed(speeds[Math.max(0, speeds.indexOf(Number(S.speed)) - 1)] || 1); break;
-      case ".": A.player.setSpeed(speeds[Math.min(5, speeds.indexOf(Number(S.speed)) + 1)] || 1); break;
-      default: if (/^[0-9]$/.test(k)) A.player.seek((A.player.durNow() * Number(k)) / 10, true);
+      case " ": if (inBtn) return; ev.preventDefault(); pl.togglePlay(); break;
+      case "k": case "K": pl.togglePlay(); break;
+      case "j": case "J": pl.seek(-10); break;
+      case "l": case "L": pl.seek(10); break;
+      case "ArrowLeft": ev.preventDefault(); pl.seek(ev.shiftKey ? -30 : -10); break;
+      case "ArrowRight": ev.preventDefault(); pl.seek(ev.shiftKey ? 30 : 10); break;
+      case "ArrowUp": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol + 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
+      case "ArrowDown": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol - 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
+      case "N": pl.playNext(); break;
+      case "n": pl.openNote(); break;
+      case "P": pl.prevChapter(); break;
+      case "}": pl.nextChapter(); break;
+      case "[": pl.setLoop("a"); break;
+      case "]": pl.setLoop("b"); break;
+      case "\\": pl.setLoop("clear"); break;
+      case "m": case "M": pl.toggleMute(); break;
+      case "f": case "F": pl.toggleFs(); break;
+      case "t": case "T": P0.mode === "theater" ? pl.minimize() : pl.expand(); break;
+      case "a": case "A": pl.audioMode(); break;
+      case "i": case "I": pl.popOut(); break;
+      case "z": case "Z": pl.toggleZen(); break;
+      case "c": case "C": pl.toggleCC(); break;
+      case "b": case "B": pl.bookmark(); break;
+      case "s": case "S": pl.skipIntro(); break;
+      case "w": case "W": pl.toggleWatchedCur(); break;
+      case ",": pl.frameStep(-1); break;
+      case ".": pl.frameStep(1); break;
+      case "<": pl.setSpeed((Number(S.speed) || 1) - 0.25); break;
+      case ">": pl.setSpeed((Number(S.speed) || 1) + 0.25); break;
+      default: if (/^[0-9]$/.test(k)) pl.seek((pl.durNow() * Number(k)) / 10, true);
     }
+    pl.showUI();
   }
 
   /* ---------------------------------------------------------------- boot */
   async function boot() {
     h().loadState();
     $$(".view").forEach((v) => (v.hidden = v.dataset.view !== "home"));
-    $('.view[data-view="home"]').innerHTML = `<div class="hero hero--skel shimmer"></div>${A.ui.skeletons(8)}`;
+    const home = $('.view[data-view="home"]');
+    if (!home.querySelector("[data-prerendered]")) home.innerHTML = `<div class="hero hero--skel shimmer"></div>${A.ui.skeletons(8)}`;
+    try { A.feat.setAccent(localStorage.getItem("asfe:accent") || h().L.SETTINGS.accent || "amber", true); } catch (e) {}
+    A.feat.wireTop();
+    const bar = $("#loadbar"), splash = $("#splash");
+    A.onLoadProgress = (f) => { if (bar) bar.style.transform = `scaleX(${Math.max(0.08, f)})`; const sp = $("#splashBar"); if (sp) sp.style.transform = `scaleX(${Math.max(0.08, f)})`; };
     A.player.wire();
     document.addEventListener("click", onClick);
     document.addEventListener("keydown", onKey);
@@ -242,18 +287,20 @@
     $("#lvlChip").onclick = () => (location.hash = "#/profile");
     setTheme(document.documentElement.getAttribute("data-theme-pref") || "system");
     if (window.matchMedia) { const mq = window.matchMedia("(prefers-color-scheme: light)"); const fn = () => { if ((document.documentElement.getAttribute("data-theme-pref") || "system") === "system") setTheme("system"); }; mq.addEventListener ? mq.addEventListener("change", fn) : mq.addListener && mq.addListener(fn); }
-    document.addEventListener("fullscreenchange", () => setTimeout(A.player.placeDock, 60));
     try { await A.loadData(); }
     catch (err) { $('.view[data-view="home"]').innerHTML = `<div class="emptybig"><p>Could not load the episode data.</p><pre class="muted">${esc(err.message)}</pre></div>`; return; }
     document.documentElement.classList.add("is-ready");
+    if (bar) { bar.style.transform = "scaleX(1)"; setTimeout(() => bar.classList.add("is-done"), 250); }
+    if (splash) { splash.classList.add("is-out"); setTimeout(() => splash.remove(), 700); try { localStorage.setItem("asfe:seen", "1"); } catch (e) {} }
+    A.feat.paintGoal();
     A.views.paintQueueCount();
     h().checkAwards(true);
     window.addEventListener("hashchange", route);
     route();
-    if (A.migration && A.migration.from === 1 && A.migration.moved.includes("history")) setTimeout(() => A.ui.toast("Welcome to v2: your watch history, notes and badges came with you", { icon: "✨", ms: 5000 }), 600);
+    if (A.migration && A.migration.from != null && A.migration.moved.length && !A.store.get("migToast3", 0)) { A.store.set("migToast3", 1); setTimeout(() => A.ui.toast("Your watch history, notes and badges came with you. New: fullscreen cinema player, “I've watched these”, playlists and themes.", { icon: "✨", ms: 6000 }), 700); }
     if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
-  A.app = { route, show, rerender, setTheme, openPalette, closePalette, openHelp, palRender, palItems: () => palItems, view: () => VIEW };
+  A.app = { route, show, KEYS, rerender, setTheme, openPalette, closePalette, openHelp, palRender, palItems: () => palItems, view: () => VIEW };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })(window.ASFE);
