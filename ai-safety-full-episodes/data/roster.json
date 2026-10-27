@@ -341,5 +341,194 @@
   "org": "Goodfire",
   "group": "labs",
   "bio": "Co-founder and Chief Scientist of Goodfire; formerly at Google DeepMind."
+ },
+ {
+  "name": "Tom Davidson",
+  "photo": "tom-davidson.jpg",
+  "org": "Forethought",
+  "group": "academics",
+  "bio": "Senior research fellow at Forethought who studies AI takeoff dynamics, recursive self-improvement and AI-enabled power concentration."
+ },
+ {
+  "name": "Richard Ngo",
+  "photo": "richard-ngo.jpg",
+  "org": "Independent researcher",
+  "group": "insiders",
+  "bio": "Independent AI alignment researcher, formerly on OpenAI's governance team and at Google DeepMind, now working on agent foundations and coordination."
+ },
+ {
+  "name": "Robert Long",
+  "photo": "robert-long.jpg",
+  "org": "Eleos AI",
+  "group": "orgs",
+  "bio": "Philosopher and executive director of Eleos AI, which researches AI consciousness, welfare and moral patienthood."
+ },
+ {
+  "name": "Jacob Steinhardt",
+  "photo": "jacob-steinhardt.jpg",
+  "org": "UC Berkeley / Transluce",
+  "group": "academics",
+  "bio": "UC Berkeley statistics/EECS professor and co-founder of Transluce, working on AI oversight, interpretability and forecasting."
+ },
+ {
+  "name": "Zhijing Jin",
+  "photo": "zhijing-jin.jpg",
+  "org": "University of Toronto",
+  "group": "academics",
+  "bio": "Assistant professor at the University of Toronto, research scientist at the Max Planck Institute, and founder of EuroSafeAI, working on multi-agent safety and causal interpretability."
+ },
+ {
+  "name": "Jascha Sohl-Dickstein",
+  "photo": "jascha-sohl-dickstein.jpg",
+  "org": "Anthropic",
+  "group": "labs",
+  "bio": "Anthropic researcher, known for inventing diffusion models, who studies how misalignment scales with model capability."
+ },
+ {
+  "name": "David Duvenaud",
+  "photo": "david-duvenaud.jpg",
+  "org": "University of Toronto",
+  "group": "academics",
+  "bio": "University of Toronto associate professor and Schwartz Reisman Chair, former Anthropic alignment researcher, and co-author of work on gradual disempowerment."
+ },
+ {
+  "name": "Meia Chita-Tegmark",
+  "photo": "meia-chita-tegmark.jpg",
+  "org": "Future of Life Institute",
+  "group": "policy",
+  "bio": "Social psychologist and co-founder of the Future of Life Institute, focusing on AI's effects on human psychology."
+ },
+ {
+  "name": "Christopher Potts",
+  "photo": "christopher-potts.jpg",
+  "org": "Stanford University",
+  "group": "academics",
+  "bio": "Stanford professor of linguistics (and CS by courtesy) working on language-model interpretability and evaluation."
+ },
+ {
+  "name": "Mark Nitzberg",
+  "photo": "mark-nitzberg.jpg",
+  "org": "UC Berkeley CHAI",
+  "group": "academics",
+  "bio": "Executive director of UC Berkeley's Center for Human-Compatible AI and co-founder of the International Association for Safe and Ethical AI."
+ },
+ {
+  "name": "Jesse Hoogland",
+  "photo": "jesse-hoogland.jpg",
+  "org": "Resolution",
+  "group": "orgs",
+  "bio": "Co-founder of the alignment organization Resolution (formerly executive director of Timaeus), working on singular learning theory and developmental interpretability."
+ },
+ {
+  "name": "Matthew Kowal",
+  "photo": "matthew-kowal.jpg",
+  "org": "Goodfire",
+  "group": "labs",
+  "bio": "Member of technical staff at the interpretability lab Goodfire."
+ },
+ {
+  "name": "Anson Ho",
+  "photo": "anson-ho.jpg",
+  "org": "Epoch AI",
+  "group": "orgs",
+  "bio": "Researcher at Epoch AI studying algorithmic progress and the possibility of a software intelligence explosion."
+ },
+ {
+  "name": "Jonas Freund",
+  "photo": "jonas-freund.jpg",
+  "org": "GovAI",
+  "group": "policy",
+  "bio": "Senior research fellow at the Centre for the Governance of AI (GovAI)."
+ },
+ {
+  "name": "Andrew Sutton",
+  "photo": "andrew-sutton.jpg",
+  "org": "Oxford Martin AI Governance Initiative",
+  "group": "policy",
+  "bio": "Former banker who leads work on AI and the financial system at the Oxford Martin AI Governance Initiative."
+ },
+ {
+  "name": "Jobst Heitzig",
+  "photo": "jobst-heitzig.jpg",
+  "org": "Potsdam Institute for Climate Impact Research",
+  "group": "academics",
+  "bio": "Mathematician at the Potsdam Institute for Climate Impact Research working on safe-by-design, non-maximizing AI agents and human empowerment."
+ },
+ {
+  "name": "Max Nadeau",
+  "photo": "max-nadeau.jpg",
+  "org": "Coefficient Giving",
+  "group": "orgs",
+  "bio": "Grantmaker on Coefficient Giving's (formerly Open Philanthropy's) Technical AI Safety team, which runs Project Tailwind."
+ },
+ {
+  "name": "Kevin Esvelt",
+  "photo": "kevin-esvelt.jpg",
+  "org": "MIT Media Lab",
+  "group": "academics",
+  "bio": "MIT Media Lab associate professor leading the Sculpting Evolution group, a gene-drive pioneer and biosecurity researcher."
+ },
+ {
+  "name": "Jacob Tsimerman",
+  "photo": "jacob-tsimerman.jpg",
+  "org": "University of Toronto",
+  "group": "academics",
+  "bio": "University of Toronto mathematician, 2026 Fields Medalist, and scientific director of the Mathematical AI Safety Institute."
+ },
+ {
+  "name": "Anders Sandberg",
+  "photo": "anders-sandberg.jpg",
+  "org": "Mimir Center for Long Term Futures Research",
+  "group": "academics",
+  "bio": "Futurist and existential-risk researcher at the Mimir Center for Long Term Futures Research, formerly at Oxford's Future of Humanity Institute."
+ },
+ {
+  "name": "Scott Aaronson",
+  "photo": "scott-aaronson.jpg",
+  "org": "UT Austin",
+  "group": "academics",
+  "bio": "UT Austin theoretical computer scientist who spent two years on OpenAI's (super)alignment team, where he developed AI-text watermarking."
+ },
+ {
+  "name": "Brian Christian",
+  "photo": "brian-christian.jpg",
+  "org": "UC Berkeley CHAI",
+  "group": "academics",
+  "bio": "Research fellow at UC Berkeley's Center for Human-Compatible AI and author of The Alignment Problem."
+ },
+ {
+  "name": "Eric Ho",
+  "photo": "eric-ho.jpg",
+  "org": "Goodfire",
+  "group": "labs",
+  "bio": "Co-founder and CEO of Goodfire, an AI interpretability research lab."
+ },
+ {
+  "name": "Jack Lindsey",
+  "photo": "jack-lindsey.jpg",
+  "org": "Anthropic",
+  "group": "labs",
+  "bio": "Interpretability researcher at Anthropic who led its research on a global-workspace-like 'J-space' in Claude."
+ },
+ {
+  "name": "Serena Booth",
+  "photo": "serena-booth.jpg",
+  "org": "Brown University",
+  "group": "academics",
+  "bio": "Brown University assistant professor of computer science who studies how people specify objectives and preferences for AI, and AI policy."
+ },
+ {
+  "name": "Boaz Barak",
+  "photo": "boaz-barak.jpg",
+  "org": "Harvard / OpenAI",
+  "group": "academics",
+  "bio": "Harvard computer science professor and member of OpenAI's alignment team who teaches Harvard's AI safety course."
+ },
+ {
+  "name": "Aaron Roth",
+  "photo": "aaron-roth.jpg",
+  "org": "University of Pennsylvania",
+  "group": "academics",
+  "bio": "University of Pennsylvania computer science professor who teaches a graduate course on the mathematical foundations of AI alignment."
  }
 ]
