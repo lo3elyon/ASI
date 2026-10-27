@@ -1,16 +1,29 @@
-/* AI Safety Full Episodes v2 · player: YouTube IFrame API, strict watch clock, dock modes (theater / mini / audio),
- * Document Picture-in-Picture pop-out, Media Session, chapters, seek bar, Up Next countdown. */
+/* AI Safety Full Episodes · player: YouTube IFrame API with custom cinema controls, strict watch clock,
+ * dock modes (theater / mini / audio), true fullscreen on the player shell, draggable + resizable mini player,
+ * float-window remote (Document Picture-in-Picture), Zen focus mode, sleep timer, A–B loop, bookmarks, Media Session.
+ *
+ * Why the float window is a remote and not a second player: a YouTube iframe created inside a Document PiP window
+ * lives in an about:blank document, so it is requested without any HTTP Referer and YouTube answers "Error 153
+ * (video player configuration error)". Moving the live iframe into that window would reload it there with the same
+ * missing referrer. So the one real player always stays on this page (where it has a valid origin and referrer)
+ * and the float window shows artwork, live chapter, progress and controls that drive it. */
 (function (A) {
   "use strict";
   const { $, $$, esc, clamp, fmtTime, STATE, RM } = A;
   const h = () => A.hist;
   const L = () => A.hist.L;
 
-  const P = { yt: null, ready: false, apiLoading: null, cur: null, mode: "none", prevMode: "theater", pip: null, lastMedia: null, lastWall: 0, lastSave: 0, sess: null, cov: null, nB: 0, pending: null, cd: null, chIdx: -1, lastPos: 0, playing: false, side: "chapters", msLast: 0 };
+  const P = {
+    yt: null, ready: false, apiLoading: null, cur: null, mode: "none", prevMode: "theater", pip: null, lastMedia: null, lastWall: 0, lastSave: 0, sess: null, cov: null, nB: 0,
+    pending: null, cd: null, chIdx: -1, lastPos: 0, playing: false, side: "chapters", msLast: 0, fs: false, fsFallback: false, zen: false, dnd: false, sleep: null, loop: null,
+    pomo: null, uiTimer: 0, menu: null, autoSkip: false, errCode: null, rail: false, lastState: -1,
+  };
   A.P = P;
   const dock = () => $("#dock");
+  const YT_ORIGIN = "https://www.youtube.com";
+  const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
 
-  /* ---------------------------------------------------------------- YouTube API */
+  /* ---------------------------------------------------------------- YouTube API (loaded on first play only) */
   function loadAPI() {
     if (window.YT && window.YT.Player) return Promise.resolve();
     if (P.apiLoading) return P.apiLoading;
@@ -18,19 +31,36 @@
       const prev = window.onYouTubeIframeAPIReady;
       window.onYouTubeIframeAPIReady = () => { prev && prev(); res(); };
       const s = document.createElement("script");
-      s.src = "https://www.youtube.com/iframe_api";
+      s.src = YT_ORIGIN + "/iframe_api";
+      s.async = true;
       s.onerror = () => { P.apiLoading = null; rej(new Error("YouTube API failed to load")); };
       document.head.appendChild(s);
-      setTimeout(() => { if (!(window.YT && window.YT.Player)) rej(new Error("YouTube API timeout")); }, 15000);
+      setTimeout(() => { if (!(window.YT && window.YT.Player)) { P.apiLoading = null; rej(new Error("YouTube API timeout")); } }, 15000);
     });
     return P.apiLoading;
   }
-  function createPlayer(host, id, start, ns) {
+  /* We build the iframe ourselves so referrerpolicy, origin and widget_referrer are set before the first request. */
+  function embedSrc(id, start) {
+    const S = L().SETTINGS, nat = !!S.nativeControls;
+    const q = new URLSearchParams({ enablejsapi: "1", autoplay: "1", start: String(Math.floor(start || 0)), rel: "0", modestbranding: "1", playsinline: "1", iv_load_policy: "3",
+      controls: nat ? "1" : "0", disablekb: nat ? "0" : "1", fs: nat ? "1" : "0", cc_load_policy: S.captions ? "1" : "0", cc_lang_pref: "en", hl: "en" });
+    if (/^https?:$/.test(location.protocol)) { q.set("origin", location.origin); q.set("widget_referrer", location.href.split("#")[0]); }
+    return `${YT_ORIGIN}/embed/${encodeURIComponent(id)}?${q.toString()}`;
+  }
+  function createPlayer(host, id, start) {
     P.ready = false;
-    const pv = { autoplay: 1, start: Math.floor(start || 0), rel: 0, modestbranding: 1, playsinline: 1, controls: 1, iv_load_policy: 3, enablejsapi: 1 };
-    if (/^https?:$/.test(location.protocol)) pv.origin = location.origin;
-    P.yt = new (ns || window.YT).Player(host, {
-      host: "https://www.youtube-nocookie.com", videoId: id, width: "100%", height: "100%", playerVars: pv,
+    const f = document.createElement("iframe");
+    f.id = "ytFrame";
+    f.title = "YouTube video player";
+    f.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
+    f.referrerPolicy = "strict-origin-when-cross-origin";
+    f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen; web-share");
+    f.setAttribute("allowfullscreen", "");
+    f.setAttribute("frameborder", "0");
+    f.width = "100%"; f.height = "100%";
+    f.src = embedSrc(id, start);
+    host.replaceWith(f);
+    P.yt = new window.YT.Player(f, {
       events: {
         onReady: () => {
           P.ready = true;
@@ -40,8 +70,9 @@
           P.pending = null;
         },
         onStateChange: onState,
-        onError: (ev) => showEmbedError(P.cur, ev.data === 101 || ev.data === 150 ? "The channel does not allow this video to play outside YouTube." : "This video could not be played here."),
-        onPlaybackRateChange: () => { try { L().SETTINGS.speed = P.yt.getPlaybackRate(); $("#cSpeed").value = String(L().SETTINGS.speed); } catch (x) {} },
+        onError: (ev) => onError(ev && ev.data),
+        onPlaybackRateChange: () => { try { L().SETTINGS.speed = P.yt.getPlaybackRate(); paintSpeed(); } catch (x) {} },
+        onPlaybackQualityChange: () => { if (P.menu === "quality") renderMenu("quality"); },
       },
     });
     return P.yt;
@@ -50,11 +81,12 @@
     try { P.yt && P.yt.destroy && P.yt.destroy(); } catch (e) {}
     P.yt = null; P.ready = false; P.lastMedia = null;
   }
-  function freshHost(doc, parent) {
-    const d = doc.createElement("div");
+  function freshHost() {
+    const box = $("#ytHost");
+    const d = document.createElement("div");
     d.id = "ytPlayer";
-    parent.innerHTML = "";
-    parent.appendChild(d);
+    box.textContent = "";
+    box.appendChild(d);
     return d;
   }
 
@@ -74,51 +106,76 @@
     tick(true); flush();
     if (L().QUEUE.includes(id)) { h().setQueue(L().QUEUE.filter((x) => x !== id)); A.views && A.views.paintQueueCount(); }
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
-    P.cur = e; P.sess = null; P.lastMedia = null; P.chIdx = -1;
+    P.cur = e; P.sess = null; P.lastMedia = null; P.chIdx = -1; P.loop = null; P.errCode = null;
+    P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
     P.nB = Math.max(1, Math.ceil((e.dur || r.dur || 1) / h().BUCKET));
     P.cov = h().covDecode(r.cov, P.nB);
     dock().hidden = false;
     $("#dockErr").hidden = true;
-    const want = o.mode || (P.pip ? "pip" : P.mode === "none" ? "theater" : (o.mini ? (P.mode === "audio" ? "audio" : "mini") : P.mode === "audio" ? "audio" : "theater"));
-    setMode(want === "pip" ? P.mode : want);
+    const want = o.mode || (P.mode === "none" ? "theater" : o.mini ? (P.mode === "audio" ? "audio" : "mini") : P.mode === "audio" ? "audio" : P.mode === "mini" && o.keepMini ? "mini" : "theater");
+    setMode(want);
     paintAll();
-    try { await loadAPI(); } catch (err) { showEmbedError(e, "The YouTube player could not load (offline or blocked)."); return; }
-    if (!P.yt) {
-      const host = P.pip ? freshHost(P.pip.document, P.pip.document.getElementById("pipVideo")) : freshHost(document, $("#ytHost"));
-      createPlayer(host, e.id, start);
-    } else if (P.ready) {
-      P.yt.loadVideoById({ videoId: e.id, startSeconds: start });
-      applySettings();
-    } else {
-      P.pending = { id: e.id, start };
-    }
+    try { await loadAPI(); } catch (err) { showEmbedError(e, "api"); return; }
+    if (!P.cur || P.cur.id !== e.id) return;
+    if (!P.yt) createPlayer(freshHost(), e.id, start);
+    else if (P.ready) { P.yt.loadVideoById({ videoId: e.id, startSeconds: start }); applySettings(); }
+    else P.pending = { id: e.id, start };
     if (start > 0 && o.at == null) A.ui.toast(`Resume at <b>${fmtTime(start)}</b>`, { icon: "⏯️", action: { label: "Start over", fn: () => seek(0, true) }, ms: 6000 });
     r.last = Date.now();
     h().saveH();
     mediaSession(e);
     A.views && A.views.onNowPlaying && A.views.onNowPlaying(e);
+    showUI();
   }
 
   function applySettings() {
     const S = L().SETTINGS;
     if (P.yt && P.ready) { try { P.yt.setVolume(S.vol); S.muted ? P.yt.mute() : P.yt.unMute(); P.yt.setPlaybackRate(Number(S.speed) || 1); } catch (e) {} }
-    $("#cVol").value = S.vol;
-    $("#cSpeed").value = String(S.speed);
-    $("#cMute").classList.toggle("is-muted", !!S.muted);
+    $$("[data-vol]").forEach((el) => (el.value = S.muted ? 0 : S.vol));
+    $$('[data-pc="mute"]').forEach((b) => b.classList.toggle("is-muted", !!S.muted || S.vol === 0));
+    paintSpeed();
+    dock().classList.toggle("is-native", !!S.nativeControls);
+    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
   }
-  function showEmbedError(e, msg) {
+  function paintSpeed() { const s = Number(L().SETTINGS.speed) || 1; $$("[data-speedlbl]").forEach((el) => (el.textContent = (Math.round(s * 100) / 100) + "×")); }
+
+  /* ---------------------------------------------------------------- errors: friendly fallback card */
+  const ERR = {
+    2: "YouTube rejected the request for this video (invalid parameter).",
+    5: "YouTube's HTML5 player hit an error with this video.",
+    100: "This video is unavailable: removed, private or not found.",
+    101: "The channel does not allow this video to be played outside YouTube.",
+    150: "The channel does not allow this video to be played outside YouTube.",
+    153: "YouTube refused to start the embedded player here (Error 153: player configuration / missing referrer).",
+    api: "The YouTube player could not load (offline, blocked by an extension, or a network filter).",
+  };
+  function onError(code) {
+    P.errCode = code;
+    tick(true); flush();
+    showEmbedError(P.cur, code);
+  }
+  function showEmbedError(e, code) {
     const el = $("#dockErr");
     el.hidden = false;
-    el.innerHTML = `<b>${esc(msg)}</b><span>${esc(e ? e.title : "")}</span><a class="btn btn--primary btn--sm" href="${esc(e ? e.url : "#")}" target="_blank" rel="noopener">${A.ui.ICON.yt}<span>Open on YouTube</span></a>`;
+    const msg = ERR[code] || "This video could not be played here.";
+    const r = e ? L().H.eps[e.id] : null;
+    const t = r && r.pos > 5 ? Math.floor(r.pos) : 0;
+    const url = e ? e.url + (t ? (e.url.includes("?") ? "&" : "?") + "t=" + t + "s" : "") : "#";
+    const done = e && h().stateOf(e.id) === "done";
+    el.innerHTML = `${e ? `<img class="err__bg" src="${esc(e.thumb)}" alt="" width="480" height="360" decoding="async">` : ""}<div class="err__card"><span class="err__ic" aria-hidden="true">!</span><b>${esc(msg)}</b>${code != null && code !== "api" ? `<small>YouTube error code ${esc(String(code))}</small>` : ""}<span>${esc(e ? e.title : "")}</span>
+      <div class="err__act"><a class="btn btn--primary btn--sm" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${A.ui.ICON.yt}<span>Open on YouTube${t ? " at " + fmtTime(t) : ""}</span></a>
+      <button class="btn btn--sm" data-pc="markwatched">${A.ui.ICON.check}<span>${done ? "Marked as watched" : "Mark as watched"}</span></button>
+      <button class="btn btn--sm btn--ghost" data-pc="retry">Try again</button><button class="btn btn--sm btn--ghost" data-pc="next">Next episode</button></div></div>`;
   }
 
   function onState(ev) {
     const s = ev.data;
+    P.lastState = s;
     P.playing = s === 1;
     document.body.classList.toggle("is-playing", P.playing);
-    $("#cPlay").setAttribute("aria-label", P.playing ? "Pause" : "Play");
-    if (P.pip) { const b = P.pip.document.getElementById("pPlay"); if (b) { b.textContent = P.playing ? "❚❚" : "▶"; b.setAttribute("aria-label", P.playing ? "Pause" : "Play"); } }
+    $$('[data-pc="play"]').forEach((b) => b.setAttribute("aria-label", P.playing ? "Pause (K)" : "Play (K)"));
+    paintPip();
     if ("mediaSession" in navigator) try { navigator.mediaSession.playbackState = P.playing ? "playing" : "paused"; } catch (x) {}
     if (P.playing) {
       $("#dockErr").hidden = true;
@@ -140,16 +197,19 @@
       }
       P.lastMedia = P.yt.getCurrentTime();
       P.lastWall = performance.now();
+      if (P.autoSkip) { P.autoSkip = false; autoSkipHearing(); }
+      if (L().SETTINGS.captions && !L().SETTINGS.nativeControls) captionsOn(true);
     } else {
       tick(true);
       P.lastMedia = null;
       flush();
     }
+    showUI();
     if (s === 0) onEnded();
   }
 
   /* The strict watch clock. Counts only contiguous forward playback; seeks never count.
-   * Background tabs and the pop-out window can throttle timers, so a long gap counts only when
+   * Background tabs and the float window can throttle timers, so a long gap counts only when
    * media time advanced at (almost exactly) the playback rate over that wall-clock gap. */
   function tick(force) {
     if (!P.yt || !P.ready || !P.cur) return;
@@ -176,12 +236,15 @@
         if (P.sess) { P.sess.w += real; P.sess.e = Date.now(); P.sess.b = Math.floor(t); }
         if (P.pip) h().bumpStat("pipSec", real);
         if (P.mode === "audio") h().bumpStat("audioSec", real);
+        if (P.fs) h().bumpStat("fsSec", real);
+        if (P.zen) h().bumpStat("zenSec", real);
         const a = Math.floor(P.lastMedia / h().BUCKET), b = Math.floor(t / h().BUCKET);
         for (let i = a; i <= b && i < P.nB; i++) P.cov[i >> 3] |= 1 << (i & 7);
       }
     }
     if (st === 1) { P.lastMedia = t; P.lastWall = now; }
     r.pos = t; r.last = Date.now(); P.lastPos = t;
+    if (st === 1) timers(t);
     paintProgress(t);
     if (now - P.lastSave > 5000) flush();
     if (now - P.msLast > 4000) { P.msLast = now; msPosition(t); }
@@ -189,9 +252,12 @@
   function flush() {
     if (!P.cur || !P.cov) return;
     const r = h().rec(P.cur.id, true);
-    r.covN = h().covCount(P.cov, P.nB);
-    r.cov = h().covEncode(P.cov);
-    r.pct = clamp(r.covN / P.nB, 0, 1);
+    if (!(r.manual && !r.manual.partial)) {
+      const covN = h().covCount(P.cov, P.nB);
+      r.covN = covN;
+      r.cov = h().covEncode(P.cov);
+      r.pct = clamp(covN / P.nB, 0, 1);
+    }
     if (!r.done && r.pct >= 0.9) { r.done = true; r.doneAt = Date.now(); A.ui.toast(`Completed: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); }
     P.lastSave = performance.now();
     h().saveH();
@@ -199,24 +265,43 @@
     h().checkAwards();
     A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(P.cur.id);
   }
-  setInterval(() => tick(false), 1000);
+  function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
+  setInterval(() => { tick(false); pomoTick(); }, 1000);
   window.addEventListener("pagehide", () => { tick(true); flush(); });
   // Never pause when the tab is hidden or the window is minimised: only save progress.
   document.addEventListener("visibilitychange", () => { if (document.hidden) { tick(true); flush(); } });
 
+  /* sleep timer, A–B loop, skip intro */
+  function timers(t) {
+    if (P.loop && P.loop.b != null && t >= P.loop.b) { P.lastMedia = null; try { P.yt.seekTo(P.loop.a, true); } catch (x) {} return; }
+    const sl = P.sleep;
+    if (sl) {
+      const hit = (sl.type === "time" && Date.now() >= sl.until) || (sl.type === "chapter" && chapterAt(t) !== sl.ch);
+      if (hit) { P.sleep = null; try { P.yt.pauseVideo(); } catch (x) {} A.ui.toast("Sleep timer: paused. Good night.", { icon: "🌙", force: true, ms: 5000 }); }
+    }
+  }
+
   function curTime() { try { return P.yt && P.ready ? P.yt.getCurrentTime() : P.lastPos; } catch (e) { return P.lastPos || 0; } }
   function durNow() { try { return (P.yt && P.ready && P.yt.getDuration && P.yt.getDuration()) || (P.cur && P.cur.dur) || 1; } catch (e) { return (P.cur && P.cur.dur) || 1; } }
-  function seek(t, abs) {
+  function seek(t, abs, o) {
+    o = o || {};
     if (!P.yt || !P.ready) { if (P.cur && abs) P.pending = { id: P.cur.id, start: t }; return; }
     const cur = P.yt.getCurrentTime();
     const d = P.yt.getDuration() || (P.cur && P.cur.dur) || 0;
-    const to = clamp(abs ? t : cur + t, 0, Math.max(0, d - 1));
+    const to = clamp(abs ? t : cur + t, 0, Math.max(0, d - 0.5));
     tick(false);
     P.lastMedia = null;
     h().bumpStat("seeks");
     P.yt.seekTo(to, true);
-    if (P.yt.getPlayerState() !== 1) P.yt.playVideo();
+    if (!o.keepPaused && P.yt.getPlayerState() !== 1) P.yt.playVideo();
     paintProgress(to);
+    if (!abs && !o.quiet) fx(t < 0 ? `−${Math.abs(Math.round(t))}s` : `+${Math.round(t)}s`, t < 0 ? "l" : "r");
+  }
+  function frameStep(dir) {
+    if (!P.yt || !P.ready) return;
+    if (P.yt.getPlayerState() === 1) { setSpeed((Number(L().SETTINGS.speed) || 1) + (dir > 0 ? 0.25 : -0.25)); return; }
+    seek(dir / 30, false, { keepPaused: true, quiet: true });
+    fx(dir > 0 ? "▸ 1 frame" : "◂ 1 frame", dir > 0 ? "r" : "l");
   }
   function jumpTo(id, t) {
     h().bumpStat("chapterJumps");
@@ -224,28 +309,55 @@
     else play(id, { at: t, mini: P.mode === "mini" || P.mode === "audio" });
     h().checkAwards();
   }
-  function togglePlay() { if (!P.yt || !P.ready) return; P.yt.getPlayerState() === 1 ? P.yt.pauseVideo() : P.yt.playVideo(); }
-  function setSpeed(v) { const S = L().SETTINGS; S.speed = clamp(Number(v), 0.75, 2); A.store.set("settings:v2", S); if (P.yt && P.ready) P.yt.setPlaybackRate(S.speed); $("#cSpeed").value = String(S.speed); A.ui.toast(`Speed ${S.speed}×`, { ms: 1200 }); }
-  function setVol(v) { const S = L().SETTINGS; S.vol = clamp(Math.round(v), 0, 100); S.muted = S.vol === 0; A.store.set("settings:v2", S); applySettings(); }
-  function toggleMute() { const S = L().SETTINGS; S.muted = !S.muted; A.store.set("settings:v2", S); applySettings(); A.ui.toast(S.muted ? "Muted" : "Sound on", { ms: 1000 }); }
+  function togglePlay() {
+    if (!P.yt || !P.ready) return;
+    const on = P.yt.getPlayerState() === 1;
+    on ? P.yt.pauseVideo() : P.yt.playVideo();
+    fx(on ? "❚❚" : "▶", "c");
+  }
+  function setSpeed(v) {
+    const S = L().SETTINGS;
+    let s = clamp(Math.round(Number(v) * 100) / 100, 0.25, 3);
+    let max = 2;
+    try { const av = P.yt && P.ready && P.yt.getAvailablePlaybackRates && P.yt.getAvailablePlaybackRates(); if (av && av.length) max = Math.max(...av); } catch (x) {}
+    if (s > max) { A.ui.toast(`YouTube's embedded player tops out at ${max}×`, { ms: 1800 }); s = max; }
+    S.speed = s; A.store.set("settings:v3", S);
+    if (P.yt && P.ready) try { P.yt.setPlaybackRate(s); } catch (x) {}
+    paintSpeed();
+    fx(s + "×", "c");
+  }
+  function setVol(v) { const S = L().SETTINGS; S.vol = clamp(Math.round(v), 0, 100); S.muted = S.vol === 0; A.store.set("settings:v3", S); applySettings(); }
+  function toggleMute() { const S = L().SETTINGS; S.muted = !S.muted; if (!S.muted && S.vol === 0) S.vol = 60; A.store.set("settings:v3", S); applySettings(); fx(S.muted ? "Muted" : "Sound on", "c"); }
   function chapterAt(t) { if (!P.cur) return -1; let i = -1; P.cur.chapters.forEach((c, k) => { if (c.t != null && c.t <= t + 0.5) i = k; }); return i; }
   function prevChapter() { if (!P.cur) return; const t = curTime(); const prev = P.cur.chapters.filter((c) => c.t != null && c.t < t - 3).pop(); h().bumpStat("chapterJumps"); seek(prev ? prev.t : 0, true); }
   function nextChapter() { if (!P.cur) return; const t = curTime(); const nx = P.cur.chapters.find((c) => c.t != null && c.t > t + 1); if (nx) { h().bumpStat("chapterJumps"); seek(nx.t, true); } else A.ui.toast("No more chapters", { ms: 1200 }); }
+  function skipIntro() { const c = P.cur && P.cur.chapters.find((x, i) => i > 0 && x.t != null); if (c) { h().bumpStat("chapterJumps"); seek(c.t, true); } }
+  function autoSkipHearing() {
+    const e = P.cur; if (!e || !e.chapters.length) return;
+    const names = e.stars.map((p) => A.fold(p.name).split(" ").pop()).filter((n) => n.length > 2);
+    const c = e.chapters.find((x, i) => i > 0 && x.t != null && x.t > 30 && names.some((n) => A.fold(x.title + " " + x.detail).includes(n)));
+    if (!c) return;
+    seek(c.t, true, { quiet: true });
+    A.ui.toast(`Hearing: skipped to the researcher at <b>${fmtTime(c.t)}</b>`, { icon: "⏭️", action: { label: "Back to start", fn: () => seek(0, true) }, ms: 6000 });
+  }
 
   function nextUp() { const list = A.recs.upNext(P.cur, 3); return list[0] || null; }
-  function playNext() { const n = nextUp(); if (n) play(n.e.id, { mini: P.mode !== "theater" }); else A.ui.toast("Nothing left to suggest. You've seen it all!", { icon: "🎉" }); }
+  function playNext() { const n = nextUp(); if (n) play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); else A.ui.toast("Nothing left to suggest. You've seen it all!", { icon: "🎉" }); }
   function onEnded() {
     flush();
+    if (P.sleep && P.sleep.type === "end") { P.sleep = null; A.ui.toast("Sleep timer: stopped at the end of the episode", { icon: "🌙", force: true }); return; }
     if (!L().SETTINGS.autoplay) return;
     const n = nextUp();
     if (!n) return;
+    // background-friendly: timers are throttled in hidden tabs, so go straight to the next episode
+    if (document.hidden) { play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); return; }
     let left = 10;
     $("#cdEp").innerHTML = `${A.ui.thumbImg(n.e, true)}<div><b>${esc(n.e.title)}</b><small>${esc(n.why)} · ${esc(n.e.durStr)}</small></div>`;
     $("#cdNum").textContent = left;
     $("#countdown").hidden = false;
     clearInterval(P.cd);
-    P.cd = setInterval(() => { left--; $("#cdNum").textContent = left; if (left <= 0) { hideCountdown(); play(n.e.id, { mini: P.mode !== "theater" }); } }, 1000);
-    $("#cdPlay").onclick = () => { hideCountdown(); play(n.e.id, { mini: P.mode !== "theater" }); };
+    P.cd = setInterval(() => { left--; $("#cdNum").textContent = left; if (left <= 0) { hideCountdown(); play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); } }, 1000);
+    $("#cdPlay").onclick = () => { hideCountdown(); play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); };
     $("#cdCancel").onclick = hideCountdown;
   }
   function hideCountdown() { clearInterval(P.cd); P.cd = null; const c = $("#countdown"); if (c) c.hidden = true; }
@@ -261,144 +373,338 @@
     if (m === "theater") {
       th.hidden = false;
       document.body.classList.add("lock", "has-theater");
+      d.style.left = d.style.top = d.style.width = d.style.right = d.style.bottom = "";
       requestAnimationFrame(placeDock);
     } else {
       th.hidden = true;
       document.body.classList.remove("lock", "has-theater");
-      d.style.left = d.style.top = d.style.width = "";
+      d.style.left = d.style.top = d.style.width = d.style.right = d.style.bottom = "";
+      if (m === "mini") requestAnimationFrame(placeMini);
     }
     document.body.classList.toggle("has-dock", m !== "theater" && !d.hidden);
     document.body.classList.toggle("has-audio", m === "audio" && !d.hidden);
+    document.body.classList.toggle("has-mini", m === "mini" && !d.hidden);
+    if (m !== "theater" && P.zen) toggleZen(false);
+    closeMenu();
     paintArt();
+    paintAmbient();
   }
   function placeDock() {
-    if (P.mode !== "theater") return;
+    if (P.mode !== "theater" || P.fs) return;
     const slot = $("#stageSlot"), d = dock();
     if (!slot || !d) return;
     const r = slot.getBoundingClientRect();
-    const barH = d.querySelector(".dock__bar").offsetHeight || 96;
     let w = r.width;
     const narrow = window.innerWidth < 900;
-    const maxVideoH = Math.max(160, (narrow ? window.innerHeight * 0.42 : window.innerHeight - r.top - barH - 120));
+    const maxVideoH = Math.max(160, narrow ? window.innerHeight * 0.42 : window.innerHeight - r.top - (P.zen ? 40 : 120));
     if ((w * 9) / 16 > maxVideoH) w = (maxVideoH * 16) / 9;
-    slot.style.height = Math.round((w * 9) / 16 + barH) + "px";
+    slot.style.height = Math.round((w * 9) / 16) + "px";
     const r2 = slot.getBoundingClientRect();
     d.style.left = Math.round(r2.left + (r2.width - w) / 2) + "px";
     d.style.top = Math.round(r2.top) + "px";
     d.style.width = Math.round(w) + "px";
+    paintAmbient();
   }
-  window.addEventListener("resize", () => requestAnimationFrame(placeDock));
-  function minimize() { if (P.cur) setMode("mini"); }
+  window.addEventListener("resize", () => requestAnimationFrame(() => { placeDock(); placeMini(); }));
+  function minimize() { if (P.cur) { if (P.fs) exitFs(); setMode("mini"); } }
   function expand() { if (P.cur) { setMode("theater"); paintTheater(); paintSide(); } }
   function audioMode() {
     if (!P.cur) return;
+    if (P.fs) exitFs();
     if (P.mode === "audio") { setMode("mini"); A.ui.toast("Video is back", { ms: 1200 }); return; }
     setMode("audio");
-    A.ui.toast("Audio mode: playback continues while you browse, switch tabs or minimise", { icon: "🎧", ms: 3500 });
+    A.ui.toast("Headphones mode: playback continues while you browse, switch tabs or minimise", { icon: "🎧", ms: 3500 });
   }
   async function closePlayer() {
     tick(true); flush(); hideCountdown();
+    if (P.fs) exitFs();
+    if (P.zen) toggleZen(false);
     if (P.pip) { try { P.pip.close(); } catch (e) {} P.pip = null; }
     destroyPlayer();
-    freshHost(document, $("#ytHost"));
-    P.cur = null;
+    freshHost();
+    P.cur = null; P.sleep = null; P.loop = null;
     dock().hidden = true;
     setMode("theater");
     $("#theater").hidden = true;
-    document.body.classList.remove("lock", "has-theater", "has-dock", "has-audio", "is-playing");
+    document.body.classList.remove("lock", "has-theater", "has-dock", "has-audio", "has-mini", "is-playing");
     if ("mediaSession" in navigator) try { navigator.mediaSession.metadata = null; } catch (e) {}
   }
 
-  /* ---------------------------------------------------------------- Document Picture-in-Picture */
-  const PIP_CSS = `*{box-sizing:border-box}html,body{margin:0;height:100%;background:#05080d;color:#e7edf5;font:13px/1.35 Inter,system-ui,sans-serif;overflow:hidden}
-  #pipWrap{display:flex;flex-direction:column;height:100%}#pipVideo{flex:1;min-height:0;background:#000}#pipVideo iframe{width:100%;height:100%;border:0;display:block}
-  .pbar{padding:8px 10px 10px;background:linear-gradient(180deg,#0b1220,#070b12);border-top:1px solid #1d2a3c}
-  .pt{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pc{color:#f5b544;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
-  .pp{height:4px;border-radius:4px;background:#1d2a3c;margin:8px 0;overflow:hidden;cursor:pointer}.pp i{display:block;height:100%;background:linear-gradient(90deg,#f59e0b,#14b8a6);width:0}
-  .pr{display:flex;gap:6px;align-items:center}.pr button{background:#132033;color:#e7edf5;border:1px solid #22344d;border-radius:9px;padding:6px 9px;font:inherit;cursor:pointer;min-width:34px}
-  .pr button:hover,.pr button:focus-visible{border-color:#f59e0b;outline:none}.pr .pl{background:#f59e0b;color:#111;border-color:#f59e0b;font-weight:800}.pr .sp{flex:1}.tm{color:#8fa3ba;font-size:11px;font-variant-numeric:tabular-nums}`;
+  /* ---------------------------------------------------------------- mini player: drag anywhere, snap to a corner, resize, remember */
+  const MINI_KEY = "mini:v3";
+  function miniPrefs() { return Object.assign({ corner: "br", w: window.innerWidth <= 1020 ? 300 : 400 }, A.store.get(MINI_KEY, {}) || {}); }
+  miniPrefs.raw = () => miniPrefs();
+  function miniBounds() {
+    const vw = window.innerWidth, vh = window.innerHeight;
+    const mob = vw <= 1020;
+    return { vw, vh, m: mob ? 8 : 16, bottomPad: mob ? 74 : 16, minW: mob ? 220 : 260, maxW: Math.max(240, Math.min(760, vw - 32)) };
+  }
+  function placeMini() {
+    if (P.mode !== "mini" || P.fs) return;
+    const d = dock(); if (!d || d.hidden) return;
+    const b = miniBounds(), pr = Object.assign({ w: b.vw <= 1020 ? 300 : 400 }, miniPrefs.raw());
+    const w = clamp(pr.w, b.minW, Math.min(b.maxW, b.vw - 2 * b.m));
+    d.style.width = w + "px";
+    const hgt = d.offsetHeight || (w * 9) / 16 + 60;
+    const left = pr.corner[1] === "l" ? b.m : b.vw - w - b.m;
+    const top = pr.corner[0] === "t" ? b.m + (window.innerWidth > 1020 ? 60 : 0) : b.vh - hgt - b.bottomPad;
+    d.style.left = Math.round(left) + "px";
+    d.style.top = Math.round(Math.max(b.m, top)) + "px";
+    d.style.right = d.style.bottom = "auto";
+    d.dataset.corner = pr.corner;
+  }
+  function snapMini(x, y) {
+    const b = miniBounds(), d = dock();
+    const r = d.getBoundingClientRect();
+    const cx = x + r.width / 2, cy = y + r.height / 2;
+    const corner = (cy < b.vh / 2 ? "t" : "b") + (cx < b.vw / 2 ? "l" : "r");
+    A.store.set(MINI_KEY, Object.assign(miniPrefs(), { corner }));
+    d.classList.add("is-snapping");
+    placeMini();
+    setTimeout(() => d.classList.remove("is-snapping"), 320);
+    return corner;
+  }
+  (function miniDrag() {
+    let st = null;
+    const isCtl = (t) => t.closest("button, input, select, a, [data-seekbar], .pv__menu, .dock__rs");
+    document.addEventListener("pointerdown", (ev) => {
+      const d = dock();
+      if (!d || P.mode !== "mini" || P.fs || !ev.target.closest || !ev.target.closest("#dock")) return;
+      if (ev.target.closest(".dock__rs")) {
+        const r = d.getBoundingClientRect();
+        st = { kind: "resize", x0: ev.clientX, w0: r.width, left: d.dataset.corner && d.dataset.corner[1] === "r", id: ev.pointerId };
+        ev.preventDefault(); return;
+      }
+      if (isCtl(ev.target)) return;
+      const r = d.getBoundingClientRect();
+      st = { kind: "drag", x0: ev.clientX, y0: ev.clientY, l0: r.left, t0: r.top, moved: false, id: ev.pointerId };
+    });
+    document.addEventListener("pointermove", (ev) => {
+      if (!st) return;
+      const d = dock();
+      if (st.kind === "resize") {
+        const dx = ev.clientX - st.x0, b = miniBounds();
+        const w = clamp(st.w0 + (st.left ? -dx : dx), b.minW, b.maxW);
+        A.store.set(MINI_KEY, Object.assign(miniPrefs(), { w: Math.round(w) }));
+        placeMini();
+        return;
+      }
+      const dx = ev.clientX - st.x0, dy = ev.clientY - st.y0;
+      if (!st.moved && Math.hypot(dx, dy) < 6) return;
+      if (!st.moved) { st.moved = true; d.classList.add("is-dragging"); try { d.setPointerCapture && d.setPointerCapture(st.id); } catch (x) {} }
+      const b = miniBounds();
+      d.style.left = clamp(st.l0 + dx, 0, b.vw - 60) + "px";
+      d.style.top = clamp(st.t0 + dy, 0, b.vh - 40) + "px";
+    });
+    const end = () => {
+      if (!st) return;
+      const d = dock();
+      if (st.kind === "drag" && st.moved) { d.classList.remove("is-dragging"); P.dragJustEnded = performance.now(); snapMini(parseFloat(d.style.left) || 0, parseFloat(d.style.top) || 0); }
+      st = null;
+    };
+    document.addEventListener("pointerup", end);
+    document.addEventListener("pointercancel", end);
+  })();
+
+  /* ---------------------------------------------------------------- fullscreen cinema (on the player shell, never the bare iframe) */
+  function fsEl() { return document.fullscreenElement || document.webkitFullscreenElement || null; }
+  async function toggleFs() { if (P.fs) return exitFs(); return enterFs(); }
+  async function enterFs() {
+    if (!P.cur) { A.ui.toast("Play an episode first", { ms: 1500 }); return; }
+    const d = dock();
+    P.fsPrevMode = P.mode;
+    const req = d.requestFullscreen || d.webkitRequestFullscreen;
+    if (req) {
+      try { await req.call(d, { navigationUI: "hide" }); if (fsEl() === d) { onFsChange(); return "native"; } } catch (e) { /* fall through to the CSS fallback */ }
+    }
+    P.fsFallback = true; setFsState(true); return "fallback";
+  }
+  async function exitFs() {
+    if (P.fsFallback) { P.fsFallback = false; setFsState(false); return; }
+    const ex = document.exitFullscreen || document.webkitExitFullscreen;
+    if (fsEl() && ex) { try { await ex.call(document); } catch (e) {} }
+    onFsChange();
+  }
+  function onFsChange() { if (P.fsFallback) return; setFsState(fsEl() === dock()); }
+  function setFsState(on) {
+    if (P.fs === on) return;
+    P.fs = on;
+    const d = dock();
+    d.classList.toggle("is-fs", on);
+    document.body.classList.toggle("fs-fallback", on && P.fsFallback);
+    $$('[data-pc="fs"]').forEach((b) => { b.setAttribute("aria-pressed", String(on)); b.setAttribute("aria-label", on ? "Exit fullscreen (F / Esc)" : "Fullscreen cinema (F)"); });
+    if (on) { P.rail = window.innerWidth > 900 && !!(P.cur && P.cur.chapters.length); paintRail(); showUI(); try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (x) {} }
+    else { P.rail = false; paintRail(); if (P.mode === "theater") requestAnimationFrame(placeDock); else if (P.mode === "mini") requestAnimationFrame(placeMini); }
+    paintAmbient();
+  }
+  document.addEventListener("fullscreenchange", onFsChange);
+  document.addEventListener("webkitfullscreenchange", onFsChange);
+
+  /* ---------------------------------------------------------------- Zen focus mode + Pomodoro + do-not-disturb */
+  function toggleZen(force) {
+    const on = force == null ? !P.zen : !!force;
+    if (on === P.zen) return;
+    P.zen = on;
+    document.body.classList.toggle("is-zen", on);
+    if (on) {
+      if (P.mode !== "theater") expand();
+      P.dnd = true;
+      P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 };
+      A.ui.toast("Zen mode: notifications paused, 25-minute focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
+    } else { P.dnd = false; P.pomo = null; }
+    paintPomo(); paintAmbient();
+    requestAnimationFrame(placeDock);
+    $$('[data-pc="zen"]').forEach((b) => b.setAttribute("aria-pressed", String(on)));
+  }
+  function toggleDnd() { P.dnd = !P.dnd; A.ui.toast(P.dnd ? "Do not disturb: badges, XP and tips stay quiet" : "Notifications back on", { icon: P.dnd ? "🔕" : "🔔", force: true, ms: 1800 }); if (P.menu) renderMenu(P.menu); }
+  function pomoTick() {
+    if (!P.pomo) return;
+    const left = P.pomo.until - Date.now();
+    if (left <= 0) {
+      if (P.pomo.phase === "focus") { P.pomo = { phase: "break", until: Date.now() + 5 * 60e3 }; try { P.yt && P.ready && P.yt.pauseVideo(); } catch (x) {} A.ui.toast("Focus block done. Take a 5-minute break.", { icon: "☕", force: true, ms: 6000, action: { label: "Keep watching", fn: () => { P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 }; togglePlay(); } } }); }
+      else { P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 }; A.ui.toast("Break over: back to focus", { icon: "🧘", force: true, action: { label: "Resume", fn: () => { try { P.yt.playVideo(); } catch (x) {} } } }); }
+    }
+    paintPomo();
+  }
+  function paintPomo() {
+    const el = $("#pvPomo"); if (!el) return;
+    if (!P.pomo) { el.hidden = true; return; }
+    el.hidden = false;
+    const left = Math.max(0, P.pomo.until - Date.now()) / 1000;
+    el.textContent = `${P.pomo.phase === "focus" ? "Focus" : "Break"} ${fmtTime(left)}`;
+  }
+
+  /* ---------------------------------------------------------------- captions, quality */
+  function captionsOn(silent) { try { P.yt.loadModule && P.yt.loadModule("captions"); P.yt.setOption && P.yt.setOption("captions", "track", { languageCode: "en" }); } catch (x) {} if (!silent) fx("CC on", "c"); }
+  function toggleCC() {
+    const S = L().SETTINGS;
+    S.captions = !S.captions; A.store.set("settings:v3", S);
+    if (P.yt && P.ready) { if (S.captions) captionsOn(); else { try { P.yt.unloadModule && P.yt.unloadModule("captions"); } catch (x) {} fx("CC off", "c"); } }
+    applySettings();
+  }
+  function qualities() { try { return (P.yt && P.ready && P.yt.getAvailableQualityLevels && P.yt.getAvailableQualityLevels()) || []; } catch (x) { return []; } }
+  function setQuality(q) { try { P.yt.setPlaybackQuality && P.yt.setPlaybackQuality(q); } catch (x) {} A.ui.toast(`Asked YouTube for ${esc(q)}. It may still choose quality automatically.`, { ms: 2600 }); }
+  function toggleNative() {
+    const S = L().SETTINGS; S.nativeControls = !S.nativeControls; A.store.set("settings:v3", S);
+    if (!P.cur) return applySettings();
+    const t = curTime(), id = P.cur.id;
+    tick(true); flush(); destroyPlayer();
+    createPlayer(freshHost(), id, t);
+    applySettings();
+    A.ui.toast(S.nativeControls ? "Using YouTube's own controls (handy for ads or the settings menu)" : "Cinema controls are back", { ms: 2600 });
+  }
+
+  /* ---------------------------------------------------------------- bookmarks, loop */
+  function bookmark() {
+    if (!P.cur) return;
+    const t = curTime();
+    h().addNote(P.cur.id, t, "🔖 Bookmark");
+    h().bumpStat("bookmarks");
+    paintMarks();
+    A.ui.toast(`Bookmarked ${fmtTime(t)}`, { icon: "🔖", action: { label: "Add a note", fn: openNote }, ms: 3500 });
+  }
+  function setLoop(which) {
+    if (!P.cur) return;
+    const t = curTime();
+    if (which === "clear") { P.loop = null; A.ui.toast("Loop cleared", { ms: 1000 }); }
+    else if (which === "a") { P.loop = { a: t, b: null }; A.ui.toast(`Loop start ${fmtTime(t)}. Press ] at the end point.`, { icon: "🔁", ms: 2200 }); }
+    else { if (!P.loop) P.loop = { a: Math.max(0, t - 30), b: null }; if (t <= P.loop.a + 1) { A.ui.toast("Loop end must be after the start", { ms: 1500 }); return; } P.loop.b = t; A.ui.toast(`Looping ${fmtTime(P.loop.a)} → ${fmtTime(t)}`, { icon: "🔁", ms: 2200 }); seek(P.loop.a, true, { quiet: true }); }
+    paintMarks();
+    if (P.menu) renderMenu(P.menu);
+  }
+  function setSleep(kind) {
+    if (kind === "off") P.sleep = null;
+    else if (kind === "chapter") P.sleep = { type: "chapter", ch: chapterAt(curTime()) };
+    else if (kind === "end") P.sleep = { type: "end" };
+    else P.sleep = { type: "time", until: Date.now() + Number(kind) * 60e3, mins: Number(kind) };
+    A.ui.toast(P.sleep ? `Sleep timer: ${kind === "chapter" ? "end of this chapter" : kind === "end" ? "end of episode" : kind + " min"}` : "Sleep timer off", { icon: "🌙", ms: 1800 });
+    if (P.menu) renderMenu(P.menu);
+  }
+
+  /* ---------------------------------------------------------------- Float window (Document PiP) = remote control / now playing */
+  const PIP_CSS = `*{box-sizing:border-box}html,body{margin:0;height:100%;background:#05080d;color:#eef3f8;font:13px/1.35 Inter,system-ui,sans-serif;overflow:hidden}
+  .w{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:14px;gap:8px;isolation:isolate}
+  .bg{position:absolute;inset:-30px;z-index:-1;background-size:cover;background-position:center;filter:blur(28px) saturate(1.5) brightness(.45);transform:scale(1.1)}
+  .top{display:flex;gap:12px;align-items:center;flex:1;min-height:0}
+  .art{width:92px;height:92px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px var(--a,#f59e0b),0 10px 30px rgba(0,0,0,.6);flex:none}
+  .tx{min-width:0}.t{font-weight:800;font-size:14px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .c{color:var(--a,#f59e0b);font-size:12px;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.n{color:#b7c5d6;font-size:11.5px;margin-top:4px}
+  .viz{display:flex;gap:3px;align-items:flex-end;height:26px}.viz i{flex:1;background:linear-gradient(var(--a,#f59e0b),var(--b,#14b8a6));border-radius:3px;height:20%;animation:v 1s ease-in-out infinite alternate}
+  .paused .viz i{animation-play-state:paused}@keyframes v{to{height:100%}}
+  .pp{height:6px;border-radius:6px;background:rgba(255,255,255,.18);cursor:pointer;overflow:hidden}.pp i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--a,#f59e0b),var(--b,#14b8a6))}
+  .r{display:flex;gap:6px;align-items:center}.r button{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.18);border-radius:10px;padding:7px 9px;font:inherit;cursor:pointer;min-width:36px}
+  .r button:hover,.r button:focus-visible{border-color:var(--a,#f59e0b);outline:none}.r .pl{background:var(--a,#f59e0b);color:#111;border-color:transparent;font-weight:800;min-width:46px}.sp{flex:1}.tm{color:#cbd5e1;font-size:11px;font-variant-numeric:tabular-nums}
+  .note{font-size:10.5px;color:#93a4b8;text-align:center}`;
   async function popOut() {
-    if (!P.cur) { A.ui.toast("Play an episode first, then pop it out", { ms: 2500 }); return; }
-    if (P.pip) { try { P.pip.focus(); } catch (e) {} return; }
+    if (!P.cur) { A.ui.toast("Play an episode first, then float it", { ms: 2500 }); return; }
+    if (P.pip) { try { P.pip.focus(); } catch (e) {} return "focus"; }
     if (!("documentPictureInPicture" in window) || !window.documentPictureInPicture || !window.documentPictureInPicture.requestWindow) {
-      A.ui.toast("Pop-out player needs Chrome or Edge 116+. Switched to audio mode instead: playback keeps going when you change tabs or minimise.", { icon: "🪟", ms: 6500 });
+      A.ui.toast("Float window needs Chrome or Edge 116+. Switched to headphones mode instead: playback keeps going when you change tabs or minimise.", { icon: "🪟", ms: 6500 });
       if (P.mode !== "audio") setMode("audio");
       return "fallback";
     }
-    const t = curTime();
-    const wasPlaying = P.playing;
-    tick(true); flush();
     let pw;
-    try { pw = await window.documentPictureInPicture.requestWindow({ width: 480, height: 340 }); }
-    catch (e) { A.ui.toast("The browser blocked the pop-out window. Click the button again.", { icon: "🪟" }); return; }
+    try { pw = await window.documentPictureInPicture.requestWindow({ width: 380, height: 260 }); }
+    catch (e) { A.ui.toast("The browser blocked the float window. Click the button again.", { icon: "🪟" }); return "blocked"; }
     P.pip = pw;
-    P.prevMode = P.mode;
     h().bumpStat("pipUses");
     const doc = pw.document;
     doc.title = P.cur.title;
     const st = doc.createElement("style"); st.textContent = PIP_CSS; doc.head.appendChild(st);
-    doc.body.innerHTML = `<div id="pipWrap"><div id="pipVideo"></div><div class="pbar"><div class="pt" id="pT"></div><div class="pc" id="pC"></div>
-      <div class="pp" id="pP"><i id="pF"></i></div>
-      <div class="pr"><button id="pPrev" aria-label="Previous chapter">⏮</button><button id="pBack" aria-label="Back 10 seconds">−10</button><button class="pl" id="pPlay" aria-label="Pause">❚❚</button><button id="pFwd" aria-label="Forward 10 seconds">+10</button><button id="pNextCh" aria-label="Next chapter">⏭</button><button id="pNext" aria-label="Next episode">Next ep</button><span class="sp"></span><span class="tm" id="pTm"></span><button id="pHome" aria-label="Back to tab">↩</button></div></div></div>`;
+    const cs = getComputedStyle(document.documentElement);
+    doc.documentElement.style.setProperty("--a", (cs.getPropertyValue("--amber") || "#f59e0b").trim());
+    doc.documentElement.style.setProperty("--b", (cs.getPropertyValue("--teal") || "#14b8a6").trim());
+    const mk = (tag, cls, txt) => { const el = doc.createElement(tag); if (cls) el.className = cls; if (txt != null) el.textContent = txt; return el; };
+    const w = mk("div", "w"); w.id = "pW";
+    const bg = mk("div", "bg"); bg.id = "pBg";
+    const top = mk("div", "top");
+    const art = mk("img", "art"); art.id = "pArt"; art.alt = "";
+    const tx = mk("div", "tx"); const t1 = mk("div", "t"); t1.id = "pT"; const c1 = mk("div", "c"); c1.id = "pC"; const n1 = mk("div", "n"); n1.id = "pN";
+    tx.append(t1, c1, n1); top.append(art, tx);
+    const viz = mk("div", "viz"); for (let i = 0; i < 28; i++) { const b = mk("i"); b.style.animationDelay = (-(i * 137) % 900) / 1000 + "s"; b.style.animationDuration = (0.6 + ((i * 53) % 70) / 100) + "s"; viz.appendChild(b); }
+    const pp = mk("div", "pp"); pp.id = "pP"; const pf = mk("i"); pf.id = "pF"; pp.appendChild(pf);
+    const row = mk("div", "r");
+    const btn = (id, label, txt, cls) => { const b = mk("button", cls || "", txt); b.id = id; b.setAttribute("aria-label", label); b.title = label; return b; };
+    row.append(btn("pPrev", "Previous chapter", "⏮"), btn("pBack", "Back 10 seconds", "−10"), btn("pPlay", "Play or pause", P.playing ? "❚❚" : "▶", "pl"), btn("pFwd", "Forward 10 seconds", "+10"), btn("pNextCh", "Next chapter", "⏭"), mk("span", "sp"), mk("span", "tm"), btn("pHome", "Back to the tab", "↩"));
+    row.querySelector(".tm").id = "pTm";
+    const note = mk("div", "note", "Video keeps playing in the main tab (YouTube only allows its player on the page itself).");
+    w.append(bg, top, viz, pp, row, note);
+    doc.body.appendChild(w);
     const g = (id) => doc.getElementById(id);
     g("pPlay").onclick = togglePlay; g("pBack").onclick = () => seek(-10); g("pFwd").onclick = () => seek(10);
-    g("pPrev").onclick = prevChapter; g("pNextCh").onclick = nextChapter; g("pNext").onclick = playNext;
+    g("pPrev").onclick = prevChapter; g("pNextCh").onclick = nextChapter;
     g("pHome").onclick = () => { try { window.focus(); } catch (x) {} pw.close(); };
-    g("pP").onclick = (ev) => { const r = g("pP").getBoundingClientRect(); seek(((ev.clientX - r.left) / r.width) * durNow(), true); };
+    g("pP").onclick = (ev) => { const r = g("pP").getBoundingClientRect(); seek(((ev.clientX - r.left) / Math.max(1, r.width)) * durNow(), true); };
     doc.addEventListener("keydown", (ev) => { if (ev.key === " " || ev.key === "k") { ev.preventDefault(); togglePlay(); } else if (ev.key === "ArrowLeft" || ev.key === "j") seek(-10); else if (ev.key === "ArrowRight" || ev.key === "l") seek(10); });
-    // move playback: the page's player hands over to a fresh player inside the pop-out at the same second
-    destroyPlayer();
-    freshHost(document, $("#ytHost"));
-    // Preferred: load the IFrame API inside the pop-out itself, so the player's messages stay in that window's realm.
-    // Fallback: use this window's API and relay the iframe's messages back here.
-    let ns = null;
-    try { ns = await loadApiInto(pw); } catch (e) { ns = null; }
-    if (!ns) pw.addEventListener("message", (ev) => { try { window.dispatchEvent(new MessageEvent("message", { data: ev.data, origin: ev.origin, source: ev.source })); } catch (x) {} });
-    P.pipApi = ns ? "pip" : "relay";
-    createPlayer(freshHost(doc, g("pipVideo")), P.cur.id, t, ns || undefined);
-    if (!wasPlaying) setTimeout(() => { try { P.yt && P.ready && P.yt.pauseVideo(); } catch (x) {} }, 1500);
     $("#pipNote").hidden = false;
     dock().classList.add("is-pip");
-    if (P.mode === "theater") setMode("mini");
-    paintPip();
-    pw.addEventListener("pagehide", () => {
-      const tt = curTime();
-      const keep = P.playing;
-      tick(true); flush();
-      destroyPlayer();
-      P.pip = null;
-      $("#pipNote").hidden = true;
-      dock().classList.remove("is-pip");
-      if (P.cur) { createPlayer(freshHost(document, $("#ytHost")), P.cur.id, tt); if (!keep) setTimeout(() => { try { P.yt && P.ready && P.yt.pauseVideo(); } catch (x) {} }, 1500); }
-      setMode(P.prevMode === "audio" ? "audio" : "mini");
-    });
-    A.ui.toast("Popped out: the episode stays on top even when the browser is minimised", { icon: "🪟", ms: 4000 });
+    paintPip(true);
+    pw.addEventListener("pagehide", () => { P.pip = null; $("#pipNote").hidden = true; dock().classList.remove("is-pip"); });
+    A.ui.toast("Float window opened: it stays on top and controls the player in this tab", { icon: "🪟", ms: 4000 });
     h().checkAwards();
+    return "remote";
   }
-  function loadApiInto(pw) {
-    return new Promise((res, rej) => {
-      if (pw.YT && pw.YT.Player) return res(pw.YT);
-      const to = setTimeout(() => rej(new Error("pop-out API timeout")), 6000);
-      pw.onYouTubeIframeAPIReady = () => { clearTimeout(to); res(pw.YT); };
-      const sc = pw.document.createElement("script");
-      sc.src = "https://www.youtube.com/iframe_api";
-      sc.onerror = () => { clearTimeout(to); rej(new Error("pop-out API failed")); };
-      pw.document.head.appendChild(sc);
-    });
-  }
-  function paintPip() {
+  function paintPip(full) {
     if (!P.pip || !P.cur) return;
     const d = P.pip.document;
     const t = P.lastPos || 0;
     const ci = chapterAt(t);
     const set = (id, v) => { const el = d.getElementById(id); if (el && el.textContent !== v) el.textContent = v; };
-    set("pT", P.cur.title);
+    if (full || d.getElementById("pT").textContent !== P.cur.title) {
+      set("pT", P.cur.title);
+      const art = d.getElementById("pArt"); art.src = new URL(A.ui.artFor(P.cur), location.href).href;
+      d.getElementById("pBg").style.backgroundImage = `url("${P.cur.thumb}")`;
+      d.title = P.cur.title;
+    }
     set("pC", ci >= 0 ? `${fmtTime(P.cur.chapters[ci].t)} · ${P.cur.chapters[ci].title}` : A.ui.whoLine(P.cur));
+    set("pN", A.ui.whoLine(P.cur, 3));
     set("pTm", `${fmtTime(t)} / ${fmtTime(durNow())}`);
+    set("pPlay", P.playing ? "❚❚" : "▶");
+    d.getElementById("pW").classList.toggle("paused", !P.playing);
     const f = d.getElementById("pF"); if (f) f.style.width = (100 * t / durNow()).toFixed(2) + "%";
   }
 
-  /* ---------------------------------------------------------------- Media Session */
+  /* ---------------------------------------------------------------- Media Session (lock screen / hardware keys) */
   function absUrl(u) { try { return new URL(u, location.href).href; } catch (e) { return u; } }
   function mediaSession(e) {
     if (!("mediaSession" in navigator) || typeof window.MediaMetadata !== "function") return;
@@ -425,75 +731,226 @@
     try { const d = durNow(); if (d > 1) navigator.mediaSession.setPositionState({ duration: d, position: clamp(t, 0, d), playbackRate: (P.yt && P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1 }); } catch (x) {}
   }
 
+  /* ---------------------------------------------------------------- overlay UI: auto-hide, feedback, gestures */
+  function showUI() {
+    const d = dock(); if (!d) return;
+    d.classList.add("pv--show");
+    clearTimeout(P.uiTimer);
+    P.uiTimer = setTimeout(() => { if (P.playing && !P.menu && !d.matches(".pv-hover-ctl")) d.classList.remove("pv--show"); }, P.fs ? 2600 : 3200);
+  }
+  function fx(text, where) {
+    const el = $("#pvFx"); if (!el) return;
+    el.textContent = text;
+    el.dataset.at = where || "c";
+    el.classList.remove("is-on"); void el.offsetWidth; el.classList.add("is-on");
+  }
+  (function gestures() {
+    let tapT = 0, tapTimer = 0, sw = null;
+    const hit = () => $("#pvHit");
+    document.addEventListener("pointerdown", (ev) => {
+      if (!ev.target.closest || ev.target !== hit()) return;
+      showUI();
+      if (ev.pointerType === "touch" && P.mode !== "mini") {
+        const r = hit().getBoundingClientRect();
+        sw = { x0: ev.clientX, y0: ev.clientY, w: r.width, h: r.height, right: ev.clientX - r.left > r.width / 2, vol0: L().SETTINGS.vol, t0: curTime(), axis: null };
+      }
+    });
+    document.addEventListener("pointermove", (ev) => {
+      if (ev.target.closest && ev.target.closest("#dock")) { if (!dock().classList.contains("pv--show")) showUI(); }
+      if (!sw) return;
+      const dx = ev.clientX - sw.x0, dy = ev.clientY - sw.y0;
+      if (!sw.axis && Math.hypot(dx, dy) > 14) sw.axis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+      const g = $("#pvGest");
+      if (sw.axis === "x") { sw.off = Math.round((dx / sw.w) * 120); g.hidden = false; g.textContent = `${sw.off >= 0 ? "+" : "−"}${Math.abs(sw.off)}s → ${fmtTime(clamp(sw.t0 + sw.off, 0, durNow()))}`; }
+      if (sw.axis === "y" && sw.right) { const v = clamp(sw.vol0 - (dy / sw.h) * 120, 0, 100); setVol(v); g.hidden = false; g.textContent = `Volume ${Math.round(v)}`; }
+    }, { passive: true });
+    document.addEventListener("pointerup", (ev) => {
+      const g = $("#pvGest");
+      if (sw) { const s = sw; sw = null; if (g) g.hidden = true; if (s.axis === "x" && s.off) { seek(s.t0 + s.off, true); return; } if (s.axis) return; }
+      if (ev.target !== hit()) return;
+      if (P.dragJustEnded && performance.now() - P.dragJustEnded < 250) return;
+      const r = hit().getBoundingClientRect();
+      const fx0 = (ev.clientX - r.left) / Math.max(1, r.width);
+      const now = performance.now();
+      if (now - tapT < 300) {
+        clearTimeout(tapTimer); tapT = 0;
+        if (P.mode === "mini") { expand(); return; }
+        if (fx0 < 0.35) seek(-10); else if (fx0 > 0.65) seek(10); else toggleFs();
+        return;
+      }
+      tapT = now;
+      const touch = ev.pointerType === "touch";
+      tapTimer = setTimeout(() => {
+        tapT = 0;
+        if (touch) { const d = dock(); if (d.classList.contains("pv--show") && P.playing) d.classList.remove("pv--show"); else showUI(); }
+        else togglePlay();
+      }, 260);
+    });
+    document.addEventListener("dblclick", (ev) => { if (ev.target === hit()) ev.preventDefault(); });
+  })();
+
+  /* ---------------------------------------------------------------- menus (speed, quality, captions, sleep, loop, more) */
+  function closeMenu() { P.menu = null; const m = $("#pvMenu"); if (m) m.hidden = true; $$('[data-pc="settings"],[data-pc="more"],[data-pc="speed"]').forEach((b) => b.setAttribute("aria-expanded", "false")); }
+  function openMenu(kind, btn) {
+    if (P.menu === kind) { closeMenu(); return; }
+    P.menu = kind;
+    renderMenu(kind);
+    if (btn) btn.setAttribute("aria-expanded", "true");
+    showUI();
+  }
+  function renderMenu(kind) {
+    const m = $("#pvMenu"); if (!m) return;
+    const S = L().SETTINGS, sp = Number(S.speed) || 1;
+    const it = (pc, label, val, extra) => `<button class="mi" data-pc="${pc}" ${extra || ""}><span>${label}</span>${val != null ? `<b>${val}</b>` : ""}</button>`;
+    let html = "";
+    if (kind === "settings") {
+      const sl = P.sleep ? (P.sleep.type === "time" ? `${Math.ceil((P.sleep.until - Date.now()) / 60e3)} min left` : P.sleep.type === "chapter" ? "end of chapter" : "end of episode") : "Off";
+      html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", "Auto")}${it("cc", "Captions (C)", S.captions ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
+        ${it("autoskip", "Auto-skip to researcher in hearings", S.autoSkipHearing ? "On" : "Off")}${it("autoplay", "Autoplay next", S.autoplay ? "On" : "Off")}${it("native", "Use YouTube's own controls", S.nativeControls ? "On" : "Off")}`;
+    } else if (kind === "speed") {
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Speed <b>${esc(sp + "×")}</b></p><input type="range" class="msl" id="pvSpeedSl" min="0.25" max="3" step="0.05" value="${sp}" aria-label="Playback speed"><div class="mgrid">${SPEEDS.map((s) => `<button class="mc ${s === sp ? "is-on" : ""}" data-pc="speed-set" data-v="${s}">${s}×</button>`).join("")}</div><p class="mnote">Fine steps of 0.05×. YouTube embeds cap at 2×.</p>`;
+    } else if (kind === "quality") {
+      const q = qualities();
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p>${q.length ? q.map((x) => it("quality-set", esc(x), null, `data-v="${esc(x)}"`)).join("") : `<p class="mnote">YouTube does not expose quality levels for this video. It adapts quality automatically to your connection and player size.</p>`}<p class="mnote">YouTube may ignore quality requests from embedded players.</p>`;
+    } else if (kind === "sleep") {
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Sleep timer</p>${[["off", "Off"], ["15", "15 minutes"], ["30", "30 minutes"], ["60", "60 minutes"], ["chapter", "End of this chapter"], ["end", "End of episode"]].map(([v, l]) => it("sleep-set", l, null, `data-v="${v}"`)).join("")}`;
+    } else if (kind === "loop") {
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Loop A–B</p>${it("loop-a", "Set start here ([)", P.loop ? esc(fmtTime(P.loop.a)) : null)}${it("loop-b", "Set end here (])", P.loop && P.loop.b != null ? esc(fmtTime(P.loop.b)) : null)}${it("loop-clear", "Clear loop (\\)")}`;
+    } else if (kind === "more") {
+      html = `<p class="mh">More</p>${it("pip", "Float window (always on top)", "I")}${it("audio", "Headphones mode", "A")}${it("zen", "Zen focus mode", "Z")}${it("dnd", "Do not disturb", P.dnd ? "On" : "Off")}${it("bookmark", "Bookmark this moment", "B")}${it("note", "Note at this moment", "N")}${it("link", "Copy link at this time", "")}${it("markwatched", P.cur && h().stateOf(P.cur.id) === "done" ? "Mark as unwatched" : "Mark as watched", "")}${it("sharecard", "Share card image", "")}${it("rail", "Chapter rail", P.rail ? "On" : "Off")}`;
+    }
+    m.innerHTML = html;
+    m.hidden = false;
+    const sl = $("#pvSpeedSl"); if (sl) sl.oninput = () => { setSpeed(sl.value); const b = m.querySelector(".mh b"); if (b) b.textContent = L().SETTINGS.speed + "×"; };
+  }
+
   /* ---------------------------------------------------------------- painting */
   function paintArt() {
-    const e = P.cur; const el = $("#dockArt");
-    if (!el) return;
-    el.innerHTML = e ? `<img src="${esc(A.ui.artFor(e))}" alt="">` : "";
+    const e = P.cur;
+    const src = e ? A.ui.artFor(e) : "";
+    $$("[data-art]").forEach((el) => { if (!e) { el.textContent = ""; return; } let img = el.querySelector("img"); if (!img) { img = document.createElement("img"); img.alt = ""; img.width = 96; img.height = 96; img.decoding = "async"; el.appendChild(img); } if (img.getAttribute("src") !== src) img.src = src; });
+    const hp = $("#hpTitle"); if (hp && e) { hp.textContent = e.title; $("#hpWho").textContent = A.ui.whoLine(e, 3); }
   }
-  function paintAll() { paintDockMeta(); paintArt(); paintTheater(); paintSide(); paintTicks(); paintCoverage(); paintProgress(resumePoint(P.cur || { id: "" }) || 0); }
+  function paintAmbient() {
+    const amb = $("#ambient"), e = P.cur;
+    const on = !!e && P.mode === "theater" && !P.fs && !dock().hidden;
+    if (!amb) return;
+    amb.hidden = !on;
+    if (on) {
+      const img = amb.querySelector("img");
+      if (img.getAttribute("src") !== e.thumb) img.src = e.thumb;
+      const d = dock().getBoundingClientRect();
+      Object.assign(amb.style, { left: d.left + "px", top: d.top + "px", width: d.width + "px", height: d.height + "px" });
+    }
+    const inner = $("#dockAmb");
+    if (inner && e) { let im = inner.querySelector("img"); if (!im) { im = document.createElement("img"); im.alt = ""; inner.appendChild(im); } if (im.getAttribute("src") !== e.thumb) im.src = e.thumb; }
+  }
+  function paintAll() { paintDockMeta(); paintArt(); paintTheater(); paintSide(); paintTicks(); paintMarks(); paintCoverage(); paintProgress(resumePoint(P.cur || { id: "" }) || 0); paintRail(); applySettings(); paintAmbient(); }
   function paintDockMeta() {
     if (!P.cur) return;
-    $("#dockTitle").textContent = P.cur.title;
+    $$("[data-ptitle]").forEach((el) => (el.textContent = P.cur.title));
     $("#dockChapter").textContent = A.ui.whoLine(P.cur);
-    $("#tDur").textContent = P.cur.durStr || fmtTime(P.cur.dur);
+    $$("[data-tdur]").forEach((el) => (el.textContent = P.cur.durStr || fmtTime(P.cur.dur)));
   }
   function paintProgress(t) {
     const d = durNow();
-    $("#seekFill").style.width = clamp((100 * t) / d, 0, 100).toFixed(2) + "%";
-    $("#seekbar").setAttribute("aria-valuenow", String(Math.round((100 * t) / d)));
-    $("#seekbar").setAttribute("aria-valuetext", `${fmtTime(t)} of ${fmtTime(d)}`);
-    $("#tNow").textContent = fmtTime(t);
+    const pc = clamp((100 * t) / d, 0, 100).toFixed(2) + "%";
+    $$("[data-seekbar]").forEach((b) => {
+      b.querySelector(".seekbar__fill").style.width = pc;
+      b.setAttribute("aria-valuenow", String(Math.round((100 * t) / d)));
+      b.setAttribute("aria-valuetext", `${fmtTime(t)} of ${fmtTime(d)}`);
+    });
+    let buf = 0; try { buf = (P.yt && P.ready && P.yt.getVideoLoadedFraction && P.yt.getVideoLoadedFraction()) || 0; } catch (x) {}
+    $$("[data-seekbar] .seekbar__buf").forEach((el) => (el.style.width = clamp(buf * 100, 0, 100).toFixed(1) + "%"));
+    $$("[data-tnow]").forEach((el) => (el.textContent = fmtTime(t)));
     const ci = chapterAt(t);
     if (ci !== P.chIdx) {
       P.chIdx = ci;
       const c = P.cur && P.cur.chapters[ci];
-      $("#dockChapter").textContent = c ? `${fmtTime(c.t)} · ${c.title}` : (P.cur ? A.ui.whoLine(P.cur) : "");
-      $$("#sideBody .chap").forEach((el) => el.classList.toggle("is-now", Number(el.dataset.i) === ci));
+      const line = c ? `${fmtTime(c.t)} · ${c.title}` : (P.cur ? A.ui.whoLine(P.cur) : "");
+      $("#dockChapter").textContent = line;
+      $$("[data-pchap]").forEach((el) => (el.textContent = c ? c.title : ""));
+      $$("#sideBody .chap, #pvRail .chap").forEach((el) => el.classList.toggle("is-now", Number(el.dataset.i) === ci));
       const now = $("#sideBody .chap.is-now");
       if (now && P.side === "chapters" && !$("#theater").hidden) now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" });
+      const rn = $("#pvRail .chap.is-now"); if (rn && P.rail) rn.scrollIntoView({ block: "nearest" });
+    }
+    const sk = $("#pvSkip");
+    if (sk && P.cur) {
+      const ch = P.cur.chapters;
+      const show = ch.length > 1 && ci === 0 && ch[0].t != null && ch[0].t <= 5 && ch[1].t != null && ch[1].t >= 20 && ch[1].t <= 900 && t > 2 && t < ch[1].t - 3;
+      if (show) sk.textContent = `Skip intro › ${ch[1].title.slice(0, 40)}`;
+      sk.hidden = !show;
     }
     paintPip();
   }
-  function paintCoverage() {
-    const el = $("#seekCov"); if (!el || !P.cov) return;
+  function covGradient() {
+    if (!P.cov) return "none";
     const stops = []; let run = null;
     for (let i = 0; i < P.nB; i++) {
       const on = !!(P.cov[i >> 3] & (1 << (i & 7)));
       if (on && run == null) run = i;
       if ((!on || i === P.nB - 1) && run != null) { const end = on ? i + 1 : i; stops.push(`transparent ${(100 * run / P.nB).toFixed(2)}%, var(--cov) ${(100 * run / P.nB).toFixed(2)}%, var(--cov) ${(100 * end / P.nB).toFixed(2)}%, transparent ${(100 * end / P.nB).toFixed(2)}%`); run = null; }
     }
-    el.style.background = stops.length ? `linear-gradient(90deg, ${stops.join(",")})` : "none";
+    return stops.length ? `linear-gradient(90deg, ${stops.join(",")})` : "none";
   }
+  function paintCoverage() { const g = covGradient(); $$("[data-seekbar] .seekbar__cov").forEach((el) => (el.style.background = g)); }
   function paintTicks() {
-    const el = $("#seekTicks"); if (!el) return;
     const d = (P.cur && P.cur.dur) || 0;
-    el.innerHTML = d ? P.cur.chapters.filter((c) => c.t > 0 && c.t < d).map((c) => `<i style="left:${(100 * c.t / d).toFixed(2)}%"></i>`).join("") : "";
+    $$("[data-seekbar] .seekbar__ticks").forEach((el) => {
+      el.textContent = "";
+      if (!d) return;
+      P.cur.chapters.filter((c) => c.t > 0 && c.t < d).forEach((c) => { const i = document.createElement("i"); i.style.left = (100 * c.t / d).toFixed(2) + "%"; el.appendChild(i); });
+    });
   }
-  (function seekBar() {
-    const bar = () => $("#seekbar");
-    let drag = false;
-    const pos = (ev) => { const r = bar().getBoundingClientRect(); return clamp((ev.clientX - r.left) / r.width, 0, 1); };
-    document.addEventListener("pointerdown", (ev) => { if (!ev.target.closest || !ev.target.closest("#seekbar") || !P.cur) return; drag = true; bar().setPointerCapture && bar().setPointerCapture(ev.pointerId); $("#seekFill").style.width = (pos(ev) * 100) + "%"; });
+  function paintMarks() {
+    const d = (P.cur && P.cur.dur) || 0;
+    $$("[data-seekbar] .seekbar__marks").forEach((el) => {
+      el.textContent = "";
+      if (!d || !P.cur) return;
+      (L().NOTES[P.cur.id] || []).forEach((n) => { const b = document.createElement("button"); b.className = "mark" + (/^🔖/.test(n.text) ? " mark--bm" : ""); b.style.left = (100 * n.t / d).toFixed(2) + "%"; b.dataset.seek = n.t; b.title = `${fmtTime(n.t)} · ${n.text.slice(0, 80)}`; b.setAttribute("aria-label", `Note at ${fmtTime(n.t)}`); el.appendChild(b); });
+      if (P.loop) { const lp = document.createElement("span"); lp.className = "loopband"; lp.style.left = (100 * P.loop.a / d) + "%"; lp.style.width = P.loop.b != null ? (100 * (P.loop.b - P.loop.a) / d) + "%" : "2px"; el.appendChild(lp); }
+    });
+  }
+  function paintRail() {
+    const r = $("#pvRail"); if (!r) return;
+    r.hidden = !P.rail || !P.cur;
+    if (r.hidden) return;
+    const e = P.cur;
+    r.innerHTML = `<p class="rail__h">Chapters <button class="iconbtn iconbtn--sm" data-pc="rail" aria-label="Hide chapters">✕</button></p><ol class="chaps">${e.chapters.map((c, i) => `<li><button class="chap ${i === P.chIdx ? "is-now" : ""}" data-i="${i}" ${c.t == null ? "disabled" : `data-seek="${c.t}"`}><span class="chap__t">${c.t == null ? "·" : fmtTime(c.t)}</span><span class="chap__tx"><b>${esc(c.title)}</b></span></button></li>`).join("")}</ol>`;
+  }
+  /* seek bars: drag, hover tooltip with chapter + time + the nearest of YouTube's auto-generated frames */
+  (function seekBars() {
+    let drag = null;
+    const pos = (bar, ev) => { const r = bar.getBoundingClientRect(); return clamp((ev.clientX - r.left) / Math.max(1, r.width), 0, 1); };
+    document.addEventListener("pointerdown", (ev) => {
+      const bar = ev.target.closest && ev.target.closest("[data-seekbar]");
+      if (!bar || !P.cur || ev.target.closest(".mark")) return;
+      drag = bar; try { bar.setPointerCapture && bar.setPointerCapture(ev.pointerId); } catch (x) {}
+      bar.querySelector(".seekbar__fill").style.width = (pos(bar, ev) * 100) + "%";
+      dock().classList.add("pv-hover-ctl");
+    });
     document.addEventListener("pointermove", (ev) => {
       if (!ev.target.closest || !P.cur) return;
-      const b = bar(); if (!b) return;
-      const over = ev.target.closest("#seekbar");
-      const tip = $("#seekTip");
-      if (over || drag) {
-        const p = pos(ev), t = p * durNow();
-        const ci = chapterAt(t); const c = P.cur.chapters[ci];
-        tip.hidden = false; tip.style.left = (p * 100) + "%";
-        tip.innerHTML = `<b>${fmtTime(t)}</b>${c ? `<span>${esc(c.title)}</span>` : ""}`;
-        if (drag) $("#seekFill").style.width = (p * 100) + "%";
-      } else tip.hidden = true;
+      const bar = drag || ev.target.closest("[data-seekbar]");
+      $$("[data-seekbar] .seekbar__tip").forEach((t) => { if (!bar || t.parentNode !== bar) t.hidden = true; });
+      if (!bar) return;
+      const tip = bar.querySelector(".seekbar__tip");
+      const p = pos(bar, ev), t = p * durNow();
+      const ci = chapterAt(t); const c = P.cur.chapters[ci];
+      const frame = p < 0.375 ? 1 : p < 0.625 ? 2 : 3;
+      tip.hidden = false;
+      tip.style.left = clamp(p * 100, 8, 92) + "%";
+      tip.innerHTML = `${bar.dataset.seekbar === "big" ? `<img src="https://i.ytimg.com/vi/${esc(P.cur.id)}/mq${frame}.jpg" alt="" width="160" height="90" decoding="async">` : ""}<b>${fmtTime(t)}</b>${c ? `<span>${esc(c.title)}</span>` : ""}`;
+      if (drag) drag.querySelector(".seekbar__fill").style.width = (p * 100) + "%";
     });
-    document.addEventListener("pointerup", (ev) => { if (!drag) return; drag = false; seek(pos(ev) * durNow(), true); });
+    document.addEventListener("pointerup", (ev) => { if (!drag) return; const b = drag; drag = null; dock().classList.remove("pv-hover-ctl"); seek(pos(b, ev) * durNow(), true); });
     document.addEventListener("keydown", (ev) => {
-      if (ev.target !== bar()) return;
+      const bar = ev.target.closest && ev.target.closest("[data-seekbar]");
+      if (!bar || ev.target !== bar) return;
       if (ev.key === "ArrowLeft" || ev.key === "ArrowRight") { ev.preventDefault(); ev.stopPropagation(); seek(ev.key === "ArrowLeft" ? -5 : 5); }
-      if (ev.key === "Home") { ev.preventDefault(); seek(0, true); }
-      if (ev.key === "End") { ev.preventDefault(); seek(durNow() - 5, true); }
+      if (ev.key === "Home") { ev.preventDefault(); ev.stopPropagation(); seek(0, true); }
+      if (ev.key === "End") { ev.preventDefault(); ev.stopPropagation(); seek(durNow() - 5, true); }
     }, true);
   })();
 
@@ -501,7 +958,7 @@
     const e = P.cur; if (!e) return;
     $("#thCrumb").innerHTML = `<b>${esc(e.title)}</b>`;
     const L0 = L();
-    const fav = L0.FAVS.has(e.id), q = L0.QUEUE.includes(e.id);
+    const fav = L0.FAVS.has(e.id), q = L0.QUEUE.includes(e.id), done = h().stateOf(e.id) === "done";
     $("#thInfo").innerHTML = `
       <h1 class="th__title">${esc(e.title)}</h1>
       <p class="th__meta"><span>${esc(A.fmtDate(e.date, e.approx))}</span><span>${esc(e.durStr)}</span><span>${esc(A.ui.showLine(e))}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>${e.views ? `<span>${A.ui.fmtViews(e.views)} views</span>` : ""}</p>
@@ -509,11 +966,14 @@
       <div class="th__act">
         <button class="btn btn--sm" data-th="fav">${fav ? A.ui.ICON.heartF : A.ui.ICON.heart}<span>${fav ? "Favourited" : "Favourite"}</span></button>
         <button class="btn btn--sm" data-th="queue">${q ? A.ui.ICON.queued : A.ui.ICON.queue}<span>${q ? "Queued" : "Queue"}</span></button>
+        <button class="btn btn--sm" data-th="watched">${A.ui.ICON.check}<span>${done ? "Mark unwatched" : "Mark as watched"}</span></button>
+        <button class="btn btn--sm" data-th="playlist">${A.ui.ICON.list}<span>Save to playlist</span></button>
         <button class="btn btn--sm" data-th="link">${A.ui.ICON.link}<span>Copy link at current time</span></button>
         <button class="btn btn--sm" data-th="share">${A.ui.ICON.share}<span>Share</span></button>
         <button class="btn btn--sm" data-th="details">Full report</button>
-        <a class="btn btn--sm btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${A.ui.ICON.yt}<span>YouTube</span></a>
+        <a class="btn btn--sm btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${A.ui.ICON.yt}<span>YouTube</span></a>
       </div>
+      ${A.feat ? A.feat.rateTagHTML(e.id) : ""}
       ${e.whyWatch ? `<p class="th__why"><b>Why watch:</b> ${esc(e.whyWatch)}</p>` : ""}
       <p class="th__sum">${esc(e.summary)}</p>
       ${e.tags.length ? `<p class="tags">${e.tags.map((t) => `<a class="tag" href="#/browse?tag=${encodeURIComponent(t)}" data-closeth>${esc(t)}</a>`).join("")}</p>` : ""}`;
@@ -530,59 +990,89 @@
     } else if (P.side === "notes") {
       const list = (L().NOTES[e.id] || []).slice().sort((a, b) => a.t - b.t);
       body.innerHTML = `<form class="noteform" id="noteForm"><label for="noteText">Note at <b id="noteAt">${fmtTime(curTime())}</b></label><textarea id="noteText" rows="3" placeholder="What stood out? (Enter to save, Shift+Enter for a new line)"></textarea><div class="noteform__act"><button type="button" class="btn btn--ghost btn--sm" id="noteStamp">${A.ui.ICON.clock}<span>Re-stamp now</span></button><button class="btn btn--primary btn--sm">Save note</button></div></form>
-        ${list.length ? `<ul class="notes">${list.map((n) => `<li class="note"><button class="claim__t" data-seek="${n.t}">${fmtTime(n.t)}</button><p>${esc(n.text)}</p><button class="iconbtn iconbtn--sm" data-delnote="${n.id}" aria-label="Delete note">${A.ui.ICON.trash}</button></li>`).join("")}</ul>` : `<p class="empty">No notes yet. Press <kbd>N</kbd> any time to capture the moment.</p>`}`;
+        ${list.length ? `<ul class="notes">${list.map((n) => `<li class="note"><button class="claim__t" data-seek="${n.t}">${fmtTime(n.t)}</button><p>${esc(n.text)}</p><button class="iconbtn iconbtn--sm" data-delnote="${esc(n.id)}" aria-label="Delete note">${A.ui.ICON.trash}</button></li>`).join("")}</ul>` : `<p class="empty">No notes yet. Press <kbd>N</kbd> to write one or <kbd>B</kbd> to bookmark the moment.</p>`}`;
       let stamp = curTime();
       const f = $("#noteForm");
-      f.onsubmit = (ev) => { ev.preventDefault(); const tx = $("#noteText").value.trim(); if (!tx) return; h().addNote(e.id, stamp, tx); A.ui.toast(`Note saved at ${fmtTime(stamp)}`, { icon: "📝", ms: 1500 }); paintSide(); };
+      f.onsubmit = (ev) => { ev.preventDefault(); const tx = $("#noteText").value.trim(); if (!tx) return; h().addNote(e.id, stamp, tx); A.ui.toast(`Note saved at ${fmtTime(stamp)}`, { icon: "📝", ms: 1500 }); paintSide(); paintMarks(); };
       $("#noteText").addEventListener("keydown", (ev) => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); f.requestSubmit ? f.requestSubmit() : f.onsubmit(ev); } });
       $("#noteStamp").onclick = () => { stamp = curTime(); $("#noteAt").textContent = fmtTime(stamp); };
     } else {
       const list = A.recs.upNext(e, 10);
       body.innerHTML = list.length ? `<p class="side__sub">Autoplay ${L().SETTINGS.autoplay ? "on" : "off"} · <button class="linkbtn" id="apToggle">${L().SETTINGS.autoplay ? "turn off" : "turn on"}</button></p><ul class="upnext">${list.map((x) => `<li><button class="upn" data-play="${x.e.id}">${A.ui.thumbImg(x.e)}<span><b>${esc(x.e.title)}</b><small>${esc(A.ui.whoLine(x.e, 2))} · ${esc(x.e.durStr)}</small><em>${A.ui.ICON.spark}${esc(x.why)}</em></span></button></li>`).join("")}</ul>` : `<p class="empty">Nothing left. You have seen it all.</p>`;
-      const ap = $("#apToggle"); if (ap) ap.onclick = () => { L().SETTINGS.autoplay = !L().SETTINGS.autoplay; A.store.set("settings:v2", L().SETTINGS); paintSide(); };
+      const ap = $("#apToggle"); if (ap) ap.onclick = () => { L().SETTINGS.autoplay = !L().SETTINGS.autoplay; A.store.set("settings:v3", L().SETTINGS); paintSide(); };
     }
   }
   function openNote() {
     if (!P.cur) return;
+    if (P.fs) exitFs();
     if (P.mode !== "theater") expand();
     P.side = "notes"; paintSide();
     setTimeout(() => { const t = $("#noteText"); t && t.focus(); }, 60);
   }
+  function toggleWatchedCur() {
+    if (!P.cur) return;
+    const id = P.cur.id;
+    if (h().stateOf(id) === "done") { h().unmarkWatched(id); A.ui.toast("Marked as unwatched", { icon: "↩️", ms: 1500 }); }
+    else { tick(true); flush(); h().markWatched(id); A.ui.toast("Marked as watched", { icon: "✅", action: { label: "Undo", fn: () => { h().unmarkWatched(id); A.views.refreshCardsFor(id); paintTheater(); } } }); }
+    A.views.refreshCardsFor(id); paintTheater();
+    if (!$("#dockErr").hidden && P.errCode != null) showEmbedError(P.cur, P.errCode);
+  }
 
-  /* ---------------------------------------------------------------- wiring */
+  /* ---------------------------------------------------------------- wiring: one delegated handler for every control */
+  const ACT = {
+    play: togglePlay, back10: () => seek(-10), fwd10: () => seek(10), back30: () => seek(-30), fwd30: () => seek(30), back5: () => seek(-5), fwd5: () => seek(5),
+    prevch: prevChapter, nextch: nextChapter, next: playNext, mute: toggleMute, cc: toggleCC, fs: toggleFs, pip: popOut, audio: audioMode, zen: () => toggleZen(), dnd: toggleDnd,
+    theater: () => (P.mode === "theater" ? minimize() : expand()), mini: minimize, expand, close: closePlayer, note: openNote, bookmark, skip: skipIntro,
+    link: () => P.cur && A.views.copyLinkAt(P.cur.id, curTime()), markwatched: toggleWatchedCur, sharecard: () => P.cur && A.feat && A.feat.shareCard(P.cur.id, curTime()),
+    retry: () => { if (!P.cur) return; const id = P.cur.id, t = P.lastPos; destroyPlayer(); $("#dockErr").hidden = true; P.errCode = null; createPlayer(freshHost(), id, t); },
+    rail: () => { P.rail = !P.rail; paintRail(); if (P.menu) closeMenu(); },
+    settings: (b) => openMenu("settings", b), more: (b) => openMenu("more", b), speed: (b) => openMenu("speed", b),
+    "menu-settings": () => { P.menu = null; openMenu("settings"); }, "menu-speed": () => { P.menu = null; openMenu("speed"); }, "menu-quality": () => { P.menu = null; openMenu("quality"); },
+    "menu-sleep": () => { P.menu = null; openMenu("sleep"); }, "menu-loop": () => { P.menu = null; openMenu("loop"); },
+    "speed-set": (b) => { setSpeed(b.dataset.v); renderMenu("speed"); }, "quality-set": (b) => { setQuality(b.dataset.v); closeMenu(); }, "sleep-set": (b) => { setSleep(b.dataset.v); },
+    "loop-a": () => setLoop("a"), "loop-b": () => setLoop("b"), "loop-clear": () => setLoop("clear"),
+    autoskip: () => { const S = L().SETTINGS; S.autoSkipHearing = !S.autoSkipHearing; A.store.set("settings:v3", S); renderMenu("settings"); },
+    autoplay: () => { const S = L().SETTINGS; S.autoplay = !S.autoplay; A.store.set("settings:v3", S); renderMenu("settings"); },
+    native: () => { closeMenu(); toggleNative(); },
+  };
+  const KEEP_MENU = new Set(["settings", "more", "speed", "menu-settings", "menu-speed", "menu-quality", "menu-sleep", "menu-loop", "speed-set", "sleep-set", "loop-a", "loop-b", "loop-clear", "autoskip", "autoplay", "cc", "dnd"]);
   function wire() {
-    $("#cPlay").onclick = togglePlay;
-    $("#cBack").onclick = () => seek(-10);
-    $("#cFwd").onclick = () => seek(10);
-    $("#cPrevCh").onclick = prevChapter;
-    $("#cNextCh").onclick = nextChapter;
-    $("#cNext").onclick = playNext;
-    $("#cSpeed").onchange = (ev) => setSpeed(ev.target.value);
-    $("#cVol").oninput = (ev) => setVol(ev.target.value);
-    $("#cMute").onclick = toggleMute;
-    $("#cNote").onclick = openNote;
-    $("#cAudio").onclick = audioMode;
-    $("#thAudio").onclick = audioMode;
-    $("#cPip").onclick = popOut;
-    $("#thPip").onclick = popOut;
+    const d = dock();
+    d.addEventListener("click", (ev) => {
+      const b = ev.target.closest("[data-pc]");
+      if (b && d.contains(b)) {
+        const a = b.dataset.pc;
+        if (ACT[a]) { ev.preventDefault(); ACT[a](b); if (!KEEP_MENU.has(a)) closeMenu(); else if (a === "cc" || a === "dnd") { if (P.menu) renderMenu(P.menu); } }
+        showUI();
+        return;
+      }
+      const sk = ev.target.closest("[data-seek]");
+      if (sk && sk.dataset.seek !== "" && P.cur) { jumpTo(P.cur.id, Number(sk.dataset.seek)); return; }
+      if (P.menu && !ev.target.closest("#pvMenu")) closeMenu();
+    });
+    d.addEventListener("input", (ev) => { if (ev.target.matches("[data-vol]")) setVol(ev.target.value); });
+    d.addEventListener("mouseleave", () => { if (P.playing && !P.menu) d.classList.remove("pv--show"); });
     $("#pipBack").onclick = () => { if (P.pip) P.pip.close(); };
-    $("#cExpand").onclick = () => (P.mode === "theater" ? minimize() : expand());
-    $("#cClose").onclick = closePlayer;
-    $("#thMin").onclick = minimize;
     $("#dockMeta").onclick = expand;
+    $("#thMin").onclick = minimize;
+    $("#thAudio").onclick = audioMode;
+    $("#thFs").onclick = toggleFs;
+    $("#thZen").onclick = () => toggleZen();
     $("#theater").addEventListener("scroll", () => requestAnimationFrame(placeDock), { passive: true });
     $("#sideTabs").addEventListener("click", (ev) => { const b = ev.target.closest("[data-side]"); if (!b) return; P.side = b.dataset.side; paintSide(); });
     $("#theater").addEventListener("click", (ev) => {
       const sk = ev.target.closest("[data-seek]");
       if (sk && sk.dataset.seek !== "") { jumpTo(P.cur.id, Number(sk.dataset.seek)); return; }
       const pl = ev.target.closest("[data-play]"); if (pl) { play(pl.dataset.play); return; }
-      const dn = ev.target.closest("[data-delnote]"); if (dn) { h().delNote(P.cur.id, dn.dataset.delnote); paintSide(); return; }
+      const dn = ev.target.closest("[data-delnote]"); if (dn) { h().delNote(P.cur.id, dn.dataset.delnote); paintSide(); paintMarks(); return; }
       const ct = ev.target.closest("[data-closeth]"); if (ct) { minimize(); return; }
       const th = ev.target.closest("[data-th]");
       if (th) {
         const a = th.dataset.th, e = P.cur;
         if (a === "fav") { h().toggleFav(e.id); paintTheater(); A.views.refreshCardsFor(e.id); }
         if (a === "queue") { h().toggleQueue(e.id); paintTheater(); A.views.paintQueueCount(); A.views.refreshCardsFor(e.id); }
+        if (a === "watched") toggleWatchedCur();
+        if (a === "playlist" && A.feat) A.feat.playlistPicker(e.id, th);
         if (a === "link") A.views.copyLinkAt(e.id, curTime());
         if (a === "share") A.views.share(e.id, curTime());
         if (a === "details") A.views.openDrawer(e.id);
@@ -590,5 +1080,9 @@
     });
   }
 
-  A.player = { P, play, seek, jumpTo, togglePlay, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire, tick, flush, paintSide, paintTheater, placeDock, setMode, chapterAt, hideCountdown, loadAPI };
+  A.player = {
+    P, play, seek, jumpTo, togglePlay, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
+    tick, flush, paintSide, paintTheater, placeDock, placeMini, snapMini, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleZen, toggleDnd, toggleCC,
+    frameStep, bookmark, setLoop, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
+  };
 })(window.ASFE);
