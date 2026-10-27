@@ -340,7 +340,7 @@
     const isCur = A.P.cur && A.P.cur.id === id;
     const sim = A.recs.suggestions(e, 6);
     $("#drawerBody").innerHTML = `
-      <div class="dr__hero"><button class="thumb" data-act="play" data-id="${id}">${ui().thumbImg(e, true)}<span class="thumb__play">${ui().ICON.play}</span><span class="thumb__dur">${esc(e.durStr)}</span>${st !== "none" ? `<span class="thumb__bar"><i style="width:${Math.round(h().pctOf(id) * 100)}%"></i></span>` : ""}</button></div>
+      <div class="dr__hero"><button class="thumb" data-act="play" data-id="${id}">${ui().thumbImg(e, true)}<span class="thumb__play">${ui().ICON.play}</span>${ui().thumbBadges(e)}${st !== "none" ? `<span class="thumb__bar"><i style="width:${Math.round(h().pctOf(id) * 100)}%"></i></span>` : ""}</button></div>
       <div class="dr__in" data-id="${id}">
         <p class="eyebrow">${esc(FORMATS.find((f) => f.id === e.fmt).label)} · ${esc(monthLabel(e.month))}${e.verified ? " · verified full episode" : ""}</p>
         <h2 id="drawerTitle">${esc(e.title)}</h2>
@@ -375,7 +375,7 @@
         ${notes.length ? `<ul class="notes">${notes.map((n) => `<li class="note"><button class="claim__t" data-jump="${id}|${n.t}">${fmtTime(n.t)}</button><p>${esc(n.text)}</p><button class="iconbtn iconbtn--sm" data-delnote="${n.id}" aria-label="Delete note">${ui().ICON.trash}</button></li>`).join("")}</ul>` : ""}
         <form class="noteform" id="drNote"><textarea rows="2" placeholder="${isCur ? `Note at ${fmtTime(A.player.curTime())}` : "Note at 0:00 (start the episode to stamp the current moment)"}" aria-label="New note"></textarea><button class="btn btn--sm">Add note</button></form>
         ${e.evidence ? `<details class="dr__ev"><summary>Evidence & verification</summary><p>${esc(e.evidence)}</p><p class="muted">Channel: ${esc(e.channel)}${e.subs ? ` · ${esc(String(e.subs))} subscribers` : ""} · ID ${esc(e.id)}</p></details>` : ""}
-        ${sim.length ? `<h3 class="dr__h">More like this</h3><div class="minis">${sim.map((x) => `<button class="mini" data-swap="${x.e.id}">${ui().thumbImg(x.e)}<span><b>${esc(x.e.title)}</b><small>${esc(x.why)}</small></span></button>`).join("")}</div>` : ""}
+        ${sim.length ? `<h3 class="dr__h">More like this</h3><div class="minis">${sim.map((x) => `<button class="mini" data-swap="${x.e.id}">${ui().thumbImg(x.e)}<span><b>${esc(x.e.title)}</b><small class="mini__meta">${ui().metaText(x.e)}</small><small>${esc(x.why)}</small></span></button>`).join("")}</div>` : ""}
       </div>`;
     $("#drawer").hidden = false; $("#scrim").hidden = false;
     document.body.classList.add("lock-drawer");
@@ -413,8 +413,8 @@
       <div class="row-gap"><button class="btn btn--sm" id="hExport">Export backup</button><label class="btn btn--sm btn--ghost">Import<input type="file" id="hImport" accept="application/json" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${histDay ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(histDay))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: histDay })}</section>
       ${byDay.size ? Array.from(byDay.entries()).map(([k, list]) => `<section class="hday"><h2>${esc(fmtDate(k))} <small>${fmtHM(list.reduce((a, x) => a + x.s.w, 0))}</small></h2>
-        <ul class="hlist">${list.map((x) => `<li class="hrow" data-id="${x.e.id}"><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
-          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta"><span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.w)} watched</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>${Math.round((x.r.pct || 0) * 100)}% covered</span>${x.r.done ? `<span class="ok">✓ completed</span>` : ""}</p></div>
+        <ul class="hlist">${list.map((x) => `<li class="hrow" data-id="${x.e.id}"><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
+          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta">${ui().metaCore(x.e)}<span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.w)} watched</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>${Math.round((x.r.pct || 0) * 100)}% covered</span>${x.r.done ? `<span class="ok">✓ completed</span>` : ""}</p></div>
           <button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove from history">${ui().ICON.trash}</button></li>`).join("")}</ul></section>`).join("") : `<div class="emptybig"><p>${histDay ? "Nothing watched that day." : "Nothing yet. Press play on anything and it shows up here, strictly counted."}</p></div>`}`;
     $("#hExport").onclick = () => { const blob = new Blob([JSON.stringify(h().exportAll(), null, 1)], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `ai-safety-episodes-backup-${A.dayKey(Date.now())}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
     $("#hImport").onchange = async (ev) => { const f = ev.target.files[0]; if (!f) return; try { h().importAll(JSON.parse(await f.text())); ui().toast("Backup restored", { icon: "✅" }); A.app.rerender(); } catch (x) { ui().toast("That file is not a valid backup: " + esc(x.message), { icon: "⚠️" }); } };
@@ -497,7 +497,7 @@
     const groups = ids.map((id) => ({ e: STATE.byId.get(id), list: L().NOTES[id].filter((n) => !notesQ || fold(n.text).includes(fold(notesQ))).sort((a, b) => a.t - b.t) })).filter((g) => g.list.length).sort((a, b) => Math.max(...b.list.map((n) => n.at)) - Math.max(...a.list.map((n) => n.at)));
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Notes</p><h1>${h().noteCount()} timestamped notes</h1><p class="lede">Press <kbd>N</kbd> while watching to capture the moment. Click a timestamp to jump back to it.</p></div>
       <div class="row-gap"><input class="input input--sm" id="nQ" placeholder="Search notes" value="${esc(notesQ)}" aria-label="Search notes"><button class="btn btn--sm" id="nExport">Export Markdown</button></div></header>
-      ${groups.length ? groups.map((g) => `<section class="ngroup" data-id="${g.e.id}"><header><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(g.e)}</button><div><button class="card__title" data-act="open">${esc(g.e.title)}</button><p class="card__meta"><span>${esc(ui().whoLine(g.e, 2))}</span><span>${esc(g.e.durStr)}</span></p></div></header>
+      ${groups.length ? groups.map((g) => `<section class="ngroup" data-id="${g.e.id}"><header><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(g.e)}${ui().thumbBadges(g.e)}</button><div><button class="card__title" data-act="open">${esc(g.e.title)}</button>${ui().cardMeta(g.e, `<span>${esc(ui().whoLine(g.e, 2))}</span>`)}</div></header>
         <ul class="notes">${g.list.map((n) => `<li class="note"><button class="claim__t" data-jump="${g.e.id}|${n.t}">${fmtTime(n.t)}</button><p>${esc(n.text)}</p><small class="muted">${esc(A.fmtStamp(n.at))}</small><button class="iconbtn iconbtn--sm" data-delnote2="${g.e.id}|${n.id}" aria-label="Delete note">${ui().ICON.trash}</button></li>`).join("")}</ul></section>`).join("")
         : `<div class="emptybig"><p>${notesQ ? "No notes match." : "No notes yet."}</p></div>`}`;
     const q = $("#nQ"); q.oninput = A.debounce(() => { notesQ = q.value; renderNotes(); const n = $("#nQ"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 200);
@@ -643,7 +643,7 @@
   }
   /* queue view: targeted add/remove instead of re-rendering the page */
   function qRow(e, i) {
-    return `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button><p class="card__meta"><span>${esc(ui().whoLine(e, 2))}</span><span>${esc(e.durStr)}</span></p></div>
+    return `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}${ui().thumbBadges(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button>${ui().cardMeta(e, `<span>${esc(ui().whoLine(e, 2))}</span>`)}</div>
         <div class="qrow__act"><button class="iconbtn iconbtn--sm" data-mv="-1" aria-label="Move up">↑</button><button class="iconbtn iconbtn--sm" data-mv="1" aria-label="Move down">↓</button><button class="iconbtn iconbtn--sm" data-act="queue" aria-label="Remove from queue">✕</button></div></li>`;
   }
   function queueHead() {
