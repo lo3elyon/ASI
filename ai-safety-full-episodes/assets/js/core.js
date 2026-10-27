@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · core: helpers, storage + migration, taxonomy, data loading & normalisation.
+/* AI Safety Full Episodes · core: helpers, storage + migration, taxonomy, data loading & normalisation.
  * Built by Aniruddha Adak. No build step: every module attaches to window.ASFE. */
 (function () {
   "use strict";
@@ -69,25 +69,28 @@
     raw(k) { try { return localStorage.getItem(NS + k); } catch (e) { return null; } },
   };
 
-  /* v1 → v2 migration. v1 keys stay untouched as a backup; v2 keys are written once. */
-  const SCHEMA = 2;
+  /* Storage migration chain v1 → v2 → v3. Older keys are never deleted: they stay as backups.
+   * v1→v2 copies the original keys once; v2→v3 copies every v2 key to a v3 key once and adds the new v3 stores. */
+  const SCHEMA = 3;
+  const V3_KEYS = ["history", "notes", "favs", "queue", "settings", "badges", "follows", "savedFilters", "prefs", "xpSeen"];
   function migrate() {
     const meta = store.get("schema", null);
     if (meta && meta.v >= SCHEMA) return meta;
-    const report = { v: SCHEMA, at: Date.now(), from: null, moved: [] };
+    const report = { v: SCHEMA, at: Date.now(), from: meta ? meta.v : null, moved: [], prev: meta || null };
+    // v1 → v2 (only when no v2 data exists yet)
     const h1 = store.get("history:v1", null);
-    if (!store.get("history:v2", null)) {
-      if (h1 && typeof h1.eps === "object") {
-        const h2 = { v: 2, created: h1.created || Date.now(), eps: h1.eps || {}, daily: h1.daily || {}, stats: { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0 }, migratedFrom: 1 };
-        store.set("history:v2", h2);
-        report.from = 1; report.moved.push("history");
-      }
+    if (!store.get("history:v2", null) && h1 && typeof h1.eps === "object") {
+      store.set("history:v2", { v: 2, created: h1.created || Date.now(), eps: h1.eps || {}, daily: h1.daily || {}, stats: { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0 }, migratedFrom: 1 });
+      report.from = 1; report.moved.push("history");
     }
-    [["notes", {}], ["favs", []], ["queue", []], ["settings", {}], ["badges", {}]].forEach(([k, def]) => {
-      if (store.raw(k + ":v2") == null) {
-        const v = store.get(k + ":v1", null);
-        if (v != null) { store.set(k + ":v2", v); report.from = 1; report.moved.push(k); }
-        else store.set(k + ":v2", def);
+    ["notes", "favs", "queue", "settings", "badges"].forEach((k) => {
+      if (store.raw(k + ":v2") == null) { const v = store.get(k + ":v1", null); if (v != null) { store.set(k + ":v2", v); report.from = 1; if (!report.moved.includes(k)) report.moved.push(k); } }
+    });
+    // v2 → v3 (copy; keep v2 as backup)
+    V3_KEYS.forEach((k) => {
+      if (store.raw(k + ":v3") == null && store.raw(k + ":v2") != null) {
+        const v = store.get(k + ":v2", null);
+        if (v != null) { if (k === "history" && typeof v === "object") { v.v = 3; v.migratedFromV2 = Date.now(); } store.set(k + ":v3", v); if (report.from == null) report.from = 2; if (!report.moved.includes(k)) report.moved.push(k); }
       }
     });
     store.set("schema", report);
@@ -307,17 +310,24 @@
     return e;
   }
 
-  async function getJSON(url) {
+  async function getJSON(url, onProg) {
     const r = await fetch(url, { cache: "no-cache" });
     if (!r.ok) throw new Error(url + " " + r.status);
-    return r.json();
+    if (onProg && r.body && r.body.getReader && typeof TextDecoder !== "undefined") {
+      const total = Number((r.headers && r.headers.get && r.headers.get("content-length")) || 0) || 900000;
+      const rd = r.body.getReader(), dec = new TextDecoder(); let txt = "", got = 0;
+      for (;;) { const { done, value } = await rd.read(); if (done) break; got += value.length; txt += dec.decode(value, { stream: true }); onProg(Math.min(0.95, got / total)); }
+      txt += dec.decode(); onProg(1);
+      return JSON.parse(txt);
+    }
+    const j = await r.json(); if (onProg) onProg(1); return j;
   }
   const asList = (d) => (Array.isArray(d) ? d : d && Array.isArray(d.episodes) ? d.episodes : []);
 
   async function loadData() {
     let eps = null, roster = null, photos = {}, extras = [];
     try {
-      [eps, roster, photos] = await Promise.all([getJSON("data/episodes.json"), getJSON("data/roster.json"), getJSON("data/photos.json").catch(() => ({}))]);
+      [eps, roster, photos] = await Promise.all([getJSON("data/episodes.json", (f) => A.onLoadProgress && A.onLoadProgress(f)), getJSON("data/roster.json"), getJSON("data/photos.json").catch(() => ({}))]);
       STATE.loadedFrom = "network";
       try {
         const man = await getJSON("data/manifest.json");
