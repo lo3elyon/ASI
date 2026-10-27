@@ -74,18 +74,24 @@
   /* ---------------------------------------------------------------- avatars */
   function speakerOf(name) { return STATE.speakers.get(fold(name)) || null; }
   /* every person shows a real photo: curated file → channel avatar file → cropped thumbnail of their best solo episode */
+  /* Every speaker shows a real face photo. The only exception is a speaker with no public face at all (an anonymous
+   * channel host): they get a neutral silhouette drawn in the current theme accent. Never a text-bearing thumbnail. */
+  const NEUTRAL = "assets/speakers/neutral.svg";
+  const isNeutral = (src) => !src || /neutral\.svg$/.test(src);
   function photoOf(name) {
     const s = speakerOf(name);
-    if (s && s.photo) return { src: s.photo, thumb: false };
-    if (s && s.thumbPhoto) return { src: s.thumbPhoto, thumb: true };
-    return { src: "assets/cover.jpg", thumb: true };
+    if (s && s.photo && !isNeutral(s.photo)) return { src: s.photo, thumb: false, neutral: false };
+    return { src: NEUTRAL, thumb: false, neutral: true };
   }
+  function hasFace(name) { return !photoOf(name).neutral; }
+  const SIL = '<svg viewBox="0 0 64 64" aria-hidden="true" focusable="false"><rect width="64" height="64" fill="var(--surf2)"/><circle cx="32" cy="25" r="11.5" fill="var(--amber)" opacity=".9"/><path d="M10 64c1.6-13.4 10.6-21 22-21s20.4 7.6 22 21Z" fill="var(--amber)" opacity=".9"/></svg>';
   function avatar(name, size, cls) {
     const sz = size || 40;
     const ph = photoOf(name);
-    return `<span class="av ${ph.thumb ? "av--thumb" : ""} ${cls || ""}" style="--s:${sz}px"><img src="${esc(ph.src)}" alt="${esc(name)}" loading="lazy" decoding="async" width="${sz}" height="${sz}"></span>`;
+    if (ph.neutral) return `<span class="av av--neutral ${cls || ""}" style="--s:${sz}px" role="img" aria-label="${esc(name)}">${SIL}</span>`;
+    return `<span class="av ${cls || ""}" style="--s:${sz}px"><img src="${esc(ph.src)}" alt="${esc(name)}" loading="lazy" decoding="async" width="${sz}" height="${sz}"></span>`;
   }
-  function artFor(e) { const p = e.stars.find((x) => speakerOf(x.name) && speakerOf(x.name).photo) || e.people.find((x) => speakerOf(x.name) && speakerOf(x.name).photo); return p ? speakerOf(p.name).photo : e.thumb; }
+  function artFor(e) { const p = e.stars.find((x) => hasFace(x.name)) || e.people.find((x) => hasFace(x.name)); return p ? speakerOf(p.name).photo : e.thumb; }
 
   /* ---------------------------------------------------------------- cards */
   function thumbImg(e, eager) { return `<img class="thumb__img" src="${esc(e.thumb)}" alt="${esc("Thumbnail: " + e.title)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" width="480" height="360">`; }
@@ -95,7 +101,7 @@
     document.addEventListener("error", (ev) => {
       const t = ev.target; if (!t || t.tagName !== "IMG") return;
       if (t.classList.contains("thumb__img")) { t.classList.add("is-ld", "is-broken"); return; }
-      const av = t.closest && t.closest(".av"); if (av && !t.dataset.fb) { t.dataset.fb = "1"; t.src = "assets/cover.jpg"; av.classList.add("av--thumb"); }
+      const av = t.closest && t.closest(".av"); if (av && !t.dataset.fb) { t.dataset.fb = "1"; t.src = NEUTRAL; }
     }, true);
   }
   function whoLine(e, max) {
@@ -130,7 +136,7 @@
     const doneBtn = `<button class="iconbtn iconbtn--sm card__done ${done ? "is-on" : ""}" data-act="watched" aria-pressed="${done}" aria-label="${done ? "Mark unwatched" : "Mark as watched"}" title="${done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched"}">${ICON.check}</button>`;
     const meta = `<span>${esc(fmtShort(e.date))}</span><span>${esc(e.durStr)}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
     if (o.list) {
-      return `<article class="lrow" data-id="${e.id}">
+      return `<article class="lrow" data-id="${e.id}" draggable="true">
         <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}<span class="thumb__dur">${esc(e.durStr)}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
         <div class="lrow__tx">
           <button class="card__title" data-act="open">${hl(e.title, o.q)}</button>
@@ -145,7 +151,7 @@
         </div>
       </article>`;
     }
-    return `<article class="card" data-id="${e.id}" tabindex="-1">
+    return `<article class="card" data-id="${e.id}" tabindex="-1" draggable="true">
       <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}<span class="thumb__dur">${esc(e.durStr)}</span>${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
       <div class="card__body">
         <button class="card__title" data-act="open" title="${esc(e.title)}">${hl(e.title, o.q)}</button>
@@ -235,5 +241,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { ICON, toast, confirmBox, copy, avatar, photoOf, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
+  A.ui = { ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
