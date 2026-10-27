@@ -357,7 +357,7 @@
     // background-friendly: timers are throttled in hidden tabs, so go straight to the next episode
     if (document.hidden) { play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); return; }
     let left = 10;
-    $("#cdEp").innerHTML = `${A.ui.thumbImg(n.e, true)}<div><b>${esc(n.e.title)}</b><small>${esc(n.why)} · ${esc(n.e.durStr)}</small></div>`;
+    $("#cdEp").innerHTML = `${A.ui.thumbImg(n.e, true)}<div><b>${esc(n.e.title)}</b><small>${A.ui.metaText(n.e)} · ${esc(n.why)}</small></div>`;
     $("#cdNum").textContent = left;
     $("#countdown").hidden = false;
     clearInterval(P.cd);
@@ -379,6 +379,7 @@
     d.dataset.mode = m;
     d.classList.toggle("is-pip", !!P.pip);
     const th = $("#theater");
+    const morph = m === "mini" && (prev === "theater" || wasSticky) && !d.hidden && !RM && !document.documentElement.classList.contains("rm") && !!d.style.left;
     if (m === "theater") {
       th.hidden = false;
       if (wasSticky || prev !== "theater") th.scrollTop = 0;
@@ -388,7 +389,8 @@
     } else {
       th.hidden = true;
       document.body.classList.remove("lock", "has-theater");
-      d.style.left = d.style.top = d.style.width = d.style.right = d.style.bottom = "";
+      if (morph) { d.style.right = d.style.bottom = ""; startMorph(d); placeMini(); }
+      else { d.style.left = d.style.top = d.style.width = d.style.right = d.style.bottom = ""; if (m === "mini") placeMini(); }
       if (m === "mini") requestAnimationFrame(placeMini);
     }
     document.body.classList.toggle("has-dock", m !== "theater" && !d.hidden);
@@ -434,7 +436,7 @@
     if (on === !!P.sticky) return false;
     const d = dock(); if (!d || d.hidden) return false;
     P.sticky = on;
-    if (!RM && !document.documentElement.classList.contains("rm")) { d.classList.add("is-morph"); clearTimeout(P.morphT); P.morphT = setTimeout(() => d.classList.remove("is-morph"), 380); }
+    if (!RM && !document.documentElement.classList.contains("rm")) startMorph(d);
     d.dataset.mode = on ? "mini" : "theater";
     d.classList.toggle("is-sticky", on);
     d.classList.toggle("dock--grab", on);
@@ -503,7 +505,23 @@
     return { vw, vh, m: mob ? 8 : 16, bottomPad: mob ? 74 : 16, reserve: mob && !P.sticky ? 66 : 0, minW: mob ? 220 : 260, maxW: Math.max(240, Math.min(760, vw - 32)) };
   }
   const miniActive = () => (P.mode === "mini" || !!P.sticky) && !P.fs;
-  function miniH(d, w) { return d.offsetHeight || (w * 9) / 16 + 60; }
+  /* ONE shared mini-player state for every way the mini appears (Miniplayer button / i, sticky mini on scroll, another episode,
+   * reloads, page changes): { x, y } = top-left as % of the viewport, w = width in px, corner = nearest corner (snap / resize anchor).
+   * Nothing saved → bottom-right. Height is computed for the TARGET width (16:9 video + control bar), never read from the dock while
+   * it is still animating from the big player, so the clamp can't push the mini away from the saved spot. */
+  function miniH(d, w) {
+    const bar = d && d.querySelector(".dock__bar");
+    const bh = bar && bar.offsetHeight ? bar.offsetHeight : 0;
+    if (bh && d.dataset.mode === "mini") P.miniBarH = bh;
+    const v = d && d.querySelector(".dock__video"), vis = !v || getComputedStyle(v).display !== "none";
+    const barH = P.miniBarH || bh;
+    if (!barH) return (w * 9) / 16 + 60; // not laid out yet
+    return Math.round((vis ? ((w - 2) * 9) / 16 : 0) + barH + 2);
+  }
+  function startMorph(d) {
+    d.classList.add("is-morph"); clearTimeout(P.morphT);
+    P.morphT = setTimeout(() => { d.classList.remove("is-morph"); placeMini(); }, 380);
+  }
   function clampPos(left, top, w, hgt, b) { return { left: clamp(left, 0, Math.max(0, b.vw - w)), top: clamp(top, 0, Math.max(0, b.vh - hgt - b.reserve)) }; }
   function cornerOf(left, top, w, hgt, b) { return (top + hgt / 2 < b.vh / 2 ? "t" : "b") + (left + w / 2 < b.vw / 2 ? "l" : "r"); }
   function placeMini() {
@@ -579,7 +597,7 @@
         return;
       }
       const dx = ev.clientX - st.x0, dy = ev.clientY - st.y0;
-      if (!st.moved && Math.hypot(dx, dy) < 6) return;
+      if (!st.moved && Math.hypot(dx, dy) <= 5) return; // ≤ 5 px = a click (play / pause), more = a drag
       if (!st.moved) { st.moved = true; d.classList.add("is-dragging"); document.body.classList.add("is-grabbing"); try { d.setPointerCapture && d.setPointerCapture(st.id); } catch (x) {} }
       const w = parseFloat(d.style.width) || d.getBoundingClientRect().width || 400;
       const p = clampPos(st.l0 + dx, st.t0 + dy, w, miniH(d, w), b);
@@ -596,6 +614,11 @@
     document.addEventListener("pointerup", end);
     document.addEventListener("pointercancel", end);
     document.addEventListener("dragstart", (ev) => { if (ev.target.closest && ev.target.closest("#dock")) ev.preventDefault(); });
+    /* buttons inside the mini (play, skip, volume, headphones, expand, close, centre play…) never start a drag: their pointerdown
+     * stops at the dock, so only the transparent video layer (#pvHit, over the iframe), the title strip and the edges drag it */
+    const stopCtl = (ev) => { if (!miniActive()) return; const t = ev.target; if (t.closest && t.closest("button, a, input, select, .pv__menu") && !t.closest(".dock__rs")) ev.stopPropagation(); };
+    const hook = () => { const d = dock(); if (d && !d.dataset.ctlStop) { d.dataset.ctlStop = "1"; d.addEventListener("pointerdown", stopCtl); } };
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", hook); else hook();
   })();
 
   /* ---------------------------------------------------------------- fullscreen cinema (on the player shell, never the bare iframe) */
@@ -1124,7 +1147,7 @@
       $("#noteStamp").onclick = () => { stamp = curTime(); $("#noteAt").textContent = fmtTime(stamp); };
     } else {
       const list = A.recs.upNext(e, 10);
-      body.innerHTML = list.length ? `<p class="side__sub">Autoplay ${L().SETTINGS.autoplay ? "on" : "off"} · <button class="linkbtn" id="apToggle">${L().SETTINGS.autoplay ? "turn off" : "turn on"}</button></p><ul class="upnext">${list.map((x) => `<li><button class="upn" data-play="${x.e.id}">${A.ui.thumbImg(x.e)}<span><b>${esc(x.e.title)}</b><small>${esc(A.ui.whoLine(x.e, 2))} · ${esc(x.e.durStr)}</small><em>${A.ui.ICON.spark}${esc(x.why)}</em></span></button></li>`).join("")}</ul>` : `<p class="empty">Nothing left. You have seen it all.</p>`;
+      body.innerHTML = list.length ? `<p class="side__sub">Autoplay ${L().SETTINGS.autoplay ? "on" : "off"} · <button class="linkbtn" id="apToggle">${L().SETTINGS.autoplay ? "turn off" : "turn on"}</button></p><ul class="upnext">${list.map((x) => `<li><button class="upn" data-play="${x.e.id}">${A.ui.thumbImg(x.e)}<span><b>${esc(x.e.title)}</b><small>${A.ui.metaText(x.e)} · ${esc(A.ui.whoLine(x.e, 2))}</small><em>${A.ui.ICON.spark}${esc(x.why)}</em></span></button></li>`).join("")}</ul>` : `<p class="empty">Nothing left. You have seen it all.</p>`;
       const ap = $("#apToggle"); if (ap) ap.onclick = () => { L().SETTINGS.autoplay = !L().SETTINGS.autoplay; A.store.set("settings:v3", L().SETTINGS); paintSide(); };
     }
   }
@@ -1149,7 +1172,7 @@
    * Each keeps the same iframe; only the dock's mode/geometry changes, so playback never reloads or loses time. */
   const MI = {
     mini: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><rect x="12" y="11.5" width="7.5" height="6" rx="1.2" fill="currentColor" stroke="none"/></svg>',
-    expand: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M14 10 7.5 16.5M7.5 11.5v5h5"/></svg>',
+    expand: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M10 14 16.5 7.5M11.5 7.5h5v5"/></svg>',
     wide: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="7" width="21" height="10" rx="2"/></svg>',
     narrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5.5" width="14" height="13" rx="2"/></svg>',
     fs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
