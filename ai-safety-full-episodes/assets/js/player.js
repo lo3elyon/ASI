@@ -1,6 +1,6 @@
 /* AI Safety Full Episodes · player: YouTube IFrame API with custom cinema controls, strict watch clock,
  * dock modes (theater / mini / audio), true fullscreen on the player shell, draggable + resizable mini player,
- * float-window remote (Document Picture-in-Picture), Zen focus mode, sleep timer, A–B loop, bookmarks, Media Session.
+ * float-window remote (Document Picture-in-Picture), Focus mode, sleep timer, A–B loop, bookmarks, Media Session.
  *
  * Why the float window is a remote and not a second player: a YouTube iframe created inside a Document PiP window
  * lives in an about:blank document, so it is requested without any HTTP Referer and YouTube answers "Error 153
@@ -72,7 +72,7 @@
         onStateChange: onState,
         onError: (ev) => onError(ev && ev.data),
         onPlaybackRateChange: () => { try { L().SETTINGS.speed = P.yt.getPlaybackRate(); paintSpeed(); } catch (x) {} },
-        onPlaybackQualityChange: () => { if (P.menu === "quality") renderMenu("quality"); },
+        onPlaybackQualityChange: () => { paintQuality(); if (P.menu === "quality" || P.menu === "settings") renderMenu(P.menu); },
       },
     });
     return P.yt;
@@ -134,7 +134,7 @@
     if (P.yt && P.ready) { try { P.yt.setVolume(S.vol); S.muted ? P.yt.mute() : P.yt.unMute(); P.yt.setPlaybackRate(Number(S.speed) || 1); } catch (e) {} }
     $$("[data-vol]").forEach((el) => (el.value = S.muted ? 0 : S.vol));
     $$('[data-pc="mute"]').forEach((b) => b.classList.toggle("is-muted", !!S.muted || S.vol === 0));
-    paintSpeed();
+    paintSpeed(); paintQuality();
     dock().classList.toggle("is-native", !!S.nativeControls);
     $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
   }
@@ -258,7 +258,7 @@
       r.cov = h().covEncode(P.cov);
       r.pct = clamp(covN / P.nB, 0, 1);
     }
-    if (!r.done && r.pct >= 0.9) { r.done = true; r.doneAt = Date.now(); A.ui.toast(`Completed: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); }
+    if (!r.done && r.pct >= 0.9) { r.done = true; r.doneAt = Date.now(); A.ui.toast(`Completed: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); A.fx && A.fx.celebrate("complete", dock(), true); A.picks && A.picks.sync(P.cur.id); }
     P.lastSave = performance.now();
     h().saveH();
     paintCoverage();
@@ -298,7 +298,7 @@
     if (!abs && !o.quiet) fx(t < 0 ? `−${Math.abs(Math.round(t))}s` : `+${Math.round(t)}s`, t < 0 ? "l" : "r");
   }
   function frameStep(dir) {
-    if (!P.yt || !P.ready) return;
+    if (!P.yt || !P.ready) { A.ui.toast("Start the video first", { ms: 1200 }); return; }
     if (P.yt.getPlayerState() === 1) { setSpeed((Number(L().SETTINGS.speed) || 1) + (dir > 0 ? 0.25 : -0.25)); return; }
     seek(dir / 30, false, { keepPaused: true, quiet: true });
     fx(dir > 0 ? "▸ 1 frame" : "◂ 1 frame", dir > 0 ? "r" : "l");
@@ -322,16 +322,21 @@
     try { const av = P.yt && P.ready && P.yt.getAvailablePlaybackRates && P.yt.getAvailablePlaybackRates(); if (av && av.length) max = Math.max(...av); } catch (x) {}
     if (s > max) { A.ui.toast(`YouTube's embedded player tops out at ${max}×`, { ms: 1800 }); s = max; }
     S.speed = s; A.store.set("settings:v3", S);
-    if (P.yt && P.ready) try { P.yt.setPlaybackRate(s); } catch (x) {}
-    paintSpeed();
-    fx(s + "×", "c");
+    if (!(P.yt && P.ready)) { paintSpeed(); A.ui.toast(`Speed ${s}× will apply when the video starts`, { ms: 1500 }); return; }
+    try { P.yt.setPlaybackRate(s); } catch (x) {}
+    // honest feedback: only confirm the rate YouTube actually reports
+    setTimeout(() => {
+      let real = s; try { real = P.yt.getPlaybackRate ? Number(P.yt.getPlaybackRate()) : s; } catch (x) {}
+      if (Math.abs(real - s) > 0.01) { S.speed = real; A.store.set("settings:v3", S); paintSpeed(); A.ui.toast(`YouTube kept the speed at ${real}× for this video`, { ms: 2200 }); }
+      else { paintSpeed(); fx(s + "×", "c"); }
+    }, P.vWait == null ? 250 : P.vWait);
   }
   function setVol(v) { const S = L().SETTINGS; S.vol = clamp(Math.round(v), 0, 100); S.muted = S.vol === 0; A.store.set("settings:v3", S); applySettings(); }
   function toggleMute() { const S = L().SETTINGS; S.muted = !S.muted; if (!S.muted && S.vol === 0) S.vol = 60; A.store.set("settings:v3", S); applySettings(); fx(S.muted ? "Muted" : "Sound on", "c"); }
   function chapterAt(t) { if (!P.cur) return -1; let i = -1; P.cur.chapters.forEach((c, k) => { if (c.t != null && c.t <= t + 0.5) i = k; }); return i; }
   function prevChapter() { if (!P.cur) return; const t = curTime(); const prev = P.cur.chapters.filter((c) => c.t != null && c.t < t - 3).pop(); h().bumpStat("chapterJumps"); seek(prev ? prev.t : 0, true); }
   function nextChapter() { if (!P.cur) return; const t = curTime(); const nx = P.cur.chapters.find((c) => c.t != null && c.t > t + 1); if (nx) { h().bumpStat("chapterJumps"); seek(nx.t, true); } else A.ui.toast("No more chapters", { ms: 1200 }); }
-  function skipIntro() { const c = P.cur && P.cur.chapters.find((x, i) => i > 0 && x.t != null); if (c) { h().bumpStat("chapterJumps"); seek(c.t, true); } }
+  function skipIntro() { const c = P.cur && P.cur.chapters.find((x, i) => i > 0 && x.t != null); if (c) { h().bumpStat("chapterJumps"); seek(c.t, true); } else A.ui.toast("No intro chapter to skip in this episode", { ms: 1600 }); }
   function autoSkipHearing() {
     const e = P.cur; if (!e || !e.chapters.length) return;
     const names = e.stars.map((p) => A.fold(p.name).split(" ").pop()).filter((n) => n.length > 2);
@@ -365,13 +370,18 @@
   /* ---------------------------------------------------------------- dock modes */
   function setMode(m) {
     if (m !== "audio" && m !== "mini" && m !== "theater") m = "theater";
+    const prev = P.mode, wasSticky = !!P.sticky;
     P.mode = m;
     const d = dock();
+    if (wasSticky) { P.sticky = false; d.classList.remove("is-sticky"); document.body.classList.remove("has-sticky"); }
+    P.stickyOff = false;
+    d.classList.toggle("dock--grab", m === "mini");
     d.dataset.mode = m;
     d.classList.toggle("is-pip", !!P.pip);
     const th = $("#theater");
     if (m === "theater") {
       th.hidden = false;
+      if (wasSticky || prev !== "theater") th.scrollTop = 0;
       document.body.classList.add("lock", "has-theater");
       d.style.left = d.style.top = d.style.width = d.style.right = d.style.bottom = "";
       requestAnimationFrame(placeDock);
@@ -388,15 +398,18 @@
     closeMenu();
     paintArt();
     paintAmbient();
+    paintModeButtons();
   }
   function placeDock() {
-    if (P.mode !== "theater" || P.fs) return;
-    const slot = $("#stageSlot"), d = dock();
+    if (P.mode !== "theater" || P.fs || P.sticky) return;
+    const slot = $("#stageSlot"), d = dock(), th = $("#theater");
     if (!slot || !d) return;
     const r = slot.getBoundingClientRect();
     let w = r.width;
     const narrow = window.innerWidth < 900;
-    const maxVideoH = Math.max(160, narrow ? window.innerHeight * 0.42 : window.innerHeight - r.top - (P.zen ? 40 : 120));
+    // the episode page scrolls as a whole now: size from the slot's position in the page, not the viewport
+    const topInPage = r.top + (th ? th.scrollTop : 0);
+    const maxVideoH = Math.max(160, narrow ? window.innerHeight * 0.42 : window.innerHeight - topInPage - (P.zen ? 40 : 120));
     if ((w * 9) / 16 > maxVideoH) w = (maxVideoH * 16) / 9;
     slot.style.height = Math.round((w * 9) / 16) + "px";
     const r2 = slot.getBoundingClientRect();
@@ -407,7 +420,54 @@
   }
   window.addEventListener("resize", () => requestAnimationFrame(() => { placeDock(); placeMini(); }));
   function minimize() { if (P.cur) { if (P.fs) exitFs(); setMode("mini"); } }
-  function expand() { if (P.cur) { setMode("theater"); paintTheater(); paintSide(); } }
+  function expand() {
+    if (!P.cur) return;
+    if (P.mode === "theater" && P.sticky) { backToTop(); return; }
+    setMode("theater"); paintTheater(); paintSide();
+  }
+
+  /* ---------------------------------------------------------------- sticky mini: scroll past the video on the episode page and the
+   * same player element shrinks into the (draggable) mini player; scroll back up and it returns. The iframe is never moved or
+   * reloaded: only the dock's mode attribute and its left/top/width change. An IntersectionObserver watches the stage placeholder. */
+  function setSticky(on) {
+    on = !!on && P.mode === "theater" && !P.fs && !P.zen && !!P.cur && !P.stickyOff;
+    if (on === !!P.sticky) return false;
+    const d = dock(); if (!d || d.hidden) return false;
+    P.sticky = on;
+    if (!RM && !document.documentElement.classList.contains("rm")) { d.classList.add("is-morph"); clearTimeout(P.morphT); P.morphT = setTimeout(() => d.classList.remove("is-morph"), 380); }
+    d.dataset.mode = on ? "mini" : "theater";
+    d.classList.toggle("is-sticky", on);
+    d.classList.toggle("dock--grab", on);
+    document.body.classList.toggle("has-sticky", on);
+    closeMenu();
+    if (on) placeMini(); else { d.style.right = d.style.bottom = ""; placeDock(); }
+    paintAmbient(); paintModeButtons();
+    return true;
+  }
+  function checkSticky() {
+    if (P.mode !== "theater" || P.fs || !P.cur) return;
+    const slot = $("#stageSlot"), th = $("#theater"); if (!slot || !th || th.hidden) return;
+    const r = slot.getBoundingClientRect(), tr = th.getBoundingClientRect();
+    const hgt = r.height || 1;
+    const visible = (r.bottom - Math.max(tr.top, r.top)) / hgt; // share of the player still on screen
+    const want = th.scrollTop > 40 && visible < 0.4;
+    if (!want) P.stickyOff = false;
+    setSticky(want);
+  }
+  function backToTop() {
+    const th = $("#theater"); if (!th) return;
+    P.stickyOff = false;
+    setSticky(false);
+    try { th.scrollTo({ top: 0, behavior: RM ? "auto" : "smooth" }); } catch (e) { th.scrollTop = 0; }
+    if (!th.scrollTo) th.scrollTop = 0;
+    requestAnimationFrame(placeDock);
+  }
+  function watchSlot() {
+    const slot = $("#stageSlot"), th = $("#theater");
+    if (!slot || !th || P.io || typeof IntersectionObserver === "undefined") return;
+    P.io = new IntersectionObserver(() => checkSticky(), { root: th, threshold: [0, 0.1, 0.25, 0.4, 0.6, 0.8, 1] });
+    P.io.observe(slot);
+  }
   function audioMode() {
     if (!P.cur) return;
     if (P.fs) exitFs();
@@ -430,80 +490,112 @@
     if ("mediaSession" in navigator) try { navigator.mediaSession.metadata = null; } catch (e) {}
   }
 
-  /* ---------------------------------------------------------------- mini player: drag anywhere, snap to a corner, resize, remember */
+  /* ---------------------------------------------------------------- mini player: drop it anywhere, it stays exactly there
+   * (remembered as a % of the viewport so it survives resizes, always clamped fully on-screen), a gentle 16 px edge magnet,
+   * corner resize handle, double-click to expand. Also used by the sticky mini on the episode page. */
   const MINI_KEY = "mini:v3";
+  const MAGNET = 16;
   function miniPrefs() { return Object.assign({ corner: "br", w: window.innerWidth <= 1020 ? 300 : 400 }, A.store.get(MINI_KEY, {}) || {}); }
   miniPrefs.raw = () => miniPrefs();
   function miniBounds() {
     const vw = window.innerWidth, vh = window.innerHeight;
     const mob = vw <= 1020;
-    return { vw, vh, m: mob ? 8 : 16, bottomPad: mob ? 74 : 16, minW: mob ? 220 : 260, maxW: Math.max(240, Math.min(760, vw - 32)) };
+    return { vw, vh, m: mob ? 8 : 16, bottomPad: mob ? 74 : 16, reserve: mob && !P.sticky ? 66 : 0, minW: mob ? 220 : 260, maxW: Math.max(240, Math.min(760, vw - 32)) };
   }
+  const miniActive = () => (P.mode === "mini" || !!P.sticky) && !P.fs;
+  function miniH(d, w) { return d.offsetHeight || (w * 9) / 16 + 60; }
+  function clampPos(left, top, w, hgt, b) { return { left: clamp(left, 0, Math.max(0, b.vw - w)), top: clamp(top, 0, Math.max(0, b.vh - hgt - b.reserve)) }; }
+  function cornerOf(left, top, w, hgt, b) { return (top + hgt / 2 < b.vh / 2 ? "t" : "b") + (left + w / 2 < b.vw / 2 ? "l" : "r"); }
   function placeMini() {
-    if (P.mode !== "mini" || P.fs) return;
+    if (!miniActive()) return;
     const d = dock(); if (!d || d.hidden) return;
-    const b = miniBounds(), pr = Object.assign({ w: b.vw <= 1020 ? 300 : 400 }, miniPrefs.raw());
+    const b = miniBounds(), pr = miniPrefs();
     const w = clamp(pr.w, b.minW, Math.min(b.maxW, b.vw - 2 * b.m));
     d.style.width = w + "px";
-    const hgt = d.offsetHeight || (w * 9) / 16 + 60;
-    const left = pr.corner[1] === "l" ? b.m : b.vw - w - b.m;
-    const top = pr.corner[0] === "t" ? b.m + (window.innerWidth > 1020 ? 60 : 0) : b.vh - hgt - b.bottomPad;
-    d.style.left = Math.round(left) + "px";
-    d.style.top = Math.round(Math.max(b.m, top)) + "px";
+    const hgt = miniH(d, w);
+    let left, top;
+    if (typeof pr.x === "number" && typeof pr.y === "number") { left = (pr.x / 100) * b.vw; top = (pr.y / 100) * b.vh; }
+    else { const c = pr.corner || "br"; left = c[1] === "l" ? b.m : b.vw - w - b.m; top = c[0] === "t" ? b.m + (b.vw > 1020 ? 60 : 0) : b.vh - hgt - b.bottomPad; }
+    const p = clampPos(left, top, w, hgt, b);
+    d.style.left = Math.round(p.left) + "px";
+    d.style.top = Math.round(p.top) + "px";
     d.style.right = d.style.bottom = "auto";
-    d.dataset.corner = pr.corner;
+    d.dataset.corner = cornerOf(p.left, p.top, w, hgt, b);
   }
-  function snapMini(x, y) {
+  function saveMiniPos(left, top, w) {
     const b = miniBounds(), d = dock();
-    const r = d.getBoundingClientRect();
-    const cx = x + r.width / 2, cy = y + r.height / 2;
-    const corner = (cy < b.vh / 2 ? "t" : "b") + (cx < b.vw / 2 ? "l" : "r");
-    A.store.set(MINI_KEY, Object.assign(miniPrefs(), { corner }));
-    d.classList.add("is-snapping");
-    placeMini();
-    setTimeout(() => d.classList.remove("is-snapping"), 320);
-    return corner;
+    const ww = w || parseFloat(d.style.width) || 400;
+    const o = { x: Math.round((left / b.vw) * 1e5) / 1e3, y: Math.round((top / b.vh) * 1e5) / 1e3, corner: cornerOf(left, top, ww, miniH(d, ww), b) };
+    if (w) o.w = Math.round(w);
+    A.store.set(MINI_KEY, Object.assign(miniPrefs(), o));
+    return o;
   }
+  /* drop: stay exactly where released (clamped on-screen); within 16 px of an edge it eases onto the standard margin */
+  function dropMini(left, top) {
+    const b = miniBounds(), d = dock();
+    const w = parseFloat(d.style.width) || d.getBoundingClientRect().width || 400, hgt = miniH(d, w);
+    const p = clampPos(left, top, w, hgt, b);
+    const maxL = Math.max(0, b.vw - w), maxT = Math.max(0, b.vh - hgt - b.reserve);
+    let mag = false;
+    if (p.left < MAGNET) { p.left = Math.min(b.m, maxL); mag = true; } else if (maxL - p.left < MAGNET) { p.left = Math.max(0, maxL - b.m); mag = true; }
+    if (p.top < MAGNET) { p.top = Math.min(b.m, maxT); mag = true; } else if (maxT - p.top < MAGNET) { p.top = Math.max(0, maxT - b.m); mag = true; }
+    saveMiniPos(p.left, p.top);
+    if (mag && !RM) { d.classList.add("is-snapping"); setTimeout(() => d.classList.remove("is-snapping"), 320); }
+    placeMini();
+    return p;
+  }
+  const snapMini = dropMini; // kept for older callers
   (function miniDrag() {
     let st = null;
     const isCtl = (t) => t.closest("button, input, select, a, [data-seekbar], .pv__menu, .dock__rs");
     document.addEventListener("pointerdown", (ev) => {
       const d = dock();
-      if (!d || P.mode !== "mini" || P.fs || !ev.target.closest || !ev.target.closest("#dock")) return;
+      if (!d || !miniActive() || !ev.target.closest || !ev.target.closest("#dock")) return;
+      const r = d.getBoundingClientRect();
+      const l0 = parseFloat(d.style.left), t0 = parseFloat(d.style.top);
+      const box = { left: isNaN(l0) ? r.left : l0, top: isNaN(t0) ? r.top : t0, width: parseFloat(d.style.width) || r.width };
       if (ev.target.closest(".dock__rs")) {
-        const r = d.getBoundingClientRect();
-        st = { kind: "resize", x0: ev.clientX, w0: r.width, left: d.dataset.corner && d.dataset.corner[1] === "r", id: ev.pointerId };
+        const c = d.dataset.corner || "br";
+        const hgt = miniH(d, box.width);
+        st = { kind: "resize", x0: ev.clientX, w0: box.width, anchorRight: c[1] === "r", anchorBottom: c[0] === "b", right: box.left + box.width, bottom: box.top + hgt, left: box.left, top: box.top, id: ev.pointerId };
+        document.body.classList.add("is-resizing");
         ev.preventDefault(); return;
       }
       if (isCtl(ev.target)) return;
-      const r = d.getBoundingClientRect();
-      st = { kind: "drag", x0: ev.clientX, y0: ev.clientY, l0: r.left, t0: r.top, moved: false, id: ev.pointerId };
+      if (ev.pointerType === "mouse" && ev.target.tagName === "IMG") ev.preventDefault(); // no native image drag ghost
+      st = { kind: "drag", x0: ev.clientX, y0: ev.clientY, l0: box.left, t0: box.top, moved: false, id: ev.pointerId };
     });
     document.addEventListener("pointermove", (ev) => {
       if (!st) return;
-      const d = dock();
+      const d = dock(), b = miniBounds();
       if (st.kind === "resize") {
-        const dx = ev.clientX - st.x0, b = miniBounds();
-        const w = clamp(st.w0 + (st.left ? -dx : dx), b.minW, b.maxW);
-        A.store.set(MINI_KEY, Object.assign(miniPrefs(), { w: Math.round(w) }));
-        placeMini();
+        const dx = ev.clientX - st.x0;
+        const w = clamp(st.w0 + (st.anchorRight ? -dx : dx), b.minW, b.maxW);
+        d.style.width = Math.round(w) + "px";
+        const hgt = miniH(d, w);
+        const p = clampPos(st.anchorRight ? st.right - w : st.left, st.anchorBottom ? st.bottom - hgt : st.top, w, hgt, b);
+        d.style.left = Math.round(p.left) + "px"; d.style.top = Math.round(p.top) + "px";
+        st.last = { left: p.left, top: p.top, w };
         return;
       }
       const dx = ev.clientX - st.x0, dy = ev.clientY - st.y0;
       if (!st.moved && Math.hypot(dx, dy) < 6) return;
-      if (!st.moved) { st.moved = true; d.classList.add("is-dragging"); try { d.setPointerCapture && d.setPointerCapture(st.id); } catch (x) {} }
-      const b = miniBounds();
-      d.style.left = clamp(st.l0 + dx, 0, b.vw - 60) + "px";
-      d.style.top = clamp(st.t0 + dy, 0, b.vh - 40) + "px";
+      if (!st.moved) { st.moved = true; d.classList.add("is-dragging"); document.body.classList.add("is-grabbing"); try { d.setPointerCapture && d.setPointerCapture(st.id); } catch (x) {} }
+      const w = parseFloat(d.style.width) || d.getBoundingClientRect().width || 400;
+      const p = clampPos(st.l0 + dx, st.t0 + dy, w, miniH(d, w), b);
+      d.style.left = Math.round(p.left) + "px";
+      d.style.top = Math.round(p.top) + "px";
     });
     const end = () => {
       if (!st) return;
       const d = dock();
-      if (st.kind === "drag" && st.moved) { d.classList.remove("is-dragging"); P.dragJustEnded = performance.now(); snapMini(parseFloat(d.style.left) || 0, parseFloat(d.style.top) || 0); }
+      if (st.kind === "drag" && st.moved) { d.classList.remove("is-dragging"); document.body.classList.remove("is-grabbing"); P.dragJustEnded = performance.now(); dropMini(parseFloat(d.style.left) || 0, parseFloat(d.style.top) || 0); }
+      if (st.kind === "resize") { document.body.classList.remove("is-resizing"); if (st.last) { saveMiniPos(st.last.left, st.last.top, st.last.w); placeMini(); } }
       st = null;
     };
     document.addEventListener("pointerup", end);
     document.addEventListener("pointercancel", end);
+    document.addEventListener("dragstart", (ev) => { if (ev.target.closest && ev.target.closest("#dock")) ev.preventDefault(); });
   })();
 
   /* ---------------------------------------------------------------- fullscreen cinema (on the player shell, never the bare iframe) */
@@ -512,6 +604,7 @@
   async function enterFs() {
     if (!P.cur) { A.ui.toast("Play an episode first", { ms: 1500 }); return; }
     const d = dock();
+    if (P.sticky) { setSticky(false); const th = $("#theater"); if (th) th.scrollTop = 0; }
     P.fsPrevMode = P.mode;
     const req = d.requestFullscreen || d.webkitRequestFullscreen;
     if (req) {
@@ -532,25 +625,26 @@
     const d = dock();
     d.classList.toggle("is-fs", on);
     document.body.classList.toggle("fs-fallback", on && P.fsFallback);
-    $$('[data-pc="fs"]').forEach((b) => { b.setAttribute("aria-pressed", String(on)); b.setAttribute("aria-label", on ? "Exit fullscreen (F / Esc)" : "Fullscreen cinema (F)"); });
+    paintModeButtons();
     if (on) { P.rail = window.innerWidth > 900 && !!(P.cur && P.cur.chapters.length); paintRail(); showUI(); try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (x) {} }
-    else { P.rail = false; paintRail(); if (P.mode === "theater") requestAnimationFrame(placeDock); else if (P.mode === "mini") requestAnimationFrame(placeMini); }
+    else { P.rail = false; paintRail(); if (P.mode === "theater" && !P.sticky) requestAnimationFrame(placeDock); else if (P.mode === "mini" || P.sticky) requestAnimationFrame(placeMini); }
     paintAmbient();
   }
   document.addEventListener("fullscreenchange", onFsChange);
   document.addEventListener("webkitfullscreenchange", onFsChange);
 
-  /* ---------------------------------------------------------------- Zen focus mode + Pomodoro + do-not-disturb */
+  /* ---------------------------------------------------------------- Focus mode + Pomodoro + do-not-disturb */
   function toggleZen(force) {
     const on = force == null ? !P.zen : !!force;
     if (on === P.zen) return;
     P.zen = on;
+    if (on && P.sticky) setSticky(false);
     document.body.classList.toggle("is-zen", on);
     if (on) {
       if (P.mode !== "theater") expand();
       P.dnd = true;
       P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 };
-      A.ui.toast("Zen mode: notifications paused, 25-minute focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
+      A.ui.toast("Focus mode: notifications paused, 25-minute Focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
     } else { P.dnd = false; P.pomo = null; }
     paintPomo(); paintAmbient();
     requestAnimationFrame(placeDock);
@@ -575,7 +669,17 @@
   }
 
   /* ---------------------------------------------------------------- captions, quality */
-  function captionsOn(silent) { try { P.yt.loadModule && P.yt.loadModule("captions"); P.yt.setOption && P.yt.setOption("captions", "track", { languageCode: "en" }); } catch (x) {} if (!silent) fx("CC on", "c"); }
+  function captionsOn(silent) {
+    try { P.yt.loadModule && P.yt.loadModule("captions"); P.yt.setOption && P.yt.setOption("captions", "track", { languageCode: "en" }); } catch (x) {}
+    if (silent) return;
+    // confirm only if YouTube reports a caption track (getOption returns {} when there is none)
+    setTimeout(() => {
+      let tr = null; try { tr = P.yt.getOption ? P.yt.getOption("captions", "track") : undefined; } catch (x) {}
+      if (tr === undefined) { fx("CC requested", "c"); return; }
+      if (tr && (tr.languageCode || tr.displayName)) fx("CC on", "c");
+      else { A.ui.toast("This video has no captions YouTube can show here", { icon: "💬", ms: 2600 }); const S = L().SETTINGS; S.captions = false; A.store.set("settings:v3", S); applySettings(); }
+    }, P.vWait == null ? 1500 : P.vWait);
+  }
   function toggleCC() {
     const S = L().SETTINGS;
     S.captions = !S.captions; A.store.set("settings:v3", S);
@@ -583,7 +687,27 @@
     applySettings();
   }
   function qualities() { try { return (P.yt && P.ready && P.yt.getAvailableQualityLevels && P.yt.getAvailableQualityLevels()) || []; } catch (x) { return []; } }
-  function setQuality(q) { try { P.yt.setPlaybackQuality && P.yt.setPlaybackQuality(q); } catch (x) {} A.ui.toast(`Asked YouTube for ${esc(q)}. It may still choose quality automatically.`, { ms: 2600 }); }
+  const QL = { tiny: "144p", small: "240p", medium: "360p", large: "480p", hd720: "720p", hd1080: "1080p", hd1440: "1440p", hd2160: "4K", highres: "8K", auto: "Auto", default: "Auto", unknown: "Auto" };
+  const qLabel = (q) => QL[q] || q || "Auto";
+  function curQuality() { try { return (P.yt && P.ready && P.yt.getPlaybackQuality && P.yt.getPlaybackQuality()) || "unknown"; } catch (x) { return "unknown"; } }
+  function paintQuality() { const q = curQuality(); $$('[data-pc="settings"]').forEach((b) => { if (q && q !== "unknown" && q !== "auto" && q !== "default") b.dataset.q = qLabel(q).replace("p", ""); else delete b.dataset.q; }); return q; }
+  /* YouTube's IFrame API largely ignores quality requests from embeds. Try once (setPlaybackQuality + reload at the current
+   * time with suggestedQuality), then check what YouTube reports and only claim success if it really changed. */
+  function setQuality(q) {
+    if (!P.yt || !P.ready || !P.cur) { A.ui.toast("Start the video first", { ms: 1400 }); return Promise.resolve(false); }
+    const before = curQuality(), t = curTime(), id = P.cur.id;
+    if (before === q) { A.ui.toast(`Already playing at ${qLabel(q)}`, { ms: 1500 }); return Promise.resolve(true); }
+    try { P.yt.setPlaybackQuality && P.yt.setPlaybackQuality(q); } catch (x) {}
+    try { if (P.yt.loadVideoById) { const playing = P.playing; P.yt.loadVideoById({ videoId: id, startSeconds: Math.floor(t), suggestedQuality: q }); if (!playing) setTimeout(() => { try { P.yt.pauseVideo(); } catch (x) {} }, 400); } } catch (x) {}
+    A.ui.toast(`Asking YouTube for ${qLabel(q)}…`, { ms: 1200 });
+    return new Promise((res) => setTimeout(() => {
+      const now = paintQuality();
+      if (now === q) { A.ui.toast(`Quality: <b>${qLabel(q)}</b>`, { icon: "✅", ms: 1800 }); res(true); return; }
+      const url = `https://www.youtube.com/watch?v=${encodeURIComponent(id)}&t=${Math.floor(curTime())}s`;
+      A.ui.toast(`YouTube controls quality automatically for embedded videos (still ${qLabel(now)}). Open it on YouTube at this moment to pick quality manually.`, { icon: "ℹ️", ms: 9000, force: true, action: { label: "Open on YouTube", fn: () => window.open(url, "_blank", "noopener,noreferrer") } });
+      P.qFail = true; res(false);
+    }, P.qWait == null ? 3000 : P.qWait));
+  }
   function toggleNative() {
     const S = L().SETTINGS; S.nativeControls = !S.nativeControls; A.store.set("settings:v3", S);
     if (!P.cur) return applySettings();
@@ -750,7 +874,7 @@
     document.addEventListener("pointerdown", (ev) => {
       if (!ev.target.closest || ev.target !== hit()) return;
       showUI();
-      if (ev.pointerType === "touch" && P.mode !== "mini") {
+      if (ev.pointerType === "touch" && P.mode !== "mini" && !P.sticky) {
         const r = hit().getBoundingClientRect();
         sw = { x0: ev.clientX, y0: ev.clientY, w: r.width, h: r.height, right: ev.clientX - r.left > r.width / 2, vol0: L().SETTINGS.vol, t0: curTime(), axis: null };
       }
@@ -774,7 +898,7 @@
       const now = performance.now();
       if (now - tapT < 300) {
         clearTimeout(tapTimer); tapT = 0;
-        if (P.mode === "mini") { expand(); return; }
+        if (P.mode === "mini" || P.sticky) { expand(); return; }
         if (fx0 < 0.35) seek(-10); else if (fx0 > 0.65) seek(10); else toggleFs();
         return;
       }
@@ -805,19 +929,19 @@
     let html = "";
     if (kind === "settings") {
       const sl = P.sleep ? (P.sleep.type === "time" ? `${Math.ceil((P.sleep.until - Date.now()) / 60e3)} min left` : P.sleep.type === "chapter" ? "end of chapter" : "end of episode") : "Off";
-      html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", "Auto")}${it("cc", "Captions (C)", S.captions ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
+      html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", esc(qLabel(curQuality())))}${it("cc", "Captions (C)", S.captions ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
         ${it("autoskip", "Auto-skip to researcher in hearings", S.autoSkipHearing ? "On" : "Off")}${it("autoplay", "Autoplay next", S.autoplay ? "On" : "Off")}${it("native", "Use YouTube's own controls", S.nativeControls ? "On" : "Off")}`;
     } else if (kind === "speed") {
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Speed <b>${esc(sp + "×")}</b></p><input type="range" class="msl" id="pvSpeedSl" min="0.25" max="3" step="0.05" value="${sp}" aria-label="Playback speed"><div class="mgrid">${SPEEDS.map((s) => `<button class="mc ${s === sp ? "is-on" : ""}" data-pc="speed-set" data-v="${s}">${s}×</button>`).join("")}</div><p class="mnote">Fine steps of 0.05×. YouTube embeds cap at 2×.</p>`;
     } else if (kind === "quality") {
       const q = qualities();
-      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p>${q.length ? q.map((x) => it("quality-set", esc(x), null, `data-v="${esc(x)}"`)).join("") : `<p class="mnote">YouTube does not expose quality levels for this video. It adapts quality automatically to your connection and player size.</p>`}<p class="mnote">YouTube may ignore quality requests from embedded players.</p>`;
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p>${q.length ? q.map((x) => it("quality-set", esc(x), null, `data-v="${esc(x)}"`)).join("") : `<p class="mnote">YouTube does not expose quality levels for this video. It adapts quality automatically to your connection and player size.</p>`}<p class="mnote">Now playing: <b>${esc(qLabel(curQuality()))}</b>. YouTube usually chooses quality automatically in embedded players; if a pick does not stick you will get a link to open this moment on YouTube instead.</p>`;
     } else if (kind === "sleep") {
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Sleep timer</p>${[["off", "Off"], ["15", "15 minutes"], ["30", "30 minutes"], ["60", "60 minutes"], ["chapter", "End of this chapter"], ["end", "End of episode"]].map(([v, l]) => it("sleep-set", l, null, `data-v="${v}"`)).join("")}`;
     } else if (kind === "loop") {
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Loop A–B</p>${it("loop-a", "Set start here ([)", P.loop ? esc(fmtTime(P.loop.a)) : null)}${it("loop-b", "Set end here (])", P.loop && P.loop.b != null ? esc(fmtTime(P.loop.b)) : null)}${it("loop-clear", "Clear loop (\\)")}`;
     } else if (kind === "more") {
-      html = `<p class="mh">More</p>${it("pip", "Float window (always on top)", "I")}${it("audio", "Headphones mode", "A")}${it("zen", "Zen focus mode", "Z")}${it("dnd", "Do not disturb", P.dnd ? "On" : "Off")}${it("bookmark", "Bookmark this moment", "B")}${it("note", "Note at this moment", "N")}${it("link", "Copy link at this time", "")}${it("markwatched", P.cur && h().stateOf(P.cur.id) === "done" ? "Mark as unwatched" : "Mark as watched", "")}${it("sharecard", "Share card image", "")}${it("rail", "Chapter rail", P.rail ? "On" : "Off")}`;
+      html = `<p class="mh">More</p>${it("pip", "Float window (always on top)", "O")}${it("audio", "Headphones mode", "A")}${it("zen", "Focus mode", "Z")}${it("dnd", "Do not disturb", P.dnd ? "On" : "Off")}${it("bookmark", "Bookmark this moment", "B")}${it("note", "Note at this moment", "N")}${it("link", "Copy link at this time", "")}${it("markwatched", P.cur && h().stateOf(P.cur.id) === "done" ? "Mark as unwatched" : "Mark as watched", "")}${it("sharecard", "Share card image", "")}${it("rail", "Chapter rail", P.rail ? "On" : "Off")}`;
     }
     m.innerHTML = html;
     m.hidden = false;
@@ -833,7 +957,7 @@
   }
   function paintAmbient() {
     const amb = $("#ambient"), e = P.cur;
-    const on = !!e && P.mode === "theater" && !P.fs && !dock().hidden;
+    const on = !!e && P.mode === "theater" && !P.sticky && !P.fs && !dock().hidden;
     if (!amb) return;
     amb.hidden = !on;
     if (on) {
@@ -872,7 +996,9 @@
       $$("[data-pchap]").forEach((el) => (el.textContent = c ? c.title : ""));
       $$("#sideBody .chap, #pvRail .chap").forEach((el) => el.classList.toggle("is-now", Number(el.dataset.i) === ci));
       const now = $("#sideBody .chap.is-now");
-      if (now && P.side === "chapters" && !$("#theater").hidden) now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" });
+      /* follow the current chapter only while the list is already on screen: the episode page scrolls as one page now,
+       * so an unconditional scrollIntoView would yank the whole page (and push the player into its sticky mini). */
+      if (now && P.side === "chapters" && !$("#theater").hidden) { const th = $("#theater"), r = now.getBoundingClientRect(), vh = th.clientHeight || window.innerHeight; const sideBySide = window.innerWidth > 900 && !document.body.classList.contains("is-wide"); const listOn = r.bottom > 0 && r.top < vh; if (sideBySide && listOn && !P.sticky) now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" }); }
       const rn = $("#pvRail .chap.is-now"); if (rn && P.rail) rn.scrollIntoView({ block: "nearest" });
     }
     const sk = $("#pvSkip");
@@ -1012,17 +1138,70 @@
   function toggleWatchedCur() {
     if (!P.cur) return;
     const id = P.cur.id;
+    const btn = $('#thInfo [data-th="watched"]') || $('[data-pc="markwatched"]');
     if (h().stateOf(id) === "done") { h().unmarkWatched(id); A.ui.toast("Marked as unwatched", { icon: "↩️", ms: 1500 }); }
-    else { tick(true); flush(); h().markWatched(id); A.ui.toast("Marked as watched", { icon: "✅", action: { label: "Undo", fn: () => { h().unmarkWatched(id); A.views.refreshCardsFor(id); paintTheater(); } } }); }
-    A.views.refreshCardsFor(id); paintTheater();
+    else { tick(true); flush(); h().markWatched(id); A.ui.toast("Marked as watched", { icon: "✅", action: { label: "Undo", fn: () => { h().unmarkWatched(id); A.views.refreshCardsFor(id); A.picks && A.picks.sync(id); } } }); A.fx && A.fx.celebrate("watched", btn, true); }
+    A.views.refreshCardsFor(id); A.picks && A.picks.sync(id);
     if (!$("#dockErr").hidden && P.errCode != null) showEmbedError(P.cur, P.errCode);
+  }
+
+  /* ---------------------------------------------------------------- YouTube-style mode buttons: miniplayer (i), theater (t), full screen (f).
+   * Each keeps the same iframe; only the dock's mode/geometry changes, so playback never reloads or loses time. */
+  const MI = {
+    mini: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><rect x="12" y="11.5" width="7.5" height="6" rx="1.2" fill="currentColor" stroke="none"/></svg>',
+    expand: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><path d="M14 10 7.5 16.5M7.5 11.5v5h5"/></svg>',
+    wide: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="1.5" y="7" width="21" height="10" rx="2"/></svg>',
+    narrow: '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="5.5" width="14" height="13" rx="2"/></svg>',
+    fs: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
+    fsExit: '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/></svg>',
+  };
+  function setBtn(b, icon, label, pressed) {
+    const o = b.querySelector("svg"); const t = document.createElement("template"); t.innerHTML = icon; const n = t.content.firstElementChild;
+    if (o && o.outerHTML !== n.outerHTML) o.replaceWith(n); else if (!o) b.prepend(n);
+    b.setAttribute("aria-label", label); b.title = label; b.dataset.state = label;
+    if (pressed != null) b.setAttribute("aria-pressed", String(pressed));
+  }
+  function paintModeButtons() {
+    const miniNow = P.mode === "mini" || !!P.sticky;
+    $$('[data-pc="mini"]').forEach((b) => setBtn(b, miniNow ? MI.expand : MI.mini, miniNow ? "Expand (i)" : "Miniplayer (i)", miniNow));
+    $$('[data-pc="expand"]').forEach((b) => setBtn(b, MI.expand, "Expand (i)"));
+    $$('[data-pc="wide"]').forEach((b) => setBtn(b, P.wide ? MI.narrow : MI.wide, P.wide ? "Default view (t)" : "Theater mode (t)", !!P.wide));
+    $$('[data-pc="fs"]').forEach((b) => setBtn(b, P.fs ? MI.fsExit : MI.fs, P.fs ? "Exit full screen (f)" : "Full screen (f)", !!P.fs));
+  }
+  function toggleMini() {
+    if (!P.cur) return;
+    if (P.mode === "mini" || P.sticky) expand(); else minimize();
+    paintModeButtons();
+  }
+  async function toggleWide(force) {
+    if (!P.cur) return;
+    const on = force == null ? !P.wide : !!force;
+    if (P.fs) await exitFs();
+    if (P.mode !== "theater") expand(); else if (P.sticky) backToTop();
+    P.wide = on;
+    document.body.classList.toggle("is-wide", on);
+    const S = L().SETTINGS; S.theaterWide = on; A.store.set("settings:v3", S);
+    requestAnimationFrame(() => { placeDock(); paintAmbient(); });
+    paintModeButtons();
+  }
+
+  /* in-place update of the theater's action buttons (no re-render of the episode details) */
+  function patchTheater(id) {
+    const e = P.cur; if (!e || e.id !== id) return;
+    const box = $("#thInfo"); if (!box || !box.querySelector(".th__act")) return;
+    const L0 = L(), I = A.ui.ICON;
+    const fav = L0.FAVS.has(id), q = L0.QUEUE.includes(id), done = h().stateOf(id) === "done";
+    const set = (sel, on, icon, text) => { const b = box.querySelector(sel); if (!b) return; b.setAttribute("aria-pressed", String(on)); b.classList.toggle("is-on", on); if (icon) { const o = b.querySelector("svg"); const t = document.createElement("template"); t.innerHTML = icon; const n = t.content.firstElementChild; if (o && n && o.innerHTML !== n.innerHTML) o.replaceWith(n); } const sp = b.querySelector("span"); if (sp && sp.textContent !== text) sp.textContent = text; };
+    set('[data-th="fav"]', fav, fav ? I.heartF : I.heart, fav ? "Favourited" : "Favourite");
+    set('[data-th="queue"]', q, q ? I.queued : I.queue, q ? "Queued" : "Queue");
+    set('[data-th="watched"]', done, null, done ? "Mark unwatched" : "Mark as watched");
   }
 
   /* ---------------------------------------------------------------- wiring: one delegated handler for every control */
   const ACT = {
     play: togglePlay, back10: () => seek(-10), fwd10: () => seek(10), back30: () => seek(-30), fwd30: () => seek(30), back5: () => seek(-5), fwd5: () => seek(5),
     prevch: prevChapter, nextch: nextChapter, next: playNext, mute: toggleMute, cc: toggleCC, fs: toggleFs, pip: popOut, audio: audioMode, zen: () => toggleZen(), dnd: toggleDnd,
-    theater: () => (P.mode === "theater" ? minimize() : expand()), mini: minimize, expand, close: closePlayer, note: openNote, bookmark, skip: skipIntro,
+    theater: () => (P.mode === "theater" && !P.sticky ? minimize() : expand()), mini: () => toggleMini(), wide: () => toggleWide(), expand, close: () => { if (P.sticky) { try { P.yt && P.yt.pauseVideo && P.yt.pauseVideo(); } catch (x) {} P.stickyOff = true; P.sticky = true; setSticky(false); P.stickyOff = true; return; } closePlayer(); }, note: openNote, bookmark, skip: skipIntro,
     link: () => P.cur && A.views.copyLinkAt(P.cur.id, curTime()), markwatched: toggleWatchedCur, sharecard: () => P.cur && A.feat && A.feat.shareCard(P.cur.id, curTime()),
     retry: () => { if (!P.cur) return; const id = P.cur.id, t = P.lastPos; destroyPlayer(); $("#dockErr").hidden = true; P.errCode = null; createPlayer(freshHost(), id, t); },
     rail: () => { P.rail = !P.rail; paintRail(); if (P.menu) closeMenu(); },
@@ -1038,6 +1217,7 @@
   const KEEP_MENU = new Set(["settings", "more", "speed", "menu-settings", "menu-speed", "menu-quality", "menu-sleep", "menu-loop", "speed-set", "sleep-set", "loop-a", "loop-b", "loop-clear", "autoskip", "autoplay", "cc", "dnd"]);
   function wire() {
     const d = dock();
+    P.wide = !!L().SETTINGS.theaterWide; document.body.classList.toggle("is-wide", P.wide); paintModeButtons();
     d.addEventListener("click", (ev) => {
       const b = ev.target.closest("[data-pc]");
       if (b && d.contains(b)) {
@@ -1058,7 +1238,8 @@
     $("#thAudio").onclick = audioMode;
     $("#thFs").onclick = toggleFs;
     $("#thZen").onclick = () => toggleZen();
-    $("#theater").addEventListener("scroll", () => requestAnimationFrame(placeDock), { passive: true });
+    $("#theater").addEventListener("scroll", () => requestAnimationFrame(() => { checkSticky(); placeDock(); }), { passive: true });
+    watchSlot();
     $("#sideTabs").addEventListener("click", (ev) => { const b = ev.target.closest("[data-side]"); if (!b) return; P.side = b.dataset.side; paintSide(); });
     $("#theater").addEventListener("click", (ev) => {
       const sk = ev.target.closest("[data-seek]");
@@ -1069,8 +1250,8 @@
       const th = ev.target.closest("[data-th]");
       if (th) {
         const a = th.dataset.th, e = P.cur;
-        if (a === "fav") { h().toggleFav(e.id); paintTheater(); A.views.refreshCardsFor(e.id); }
-        if (a === "queue") { h().toggleQueue(e.id); paintTheater(); A.views.paintQueueCount(); A.views.refreshCardsFor(e.id); }
+        if (a === "fav") { const on = h().toggleFav(e.id); A.views.refreshCardsFor(e.id); A.fx && A.fx.celebrate("fav", th, on); }
+        if (a === "queue") { const on = h().toggleQueue(e.id); A.views.paintQueueCount(); A.views.refreshCardsFor(e.id); A.fx && A.fx.celebrate("queue", th, on); }
         if (a === "watched") toggleWatchedCur();
         if (a === "playlist" && A.feat) A.feat.playlistPicker(e.id, th);
         if (a === "link") A.views.copyLinkAt(e.id, curTime());
@@ -1082,7 +1263,7 @@
 
   A.player = {
     P, play, seek, jumpTo, togglePlay, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
-    tick, flush, paintSide, paintTheater, placeDock, placeMini, snapMini, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleZen, toggleDnd, toggleCC,
+    tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC,
     frameStep, bookmark, setLoop, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
 })(window.ASFE);
