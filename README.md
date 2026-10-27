@@ -10,7 +10,8 @@
 <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><img src="https://img.shields.io/badge/Explainer-AI%202027%20%26%202040-f59e0b?style=for-the-badge&logo=readthedocs&logoColor=white&labelColor=07111f" alt="AI 2027 and 2040 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
-<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-41%20talks-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="41 videos"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
+<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-101%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="101 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS3-animated-3b82f6?style=flat-square&logo=css3&logoColor=white&labelColor=07111f" alt="CSS3">
@@ -18,6 +19,8 @@
 <img src="https://img.shields.io/badge/build%20step-none-10b981?style=flat-square&labelColor=07111f" alt="No build step">
 <img src="https://img.shields.io/badge/dependencies-zero-84cc16?style=flat-square&labelColor=07111f" alt="Zero dependencies">
 <img src="https://img.shields.io/badge/reduced%20motion-respected-22d3ee?style=flat-square&labelColor=07111f" alt="Reduced motion respected">
+<img src="https://img.shields.io/badge/watch%20history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="Watch history stays in the browser">
+<img src="https://img.shields.io/badge/AI%20safety%20episodes-52%20%2B%208-f59e0b?style=flat-square&labelColor=07111f" alt="52 plus 8 full episodes">
 <img src="https://img.shields.io/github/last-commit/lo3elyon/ASI?style=flat-square&color=14b8a6&labelColor=07111f" alt="Last commit">
 <img src="https://img.shields.io/github/repo-size/lo3elyon/ASI?style=flat-square&color=f59e0b&labelColor=07111f" alt="Repo size">
 
@@ -31,6 +34,7 @@
 <td align="center"><a href="#04-deep-dive"><b>Deep dive</b></a></td>
 <td align="center"><a href="#04b-black-october"><b>Black October</b></a></td>
 <td align="center"><a href="#04c-jacob-coxon"><b>Jacob Coxon</b></a></td>
+<td align="center"><a href="#04d-full-episodes"><b>Full episodes</b></a></td>
 <td align="center"><a href="#05-watch"><b>Videos</b></a></td>
 <td align="center"><a href="#06-people"><b>Team</b></a></td>
 <td align="center"><a href="#07-architecture"><b>Architecture</b></a></td>
@@ -55,9 +59,9 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/3-live%20explainers-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/4-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/41-linked%20talks-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player and video guides</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/101-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides and a 60-episode library app</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
 </tr>
 </table>
@@ -72,6 +76,7 @@ flowchart LR
     L --> E1["AI 2027 and AI 2040<br/>/ai-2027-2040/"]
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
+    L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>player, history, badges"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -83,7 +88,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6,E7 live
+    class E1,E6,E7,E8 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -116,6 +121,12 @@ flowchart LR
 <b>Jacob Coxon on YouTube</b><br>
 <sub>20 hour-plus videos, role filter chips, search and a "Does he speak?" line on every card.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="92%" alt="Jacob Coxon on YouTube hero"></a>
+
+<br><br>
+
+<b>AI Safety Full Episodes</b><br>
+<sub>A streaming-style app: 52 full October 2026 episodes, theater and mini player, chapters, strict watch history, Up Next, queue, notes and badges.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="92%" alt="AI Safety Full Episodes hero: the NYC Council hearing"></a>
 
 <br><br>
 
@@ -190,6 +201,13 @@ flowchart LR
 <td><a href="jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a></td>
 <td><a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><b>Jacob Coxon on YouTube</b></a><br><sub>20 hour-plus videos about the ex-Anthropic researcher, labelled by whether he speaks</sub></td>
 <td><sub>Story of his resignation and NYC Council testimony, 6 stat figures, colour-coded role legend, filter chips (Guest, Testimony, Clips, About him, Unverified), live search, 20 video cards with thumbnails, timestamps and summaries, caveats, every link</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-10-27</sub></td>
+</tr>
+<tr>
+<td><a href="ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><b>AI Safety Full Episodes</b></a><br><sub>52 verified full-length AI safety episodes of October 2026, plus 8 from Sep 27–30</sub></td>
+<td><sub>Streaming-style web app: embedded YouTube player with theater and docked mini modes, custom controls and shortcuts, clickable chapters, strict watch history (real playback only, coverage %, sessions, streaks, export/import), Up Next with 10 s autoplay countdown, drag-to-reorder queue, favorites, timestamped notes, speaker directory, October heatmap, fuzzy search and filters, levels and 17 badges, light/dark</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
 </tr>
@@ -509,6 +527,82 @@ flowchart TD
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
+<a id="04d-full-episodes"></a>
+<h2>04d. Deep dive: AI Safety Full Episodes</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="100%" alt="AI Safety Full Episodes"></a></td>
+<td width="55%" valign="top">
+<img src="https://img.shields.io/badge/type-web%20app-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/compiled-Oct%2027%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/episodes-52%20%2B%208-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/runtime-~70h-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
+A personal streaming app for every <b>full-length</b> AI safety episode of October 1–27, 2026: whole podcasts, interviews, debates, talks, panels and two government hearings, each verified against its transcript, one copy per event. You watch inside the page, the app remembers exactly how much you have <i>really</i> played, suggests what to watch next, and levels you up from <i>Novice</i> to <i>Superalignment Sage</i>. Its own <a href="ai-safety-full-episodes/README.md">README</a> documents the data schema, the watch-history rules and how to add daily JSON files.
+</td>
+</tr>
+</table>
+
+<div align="center">
+<table>
+<tr>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/31-PODCAST-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>podcasts and interviews</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/8-TALK-22d3ee?style=for-the-badge&labelColor=07111f" alt=""><br><sub>talks and lectures</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/6-PANEL-3b82f6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>panels and roundtables</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/5-DEBATE-f97316?style=for-the-badge&labelColor=07111f" alt=""><br><sub>debates</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/2-HEARING-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>NYC Council, UK Parliament</sub></td>
+</tr>
+</table>
+</div>
+
+```mermaid
+flowchart LR
+    D[("data/episodes.json<br/>just-outside.json<br/>manifest.json + daily/")] --> APP["app.js"]
+    APP --> LIB["Library<br/>featured, continue, heatmap,<br/>search, filters, speakers"]
+    APP --> PLY["Player<br/>theater + mini dock,<br/>chapters, shortcuts"]
+    PLY -->|"every second"| CLK{"Media moved at<br/>playback rate?"}
+    CLK -->|"yes"| W["Count real seconds,<br/>mark 10 s slice"]
+    CLK -->|"no: seek or pause"| X["Count nothing"]
+    W --> LS[("localStorage<br/>history, notes, queue, badges")]
+    LS --> HIS["History<br/>timeline, streaks, export"]
+    LS --> PRO["Profile<br/>XP, 8 levels, 17 badges"]
+    PLY -->|"ended"| UP["Up Next<br/>queue first, then best match,<br/>10 s countdown"]
+    UP --> PLY
+    classDef d fill:#2a1d05,stroke:#f59e0b,stroke-width:2px,color:#fde68a
+    classDef a fill:#063b33,stroke:#14b8a6,stroke-width:2px,color:#e6f6ff
+    classDef q fill:#0b2a3a,stroke:#22d3ee,stroke-width:2px,color:#e6f6ff
+    class D,LS d
+    class APP,LIB,PLY,W,HIS,PRO,UP a
+    class CLK,X q
+```
+
+```mermaid
+stateDiagram-v2
+    [*] --> NotStarted
+    NotStarted --> Playing: play
+    Playing --> Seeking: skip or scrub
+    Seeking --> Playing: never counted
+    Playing --> Paused
+    Paused --> Playing
+    Playing --> InProgress: saved every 5 s
+    InProgress --> Completed: 90% of slices played
+    InProgress --> Playing: Resume at mm:ss
+```
+
+<details>
+<summary><b>What the app has</b></summary>
+<br>
+<table>
+<tr><th align="left">Section</th><th align="left">What you can do</th></tr>
+<tr><td><b>Library</b></td><td>Hero stats, six Featured episodes, Continue Watching, "Because you watched…", an October day-strip heatmap, fuzzy search, filter chips (format, length, people group, watch state), six sorts, 16:9 cards with duration, format and progress badges, and a Just-outside-the-window row.</td></tr>
+<tr><td><b>Player</b></td><td>YouTube IFrame API on youtube-nocookie, theater view that docks into a corner mini player, ±10/±30 s, speed 0.75–2×, volume, fullscreen, chapter ticks and coverage on the seek bar, clickable chapters, keyboard shortcuts with a <kbd>?</kbd> overlay.</td></tr>
+<tr><td><b>History</b></td><td>Real watch time only, percent actually played, sessions, completed at 90 %, total hours, 28-day chart, streaks, filters, clear one or all, export and import JSON, resume toast.</td></tr>
+<tr><td><b>Up Next and queue</b></td><td>Suggestions by shared speakers, people group, format, channel and topic overlap, unwatched first; autoplay countdown; drag-to-reorder queue that plays first.</td></tr>
+<tr><td><b>Speakers</b></td><td>Directory of 57 people in 9 groups with episode counts, and a page per person with a Queue all button.</td></tr>
+<tr><td><b>Profile</b></td><td>XP ring, 8 levels, 17 badges with progress (The Coxon Files, Every Format, On the Record, Seven-Day Streak…).</td></tr>
+<tr><td><b>Notes</b></td><td>Timestamped personal notes per episode, plus the method: verified against transcripts, one copy per event, ~ marks estimated dates, compiled Oct 27, 2026.</td></tr>
+</table>
+</details>
+
+<img src="docs/readme/divider.svg" width="100%" alt="">
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -586,6 +680,21 @@ On the site every talk opens in a full screen focus mode player with a large clo
 </tr>
 </table>
 
+<b>AI Safety Full Episodes: the six featured episodes</b> (all 60 play inside <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/">the app</a>)
+
+<table>
+<tr>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI"><img src="https://i.ytimg.com/vi/Qpuj1nhcxiI/hqdefault.jpg" width="100%" alt="Ex-Anthropic Insider Tells All | PBD Podcast #868"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>Ex-Anthropic Insider Tells All | PBD Podcast #868</sub></b><br><sub>PBD Podcast · Jacob Coxon · 1:45:17</sub></td>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=JIMXEuT_ZAU"><img src="https://i.ytimg.com/vi/JIMXEuT_ZAU/hqdefault.jpg" width="100%" alt="What This OpenAI Insider Saw That Made Him Quit"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>What This OpenAI Insider Saw That Made Him Quit</sub></b><br><sub>The Ezra Klein Show · David Robinson · 1:14:55</sub></td>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=qDzg-xvkeXw"><img src="https://i.ytimg.com/vi/qDzg-xvkeXw/hqdefault.jpg" width="100%" alt="AI Whistleblower: They Are Hiding What Is Really Happening"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>AI Whistleblower: They Are Hiding What Is Really Happening</sub></b><br><sub>The Diary Of A CEO · Jeffrey Ladish · 2:03:31</sub></td>
+</tr>
+<tr>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=IejFLhF8efQ"><img src="https://i.ytimg.com/vi/IejFLhF8efQ/hqdefault.jpg" width="100%" alt="Public Testimony at NYC Council Hearing on AI Safeguards"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>Public Testimony at NYC Council Hearing on AI Safeguards</sub></b><br><sub>NYC Council · Coxon, Kokotajlo, Turner · 9:52:51</sub></td>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=LlGNBPJW8Ww"><img src="https://i.ytimg.com/vi/LlGNBPJW8Ww/hqdefault.jpg" width="100%" alt="AI safety: UK Parliament Business, Innovation, Science and Trade Committee"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>AI safety: UK Parliament Business, Innovation, Science and Trade Committee</sub></b><br><sub>UK Parliament · Kokotajlo, Irving, Adler, Lynch · 3:17:15</sub></td>
+<td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=tjAg_KxApmw"><img src="https://i.ytimg.com/vi/tjAg_KxApmw/hqdefault.jpg" width="100%" alt="Whistleblowers or justified OpenAI firing?"></a><br><img src="https://img.shields.io/badge/Full%20Episodes-f59e0b?style=flat-square" alt=""><br><b><sub>Whistleblowers or justified OpenAI firing?</sub></b><br><sub>Machine Gods · Balesni and Korbak · 48:23</sub></td>
+</tr>
+</table>
+
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
 <a id="06-people"></a>
@@ -636,6 +745,12 @@ flowchart TB
             A3["hark.css hark-hero.css hark.js hero.jpg"]
             RM3["README.md"]
         end
+        subgraph R4["/ai-safety-full-episodes/"]
+            I4["index.html"]
+            A4["assets/ app.css app.js data-inline.js"]
+            D4[("data/ episodes.json just-outside.json manifest.json daily/")]
+            RM4["README.md"]
+        end
         subgraph RN["/next-topic/"]
             IN["index.html"]
         end
@@ -649,6 +764,9 @@ flowchart TB
     I2 --> A2
     PAGES -->|"slug"| I3
     I3 --> A3
+    PAGES -->|"slug"| I4
+    I4 --> A4
+    A4 -->|"fetch"| D4
     PAGES -.->|"slug"| IN
     I1 --> A1
     REPO -->|"git push"| GH["GitHub Pages<br/>lo3elyon.github.io/ASI"]
@@ -658,7 +776,8 @@ flowchart TB
     classDef deploy fill:#0c2a12,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class ROOT,RA,DOCS hub
     class PAGES data
-    class I1,A1,RM1,I2,A2,RM2,I3,A3,RM3,IN page
+    class I1,A1,RM1,I2,A2,RM2,I3,A3,RM3,I4,A4,RM4,IN page
+    class D4 data
     class GH deploy
 ```
 
@@ -671,7 +790,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -683,6 +802,11 @@ ASI/
 ├── jacob-coxon-podcasts/      video guide route: 20 hour-plus videos about Jacob Coxon
 │   ├── index.html
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
+│   └── README.md
+├── ai-safety-full-episodes/   web app route: 52 full AI safety episodes with player, watch history and badges
+│   ├── index.html
+│   ├── assets/                app.css  app.js  data-inline.js  cover.jpg
+│   ├── data/                  episodes.json  just-outside.json  manifest.json  daily/
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
 ├── README.md
@@ -837,8 +961,18 @@ A local server is better than opening the file directly, because some browsers b
 </details>
 
 <details>
+<summary><b>Where is my watch history stored in AI Safety Full Episodes</b></summary>
+<br>Only in your browser's localStorage. Nothing is uploaded and there is no account. Only real playback counts as watched (seeks and pauses never do), an episode completes at 90% of it actually played, and you can export or import the history as JSON from the History tab.
+</details>
+
+<details>
+<summary><b>How were the full episodes chosen</b></summary>
+<br>Full-length episodes only (no clip compilations), uploaded October 1 to 27, 2026, each checked against its transcript, description or chapters for who speaks and what is covered, keeping one upload per event. Dates marked ~ are estimated. Eight episodes from September 27 to 30 sit in a separate "Just outside the window" row. New days can be added as JSON files listed in <code>ai-safety-full-episodes/data/manifest.json</code>.
+</details>
+
+<details>
 <summary><b>Are the images real</b></summary>
-<br>The team portraits come from the AI Futures Project. The scene illustrations, the hero art and the Black October server-room image are AI generated. The Jacob Coxon cover is the YouTube thumbnail of his Megyn Kelly interview.
+<br>The team portraits come from the AI Futures Project. The scene illustrations, the hero art and the Black October server-room image are AI generated. The Jacob Coxon cover is the YouTube thumbnail of his Megyn Kelly interview. The AI Safety Full Episodes cover is a still from the NYC Council hearing video.
 </details>
 
 <details>
@@ -858,6 +992,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: a streaming-style app for 52 verified full AI safety episodes of October 2026 (+8 from Sep 27–30) with embedded player, chapters, strict watch history, Up Next, queue, notes, speaker directory and badges. Data in <code>data/*.json</code> with a manifest for daily files. Cover added to <code>assets/</code>.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a>: 20 hour-plus YouTube videos about Jacob Coxon, labelled by role, with filters and search. Cover added to <code>assets/</code>.</td></tr>
 <tr><td><sub>2026-10-24</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><code>/black-october-2026/</code></a>: October 2026 hacks and AI incidents.</td></tr>
 <tr><td><sub>2026-10-22</sub></td><td>Launched the hub with <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><code>/ai-2027-2040/</code></a>.</td></tr>
@@ -874,6 +1009,7 @@ A local server is better than opening the file directly, because some browsers b
 <tr><td><b>AI 2040: Plan A</b></td><td><a href="https://ai-2040.com/">Site</a>, <a href="https://ai-2040.com/summary">Summary</a>, <a href="https://ai-2040.com/AI-2040.pdf">PDF</a></td></tr>
 <tr><td><b>Black October 2026</b></td><td><a href="https://www.securitytoday.de/en/2026/10/22/black-october-many-attacks-had-been-running-for-months/">SecurityToday</a>, <a href="https://forkast.news/black-october-is-a-disclosure-wave-the-label-hides-the-clock/">Forkast</a>, plus about 100 sources listed on the <a href="https://lo3elyon.github.io/ASI/black-october-2026/">page itself</a></td></tr>
 <tr><td><b>Jacob Coxon on YouTube</b></td><td><a href="https://www.youtube.com/watch?v=F-Tf5Mo84N4">Megyn Kelly</a>, <a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=_Yl73PhMtm8">AP: NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council recording</a>, plus 16 more linked on <a href="jacob-coxon-podcasts/">the page</a></td></tr>
+<tr><td><b>AI Safety Full Episodes</b></td><td><a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=JIMXEuT_ZAU">The Ezra Klein Show</a>, <a href="https://www.youtube.com/watch?v=qDzg-xvkeXw">The Diary Of A CEO</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=LlGNBPJW8Ww">UK Parliament committee</a>, <a href="https://www.youtube.com/watch?v=tjAg_KxApmw">Machine Gods</a>, plus every link in <a href="ai-safety-full-episodes/data/episodes.json">episodes.json</a></td></tr>
 <tr><td><b>AI Futures Project</b></td><td><a href="https://ai-futures.org/">Home</a>, <a href="https://ai-futures.org/about/">Team</a>, <a href="https://www.aifuturesmodel.com/">AI Futures Model</a>, <a href="https://blog.aifutures.org/">Blog</a></td></tr>
 </table>
 
