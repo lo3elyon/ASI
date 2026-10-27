@@ -11,6 +11,7 @@
   const MONTHS_DESC = MONTH_LIST.slice(1).slice().reverse();
   const download = (name, text, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); };
   const refresh = (id) => { A.views.refreshCardsFor(id); paintGoal(); };
+  const fx = (k, el, on) => A.fx && A.fx.celebrate(k, el, on);
 
   /* ================================================================ accent themes */
   const ACCENTS = [
@@ -19,6 +20,7 @@
     { id: "violet", label: "Violet (optional)", c: ["#8b5cf6", "#22d3ee"], opt: true }, { id: "rose", label: "Rose (optional)", c: ["#f43f5e", "#f59e0b"], opt: true },
   ];
   function setAccent(id, quiet) {
+    if (A.themes) { const t = A.themes.apply(id, { keepMode: true }); if (!quiet) ui().toast(`Theme colour: ${esc(t.name.replace(" (optional)", ""))}`, { ms: 1200 }); return; }
     if (!ACCENTS.some((a) => a.id === id)) id = "amber";
     document.documentElement.setAttribute("data-accent", id);
     try { localStorage.setItem("asfe:accent", id); } catch (e) {}
@@ -68,6 +70,7 @@
       <button class="pop__i" data-ctx="queue">${q ? ui().ICON.queued : ui().ICON.queue}<span>${q ? "Remove from queue" : "Add to queue"}</span></button>
       <button class="pop__i" data-ctx="later">${ui().ICON.later}<span>${later ? "Remove from Watch later" : "Watch later"}</span></button>
       <button class="pop__i" data-ctx="playlist">${ui().ICON.list}<span>Add to playlist…</span></button>
+      <button class="pop__i" data-ctx="pick">${ui().ICON.spark}<span>Add to Today's picks</span></button>
       <button class="pop__i" data-ctx="watched">${ui().ICON.check}<span>${st === "done" ? "Mark unwatched" : "Mark as watched"}</span><kbd>W</kbd></button>
       <div class="pop__stars" role="group" aria-label="Rate">${[1, 2, 3, 4, 5].map((n) => `<button data-ctx="rate" data-n="${n}" aria-pressed="${rt >= n}" aria-label="Rate ${n} of 5">★</button>`).join("")}</div>
       <button class="pop__i" data-ctx="open">${ui().ICON.spark}<span>Details & chapter report</span></button>
@@ -98,11 +101,12 @@
     const el = openPop(html, anchor, { x, y, ret: anchor });
     el.onclick = (ev) => {
       const b = ev.target.closest("[data-pl]"); if (!b) return;
-      if (b.dataset.pl === "later") { const on = h().toggleLater(id); ui().toast(on ? "Saved to Watch later" : "Removed from Watch later", { icon: "🕒", ms: 1400 }); }
-      else { const p = h().playlist(b.dataset.pl); if (p.ids.includes(id)) { h().removeFromPlaylist(p.id, id); ui().toast(`Removed from ${esc(p.name)}`, { ms: 1300 }); } else { h().addToPlaylist(p.id, id); ui().toast(`Added to <b>${esc(p.name)}</b>`, { icon: "🎚️", ms: 1500 }); } }
-      closePop(); refresh(id);
+      let added = false;
+      if (b.dataset.pl === "later") { const on = h().toggleLater(id); added = on; ui().toast(on ? "Saved to Watch later" : "Removed from Watch later", { icon: "🕒", ms: 1400 }); }
+      else { const p = h().playlist(b.dataset.pl); if (p.ids.includes(id)) { h().removeFromPlaylist(p.id, id); ui().toast(`Removed from ${esc(p.name)}`, { ms: 1300 }); } else { h().addToPlaylist(p.id, id); added = true; ui().toast(`Added to <b>${esc(p.name)}</b>`, { icon: "🎚️", ms: 1500 }); } }
+      closePop(); refresh(id); if (added) fx("playlist", anchor, true);
     };
-    el.querySelector("[data-plnew]").onsubmit = (ev) => { ev.preventDefault(); const n = ev.target.n.value.trim(); if (!n) return; const p = h().createPlaylist(n, [id]); ui().toast(`Created <b>${esc(p.name)}</b> with this episode`, { icon: "🎚️" }); closePop(); };
+    el.querySelector("[data-plnew]").onsubmit = (ev) => { ev.preventDefault(); const n = ev.target.n.value.trim(); if (!n) return; const p = h().createPlaylist(n, [id]); ui().toast(`Created <b>${esc(p.name)}</b> with this episode`, { icon: "🎚️" }); closePop(); fx("playlist", anchor, true); };
   }
   document.addEventListener("contextmenu", (ev) => {
     const card = ev.target.closest && ev.target.closest(".card[data-id], .lrow[data-id], .wrow[data-id], .hrow[data-id], .qrow[data-id]");
@@ -116,21 +120,45 @@
     const e = STATE.byId.get(id); if (!e) return false;
     if (a === "menu") { openCtx(id, el); return true; }
     if (a === "watched") {
-      if (h().stateOf(id) === "done") { h().unmarkWatched(id); ui().toast("Marked as unwatched", { icon: "↩️", ms: 1500 }); }
-      else { if (A.P.cur && A.P.cur.id === id) { A.player.tick(true); A.player.flush(); } h().markWatched(id); ui().toast(`Marked as watched: <b>${esc(e.title.slice(0, 50))}</b>`, { icon: "✅", action: { label: "Undo", fn: () => { h().unmarkWatched(id); refresh(id); rerenderIf(); } } }); }
-      refresh(id); rerenderIf(); return true;
+      if (h().stateOf(id) === "done") { h().unmarkWatched(id); ui().toast("Marked as unwatched", { icon: "↩️", ms: 1500 }); fx("unwatch", el, false); }
+      else { if (A.P.cur && A.P.cur.id === id) { A.player.tick(true); A.player.flush(); } h().markWatched(id); ui().toast(`Marked as watched: <b>${esc(e.title.slice(0, 50))}</b>`, { icon: "✅", action: { label: "Undo", fn: () => { h().unmarkWatched(id); refresh(id); rerenderIf(id); } } }); fx("watched", el, true); }
+      refresh(id); rerenderIf(id); return true;
     }
-    if (a === "later") { const on = h().toggleLater(id); ui().toast(on ? "Saved to Watch later" : "Removed from Watch later", { icon: "🕒", ms: 1400 }); refresh(id); return true; }
+    if (a === "later") { const on = h().toggleLater(id); ui().toast(on ? "Saved to Watch later" : "Removed from Watch later", { icon: "🕒", ms: 1400 }); refresh(id); fx("later", el, on); return true; }
     if (a === "playlist") { playlistPicker(id, el); return true; }
-    if (a === "playnext") { h().queueNext(id); A.views.paintQueueCount(); ui().toast("Plays next", { icon: "⏭️", ms: 1300 }); return true; }
+    if (a === "playnext") { h().queueNext(id); A.views.paintQueueCount(); ui().toast("Plays next", { icon: "⏭️", ms: 1300 }); refresh(id); fx("queue", el, true); return true; }
+    if (a === "pick") { if (A.picks && A.picks.add(id, "menu")) ui().toast("Added to Today's picks", { icon: "🎯", ms: 1500 }); return true; }
     if (a === "sharecard") { shareCard(id, A.P.cur && A.P.cur.id === id ? A.player.curTime() : 0); return true; }
     if (a === "link") { A.views.copyLinkAt(id, 0); return true; }
     if (a === "play") { A.player.play(id); return true; }
     if (a === "open") { A.views.openDrawer(id); return true; }
-    if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); ui().toast(on ? "Added to queue" : "Removed from queue", { ms: 1300 }); refresh(id); return true; }
+    if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); ui().toast(on ? "Added to queue" : "Removed from queue", { ms: 1300 }); refresh(id); fx("queue", el, on); if (A.app.view() === "queue") A.views.queueSync(id, on); return true; }
     return false;
   }
-  function rerenderIf() { const v = A.app.view(); if (v === "watched") renderWatchedCounts(true); if (v === "history") renderHistory(); if (v === "home") paintHomeTop(); }
+  /* targeted follow-ups after a watched toggle: the watched checklist and cards patch in place (refreshCardsFor);
+   * only the history timeline (whose rows are the log itself) re-renders, and Today's picks animates its own card */
+  function rerenderIf(id) { const v = A.app.view(); if (v === "history") renderHistory(); if (A.picks && id) A.picks.sync(id); if (v === "recent" && A.feat.renderRecent) A.feat.renderRecent(); }
+  function patchWRow(id) {
+    const v = V("watched"); if (!v || v.hidden) return;
+    const row = v.querySelector(`.wrow[data-id="${A.cssEsc(id)}"]`);
+    const doneN = STATE.all.filter((e) => h().stateOf(e.id) === "done").length;
+    const wd = $("#wDone"); if (wd) wd.textContent = doneN;
+    if (!row) return;
+    const st = h().stateOf(id), r = L().H.eps[id];
+    row.classList.toggle("is-done", st === "done");
+    const box = row.querySelector(".wrow__st");
+    if (box) {
+      let s0 = box.querySelector(":scope > .ok, :scope > .muted");
+      const html = st === "done" ? `<span class="ok">${ui().ICON.check}${h().isManual(id) ? "Marked" : "Played"}</span>` : st === "progress" ? `<span class="muted">${Math.round((r.pct || 0) * 100)}% · at ${fmtTime(r.pos)}</span>` : "";
+      if (s0) s0.remove();
+      if (html) box.insertAdjacentHTML("afterbegin", html);
+      const b = box.querySelector('[data-act="watched"]'); if (b) { b.textContent = st === "done" ? "Unmark" : "Mark watched"; b.classList.toggle("btn--ghost", st === "done"); b.setAttribute("aria-pressed", String(st === "done")); }
+    }
+    const sec = row.closest(".wmonth");
+    if (sec) { const ids = [...sec.querySelectorAll(".wrow")].map((x) => x.dataset.id); const sm = sec.querySelector(".wmonth__hd small"); if (sm) sm.textContent = `${ids.filter((x) => h().stateOf(x) === "done").length}/${ids.length} watched`; }
+    const hide = (W.show === "unwatched" && st === "done") || (W.show === "watched" && st !== "done");
+    if (hide) { if (A.RM) row.remove(); else { row.classList.add("is-out"); setTimeout(() => row.remove(), 340); } }
+  }
 
   /* ================================================================ ratings + personal tags */
   function rateTagHTML(id) {
@@ -142,7 +170,7 @@
     const box = ev.target.closest && ev.target.closest("[data-rt]"); if (!box) return;
     const id = box.dataset.rt;
     const r = ev.target.closest("[data-rate]");
-    if (r) { h().rate(id, Number(r.dataset.rate)); box.outerHTML = rateTagHTML(id); refresh(id); return; }
+    if (r) { const n = h().rate(id, Number(r.dataset.rate)); refresh(id); fx("rate", r, n > 0); return; }
     const u = ev.target.closest("[data-untag]");
     if (u) { h().setTags(id, (L().UTAGS[id] || []).filter((t) => t !== u.dataset.untag)); box.outerHTML = rateTagHTML(id); }
   });
@@ -162,7 +190,6 @@
     let top = $("#homeTop", v);
     if (!top) { top = document.createElement("div"); top.id = "homeTop"; v.prepend(top); }
     const cont = h().inProgress()[0];
-    const recent = h().recentlyWatched().slice(0, 14);
     let banner = "";
     if (cont && !sessionStorage.getItem("asfe:hideCont")) {
       const r = L().H.eps[cont.id]; const ci = cont.chapters.filter((c) => c.t != null && c.t <= r.pos).pop();
@@ -172,9 +199,19 @@
         <div class="contb__bar"><i style="width:${Math.round(100 * r.pos / Math.max(1, cont.dur || r.dur))}%"></i></div></div>
         <div class="contb__act"><button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>Resume</span></button><button class="iconbtn" id="contHide" aria-label="Hide for now">✕</button></div></section>`;
     }
-    top.innerHTML = banner + (recent.length ? ui().shelf("Recently watched", recent, { icon: "🕘", sub: "Just watched and marked-as-watched episodes", more: "#/history" }) : "") + (Object.keys(L().H.eps).length ? goalCard() : "");
+    top.innerHTML = banner + (Object.keys(L().H.eps).length ? goalCard() : "");
+    // Today's picks sits above everything else on Home (its own node, never rebuilt by this function)
+    if (A.picks) { let pk = $("#picks", v); if (!pk) { pk = document.createElement("section"); pk.id = "picks"; pk.className = "picks"; pk.setAttribute("aria-label", "Today's picks"); v.prepend(pk); A.picks.render(pk); } else if (pk !== v.firstElementChild) v.prepend(pk); }
     const hide = $("#contHide"); if (hide) hide.onclick = () => { sessionStorage.setItem("asfe:hideCont", "1"); paintHomeTop(); };
     enhance(top);
+  }
+  /* Recently watched: its own page (moved off Home), linked from History and the nav */
+  function renderRecent() {
+    const v = V("recent"); if (!v) return;
+    const recent = h().recentlyWatched();
+    v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow"><a href="#/history">History</a></p><h1>Recently watched</h1><p class="lede">${recent.length} episode${recent.length === 1 ? "" : "s"} you played here or marked as watched, newest first.</p></div>
+      <div class="row-gap"><a class="btn btn--sm" href="#/history">${ui().ICON.clock}<span>Full watch history</span></a><a class="btn btn--sm btn--ghost" href="#/watched">I've watched these</a></div></header>
+      ${recent.length ? `<div class="grid">${recent.map((e) => ui().card(e)).join("")}</div>` : `<div class="emptybig"><p>Nothing watched yet.</p><p class="muted">Start with Today's picks on Home.</p><a class="btn" href="#/home">Go to Today's picks</a></div>`}`;
   }
   function goalCard() {
     const sec = h().todaySec(), goal = h().goalSec(), st = h().streaks();
@@ -337,7 +374,7 @@
     const manualN = h().manualCount();
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1>
       <p class="lede">${fmtHM(played)} really played across ${all.filter((x) => x.s.src !== "manual").length} sessions · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
-      <div class="row-gap"><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
+      <div class="row-gap"><a class="btn btn--sm" href="#/recent">Recently watched</a><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <div class="kpis"><div class="kpi"><b>${hoursStr(played)}</b><span>played</span></div><div class="kpi"><b>${manualN}</b><span>marked watched</span></div><div class="kpi"><b>${h().doneCount()}</b><span>completed</span></div><div class="kpi"><b>${h().streaks().cur}</b><span>day streak</span></div><div class="kpi"><b>${all.length}</b><span>entries</span></div></div>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${HF.day ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(HF.day))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: HF.day })}</section>
       <div class="wtools"><input class="input" id="hQ" type="search" placeholder="Search history by title or speaker" value="${esc(HF.q)}" aria-label="Search history">
@@ -581,17 +618,17 @@
   /* ================================================================ topbar: theme colours + goal popovers */
   function wireTop() {
     const tb = $("#accentBtn");
-    if (tb) tb.onclick = () => openPop(`<p class="pop__h">Theme</p><div class="seg seg--sm" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button data-theme-set2="${t}" aria-pressed="${(document.documentElement.getAttribute("data-theme-pref") || "system") === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div><p class="pop__h">Accent colour</p>${accentPicker()}<p class="pop__note">Violet and rose are optional extras.</p>`, tb, { role: "dialog", cls: "pop--theme" });
+    if (tb) tb.onclick = () => openPop(`<p class="pop__h">Theme</p><div class="seg seg--sm" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button data-theme-set2="${t}" aria-pressed="${(document.documentElement.getAttribute("data-theme-pref") || "system") === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div><p class="pop__h">Accent colour</p>${accentPicker()}<p class="pop__note">Violet and rose are optional extras.</p><a class="pop__i" href="#/profile" data-themes-link>${ui().ICON.spark}<span>All themes: GitHub, Dracula, Nord, Solarized, Tokyo Night…</span></a>`, tb, { role: "dialog", cls: "pop--theme" });
     const g = $("#goalChip");
     if (g) g.onclick = () => { const st = h().streaks(); openPop(`<p class="pop__h">Daily goal · ${Math.round(h().todaySec() / 60)} of ${Math.round(h().goalSec() / 60)} min today</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div><p class="pop__note">${ui().ICON.flame} ${st.cur}-day streak · best ${st.best}. A day counts once you watch a minute (or mark an episode).</p><a class="pop__i" href="#/wrapped">${ui().ICON.spark}<span>Monthly recap</span></a>`, g, { role: "dialog" }); };
     document.addEventListener("click", (ev) => {
       const a = ev.target.closest && ev.target.closest("[data-accent-set]"); if (a) { setAccent(a.dataset.accentSet); return; }
-      const t = ev.target.closest && ev.target.closest("[data-theme-set2]"); if (t) { A.app.setTheme(t.dataset.themeSet2); $$("[data-theme-set2]").forEach((b) => b.setAttribute("aria-pressed", String(b === t))); }
+      const t = ev.target.closest && ev.target.closest("[data-theme-set2]"); if (t) { A.app.setTheme(t.dataset.themeSet2, true); $$("[data-theme-set2]").forEach((b) => b.setAttribute("aria-pressed", String(b === t))); }
     });
   }
 
   A.feat = {
-    ACCENTS, setAccent, accentPicker, openCtx, closePop, playlistPicker, act, rateTagHTML, paintHomeTop, paintGoal, renderWatched, renderHistory, renderPlaylists, renderWrapped,
+    ACCENTS, setAccent, accentPicker, openCtx, closePop, playlistPicker, act, rateTagHTML, paintHomeTop, patchWRow, renderRecent, paintGoal, renderWatched, renderHistory, renderPlaylists, renderWrapped,
     shareCard, shareRecap, enhance, wireTop, W, HF, bulk, undoBulk, markIds, recapFor, sessionRows, pop: () => pop,
   };
 })(window.ASFE);
