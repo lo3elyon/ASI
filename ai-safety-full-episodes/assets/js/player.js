@@ -25,11 +25,11 @@
     });
     return P.apiLoading;
   }
-  function createPlayer(host, id, start) {
+  function createPlayer(host, id, start, ns) {
     P.ready = false;
     const pv = { autoplay: 1, start: Math.floor(start || 0), rel: 0, modestbranding: 1, playsinline: 1, controls: 1, iv_load_policy: 3, enablejsapi: 1 };
     if (/^https?:$/.test(location.protocol)) pv.origin = location.origin;
-    P.yt = new YT.Player(host, {
+    P.yt = new (ns || window.YT).Player(host, {
       host: "https://www.youtube-nocookie.com", videoId: id, width: "100%", height: "100%", playerVars: pv,
       events: {
         onReady: () => {
@@ -340,8 +340,6 @@
     doc.body.innerHTML = `<div id="pipWrap"><div id="pipVideo"></div><div class="pbar"><div class="pt" id="pT"></div><div class="pc" id="pC"></div>
       <div class="pp" id="pP"><i id="pF"></i></div>
       <div class="pr"><button id="pPrev" aria-label="Previous chapter">⏮</button><button id="pBack" aria-label="Back 10 seconds">−10</button><button class="pl" id="pPlay" aria-label="Pause">❚❚</button><button id="pFwd" aria-label="Forward 10 seconds">+10</button><button id="pNextCh" aria-label="Next chapter">⏭</button><button id="pNext" aria-label="Next episode">Next ep</button><span class="sp"></span><span class="tm" id="pTm"></span><button id="pHome" aria-label="Back to tab">↩</button></div></div></div>`;
-    // relay YouTube iframe messages from the pop-out window to this window so the IFrame API keeps working
-    pw.addEventListener("message", (ev) => { try { window.dispatchEvent(new MessageEvent("message", { data: ev.data, origin: ev.origin, source: ev.source })); } catch (x) {} });
     const g = (id) => doc.getElementById(id);
     g("pPlay").onclick = togglePlay; g("pBack").onclick = () => seek(-10); g("pFwd").onclick = () => seek(10);
     g("pPrev").onclick = prevChapter; g("pNextCh").onclick = nextChapter; g("pNext").onclick = playNext;
@@ -351,7 +349,13 @@
     // move playback: the page's player hands over to a fresh player inside the pop-out at the same second
     destroyPlayer();
     freshHost(document, $("#ytHost"));
-    createPlayer(freshHost(doc, g("pipVideo")), P.cur.id, t);
+    // Preferred: load the IFrame API inside the pop-out itself, so the player's messages stay in that window's realm.
+    // Fallback: use this window's API and relay the iframe's messages back here.
+    let ns = null;
+    try { ns = await loadApiInto(pw); } catch (e) { ns = null; }
+    if (!ns) pw.addEventListener("message", (ev) => { try { window.dispatchEvent(new MessageEvent("message", { data: ev.data, origin: ev.origin, source: ev.source })); } catch (x) {} });
+    P.pipApi = ns ? "pip" : "relay";
+    createPlayer(freshHost(doc, g("pipVideo")), P.cur.id, t, ns || undefined);
     if (!wasPlaying) setTimeout(() => { try { P.yt && P.ready && P.yt.pauseVideo(); } catch (x) {} }, 1500);
     $("#pipNote").hidden = false;
     dock().classList.add("is-pip");
@@ -370,6 +374,17 @@
     });
     A.ui.toast("Popped out: the episode stays on top even when the browser is minimised", { icon: "🪟", ms: 4000 });
     h().checkAwards();
+  }
+  function loadApiInto(pw) {
+    return new Promise((res, rej) => {
+      if (pw.YT && pw.YT.Player) return res(pw.YT);
+      const to = setTimeout(() => rej(new Error("pop-out API timeout")), 6000);
+      pw.onYouTubeIframeAPIReady = () => { clearTimeout(to); res(pw.YT); };
+      const sc = pw.document.createElement("script");
+      sc.src = "https://www.youtube.com/iframe_api";
+      sc.onerror = () => { clearTimeout(to); rej(new Error("pop-out API failed")); };
+      pw.document.head.appendChild(sc);
+    });
   }
   function paintPip() {
     if (!P.pip || !P.cur) return;
