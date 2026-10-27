@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · charts (inline SVG, no libraries), contribution-style heatmaps, insights dashboard, claims tracker. */
+/* AI Safety Full Episodes · charts (inline SVG, no libraries), contribution-style heatmaps, insights dashboard, claims tracker. */
 (function (A) {
   "use strict";
   const { $, esc, STATE, fmtTime, fmtHM, hoursStr, dayKey, MONTHS, fold } = A;
@@ -26,9 +26,10 @@
       let total = 0, active = 0;
       for (let d = 1; d <= n; d++) {
         const k = `${mid}-${A.pad(d)}`; const v = vals[k]; total += v; if (v > 0) active++;
-        const lab = `${MONTHS[m - 1]} ${d}: ${o.label(v)}`;
+        const lab = `${MONTHS[m - 1]} ${d}: ${o.labelK ? o.labelK(k, v) : o.label(v)}`;
+        const man = o.manual && o.manual(k);
         const future = o.futureAfter && k > o.futureAfter;
-        cells += `<button class="hm__c l${lvl(v)} ${o.selected === k ? "is-sel" : ""} ${future ? "is-future" : ""}" data-hmday="${k}" data-tip="${esc(lab)}" aria-label="${esc(lab)}" ${o.onDay ? "" : 'tabindex="-1"'}>${v > 0 ? `<span>${esc(o.cell ? o.cell(v) : v)}</span>` : ""}</button>`;
+        cells += `<button class="hm__c l${lvl(v)} ${o.selected === k ? "is-sel" : ""} ${future ? "is-future" : ""} ${man ? "has-manual" : ""}" data-hmday="${k}" data-tip="${esc(lab)}" aria-label="${esc(lab)}" ${o.onDay ? "" : 'tabindex="-1"'}>${v > 0 ? `<span>${esc(o.cell ? o.cell(v) : v)}</span>` : ""}</button>`;
       }
       return `<div class="hm__m ${o.selectedMonth === mid ? "is-sel" : ""}">
         <button class="hm__mh" data-hmmonth="${mid}" aria-label="${MONTHS[m - 1]} ${y}: ${esc(o.total ? o.total(total) : total)}"><b>${new Date(y, m - 1, 1).toLocaleString("en", { month: "long" })}</b><small>${esc(o.total ? o.total(total) : total)} · ${active} day${active === 1 ? "" : "s"}</small></button>
@@ -49,7 +50,7 @@
     const nowM = dayKey(Date.now()).slice(0, 7);
     const end = nowM > "2026-10" ? nowM : "2026-10";
     const startM = monthsBetween("2026-07", end).slice(-6)[0];
-    return heatmap({ id: "watch", cls: "hm--watch", months: monthsBetween(startM, end), value: (k) => Math.round((h().L.H.daily[k] || 0) / 60), label: (v) => `${v} min watched`, cell: (v) => (v >= 100 ? Math.round(v / 60) + "h" : v), total: (t) => (t >= 60 ? `${Math.round(t / 6) / 10} h` : `${t} min`), selected: o.day, onDay: true, legendNote: "Minutes you watched per day (strict: only real playback counts)" });
+    return heatmap({ id: "watch", cls: "hm--watch", months: monthsBetween(startM, end), value: (k) => Math.round((h().L.H.daily[k] || 0) / 60), label: (v) => `${v} min watched`, labelK: (k, v) => { const m = Math.round((h().L.H.manualDaily[k] || 0) / 60); return `${v} min` + (m ? ` (${v - m} played + ${m} marked as watched)` : " watched"); }, manual: (k) => (h().L.H.manualDaily[k] || 0) > 0, cell: (v) => (v >= 100 ? Math.round(v / 60) + "h" : v), total: (t) => (t >= 60 ? `${Math.round(t / 6) / 10} h` : `${t} min`), selected: o.day, onDay: true, legendNote: "Minutes per day: real playback, plus episodes you marked as watched (dotted) on the day you marked them" });
   }
 
   /* ---------------------------------------------------------------- tiny SVG charts */
