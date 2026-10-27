@@ -65,6 +65,7 @@
     const ageDays = (Date.parse("2026-10-28") - Date.parse(e.date || "2026-07-01")) / 864e5;
     s += Math.max(0, 1.5 - ageDays / 60);
     if (e.views) s += Math.min(1.2, Math.log10(e.views) / 5);
+    if (A.picks && A.picks.penalty) s -= A.picks.penalty(e); // negative signals from discarded picks
     if (!why.length) why.push(st === "none" ? "Unwatched" : "Pick up again");
     return { s, why: why[0] };
   }
