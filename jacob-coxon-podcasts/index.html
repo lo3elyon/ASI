@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Jacob Coxon on YouTube: 20 hour-plus videos, sorted by how much he speaks</title>
+    <meta name="description" content="Twenty YouTube videos over an hour long about Jacob Coxon, the researcher who resigned from Anthropic with a viral warning: interviews, NYC Council testimony, clips and commentary, each labelled by whether he actually speaks." />
+    <meta property="og:title" content="Jacob Coxon on YouTube: 20 hour-plus videos" />
+    <meta property="og:description" content="Interviews, NYC Council testimony, clips and commentary about the ex-Anthropic researcher, each labelled by whether he speaks." />
+    <meta property="og:image" content="https://lo3elyon.github.io/ASI/assets/jacob-coxon-podcasts.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      /* role colours: no purple or pink */
+      :root { --c-guest: #10b981; --c-testimony: #3b82f6; --c-clips: #f97316; --c-about: #64748b; --c-unverified: #ef4444; }
+      .x-controls { display: grid; gap: 12px; }
+      .x-search { width: 100%; min-height: var(--tap); padding: 10px 14px; border: 1px solid var(--stroke-primary); border-radius: var(--r-s); background: var(--fill-primary-on); color: var(--text-primary); font: var(--type-body); }
+      .x-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .x-chip { display: inline-flex; align-items: center; gap: 8px; min-height: 36px; padding: 6px 14px; border: 1px solid var(--stroke-primary); border-radius: var(--r-pill); background: var(--fill-primary-on); color: var(--text-primary); font: var(--type-tag); cursor: pointer; transition: background var(--dur-quick) var(--ease-out); }
+      .x-chip[aria-pressed="true"] { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+      .x-chip i { width: 10px; height: 10px; border-radius: 50%; background: var(--dot, var(--text-secondary)); flex: none; }
+      .x-chip b { font-weight: var(--weight-medium); opacity: .7; }
+      .x-count { font-size: var(--size-small); color: var(--text-secondary); }
+      .x-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap: 18px; }
+      .x-card { display: flex; flex-direction: column; border-radius: var(--r-m); background: var(--fill-tertiary); overflow: hidden; border: 1px solid transparent; border-top: 3px solid var(--rc); transition: transform var(--dur-quick) var(--ease-out), border-color var(--dur-quick) var(--ease-out); }
+      .x-card:hover { transform: translateY(-2px); border-color: var(--stroke-primary); border-top-color: var(--rc); }
+      .x-thumb { position: relative; display: block; aspect-ratio: 16 / 9; background: #000; overflow: hidden; }
+      .x-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s var(--ease-out), opacity .2s; }
+      .x-thumb:hover img, .x-thumb:focus-visible img { transform: scale(1.04); opacity: .85; }
+      .x-play { position: absolute; inset: 0; margin: auto; width: 64px; height: 44px; border-radius: 12px; background: rgba(220, 38, 38, .92); display: grid; place-items: center; box-shadow: 0 6px 20px rgba(0,0,0,.35); }
+      .x-play::after { content: ""; border-left: 16px solid #fff; border-top: 10px solid transparent; border-bottom: 10px solid transparent; margin-left: 4px; }
+      .x-dur { position: absolute; right: 8px; bottom: 8px; padding: 2px 8px; border-radius: 6px; background: rgba(0,0,0,.8); color: #fff; font: 500 12px/1.5 var(--sans); }
+      .x-num { position: absolute; left: 8px; top: 8px; padding: 2px 8px; border-radius: 6px; background: rgba(0,0,0,.7); color: #fff; font: 500 12px/1.5 var(--sans); }
+      .x-body { display: grid; gap: 8px; padding: 16px 18px 18px; align-content: start; flex: 1; }
+      .x-role { justify-self: start; padding: 3px 10px; border-radius: var(--r-pill); background: var(--rc); color: #fff; font: var(--type-tag); letter-spacing: .04em; }
+      .x-role[data-r="UNVERIFIED"] { background: transparent; color: var(--c-unverified); box-shadow: inset 0 0 0 1.5px var(--c-unverified); }
+      .x-card h3 { font: var(--type-heading); font-size: 17px; line-height: 1.35; margin: 0; }
+      .x-card h3 a { color: inherit; text-decoration: none; }
+      .x-card h3 a:hover { text-decoration: underline; }
+      .x-meta { font-size: var(--size-small); color: var(--text-secondary); }
+      .x-speaks { font-size: var(--size-small); padding: 8px 10px; border-radius: var(--r-s); background: var(--fill-primary-on); border-left: 3px solid var(--rc); }
+      .x-speaks strong { font-weight: var(--weight-medium); }
+      .x-sum { font-size: var(--size-body); margin: 0; }
+      .x-empty { color: var(--text-secondary); }
+      .x-legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: 12px; }
+      .x-legend div { padding: 14px 16px; border-radius: var(--r-m); background: var(--fill-tertiary); border-left: 4px solid var(--rc); display: grid; gap: 4px; }
+      .x-legend h3 { font: var(--type-label); margin: 0; }
+      .x-legend p { font-size: var(--size-small); margin: 0; color: var(--text-secondary); }
+      .x-bar { display: flex; height: 18px; border-radius: var(--r-pill); overflow: hidden; }
+      .x-bar span { background: var(--rc); }
+      .x-notes { display: grid; gap: 12px; }
+      .x-notes div { padding: 14px 16px; border: 1px solid var(--stroke-primary); border-radius: var(--r-m); font-size: var(--size-body); }
+      .x-sources { padding: 18px 20px; border: 1px solid var(--stroke-primary); border-radius: var(--r-m); }
+      .x-sources > summary { cursor: pointer; font: var(--type-label); }
+      .x-sources ol { margin: 14px 0 0; padding-left: 22px; display: grid; gap: 6px; font-size: var(--size-small); }
+      .stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); grid-auto-flow: row; }
+      @media (max-width: 599px) { .x-chip { min-height: var(--tap); } }
+      @media (prefers-reduced-motion: reduce) { .x-card, .x-thumb img { transition: none; } .x-card:hover { transform: none; } }
+    </style>
+  </head>
+  <body>
+    <div class="page" id="top">
+      <header class="nav glass" data-auto></header>
+      <main class="main">
+        <section class="hero">
+          <img class="hero__img" src="hero.jpg" alt="Thumbnail of Jacob Coxon's interview on The Megyn Kelly Show, his first long-form interview after resigning" />
+          <div class="hero__copy">
+            <p class="hero__eyebrow">Video guide · ex-Anthropic researcher</p>
+            <h1>Jacob Coxon on YouTube</h1>
+            <p class="hero__sub">20 videos, every one over an hour, sorted by how much of it is actually him.</p>
+            <p class="hero__meta">Compiled 27 Oct 2026 · 20 videos · each one checked for his voice</p>
+          </div>
+          <aside class="callout" aria-label="Where to start">
+            <p class="callout__head"><span class="hark-mark" data-size="16"></span> Where to start</p>
+            <p class="callout__lead"><strong>Want him in his own words? Start with the two GUEST interviews, then his NYC Council testimony.</strong></p>
+            <a class="btn" href="#videos">Browse the videos</a>
+          </aside>
+        </section>
+
+        <section class="stats" aria-label="Counts">
+          <div class="stat"><span class="stat__fig">20</span><span class="stat__label">Videos, all 1 hour or longer</span></div>
+          <div class="stat"><span class="stat__fig">2</span><span class="stat__label">GUEST: long interviews with him</span></div>
+          <div class="stat"><span class="stat__fig">3</span><span class="stat__label">TESTIMONY: NYC Council hearing uploads</span></div>
+          <div class="stat"><span class="stat__fig">4</span><span class="stat__label">CLIPS: his TV or hearing clips played</span></div>
+          <div class="stat"><span class="stat__fig">9</span><span class="stat__label">ABOUT HIM: discussed, not heard</span></div>
+          <div class="stat"><span class="stat__fig">2</span><span class="stat__label">UNVERIFIED: couldn't check</span></div>
+        </section>
+
+        <section class="section" id="who" data-nav="Who he is">
+          <div class="head">
+            <p class="head__eyebrow">The story so far</p>
+            <h2>A researcher quit Anthropic with a public warning, and then went on a media tour.</h2>
+            <p class="head__sub">Why so many hour-long videos mention him.</p>
+          </div>
+          <div class="prose">
+            <p><strong>Jacob Coxon</strong> is a former Anthropic researcher. On <strong>8 September 2026</strong> he resigned and posted a long warning about where AI is heading. The post went viral.</p>
+            <p>Over the following weeks he gave long interviews (The Megyn Kelly Show on 10 Sep, the PBD Podcast on 6 Oct), appeared in TV news segments, and in October testified at a <strong>New York City Council hearing on AI safeguards</strong>, on a whistleblower panel with Daniel Kokotajlo and Alex Turner.</p>
+            <p>His warning split people. Some podcasts treat him as a brave whistleblower; others call the timing a coordinated "doomer" campaign. This page collects both sides, but labels every video honestly: <em>does he actually speak in it, and for how long?</em></p>
+          </div>
+        </section>
+
+        <section class="section" id="roles" data-nav="Labels">
+          <div class="head">
+            <p class="head__eyebrow">How to read the labels</p>
+            <h2>Five labels, from "it's all him" to "we couldn't tell".</h2>
+          </div>
+          <div class="x-bar" role="img" aria-label="Share of videos by label: 2 guest, 3 testimony, 4 clips, 9 about him, 2 unverified">
+            <span style="--rc:var(--c-guest);flex:2"></span><span style="--rc:var(--c-testimony);flex:3"></span><span style="--rc:var(--c-clips);flex:4"></span><span style="--rc:var(--c-about);flex:9"></span><span style="--rc:var(--c-unverified);flex:2"></span>
+          </div>
+          <div class="x-legend">
+            <div style="--rc:var(--c-guest)"><h3>GUEST · 2</h3><p>A long-form interview with him. The most Coxon per minute.</p></div>
+            <div style="--rc:var(--c-testimony)"><h3>TESTIMONY · 3</h3><p>The NYC Council AI hearing. He speaks for roughly 40 minutes including Q&amp;A.</p></div>
+            <div style="--rc:var(--c-clips)"><h3>CLIPS · 4</h3><p>Someone else's show that plays parts of his TV or hearing appearances.</p></div>
+            <div style="--rc:var(--c-about)"><h3>ABOUT HIM · 9</h3><p>He is discussed, quoted or criticised, but you don't hear him.</p></div>
+            <div style="--rc:var(--c-unverified)"><h3>UNVERIFIED · 2</h3><p>Title names him, but no transcript was available to confirm he appears.</p></div>
+          </div>
+        </section>
+
+        <section class="section" id="videos" data-nav="Videos">
+          <div class="head">
+            <p class="head__eyebrow">All 20</p>
+            <h2>Filter by label, or search a channel or topic.</h2>
+            <p class="head__sub">Tap a thumbnail to open it on YouTube in a new tab.</p>
+          </div>
+          <div class="x-controls">
+            <input class="x-search" id="q" type="search" placeholder="Search titles, channels, topics (e.g. Hugging Face, Musk, China)" aria-label="Search videos" />
+            <div class="x-chips" id="chips" role="group" aria-label="Filter by label"></div>
+            <p class="x-count" id="count" aria-live="polite"></p>
+          </div>
+          <div class="x-grid" id="grid"></div>
+          <p class="x-empty" id="empty" hidden>No videos match. Try another word or label.</p>
+        </section>
+
+        <section class="section" id="notes" data-nav="Notes">
+          <div class="head">
+            <p class="head__eyebrow">Good to know</p>
+            <h2>A few honest caveats.</h2>
+          </div>
+          <div class="x-notes">
+            <div><strong>The three TESTIMONY videos are the same event.</strong> AP, the NYC Council's own channel and The No Cap Press all streamed the same hearing. Watch one; the timestamps on each card tell you where he starts.</div>
+            <div><strong>Searching inside YouTube?</strong> Auto-captions often spell his name <em>"Coxin"</em>, so search for that too when jumping through a transcript.</div>
+            <div><strong>Times are approximate.</strong> Timestamps and minutes of speaking come from transcripts and outside chapter listings, so expect them to be off by a minute or so. "1h+" means YouTube shows the video as over an hour but the exact length wasn't recorded.</div>
+            <div><strong>One title is misleading.</strong> CNN-News18's upload names the Anthropic researcher in its title but only covers the end of the hearing; his own testimony isn't in that cut.</div>
+            <div><strong>Claims are the speakers' own.</strong> Summaries report what was said (for example, PBD's "90% certain" spies claim, made without evidence). They are not checked as true.</div>
+          </div>
+        </section>
+
+        <section class="section" id="sources" data-nav="Sources">
+          <div class="head">
+            <h2>Every video link.</h2>
+            <p class="head__sub">Compiled 27 October 2026.</p>
+          </div>
+          <details class="x-sources">
+            <summary>All 20 YouTube links (click to open)</summary>
+            <ol id="srcs"></ol>
+          </details>
+        </section>
+      </main>
+      <footer class="foot">
+        <p>Compiled 27 Oct 2026. Part of the <a class="link" href="../">ASI hub</a>. Built with Hark.</p>
+        <nav aria-label="Back to sections" data-auto></nav>
+        <a class="badge" href="https://hark.com/" target="_blank" rel="noopener"><span class="hark-mark"></span><span>built by hark</span></a>
+      </footer>
+    </div>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        "use strict";
+        const VIDEOS = [{"n": 1, "id": "F-Tf5Mo84N4", "channel": "Megyn Kelly", "title": "Remembering Charlie Kirk, Trump's Midterm Message, and How AI Could Destroy Humanity, w/ Jacob Coxon", "duration": "~1h 40m", "date": "Sep 10, 2026", "role": "GUEST", "speaks": "Yes, ~38 min interview (approx 1:02:44-1:40:22)", "summary": "His first long-form interview after his resignation post. Coxon on how fast AI risk grew in 2026, extinction scenarios, and the US-China race; Kelly presses him on whether his advocacy is political and on ties to Bernie Sanders' anti-AI bill. First hour is other news."}, {"n": 2, "id": "Qpuj1nhcxiI", "channel": "PBD Podcast", "title": "Ex-Anthropic Insider Tells All | PBD Podcast #868", "duration": "~1h 45m", "date": "Oct 6, 2026", "role": "GUEST", "speaks": "Yes, most of the episode, one-on-one with Patrick Bet-David", "summary": "Why he quit and the viral tweet; why 2027 could be a chaotic turning point; Anthropic vs OpenAI culture, Altman vs Amodei; self-improving AI and jobs, markets, national security. Says he's '90% certain' Chinese spies are inside the labs (no evidence given)."}, {"n": 3, "id": "_Yl73PhMtm8", "channel": "Associated Press", "title": "LIVE: Former Anthropic researcher testifies on AI at New York City Council", "duration": "7:52:06", "date": "Oct 2026", "role": "TESTIMONY", "speaks": "Yes, called ~10 min, speaks from ~13:30, Q&A to ~53 min", "summary": "NYC Council AI-safeguards hearing with a whistleblower panel (Coxon, Daniel Kokotajlo, Alex Turner). Coxon: nobody knows how to control AI, loss of control 'more likely than not', cites OpenAI agents hacking Hugging Face, wants outside evaluators, calls the US-China race 'the heart of the issue'."}, {"n": 4, "id": "IejFLhF8efQ", "channel": "New York City Council", "title": "LIVE: Public Testimony at NYC Council Hearing on AI Safeguards", "duration": "9:52:52", "date": "Oct 2026", "role": "TESTIMONY", "speaks": "Yes, called ~25 min, speaks from ~28:24, panel Q&A to ~68 min", "summary": "The council's own full recording of the same hearing, including AI-company representatives and hours of public testimony."}, {"n": 5, "id": "ehgjfKZbnmQ", "channel": "The No Cap Press", "title": "LIVE | Top Tech Executives Reveal Shocking AI Risks In New York Council Hearing", "duration": "5:18:49", "date": "Oct 2026", "role": "TESTIMONY", "speaks": "Yes, called ~13:30, speaks from ~16:54, Q&A to ~56 min", "summary": "Re-upload of the same hearing feed; his part matches the AP version."}, {"n": 6, "id": "hcVQRmJEYv0", "channel": "PRECOGNOSIS", "title": "Will AI Takeover the Internet in 6 to 12 months?", "duration": "1h+", "date": "2026", "role": "CLIPS", "speaks": "Yes, ~12-15 min of his TV interviews played (11:00-27:30, 32:00-44:15)", "summary": "A software engineer reacts to two news interviews: the Hugging Face hack, AI self-improvement within 6-24 months, superviruses, infrastructure attacks, and how he wrote the thread with a friend."}, {"n": 7, "id": "RnbFkfaYOhI", "channel": "Papaksh", "title": "OpenAI Agents Are Now Hacking Real Websites", "duration": "1h+", "date": "2026", "role": "CLIPS", "speaks": "Yes, ~5-6 min of his CNN interview (~40:13, ~58:50)", "summary": "Indian streamer on OpenAI agent hacks of a German site and Hugging Face, calling AI doom a marketing stunt; clips have Coxon saying recursive self-improvement could come within 1-2 years."}, {"n": 8, "id": "p75moGyHs7o", "channel": "Real America's Voice", "title": "DESCOVICH FIRES UP DALLAS, COXON SHAKES NYC | AFTER HOURS W ALEX STEIN", "duration": "1:00:00", "date": "~Oct 6-7, 2026", "role": "CLIPS", "speaks": "Yes, ~2.5 min of hearing clips (3:30-9:54)", "summary": "Alex Stein plays three hearing clips and praises Coxon as brave; rest of the hour is other segments."}, {"n": 9, "id": "GKGcQSZXQcc", "channel": "The Rubin Report", "title": "Elon Musk Notices Something Very Suspicious About AI Whistleblower That Everyone Missed", "duration": "1:05:20", "date": "Sep 10, 2026", "role": "CLIPS", "speaks": "Yes, ~1 min of his CNN interview (~21:36)", "summary": "Rubin reads Coxon's thread and argues it was a 'coordinated doomer op', citing Musk, the Sanders bill and WSJ timing."}, {"n": 10, "id": "j9vkjCDt1NE", "channel": "Switch", "title": "Can AI Kill All Humans in a Decade? | Jacob Coxon | Amit Dubey Podcast", "duration": "1h+", "date": "2026", "role": "UNVERIFIED", "speaks": "Couldn't confirm (transcript unavailable)", "summary": "Title names Coxon; Amit Dubey discusses whether AI could wipe out humanity within a decade. Whether Coxon himself appears is unconfirmed."}, {"n": 11, "id": "vLngNc-DwLo", "channel": "Talk Easy with Sam Fragoso", "title": "Tristan Harris on the Anthropic Whistleblower, Elon Musk, and Avoiding AI Catastrophe", "duration": "1h+", "date": "~Sep 2026", "role": "ABOUT HIM", "speaks": "No, host quotes his tweet", "summary": "Tristan Harris on AI risk, opening with Coxon's resignation and tweet."}, {"n": 12, "id": "t3UlAQuVbmE", "channel": "The Lever", "title": "What Tech Oligarchs Gain From AI Doomerism", "duration": "1h+", "date": "2026", "role": "ABOUT HIM", "speaks": "No (a few seconds of a CNN clip at most)", "summary": "David Sirota with Ed Zitron and Matt Stoller: the doom story helps labs dodge liability and protect valuations; Zitron mocks Coxon's media tour."}, {"n": 13, "id": "KDJR3zLljPs", "channel": "The Generalist", "title": "Jaan Tallinn on How Close We Are to Losing Control of AI", "duration": "1h+", "date": "2026", "role": "ABOUT HIM", "speaks": "No", "summary": "Skype co-founder Jaan Tallinn on pausing AI, his Anthropic investment and the Hugging Face incident; calls Coxon a whistleblower whose tweet was set up to spread."}, {"n": 14, "id": "f_hLOaB8Zt8", "channel": "Philosophy, Programs, and Prompts", "title": "Pause AI? Should we? If so, how do we make it matter? | Ep 13", "duration": "1h+", "date": "2026", "role": "ABOUT HIM", "speaks": "No, hosts read his tweet (~12:52)", "summary": "Two hosts debate Pause AI and allege a PR firm pitched Coxon to TV shows."}, {"n": 15, "id": "MjBGUbkSUsw", "channel": "Firewalls Don't Stop Dragons", "title": "Ep499 Solving the AI Paradox", "duration": "1h+", "date": "Sep 21, 2026", "role": "ABOUT HIM", "speaks": "No, host reads Wired quotes (~35:00)", "summary": "Privacy news roundup ending with Carey Parker's take on AI doom and Coxon's warning."}, {"n": 16, "id": "_vpdXFqIfmM", "channel": "Cocktails & Conspiracies", "title": "3 Million AI Models and One Very Convenient Week | Ep 213", "duration": "1h+", "date": "2026", "role": "ABOUT HIM", "speaks": "No", "summary": "Hosts call the resignation a coordinated op, citing who reshared it and funding ties."}, {"n": 17, "id": "1vSi26ckhe4", "channel": "This Week in Startups", "title": "Did OpenAI Steal the Navier-Stokes Solution? | E2335", "duration": "1h+", "date": "Sep 9, 2026", "role": "ABOUT HIM", "speaks": "No", "summary": "Jason Calacanis's panel mostly dismisses Coxon's warning as clickbait, then covers OpenAI and Navier-Stokes."}, {"n": 18, "id": "cvxjqbfLVk0", "channel": "All-In Podcast", "title": "AI Kills Everybody or Doomer Psyop? OpenAI's Math Breakthrough, Nike's $200B Collapse", "duration": "1:35:57", "date": "Sep 2026", "role": "ABOUT HIM", "speaks": "No", "summary": "The besties debate whether the Anthropic whistleblower's warning is real risk or a doomer psyop."}, {"n": 19, "id": "NBq9plPYFbs", "channel": "CNN-News18", "title": "NYC AI Hearing LIVE: Anthropic, OpenAI & Google Face Questions | Fmr Anthropic Researcher Testifies", "duration": "1:11:26", "date": "Oct 2026", "role": "ABOUT HIM", "speaks": "No, this upload only has the closing public-testimony panel", "summary": "Despite the title, covers the end of the NYC hearing; Coxon's own testimony isn't in this cut."}, {"n": 20, "id": "462B-KxHg60", "channel": "Goju Tech Talk", "title": "OpenAI's Astra Navier-Stokes Claim and Jacob Coxon's Anthropic Exit", "duration": "1h+", "date": "2026", "role": "UNVERIFIED", "speaks": "Couldn't confirm (transcript unavailable)", "summary": "Tech talk on OpenAI's Navier-Stokes claim and Coxon's exit from Anthropic."}];
+        const ROLES = [
+          ["All", "var(--text-secondary)"],
+          ["GUEST", "var(--c-guest)"],
+          ["TESTIMONY", "var(--c-testimony)"],
+          ["CLIPS", "var(--c-clips)"],
+          ["ABOUT HIM", "var(--c-about)"],
+          ["UNVERIFIED", "var(--c-unverified)"],
+        ];
+        const COLOR = Object.fromEntries(ROLES);
+        const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+        const yt = (id) => "https://www.youtube.com/watch?v=" + encodeURIComponent(id);
+        let role = "All", q = "";
+        const grid = document.getElementById("grid"), chips = document.getElementById("chips");
+
+        chips.innerHTML = ROLES.map(([r, c]) => {
+          const n = r === "All" ? VIDEOS.length : VIDEOS.filter((v) => v.role === r).length;
+          return '<button class="x-chip" type="button" style="--dot:' + c + '" data-role="' + esc(r) + '" aria-pressed="' + (r === "All") + '"><i></i>' + esc(r) + " <b>" + n + "</b></button>";
+        }).join("");
+
+        function card(v) {
+          const c = COLOR[v.role] || "var(--c-about)";
+          return '<article class="x-card" style="--rc:' + c + '">' +
+            '<a class="x-thumb" href="' + yt(v.id) + '" target="_blank" rel="noopener" aria-label="Watch on YouTube: ' + esc(v.title) + '">' +
+            '<img loading="lazy" src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="Thumbnail: ' + esc(v.title) + '" />' +
+            '<span class="x-play" aria-hidden="true"></span><span class="x-num">#' + v.n + '</span><span class="x-dur">' + esc(v.duration) + "</span></a>" +
+            '<div class="x-body"><span class="x-role" data-r="' + esc(v.role) + '">' + esc(v.role) + "</span>" +
+            '<h3><a href="' + yt(v.id) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a></h3>" +
+            '<p class="x-meta">' + esc(v.channel) + " · " + esc(v.duration) + " · " + esc(v.date) + "</p>" +
+            '<p class="x-speaks"><strong>Does he speak?</strong> ' + esc(v.speaks) + "</p>" +
+            '<p class="x-sum">' + esc(v.summary) + "</p></div></article>";
+        }
+
+        function render() {
+          const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+          const hits = VIDEOS.filter((v) => (role === "All" || v.role === role) &&
+            words.every((w) => (v.title + " " + v.channel + " " + v.summary + " " + v.role + " " + v.date).toLowerCase().includes(w)));
+          grid.innerHTML = hits.map(card).join("");
+          document.getElementById("count").textContent = "Showing " + hits.length + " of " + VIDEOS.length + " videos";
+          document.getElementById("empty").hidden = hits.length > 0;
+        }
+
+        chips.addEventListener("click", (e) => {
+          const b = e.target.closest(".x-chip");
+          if (!b) return;
+          role = b.dataset.role;
+          chips.querySelectorAll(".x-chip").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+          render();
+        });
+        document.getElementById("q").addEventListener("input", (e) => { q = e.target.value; render(); });
+
+        document.getElementById("srcs").innerHTML = VIDEOS.map((v) =>
+          '<li><a class="link" href="' + yt(v.id) + '" target="_blank" rel="noopener">' + esc(v.title) + "</a> · " + esc(v.channel) + " · " + esc(v.role) + "</li>").join("");
+        render();
+      })();
+    </script>
+  </body>
+</html>
