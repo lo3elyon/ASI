@@ -1,14 +1,16 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="../assets/ai-safety-full-episodes.jpg" width="100%" alt="AI Safety Full Episodes v2"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 243 verified full-length episodes, Jul–Oct 2026"></a>
 
-# AI Safety Full Episodes · v2 · July–October 2026
+<img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
-**A streaming app for every verified full-length AI safety episode of July 1 – October 27, 2026: a pop-out player that keeps going while the browser is minimised, audio mode, full chapter reports, a P(doom) and timelines claims tracker, a speaker hub with real photos, contribution-style heatmaps, smart recommendations, insights and achievements.**
+# AI Safety Full Episodes · July–October 2026
+
+**A streaming app for every verified full-length AI safety episode of July 1 – October 27, 2026: a fullscreen cinema player with YouTube-style custom controls, a draggable mini player, headphones mode, an always-on-top float window, "I've watched these" bulk marking, a full watch-history timeline, playlists, ratings, monthly recaps, full chapter reports, a P(doom) and timelines claims tracker, a speaker hub with real photos, heatmaps, insights and achievements.**
 
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
-<img src="https://img.shields.io/badge/version-2.0-f59e0b?style=flat-square&labelColor=07111f" alt="v2.0">
+<img src="https://img.shields.io/badge/updated-2026--10--28-f59e0b?style=flat-square&labelColor=07111f" alt="updated Oct 28, 2026">
 <img src="https://img.shields.io/badge/episodes-243-14b8a6?style=flat-square&labelColor=07111f" alt="243 episodes">
 <img src="https://img.shields.io/badge/runtime-~267%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 267 hours">
 <img src="https://img.shields.io/badge/researchers%20%26%20guests-132-22d3ee?style=flat-square&labelColor=07111f" alt="132 researchers and guests">
@@ -18,13 +20,19 @@
 <img src="https://img.shields.io/badge/window-Jul%201%E2%80%93Oct%2027%2C%202026-3b82f6?style=flat-square&labelColor=07111f" alt="Jul 1 to Oct 27, 2026">
 <br>
 <img src="https://img.shields.io/badge/JavaScript-vanilla%2C%20modular-facc15?style=flat-square&logo=javascript&logoColor=07111f&labelColor=07111f" alt="Vanilla JS">
-<img src="https://img.shields.io/badge/build%20step-none-10b981?style=flat-square&labelColor=07111f" alt="No build step">
-<img src="https://img.shields.io/badge/Document%20PiP-Chrome%20%2F%20Edge%20116%2B-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture">
+<img src="https://img.shields.io/badge/bundle-terser%20%2B%20csso-10b981?style=flat-square&labelColor=07111f" alt="Minified bundle">
+<img src="https://img.shields.io/badge/pre--rendered-24%20cards%20%2B%20noscript%20list-22d3ee?style=flat-square&labelColor=07111f" alt="Pre-rendered HTML">
+<img src="https://img.shields.io/badge/CSP-strict%20script--src-ef4444?style=flat-square&labelColor=07111f" alt="Strict CSP">
+<img src="https://img.shields.io/badge/JSON--LD-243%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
+<img src="https://img.shields.io/badge/PWA-installable-14b8a6?style=flat-square&labelColor=07111f" alt="Installable PWA">
+<img src="https://img.shields.io/badge/Fullscreen-cinema%20player-f59e0b?style=flat-square&labelColor=07111f" alt="Fullscreen cinema player">
+<img src="https://img.shields.io/badge/Float%20window-Document%20PiP%20remote-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture remote">
 <img src="https://img.shields.io/badge/Media%20Session-wired-14b8a6?style=flat-square&labelColor=07111f" alt="Media Session">
-<img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API%20(nocookie)-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
+<img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/smoke%20test-49%2F49%20passing-10b981?style=flat-square&labelColor=07111f" alt="49 of 49 smoke checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-136%2F136%20passing-10b981?style=flat-square&labelColor=07111f" alt="136 of 136 checks passing">
+<img src="https://img.shields.io/badge/themes-6%20accents%20%2B%202%20optional-84cc16?style=flat-square&labelColor=07111f" alt="Accent themes">
 
 </div>
 
@@ -32,7 +40,84 @@
 
 ## Contents
 
-[What's new in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[What's new (Oct 28)](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026): cinema update
+
+| Area | Before (Oct 27) | **Now (Oct 28)** |
+|---|---|---|
+| Pop-out | Re-created a YouTube player inside the Document PiP window → **"Error 153: video player configuration error"** | The one real player stays on the page; the **float window is a remote/now-playing panel** (artwork, live chapter, progress, controls). No second player, no 153. Every YouTube iframe is built by the app with `referrerpolicy="strict-origin-when-cross-origin"`, `origin` and `widget_referrer`, on `youtube.com` consistently. |
+| Expand button | Opened a small pop-out window | **Toggles true fullscreen** on the player shell (Fullscreen API on the container, not the bare iframe), so the custom controls, chapter rail and menus overlay the video. Esc exits. CSS fallback where the API is missing. |
+| Player controls | YouTube's own controls | **Custom cinema controls**: big play, ±10 s (and ±5/30 via keys), frame step when paused, speed 0.25–3× in 0.05 steps (clamped to YouTube's 2× embed limit), quality menu, volume slider, captions, A–B loop, chapter ticks + bookmarks on the seek bar, buffered bar, hover preview (time + chapter + nearest YouTube frame), sleep timer (15/30/60 min, end of chapter, end of episode), skip intro, auto-skip to the researcher in hearings, double-click/double-tap seek, touch swipe for seek and volume, `?` overlay. A "YouTube's own controls" switch is in Settings for ads or YouTube menus. |
+| Mini player | Fixed bottom-right | **Draggable anywhere** (pointer + touch), **snaps to the nearest corner**, remembers corner and size (`asfe:mini:v3`), **corner resize handle**, double-click to expand. |
+| Error handling | Message only | **Fallback card** for codes 2 / 5 / 100 / 101 / 150 / 153 and API-blocked: Open on YouTube (at your second), **Mark as watched**, Try again, Next episode. |
+| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 243 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
+| History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
+| Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
+| Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Zen focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
+| Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
+| Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
+| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 243), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 243 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
+| Storage | `:v2` keys | **Schema 3** (`:v3` keys). v1 and v2 keys stay untouched as backups. |
+
+## The cinema player
+
+```mermaid
+flowchart TB
+  subgraph Shell["#dock (the element that goes fullscreen)"]
+    V["#dockVideo"] --> F["YouTube iframe<br/>built by the app: referrerpolicy, origin,<br/>widget_referrer, controls=0"]
+    V --> O["overlay .pv<br/>gesture layer · title + chapter · seek bar<br/>(buffer · coverage · chapter ticks · bookmarks · A–B band)<br/>controls · menus · chapter rail · skip intro · Pomodoro"]
+    V --> E["fallback card (errors 2/5/100/101/150/153)"]
+    H["headphones panel<br/>artwork + visualizer"]
+    B["compact bar (mini / headphones)"]
+  end
+  Shell -->|"F / button"| FS["Fullscreen API on the shell<br/>(CSS fallback when unavailable)"]
+  Shell -->|"T"| TH["theater: floats over #stageSlot<br/>ambient glow from the thumbnail"]
+  Shell -->|"mini"| MI["drag · snap to corner · resize · remember"]
+  Shell -->|"I"| PIP["float window = remote panel"]
+```
+
+```mermaid
+stateDiagram-v2
+  [*] --> Docked: mini mode
+  Docked --> Dragging: pointer moves > 6 px
+  Dragging --> Snapping: release
+  Snapping --> Docked: nearest corner saved (asfe:mini:v3)
+  Docked --> Resizing: corner handle
+  Resizing --> Docked: width saved
+  Docked --> Theater: double-click / double-tap
+```
+
+## The Error 153 fix
+
+```mermaid
+sequenceDiagram
+  participant Page as Main page (https origin)
+  participant PiP as Float window (about:blank)
+  participant YT as YouTube embed
+  Note over Page,YT: Before: a new YT.Player was created inside the PiP document
+  PiP->>YT: iframe request with no Referer (about:blank is never sent as a referrer)
+  YT-->>PiP: Error 153 · video player configuration error
+  Note over Page,YT: Now: the only player lives on the page
+  Page->>YT: iframe built by the app · referrerpolicy=strict-origin-when-cross-origin · origin + widget_referrer
+  YT-->>Page: plays normally
+  Page->>PiP: requestWindow() → remote panel (artwork, title, live chapter, progress, controls)
+  PiP->>Page: play/pause, ±10 s, chapter skip, seek → the page's player
+```
+
+Moving the live iframe into the float window would reload it inside the about:blank document with the same missing referrer, so that route was rejected on purpose. Honest limit: the float window shows artwork and controls, not the moving picture. For a big picture use fullscreen (`F`); to keep listening with the browser minimised use the float window or headphones mode.
+
+## I've watched these
+
+Every card, the episode drawer, the theater and the error card have **Mark as watched** (and **Mark unwatched**). A mark writes a full-completion record (watched seconds = duration, 100 %, completed, `source: "manual"`, timestamp now) that counts toward stats, XP, badges, streaks and the watch heatmap on the day you mark it. Manual minutes are stored separately (`manualDaily`) so heatmap cells say "x played + y marked as watched" and show a dot. The record keeps a snapshot of what was there before, so unmarking restores it exactly. "Watched up to mm:ss" logs partial viewing. The checklist page (`#/watched`, `G W`) groups all 243 by month with thumbnails and speakers; tick rows, a whole month, a speaker, or every search result, then **Mark selected as watched** with **Undo**. CSV import accepts any file with an `id` or YouTube `url` column (plus optional `completed`, `percent`, `position`).
+
+```mermaid
+flowchart LR
+  A["Unwatched / in progress"] -->|"Mark as watched"| B["Completed (manual)<br/>watched = duration · 100 %<br/>session src=manual · manualDaily[today]"]
+  B -->|"Mark unwatched / Undo"| A
+  A -->|"watched up to mm:ss"| C["In progress (manual partial)"]
+  C -->|"≥ 90 % covered"| B
+```
 
 ## What's new in v2
 
@@ -52,10 +137,11 @@
 
 | Area | What you get |
 |---|---|
-| **Pop-out player** | `I` or the window button moves the episode into a Document Picture-in-Picture window (Chrome/Edge 116+) with play, ±10 s, chapter skip, next episode and the live chapter title. It floats above every app and keeps playing while the browser is minimised. Closing it hands playback back to the page at the same second. Other browsers get a clear message and switch to audio mode. |
-| **Audio mode** | `A` collapses the video into a slim bar with the speaker's photo as artwork, title, live chapter and full controls. Keep browsing; playback never stops on navigation or tab switches. |
+| **Fullscreen cinema** | `F` or the expand button puts the whole player shell into fullscreen with auto-hiding overlay controls, a chapter rail and menus; Esc exits. |
+| **Float window** | `I` (or More → Float window) opens a Document Picture-in-Picture remote (Chrome/Edge 116+): artwork, live chapter, progress, play/pause, ±10 s, chapter skip. The video keeps playing in the page. Other browsers switch to headphones mode. |
+| **Headphones mode** | `A` hides the video and shows big speaker artwork, an animated visualizer, title, live chapter and full controls. Keep browsing; playback never stops on navigation or tab switches. |
 | **Media Session** | Title, speakers, show and artwork go to the OS media controls (lock screen, keyboard media keys, headset buttons), with play, pause, seek ±, seek-to, next and previous-chapter handlers wired to the YouTube player. |
-| **Persistent dock** | One player for the whole app: theater, mini (bottom-right), audio bar or pop-out. It survives every route change and is never re-created inside the page, so it never reloads. |
+| **Persistent dock** | One player for the whole app: theater, fullscreen, draggable mini, headphones. It survives every route change and is never re-created, so it never reloads. |
 | **Months** | Switch between All, July, August, September and October with per-month stats (episodes, hours, speakers, chapters, top speakers). Default is All. |
 | **Release heatmap** | A contributions-style grid of every day Jul 1 – Oct 31, 2026: colour intensity = episodes released, the number is shown in larger cells and on hover, month headers show totals and active days, a Less→More legend; click a day or a month to filter the library. |
 | **Watch heatmap** | The same grid for your own minutes watched per day (strict playback only); click a day in History to see just that day. |
@@ -72,7 +158,7 @@
 | **Insights** | KPIs, hours per day or week, by speaker, by organisation, by release month, by format, completion donut, streak calendar, and a **claims tracker** table of P(doom) and timeline statements by speaker with a ▶ button to the exact moment. |
 | **Achievements** | 12 levels from Novice to Superalignment Sage, 29 badges (Monthly Completionist, Speaker Collector, Org Explorer, Night Owl, Binge, Chapter Jumper, Note Taker, Always on Top, Ears Only, …), floating +XP, level-up burst, editable profile card. |
 | **Command palette** | `Ctrl/⌘ K`: jump to any episode, speaker or action (pop out, audio mode, copy link, theme, surprise me). `Shift+Enter` queues. |
-| **Polish** | Dark / light / system theme, amber and teal accents, glass surfaces, skeleton loaders, lazy thumbnails, responsive layout with a mobile bottom nav, visible focus rings, reduced-motion support, offline-friendly service worker. |
+| **Polish** | Dark / light / system theme, 6 accent colours (+2 optional), aurora background, gradient-border glass, skeleton shimmer, staggered entrance, view transitions, confetti, lazy thumbnails, responsive layout with a mobile bottom nav, accessible focus rings, reduced-motion support, offline-friendly service worker. |
 
 ## A taste of the library
 
@@ -186,20 +272,23 @@ Curated portraits of the researchers with bios in `data/roster.json`. Hosts get 
 ```mermaid
 flowchart LR
   subgraph Page["index.html (no build step)"]
-    CORE["core.js<br/>helpers · storage + v1→v2 migration<br/>normalise · speakers · claims"]
+    CORE["core.js<br/>helpers · storage + v1→v2→v3 migration<br/>normalise · speakers · claims"]
     HIST["history.js<br/>strict history · queue · notes<br/>follows · XP · 12 levels · 29 badges"]
     RECS["recs.js<br/>similarity · personal score<br/>fuzzy search · facets"]
     UI["ui.js<br/>cards · photos · toasts · XP pop"]
-    PLAYER["player.js<br/>YouTube IFrame API · dock modes<br/>Document PiP · Media Session"]
+    PLAYER["player.js<br/>cinema controls · fullscreen · mini drag<br/>float-window remote · Zen · Media Session"]
     VIEWS["views.js<br/>home · browse · months · speakers<br/>drawer · history · queue · profile"]
     INS["insights.js<br/>SVG charts · heatmaps · claims tracker"]
-    APP["app.js<br/>router · palette · shortcuts · theme · boot"]
+    FEAT["features.js<br/>watched checklist · history timeline<br/>playlists · ratings · context menu<br/>recap · share cards · themes · carousels"]
+    APP["app.js<br/>router · palette · shortcuts · view transitions · boot"]
+    BOOT["boot.js (head)<br/>theme · accent · splash flag"]
   end
   DATA[("data/episodes.json<br/>roster.json · photos.json<br/>manifest.json → daily/*.json")] --> CORE
   INLINE[("assets/data-inline.js<br/>file:// fallback")] -.-> CORE
-  CORE --> HIST --> RECS --> UI --> PLAYER --> VIEWS --> INS --> APP
-  PLAYER <--> YT["youtube-nocookie.com<br/>IFrame player"]
-  PLAYER <--> PIP["Pop-out window<br/>(documentPictureInPicture)"]
+  CORE --> HIST --> RECS --> UI --> PLAYER --> VIEWS --> INS --> FEAT --> APP
+  BUNDLE[["assets/app.bundle.js<br/>(terser, deferred)"]] -.-> Page
+  PLAYER <--> YT["youtube.com/embed<br/>iframe built by the app"]
+  PLAYER --> PIP["Float window remote<br/>(documentPictureInPicture)"]
   HIST <--> LS[("localStorage asfe:*")]
   SW["sw.js<br/>network-first shell + data"] -.-> Page
 ```
@@ -213,13 +302,13 @@ sequenceDiagram
   participant H as history.js
   participant P as player.js
   participant Y as YouTube iframe
-  B->>H: loadState() → migrate v1 keys once (v1 kept as backup)
+  B->>H: loadState() → migrate v1→v2→v3 keys once (older keys kept as backups)
   B->>C: fetch episodes.json + roster.json + photos.json (+ manifest daily files)
   C->>C: normalise mixed Jul–Oct schemas, dedupe by id, build speakers, claims, day counts
   B->>B: route(#/home, #/browse?…, #/speaker/…, #ep=id&t=sec)
   B->>P: play(id) (resume point or ?t)
-  P->>Y: new YT.Player / loadVideoById
-  loop every second (also in background tabs, audio mode and the pop-out)
+  P->>Y: build iframe (referrerpolicy, origin, widget_referrer) → new YT.Player(iframe) / loadVideoById
+  loop every second (also in background tabs, headphones mode, fullscreen and with the float window open)
     P->>Y: getCurrentTime / getPlayerState
     P->>H: add contiguous playback only → watched, daily, coverage bitset, session
   end
@@ -236,6 +325,8 @@ stateDiagram-v2
   InProgress --> InProgress: contiguous playback adds seconds + 10 s coverage slices
   InProgress --> Completed: 90% of slices covered
   Completed --> Completed: rewatching adds time, never un-completes
+  Unwatched --> Completed: Mark as watched (manual, full)
+  Completed --> InProgress: Mark unwatched (restores the snapshot)
   InProgress --> Unwatched: removed from History
   Completed --> Unwatched: removed from History
   note right of InProgress
@@ -245,23 +336,13 @@ stateDiagram-v2
   end note
 ```
 
-### Pop-out hand-over
-
-```mermaid
-flowchart LR
-  A["Page player at t"] -->|"I / pop-out button"| B{"documentPictureInPicture?"}
-  B -- yes --> C["requestWindow 480×340"] --> D["fresh YT.Player in pop-out at t<br/>messages relayed to this window"] --> E["controls + live chapter title<br/>history keeps counting"]
-  E -->|"close"| F["fresh page player at the same second"]
-  B -- no --> G["toast + audio mode<br/>(background playback continues)"]
-```
-
 ## Keep playing when minimised
 
-1. **Never pause on `visibilitychange`.** Hiding the tab only saves progress.
-2. **Pop-out player** using the Document Picture-in-Picture API (Chrome / Edge 116+). The episode moves into an always-on-top window that survives a minimised browser. YouTube iframes cannot be moved between documents without reloading, so the app recreates the player inside the pop-out at the exact second and relays the iframe's messages back to the main window so the IFrame API (and the strict history clock) keep working.
-3. **Audio mode** for every browser: video collapses to a bar with the speaker photo as artwork.
-4. **Media Session** metadata and action handlers for OS media controls.
-5. **Persistent dock** across every route.
+1. **Never pause on `visibilitychange`.** Hiding the tab only saves progress; at the end of an episode in a hidden tab the next one starts at once (no countdown, since timers are throttled).
+2. **Float window** (Chrome / Edge 116+): an always-on-top remote with artwork, chapter and controls, while the page keeps playing the video.
+3. **Headphones mode** for every browser: big artwork and visualizer, video hidden.
+4. **Media Session** metadata and handlers for lock-screen and hardware media keys.
+5. **Persistent dock** across every route; background-friendly queue playback.
 
 ## Strict watch history
 
@@ -285,14 +366,19 @@ XP: 1 per minute actually played · 50 per completed episode · 5 per note · 30
 |---|---|---|---|
 | `Ctrl/⌘ K` | Command palette | `/` | Search |
 | `Space` / `K` | Play / pause | `J` / `L` | −10 s / +10 s |
-| `←` / `→` | −10 s / +10 s (Shift: 30 s) | `↑` / `↓` | Volume (theater) |
-| `Shift P` | Previous chapter | `]` | Next chapter |
+| `←` / `→` | −10 s / +10 s (Shift: 30 s) | `↑` / `↓` | Volume (theater / fullscreen) |
+| `,` / `.` | Frame step when paused (speed −/+ 0.25× while playing) | `<` / `>` | Slower / faster |
+| `Shift P` / `Shift ]` | Previous / next chapter | `S` | Skip intro |
 | `Shift N` | Next episode | `0`–`9` | Jump to 0–90% |
-| `,` / `.` | Slower / faster | `M` | Mute |
-| `F` | Fullscreen | `T` | Theater ↔ mini |
-| `A` | Audio mode | `I` | Pop-out player |
-| `N` | Note at this moment | `C` | Copy link at current time |
-| `G` then `H/B/S/I/M/Q/P/N` | Go to a section | `?` | Shortcuts overlay |
+| `F` | Fullscreen cinema | `T` | Theater ↔ mini |
+| `A` | Headphones mode | `I` | Float window |
+| `Z` | Zen focus mode | `C` | Captions |
+| `M` | Mute | `B` | Bookmark |
+| `N` | Note at this moment | `[` / `]` / `\` | Loop start / end / clear |
+| `W` | Mark watched (focused card or current episode) | `Shift F10` | Card menu (or right-click) |
+| Arrow keys on a card | Move between cards | `Esc` | Close menu / exit fullscreen / leave Zen / minimise |
+| `G` then `H B S I W L R Y` | Home, Browse, Speakers, Insights, Watched, Playlists, Recap, History | `?` | Shortcuts overlay |
+| Double-click / double-tap video | Left/right third ±10 s · middle fullscreen · mini expands | Swipe on video (touch) | Sideways seeks · up/down on the right half = volume |
 
 ## Data schema
 
@@ -333,18 +419,26 @@ The app merges listed files after `episodes.json` on every load; a later copy of
 
 ```
 ai-safety-full-episodes/
-├── index.html              app shell (views, dock, theater, drawer, palette, modals, bottom nav)
-├── sw.js                   offline-friendly service worker
+├── index.html              pre-rendered shell: SEO tags, CSP, JSON-LD, hero + 24 cards, noscript list, player shell
+├── sw.js                   offline-friendly service worker (cache bumped for this update)
+├── manifest.webmanifest    installable PWA (standalone, maskable icon, shortcuts)
+├── favicon.svg · favicon.ico · apple-touch-icon.png
+├── robots.txt · sitemap.xml   (sitemap includes video entries for all 243)
 ├── README.md               this file
 ├── assets/
-│   ├── app.css             all styles (dark / light, glass, responsive)
-│   ├── app.js              router, global events, command palette, shortcuts, theme, boot
+│   ├── app.min.css         minified app.css + v3.css (what the page loads)
+│   ├── app.css · v3.css    readable styles: base + cinema/library/design layer
+│   ├── app.bundle.js       minified, deferred bundle of all modules (what the page loads)
+│   ├── app.js              router, global events, command palette, shortcuts, view transitions, boot
+│   ├── brand/              mark.svg · logo.svg · maskable.svg · icon-192/512 · icon-maskable-512 · og.jpg
 │   ├── js/
 │   │   ├── core.js         helpers, storage + migration, taxonomy, normalisation, speakers, claims
 │   │   ├── history.js      strict history, library state, XP, levels, badges
 │   │   ├── recs.js         recommendations, fuzzy search, filters
 │   │   ├── ui.js           icons, cards, photo avatars, toasts, XP animation
-│   │   ├── player.js       YouTube player, dock modes, pop-out, Media Session, chapters, seek bar
+│   │   ├── boot.js         runs in <head>: theme, accent, reduced motion, first-visit splash
+│   │   ├── player.js       cinema controls, fullscreen, draggable mini, float-window remote, Zen, sleep, loop, Media Session
+│   │   ├── features.js     watched checklist, history timeline, playlists, ratings, tags, context menu, recap, share cards, themes, carousels
 │   │   ├── views.js        home, browse, months, speakers, profile pages, drawer, history, queue, notes, about
 │   │   └── insights.js     SVG charts, contribution heatmaps, claims tracker
 │   ├── data-inline.js      inline data copy for file://
@@ -360,7 +454,23 @@ ai-safety-full-episodes/
 
 ## Privacy
 
-Everything you do stays in this browser's `localStorage` under `asfe:` keys (`history:v2`, `notes:v2`, `favs:v2`, `queue:v2`, `follows:v2`, `badges:v2`, `savedFilters:v2`, `prefs:v2`, `settings:v2`). v1 keys are migrated once and left in place as a backup. No analytics, no accounts, no server. Videos play through YouTube's privacy-enhanced embed; YouTube's terms apply to playback. Export and import a JSON backup from History.
+Everything you do stays in this browser's `localStorage` under `asfe:` keys (`history:v3`, `notes:v3`, `favs:v3`, `queue:v3`, `follows:v3`, `badges:v3`, `savedFilters:v3`, `prefs:v3`, `settings:v3`, `playlists:v3`, `later:v3`, `ratings:v3`, `utags:v3`, `mini:v3`, `accent`, `theme`). The `:v1` and `:v2` keys are copied forward once and left untouched as backups. No analytics, no accounts, no server. Videos play through YouTube's embedded player, loaded only when you first press play; YouTube's terms apply to playback. Export JSON or CSV from History.
+
+## SEO, security and performance
+
+| | What is done |
+|---|---|
+| **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 243 with links. The app hydrates over it. |
+| **Structured data** | JSON-LD `WebSite` + `ItemList` of 243 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
+| **CSP** | `script-src 'self' https://www.youtube.com https://s.ytimg.com` (no inline scripts), `frame-src` YouTube only, `img-src` self + ytimg, fonts from Google Fonts, `object-src 'none'`, `base-uri 'self'`. Styles allow inline because the UI sets CSS variables in `style` attributes. |
+| **No inline handlers** | Image load/error handling uses capture-phase listeners; the jsdom test checks the live DOM for any `on*` attribute. |
+| **Escaping & imports** | All data goes through `esc()` before `innerHTML`; imported JSON is rebuilt key by key (valid 11-char IDs, finite numbers, clipped strings, known keys only); CSV import is parsed defensively and exports neutralise spreadsheet formulas. External links use `rel="noopener noreferrer"`; referrer policy `strict-origin-when-cross-origin`. |
+| **Performance** | Critical CSS inline, full CSS minified (csso), one deferred terser bundle with preload, YouTube IFrame API only on first play, preconnect to i.ytimg.com and youtube.com, lazy + async-decoded images with width/height, service worker cache. |
+| **Loading polish** | Animated logo splash on the first visit, top progress bar driven by the data download, shimmer skeletons, staggered card entrance, View Transitions API between sections (CSS fallback). |
+
+## Tests
+
+`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 136 checks, all passing. It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Zen + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
 
 ## Method
 
@@ -371,10 +481,16 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 ## FAQ
 
+<details><summary><b>Why did the old pop-out say "Error 153"?</b></summary>
+<br>The pop-out created a new YouTube player inside the Picture-in-Picture document. That document is <code>about:blank</code>, so the request carried no referrer and YouTube refused to start. The float window is now a remote for the player that stays on the page, and every iframe is created with an explicit referrer policy and origin.</details>
 <details><summary><b>Does it really keep playing when I minimise the browser?</b></summary>
-<br>On Chrome and Edge 116+, yes: use the pop-out player (<code>I</code>) and it stays on top and keeps playing. Elsewhere, desktop browsers keep playing in a background tab and the app never pauses on tab switches; some mobile browsers pause embedded video in the background and a web page cannot override that.</details>
-<details><summary><b>Did v2 keep my v1 history?</b></summary>
-<br>Yes. On first load v2 copies your v1 history, notes, favourites, queue, settings and badges into v2 keys and leaves the v1 keys untouched.</details>
+<br>Desktop browsers keep playing in a background tab and the app never pauses on tab switches. On Chrome and Edge 116+ the float window (<code>I</code>) stays on top as a remote. Some mobile browsers pause embedded video in the background, which a web page cannot override.</details>
+<details><summary><b>I watched some of these on YouTube already. Can I count them?</b></summary>
+<br>Yes: Mark as watched on any card, or tick them in bulk on <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/#/watched">I've watched these</a>. They count as completions on the day you mark them and are labelled as marked everywhere. Undo or Mark unwatched restores the earlier record.</details>
+<details><summary><b>Why can't I go faster than 2×?</b></summary>
+<br>The speed control goes to 3×, but YouTube's embedded player only accepts up to 2×, so the app clamps and tells you.</details>
+<details><summary><b>Did the update keep my history?</b></summary>
+<br>Yes. Storage moved to schema 3: every <code>:v2</code> key (and, for first-time visitors from the first release, every <code>:v1</code> key) is copied forward once and the old keys are left untouched as backups.</details>
 <details><summary><b>Why does a host show a channel logo?</b></summary>
 <br>Hosts get the avatar of the channel their episode is on. For network channels that is the network's logo rather than the person.</details>
 <details><summary><b>Why do some guests show a cropped video thumbnail?</b></summary>
@@ -390,6 +506,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-28 | **v3 · cinema update**: fixed the pop-out "Error 153" (float window is now a remote; the only player stays on the page; iframes built with referrer policy, origin and widget_referrer on youtube.com); expand button now toggles true fullscreen on the player shell with overlay controls and chapter rail; custom cinema controls (frame step, 0.25–3× fine speed, quality, captions, A–B loop, bookmarks, buffered bar, hover previews, sleep timer, skip intro, hearing auto-skip, gestures); draggable, snapping, resizable mini player; fallback card for errors 2/5/100/101/150/153; Mark as watched + "I've watched these" bulk checklist with undo and partial; history timeline with filters, search and JSON/CSV export/import; Continue banner, Recently watched, daily goal + streak; playlists, Watch later, ratings, personal tags, context menu, monthly recap, share-card images, Zen mode, headphones mode; aurora design with 6 accent themes, styled scrollbars and carousels; new logo and full favicon/PWA set, OG image; pre-rendered HTML, JSON-LD, sitemap, robots, strict CSP, minified bundle; schema 3 migration keeping v1/v2 backups; 136-check jsdom test. |
 | 2026-10-27 | **v2.0**: 243 verified full episodes Jul–Oct 2026 (replaces the 52 + 8 set); pop-out always-on-top player (Document PiP), audio mode, Media Session, persistent dock, never pauses on tab switch; month switcher; GitHub-style release and watch heatmaps; speaker hub with a real photo for every person (49 curated portraits, 98 host channel avatars, thumbnail crops for the rest), bios, follow, profile pages, Play all and stated numbers; full episode reports with deep links at the current second; fuzzy search, 10 filter groups, 8 sorts, grid/list and saved filters; smarter recommendations with reasons; insights dashboard and claims tracker; 12 levels and 29 badges with XP animation; command palette, shortcuts overlay, dark/light/system theme, mobile bottom nav, service worker; 8 JS modules; v1→v2 storage migration; jsdom smoke test. |
 | 2026-10-27 | v1: 52 episodes + 8 just outside, embedded player with theater and mini modes, chapters, strict watch history, Up Next with autoplay countdown, queue, notes, favorites, speaker directory, heatmap, levels and 17 badges, light/dark themes, manifest-based daily data. |
 
