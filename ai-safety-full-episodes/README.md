@@ -6,7 +6,7 @@
 
 # AI Safety Full Episodes · July–October 2026
 
-**A streaming app for every verified full-length AI safety episode of July 1 – October 27, 2026: a fullscreen cinema player with YouTube-style custom controls, a draggable mini player, headphones mode, an always-on-top float window, "I've watched these" bulk marking, a full watch-history timeline, playlists, ratings, monthly recaps, full chapter reports, a P(doom) and timelines claims tracker, a speaker hub with real photos, heatmaps, insights and achievements.**
+**A streaming app for every verified full-length AI safety episode of July 1 – October 27, 2026: a fullscreen cinema player with YouTube-style custom controls, a draggable mini player, headphones mode, an always-on-top float window, "I've watched these" bulk marking, a full watch-history timeline, playlists, ratings, monthly recaps, full chapter reports, a P(doom) and timelines claims tracker, a speaker hub with a real face photo for every speaker, Today's picks, Explore (learning paths, quote wall, debate mode, speaker map), 31 themes, heatmaps, insights and achievements.**
 
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
@@ -31,8 +31,10 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-136%2F136%20passing-10b981?style=flat-square&labelColor=07111f" alt="136 of 136 checks passing">
-<img src="https://img.shields.io/badge/themes-6%20accents%20%2B%202%20optional-84cc16?style=flat-square&labelColor=07111f" alt="Accent themes">
+<img src="https://img.shields.io/badge/jsdom%20test-218%2F218%20passing-10b981?style=flat-square&labelColor=07111f" alt="218 of 218 checks passing">
+<img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
+<img src="https://img.shields.io/badge/speaker%20photos-227%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="227 real face photos">
+<img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
 
 </div>
 
@@ -40,7 +42,35 @@
 
 ## Contents
 
-[What's new (Oct 28)](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026): picks, Explore and polish
+
+The second update of the day keeps everything from the cinema update below and adds a daily ritual, a second way to learn, and a lot of feel.
+
+| Area | What changed |
+|---|---|
+| **Today's picks** | A stable list of **5 recommended unwatched episodes per local day** at the top of Home (at least 3 when the pool is small), mixed across formats, orgs and months, each with a reason. Mark watched, **discard** (an optional reason becomes a negative signal), **replace**, **generate more** with no limit, shuffle and steer with a guidance bar. Reorder by **drag and drop** (pointer, touch or keyboard), drag any episode card from anywhere on the site into the picks dock, drag a pick to the bin. Unfinished picks **carry over** to tomorrow if you want, and a **log** keeps every past day. |
+| **Mini player** | **Free placement**: drag it anywhere on screen (not just corners) with grab / grabbing cursors, resize from the inner corner, and it remembers where you left it. Separate **Miniplayer (i)**, **Theater (t)** and **Fullscreen (f)** buttons, like YouTube. |
+| **Episode page** | No more inner scrollbars: the page scrolls as one, the chapters / claims / notes tabs stay pinned, and the player **sticks as a mini player** when you scroll past it, then morphs back. |
+| **Delight** | Ripples on every button, icon micro-animations (heart pop, check draw-in, bookmark flip, queue bounce), 3D tilt on thumbnails, and short bursts or **confetti** on meaningful actions (finishing an episode, clearing today's picks, level-ups). A **Celebrations** toggle turns the particles off; reduced motion and Do-not-disturb are always respected. |
+| **In-place updates** | Favourite, queue, watched and rating actions update the card you clicked in place (same node, same image), so grids never jump or reload. |
+| **Recently watched** | Has its own page (`#/recent`) instead of a shelf you had to scroll to. |
+| **31 themes** | 18 full palettes (GitHub Dark / Light, Dracula, Nord, Solarized Dark / Light, One Dark, Tokyo Night, Catppuccin Mocha / Latte, Gruvbox, Monokai, Material Ocean, VS Code Dark+, Rosé Pine, Monochrome Graphite, Pure Black OLED, Paper White) plus 13 accent colours, every one contrast-checked to WCAG AA, with search, favourites, auto by time of day and a custom accent picker. |
+| **Speaker photos** | **Every speaker now has a real face photo**: 227 of 231, including panel co-speakers, hosts and interviewers. Photos come from Wikimedia Commons, people's own sites and org team pages, or a clean face crop from their own episode, each checked with face detection and face matching against the episode, then reviewed by eye on a contact sheet. No text, logos or initials anywhere. The 4 anonymous channel hosts with no public face get a neutral silhouette drawn in the current theme accent. |
+| **Avatars** | Fixed square-to-circle avatars everywhere, the command palette included (no more squashed ovals). |
+| **Focus mode** | Zen mode is now called **Focus** (`Z`), with Pomodoro and Do-not-disturb as before. |
+| **Honest controls** | Quality, speed and caption menus only show what YouTube reports for the current video. When YouTube keeps choosing quality automatically for embeds, the menu says so and offers to open that exact moment on YouTube. |
+| **About + Explore** | A proper **About** page (how it works, shortcuts, privacy, FAQ) and an **Explore** page: 6 **learning paths** from basics to depth with progress, a **Quote wall** of key claims with jump-to-time, **Debate mode** with side-by-side stance cards, and a **Speaker map** of organisation affiliations. |
+
+```mermaid
+flowchart LR
+  R["recs.js<br/>for-you scores"] --> P["picks.js<br/>5 a day · variety · reasons"]
+  P -->|"done · discard · replace · more"| L[("localStorage<br/>picks log")]
+  C["any episode card"] -->|"drag"| D["picks dock"] --> P
+  P -->|"drag"| B["bin"]
+  L -->|"next day"| CO["carry-over prompt"] --> P
+```
 
 ## What's new (Oct 28, 2026): cinema update
 
@@ -54,7 +84,7 @@
 | Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 243 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
 | History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
 | Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
-| Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Zen focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
+| Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
 | Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
 | Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
 | Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 243), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 243 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
@@ -189,7 +219,7 @@ Three of the biggest episodes from each month (click to open on YouTube; every o
 
 ## Speaker photo grid
 
-Curated portraits of the researchers with bios in `data/roster.json`. Hosts get their channel avatar (`assets/speakers/<slug>.jpg`, fetched via the Piped API); anyone else is shown with a circular crop of the thumbnail from their best solo episode, so **nobody gets an initials placeholder**.
+Every one of the 231 speakers has a photo in `assets/speakers/<slug>.jpg`, mapped by name in `data/photos.json`: **227 real face photos** (curated portraits for the roster, plus verified face crops for every co-speaker, host and interviewer) and a neutral accent-coloured silhouette for 4 anonymous channel hosts (Carneades, Sazzad Hossain Sumon's channel, Eleanor of *Alive to This*, Sarah). `ui.photoOf` never falls back to a video thumbnail, cover art or initials.
 
 <table>
 <tr>
@@ -276,7 +306,7 @@ flowchart LR
     HIST["history.js<br/>strict history · queue · notes<br/>follows · XP · 12 levels · 29 badges"]
     RECS["recs.js<br/>similarity · personal score<br/>fuzzy search · facets"]
     UI["ui.js<br/>cards · photos · toasts · XP pop"]
-    PLAYER["player.js<br/>cinema controls · fullscreen · mini drag<br/>float-window remote · Zen · Media Session"]
+    PLAYER["player.js<br/>cinema controls · fullscreen · mini drag<br/>float-window remote · Focus · Media Session"]
     VIEWS["views.js<br/>home · browse · months · speakers<br/>drawer · history · queue · profile"]
     INS["insights.js<br/>SVG charts · heatmaps · claims tracker"]
     FEAT["features.js<br/>watched checklist · history timeline<br/>playlists · ratings · context menu<br/>recap · share cards · themes · carousels"]
@@ -372,11 +402,11 @@ XP: 1 per minute actually played · 50 per completed episode · 5 per note · 30
 | `Shift N` | Next episode | `0`–`9` | Jump to 0–90% |
 | `F` | Fullscreen cinema | `T` | Theater ↔ mini |
 | `A` | Headphones mode | `I` | Float window |
-| `Z` | Zen focus mode | `C` | Captions |
+| `Z` | Focus mode | `C` | Captions |
 | `M` | Mute | `B` | Bookmark |
 | `N` | Note at this moment | `[` / `]` / `\` | Loop start / end / clear |
 | `W` | Mark watched (focused card or current episode) | `Shift F10` | Card menu (or right-click) |
-| Arrow keys on a card | Move between cards | `Esc` | Close menu / exit fullscreen / leave Zen / minimise |
+| Arrow keys on a card | Move between cards | `Esc` | Close menu / exit fullscreen / leave Focus / minimise |
 | `G` then `H B S I W L R Y` | Home, Browse, Speakers, Insights, Watched, Playlists, Recap, History | `?` | Shortcuts overlay |
 | Double-click / double-tap video | Left/right third ±10 s · middle fullscreen · mini expands | Swipe on video (touch) | Sideways seeks · up/down on the right half = volume |
 
@@ -437,13 +467,17 @@ ai-safety-full-episodes/
 │   │   ├── recs.js         recommendations, fuzzy search, filters
 │   │   ├── ui.js           icons, cards, photo avatars, toasts, XP animation
 │   │   ├── boot.js         runs in <head>: theme, accent, reduced motion, first-visit splash
-│   │   ├── player.js       cinema controls, fullscreen, draggable mini, float-window remote, Zen, sleep, loop, Media Session
+│   │   ├── player.js       cinema controls, fullscreen, draggable mini, float-window remote, Focus, sleep, loop, Media Session
 │   │   ├── features.js     watched checklist, history timeline, playlists, ratings, tags, context menu, recap, share cards, themes, carousels
 │   │   ├── views.js        home, browse, months, speakers, profile pages, drawer, history, queue, notes, about
-│   │   └── insights.js     SVG charts, contribution heatmaps, claims tracker
+│   │   ├── insights.js     SVG charts, contribution heatmaps, claims tracker
+│   │   ├── fx.js           delight layer: ripples, icon micro-animations, tilt, bursts, confetti (Celebrations toggle)
+│   │   ├── themes.js       31 contrast-checked themes: palettes, accents, search, favourites, auto, custom accent
+│   │   ├── picks.js        Today's picks: daily list, discard / replace / more, drag and drop, carry-over, log
+│   │   └── extras.js       Explore: learning paths, quote wall, debate mode, speaker map
 │   ├── data-inline.js      inline data copy for file://
 │   ├── cover.jpg
-│   └── speakers/           147 photos (49 curated portraits + 98 host channel avatars)
+│   └── speakers/           227 face photos + neutral.svg (one per speaker, verified)
 └── data/
     ├── episodes.json       243 verified full episodes, Jul–Oct 2026
     ├── roster.json         curated researchers with bios
@@ -470,7 +504,7 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 ## Tests
 
-`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 136 checks, all passing. It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Zen + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
+`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 218 checks, all passing. It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Focus + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. It also checks Today's picks (daily stability, discard / replace / more, drag reorder, dock, bin, carry-over, log), free mini-player placement, sticky mini on scroll, in-place card updates, the 31 themes' contrast audit, Focus naming, About and Explore, the separate Miniplayer / Theater / Fullscreen buttons, and that every speaker has a real face photo (except 4 anonymous hosts) with no thumbnail fallback. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
 
 ## Method
 
@@ -506,7 +540,8 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
-| 2026-10-28 | **v3 · cinema update**: fixed the pop-out "Error 153" (float window is now a remote; the only player stays on the page; iframes built with referrer policy, origin and widget_referrer on youtube.com); expand button now toggles true fullscreen on the player shell with overlay controls and chapter rail; custom cinema controls (frame step, 0.25–3× fine speed, quality, captions, A–B loop, bookmarks, buffered bar, hover previews, sleep timer, skip intro, hearing auto-skip, gestures); draggable, snapping, resizable mini player; fallback card for errors 2/5/100/101/150/153; Mark as watched + "I've watched these" bulk checklist with undo and partial; history timeline with filters, search and JSON/CSV export/import; Continue banner, Recently watched, daily goal + streak; playlists, Watch later, ratings, personal tags, context menu, monthly recap, share-card images, Zen mode, headphones mode; aurora design with 6 accent themes, styled scrollbars and carousels; new logo and full favicon/PWA set, OG image; pre-rendered HTML, JSON-LD, sitemap, robots, strict CSP, minified bundle; schema 3 migration keeping v1/v2 backups; 136-check jsdom test. |
+| 2026-10-28 | **Picks, Explore and polish**: Today's picks (5 a day, mark watched, discard with reason, replace, generate more without limit, shuffle, guidance bar, drag and drop from anywhere, bin, carry-over, log); free-placement draggable mini player with grab / grabbing cursors and resize; separate Miniplayer (i) / Theater (t) / Fullscreen (f) buttons; episode page without inner scrollbars and a sticky mini player on scroll; delight effects and confetti with a Celebrations toggle; in-place card updates; Recently watched on its own page; 31 contrast-checked themes; square-circle avatar fix; Zen renamed Focus; honest quality / speed / caption controls; About and Explore pages (learning paths, quote wall, debate mode, speaker map); a real face photo for every speaker (227 of 231, the rest are anonymous hosts with an accent silhouette); 218-check jsdom test. |
+| 2026-10-28 | **v3 · cinema update**: fixed the pop-out "Error 153" (float window is now a remote; the only player stays on the page; iframes built with referrer policy, origin and widget_referrer on youtube.com); expand button now toggles true fullscreen on the player shell with overlay controls and chapter rail; custom cinema controls (frame step, 0.25–3× fine speed, quality, captions, A–B loop, bookmarks, buffered bar, hover previews, sleep timer, skip intro, hearing auto-skip, gestures); draggable, snapping, resizable mini player; fallback card for errors 2/5/100/101/150/153; Mark as watched + "I've watched these" bulk checklist with undo and partial; history timeline with filters, search and JSON/CSV export/import; Continue banner, Recently watched, daily goal + streak; playlists, Watch later, ratings, personal tags, context menu, monthly recap, share-card images, Focus mode (then called Zen), headphones mode; aurora design with 6 accent themes, styled scrollbars and carousels; new logo and full favicon/PWA set, OG image; pre-rendered HTML, JSON-LD, sitemap, robots, strict CSP, minified bundle; schema 3 migration keeping v1/v2 backups; 136-check jsdom test. |
 | 2026-10-27 | **v2.0**: 243 verified full episodes Jul–Oct 2026 (replaces the 52 + 8 set); pop-out always-on-top player (Document PiP), audio mode, Media Session, persistent dock, never pauses on tab switch; month switcher; GitHub-style release and watch heatmaps; speaker hub with a real photo for every person (49 curated portraits, 98 host channel avatars, thumbnail crops for the rest), bios, follow, profile pages, Play all and stated numbers; full episode reports with deep links at the current second; fuzzy search, 10 filter groups, 8 sorts, grid/list and saved filters; smarter recommendations with reasons; insights dashboard and claims tracker; 12 levels and 29 badges with XP animation; command palette, shortcuts overlay, dark/light/system theme, mobile bottom nav, service worker; 8 JS modules; v1→v2 storage migration; jsdom smoke test. |
 | 2026-10-27 | v1: 52 episodes + 8 just outside, embedded player with theater and mini modes, chapters, strict watch history, Up Next with autoplay countdown, queue, notes, favorites, speaker directory, heatmap, levels and 17 badges, light/dark themes, manifest-based daily data. |
 
