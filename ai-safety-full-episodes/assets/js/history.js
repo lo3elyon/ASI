@@ -21,7 +21,7 @@
     L.NOTES = store.get("notes:v3", {}) || {};
     L.FAVS = new Set(store.get("favs:v3", []) || []);
     L.QUEUE = store.get("queue:v3", []) || [];
-    L.SETTINGS = Object.assign({ autoplay: true, speed: 1, vol: 100, muted: false, dailyGoal: 30, autoSkipHearing: true, captions: false, nativeControls: false, accent: "amber", motion: "auto" }, store.get("settings:v3", {}) || {});
+    L.SETTINGS = Object.assign({ autoplay: true, speed: 1, vol: 100, muted: false, dailyGoal: 30, autoSkipHearing: true, captions: false, nativeControls: false, accent: "amber", motion: "auto", celebrations: true }, store.get("settings:v3", {}) || {});
     L.PLAYLISTS = store.get("playlists:v3", []) || [];
     L.LATER = store.get("later:v3", []) || [];
     L.RATINGS = store.get("ratings:v3", {}) || {};
@@ -213,7 +213,7 @@
     { id: "critic", icon: "⭐", name: "Critic", desc: "Rate 10 episodes", prog: () => [Math.min(10, Object.keys(L.RATINGS).length), 10] },
     { id: "playlister", icon: "🎚️", name: "Playlist Maker", desc: "Build a playlist with 5 episodes", prog: () => [Math.min(5, Math.max(0, ...L.PLAYLISTS.map((p) => p.ids.length))), 5] },
     { id: "cinema", icon: "🎬", name: "Cinema Mode", desc: "Watch 30 minutes in fullscreen", prog: () => [Math.min(30, mins(L.H.stats.fsSec)), 30] },
-    { id: "zen", icon: "🧘", name: "Deep Focus", desc: "Watch 30 minutes in Zen mode", prog: () => [Math.min(30, mins(L.H.stats.zenSec)), 30] },
+    { id: "zen", icon: "🧘", name: "Deep Focus", desc: "Watch 30 minutes in Focus mode", prog: () => [Math.min(30, mins(L.H.stats.zenSec)), 30] },
     { id: "goal3", icon: "🎯", name: "Goal Getter", desc: "Hit your daily goal on 3 days", prog: () => [Math.min(3, goalDays()), 3] },
     { id: "deep", icon: "🤿", name: "Deep End", desc: "Complete a Deep-dive episode", prog: () => [STATE.all.some((e) => e.level === "Deep-dive" && stateOf(e.id) === "done") ? 1 : 0, 1] },
   ];
