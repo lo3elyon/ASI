@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · views: home, browse, months, speakers, speaker profile, episode drawer, history, queue, profile, notes, about. */
+/* AI Safety Full Episodes · views: home, browse, months, speakers, speaker profile, episode drawer, history, queue, profile, notes, about. */
 (function (A) {
   "use strict";
   const { $, $$, esc, STATE, fmtTime, fmtHM, hoursStr, fmtDate, fmtShort, fold, MONTH_LIST, FORMATS, LENGTHS, LEVELS_EP, GROUPS } = A;
@@ -41,9 +41,9 @@
       <div class="hero">
         <div class="hero__bg" aria-hidden="true"><img src="assets/cover.jpg" alt=""></div>
         <div class="hero__in">
-          <p class="eyebrow"><span class="dot"></span> Verified against transcripts · compiled Oct 27, 2026 · v2</p>
+          <p class="eyebrow"><span class="dot"></span> Verified against transcripts · compiled Oct 27, 2026</p>
           <h1>Every verified full-length AI safety episode of <em>July–October 2026</em>, in one player.</h1>
-          <p class="lede">Whole podcasts, interviews, debates, talks, panels and hearings, never clips. Pop the player out so it keeps going while the browser is minimised, switch to audio mode, jump by chapter or by claim, follow researchers and level up as you learn.</p>
+          <p class="lede">Whole podcasts, interviews, debates, talks, panels and hearings, never clips. Watch in a fullscreen cinema player, keep listening in headphones mode or the float window, jump by chapter or claim, tick off what you already saw on YouTube, follow researchers and level up as you learn.</p>
           <div class="stats">
             <div class="stat"><b data-count="${STATE.all.length}">0</b><span>full episodes</span></div>
             <div class="stat"><b data-count="${Math.round(STATE.all.reduce((a, e) => a + e.dur, 0) / 3600)}">0</b><span>hours</span></div>
@@ -194,7 +194,7 @@
     const name = (window.prompt ? window.prompt("Name this filter", A.recs.F.q || "My filter") : "My filter") || "";
     if (!name.trim()) return;
     L().SAVED = L().SAVED.filter((x) => x.name !== name.trim()).concat([{ name: name.trim(), f: A.recs.filterToJSON(A.recs.F), sort: curSort() }]).slice(-12);
-    A.store.set("savedFilters:v2", L().SAVED);
+    A.store.set("savedFilters:v3", L().SAVED);
     paintSaved(); ui().toast(`Saved “${esc(name.trim())}”`, { icon: "💾" });
   }
   function paintSaved() {
@@ -203,7 +203,7 @@
     el.onclick = (ev) => {
       const a = ev.target.closest("[data-saved]"), d = ev.target.closest("[data-unsave]");
       if (a) { const s = L().SAVED[+a.dataset.saved]; A.recs.setFilter(A.recs.filterFromJSON(s.f)); L().PREFS.sort = s.sort || "newest"; $("#q").value = A.recs.F.q || ""; shown = 48; renderBrowse(); }
-      if (d) { L().SAVED.splice(+d.dataset.unsave, 1); A.store.set("savedFilters:v2", L().SAVED); paintSaved(); }
+      if (d) { L().SAVED.splice(+d.dataset.unsave, 1); A.store.set("savedFilters:v3", L().SAVED); paintSaved(); }
     };
   }
   function applyQuery(qs) {
@@ -349,11 +349,17 @@
           <button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>${st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Watch again" : "Play"}</span></button>
           <button class="btn" data-act="queue">${q ? ui().ICON.queued : ui().ICON.queue}<span>${q ? "Queued" : "Queue"}</span></button>
           <button class="btn" data-act="fav">${fav ? ui().ICON.heartF : ui().ICON.heart}<span>${fav ? "Favourited" : "Favourite"}</span></button>
+          <button class="btn ${st === "done" ? "is-on" : ""}" data-act="watched">${ui().ICON.check}<span>${st === "done" ? "Mark unwatched" : "Mark as watched"}</span></button>
+          <button class="btn" data-act="later">${ui().ICON.later}<span>${L().LATER.includes(id) ? "In Watch later" : "Watch later"}</span></button>
+          <button class="btn" data-act="playlist">${ui().ICON.list}<span>Playlist</span></button>
+          <button class="btn btn--ghost" data-act="sharecard">${ui().ICON.share}<span>Share card</span></button>
           <button class="btn btn--ghost" data-dr="link">${ui().ICON.link}<span>${isCur ? "Copy link at current time" : "Copy link"}</span></button>
           <button class="btn btn--ghost" data-dr="share">${ui().ICON.share}<span>Share</span></button>
-          <a class="btn btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener">${ui().ICON.yt}<span>YouTube</span></a>
+          <a class="btn btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${ui().ICON.yt}<span>YouTube</span></a>
         </div>
-        ${st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} You've watched <b>${fmtHM(r.watched)}</b> (${Math.round((r.pct || 0) * 100)}% covered)${r.done ? " · completed " + A.fmtStamp(r.doneAt) : ""} · last ${A.fmtStamp(r.last)}</p>` : ""}
+        ${st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual ? "logged" : "watched"} <b>${fmtHM(r.watched)}</b> (${Math.round((r.pct || 0) * 100)}% covered)${r.done ? " · completed " + A.fmtStamp(r.doneAt) : ""} · last ${A.fmtStamp(r.last)}</p>` : ""}
+        <form class="partial" id="drPartial"><label>Watched part of it on YouTube? Up to <input class="input input--sm" name="t" placeholder="mm:ss" inputmode="numeric" pattern="[0-9:]*" aria-label="Watched up to (mm:ss or h:mm:ss)" size="7"></label><button class="btn btn--sm btn--ghost">Save</button></form>
+        ${A.feat ? A.feat.rateTagHTML(id) : ""}
         ${e.whyWatch ? `<p class="th__why"><b>Why watch:</b> ${esc(e.whyWatch)}</p>` : ""}
         <p class="dr__sum">${esc(e.summary)}</p>
         <h3 class="dr__h">Speakers</h3>
@@ -375,6 +381,7 @@
     document.body.classList.add("lock-drawer");
     $("#drawer").scrollTop = 0;
     setTimeout(() => $("#drawer [data-close]").focus(), 30);
+    $("#drPartial").onsubmit = (ev) => { ev.preventDefault(); const v = A.toSec(ev.target.t.value.trim()); if (v == null || v <= 0) { ui().toast("Use mm:ss, e.g. 42:30", { ms: 1800 }); return; } h().markWatched(id, { upTo: Math.min(v, e.dur || v) }); ui().toast(`Logged as watched up to ${fmtTime(v)}`, { icon: "⏱️" }); refreshCardsFor(id); };
     $("#drNote").onsubmit = (ev) => { ev.preventDefault(); const ta = ev.target.querySelector("textarea"); const tx = ta.value.trim(); if (!tx) return; h().addNote(id, isCur ? A.player.curTime() : 0, tx); openDrawer(id); };
   }
   function closeDrawer() {
@@ -401,7 +408,7 @@
     const byDay = new Map();
     rows.forEach((x) => { const k = A.dayKey(x.s.s); if (histDay && k !== histDay) return; if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(x); });
     const tot = h().totalWatched();
-    const mig = A.migration && A.migration.from === 1 ? `<p class="mignote">✓ Your v1 history, notes, favourites, queue and badges were carried over to v2 (${A.migration.moved.join(", ")}).</p>` : "";
+    const mig = "";
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1><p class="lede">${fmtHM(tot)} actually played across ${Object.values(H.eps).filter((r) => r.watched >= 20).length} episodes · ${h().doneCount()} completed (90%+ really played).</p>${mig}</div>
       <div class="row-gap"><button class="btn btn--sm" id="hExport">Export backup</button><label class="btn btn--sm btn--ghost">Import<input type="file" id="hImport" accept="application/json" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${histDay ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(histDay))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: histDay })}</section>
@@ -465,16 +472,19 @@
           <div class="pcard__k"><span><b>${hoursStr(h().totalWatched())}</b> watched</span><span><b>${h().doneCount()}</b> completed</span><span><b>${st.cur}</b>-day streak</span><span><b>${earned}</b>/${h().BADGES.length} badges</span><span><b>${L().FOLLOWS.size}</b> following</span><span><b>${h().noteCount()}</b> notes</span></div>
         </div>
       </section>
-      <section class="panel panel--flat"><div class="panel__hd"><h2>How XP works</h2></div><p class="muted">1 XP per minute actually played · 50 per completed episode · 5 per note · 30 per badge · 2 per chapter jump (up to 200) · 5 per followed researcher.</p></section>
+      <section class="panel panel--flat"><div class="panel__hd"><h2>How XP works</h2></div><p class="muted">1 XP per minute played (or logged with “Mark as watched”) · 50 per completed episode · 5 per note · 30 per badge · 2 per chapter jump (up to 200) · 5 per followed researcher.</p></section>
       <h2 class="subh">Badges <small>${earned}/${h().BADGES.length}</small></h2>
       <div class="badges">${h().BADGES.map((b) => { const [c, t] = b.prog(); const got = !!L().EARNED[b.id]; return `<div class="badge ${got ? "is-got" : ""}"><span class="badge__ic">${b.icon}</span><b>${esc(b.name)}</b><small>${esc(b.desc)}</small><div class="badge__bar"><i style="width:${Math.min(100, (100 * c) / t).toFixed(0)}%"></i></div><em>${got ? "Earned " + esc(A.fmtStamp(L().EARNED[b.id])) : `${Math.floor(c)}/${t}`}</em></div>`; }).join("")}</div>
       ${ui().shelf("Favourites", fav, { icon: "❤️" })}
       <section class="panel panel--flat"><div class="panel__hd"><h2>Settings</h2></div>
         <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (10 s countdown)</label>
         <div class="seg seg--sm" role="group" aria-label="Theme">${["dark", "light", "system"].map((t) => `<button data-theme-set="${t}" aria-pressed="${theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
-        <button class="btn btn--sm" onclick="location.hash='#/history'">Backup & restore</button></div></section>`;
+        <div><p class="muted">Accent colour</p>${A.feat.accentPicker()}</div>
+        <div><p class="muted">Daily goal</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></div>
+        <a class="btn btn--sm" href="#/wrapped">Monthly recap</a><a class="btn btn--sm" href="#/watched">I've watched these</a>
+        <a class="btn btn--sm" href="#/history">Backup & restore</a></div></section>`;
     $("#pName").onchange = (ev) => { L().PREFS.name = ev.target.value.trim().slice(0, 40); h().savePrefs(); };
-    $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v2", L().SETTINGS); };
+    $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); };
     v.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => { A.app.setTheme(b.dataset.themeSet); renderProfile(); }));
   }
 
@@ -512,9 +522,10 @@
         <p><b>Daily additions:</b> drop a JSON file (same shape as <code>episodes.json</code>) into <code>data/daily/</code> and list it in <code>data/manifest.json</code> (<code>{"files":["daily/2026-10-28.json"]}</code>). The app merges listed files after the main file on every load; a later copy of the same ID replaces the earlier one.</p>
         <p><b>Speaker photos:</b> ${curated} people have a curated portrait or channel avatar; everyone else is shown with a circular crop of the thumbnail from their best solo episode. Hosts and interviewers are labelled “Host”; researchers are the stars.</p>
         <p><b>Claims tracker:</b> ${STATE.claims.length} statements about P(doom) and timelines, matched by keyword from the quotes and numbers and attributed only when the speaker is a named non-host researcher. Treat it as a navigation aid and check the moment itself.</p>
-        <p><b>Privacy:</b> watch history, notes, favourites, follows, queue, badges and settings live only in this browser's localStorage (keys start with <code>asfe:</code>). Nothing is sent anywhere. Video plays through YouTube's privacy-enhanced embed (youtube-nocookie.com); YouTube's own terms apply to playback. Export a backup from History.</p>
-        <p><b>Keeps playing when minimised:</b> the app never pauses on tab switches. Chrome and Edge 116+ can pop the player into an always-on-top window (Document Picture-in-Picture). Elsewhere, audio mode plus background playback does the job; some mobile browsers still pause embedded video in the background, which a web page cannot override.</p>
-        <p>Built by <b>Aniruddha Adak</b>. Source and README: <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener">github.com/lo3elyon/ASI</a>.</p>
+        <p><b>Privacy:</b> watch history, notes, favourites, follows, queue, playlists, ratings, tags, badges and settings live only in this browser's localStorage (keys start with <code>asfe:</code>). Nothing is sent anywhere. Video plays through YouTube's embedded player (youtube.com, loaded only when you press play); YouTube's own terms apply to playback. Export a backup from History.</p>
+        <p><b>Already watched it on YouTube?</b> Use “Mark as watched” on any card or the <a href="#/watched">I've watched these</a> checklist. Marks count as full completions in your stats, XP, badges and heatmap on the day you mark them, and are labelled as manual everywhere.</p>
+        <p><b>Keeps playing when minimised:</b> the app never pauses on tab switches. The float window (Chrome and Edge 116+) is an always-on-top remote with artwork, chapter and controls; the video itself stays on this page because YouTube refuses to start its player inside a pop-up document that has no web address (that is what “Error 153” meant). Headphones mode plus background playback works everywhere else; some mobile browsers still pause embedded video in the background, which a web page cannot override.</p>
+        <p>Built by <b>Aniruddha Adak</b>. Source and README: <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener noreferrer">github.com/lo3elyon/ASI</a>.</p>
       </div>`;
   }
 
@@ -534,5 +545,5 @@
   }
   function onNowPlaying() { /* hook for future */ }
 
-  A.views = { renderHome, renderBrowse, renderMonths, renderSpeakers, renderSpeaker, renderHistory, renderQueue, renderProfile, renderNotes, renderAbout, openDrawer, closeDrawer, copyLinkAt, share, linkFor, refreshCardsFor, paintQueueCount, applyQuery, onNowPlaying, drawerOpen: () => drawerId };
+  A.views = { monthStats, monthLabel, renderHome, renderBrowse, renderMonths, renderSpeakers, renderSpeaker, renderHistory, renderQueue, renderProfile, renderNotes, renderAbout, openDrawer, closeDrawer, copyLinkAt, share, linkFor, refreshCardsFor, paintQueueCount, applyQuery, onNowPlaying, drawerOpen: () => drawerId };
 })(window.ASFE);
