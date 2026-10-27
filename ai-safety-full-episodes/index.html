@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>AI Safety Full Episodes · October 2026 library with player and watch history</title>
-    <meta name="description" content="A personal streaming-style library of 52 verified full-length AI safety episodes from October 2026: podcasts, interviews, debates, talks and hearings. Embedded player, chapters, strict watch history, Up Next, queue, notes and achievements." />
-    <meta name="theme-color" content="#06090f" />
-    <meta property="og:title" content="AI Safety Full Episodes · October 2026" />
-    <meta property="og:description" content="52 verified full AI safety episodes with an embedded player, chapters, watch history, Up Next and achievements." />
+    <title>AI Safety Full Episodes v2 · 243 verified full episodes, Jul–Oct 2026</title>
+    <meta name="description" content="A streaming-style library of 243 verified full-length AI safety episodes from July to October 2026: podcasts, interviews, debates, talks, panels and hearings. Pop-out player that keeps playing when minimised, audio mode, chapters, claims tracker, speaker hub, strict watch history, insights and achievements." />
+    <meta name="theme-color" content="#070b12" />
+    <meta property="og:title" content="AI Safety Full Episodes v2 · Jul–Oct 2026" />
+    <meta property="og:description" content="243 verified full AI safety episodes with a pop-out player, audio mode, chapter reports, speaker profiles, claims tracker, insights and achievements." />
     <meta property="og:image" content="https://lo3elyon.github.io/ASI/assets/ai-safety-full-episodes.jpg" />
     <meta name="author" content="Aniruddha Adak" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,7 +16,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
     <link rel="stylesheet" href="assets/app.css" />
     <script>
-      (function () { try { var t = localStorage.getItem("asfe:theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {} })();
+      (function () {
+        try {
+          var t = localStorage.getItem("asfe:theme") || "system";
+          var dark = t === "dark" || (t === "system" && !(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches));
+          document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme-pref", t);
+        } catch (e) {}
+      })();
     </script>
   </head>
   <body>
@@ -24,318 +31,165 @@
 
     <header class="topbar" id="topbar">
       <div class="topbar__in">
-        <a class="brand" href="#/library" aria-label="AI Safety Full Episodes, library">
+        <a class="brand" href="#/home" aria-label="AI Safety Full Episodes, home">
           <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3 4 8v8c0 7 5 11.5 12 13 7-1.5 12-6 12-13V8L16 3Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="m13 11.5 7 4.5-7 4.5v-9Z" fill="currentColor"/></svg></span>
-          <span class="brand__txt"><b>Full Episodes</b><small>AI safety · Oct 2026</small></span>
+          <span class="brand__txt"><b>Full Episodes</b><small>AI safety · Jul–Oct 2026 · v2</small></span>
         </a>
         <nav class="tabs" aria-label="Sections">
-          <a href="#/library" data-tab="library">Library</a>
-          <a href="#/history" data-tab="history">History</a>
+          <a href="#/home" data-tab="home">Home</a>
+          <a href="#/browse" data-tab="browse">Browse</a>
+          <a href="#/months" data-tab="months">Months</a>
           <a href="#/speakers" data-tab="speakers">Speakers</a>
+          <a href="#/insights" data-tab="insights">Insights</a>
+          <a href="#/history" data-tab="history">History</a>
           <a href="#/queue" data-tab="queue">Queue <span class="pill" id="queueCount" hidden>0</span></a>
-          <a href="#/profile" data-tab="profile">Profile</a>
-          <a href="#/notes" data-tab="notes">Notes</a>
         </nav>
         <div class="topbar__tools">
-          <button class="iconbtn" id="searchJump" aria-label="Search (/)" title="Search (/)"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
+          <button class="searchbtn" id="paletteBtn" aria-label="Search and commands (Ctrl+K)" title="Search and commands (Ctrl/⌘+K)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span><kbd>⌘K</kbd>
+          </button>
           <button class="lvlchip" id="lvlChip" aria-label="Your level" title="Your level">
             <svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.5" class="ring__bg"/><circle cx="18" cy="18" r="15.5" class="ring__fg" id="lvlRing"/></svg>
             <span id="lvlNum">1</span>
           </button>
-          <button class="iconbtn" id="themeBtn" aria-label="Toggle light or dark theme" title="Theme"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
-          <button class="iconbtn" id="helpBtn" aria-label="Keyboard shortcuts (?)" title="Shortcuts (?)"><svg viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></button>
+          <button class="iconbtn" id="themeBtn" aria-label="Theme: system" title="Theme (dark / light / system)"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg></button>
+          <button class="iconbtn hide-sm" id="helpBtn" aria-label="Keyboard shortcuts (?)" title="Shortcuts (?)"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="6" width="19" height="12" rx="2.5"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg></button>
+          <a class="iconbtn hide-sm" href="#/profile" aria-label="Profile" title="Profile"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
         </div>
       </div>
     </header>
 
     <main id="main" tabindex="-1">
-      <!-- LIBRARY -->
-      <section class="view" data-view="library" aria-label="Library">
-        <div class="hero">
-          <div class="hero__bg" aria-hidden="true"><img src="assets/cover.jpg" alt="" /></div>
-          <div class="hero__in">
-            <p class="eyebrow"><span class="dot"></span> Verified against transcripts · compiled Oct 27, 2026</p>
-            <h1>Every full-length AI safety episode of <em>October 2026</em>, in one player.</h1>
-            <p class="lede">Whole podcasts, interviews, debates, talks and hearings, never clips. Pick up exactly where you left off, jump by chapter, queue the next one, and level up as you learn.</p>
-            <div class="stats" id="heroStats">
-              <div class="stat"><b data-k="episodes">–</b><span>episodes</span></div>
-              <div class="stat"><b data-k="hours">–</b><span>hours of video</span></div>
-              <div class="stat"><b data-k="speakers">–</b><span>speakers</span></div>
-              <div class="stat"><b data-k="shows">–</b><span>channels</span></div>
-              <div class="stat stat--me"><b data-k="watched">0h</b><span>you've watched</span></div>
-            </div>
-            <div class="hero__cta">
-              <button class="btn btn--primary" id="heroPlay"><svg viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z"/></svg><span>Start watching</span></button>
-              <a class="btn btn--ghost" href="../">← ASI hub</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="wrap">
-          <div class="row" id="rowContinue" hidden>
-            <div class="row__head"><h2>Continue watching</h2><a href="#/history" class="row__more">History →</a></div>
-            <div class="rail" id="railContinue"></div>
-          </div>
-
-          <div class="row">
-            <div class="row__head"><h2>Featured</h2><span class="row__sub">Six episodes that define the month</span></div>
-            <div class="rail rail--feat" id="railFeatured"></div>
-          </div>
-
-          <div class="row" id="rowForYou" hidden>
-            <div class="row__head"><h2>Because you watched <span id="forYouSeed"></span></h2></div>
-            <div class="rail" id="railForYou"></div>
-          </div>
-
-          <div class="row">
-            <div class="row__head"><h2>October, day by day</h2><span class="row__sub">Tap a day to filter. Brighter means more episodes; a ring means you watched something from that day.</span></div>
-            <div class="heat" id="heat" role="group" aria-label="Episodes per day in October 2026"></div>
-          </div>
-
-          <div class="browse" id="browse">
-            <div class="browse__bar">
-              <div class="search">
-                <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-                <input id="q" type="search" placeholder="Search titles, speakers, shows, topics…" autocomplete="off" aria-label="Search episodes" />
-                <kbd>/</kbd>
-              </div>
-              <label class="select"><span class="sr">Sort</span>
-                <select id="sort" aria-label="Sort episodes">
-                  <option value="newest">Newest</option>
-                  <option value="oldest">Oldest</option>
-                  <option value="longest">Longest</option>
-                  <option value="shortest">Shortest</option>
-                  <option value="relevant">Most relevant</option>
-                  <option value="unwatched">Unwatched first</option>
-                </select>
-              </label>
-              <button class="btn btn--ghost btn--sm" id="clearFilters" hidden>Clear filters</button>
-            </div>
-            <div class="chips" id="chips"></div>
-            <p class="count" id="count" aria-live="polite"></p>
-            <div class="grid" id="grid"></div>
-          </div>
-
-          <div class="row">
-            <div class="row__head"><h2>Just outside the window</h2><span class="row__sub">Sep 27–30, 2026 · full episodes that landed days before October</span></div>
-            <div class="rail" id="railOutside"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- HISTORY -->
-      <section class="view" data-view="history" aria-label="Watch history" hidden>
-        <div class="wrap wrap--page">
-          <div class="pagehead">
-            <div><p class="eyebrow">Stored only in this browser</p><h1>Watch history</h1></div>
-            <div class="pagehead__tools">
-              <button class="btn btn--ghost btn--sm" id="exportBtn">Export JSON</button>
-              <label class="btn btn--ghost btn--sm" for="importFile">Import JSON</label>
-              <input type="file" id="importFile" accept="application/json,.json" hidden />
-              <button class="btn btn--danger btn--sm" id="clearAllBtn">Clear all</button>
-            </div>
-          </div>
-          <div class="kpis" id="histKpis"></div>
-          <div class="panel">
-            <div class="panel__head"><h2>Minutes watched, last 28 days</h2></div>
-            <div class="bars" id="histBars"></div>
-          </div>
-          <div class="seg" role="tablist" aria-label="Filter history" id="histSeg">
-            <button role="tab" aria-selected="true" data-f="all">All</button>
-            <button role="tab" aria-selected="false" data-f="progress">In progress</button>
-            <button role="tab" aria-selected="false" data-f="done">Completed</button>
-            <button role="tab" aria-selected="false" data-f="none">Not started</button>
-          </div>
-          <div id="histList" class="hlist"></div>
-          <div class="panel">
-            <div class="panel__head"><h2>Timeline</h2><span class="row__sub">Every viewing session, by day</span></div>
-            <div id="histTimeline" class="timeline"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SPEAKERS -->
-      <section class="view" data-view="speakers" aria-label="Speakers" hidden>
-        <div class="wrap wrap--page">
-          <div class="pagehead"><div><p class="eyebrow">Who spoke</p><h1>Speaker directory</h1></div>
-            <div class="search search--sm"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="spq" type="search" placeholder="Find a person…" aria-label="Find a speaker" /></div>
-          </div>
-          <div id="spGroups"></div>
-        </div>
-      </section>
-
-      <!-- SPEAKER PAGE -->
-      <section class="view" data-view="speaker" aria-label="Speaker" hidden>
-        <div class="wrap wrap--page" id="speakerPage"></div>
-      </section>
-
-      <!-- QUEUE -->
-      <section class="view" data-view="queue" aria-label="Queue" hidden>
-        <div class="wrap wrap--page">
-          <div class="pagehead"><div><p class="eyebrow">Plays before suggestions</p><h1>Your queue</h1></div>
-            <div class="pagehead__tools"><button class="btn btn--primary btn--sm" id="queuePlay">Play queue</button><button class="btn btn--ghost btn--sm" id="queueClear">Clear queue</button></div>
-          </div>
-          <p class="hint">Drag to reorder, or use the arrow buttons. Episodes leave the queue when they start playing.</p>
-          <ol class="qlist" id="qlist"></ol>
-          <div class="row"><div class="row__head"><h2>Favorites</h2></div><div class="grid" id="favGrid"></div></div>
-        </div>
-      </section>
-
-      <!-- PROFILE -->
-      <section class="view" data-view="profile" aria-label="Profile and achievements" hidden>
-        <div class="wrap wrap--page" id="profilePage"></div>
-      </section>
-
-      <!-- NOTES / METHOD -->
-      <section class="view" data-view="notes" aria-label="Method notes" hidden>
-        <div class="wrap wrap--page">
-          <div class="pagehead"><div><p class="eyebrow">How this list was made</p><h1>Notes &amp; method</h1></div></div>
-          <div class="notesgrid">
-            <article class="panel prose">
-              <h2>Method</h2>
-              <ul>
-                <li><b>Full episodes only.</b> Every entry is a complete podcast episode, interview, debate, talk, panel or hearing recording. Clip compilations, reaction videos and news cut-downs were left out.</li>
-                <li><b>Verified against transcripts.</b> Each episode was checked against its YouTube transcript, description or chapter list to confirm who actually speaks and what is covered. The <i>evidence</i> line in each episode's details quotes what the check rested on.</li>
-                <li><b>One copy per event.</b> When several channels uploaded the same hearing or talk, only one upload is kept (usually the official or longest one).</li>
-                <li><b>Dates.</b> Dates are upload dates. A date marked <b>~</b> is estimated because the page did not show an exact one.</li>
-                <li><b>Chapters.</b> Topic timestamps come from descriptions or transcripts and can be a few seconds off. Topics without a time are listed but not seekable.</li>
-                <li><b>Window.</b> October 1–27, 2026, compiled October 27, 2026. Eight full episodes from September 27–30 sit in "Just outside the window".</li>
-              </ul>
-            </article>
-            <article class="panel prose">
-              <h2>Your data</h2>
-              <ul>
-                <li>Watch history, notes, favorites, queue, settings and achievements live in this browser's <code>localStorage</code> only. Nothing is sent anywhere.</li>
-                <li>Only playback time is counted: seeking, scrubbing and paused time never add to "watched". Percent watched is the share of the episode you actually played (in 10-second slices), so skipping ahead does not complete an episode.</li>
-                <li>An episode counts as completed at 90% coverage.</li>
-                <li>Use <b>Export JSON</b> on the History tab to back up or move your progress to another browser.</li>
-              </ul>
-              <h2>Adding episodes</h2>
-              <p>New daily files go in <code>data/daily/</code> and are listed in <code>data/manifest.json</code>. The app merges them on load, newest copy of an id wins. See the folder README.</p>
-            </article>
-          </div>
-          <p class="credit">A project by <b>Aniruddha Adak</b> · part of the <a href="../">ASI hub</a> · videos belong to their channels and play through YouTube's privacy-enhanced embed.</p>
-        </div>
-      </section>
+      <section class="view" data-view="home" aria-label="Home"></section>
+      <section class="view" data-view="browse" aria-label="Browse" hidden></section>
+      <section class="view" data-view="months" aria-label="Months" hidden></section>
+      <section class="view" data-view="speakers" aria-label="Speakers" hidden></section>
+      <section class="view" data-view="speaker" aria-label="Speaker profile" hidden></section>
+      <section class="view" data-view="insights" aria-label="Insights" hidden></section>
+      <section class="view" data-view="history" aria-label="Watch history" hidden></section>
+      <section class="view" data-view="queue" aria-label="Queue" hidden></section>
+      <section class="view" data-view="profile" aria-label="Profile and achievements" hidden></section>
+      <section class="view" data-view="notes" aria-label="Notes" hidden></section>
+      <section class="view" data-view="about" aria-label="About and method" hidden></section>
+      <footer class="foot">
+        <p>Built by <b>Aniruddha Adak</b> · 243 verified full episodes, Jul 1 – Oct 27, 2026 · videos play through YouTube's embedded player · history stays in your browser.</p>
+        <p><a href="#/about">About &amp; method</a> · <a href="#/notes">Notes</a> · <a href="#/profile">Profile</a> · <a href="../">← All ASI explainers</a> · <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener">Source</a></p>
+      </footer>
     </main>
 
-    <!-- DETAIL DRAWER -->
-    <div class="scrim" id="drawerScrim" hidden></div>
-    <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" hidden>
-      <div class="drawer__in" id="drawerBody"></div>
+    <!-- Theater: the dock floats over #stageSlot (the iframe is never re-parented inside the page, so it never reloads) -->
+    <div class="theater" id="theater" hidden role="dialog" aria-modal="false" aria-label="Now playing">
+      <div class="theater__main">
+        <div class="theater__top">
+          <button class="iconbtn" id="thMin" aria-label="Minimise to mini player (T)" title="Mini player (T)"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
+          <span class="theater__crumb" id="thCrumb"></span>
+          <span class="grow"></span>
+          <button class="btn btn--ghost btn--sm" id="thAudio" title="Audio mode (A)"><svg viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2.5" y="14" width="5" height="7" rx="2"/><rect x="16.5" y="14" width="5" height="7" rx="2"/></svg><span>Audio mode</span></button>
+          <button class="btn btn--ghost btn--sm" id="thPip" title="Pop-out player (I)"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><rect x="12" y="11.5" width="7.5" height="6" rx="1.2" fill="currentColor" stroke="none"/></svg><span>Pop out</span></button>
+        </div>
+        <div class="stage-slot" id="stageSlot" aria-hidden="true"></div>
+        <div class="theater__info" id="thInfo"></div>
+      </div>
+      <aside class="theater__side" aria-label="Episode panels">
+        <div class="seg" role="tablist" id="sideTabs">
+          <button role="tab" data-side="chapters" aria-selected="true">Chapters</button>
+          <button role="tab" data-side="claims">Claims</button>
+          <button role="tab" data-side="notes">Notes</button>
+          <button role="tab" data-side="next">Up next</button>
+        </div>
+        <div class="side__body" id="sideBody"></div>
+      </aside>
+    </div>
+
+    <!-- The one and only player dock: theater / mini / audio / pip modes -->
+    <div class="dock" id="dock" hidden data-mode="theater" aria-label="Player">
+      <div class="dock__video" id="dockVideo">
+        <div id="ytHost"><div id="ytPlayer"></div></div>
+        <div class="dock__err" id="dockErr" hidden></div>
+        <div class="dock__pipnote" id="pipNote" hidden><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><rect x="12" y="11.5" width="7.5" height="6" rx="1.2" fill="currentColor" stroke="none"/></svg><b>Playing in the pop-out window</b><span>It stays on top even when this browser is minimised.</span><button class="btn btn--sm" id="pipBack">Bring it back here</button></div>
+        <div class="countdown" id="countdown" hidden>
+          <p class="countdown__lbl">Up next in <b id="cdNum">10</b>s</p>
+          <div class="countdown__ep" id="cdEp"></div>
+          <div class="countdown__act"><button class="btn btn--primary btn--sm" id="cdPlay">Play now</button><button class="btn btn--ghost btn--sm" id="cdCancel">Cancel</button></div>
+        </div>
+      </div>
+      <div class="dock__bar">
+        <div class="dock__art" id="dockArt" aria-hidden="true"></div>
+        <button class="dock__meta" id="dockMeta" title="Open now playing">
+          <b id="dockTitle">Nothing playing</b>
+          <small id="dockChapter"></small>
+        </button>
+        <div class="dock__ctl">
+          <button class="cbtn hide-xs" id="cPrevCh" aria-label="Previous chapter (Shift+P)" title="Previous chapter"><svg viewBox="0 0 24 24"><path d="M6 5v14M19 5 9 12l10 7V5Z"/></svg></button>
+          <button class="cbtn" id="cBack" aria-label="Back 10 seconds (J)" title="−10s"><svg viewBox="0 0 24 24"><path d="M11 5 4 12l7 7"/><path d="M4 12h9a7 7 0 0 1 7 7"/></svg></button>
+          <button class="cbtn cbtn--play" id="cPlay" aria-label="Play"><svg class="i-play" viewBox="0 0 24 24"><path d="M7 4v16l13-8L7 4Z" fill="currentColor"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 4h4v16H7zM14 4h4v16h-4z" fill="currentColor" stroke="none"/></svg></button>
+          <button class="cbtn" id="cFwd" aria-label="Forward 10 seconds (L)" title="+10s"><svg viewBox="0 0 24 24"><path d="m13 5 7 7-7 7"/><path d="M20 12h-9a7 7 0 0 0-7 7"/></svg></button>
+          <button class="cbtn hide-xs" id="cNextCh" aria-label="Next chapter" title="Next chapter"><svg viewBox="0 0 24 24"><path d="M18 5v14M5 5l10 7-10 7V5Z"/></svg></button>
+          <button class="cbtn" id="cNext" aria-label="Next episode (Shift+N)" title="Next episode"><svg viewBox="0 0 24 24"><path d="M4 5l9 7-9 7V5ZM13 5l7 7-7 7"/></svg></button>
+        </div>
+        <div class="dock__tools">
+          <select id="cSpeed" class="cselect" aria-label="Playback speed"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select>
+          <button class="cbtn hide-xs" id="cMute" aria-label="Mute (M)" title="Mute"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="wave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>
+          <input type="range" class="vol hide-xs" id="cVol" min="0" max="100" value="100" aria-label="Volume" />
+          <button class="cbtn" id="cNote" aria-label="Add note at this moment (N)" title="Note (N)"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/></svg></button>
+          <button class="cbtn" id="cAudio" aria-label="Audio mode (A)" title="Audio mode (A)"><svg viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><rect x="2.5" y="14" width="5" height="7" rx="2"/><rect x="16.5" y="14" width="5" height="7" rx="2"/></svg></button>
+          <button class="cbtn" id="cPip" aria-label="Pop-out player (I)" title="Pop-out player (I)"><svg viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="16" rx="2.5"/><rect x="12" y="11.5" width="7.5" height="6" rx="1.2" fill="currentColor" stroke="none"/></svg></button>
+          <button class="cbtn" id="cExpand" aria-label="Theater (T)" title="Theater (T)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+          <button class="cbtn" id="cClose" aria-label="Close player" title="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        </div>
+        <div class="seekbar" id="seekbar" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="seekbar__cov" id="seekCov"></div>
+          <div class="seekbar__fill" id="seekFill"></div>
+          <div class="seekbar__ticks" id="seekTicks"></div>
+          <div class="seekbar__tip" id="seekTip" hidden></div>
+        </div>
+        <div class="dock__time"><span id="tNow">0:00</span><span id="tDur">0:00</span></div>
+      </div>
+    </div>
+
+    <!-- Episode drawer -->
+    <div class="scrim" id="scrim" hidden></div>
+    <aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-labelledby="drawerTitle">
+      <button class="iconbtn drawer__x" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      <div id="drawerBody"></div>
     </aside>
 
-    <!-- THEATER -->
-    <section class="theater" id="theater" role="dialog" aria-modal="false" aria-label="Player" hidden>
-      <div class="theater__top">
-        <button class="iconbtn" id="theaterMin" aria-label="Minimize to mini player" title="Minimize (Esc)"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="theater__title"><b id="tTitle"></b><small id="tSub"></small></div>
-        <button class="iconbtn" id="theaterClose" aria-label="Close player" title="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-      </div>
-      <div class="theater__body">
-        <div class="stagecol">
-          <div class="stage" id="stageSlot"></div>
-          <div class="ctrl" id="ctrl" aria-label="Player controls">
-            <div class="ctrl__seek">
-              <span class="ctrl__time" id="cTime">0:00</span>
-              <div class="seek" id="seek" role="slider" tabindex="0" aria-label="Seek" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
-                <div class="seek__cov" id="seekCov"></div>
-                <div class="seek__fill" id="seekFill"></div>
-                <div class="seek__ch" id="seekCh"></div>
-                <div class="seek__knob" id="seekKnob"></div>
-                <div class="seek__tip" id="seekTip" hidden></div>
-              </div>
-              <span class="ctrl__time" id="cDur">0:00</span>
-            </div>
-            <div class="ctrl__row">
-              <div class="ctrl__grp">
-                <button class="cbtn" data-act="back30" aria-label="Back 30 seconds" title="Back 30s (Shift+←)"><span>-30</span></button>
-                <button class="cbtn" data-act="back10" aria-label="Back 10 seconds" title="Back 10s (J / ←)"><span>-10</span></button>
-                <button class="cbtn cbtn--play" data-act="toggle" id="cPlay" aria-label="Play" title="Play / pause (Space / K)"><svg class="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 4h3.5v16H7zM13.5 4H17v16h-3.5z"/></svg></button>
-                <button class="cbtn" data-act="fwd10" aria-label="Forward 10 seconds" title="Forward 10s (L / →)"><span>+10</span></button>
-                <button class="cbtn" data-act="fwd30" aria-label="Forward 30 seconds" title="Forward 30s (Shift+→)"><span>+30</span></button>
-                <button class="cbtn" data-act="next" aria-label="Next episode" title="Next (Shift+N)"><svg viewBox="0 0 24 24"><path d="M5 5v14l10-7L5 5Zm12 0h2.5v14H17z"/></svg></button>
-              </div>
-              <div class="ctrl__grp">
-                <button class="cbtn" data-act="mute" id="cMute" aria-label="Mute" title="Mute (M)"><svg viewBox="0 0 24 24"><path d="M4 9v6h4l5 4V5L8 9H4Z"/><path class="wave" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/></svg></button>
-                <input type="range" id="cVol" min="0" max="100" value="100" aria-label="Volume" />
-                <label class="speed"><span class="sr">Speed</span>
-                  <select id="cSpeed" aria-label="Playback speed" title="Speed (, and .)">
-                    <option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option>
-                  </select>
-                </label>
-                <button class="cbtn" data-act="note" aria-label="Add a note at this moment" title="Note at this time (N)"><svg viewBox="0 0 24 24"><path d="M5 4h10l4 4v12H5z"/><path d="M9 12h6M9 16h4"/></svg></button>
-                <button class="cbtn" data-act="fs" aria-label="Fullscreen" title="Fullscreen (F)"><svg viewBox="0 0 24 24"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
-              </div>
-            </div>
-          </div>
-          <div class="tmeta" id="tMeta"></div>
-        </div>
-        <aside class="side" aria-label="Episode panel">
-          <div class="seg seg--side" role="tablist" id="sideTabs">
-            <button role="tab" aria-selected="true" data-st="chapters">Chapters</button>
-            <button role="tab" aria-selected="false" data-st="next">Up next</button>
-            <button role="tab" aria-selected="false" data-st="notes">Notes</button>
-            <button role="tab" aria-selected="false" data-st="about">About</button>
-          </div>
-          <div class="side__body" id="sideBody"></div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- The single, never-reparented player dock (positions itself over the stage or the corner) -->
-    <div class="dock" id="dock" hidden>
-      <div class="dock__frame"><div id="ytPlayer"></div></div>
-      <div class="dock__err" id="dockErr" hidden></div>
-      <div class="dock__mini">
-        <button class="dock__open" id="miniOpen" aria-label="Open theater view"><b id="miniTitle"></b><small id="miniSub"></small></button>
-        <div class="dock__btns">
-          <button class="iconbtn iconbtn--sm" id="miniToggle" aria-label="Play or pause"><svg class="i-play" viewBox="0 0 24 24"><path d="M7 4.5v15l12-7.5-12-7.5Z"/></svg><svg class="i-pause" viewBox="0 0 24 24"><path d="M7 4h3.5v16H7zM13.5 4H17v16h-3.5z"/></svg></button>
-          <button class="iconbtn iconbtn--sm" id="miniExpand" aria-label="Expand"><svg viewBox="0 0 24 24"><path d="m6 15 6-6 6 6"/></svg></button>
-          <button class="iconbtn iconbtn--sm" id="miniClose" aria-label="Close player"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-        </div>
-        <div class="dock__prog"><i id="miniProg"></i></div>
-      </div>
-      <div class="countdown" id="countdown" hidden>
-        <div class="countdown__card">
-          <p>Up next in <b id="cdNum">10</b></p>
-          <div class="countdown__ep" id="cdEp"></div>
-          <div class="countdown__btns"><button class="btn btn--primary btn--sm" id="cdPlay">Play now</button><button class="btn btn--ghost btn--sm" id="cdCancel">Cancel</button></div>
-          <svg class="countdown__ring" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17"/><circle cx="20" cy="20" r="17" id="cdRing"/></svg>
-        </div>
+    <!-- Command palette -->
+    <div class="modal" id="palette" hidden role="dialog" aria-modal="true" aria-label="Search and commands">
+      <div class="palette">
+        <div class="palette__in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="palQ" placeholder="Search episodes, speakers, chapters, claims… or type a command" autocomplete="off" spellcheck="false" aria-controls="palList" /><kbd>Esc</kbd></div>
+        <ul class="palette__list" id="palList" role="listbox"></ul>
+        <p class="palette__foot"><span><kbd>↑</kbd><kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Shift</kbd>+<kbd>Enter</kbd> queue</span></p>
       </div>
     </div>
 
-    <!-- HELP -->
-    <div class="modal" id="help" role="dialog" aria-modal="true" aria-labelledby="helpTitle" hidden>
-      <div class="modal__card">
-        <div class="modal__head"><h2 id="helpTitle">Keyboard shortcuts</h2><button class="iconbtn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
-        <table class="keys">
-          <tr><td><kbd>Space</kbd> <kbd>K</kbd></td><td>Play / pause</td></tr>
-          <tr><td><kbd>J</kbd> <kbd>←</kbd></td><td>Back 10 seconds</td></tr>
-          <tr><td><kbd>L</kbd> <kbd>→</kbd></td><td>Forward 10 seconds</td></tr>
-          <tr><td><kbd>Shift</kbd>+<kbd>←</kbd> / <kbd>→</kbd></td><td>Back / forward 30 seconds</td></tr>
-          <tr><td><kbd>Shift</kbd>+<kbd>N</kbd></td><td>Next episode</td></tr>
-          <tr><td><kbd>Shift</kbd>+<kbd>P</kbd></td><td>Previous chapter</td></tr>
-          <tr><td><kbd>,</kbd> <kbd>.</kbd></td><td>Slower / faster</td></tr>
-          <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>Volume up / down (in player)</td></tr>
-          <tr><td><kbd>M</kbd></td><td>Mute</td></tr>
-          <tr><td><kbd>F</kbd></td><td>Fullscreen</td></tr>
-          <tr><td><kbd>T</kbd></td><td>Theater ↔ mini player</td></tr>
-          <tr><td><kbd>N</kbd></td><td>Note at the current time</td></tr>
-          <tr><td><kbd>0</kbd>–<kbd>9</kbd></td><td>Jump to 0–90%</td></tr>
-          <tr><td><kbd>/</kbd></td><td>Search</td></tr>
-          <tr><td><kbd>?</kbd></td><td>This help</td></tr>
-          <tr><td><kbd>Esc</kbd></td><td>Close panel / minimize player</td></tr>
-        </table>
+    <!-- Shortcuts -->
+    <div class="modal" id="help" hidden role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+      <div class="sheet">
+        <div class="sheet__hd"><h2 id="helpTitle">Keyboard shortcuts</h2><button class="iconbtn" data-close aria-label="Close"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+        <div class="keys" id="keysBody"></div>
       </div>
     </div>
 
+    <div class="modal" id="levelup" hidden role="dialog" aria-modal="true" aria-label="Level up"><div class="levelup" id="levelupBody"></div></div>
     <div class="toasts" id="toasts" aria-live="polite"></div>
+    <div class="xpfloat" id="xpfloat" aria-hidden="true"></div>
 
-    <noscript><p style="padding:24px">This library needs JavaScript for the player and history. The data is in <a href="data/episodes.json">data/episodes.json</a>.</p></noscript>
+    <nav class="bnav" aria-label="Sections">
+      <a href="#/home" data-tab="home"><svg viewBox="0 0 24 24"><path d="M3 11 12 4l9 7v9H5z"/></svg><span>Home</span></a>
+      <a href="#/browse" data-tab="browse"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Browse</span></a>
+      <a href="#/speakers" data-tab="speakers"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c.8-3.5 3-5.5 6-5.5s5.2 2 6 5.5M15 15c2.5 0 4.5 1.5 5.5 4.5"/></svg><span>Speakers</span></a>
+      <a href="#/insights" data-tab="insights"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span>Insights</span></a>
+      <a href="#/profile" data-tab="profile"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span>You</span></a>
+    </nav>
 
-    <!-- assets/data-inline.js holds a copy of the data and is loaded by app.js only when fetch() fails (file://) -->
-    <script src="assets/app.js" defer></script>
+    <script src="assets/js/core.js"></script>
+    <script src="assets/js/history.js"></script>
+    <script src="assets/js/recs.js"></script>
+    <script src="assets/js/ui.js"></script>
+    <script src="assets/js/player.js"></script>
+    <script src="assets/js/views.js"></script>
+    <script src="assets/js/insights.js"></script>
+    <script src="assets/app.js"></script>
   </body>
 </html>
