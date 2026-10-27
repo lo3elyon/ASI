@@ -11,7 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
-<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-101%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="101 videos"></a>
+<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-284%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="284 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS3-animated-3b82f6?style=flat-square&logo=css3&logoColor=white&labelColor=07111f" alt="CSS3">
@@ -20,7 +20,7 @@
 <img src="https://img.shields.io/badge/dependencies-zero-84cc16?style=flat-square&labelColor=07111f" alt="Zero dependencies">
 <img src="https://img.shields.io/badge/reduced%20motion-respected-22d3ee?style=flat-square&labelColor=07111f" alt="Reduced motion respected">
 <img src="https://img.shields.io/badge/watch%20history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="Watch history stays in the browser">
-<img src="https://img.shields.io/badge/AI%20safety%20episodes-52%20%2B%208-f59e0b?style=flat-square&labelColor=07111f" alt="52 plus 8 full episodes">
+<img src="https://img.shields.io/badge/AI%20safety%20episodes-243%20(Jul%E2%80%93Oct)-f59e0b?style=flat-square&labelColor=07111f" alt="243 full episodes">
 <img src="https://img.shields.io/github/last-commit/lo3elyon/ASI?style=flat-square&color=14b8a6&labelColor=07111f" alt="Last commit">
 <img src="https://img.shields.io/github/repo-size/lo3elyon/ASI?style=flat-square&color=f59e0b&labelColor=07111f" alt="Repo size">
 
@@ -61,7 +61,7 @@
 <tr>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/101-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides and a 60-episode library app</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/284-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides and a 243-episode library app</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
 </tr>
 </table>
@@ -76,7 +76,7 @@ flowchart LR
     L --> E1["AI 2027 and AI 2040<br/>/ai-2027-2040/"]
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
-    L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>player, history, badges"]
+    L --> E8["AI Safety Full Episodes v2<br/>/ai-safety-full-episodes/<br/>243 eps, pop-out player, heatmaps"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -125,7 +125,7 @@ flowchart LR
 <br><br>
 
 <b>AI Safety Full Episodes</b><br>
-<sub>A streaming-style app: 52 full October 2026 episodes, theater and mini player, chapters, strict watch history, Up Next, queue, notes and badges.</sub><br><br>
+<sub>v2 streaming app: 243 verified full episodes Jul–Oct 2026, pop-out player that keeps playing when minimised, audio mode, speaker hub with photos, heatmaps, claims tracker, insights and badges.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="92%" alt="AI Safety Full Episodes hero: the NYC Council hearing"></a>
 
 <br><br>
@@ -206,7 +206,7 @@ flowchart LR
 </tr>
 <tr>
 <td><a href="ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a></td>
-<td><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><b>AI Safety Full Episodes</b></a><br><sub>52 verified full-length AI safety episodes of October 2026, plus 8 from Sep 27–30</sub></td>
+<td><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><b>AI Safety Full Episodes</b></a><br><sub>v2: 243 verified full-length AI safety episodes, Jul 1 – Oct 27, 2026, with pop-out player, audio mode, speaker hub, heatmaps, claims tracker and insights</sub></td>
 <td><sub>Streaming-style web app: embedded YouTube player with theater and docked mini modes, custom controls and shortcuts, clickable chapters, strict watch history (real playback only, coverage %, sessions, streaks, export/import), Up Next with 10 s autoplay countdown, drag-to-reorder queue, favorites, timestamped notes, speaker directory, October heatmap, fuzzy search and filters, levels and 17 badges, light/dark</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
@@ -534,8 +534,9 @@ flowchart TD
 <tr>
 <td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="100%" alt="AI Safety Full Episodes"></a></td>
 <td width="55%" valign="top">
-<img src="https://img.shields.io/badge/type-web%20app-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/compiled-Oct%2027%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/episodes-52%20%2B%208-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/runtime-~70h-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
-A personal streaming app for every <b>full-length</b> AI safety episode of October 1–27, 2026: whole podcasts, interviews, debates, talks, panels and two government hearings, each verified against its transcript, one copy per event. You watch inside the page, the app remembers exactly how much you have <i>really</i> played, suggests what to watch next, and levels you up from <i>Novice</i> to <i>Superalignment Sage</i>. Its own <a href="ai-safety-full-episodes/README.md">README</a> documents the data schema, the watch-history rules and how to add daily JSON files.
+<img src="https://img.shields.io/badge/type-web%20app-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/compiled-Oct%2027%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/episodes-243-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/runtime-~267h-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
+<img src="https://img.shields.io/badge/version-2.0-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/speakers-132%20%2B%2098%20hosts-22d3ee?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/chapters-2%2C701-10b981?style=flat-square&labelColor=07111f" alt=""><br><br>
+A streaming app for every <b>verified full-length</b> AI safety episode of July 1 – October 27, 2026 (Jul 43 · Aug 64 · Sep 84 · Oct 52): whole podcasts, interviews, debates, talks, panels and hearings, each checked against its transcript, one copy per event. <b>v2</b> adds a pop-out always-on-top player that keeps playing while the browser is minimised (Document Picture-in-Picture), audio mode, Media Session controls, a month switcher, GitHub-style release and watch heatmaps, a speaker hub where every person has a real photo, follow and "Play all", full chapter reports with deep links at the current second, fuzzy search with 10 filter groups and saved filters, smarter recommendations with reasons, an insights dashboard with a P(doom) and timelines claims tracker, 12 levels and 29 badges, and a command palette. Your v1 history carries over. Its own <a href="ai-safety-full-episodes/README.md">README</a> documents the architecture, data schema, history rules and daily JSON flow.
 </td>
 </tr>
 </table>
@@ -543,26 +544,26 @@ A personal streaming app for every <b>full-length</b> AI safety episode of Octob
 <div align="center">
 <table>
 <tr>
-<td align="center" width="20%"><img src="https://img.shields.io/badge/31-PODCAST-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>podcasts and interviews</sub></td>
-<td align="center" width="20%"><img src="https://img.shields.io/badge/8-TALK-22d3ee?style=for-the-badge&labelColor=07111f" alt=""><br><sub>talks and lectures</sub></td>
-<td align="center" width="20%"><img src="https://img.shields.io/badge/6-PANEL-3b82f6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>panels and roundtables</sub></td>
-<td align="center" width="20%"><img src="https://img.shields.io/badge/5-DEBATE-f97316?style=for-the-badge&labelColor=07111f" alt=""><br><sub>debates</sub></td>
-<td align="center" width="20%"><img src="https://img.shields.io/badge/2-HEARING-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>NYC Council, UK Parliament</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/174-PODCAST-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>podcasts and interviews</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/35-TALK-22d3ee?style=for-the-badge&labelColor=07111f" alt=""><br><sub>talks and lectures</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/15-PANEL-3b82f6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>panels and roundtables</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/16-DEBATE-f97316?style=for-the-badge&labelColor=07111f" alt=""><br><sub>debates</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/3-HEARING-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>NYC Council, UK Parliament and more</sub></td>
 </tr>
 </table>
 </div>
 
 ```mermaid
 flowchart LR
-    D[("data/episodes.json<br/>just-outside.json<br/>manifest.json + daily/")] --> APP["app.js"]
-    APP --> LIB["Library<br/>featured, continue, heatmap,<br/>search, filters, speakers"]
-    APP --> PLY["Player<br/>theater + mini dock,<br/>chapters, shortcuts"]
+    D[("data/episodes.json (243)<br/>roster · photos<br/>manifest.json + daily/")] --> APP["app.js + 7 modules"]
+    APP --> LIB["Home, Browse, Months, Speakers<br/>heatmaps, fuzzy search, 10 filters,<br/>recommendations with reasons"]
+    APP --> PLY["Player<br/>theater, mini, audio, pop-out (PiP)<br/>Media Session, chapters"]
     PLY -->|"every second"| CLK{"Media moved at<br/>playback rate?"}
     CLK -->|"yes"| W["Count real seconds,<br/>mark 10 s slice"]
     CLK -->|"no: seek or pause"| X["Count nothing"]
     W --> LS[("localStorage<br/>history, notes, queue, badges")]
     LS --> HIS["History<br/>timeline, streaks, export"]
-    LS --> PRO["Profile<br/>XP, 8 levels, 17 badges"]
+    LS --> PRO["Profile + Insights<br/>12 levels, 29 badges,<br/>charts, claims tracker"]
     PLY -->|"ended"| UP["Up Next<br/>queue first, then best match,<br/>10 s countdown"]
     UP --> PLY
     classDef d fill:#2a1d05,stroke:#f59e0b,stroke-width:2px,color:#fde68a
@@ -591,13 +592,14 @@ stateDiagram-v2
 <br>
 <table>
 <tr><th align="left">Section</th><th align="left">What you can do</th></tr>
-<tr><td><b>Library</b></td><td>Hero stats, six Featured episodes, Continue Watching, "Because you watched…", an October day-strip heatmap, fuzzy search, filter chips (format, length, people group, watch state), six sorts, 16:9 cards with duration, format and progress badges, and a Just-outside-the-window row.</td></tr>
-<tr><td><b>Player</b></td><td>YouTube IFrame API on youtube-nocookie, theater view that docks into a corner mini player, ±10/±30 s, speed 0.75–2×, volume, fullscreen, chapter ticks and coverage on the seek bar, clickable chapters, keyboard shortcuts with a <kbd>?</kbd> overlay.</td></tr>
-<tr><td><b>History</b></td><td>Real watch time only, percent actually played, sessions, completed at 90 %, total hours, 28-day chart, streaks, filters, clear one or all, export and import JSON, resume toast.</td></tr>
-<tr><td><b>Up Next and queue</b></td><td>Suggestions by shared speakers, people group, format, channel and topic overlap, unwatched first; autoplay countdown; drag-to-reorder queue that plays first.</td></tr>
-<tr><td><b>Speakers</b></td><td>Directory of 57 people in 9 groups with episode counts, and a page per person with a Queue all button.</td></tr>
-<tr><td><b>Profile</b></td><td>XP ring, 8 levels, 17 badges with progress (The Coxon Files, Every Format, On the Record, Seven-Day Streak…).</td></tr>
-<tr><td><b>Notes</b></td><td>Timestamped personal notes per episode, plus the method: verified against transcripts, one copy per event, ~ marks estimated dates, compiled Oct 27, 2026.</td></tr>
+<tr><td><b>Home</b></td><td>Hero stats, month switcher (All, Jul, Aug, Sep, Oct) with per-month stats and top speakers, a GitHub-style release heatmap, Continue watching, New from people you follow, Recommended for you, Because you watched…, Short &amp; complete, Deep dives, Debates, Hearings &amp; panels, Most viewed, Latest, researcher faces.</td></tr>
+<tr><td><b>Browse</b></td><td>Fuzzy search across titles, speakers, shows, tags, chapters and claims with jump-to-moment snippets; filters for month, format, length, level, people group, organisation, speaker, watched state, followed only, topic and day; 8 sorts; grid/list; saved filters.</td></tr>
+<tr><td><b>Player</b></td><td>One persistent dock: theater, mini, audio mode (speaker photo as artwork) and a pop-out always-on-top window (Document PiP, Chrome/Edge 116+) that keeps playing when the browser is minimised; Media Session; never pauses on tab switch; chapter ticks and coverage on the seek bar; Up Next with reasons and a 10 s countdown.</td></tr>
+<tr><td><b>Episode report</b></td><td>Every chapter with time, title and detail, key claims with timestamps, numbers, people and organisations mentioned, tags, level, why watch, evidence, speakers with photos, notes, deep links <code>#ep=id&amp;t=sec</code>, copy link at current time, share.</td></tr>
+<tr><td><b>Speakers</b></td><td>Hub of 132 researchers and guests (49 curated portraits with bios) and 98 hosts, all with real photos; profile pages with Follow, Play all, stated numbers (P(doom), timelines) and "Often appears with".</td></tr>
+<tr><td><b>Insights</b></td><td>Hours per day/week, by speaker, by organisation, by month, completion donut, streak calendar (watch heatmap) and a claims tracker linked to exact moments.</td></tr>
+<tr><td><b>History &amp; profile</b></td><td>Strict history (seeks never count, throttled background ticks only when media moved at playback rate), sessions by day, export/import, v1→v2 migration, 12 levels, 29 badges, +XP animation, level-up burst.</td></tr>
+<tr><td><b>Notes &amp; palette</b></td><td>Timestamped notes with search and Markdown export; <kbd>Ctrl/⌘ K</kbd> command palette; shortcuts overlay; dark/light/system theme; service worker.</td></tr>
 </table>
 </details>
 
@@ -680,7 +682,7 @@ On the site every talk opens in a full screen focus mode player with a large clo
 </tr>
 </table>
 
-<b>AI Safety Full Episodes: the six featured episodes</b> (all 60 play inside <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/">the app</a>)
+<b>AI Safety Full Episodes: six highlights</b> (all 243 play inside <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/">the app</a>)
 
 <table>
 <tr>
@@ -747,8 +749,8 @@ flowchart TB
         end
         subgraph R4["/ai-safety-full-episodes/"]
             I4["index.html"]
-            A4["assets/ app.css app.js data-inline.js"]
-            D4[("data/ episodes.json just-outside.json manifest.json daily/")]
+            A4["assets/ app.css app.js js/ (7 modules) speakers/ (147 photos) data-inline.js · sw.js"]
+            D4[("data/ episodes.json roster.json photos.json manifest.json daily/")]
             RM4["README.md"]
         end
         subgraph RN["/next-topic/"]
@@ -803,10 +805,10 @@ ASI/
 │   ├── index.html
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
-├── ai-safety-full-episodes/   web app route: 52 full AI safety episodes with player, watch history and badges
+├── ai-safety-full-episodes/   web app route (v2): 243 full AI safety episodes Jul–Oct 2026, pop-out player, speaker hub, heatmaps, insights
 │   ├── index.html
 │   ├── assets/                app.css  app.js  data-inline.js  cover.jpg
-│   ├── data/                  episodes.json  just-outside.json  manifest.json  daily/
+│   ├── data/                  episodes.json  roster.json  photos.json  manifest.json  daily/
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
 ├── README.md
@@ -961,13 +963,18 @@ A local server is better than opening the file directly, because some browsers b
 </details>
 
 <details>
+<summary><b>Does AI Safety Full Episodes keep playing when I minimise the browser</b></summary>
+<br>On Chrome and Edge 116+, press <kbd>I</kbd> (or the pop-out button): the episode moves into an always-on-top Picture-in-Picture window that keeps playing while the browser is minimised, and your watch history keeps counting. Other browsers fall back to audio mode; the app never pauses on tab switches.
+</details>
+
+<details>
 <summary><b>Where is my watch history stored in AI Safety Full Episodes</b></summary>
 <br>Only in your browser's localStorage. Nothing is uploaded and there is no account. Only real playback counts as watched (seeks and pauses never do), an episode completes at 90% of it actually played, and you can export or import the history as JSON from the History tab.
 </details>
 
 <details>
 <summary><b>How were the full episodes chosen</b></summary>
-<br>Full-length episodes only (no clip compilations), uploaded October 1 to 27, 2026, each checked against its transcript, description or chapters for who speaks and what is covered, keeping one upload per event. Dates marked ~ are estimated. Eight episodes from September 27 to 30 sit in a separate "Just outside the window" row. New days can be added as JSON files listed in <code>ai-safety-full-episodes/data/manifest.json</code>.
+<br>Full-length episodes only (no clips, compilations or reaction videos), uploaded July 1 to October 27, 2026, each checked against its transcript, description or chapters for who speaks and what is covered, keeping one upload per event. Dates marked ~ are estimated. New days can be added as JSON files listed in <code>ai-safety-full-episodes/data/manifest.json</code>.
 </details>
 
 <details>
@@ -992,6 +999,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-27</sub></td><td><b>AI Safety Full Episodes v2</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: 243 verified full episodes Jul–Oct 2026 (replacing 52 + 8), pop-out always-on-top player (Document PiP), audio mode, Media Session, month switcher, GitHub-style release and watch heatmaps, speaker hub with a real photo for everyone (49 curated portraits + 98 host channel avatars), follow and Play all, full chapter reports with deep links, fuzzy search with 10 filter groups and saved filters, smarter recommendations, insights and claims tracker, 12 levels and 29 badges, command palette, service worker. Split into 8 JS modules; v1 history migrates automatically.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: a streaming-style app for 52 verified full AI safety episodes of October 2026 (+8 from Sep 27–30) with embedded player, chapters, strict watch history, Up Next, queue, notes, speaker directory and badges. Data in <code>data/*.json</code> with a manifest for daily files. Cover added to <code>assets/</code>.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a>: 20 hour-plus YouTube videos about Jacob Coxon, labelled by role, with filters and search. Cover added to <code>assets/</code>.</td></tr>
 <tr><td><sub>2026-10-24</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><code>/black-october-2026/</code></a>: October 2026 hacks and AI incidents.</td></tr>
