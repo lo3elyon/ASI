@@ -76,7 +76,7 @@ flowchart LR
     L --> E1["AI 2027 and AI 2040<br/>/ai-2027-2040/"]
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
-    L --> E8["AI Safety Full Episodes v2<br/>/ai-safety-full-episodes/<br/>243 eps, pop-out player, heatmaps"]
+    L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>243 eps, cinema player, watched checklist"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -125,8 +125,8 @@ flowchart LR
 <br><br>
 
 <b>AI Safety Full Episodes</b><br>
-<sub>v2 streaming app: 243 verified full episodes Jul–Oct 2026, pop-out player that keeps playing when minimised, audio mode, speaker hub with photos, heatmaps, claims tracker, insights and badges.</sub><br><br>
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="92%" alt="AI Safety Full Episodes hero: the NYC Council hearing"></a>
+<sub>Streaming app: 243 verified full episodes Jul–Oct 2026 in a fullscreen cinema player with custom controls, draggable mini player, "I've watched these" bulk marking, history timeline, playlists, monthly recap, speaker hub with photos, heatmaps, claims tracker and badges.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="92%" alt="AI Safety Full Episodes: logo, title and researcher portraits"></a>
 
 <br><br>
 
@@ -206,7 +206,7 @@ flowchart LR
 </tr>
 <tr>
 <td><a href="ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a></td>
-<td><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><b>AI Safety Full Episodes</b></a><br><sub>v2: 243 verified full-length AI safety episodes, Jul 1 – Oct 27, 2026, with pop-out player, audio mode, speaker hub, heatmaps, claims tracker and insights</sub></td>
+<td><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><b>AI Safety Full Episodes</b></a><br><sub>243 verified full-length AI safety episodes, Jul 1 – Oct 27, 2026: fullscreen cinema player, mark-as-watched checklist, history timeline, playlists, speaker hub, heatmaps, claims tracker and insights (updated Oct 28)</sub></td>
 <td><sub>Streaming-style web app: embedded YouTube player with theater and docked mini modes, custom controls and shortcuts, clickable chapters, strict watch history (real playback only, coverage %, sessions, streaks, export/import), Up Next with 10 s autoplay countdown, drag-to-reorder queue, favorites, timestamped notes, speaker directory, October heatmap, fuzzy search and filters, levels and 17 badges, light/dark</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
@@ -535,8 +535,8 @@ flowchart TD
 <td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/ai-safety-full-episodes.jpg" width="100%" alt="AI Safety Full Episodes"></a></td>
 <td width="55%" valign="top">
 <img src="https://img.shields.io/badge/type-web%20app-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/compiled-Oct%2027%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/episodes-243-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/runtime-~267h-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
-<img src="https://img.shields.io/badge/version-2.0-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/speakers-132%20%2B%2098%20hosts-22d3ee?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/chapters-2%2C701-10b981?style=flat-square&labelColor=07111f" alt=""><br><br>
-A streaming app for every <b>verified full-length</b> AI safety episode of July 1 – October 27, 2026 (Jul 43 · Aug 64 · Sep 84 · Oct 52): whole podcasts, interviews, debates, talks, panels and hearings, each checked against its transcript, one copy per event. <b>v2</b> adds a pop-out always-on-top player that keeps playing while the browser is minimised (Document Picture-in-Picture), audio mode, Media Session controls, a month switcher, GitHub-style release and watch heatmaps, a speaker hub where every person has a real photo, follow and "Play all", full chapter reports with deep links at the current second, fuzzy search with 10 filter groups and saved filters, smarter recommendations with reasons, an insights dashboard with a P(doom) and timelines claims tracker, 12 levels and 29 badges, and a command palette. Your v1 history carries over. Its own <a href="ai-safety-full-episodes/README.md">README</a> documents the architecture, data schema, history rules and daily JSON flow.
+<img src="https://img.shields.io/badge/updated-Oct%2028%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/tests-136%2F136-10b981?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/speakers-132%20%2B%2098%20hosts-22d3ee?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/chapters-2%2C701-10b981?style=flat-square&labelColor=07111f" alt=""><br><br>
+A streaming app for every <b>verified full-length</b> AI safety episode of July 1 – October 27, 2026 (Jul 43 · Aug 64 · Sep 84 · Oct 52): whole podcasts, interviews, debates, talks, panels and hearings, each checked against its transcript, one copy per event. <b>Oct 28 cinema update:</b> the expand button now opens a true fullscreen cinema player with YouTube-style custom controls (frame step, fine speed, captions, A–B loop, bookmarks, sleep timer, skip intro, gestures), the mini player can be dragged anywhere and snaps to corners, the pop-out "Error 153" is fixed (the float window is now a remote for the player on the page), every card can be marked as already watched on YouTube with a bulk "I've watched these" checklist, History is a filterable timeline with JSON/CSV export and import, and there are playlists, ratings, a monthly recap, share cards, Zen mode, six accent themes, a new logo, pre-rendered HTML, JSON-LD and a strict CSP. <b>Oct 27</b> added a pop-out always-on-top player that keeps playing while the browser is minimised (Document Picture-in-Picture), audio mode, Media Session controls, a month switcher, GitHub-style release and watch heatmaps, a speaker hub where every person has a real photo, follow and "Play all", full chapter reports with deep links at the current second, fuzzy search with 10 filter groups and saved filters, smarter recommendations with reasons, an insights dashboard with a P(doom) and timelines claims tracker, 12 levels and 29 badges, and a command palette. Your v1 history carries over. Its own <a href="ai-safety-full-episodes/README.md">README</a> documents the architecture, data schema, history rules and daily JSON flow.
 </td>
 </tr>
 </table>
@@ -749,7 +749,7 @@ flowchart TB
         end
         subgraph R4["/ai-safety-full-episodes/"]
             I4["index.html"]
-            A4["assets/ app.css app.js js/ (7 modules) speakers/ (147 photos) data-inline.js · sw.js"]
+            A4["assets/ app.bundle.js app.min.css js/ (9 modules) brand/ speakers/ (147 photos) · sw.js · manifest · sitemap"]
             D4[("data/ episodes.json roster.json photos.json manifest.json daily/")]
             RM4["README.md"]
         end
@@ -805,9 +805,10 @@ ASI/
 │   ├── index.html
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
-├── ai-safety-full-episodes/   web app route (v2): 243 full AI safety episodes Jul–Oct 2026, pop-out player, speaker hub, heatmaps, insights
-│   ├── index.html
-│   ├── assets/                app.css  app.js  data-inline.js  cover.jpg
+├── ai-safety-full-episodes/   web app route: 243 full AI safety episodes Jul–Oct 2026, cinema player, watched checklist, speaker hub, heatmaps
+│   ├── index.html             pre-rendered, SEO tags, JSON-LD, CSP
+│   ├── manifest.webmanifest  favicon.svg  favicon.ico  apple-touch-icon.png  robots.txt  sitemap.xml  sw.js
+│   ├── assets/                app.bundle.js  app.min.css  js/  brand/  speakers/  data-inline.js  cover.jpg
 │   ├── data/                  episodes.json  roster.json  photos.json  manifest.json  daily/
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
@@ -999,6 +1000,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-28</sub></td><td><b>AI Safety Full Episodes cinema update (v3)</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: fixed the pop-out "Error 153" (float window is now a remote; the player stays on the page with an explicit referrer policy and origin); the expand button now toggles a true fullscreen cinema player with custom overlay controls, chapter rail, frame step, 0.25–3× speed, captions, A–B loop, bookmarks, sleep timer, skip intro and touch gestures; draggable, snapping, resizable mini player; error fallback cards; Mark as watched + "I've watched these" bulk checklist with undo and partial; history timeline with filters and JSON/CSV export/import; Continue banner, daily goal and streak; playlists, Watch later, ratings, tags, context menu, monthly recap, share cards, Zen and headphones modes; aurora design, six accent themes, styled scrollbars and carousels; new logo, favicon set, PWA manifest and OG image (also the new cover here); pre-rendered HTML, JSON-LD, sitemap, strict CSP, minified bundle; storage schema 3 keeps v1/v2 backups.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td><b>AI Safety Full Episodes v2</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: 243 verified full episodes Jul–Oct 2026 (replacing 52 + 8), pop-out always-on-top player (Document PiP), audio mode, Media Session, month switcher, GitHub-style release and watch heatmaps, speaker hub with a real photo for everyone (49 curated portraits + 98 host channel avatars), follow and Play all, full chapter reports with deep links, fuzzy search with 10 filter groups and saved filters, smarter recommendations, insights and claims tracker, 12 levels and 29 badges, command palette, service worker. Split into 8 JS modules; v1 history migrates automatically.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: a streaming-style app for 52 verified full AI safety episodes of October 2026 (+8 from Sep 27–30) with embedded player, chapters, strict watch history, Up Next, queue, notes, speaker directory and badges. Data in <code>data/*.json</code> with a manifest for daily files. Cover added to <code>assets/</code>.</td></tr>
 <tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a>: 20 hour-plus YouTube videos about Jacob Coxon, labelled by role, with filters and search. Cover added to <code>assets/</code>.</td></tr>
