@@ -56,7 +56,7 @@
   function bars(data, o) {
     o = o || {};
     if (!data.length) return `<p class="empty">No data yet.</p>`;
-    const W = 640, H = o.h || 180, pad = 22, bw = (W - pad) / data.length;
+    const W = 640, H = o.h || 180, pad = 22, bw = (W - pad - 18) / data.length;
     const max = Math.max(1e-9, ...data.map((d) => d.v));
     const rects = data.map((d, i) => {
       const bh = Math.max(d.v > 0 ? 2 : 0, ((H - 34) * d.v) / max);
@@ -68,7 +68,7 @@
   function hbars(data, o) {
     o = o || {};
     if (!data.length) return `<p class="empty">${esc(o.empty || "Nothing watched yet.")}</p>`;
-    const max = Math.max(1e-9, ...data.map((d) => d.v));
+    const max = Math.max(o.floor || 1e-9, ...data.map((d) => d.v));
     return `<ul class="hbars">${data.map((d) => `<li>${d.icon || ""}<span class="hbars__l">${d.href ? `<a href="${esc(d.href)}">${esc(d.label)}</a>` : esc(d.label)}</span><span class="hbars__b"><i style="width:${((100 * d.v) / max).toFixed(1)}%;${d.color ? `background:${d.color}` : ""}"></i></span><span class="hbars__v">${esc(o.fmt ? o.fmt(d.v) : d.v)}</span></li>`).join("")}</ul>`;
   }
   function donut(frac, label, sub) {
@@ -77,6 +77,7 @@
   }
 
   /* ---------------------------------------------------------------- insights dashboard */
+  const hfmt = (v) => (v * 3600 < 3600 ? Math.round(v * 60) + " min" : hoursStr(v * 3600));
   let range = "day";
   let claimKind = "all", claimQ = "";
   function render(view) {
@@ -116,7 +117,7 @@
     view.innerHTML = `
       <header class="phead"><p class="eyebrow">Insights</p><h1>Your listening, measured honestly</h1><p class="lede">Every number below comes from real playback only: seeks, skips and paused time never count.</p></header>
       <div class="kpis">
-        <div class="kpi"><b data-count="${(total / 3600).toFixed(1)}" data-dec="1">0</b><span>hours watched</span></div>
+        <div class="kpi">${total < 3600 ? `<b>${Math.round(total / 60)}</b><span>minutes watched</span>` : `<b data-count="${(total / 3600).toFixed(1)}" data-dec="1">0</b><span>hours watched</span>`}</div>
         <div class="kpi"><b data-count="${done}">0</b><span>episodes completed</span></div>
         <div class="kpi"><b>${started ? Math.round((100 * done) / started) : 0}%</b><span>completion rate (${done}/${started} started)</span></div>
         <div class="kpi"><b>${st.cur}</b><span>day streak · best ${st.best}</span></div>
@@ -126,9 +127,9 @@
       <div class="panels">
         <section class="panel panel--wide"><div class="panel__hd"><h2>Hours watched</h2><div class="seg seg--sm" role="tablist"><button data-range="day" aria-selected="${range === "day"}">Per day</button><button data-range="week" aria-selected="${range === "week"}">Per week</button></div></div>${bars(series, { fmt: (v) => (v * 60 < 60 ? Math.round(v * 60) + " min" : v.toFixed(1) + " h"), aria: "Hours watched over time" })}</section>
         <section class="panel"><div class="panel__hd"><h2>Completion</h2></div><div class="donutwrap">${donut(started ? done / started : 0, started ? Math.round((100 * done) / started) + "%" : "0%", "of started")}<ul class="legend"><li><i class="sw sw--a"></i>${done} completed</li><li><i class="sw sw--b"></i>${started - done} in progress</li><li><i class="sw"></i>${STATE.all.length - started} not started</li></ul></div></section>
-        <section class="panel"><div class="panel__hd"><h2>By speaker</h2></div>${hbars(spData, { fmt: (v) => hoursStr(v * 3600) })}</section>
-        <section class="panel"><div class="panel__hd"><h2>By organisation</h2></div>${hbars(orgData, { fmt: (v) => hoursStr(v * 3600) })}</section>
-        <section class="panel"><div class="panel__hd"><h2>By release month</h2></div>${hbars(monthData.map((m) => ({ label: `${m.label} (${hoursStr(m.v * 3600)} of ${Math.round(m.avail)}h)`, v: m.v, href: `#/browse?month=${m.id}` })), { fmt: (v) => hoursStr(v * 3600), empty: "Nothing watched yet." })}</section>
+        <section class="panel"><div class="panel__hd"><h2>By speaker</h2></div>${hbars(spData, { fmt: hfmt, floor: 0.5 })}</section>
+        <section class="panel"><div class="panel__hd"><h2>By organisation</h2></div>${hbars(orgData, { fmt: hfmt, floor: 0.5 })}</section>
+        <section class="panel"><div class="panel__hd"><h2>By release month</h2></div>${hbars(monthData.map((m) => ({ label: `${m.label} (${hfmt(m.v)} of ${Math.round(m.avail)}h)`, v: m.v, href: `#/browse?month=${m.id}` })), { fmt: hfmt, floor: 0.5, empty: "Nothing watched yet." })}</section>
         <section class="panel"><div class="panel__hd"><h2>Library by format</h2></div>${hbars(libFmt, { fmt: (v) => v + " eps" })}</section>
         <section class="panel panel--wide"><div class="panel__hd"><h2>Streak calendar</h2><span class="muted">current ${st.cur} · best ${st.best} · ${st.days} active day${st.days === 1 ? "" : "s"}</span></div>${watchHeatmap()}</section>
         <section class="panel panel--wide" id="claimsPanel"><div class="panel__hd"><h2>Claims tracker: P(doom) and timelines</h2><span class="muted">${STATE.claims.length} attributed statements, each linked to the exact moment</span></div>${claimsTable()}</section>
