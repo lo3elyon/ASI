@@ -117,6 +117,14 @@
     if (!terms.length) return text;
     try { return text.replace(new RegExp(`(${terms.join("|")})`, "gi"), "<mark>$1</mark>"); } catch (x) { return text; }
   }
+  /* ONE shared card-meta renderer: every card variant (library grid/list, carousels, picks, queue, playlists, notes, history,
+   * recently watched, up next, search, explore) takes its upload date and duration from here, so no variant can drop the date. */
+  function thumbDate(e) { if (!e || !e.date) return ""; const s = fmtShort(e.date), y = e.date.slice(0, 4); return `<span class="thumb__date" data-date="${esc(e.date)}" title="Uploaded ${esc(fmtDate(e.date, e.approx))}">${esc(s)}<span class="thumb__yr">, ${esc(y)}</span></span>`; }
+  function thumbBadges(e) { return thumbDate(e) + `<span class="thumb__dur">${esc(e.durStr)}</span>`; }
+  function metaDate(e) { return e && e.date ? `<span class="card__date" data-date="${esc(e.date)}">${esc(fmtShort(e.date))}</span>` : ""; }
+  function metaCore(e) { return metaDate(e) + `<span>${esc(e.durStr)}</span>`; }
+  function cardMeta(e, rest) { return `<p class="card__meta">${metaCore(e)}${rest || ""}</p>`; }
+  function metaText(e) { return `${metaDate(e)} · ${esc(e.durStr)}`; }
   function stateBadge(id) {
     const st = h().stateOf(id);
     if (st === "done") return `<span class="ribbon ribbon--done">${ICON.check}${h().isManual(id) ? "Watched on YouTube" : "Watched"}</span>`;
@@ -134,10 +142,10 @@
     const rt = (L.RATINGS || {})[e.id];
     const menuBtn = `<button class="iconbtn iconbtn--sm card__menu" data-act="menu" aria-haspopup="menu" aria-label="More actions for ${esc(e.title)}" title="More (right-click)">${ICON.dots}</button>`;
     const doneBtn = `<button class="iconbtn iconbtn--sm card__done ${done ? "is-on" : ""}" data-act="watched" aria-pressed="${done}" aria-label="${done ? "Mark unwatched" : "Mark as watched"}" title="${done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched"}">${ICON.check}</button>`;
-    const meta = `<span>${esc(fmtShort(e.date))}</span><span>${esc(e.durStr)}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
+    const meta = `${metaCore(e)}<span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
     if (o.list) {
       return `<article class="lrow" data-id="${e.id}" draggable="true">
-        <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}<span class="thumb__dur">${esc(e.durStr)}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+        <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}${thumbBadges(e)}${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
         <div class="lrow__tx">
           <button class="card__title" data-act="open">${hl(e.title, o.q)}</button>
           <p class="card__who"><span class="avs">${avs}</span>${hl(whoLine(e, 4), o.q)}</p>
@@ -152,7 +160,7 @@
       </article>`;
     }
     return `<article class="card" data-id="${e.id}" tabindex="-1" draggable="true">
-      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}<span class="thumb__dur">${esc(e.durStr)}</span>${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}${thumbBadges(e)}${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
       <div class="card__body">
         <button class="card__title" data-act="open" title="${esc(e.title)}">${hl(e.title, o.q)}</button>
         <p class="card__who"><span class="avs">${avs}</span><span class="card__names">${hl(whoLine(e), o.q)}</span></p>
@@ -241,5 +249,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
+  A.ui = { thumbDate, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
