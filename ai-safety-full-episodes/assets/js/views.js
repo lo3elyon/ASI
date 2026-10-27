@@ -36,7 +36,7 @@
     const latest = P0.slice(0, 14);
     const top = P0.filter((e) => e.views).sort((a, b) => b.views - a.views).slice(0, 12);
     const first = cont[0] || (fy[0] && fy[0].e);
-    const researchers = Array.from(STATE.speakers.values()).filter((s) => s.photo && !s.isHost && s.eps.some((id) => P0.some((e) => e.id === id))).sort((a, b) => b.eps.length - a.eps.length).slice(0, 18);
+    const researchers = Array.from(STATE.speakers.values()).filter((s) => ui().hasFace(s.name) && !s.isHost && s.eps.some((id) => P0.some((e) => e.id === id))).sort((a, b) => b.eps.length - a.eps.length).slice(0, 18);
     v.innerHTML = `
       <div class="hero">
         <div class="hero__bg" aria-hidden="true"><img src="assets/cover.jpg" alt=""></div>
@@ -256,8 +256,8 @@
     let list = res.filter((s) => (SP.group === "all" || (SP.group === "followed" ? L().FOLLOWS.has(s.k) : s.group === SP.group)) && (!SP.q || fold(s.name + " " + s.org + " " + s.bio).includes(fold(SP.q))));
     const watchedOf = (s) => s.eps.filter((id) => h().stateOf(id) === "done").length;
     list.sort({ eps: (a, b) => b.eps.length - a.eps.length || b.secs - a.secs, hours: (a, b) => b.secs - a.secs, name: (a, b) => a.name.split(" ").pop().localeCompare(b.name.split(" ").pop()), watched: (a, b) => watchedOf(b) - watchedOf(a) || b.eps.length - a.eps.length }[SP.sort]);
-    const featured = list.filter((s) => s.roster || s.photo);
-    const rest = list.filter((s) => !(s.roster || s.photo));
+    const featured = list.filter((s) => s.roster || ui().hasFace(s.name));
+    const rest = list.filter((s) => !(s.roster || ui().hasFace(s.name)));
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Speakers</p><h1>${res.length} researchers & guests, ${hosts.length} hosts</h1><p class="lede">Researchers are the stars here. Follow the people you trust: their new episodes get their own row and boost your recommendations.</p></div>
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="spQ" type="search" placeholder="Find a researcher or org" value="${esc(SP.q)}" aria-label="Find a speaker"></div></header>
       <div class="toolbar"><div class="chips">${[["all", "Everyone"], ["followed", `⭐ Following (${L().FOLLOWS.size})`]].concat(GROUPS.filter((g) => g.id !== "hosts").map((g) => [g.id, g.label])).map(([id, lab]) => `<button class="chip ${SP.group === id ? "is-on" : ""}" data-spg="${id}">${esc(lab)}</button>`).join("")}</div><span class="grow"></span>
@@ -357,7 +357,7 @@
           <button class="btn btn--ghost" data-dr="share">${ui().ICON.share}<span>Share</span></button>
           <a class="btn btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${ui().ICON.yt}<span>YouTube</span></a>
         </div>
-        ${st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual ? "logged" : "watched"} <b>${fmtHM(r.watched)}</b> (${Math.round((r.pct || 0) * 100)}% covered)${r.done ? " · completed " + A.fmtStamp(r.doneAt) : ""} · last ${A.fmtStamp(r.last)}</p>` : ""}
+        ${drHist(id)}
         <form class="partial" id="drPartial"><label>Watched part of it on YouTube? Up to <input class="input input--sm" name="t" placeholder="mm:ss" inputmode="numeric" pattern="[0-9:]*" aria-label="Watched up to (mm:ss or h:mm:ss)" size="7"></label><button class="btn btn--sm btn--ghost">Save</button></form>
         ${A.feat ? A.feat.rateTagHTML(id) : ""}
         ${e.whyWatch ? `<p class="th__why"><b>Why watch:</b> ${esc(e.whyWatch)}</p>` : ""}
@@ -436,8 +436,7 @@
     const secs = list.reduce((a, e) => a + Math.max(0, e.dur - (h().pctOf(e.id) * e.dur)), 0);
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Queue</p><h1>Up next: ${list.length} episode${list.length === 1 ? "" : "s"}</h1><p class="lede">${fmtHM(secs)} left to watch. Drag to reorder; the queue always plays before recommendations.</p></div>
       <div class="row-gap">${list.length ? `<button class="btn btn--primary btn--sm" id="qPlay">${ui().ICON.play}<span>Play queue</span></button><button class="btn btn--sm" id="qShuffle">${ui().ICON.shuffle}<span>Shuffle</span></button><button class="btn btn--sm btn--ghost" id="qClear">Clear</button>` : ""}</div></header>
-      ${list.length ? `<ol class="qlist" id="qList">${list.map((e, i) => `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button><p class="card__meta"><span>${esc(ui().whoLine(e, 2))}</span><span>${esc(e.durStr)}</span></p></div>
-        <div class="qrow__act"><button class="iconbtn iconbtn--sm" data-mv="-1" aria-label="Move up">↑</button><button class="iconbtn iconbtn--sm" data-mv="1" aria-label="Move down">↓</button><button class="iconbtn iconbtn--sm" data-act="queue" aria-label="Remove from queue">✕</button></div></li>`).join("")}</ol>`
+      ${list.length ? `<ol class="qlist" id="qList">${list.map((e, i) => qRow(e, i)).join("")}</ol>`
         : `<div class="emptybig"><p>Your queue is empty.</p><p class="muted">Add episodes with the ${ui().ICON.queue} button, or use “Play all” on a speaker page.</p><a class="btn" href="#/browse">Browse</a></div>`}
       ${ui().shelf("Suggested for your queue", A.recs.forYou(12).filter((x) => !L().QUEUE.includes(x.e.id)), { icon: "✨" })}`;
     if (!list.length) return;
@@ -478,14 +477,16 @@
       ${ui().shelf("Favourites", fav, { icon: "❤️" })}
       <section class="panel panel--flat"><div class="panel__hd"><h2>Settings</h2></div>
         <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (10 s countdown)</label>
+        <label class="switch"><input type="checkbox" id="sCeleb" ${L().SETTINGS.celebrations !== false ? "checked" : ""}><span></span>Celebrations (confetti and particle bursts on milestones)</label>
         <div class="seg seg--sm" role="group" aria-label="Theme">${["dark", "light", "system"].map((t) => `<button data-theme-set="${t}" aria-pressed="${theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
-        <div><p class="muted">Accent colour</p>${A.feat.accentPicker()}</div>
+        <div class="settings__themes" id="themes"><p class="muted">Theme and accent colour</p>${A.themes ? A.themes.pickerHTML() : A.feat.accentPicker()}</div>
         <div><p class="muted">Daily goal</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></div>
         <a class="btn btn--sm" href="#/wrapped">Monthly recap</a><a class="btn btn--sm" href="#/watched">I've watched these</a>
         <a class="btn btn--sm" href="#/history">Backup & restore</a></div></section>`;
     $("#pName").onchange = (ev) => { L().PREFS.name = ev.target.value.trim().slice(0, 40); h().savePrefs(); };
     $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); };
-    v.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => { A.app.setTheme(b.dataset.themeSet); renderProfile(); }));
+    $("#sCeleb").onchange = (ev) => { L().SETTINGS.celebrations = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); if (ev.target.checked && A.fx) A.fx.celebrate("pick", ev.target.closest("label"), true); };
+    v.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => { A.app.setTheme(b.dataset.themeSet, true); renderProfile(); }));
   }
 
   /* ================================================================ NOTES */
@@ -511,39 +512,162 @@
   function renderAbout() {
     const v = V("about");
     const per = MONTH_LIST.slice(1).map((m) => { const l = STATE.all.filter((e) => e.month === m.id); return `<tr><td>${m.long}</td><td>${l.length}</td><td>${hoursStr(l.reduce((a, e) => a + e.dur, 0))}</td><td>${l.reduce((a, e) => a + e.chapters.length, 0)}</td></tr>`; }).join("");
-    const photos = Array.from(STATE.speakers.values()).filter((s) => s.eps.length);
-    const curated = photos.filter((s) => s.photo).length;
-    v.innerHTML = `<header class="phead"><p class="eyebrow">About & method</p><h1>How this library is built</h1></header>
-      <div class="prose">
-        <p><b>Verified full episodes only.</b> Every item is a complete podcast, interview, debate, talk, panel or hearing in which the named researcher actually speaks. Each was checked against its transcript, description or chapters; there is one copy per event and no clips, compilations or reaction videos.</p>
-        <p><b>Coverage:</b> uploads from July 1 to October 27, 2026. <b>Compiled:</b> October 27, 2026. Dates follow the YouTube upload date (US Pacific); a ~ marks an estimate.</p>
+    const sp = Array.from(STATE.speakers.values()).filter((s) => s.eps.length);
+    const researchers = sp.filter((s) => !s.isHost).length, hosts = sp.filter((s) => s.isHost).length;
+    const orgs = new Set(); STATE.all.forEach((e) => e.orgs.forEach((o) => orgs.add(o)));
+    const dates = STATE.all.map((e) => e.date).filter(Boolean).sort();
+    const fmts = FORMATS.map((f) => `${STATE.all.filter((e) => e.fmt === f.id).length} ${f.label.toLowerCase()}`).join(" · ");
+    const keys = (A.app && A.app.KEYS) || [];
+    const faq = [
+      ["Why only full episodes?", "Clips and reaction videos cut context. A full episode lets you hear the whole argument, including the caveats, so every item here is the complete conversation, talk, debate, panel or hearing."],
+      ["Does anything leave my browser?", "No. Your history, notes, picks, playlists, ratings, follows, badges and settings are stored in this browser's localStorage only. Videos stream from YouTube's embedded player, which YouTube itself governs."],
+      ["Can I move my history to another device?", "Yes: History → Export JSON (or CSV), then Import on the other device. Imports merge with what is already there."],
+      ["Why can't I force 1080p?", "YouTube decides quality automatically inside embedded players and usually ignores requests. The quality menu shows what is really playing and offers to open the same moment on YouTube, where you can choose manually."],
+      ["How are Today's picks chosen?", "From who you follow, what you finish, your level, a mix of formats, orgs and months, and your guidance settings. Discard reasons (\u201ctoo long\u201d, \u201cless of this speaker\u201d…) nudge future picks."],
+      ["Something is wrong or missing?", "Open an issue on the GitHub repository linked below with the YouTube link and what should change."],
+    ];
+    v.innerHTML = `<header class="phead"><p class="eyebrow">About</p><h1>About this library</h1><p class="lede">A single, verified place to watch every full-length AI safety episode published from ${esc(fmtDate(dates[0]))} to ${esc(fmtDate(dates[dates.length - 1]))}: ${STATE.all.length} episodes, ${hoursStr(STATE.all.reduce((a, e) => a + e.dur, 0))} of video, ${researchers} researchers and ${hosts} hosts across ${orgs.size} organisations.</p></header>
+      <div class="prose about">
+        <h2>What it is and who it's for</h2>
+        <p>A cinema-style player and study tool for people who want the primary sources of the AI safety conversation: researchers, students, policy staff, journalists and anyone curious. Watch in a fullscreen player, keep listening in headphones mode, jump by chapter or claim, take timestamped notes, follow researchers and track what you have seen.</p>
+        <h2>How episodes are verified</h2>
+        <ul><li><b>Full episodes only:</b> complete podcasts, interviews, debates, talks, panels and hearings. No clips, highlight reels, compilations or reaction videos.</li>
+          <li><b>The researcher actually speaks:</b> a named AI safety researcher (or a central figure in the debate) is on the recording, not just mentioned.</li>
+          <li><b>Checked against the source:</b> transcript, description and chapters were read to confirm who speaks, what is covered and the timestamps.</li>
+          <li><b>One copy per event:</b> re-uploads and mirrors are dropped; the channel that produced the event is kept.</li></ul>
+        <h2>Coverage</h2>
+        <p>Uploads from ${esc(fmtDate(dates[0]))} to ${esc(fmtDate(dates[dates.length - 1]))}, by YouTube upload date (US Pacific; a ~ marks an estimate). Formats: ${esc(fmts)}.</p>
         <table class="ctable ctable--sm"><thead><tr><th>Month</th><th>Episodes</th><th>Hours</th><th>Chapters</th></tr></thead><tbody>${per}<tr><td><b>Total</b></td><td><b>${STATE.all.length}</b></td><td><b>${hoursStr(STATE.all.reduce((a, e) => a + e.dur, 0))}</b></td><td><b>${STATE.all.reduce((a, e) => a + e.chapters.length, 0)}</b></td></tr></tbody></table>
-        <p><b>Data integrity:</b> ${STATE.rawCount} records loaded, de-duplicated by YouTube ID to ${STATE.all.length} (${STATE.dupes} duplicate${STATE.dupes === 1 ? "" : "s"} dropped). Loaded from ${STATE.loadedFrom === "inline" ? "the inline fallback copy (offline / file://)" : "data/episodes.json"}${STATE.manifestFiles ? ` plus ${STATE.manifestFiles} daily file(s)` : ""}. October records carry hand-written chapters, quotes, numbers, tags and levels; July–September chapters and claims are parsed from their timestamped topic lists, and their levels and tags are estimated (marked “est.”).</p>
-        <p><b>Daily additions:</b> drop a JSON file (same shape as <code>episodes.json</code>) into <code>data/daily/</code> and list it in <code>data/manifest.json</code> (<code>{"files":["daily/2026-10-28.json"]}</code>). The app merges listed files after the main file on every load; a later copy of the same ID replaces the earlier one.</p>
-        <p><b>Speaker photos:</b> ${curated} people have a curated portrait or channel avatar; everyone else is shown with a circular crop of the thumbnail from their best solo episode. Hosts and interviewers are labelled “Host”; researchers are the stars.</p>
-        <p><b>Claims tracker:</b> ${STATE.claims.length} statements about P(doom) and timelines, matched by keyword from the quotes and numbers and attributed only when the speaker is a named non-host researcher. Treat it as a navigation aid and check the moment itself.</p>
-        <p><b>Privacy:</b> watch history, notes, favourites, follows, queue, playlists, ratings, tags, badges and settings live only in this browser's localStorage (keys start with <code>asfe:</code>). Nothing is sent anywhere. Video plays through YouTube's embedded player (youtube.com, loaded only when you press play); YouTube's own terms apply to playback. Export a backup from History.</p>
-        <p><b>Already watched it on YouTube?</b> Use “Mark as watched” on any card or the <a href="#/watched">I've watched these</a> checklist. Marks count as full completions in your stats, XP, badges and heatmap on the day you mark them, and are labelled as manual everywhere.</p>
-        <p><b>Keeps playing when minimised:</b> the app never pauses on tab switches. The float window (Chrome and Edge 116+) is an always-on-top remote with artwork, chapter and controls; the video itself stays on this page because YouTube refuses to start its player inside a pop-up document that has no web address (that is what “Error 153” meant). Headphones mode plus background playback works everywhere else; some mobile browsers still pause embedded video in the background, which a web page cannot override.</p>
-        <p>Built by <b>Aniruddha Adak</b>. Source and README: <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener noreferrer">github.com/lo3elyon/ASI</a>.</p>
+        <p><b>Data integrity:</b> ${STATE.rawCount} records loaded, de-duplicated by YouTube ID to ${STATE.all.length} (${STATE.dupes} duplicate${STATE.dupes === 1 ? "" : "s"} dropped). ${STATE.claims.length} statements about P(doom) and timelines are indexed in the claims tracker and the Quote wall; treat them as a navigation aid and check the moment itself.</p>
+        <h2>How daily additions work</h2>
+        <p>New verified episodes are added as small JSON files in <code>data/daily/</code> listed in <code>data/manifest.json</code> (for example <code>{"files":["daily/2026-10-28.json"]}</code>). The app merges them after the main file on every load; a later copy of the same YouTube ID replaces the earlier one, so corrections are simple.</p>
+        <h2>Privacy</h2>
+        <p>Everything personal stays in this browser's localStorage (keys start with <code>asfe:</code>): watch history, notes, Today's picks and their log, favourites, follows, queue, playlists, ratings, tags, badges, themes and settings. Nothing is sent anywhere. Export or import a full backup from <a href="#/history">History</a>. Video plays through YouTube's embedded player.</p>
+        <h2>Speaker photos</h2>
+        <p>Every avatar is a single, cleanly cropped face photo of that person, taken from their own site, their organisation or university page, Wikipedia/Wikimedia, a conference page or a frame of their own talk. Where no verified photo exists, initials are shown instead of a guess.</p>
+        <h2>Keyboard shortcuts</h2>
+        <dl class="keys keys--about">${keys.map(([k, d]) => `<div><dt>${k.split(" / ").map((x) => `<kbd>${esc(x)}</kbd>`).join(" / ")}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>
+        <h2>FAQ</h2>
+        ${faq.map(([q, a]) => `<details class="faq"><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}
+        <h2>Roadmap</h2>
+        <ul><li>More daily additions as new verified full episodes appear.</li><li>Transcript search inside episodes, with jump-to-moment.</li><li>Shareable learning paths and playlists by link.</li><li>Optional sync of your library between devices via a file you control.</li></ul>
+        <h2>Credits</h2>
+        <p>Built by <b>Aniruddha Adak</b>. Episode metadata and video from YouTube and the original channels; all rights remain with their creators. Source and README: <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener noreferrer">github.com/lo3elyon/ASI</a>.</p>
       </div>`;
   }
 
   /* ================================================================ shared */
-  function refreshCardsFor(id) {
-    $$(`[data-id="${A.cssEsc(id)}"]`).forEach((el) => {
-      if (el.classList.contains("card") || el.classList.contains("lrow")) {
-        const e = STATE.byId.get(id); if (!e) return;
-        const wasList = el.classList.contains("lrow");
-        const why = el.querySelector(".card__why span");
-        const tmp = document.createElement("div");
-        tmp.innerHTML = ui().card(e, { list: wasList, why: why ? why.textContent : "" });
-        el.replaceWith(tmp.firstElementChild);
-      }
+  /* In-place sync: an action on an episode updates only the affected buttons/badges in every open view
+   * (cards, list rows, drawer, theater, rating boxes), found by data-id lookup. Card nodes are never replaced,
+   * so thumbnails do not reload and running animations do not restart. */
+  const tplEl = (html) => { const t = document.createElement("template"); t.innerHTML = String(html).trim(); return t.content.firstElementChild; };
+  function swapIcon(b, iconHTML) {
+    const old = b.querySelector("svg"); if (!iconHTML) return;
+    const nu = tplEl(iconHTML); if (!nu) return;
+    if (!old) { b.prepend(nu); return; }
+    if (old.innerHTML !== nu.innerHTML) old.replaceWith(nu);
+  }
+  function setPressed(b, on, o) {
+    if (!b) return;
+    b.setAttribute("aria-pressed", String(!!on));
+    b.classList.toggle("is-on", !!on);
+    if (o.icon) swapIcon(b, o.icon);
+    if (o.label != null) b.setAttribute("aria-label", o.label);
+    if (o.title != null) b.title = o.title;
+    if (o.text != null) { const sp = b.querySelector("span"); if (sp && sp.textContent !== o.text) sp.textContent = o.text; }
+  }
+  function syncBar(holder, pct, before) {
+    if (!holder) return;
+    let bar = holder.querySelector(".thumb__bar");
+    if (!pct) { if (bar) bar.remove(); return; }
+    if (!bar) { bar = tplEl(`<span class="thumb__bar"><i></i></span>`); holder.appendChild(bar); }
+    const i = bar.querySelector("i"); const w = Math.round(pct * 100) + "%"; if (i.style.width !== w) i.style.width = w;
+  }
+  function syncRibbon(container, id, after, prepend) {
+    if (!container) return;
+    const html = ui().stateBadge(id);
+    const cur = container.querySelector(":scope > .ribbon");
+    if (!html) { if (cur) cur.remove(); return; }
+    const nu = tplEl(html);
+    if (cur) { if (cur.outerHTML !== nu.outerHTML) cur.replaceWith(nu); return; }
+    if (prepend) container.prepend(nu); else if (after && after.parentNode === container) after.after(nu); else container.appendChild(nu);
+  }
+  function patchCard(el, id) {
+    const Lb = L(), I = ui().ICON;
+    const q = Lb.QUEUE.includes(id), fav = Lb.FAVS.has(id), done = h().stateOf(id) === "done", pct = h().pctOf(id), rt = (Lb.RATINGS || {})[id];
+    const list = el.classList.contains("lrow");
+    el.querySelectorAll('[data-act="queue"]').forEach((b) => setPressed(b, q, { icon: q ? I.queued : I.queue, label: q ? "Remove from queue" : "Add to queue", title: list ? "Queue" : q ? "In queue" : "Add to queue" }));
+    el.querySelectorAll('[data-act="fav"]').forEach((b) => setPressed(b, fav, { icon: fav ? I.heartF : I.heart, label: fav ? "Unfavourite" : "Favourite", title: "Favourite" }));
+    el.querySelectorAll(".card__done").forEach((b) => setPressed(b, done, { label: done ? "Mark unwatched" : "Mark as watched", title: done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched" }));
+    const th = el.querySelector(".thumb");
+    if (list) syncRibbon(el.querySelector(".lrow__act"), id, null, true); else syncRibbon(th, id, th && th.querySelector(".thumb__dur"));
+    syncBar(th, pct);
+    if (!list) {
+      const act = el.querySelector(".card__act"); let r = act && act.querySelector(".card__rt");
+      if (act) { if (!rt) { if (r) r.remove(); } else { if (!r) { r = tplEl(`<span class="card__rt" title="Your rating"></span>`); const d = act.querySelector(".card__done"); d ? d.after(r) : act.appendChild(r); } r.textContent = "★" + rt; } }
+    }
+  }
+  function drHist(id) {
+    const r = L().H.eps[id]; const st = h().stateOf(id);
+    return st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual ? "logged" : "watched"} <b>${fmtHM(r.watched)}</b> (${Math.round((r.pct || 0) * 100)}% covered)${r.done ? " · completed " + A.fmtStamp(r.doneAt) : ""} · last ${A.fmtStamp(r.last)}</p>` : "";
+  }
+  function patchDrawer(id) {
+    const dr = $("#drawer"); if (!dr || dr.hidden || drawerId !== id) return;
+    const Lb = L(), I = ui().ICON, st = h().stateOf(id), r = Lb.H.eps[id];
+    const q = Lb.QUEUE.includes(id), fav = Lb.FAVS.has(id), later = Lb.LATER.includes(id);
+    const box = dr.querySelector(".dr__act"); if (!box) return;
+    setPressed(box.querySelector('[data-act="queue"]'), q, { icon: q ? I.queued : I.queue, text: q ? "Queued" : "Queue" });
+    setPressed(box.querySelector('[data-act="fav"]'), fav, { icon: fav ? I.heartF : I.heart, text: fav ? "Favourited" : "Favourite" });
+    setPressed(box.querySelector('[data-act="watched"]'), st === "done", { text: st === "done" ? "Mark unwatched" : "Mark as watched" });
+    setPressed(box.querySelector('[data-act="later"]'), later, { text: later ? "In Watch later" : "Watch later" });
+    const pb = box.querySelector('[data-act="play"] span'); if (pb) pb.textContent = st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Watch again" : "Play";
+    syncBar(dr.querySelector(".dr__hero .thumb"), st !== "none" ? h().pctOf(id) || 0.001 : 0);
+    const hp = dr.querySelector(".dr__hist"), html = drHist(id);
+    if (!html) { if (hp) hp.remove(); }
+    else { const nu = tplEl(html); if (hp) { if (hp.innerHTML !== nu.innerHTML) hp.replaceWith(nu); } else { const pf = dr.querySelector("#drPartial"); pf ? pf.before(nu) : box.after(nu); } }
+  }
+  function patchRating(id) {
+    const rt = (L().RATINGS || {})[id] || 0;
+    $$(`[data-rt="${A.cssEsc(id)}"]`).forEach((box) => {
+      box.querySelectorAll("[data-rate]").forEach((b) => { const on = rt >= Number(b.dataset.rate); b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", String(on)); });
+      const sm = box.querySelector(".stars small"); if (sm) sm.textContent = rt ? `You rated ${rt}/5` : "Rate it";
     });
-    if (drawerId === id && !$("#drawer").hidden) { const sc = $("#drawer").scrollTop; openDrawer(id); $("#drawer").scrollTop = sc; }
+  }
+  function refreshCardsFor(id) {
+    if (!STATE.byId.get(id)) return;
+    $$(`[data-id="${A.cssEsc(id)}"]`).forEach((el) => { if (el.classList.contains("card") || el.classList.contains("lrow")) patchCard(el, id); });
+    if (A.feat && A.feat.patchWRow) A.feat.patchWRow(id);
+    patchDrawer(id);
+    patchRating(id);
+    if (A.player && A.player.patchTheater) A.player.patchTheater(id);
+  }
+  /* queue view: targeted add/remove instead of re-rendering the page */
+  function qRow(e, i) {
+    return `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button><p class="card__meta"><span>${esc(ui().whoLine(e, 2))}</span><span>${esc(e.durStr)}</span></p></div>
+        <div class="qrow__act"><button class="iconbtn iconbtn--sm" data-mv="-1" aria-label="Move up">↑</button><button class="iconbtn iconbtn--sm" data-mv="1" aria-label="Move down">↓</button><button class="iconbtn iconbtn--sm" data-act="queue" aria-label="Remove from queue">✕</button></div></li>`;
+  }
+  function queueHead() {
+    const list = L().QUEUE.map((x) => STATE.byId.get(x)).filter(Boolean);
+    const secs = list.reduce((a, e) => a + Math.max(0, e.dur - (h().pctOf(e.id) * e.dur)), 0);
+    const v = V("queue"); const h1 = v && v.querySelector(".phead h1"), lede = v && v.querySelector(".phead .lede");
+    if (h1) h1.textContent = `Up next: ${list.length} episode${list.length === 1 ? "" : "s"}`;
+    if (lede) lede.textContent = `${fmtHM(secs)} left to watch. Drag to reorder; the queue always plays before recommendations.`;
+  }
+  function queueSync(id, on) {
+    const ol = $("#qList");
+    if (!ol) { renderQueue(); return; }
+    if (on) {
+      if (!ol.querySelector(`[data-id="${A.cssEsc(id)}"]`)) { const e = STATE.byId.get(id); const li = tplEl(qRow(e, ol.children.length)); li.classList.add("is-in"); ol.appendChild(li); }
+    } else {
+      const li = ol.querySelector(`.qrow[data-id="${A.cssEsc(id)}"]`);
+      if (li) {
+        const fin = () => { li.remove(); [...ol.children].forEach((c, i) => { c.dataset.i = i; const n = c.querySelector(".qrow__n"); if (n) n.textContent = i + 1; }); if (!ol.children.length) renderQueue(); };
+        if (A.RM || document.documentElement.classList.contains("rm")) fin(); else { li.classList.add("is-out"); setTimeout(fin, 320); }
+      }
+    }
+    queueHead();
   }
   function onNowPlaying() { /* hook for future */ }
 
-  A.views = { monthStats, monthLabel, renderHome, renderBrowse, renderMonths, renderSpeakers, renderSpeaker, renderHistory, renderQueue, renderProfile, renderNotes, renderAbout, openDrawer, closeDrawer, copyLinkAt, share, linkFor, refreshCardsFor, paintQueueCount, applyQuery, onNowPlaying, drawerOpen: () => drawerId };
+  A.views = { monthStats, monthLabel, renderHome, renderBrowse, renderMonths, renderSpeakers, renderSpeaker, renderHistory, renderQueue, renderProfile, renderNotes, renderAbout, openDrawer, closeDrawer, copyLinkAt, share, linkFor, refreshCardsFor, syncEp: refreshCardsFor, queueSync, patchCard, paintQueueCount, applyQuery, onNowPlaying, drawerOpen: () => drawerId };
 })(window.ASFE);
