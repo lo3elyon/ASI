@@ -23,7 +23,7 @@
   function pathsHTML() {
     return `<div class="paths">${PATHS.map((p) => { const eps = pathEps(p); if (eps.length < 2) return ""; const done = eps.filter((e) => h().stateOf(e.id) === "done").length;
       return `<article class="path" data-path="${p.id}"><header><span class="path__ic">${p.icon}</span><div><h3>${esc(p.name)}</h3><p class="muted">${esc(p.desc)}</p></div><span class="path__prog" title="${done} of ${eps.length} watched"><b>${done}</b>/${eps.length}</span></header>
-        <ol class="path__steps">${eps.map((e, i) => `<li class="${h().stateOf(e.id) === "done" ? "is-done" : ""}" data-id="${e.id}"><span class="path__n">${h().stateOf(e.id) === "done" ? "✓" : i + 1}</span><button class="linkbtn" data-act="open">${esc(e.title)}</button><small>${esc(ui().whoLine(e, 2))} · ${esc(e.durStr)} · ${esc(e.level)}</small></li>`).join("")}</ol>
+        <ol class="path__steps">${eps.map((e, i) => `<li class="${h().stateOf(e.id) === "done" ? "is-done" : ""}" data-id="${e.id}"><span class="path__n">${h().stateOf(e.id) === "done" ? "✓" : i + 1}</span><button class="linkbtn" data-act="open">${esc(e.title)}</button><small>${ui().metaText(e)} · ${esc(ui().whoLine(e, 2))} · ${esc(e.level)}</small></li>`).join("")}</ol>
         <div class="path__act"><button class="btn btn--sm btn--primary" data-pathgo="${p.id}">${ui().ICON.play}<span>${done ? "Continue path" : "Start path"}</span></button><button class="btn btn--sm" data-pathq="${p.id}">${ui().ICON.queue}<span>Queue all</span></button><span class="muted">${hoursStr(eps.reduce((a, e) => a + e.dur, 0))}</span></div></article>`; }).join("")}</div>`;
   }
   /* Quote wall: key claims with the speaker, jump straight to the moment */
@@ -46,7 +46,7 @@
     return ds.map((e) => {
       const sp = e.people.filter((p) => !p.host).slice(0, 4);
       const cols = sp.map((p) => { const cl = e.claims.filter((c) => c.speaker && fold(c.speaker).startsWith(fold(p.name))).slice(0, 3); return `<div class="stance"><header>${ui().avatar(p.name, 44, "av--ring")}<div><b>${esc(p.name)}</b><small>${esc((ui().speakerOf(p.name) || {}).org || p.desc || "")}</small></div></header>${cl.length ? `<ul>${cl.map((c) => `<li><button class="quote__t" data-qjump="${e.id}|${c.t == null ? 0 : c.t}">${c.t == null ? "▶" : fmtTime(c.t)}</button>${esc(c.text)}</li>`).join("")}</ul>` : `<p class="muted">Watch to hear this side's case.</p>`}</div>`; }).join(`<span class="vs" aria-hidden="true">vs</span>`);
-      return `<article class="debate" data-id="${e.id}"><h3><button class="linkbtn" data-act="open">${esc(e.title)}</button></h3><p class="muted">${esc(e.durStr)} · ${esc(ui().showLine(e))}</p><div class="stances">${cols}</div><div class="path__act"><button class="btn btn--sm btn--primary" data-act="play">${ui().ICON.play}<span>Watch the debate</span></button></div></article>`;
+      return `<article class="debate" data-id="${e.id}"><h3><button class="linkbtn" data-act="open">${esc(e.title)}</button></h3><p class="muted">${ui().metaText(e)} · ${esc(ui().showLine(e))}</p><div class="stances">${cols}</div><div class="path__act"><button class="btn btn--sm btn--primary" data-act="play">${ui().ICON.play}<span>Watch the debate</span></button></div></article>`;
     }).join("");
   }
   /* Speaker map: researchers around the organisations they appear with (radial SVG network) */
