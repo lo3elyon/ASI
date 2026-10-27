@@ -14,7 +14,7 @@
     if (!m) return { view: "home" };
     return { view: m[1], arg: m[2] ? decodeURIComponent(m[2]) : null, qs: m[3] || "" };
   }
-  const VIEWS = ["home", "browse", "months", "speakers", "speaker", "insights", "history", "queue", "profile", "notes", "about", "watched", "playlists", "wrapped"];
+  const VIEWS = ["home", "browse", "months", "speakers", "speaker", "insights", "history", "recent", "explore", "queue", "profile", "notes", "about", "watched", "playlists", "wrapped"];
   function route() {
     const r = parseHash();
     if (r.deep) {
@@ -41,17 +41,17 @@
     VIEW = v; ARG = arg;
     $$(".view").forEach((s) => (s.hidden = s.dataset.view !== v));
     $$(".view").forEach((s) => s.classList.toggle("view--in", s.dataset.view === v && changed));
-    $$("[data-tab]").forEach((a) => { const on = a.dataset.tab === v || (v === "speaker" && a.dataset.tab === "speakers"); a.classList.toggle("is-on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
+    $$("[data-tab]").forEach((a) => { const on = a.dataset.tab === v || (v === "speaker" && a.dataset.tab === "speakers") || (v === "recent" && a.dataset.tab === "history"); a.classList.toggle("is-on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
     if (A.views.drawerOpen()) A.views.closeDrawer();
     if (A.P.mode === "theater" && A.P.cur && changed) A.player.minimize();
     renderCurrent();
     if (changed) window.scrollTo({ top: 0, behavior: "auto" });
-    document.title = `${{ home: "Home", browse: "Browse", months: "Months", speakers: "Speakers", speaker: (STATE.bySlug.get(arg) || { name: "Speaker" }).name, insights: "Insights", history: "History", queue: "Queue", profile: "Profile", notes: "Notes", about: "About & method", watched: "I've watched these", playlists: "Playlists", wrapped: "Monthly recap" }[v]} · AI Safety Full Episodes`;
+    document.title = `${{ home: "Home", browse: "Browse", months: "Months", speakers: "Speakers", speaker: (STATE.bySlug.get(arg) || { name: "Speaker" }).name, insights: "Insights", history: "History", recent: "Recently watched", explore: "Explore", queue: "Queue", profile: "Profile", notes: "Notes", about: "About", watched: "I've watched these", playlists: "Playlists", wrapped: "Monthly recap" }[v]} · AI Safety Full Episodes`;
   }
   function renderCurrent() {
     const V = A.views;
     try {
-      ({ home: V.renderHome, browse: () => V.renderBrowse(true), months: V.renderMonths, speakers: V.renderSpeakers, speaker: () => V.renderSpeaker(ARG), insights: () => A.insights.render($('.view[data-view="insights"]')), history: A.feat.renderHistory, queue: V.renderQueue, profile: V.renderProfile, notes: V.renderNotes, about: V.renderAbout,
+      ({ home: V.renderHome, browse: () => V.renderBrowse(true), months: V.renderMonths, speakers: V.renderSpeakers, speaker: () => V.renderSpeaker(ARG), insights: () => A.insights.render($('.view[data-view="insights"]')), history: A.feat.renderHistory, recent: A.feat.renderRecent, explore: () => A.explore.render(), queue: V.renderQueue, profile: V.renderProfile, notes: V.renderNotes, about: V.renderAbout,
         watched: A.feat.renderWatched, playlists: () => A.feat.renderPlaylists(ARG), wrapped: A.feat.renderWrapped }[VIEW] || V.renderHome)();
       if (VIEW === "home") A.feat.paintHomeTop();
       A.feat.enhance($(`.view[data-view="${VIEW}"]`));
@@ -76,6 +76,7 @@
       const k = fol.dataset.follow; const on = h().toggleFollow(k); const s = STATE.speakers.get(k);
       A.ui.toast(on ? `Following <b>${esc(s ? s.name : k)}</b>: their episodes now get priority` : `Unfollowed ${esc(s ? s.name : k)}`, { icon: on ? "⭐" : "☆", ms: 2200 });
       $$(`[data-follow="${A.cssEsc(k)}"]`).forEach((b) => { b.classList.toggle("is-on", on); b.setAttribute("aria-pressed", on); b.innerHTML = on ? A.ui.ICON.check + "Following" : A.ui.ICON.plus + "Follow"; });
+      A.fx && A.fx.celebrate("follow", fol, on);
       return;
     }
     const sc = t.closest("[data-scroll]");
@@ -92,8 +93,9 @@
       const a = act.dataset.act;
       if (a === "play") { A.player.play(id); if (A.views.drawerOpen()) A.views.closeDrawer(); }
       if (a === "open") A.views.openDrawer(id);
-      if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); A.ui.toast(on ? "Added to queue" : "Removed from queue", { icon: on ? "➕" : "➖", ms: 1400 }); A.views.refreshCardsFor(id); if (VIEW === "queue") A.views.renderQueue(); }
-      if (a === "fav") { const on = h().toggleFav(id); A.ui.toast(on ? "Favourited" : "Unfavourited", { icon: on ? "❤️" : "🤍", ms: 1200 }); A.views.refreshCardsFor(id); }
+      // in-place: only the pressed button (and its twins in other open views) change; the card node is kept
+      if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); A.ui.toast(on ? "Added to queue" : "Removed from queue", { icon: on ? "➕" : "➖", ms: 1400 }); A.views.refreshCardsFor(id); A.fx && A.fx.celebrate("queue", act, on); if (VIEW === "queue") A.views.queueSync(id, on); }
+      if (a === "fav") { const on = h().toggleFav(id); A.ui.toast(on ? "Favourited" : "Unfavourited", { icon: on ? "❤️" : "🤍", ms: 1200 }); A.views.refreshCardsFor(id); A.fx && A.fx.celebrate("fav", act, on); }
       if (["watched", "menu", "later", "playlist", "sharecard", "playnext"].includes(a)) A.feat.act(a, id, act);
       return;
     }
@@ -107,6 +109,9 @@
   let palItems = [], palSel = 0;
   const ACTIONS = [
     { label: "Go to Home", kw: "home start", run: () => (location.hash = "#/home") },
+    { label: "Explore: learning paths, quote wall, debates, speaker map", kw: "explore paths learning quotes quote wall debate map network", run: () => (location.hash = "#/explore") },
+    { label: "Recently watched", kw: "recent history last watched", run: () => (location.hash = "#/recent") },
+    { label: "Today's picks", kw: "today picks daily recommendations home", run: () => { location.hash = "#/home"; setTimeout(() => { const p = $("#picks"); p && p.scrollIntoView({ behavior: A.RM ? "auto" : "smooth" }); }, 60); } },
     { label: "Browse & filter all episodes", kw: "browse library search filter", run: () => (location.hash = "#/browse") },
     { label: "Months & release calendar", kw: "months calendar heatmap july august september october", run: () => (location.hash = "#/months") },
     { label: "Speakers hub", kw: "speakers researchers people", run: () => (location.hash = "#/speakers") },
@@ -119,18 +124,19 @@
     { label: "Queue", kw: "queue up next", run: () => (location.hash = "#/queue") },
     { label: "Profile, levels & badges", kw: "profile level xp badges achievements", run: () => (location.hash = "#/profile") },
     { label: "Notes", kw: "notes", run: () => (location.hash = "#/notes") },
-    { label: "About & method", kw: "about method data privacy", run: () => (location.hash = "#/about") },
+    { label: "About: method, privacy, FAQ, roadmap", kw: "about method data privacy faq roadmap credits shortcuts", run: () => (location.hash = "#/about") },
     { label: "Play / pause", kw: "play pause toggle", run: () => A.player.togglePlay(), needs: true },
     { label: "Next episode", kw: "next skip", run: () => A.player.playNext(), needs: true },
     { label: "Fullscreen cinema player", kw: "fullscreen cinema expand pop out big", run: () => A.player.toggleFs(), needs: true },
     { label: "Float window (always on top remote)", kw: "pip picture in picture float window minimise", run: () => A.player.popOut(), needs: true },
     { label: "Headphones mode (audio only)", kw: "audio listen background headphones", run: () => A.player.audioMode(), needs: true },
-    { label: "Zen focus mode (Pomodoro, do not disturb)", kw: "zen focus pomodoro dnd do not disturb", run: () => A.player.toggleZen(), needs: true },
+    { label: "Focus mode (Pomodoro, do not disturb)", kw: "focus mode timer zen pomodoro dnd do not disturb", run: () => A.player.toggleZen(), needs: true },
     { label: "Mark current episode as watched", kw: "mark watched done complete", run: () => A.player.toggleWatchedCur(), needs: true },
     { label: "Bookmark this moment", kw: "bookmark", run: () => A.player.bookmark(), needs: true },
     { label: "Sleep timer: 30 minutes", kw: "sleep timer", run: () => A.player.setSleep("30"), needs: true },
     { label: "Toggle captions", kw: "captions subtitles cc", run: () => A.player.toggleCC(), needs: true },
-    { label: "Theater / mini player", kw: "theater mini expand", run: () => (A.P.mode === "theater" ? A.player.minimize() : A.player.expand()), needs: true },
+    { label: "Miniplayer / expand", kw: "mini miniplayer expand", run: () => A.player.toggleMini(), needs: true },
+    { label: "Theater mode / default view", kw: "theater wide default view", run: () => A.player.toggleWide(), needs: true },
     { label: "Add a note at this moment", kw: "note", run: () => A.player.openNote(), needs: true },
     { label: "Copy link at current time", kw: "copy link share timestamp", run: () => A.views.copyLinkAt(A.P.cur.id, A.player.curTime()), needs: true },
     { label: "Toggle theme (dark / light / system)", kw: "theme dark light system", run: () => cycleTheme() },
@@ -146,7 +152,7 @@
     let eps = [];
     if (qf) eps = STATE.all.map((e) => ({ e, s: A.recs.searchScore(e, q) })).filter((x) => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => ({ type: "ep", e: x.e }));
     else eps = (h().inProgress().slice(0, 3).concat(A.recs.forYou(4).map((x) => x.e))).slice(0, 6).map((e) => ({ type: "ep", e }));
-    const sps = Array.from(STATE.speakers.values()).filter((s) => s.eps.length && (!qf ? s.photo && !s.isHost : fold(s.name + " " + s.org).includes(qf))).sort((a, b) => b.eps.length - a.eps.length).slice(0, qf ? 5 : 4).map((s) => ({ type: "sp", s }));
+    const sps = Array.from(STATE.speakers.values()).filter((s) => s.eps.length && (!qf ? A.ui.hasFace(s.name) && !s.isHost : fold(s.name + " " + s.org).includes(qf))).sort((a, b) => b.eps.length - a.eps.length).slice(0, qf ? 5 : 4).map((s) => ({ type: "sp", s }));
     palItems = qf ? sps.concat(eps, acts) : acts.concat(eps, sps);
     palSel = 0;
     const sec = (type, title) => { const items = palItems.map((x, i) => ({ x, i })).filter(({ x }) => x.type === type); if (!items.length) return ""; return `<li class="pal__sec">${title}</li>` + items.map(({ x, i }) => `<li role="option" class="pal__it" data-pi="${i}" id="pi${i}">${x.type === "ep" ? `${A.ui.thumbImg(x.e)}<span><b>${A.ui.hl(x.e.title, q)}</b><small>${esc(A.ui.whoLine(x.e, 2))} · ${esc(x.e.durStr)} · ${esc(A.fmtShort(x.e.date))}</small></span><kbd>↵ play</kbd>` : x.type === "sp" ? `${A.ui.avatar(x.s.name, 32)}<span><b>${A.ui.hl(x.s.name, q)}</b><small>${esc(x.s.org)} · ${x.s.eps.length} episodes</small></span><kbd>↵ open</kbd>` : `<span class="pal__ic">›</span><span><b>${A.ui.hl(x.a.label, q)}</b></span>`}</li>`).join(""); };
@@ -170,23 +176,25 @@
     ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
     [", / .", "Frame step when paused (speed −/+ 0.25× while playing)"], ["< / >", "Slower / faster"], ["0–9", "Jump to 0%–90%"], ["Home / End", "Start / end (on the seek bar)"],
     ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode"], ["S", "Skip intro (first chapter)"],
-    ["F", "Fullscreen cinema (Esc to leave)"], ["T", "Theater ↔ mini player"], ["A", "Headphones mode"], ["I", "Float window (always on top)"], ["Z", "Zen focus mode"],
+    ["F", "Full screen (Esc to leave)"], ["T", "Theater mode / default view"], ["I", "Miniplayer / expand"], ["A", "Headphones mode"], ["O", "Float window (always on top)"], ["Z", "Focus mode"],
     ["C", "Captions on / off"], ["M", "Mute"], ["B", "Bookmark this moment"], ["N", "Note at this moment"], ["[ / ] / \\", "Loop start / loop end / clear"],
     ["W", "Mark focused card (or current episode) watched"], ["Shift F10", "Card menu (or right-click)"], ["Arrow keys on cards", "Move between cards"],
     ["Double-click / double-tap", "Left or right third: −/+10 s · middle: fullscreen · mini: expand"], ["Swipe on video (touch)", "Sideways seeks · up/down on the right half sets volume"],
     ["G then H / B / S / I / W / L / R / Y", "Go to Home / Browse / Speakers / Insights / Watched / Playlists / Recap / History"], ["Esc", "Close / exit fullscreen / minimise"],
   ];
   function openHelp() { $("#keysBody").innerHTML = `<dl>${KEYS.map(([k, d]) => `<div><dt>${k.split(" / ").map((x) => `<kbd>${esc(x)}</kbd>`).join(" / ")}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>`; $("#help").hidden = false; $("#help [data-close]").focus(); }
-  function setTheme(pref) {
+  function setTheme(pref, explicit) {
     try { localStorage.setItem("asfe:theme", pref); } catch (e) {}
     const dark = pref === "dark" || (pref === "system" && !(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches));
-    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
     document.documentElement.setAttribute("data-theme-pref", pref);
+    const pal = document.documentElement.getAttribute("data-palette");
+    if (pal && explicit !== false && A.themes) { if (explicit) { let a = "amber"; try { a = localStorage.getItem("asfe:accent") || "amber"; } catch (e) {} A.themes.apply(a === "custom" || A.themes.THEMES.some((t) => t.id === a && t.kind === "accent") ? a : "amber"); } else { const t = A.themes.THEMES.find((x) => x.id === pal); if (t) document.documentElement.setAttribute("data-theme", t.mode); } }
+    if (!document.documentElement.getAttribute("data-palette")) document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
     const m = $('meta[name="theme-color"]'); if (m) m.setAttribute("content", dark ? "#070b12" : "#f5f7fa");
     $("#themeBtn").setAttribute("aria-label", `Theme: ${pref}`);
     $("#themeBtn").title = `Theme: ${pref} (click to change)`;
   }
-  function cycleTheme() { const cur = document.documentElement.getAttribute("data-theme-pref") || "system"; const nx = { dark: "light", light: "system", system: "dark" }[cur] || "dark"; setTheme(nx); A.ui.toast(`Theme: ${nx}`, { ms: 1100 }); }
+  function cycleTheme() { const cur = document.documentElement.getAttribute("data-theme-pref") || "system"; const nx = { dark: "light", light: "system", system: "dark" }[cur] || "dark"; setTheme(nx, true); A.ui.toast(`Theme: ${nx}`, { ms: 1100 }); }
 
   let gPending = 0;
   function onKey(ev) {
@@ -244,9 +252,10 @@
       case "\\": pl.setLoop("clear"); break;
       case "m": case "M": pl.toggleMute(); break;
       case "f": case "F": pl.toggleFs(); break;
-      case "t": case "T": P0.mode === "theater" ? pl.minimize() : pl.expand(); break;
+      case "t": case "T": pl.toggleWide(); break;
       case "a": case "A": pl.audioMode(); break;
-      case "i": case "I": pl.popOut(); break;
+      case "i": case "I": pl.toggleMini(); break;
+      case "o": case "O": pl.popOut(); break;
       case "z": case "Z": pl.toggleZen(); break;
       case "c": case "C": pl.toggleCC(); break;
       case "b": case "B": pl.bookmark(); break;
