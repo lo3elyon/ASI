@@ -9,7 +9,8 @@
 <a href="https://lo3elyon.github.io/ASI/"><img src="https://img.shields.io/badge/Live%20site-lo3elyon.github.io%2FASI-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Live site"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><img src="https://img.shields.io/badge/Explainer-AI%202027%20%26%202040-f59e0b?style=for-the-badge&logo=readthedocs&logoColor=white&labelColor=07111f" alt="AI 2027 and 2040 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
-<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-21%20talks-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="21 videos"></a>
+<a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
+<a href="#05-watch"><img src="https://img.shields.io/badge/Videos-41%20talks-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="41 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
 <img src="https://img.shields.io/badge/CSS3-animated-3b82f6?style=flat-square&logo=css3&logoColor=white&labelColor=07111f" alt="CSS3">
@@ -29,6 +30,7 @@
 <td align="center"><a href="#03-the-library"><b>Explainers</b></a></td>
 <td align="center"><a href="#04-deep-dive"><b>Deep dive</b></a></td>
 <td align="center"><a href="#04b-black-october"><b>Black October</b></a></td>
+<td align="center"><a href="#04c-jacob-coxon"><b>Jacob Coxon</b></a></td>
 <td align="center"><a href="#05-watch"><b>Videos</b></a></td>
 <td align="center"><a href="#06-people"><b>Team</b></a></td>
 <td align="center"><a href="#07-architecture"><b>Architecture</b></a></td>
@@ -36,6 +38,7 @@
 <td align="center"><a href="#09-run-and-deploy"><b>Run</b></a></td>
 <td align="center"><a href="#10-design-system"><b>Design</b></a></td>
 <td align="center"><a href="#11-questions"><b>FAQ</b></a></td>
+<td align="center"><a href="#changelog"><b>Changelog</b></a></td>
 <td align="center"><a href="#12-sources"><b>Sources</b></a></td>
 </tr>
 </table>
@@ -52,9 +55,9 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/2-live%20explainers-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/3-live%20explainers-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/21-playable%20talks-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/41-linked%20talks-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player and video guides</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
 </tr>
 </table>
@@ -68,6 +71,7 @@ flowchart LR
     H --> T["Latest timeline"]
     L --> E1["AI 2027 and AI 2040<br/>/ai-2027-2040/"]
     L --> E6["Black October 2026<br/>/black-october-2026/"]
+    L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -79,7 +83,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6 live
+    class E1,E6,E7 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -106,6 +110,12 @@ flowchart LR
 <b>The Black October 2026 explainer</b><br>
 <sub>30 incidents, animated attack chains, charts, a self-check and a quiz.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="assets/black-october.jpg" width="92%" alt="Black October 2026 hero"></a>
+
+<br><br>
+
+<b>Jacob Coxon on YouTube</b><br>
+<sub>20 hour-plus videos, role filter chips, search and a "Does he speak?" line on every card.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="92%" alt="Jacob Coxon on YouTube hero"></a>
 
 <br><br>
 
@@ -175,6 +185,13 @@ flowchart LR
 <td><sub>Incident explorer (30 incidents, search, filters, animated attack chains), 4 attack-pattern diagrams, charts, week by week October news, AI news board, 13 flip-card themes, X and YouTube pulse, Am I affected? checker, quiz, glossary, every source linked</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-24</sub></td>
+</tr>
+<tr>
+<td><a href="jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><b>Jacob Coxon on YouTube</b></a><br><sub>20 hour-plus videos about the ex-Anthropic researcher, labelled by whether he speaks</sub></td>
+<td><sub>Story of his resignation and NYC Council testimony, 6 stat figures, colour-coded role legend, filter chips (Guest, Testimony, Clips, About him, Unverified), live search, 20 video cards with thumbnails, timestamps and summaries, caveats, every link</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-10-27</sub></td>
 </tr>
 <tr>
 <td><code>/what-is-agi/</code></td>
@@ -421,6 +438,77 @@ flowchart LR
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
+<a id="04c-jacob-coxon"></a>
+<h2>04c. Deep dive: Jacob Coxon on YouTube</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="100%" alt="Jacob Coxon on YouTube"></a></td>
+<td width="55%" valign="top">
+<img src="https://img.shields.io/badge/type-video%20guide-3b82f6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/compiled-Oct%2027%2C%202026-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/videos-20-ef4444?style=flat-square&labelColor=07111f" alt=""><br><br>
+Jacob Coxon, a former Anthropic researcher, resigned on <b>8 September 2026</b> with a warning post about AI risk that went viral. A media tour followed (The Megyn Kelly Show, the PBD Podcast, TV news), and in October he testified at the <b>New York City Council hearing on AI safeguards</b>. This route collects 20 YouTube videos, every one over an hour, and labels each one by how much of it is actually him.
+</td>
+</tr>
+</table>
+
+<div align="center">
+<table>
+<tr>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/2-GUEST-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>long interviews with him</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/3-TESTIMONY-3b82f6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>NYC Council hearing uploads</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/4-CLIPS-f97316?style=for-the-badge&labelColor=07111f" alt=""><br><sub>his clips played on other shows</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/9-ABOUT%20HIM-64748b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>discussed, not heard</sub></td>
+<td align="center" width="20%"><img src="https://img.shields.io/badge/2-UNVERIFIED-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>no transcript to check</sub></td>
+</tr>
+</table>
+</div>
+
+```mermaid
+timeline
+    title Jacob Coxon, autumn 2026
+    8 Sep : Resigns from Anthropic : Viral warning post
+    9 to 10 Sep : This Week in Startups and Rubin react : First long interview on Megyn Kelly
+    Sep : TV news interviews : All-In, Tristan Harris and others debate him
+    6 Oct : PBD Podcast #868
+    Oct : NYC Council AI safeguards hearing : Whistleblower panel with Kokotajlo and Turner
+```
+
+```mermaid
+flowchart TD
+    Q{"Does he speak<br/>in the video?"} -->|"Yes, long interview"| G["GUEST (2)"]
+    Q -->|"Yes, at the hearing"| T["TESTIMONY (3)"]
+    Q -->|"Only as played clips"| C["CLIPS (4)"]
+    Q -->|"No, only discussed"| A["ABOUT HIM (9)"]
+    Q -->|"Could not check"| U["UNVERIFIED (2)"]
+    classDef q fill:#0b2a3a,stroke:#22d3ee,stroke-width:2px,color:#e6f6ff
+    classDef g fill:#063b33,stroke:#10b981,stroke-width:2px,color:#d1fae5
+    classDef t fill:#0b1f3a,stroke:#3b82f6,stroke-width:2px,color:#dbeafe
+    classDef c fill:#2a1d05,stroke:#f97316,stroke-width:2px,color:#fde68a
+    classDef a fill:#1e293b,stroke:#64748b,stroke-width:2px,color:#e2e8f0
+    classDef u fill:#3a0d0d,stroke:#ef4444,stroke-width:2px,stroke-dasharray:5 4,color:#fee2e2
+    class Q q
+    class G g
+    class T t
+    class C c
+    class A a
+    class U u
+```
+
+<details>
+<summary><b>What the page has</b></summary>
+<br>
+<table>
+<tr><th align="left">Section</th><th align="left">What you can do</th></tr>
+<tr><td><b>Who he is</b></td><td>The resignation, the viral post, the media tour and the NYC hearing, in a few lines.</td></tr>
+<tr><td><b>Labels</b></td><td>A colour bar and legend for the five roles.</td></tr>
+<tr><td><b>Videos</b></td><td>Filter chips with counts, live search, and 20 cards: clickable thumbnail (new tab), role badge, title, channel, length, date, "Does he speak?" with timestamps, and a summary.</td></tr>
+<tr><td><b>Notes</b></td><td>The 3 hearing videos are one event; auto-captions spell him "Coxin"; times are approximate; one misleading title.</td></tr>
+<tr><td><b>Sources</b></td><td>All 20 YouTube links.</td></tr>
+</table>
+</details>
+
+<img src="docs/readme/divider.svg" width="100%" alt="">
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -460,6 +548,41 @@ On the site every talk opens in a full screen focus mode player with a large clo
 </tr>
 <tr>
 <td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=s9dnUH2iNnw"><img src="https://img.youtube.com/vi/s9dnUH2iNnw/hqdefault.jpg" width="100%" alt="AI finds &#x27;unprecedented&#x27; cyber security threat in thousands of websites"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>AI finds &#x27;unprecedented&#x27; cyber security threat in thousands of websites</sub></b><br><sub>ITV News, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=JJLGDQLvs74"><img src="https://img.youtube.com/vi/JJLGDQLvs74/hqdefault.jpg" width="100%" alt="ECDSA&#x27;s Curves Origins: When AI Becomes the Attacker"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>ECDSA&#x27;s Curves Origins: When AI Becomes the Attacker</sub></b><br><sub>Security Now, Oct 2026</sub></td><td align="center" width="33%" valign="top"><a href="https://www.youtube.com/watch?v=9nfy5x4EYh0"><img src="https://img.youtube.com/vi/9nfy5x4EYh0/hqdefault.jpg" width="100%" alt="Patch Tuesday Nightmares and Cybersecurity News"></a><br><img src="https://img.shields.io/badge/Black%20October-ef4444?style=flat-square" alt=""><br><b><sub>Patch Tuesday Nightmares and Cybersecurity News</sub></b><br><sub>PDQ, Oct 2026</sub></td>
+</tr>
+</table>
+
+<b>Jacob Coxon on YouTube: 20 hour-plus videos</b>
+
+<table>
+<tr>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=F-Tf5Mo84N4"><img src="https://i.ytimg.com/vi/F-Tf5Mo84N4/hqdefault.jpg" width="100%" alt="Remembering Charlie Kirk, Trump's Midterm Message, and How AI Could Destroy Humanity, w/ Jacob Coxon"></a><br><img src="https://img.shields.io/badge/GUEST-10b981?style=flat-square" alt="GUEST"><br><sub><b>Remembering Charlie Kirk, Trump's Midterm Message, and How AI Could Destroy Humanity, w/ Jacob Coxon</b><br>Megyn Kelly · ~1h 40m</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI"><img src="https://i.ytimg.com/vi/Qpuj1nhcxiI/hqdefault.jpg" width="100%" alt="Ex-Anthropic Insider Tells All &#124; PBD Podcast #868"></a><br><img src="https://img.shields.io/badge/GUEST-10b981?style=flat-square" alt="GUEST"><br><sub><b>Ex-Anthropic Insider Tells All &#124; PBD Podcast #868</b><br>PBD Podcast · ~1h 45m</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=_Yl73PhMtm8"><img src="https://i.ytimg.com/vi/_Yl73PhMtm8/hqdefault.jpg" width="100%" alt="LIVE: Former Anthropic researcher testifies on AI at New York City Council"></a><br><img src="https://img.shields.io/badge/TESTIMONY-3b82f6?style=flat-square" alt="TESTIMONY"><br><sub><b>LIVE: Former Anthropic researcher testifies on AI at New York City Council</b><br>Associated Press · 7:52:06</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=IejFLhF8efQ"><img src="https://i.ytimg.com/vi/IejFLhF8efQ/hqdefault.jpg" width="100%" alt="LIVE: Public Testimony at NYC Council Hearing on AI Safeguards"></a><br><img src="https://img.shields.io/badge/TESTIMONY-3b82f6?style=flat-square" alt="TESTIMONY"><br><sub><b>LIVE: Public Testimony at NYC Council Hearing on AI Safeguards</b><br>New York City Council · 9:52:52</sub></td>
+</tr>
+<tr>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=ehgjfKZbnmQ"><img src="https://i.ytimg.com/vi/ehgjfKZbnmQ/hqdefault.jpg" width="100%" alt="LIVE &#124; Top Tech Executives Reveal Shocking AI Risks In New York Council Hearing"></a><br><img src="https://img.shields.io/badge/TESTIMONY-3b82f6?style=flat-square" alt="TESTIMONY"><br><sub><b>LIVE &#124; Top Tech Executives Reveal Shocking AI Risks In New York Council Hearing</b><br>The No Cap Press · 5:18:49</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=hcVQRmJEYv0"><img src="https://i.ytimg.com/vi/hcVQRmJEYv0/hqdefault.jpg" width="100%" alt="Will AI Takeover the Internet in 6 to 12 months?"></a><br><img src="https://img.shields.io/badge/CLIPS-f97316?style=flat-square" alt="CLIPS"><br><sub><b>Will AI Takeover the Internet in 6 to 12 months?</b><br>PRECOGNOSIS · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=RnbFkfaYOhI"><img src="https://i.ytimg.com/vi/RnbFkfaYOhI/hqdefault.jpg" width="100%" alt="OpenAI Agents Are Now Hacking Real Websites"></a><br><img src="https://img.shields.io/badge/CLIPS-f97316?style=flat-square" alt="CLIPS"><br><sub><b>OpenAI Agents Are Now Hacking Real Websites</b><br>Papaksh · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=p75moGyHs7o"><img src="https://i.ytimg.com/vi/p75moGyHs7o/hqdefault.jpg" width="100%" alt="DESCOVICH FIRES UP DALLAS, COXON SHAKES NYC &#124; AFTER HOURS W ALEX STEIN"></a><br><img src="https://img.shields.io/badge/CLIPS-f97316?style=flat-square" alt="CLIPS"><br><sub><b>DESCOVICH FIRES UP DALLAS, COXON SHAKES NYC &#124; AFTER HOURS W ALEX STEIN</b><br>Real America's Voice · 1:00:00</sub></td>
+</tr>
+<tr>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=GKGcQSZXQcc"><img src="https://i.ytimg.com/vi/GKGcQSZXQcc/hqdefault.jpg" width="100%" alt="Elon Musk Notices Something Very Suspicious About AI Whistleblower That Everyone Missed"></a><br><img src="https://img.shields.io/badge/CLIPS-f97316?style=flat-square" alt="CLIPS"><br><sub><b>Elon Musk Notices Something Very Suspicious About AI Whistleblower That Everyone Missed</b><br>The Rubin Report · 1:05:20</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=j9vkjCDt1NE"><img src="https://i.ytimg.com/vi/j9vkjCDt1NE/hqdefault.jpg" width="100%" alt="Can AI Kill All Humans in a Decade? &#124; Jacob Coxon &#124; Amit Dubey Podcast"></a><br><img src="https://img.shields.io/badge/UNVERIFIED-ef4444?style=flat-square" alt="UNVERIFIED"><br><sub><b>Can AI Kill All Humans in a Decade? &#124; Jacob Coxon &#124; Amit Dubey Podcast</b><br>Switch · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=vLngNc-DwLo"><img src="https://i.ytimg.com/vi/vLngNc-DwLo/hqdefault.jpg" width="100%" alt="Tristan Harris on the Anthropic Whistleblower, Elon Musk, and Avoiding AI Catastrophe"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>Tristan Harris on the Anthropic Whistleblower, Elon Musk, and Avoiding AI Catastrophe</b><br>Talk Easy with Sam Fragoso · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=t3UlAQuVbmE"><img src="https://i.ytimg.com/vi/t3UlAQuVbmE/hqdefault.jpg" width="100%" alt="What Tech Oligarchs Gain From AI Doomerism"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>What Tech Oligarchs Gain From AI Doomerism</b><br>The Lever · 1h+</sub></td>
+</tr>
+<tr>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=KDJR3zLljPs"><img src="https://i.ytimg.com/vi/KDJR3zLljPs/hqdefault.jpg" width="100%" alt="Jaan Tallinn on How Close We Are to Losing Control of AI"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>Jaan Tallinn on How Close We Are to Losing Control of AI</b><br>The Generalist · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=f_hLOaB8Zt8"><img src="https://i.ytimg.com/vi/f_hLOaB8Zt8/hqdefault.jpg" width="100%" alt="Pause AI? Should we? If so, how do we make it matter? &#124; Ep 13"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>Pause AI? Should we? If so, how do we make it matter? &#124; Ep 13</b><br>Philosophy, Programs, and Prompts · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=MjBGUbkSUsw"><img src="https://i.ytimg.com/vi/MjBGUbkSUsw/hqdefault.jpg" width="100%" alt="Ep499 Solving the AI Paradox"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>Ep499 Solving the AI Paradox</b><br>Firewalls Don't Stop Dragons · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=_vpdXFqIfmM"><img src="https://i.ytimg.com/vi/_vpdXFqIfmM/hqdefault.jpg" width="100%" alt="3 Million AI Models and One Very Convenient Week &#124; Ep 213"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>3 Million AI Models and One Very Convenient Week &#124; Ep 213</b><br>Cocktails &amp; Conspiracies · 1h+</sub></td>
+</tr>
+<tr>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=1vSi26ckhe4"><img src="https://i.ytimg.com/vi/1vSi26ckhe4/hqdefault.jpg" width="100%" alt="Did OpenAI Steal the Navier-Stokes Solution? &#124; E2335"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>Did OpenAI Steal the Navier-Stokes Solution? &#124; E2335</b><br>This Week in Startups · 1h+</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=cvxjqbfLVk0"><img src="https://i.ytimg.com/vi/cvxjqbfLVk0/hqdefault.jpg" width="100%" alt="AI Kills Everybody or Doomer Psyop? OpenAI's Math Breakthrough, Nike's $200B Collapse"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>AI Kills Everybody or Doomer Psyop? OpenAI's Math Breakthrough, Nike's $200B Collapse</b><br>All-In Podcast · 1:35:57</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=NBq9plPYFbs"><img src="https://i.ytimg.com/vi/NBq9plPYFbs/hqdefault.jpg" width="100%" alt="NYC AI Hearing LIVE: Anthropic, OpenAI &amp; Google Face Questions &#124; Fmr Anthropic Researcher Testifies"></a><br><img src="https://img.shields.io/badge/ABOUT%20HIM-64748b?style=flat-square" alt="ABOUT HIM"><br><sub><b>NYC AI Hearing LIVE: Anthropic, OpenAI &amp; Google Face Questions &#124; Fmr Anthropic Researcher Testifies</b><br>CNN-News18 · 1:11:26</sub></td>
+<td align="center" width="25%" valign="top"><a href="https://www.youtube.com/watch?v=462B-KxHg60"><img src="https://i.ytimg.com/vi/462B-KxHg60/hqdefault.jpg" width="100%" alt="OpenAI's Astra Navier-Stokes Claim and Jacob Coxon's Anthropic Exit"></a><br><img src="https://img.shields.io/badge/UNVERIFIED-ef4444?style=flat-square" alt="UNVERIFIED"><br><sub><b>OpenAI's Astra Navier-Stokes Claim and Jacob Coxon's Anthropic Exit</b><br>Goju Tech Talk · 1h+</sub></td>
 </tr>
 </table>
 
@@ -508,6 +631,11 @@ flowchart TB
             A2["hark.css hark-hero.css hark.js hero.png"]
             RM2["README.md"]
         end
+        subgraph R3["/jacob-coxon-podcasts/"]
+            I3["index.html"]
+            A3["hark.css hark-hero.css hark.js hero.jpg"]
+            RM3["README.md"]
+        end
         subgraph RN["/next-topic/"]
             IN["index.html"]
         end
@@ -519,6 +647,8 @@ flowchart TB
     PAGES -->|"slug"| I1
     PAGES -->|"slug"| I2
     I2 --> A2
+    PAGES -->|"slug"| I3
+    I3 --> A3
     PAGES -.->|"slug"| IN
     I1 --> A1
     REPO -->|"git push"| GH["GitHub Pages<br/>lo3elyon.github.io/ASI"]
@@ -528,7 +658,7 @@ flowchart TB
     classDef deploy fill:#0c2a12,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class ROOT,RA,DOCS hub
     class PAGES data
-    class I1,A1,RM1,I2,A2,RM2,IN page
+    class I1,A1,RM1,I2,A2,RM2,I3,A3,RM3,IN page
     class GH deploy
 ```
 
@@ -541,7 +671,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -549,6 +679,10 @@ ASI/
 ├── black-october-2026/        explainer route: October 2026 hacks and AI incidents
 │   ├── index.html
 │   ├── hark.css  hark-hero.css  hark.js  hero.png
+│   └── README.md
+├── jacob-coxon-podcasts/      video guide route: 20 hour-plus videos about Jacob Coxon
+│   ├── index.html
+│   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
 ├── README.md
@@ -698,8 +832,13 @@ A local server is better than opening the file directly, because some browsers b
 </details>
 
 <details>
+<summary><b>How were the Jacob Coxon videos checked</b></summary>
+<br>Each video was checked for whether Coxon's own voice is heard, using YouTube transcripts where available and outside transcripts or chapter listings for the two long interviews. Timestamps are approximate. Two videos had no transcript, so they are marked UNVERIFIED rather than guessed. The three hearing videos are the same event, and auto-captions spell his name "Coxin". Compiled 27 Oct 2026.
+</details>
+
+<details>
 <summary><b>Are the images real</b></summary>
-<br>The team portraits come from the AI Futures Project. The scene illustrations, the hero art and the Black October server-room image are AI generated.
+<br>The team portraits come from the AI Futures Project. The scene illustrations, the hero art and the Black October server-room image are AI generated. The Jacob Coxon cover is the YouTube thumbnail of his Megyn Kelly interview.
 </details>
 
 <details>
@@ -714,6 +853,18 @@ A local server is better than opening the file directly, because some browsers b
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
+<a id="changelog"></a>
+<h2>Changelog</h2>
+
+<table>
+<tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-27</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><code>/jacob-coxon-podcasts/</code></a>: 20 hour-plus YouTube videos about Jacob Coxon, labelled by role, with filters and search. Cover added to <code>assets/</code>.</td></tr>
+<tr><td><sub>2026-10-24</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><code>/black-october-2026/</code></a>: October 2026 hacks and AI incidents.</td></tr>
+<tr><td><sub>2026-10-22</sub></td><td>Launched the hub with <a href="https://lo3elyon.github.io/ASI/ai-2027-2040/"><code>/ai-2027-2040/</code></a>.</td></tr>
+</table>
+
+<img src="docs/readme/divider.svg" width="100%" alt="">
+
 <a id="12-sources"></a>
 <img src="docs/readme/h-credits.svg" width="100%" alt="12 Sources and credits">
 
@@ -722,6 +873,7 @@ A local server is better than opening the file directly, because some browsers b
 <tr><td><b>AI 2027</b></td><td><a href="https://ai-2027.com/">Site</a>, <a href="https://ai-2027.com/summary">Summary</a>, <a href="https://ai-2027.com/ai-2027.pdf">PDF</a>, <a href="https://ai-2027.com/about">About</a></td></tr>
 <tr><td><b>AI 2040: Plan A</b></td><td><a href="https://ai-2040.com/">Site</a>, <a href="https://ai-2040.com/summary">Summary</a>, <a href="https://ai-2040.com/AI-2040.pdf">PDF</a></td></tr>
 <tr><td><b>Black October 2026</b></td><td><a href="https://www.securitytoday.de/en/2026/10/22/black-october-many-attacks-had-been-running-for-months/">SecurityToday</a>, <a href="https://forkast.news/black-october-is-a-disclosure-wave-the-label-hides-the-clock/">Forkast</a>, plus about 100 sources listed on the <a href="https://lo3elyon.github.io/ASI/black-october-2026/">page itself</a></td></tr>
+<tr><td><b>Jacob Coxon on YouTube</b></td><td><a href="https://www.youtube.com/watch?v=F-Tf5Mo84N4">Megyn Kelly</a>, <a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=_Yl73PhMtm8">AP: NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council recording</a>, plus 16 more linked on <a href="jacob-coxon-podcasts/">the page</a></td></tr>
 <tr><td><b>AI Futures Project</b></td><td><a href="https://ai-futures.org/">Home</a>, <a href="https://ai-futures.org/about/">Team</a>, <a href="https://www.aifuturesmodel.com/">AI Futures Model</a>, <a href="https://blog.aifutures.org/">Blog</a></td></tr>
 </table>
 
@@ -732,7 +884,7 @@ A local server is better than opening the file directly, because some browsers b
 <a href="https://github.com/lo3elyon/ASI"><img src="https://img.shields.io/badge/Built%20by-Aniruddha%20Adak-14b8a6?style=for-the-badge&logo=github&logoColor=white&labelColor=07111f" alt="Built by Aniruddha Adak"></a>
 <a href="https://github.com/lo3elyon/ASI/stargazers"><img src="https://img.shields.io/github/stars/lo3elyon/ASI?style=for-the-badge&color=f59e0b&labelColor=07111f" alt="Stars"></a>
 
-<sub>Independent explainers. Scenario content belongs to the AI Futures Project; news content belongs to the linked outlets. Images marked as AI generated are illustrations.</sub>
+<sub>Independent explainers. Scenario content belongs to the AI Futures Project; news and video content belongs to the linked outlets and channels. Images marked as AI generated are illustrations.</sub>
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
