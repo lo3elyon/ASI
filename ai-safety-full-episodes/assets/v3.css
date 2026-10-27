@@ -735,3 +735,23 @@ body.is-wide .theater__main { padding-left: 14px; padding-right: 14px; }
 .smap__sl { stroke: none; font-size: 10.5px; }
 .smap__s:hover + .smap__sl, .smap__sl:hover { fill: var(--tx); }
 @media (max-width: 640px) { .dock__err .err__card { padding: 10px 12px; gap: 5px; } .dock__err .err__card b { font-size: 13px; } .dock__err .err__card > span { display: none; } .dock__err .err__act { gap: 6px; } .dock__err .err__act .btn { height: 30px; padding: 0 10px; font-size: 12.5px; } }
+
+/* upload date on every card: glass pill top-left of the thumbnail (duration stays bottom-right); state ribbon moves top-right */
+.thumb__date { position: absolute; left: 8px; top: 8px; z-index: 2; background: rgba(0, 0, 0, .55); -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%); border: 1px solid rgba(255, 255, 255, .16); color: #fff; font: 700 11.5px/1 Inter, sans-serif; padding: 4px 7px; border-radius: 6px; white-space: nowrap; pointer-events: none; }
+.thumb__dur { z-index: 2; background: rgba(0, 0, 0, .55); -webkit-backdrop-filter: blur(8px) saturate(140%); backdrop-filter: blur(8px) saturate(140%); border: 1px solid rgba(255, 255, 255, .16); }
+.thumb > .ribbon { left: auto; right: 8px; z-index: 2; }
+.thumb--sm .thumb__date, .lrow__th .thumb__date { left: 4px; top: 4px; padding: 3px 5px; font-size: 10px; }
+.thumb--sm .thumb__yr { display: none; }
+.thumb--sm .thumb__dur { right: 4px; bottom: 4px; padding: 3px 5px; font-size: 10px; }
+.pick__grip { left: auto; right: 8px; }
+.pick__who { flex-basis: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.card__date { font-variant-numeric: tabular-nums; }
+.mini__meta { color: var(--mut) !important; }
+
+/* mini player: the transparent layer (#pvHit) always sits over the YouTube iframe, so the mini drags from the video too
+   (the iframe never sees the pointer in mini mode, and certainly not mid-drag); buttons keep a pointer cursor */
+.dock.dock--grab #ytHost, .dock.dock--grab #ytHost iframe, .dock.is-dragging iframe, body.is-resizing #ytHost iframe { pointer-events: none; }
+.dock.dock--grab.is-native .pv { pointer-events: auto; }
+.dock.dock--grab.is-native .pv__hit { display: block; }
+.dock.dock--grab .pv__hit { cursor: grab; pointer-events: auto; }
+.dock.dock--grab .pv button, .dock.dock--grab .dock__bar button { cursor: pointer; }
