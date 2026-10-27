@@ -1,10 +1,10 @@
-/* AI Safety Full Episodes v2 · offline-friendly service worker (app shell + data + speaker photos).
+/* AI Safety Full Episodes · offline-friendly service worker (app shell + data + speaker photos).
  * Code and data are network-first (so updates and daily additions show up at once) with the cache as offline fallback;
  * speaker photos are cache-first. YouTube, thumbnails and fonts are never touched. */
-const CACHE = "asfe-v2-2026-10-27";
+const CACHE = "asfe-2026-10-28-ad718f52";
 const SHELL = [
-  "./", "index.html", "assets/app.css", "assets/app.js", "assets/js/core.js", "assets/js/history.js", "assets/js/recs.js", "assets/js/ui.js",
-  "assets/js/player.js", "assets/js/views.js", "assets/js/insights.js", "assets/data-inline.js", "assets/cover.jpg",
+  "./", "index.html", "assets/app.min.css", "assets/app.bundle.js", "assets/js/boot.js", "assets/data-inline.js", "assets/cover.jpg", "assets/brand/mark.svg",
+  "favicon.svg", "favicon.ico", "apple-touch-icon.png", "manifest.webmanifest", "assets/brand/icon-192.png", "assets/brand/icon-512.png",
   "data/episodes.json", "data/roster.json", "data/photos.json", "data/manifest.json",
 ];
 self.addEventListener("install", (e) => { e.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()).catch(() => {})); });
