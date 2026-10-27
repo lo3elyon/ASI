@@ -1,39 +1,47 @@
-/* AI Safety Full Episodes v2 · history: strict watch history, library state (queue, favourites, notes, follows), XP, levels, badges. */
+/* AI Safety Full Episodes · history: strict watch history, library state (queue, favourites, notes, follows), XP, levels, badges. */
 (function (A) {
   "use strict";
   const { store, STATE, fold, dayKey, clamp } = A;
 
-  const HKEY = "history:v2";
+  const HKEY = "history:v3";
   const BUCKET = 10; // seconds per coverage slice
-  function freshHistory() { return { v: 2, created: Date.now(), eps: {}, daily: {}, stats: { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0 } }; }
+  const STAT0 = { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0, fsSec: 0, zenSec: 0, manualMarks: 0, bookmarks: 0, shares: 0 };
+  function freshHistory() { return { v: 3, created: Date.now(), eps: {}, daily: {}, manualDaily: {}, stats: Object.assign({}, STAT0) }; }
 
   const L = {};
   function loadState() {
     A.migration = A.migrate();
     let H = store.get(HKEY, null);
     if (!H || typeof H.eps !== "object") H = freshHistory();
-    H.v = 2;
+    H.v = 3;
     H.daily = H.daily || {};
-    H.stats = Object.assign({ chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0 }, H.stats || {});
+    H.manualDaily = H.manualDaily || {};
+    H.stats = Object.assign({}, STAT0, H.stats || {});
     L.H = H;
-    L.NOTES = store.get("notes:v2", {}) || {};
-    L.FAVS = new Set(store.get("favs:v2", []) || []);
-    L.QUEUE = store.get("queue:v2", []) || [];
-    L.SETTINGS = Object.assign({ autoplay: true, speed: 1, vol: 100, muted: false }, store.get("settings:v2", {}) || {});
-    L.EARNED = store.get("badges:v2", {}) || {};
-    L.FOLLOWS = new Set(store.get("follows:v2", []) || []);
-    L.SAVED = store.get("savedFilters:v2", []) || [];
-    L.PREFS = Object.assign({ layout: "grid", month: "all", name: "", sort: "newest" }, store.get("prefs:v2", {}) || {});
-    L.XPSEEN = store.get("xpSeen:v2", 0) || 0;
+    L.NOTES = store.get("notes:v3", {}) || {};
+    L.FAVS = new Set(store.get("favs:v3", []) || []);
+    L.QUEUE = store.get("queue:v3", []) || [];
+    L.SETTINGS = Object.assign({ autoplay: true, speed: 1, vol: 100, muted: false, dailyGoal: 30, autoSkipHearing: true, captions: false, nativeControls: false, accent: "amber", motion: "auto" }, store.get("settings:v3", {}) || {});
+    L.PLAYLISTS = store.get("playlists:v3", []) || [];
+    L.LATER = store.get("later:v3", []) || [];
+    L.RATINGS = store.get("ratings:v3", {}) || {};
+    L.UTAGS = store.get("utags:v3", {}) || {};
+    L.EARNED = store.get("badges:v3", {}) || {};
+    L.FOLLOWS = new Set(store.get("follows:v3", []) || []);
+    L.SAVED = store.get("savedFilters:v3", []) || [];
+    L.PREFS = Object.assign({ layout: "grid", month: "all", name: "", sort: "newest" }, store.get("prefs:v3", {}) || {});
+    L.XPSEEN = store.get("xpSeen:v3", 0) || 0;
   }
   function saveH() { store.set(HKEY, L.H); }
   function saveAll() {
     saveH();
-    store.set("notes:v2", L.NOTES); store.set("favs:v2", Array.from(L.FAVS)); store.set("queue:v2", L.QUEUE);
-    store.set("settings:v2", L.SETTINGS); store.set("badges:v2", L.EARNED); store.set("follows:v2", Array.from(L.FOLLOWS));
-    store.set("savedFilters:v2", L.SAVED); store.set("prefs:v2", L.PREFS);
+    store.set("notes:v3", L.NOTES); store.set("favs:v3", Array.from(L.FAVS)); store.set("queue:v3", L.QUEUE);
+    store.set("settings:v3", L.SETTINGS); store.set("badges:v3", L.EARNED); store.set("follows:v3", Array.from(L.FOLLOWS));
+    store.set("savedFilters:v3", L.SAVED); store.set("prefs:v3", L.PREFS);
+    saveLib();
   }
-  const savePrefs = () => store.set("prefs:v2", L.PREFS);
+  function saveLib() { store.set("playlists:v3", L.PLAYLISTS); store.set("later:v3", L.LATER); store.set("ratings:v3", L.RATINGS); store.set("utags:v3", L.UTAGS); }
+  const savePrefs = () => store.set("prefs:v3", L.PREFS);
 
   /* coverage bitset (base64) */
   function covDecode(str, n) {
@@ -83,6 +91,82 @@
     return STATE.all.filter((e) => watchedOf(e.id) >= 60).sort((a, b) => (L.H.eps[b.id].last || 0) - (L.H.eps[a.id].last || 0));
   }
 
+  const manualCount = () => Object.values(L.H.eps).filter((r) => r.manual && r.done).length;
+  const goalSec = () => Math.max(5, Number(L.SETTINGS.dailyGoal) || 30) * 60;
+  const goalDays = () => Object.values(L.H.daily).filter((v) => v >= goalSec()).length;
+  const todaySec = () => L.H.daily[dayKey(Date.now())] || 0;
+
+  /* ------------------------------------------------------------ "already watched on YouTube" marks
+   * A manual mark writes a full-completion record (watched = duration, 100 %, completed) with source "manual".
+   * It counts toward stats, XP, badges and the heatmap on the day it was marked (tracked separately in manualDaily
+   * so the heatmap can label it). The record keeps a snapshot of what was there before, so "Mark unwatched" is exact. */
+  function fullCov(nB, upTo) { const b = new Uint8Array(Math.ceil(nB / 8)); for (let i = 0; i < Math.min(nB, upTo == null ? nB : upTo); i++) b[i >> 3] |= 1 << (i & 7); return b; }
+  function addDay(map, day, v) { map[day] = Math.max(0, (map[day] || 0) + v); if (map[day] < 0.5) delete map[day]; }
+  function markWatched(id, o) {
+    o = o || {};
+    const e = STATE.byId.get(id); if (!e) return false;
+    const r = rec(id, true);
+    const upTo = o.upTo != null ? Math.max(0, Number(o.upTo) || 0) : null;
+    if (upTo == null && r.done) return false;
+    if (r.manual) unmarkWatched(id, { keepEmpty: true, silent: true });
+    const dur = r.dur || e.dur || 0;
+    const now = o.at || Date.now(), day = dayKey(now);
+    const prev = { watched: r.watched, pct: r.pct, done: r.done, doneAt: r.doneAt, cov: r.cov, covN: r.covN, pos: r.pos };
+    const nB = Math.max(1, Math.ceil((dur || 1) / BUCKET));
+    const target = upTo == null ? dur : Math.min(dur || upTo, upTo);
+    const old = covDecode(r.cov, nB), add0 = fullCov(nB, Math.ceil(target / BUCKET));
+    for (let i = 0; i < old.length; i++) old[i] |= add0[i];
+    const add = Math.max(0, target - (r.watched || 0));
+    r.dur = dur; r.cov = covEncode(old); r.covN = covCount(old, nB); r.pct = upTo == null ? 1 : clamp(r.covN / nB, 0, 1);
+    r.watched = (r.watched || 0) + add;
+    if (upTo == null || r.pct >= 0.9) { if (!r.done) { r.done = true; r.doneAt = now; } }
+    r.pos = upTo == null ? dur : target;
+    r.last = now; if (!r.first) r.first = now;
+    r.sessions = r.sessions || [];
+    r.sessions.push({ s: now, e: now, w: add, a: 0, b: Math.floor(target), src: "manual" });
+    r.manual = { at: now, add, day, prev, partial: upTo != null, src: o.src || "manual" };
+    addDay(L.H.daily, day, add); addDay(L.H.manualDaily, day, add);
+    L.H.stats.manualMarks = (L.H.stats.manualMarks || 0) + 1;
+    if (!o.batch) { saveH(); checkAwards(); }
+    if (A.player && A.player.reloadCov) A.player.reloadCov(id);
+    return true;
+  }
+  function unmarkWatched(id, o) {
+    o = o || {};
+    const r = L.H.eps[id]; if (!r) return false;
+    if (r.manual) {
+      const m = r.manual;
+      Object.assign(r, m.prev);
+      r.sessions = (r.sessions || []).filter((x) => !(x.src === "manual" && x.s === m.at));
+      addDay(L.H.daily, m.day, -m.add); addDay(L.H.manualDaily, m.day, -m.add);
+      delete r.manual;
+    } else if (r.done) {
+      // completed by real playback: keep the real seconds (they happened) but reset completion and coverage
+      r.done = false; r.doneAt = 0; r.cov = ""; r.covN = 0; r.pct = 0; r.pos = 0; r.reset = Date.now();
+    } else return false;
+    if (!o.keepEmpty && (r.watched || 0) < 1 && !(r.sessions || []).length) delete L.H.eps[id];
+    if (!o.batch) { saveH(); checkAwards(true); }
+    if (A.player && A.player.reloadCov) A.player.reloadCov(id);
+    return true;
+  }
+  function bulkMark(ids) { const done = ids.filter((id) => markWatched(id, { batch: true })); saveH(); checkAwards(); return done; }
+  function bulkUnmark(ids) { const done = ids.filter((id) => unmarkWatched(id, { batch: true })); saveH(); checkAwards(true); return done; }
+  const isManual = (id) => !!(L.H.eps[id] && L.H.eps[id].manual);
+
+  /* ------------------------------------------------------------ playlists, watch later, ratings, personal tags */
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  function createPlaylist(name, ids) { const p = { id: uid(), name: String(name || "New playlist").slice(0, 80), ids: (ids || []).filter((x) => STATE.byId.has(x)), created: Date.now() }; L.PLAYLISTS.push(p); saveLib(); checkAwards(); return p; }
+  const playlist = (pid) => L.PLAYLISTS.find((p) => p.id === pid) || null;
+  function renamePlaylist(pid, name) { const p = playlist(pid); if (p) { p.name = String(name).slice(0, 80) || p.name; saveLib(); } }
+  function deletePlaylist(pid) { L.PLAYLISTS = L.PLAYLISTS.filter((p) => p.id !== pid); saveLib(); }
+  function addToPlaylist(pid, id) { const p = playlist(pid); if (!p || p.ids.includes(id)) return false; p.ids.push(id); saveLib(); checkAwards(); return true; }
+  function removeFromPlaylist(pid, id) { const p = playlist(pid); if (p) { p.ids = p.ids.filter((x) => x !== id); saveLib(); } }
+  function movePlaylist(pid, from, to) { const p = playlist(pid); if (!p || to < 0 || to >= p.ids.length) return; const [x] = p.ids.splice(from, 1); p.ids.splice(to, 0, x); saveLib(); }
+  function toggleLater(id) { const i = L.LATER.indexOf(id); if (i >= 0) L.LATER.splice(i, 1); else L.LATER.unshift(id); saveLib(); return i < 0; }
+  function rate(id, n) { n = Math.round(Number(n) || 0); if (n < 1 || n > 5 || L.RATINGS[id] === n) delete L.RATINGS[id]; else L.RATINGS[id] = n; saveLib(); checkAwards(); return L.RATINGS[id] || 0; }
+  function setTags(id, tags) { const t = Array.from(new Set((tags || []).map((x) => String(x).trim().slice(0, 32)).filter(Boolean))).slice(0, 12); if (t.length) L.UTAGS[id] = t; else delete L.UTAGS[id]; saveLib(); }
+  function queueNext(id) { const q = L.QUEUE.filter((x) => x !== id); q.unshift(id); setQueue(q); }
+
   /* ------------------------------------------------------------ levels */
   const LEVELS = [
     [0, "Novice"], [60, "Curious Listener"], [180, "Safety Apprentice"], [400, "Alignment Scholar"], [700, "Eval Analyst"], [1100, "Interpretability Initiate"],
@@ -98,7 +182,7 @@
   const mins = (s) => s / 60;
   const BADGES = [
     { id: "first", icon: "▶️", name: "First Frame", desc: "Watch one minute of any episode", prog: () => [Object.values(L.H.eps).some((r) => r.watched >= 60) ? 1 : 0, 1] },
-    { id: "complete1", icon: "🏁", name: "Full Episode", desc: "Complete an episode (90% actually played)", prog: () => [Math.min(1, doneCount()), 1] },
+    { id: "complete1", icon: "🏁", name: "Full Episode", desc: "Complete an episode (90% played, or marked as watched)", prog: () => [Math.min(1, doneCount()), 1] },
     { id: "complete10", icon: "🏆", name: "Ten Complete", desc: "Complete 10 episodes", prog: () => [Math.min(10, doneCount()), 10] },
     { id: "complete50", icon: "👑", name: "Half Century", desc: "Complete 50 episodes", prog: () => [Math.min(50, doneCount()), 50] },
     { id: "hour1", icon: "⏱️", name: "One Hour In", desc: "Watch 1 hour in total", prog: () => [Math.min(60, mins(totalWatched())), 60] },
@@ -125,6 +209,12 @@
     { id: "curator", icon: "📚", name: "Curator", desc: "Queue 5 episodes or favourite 5", prog: () => [Math.min(5, Math.max(L.QUEUE.length, L.FAVS.size)), 5] },
     { id: "pip", icon: "🪟", name: "Always on Top", desc: "Keep listening for 10 minutes in the pop-out player", prog: () => [Math.min(10, mins(L.H.stats.pipSec)), 10] },
     { id: "audio", icon: "🎧", name: "Ears Only", desc: "Listen for 30 minutes in audio mode", prog: () => [Math.min(30, mins(L.H.stats.audioSec)), 30] },
+    { id: "catchup", icon: "✔️", name: "Catching Up", desc: "Mark 10 episodes you already saw on YouTube as watched", prog: () => [Math.min(10, manualCount()), 10] },
+    { id: "critic", icon: "⭐", name: "Critic", desc: "Rate 10 episodes", prog: () => [Math.min(10, Object.keys(L.RATINGS).length), 10] },
+    { id: "playlister", icon: "🎚️", name: "Playlist Maker", desc: "Build a playlist with 5 episodes", prog: () => [Math.min(5, Math.max(0, ...L.PLAYLISTS.map((p) => p.ids.length))), 5] },
+    { id: "cinema", icon: "🎬", name: "Cinema Mode", desc: "Watch 30 minutes in fullscreen", prog: () => [Math.min(30, mins(L.H.stats.fsSec)), 30] },
+    { id: "zen", icon: "🧘", name: "Deep Focus", desc: "Watch 30 minutes in Zen mode", prog: () => [Math.min(30, mins(L.H.stats.zenSec)), 30] },
+    { id: "goal3", icon: "🎯", name: "Goal Getter", desc: "Hit your daily goal on 3 days", prog: () => [Math.min(3, goalDays()), 3] },
     { id: "deep", icon: "🤿", name: "Deep End", desc: "Complete a Deep-dive episode", prog: () => [STATE.all.some((e) => e.level === "Deep-dive" && stateOf(e.id) === "done") ? 1 : 0, 1] },
   ];
   function xp() {
@@ -143,7 +233,7 @@
   function checkAwards(silent) {
     const fresh = [];
     BADGES.forEach((b) => { const [c, t] = b.prog(); if (c >= t && !L.EARNED[b.id]) { L.EARNED[b.id] = Date.now(); fresh.push(b); } });
-    if (fresh.length) store.set("badges:v2", L.EARNED);
+    if (fresh.length) store.set("badges:v3", L.EARNED);
     const x = xp();
     const Lv = levelInfo(x);
     if (!silent && A.ui) {
@@ -153,36 +243,108 @@
     }
     lastLevel = Lv.n; lastXP = x;
     if (A.ui) A.ui.paintLevelChip(Lv);
+    if (A.feat && A.feat.paintGoal) A.feat.paintGoal();
     return Lv;
   }
 
   /* ------------------------------------------------------------ library actions */
-  function toggleFav(id) { L.FAVS.has(id) ? L.FAVS.delete(id) : L.FAVS.add(id); store.set("favs:v2", Array.from(L.FAVS)); checkAwards(); return L.FAVS.has(id); }
-  function toggleQueue(id) { const i = L.QUEUE.indexOf(id); if (i >= 0) L.QUEUE.splice(i, 1); else L.QUEUE.push(id); store.set("queue:v2", L.QUEUE); checkAwards(); return i < 0; }
-  function setQueue(ids) { L.QUEUE = ids.filter((id, i) => STATE.byId.has(id) && ids.indexOf(id) === i); store.set("queue:v2", L.QUEUE); }
-  function toggleFollow(k) { L.FOLLOWS.has(k) ? L.FOLLOWS.delete(k) : L.FOLLOWS.add(k); store.set("follows:v2", Array.from(L.FOLLOWS)); checkAwards(); return L.FOLLOWS.has(k); }
+  function toggleFav(id) { L.FAVS.has(id) ? L.FAVS.delete(id) : L.FAVS.add(id); store.set("favs:v3", Array.from(L.FAVS)); checkAwards(); return L.FAVS.has(id); }
+  function toggleQueue(id) { const i = L.QUEUE.indexOf(id); if (i >= 0) L.QUEUE.splice(i, 1); else L.QUEUE.push(id); store.set("queue:v3", L.QUEUE); checkAwards(); return i < 0; }
+  function setQueue(ids) { L.QUEUE = ids.filter((id, i) => STATE.byId.has(id) && ids.indexOf(id) === i); store.set("queue:v3", L.QUEUE); }
+  function toggleFollow(k) { L.FOLLOWS.has(k) ? L.FOLLOWS.delete(k) : L.FOLLOWS.add(k); store.set("follows:v3", Array.from(L.FOLLOWS)); checkAwards(); return L.FOLLOWS.has(k); }
   function addNote(id, t, text) {
     (L.NOTES[id] = L.NOTES[id] || []).push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5), t: Math.floor(t || 0), text: String(text).slice(0, 2000), at: Date.now() });
-    store.set("notes:v2", L.NOTES); checkAwards();
+    store.set("notes:v3", L.NOTES); checkAwards();
   }
-  function delNote(id, nid) { L.NOTES[id] = (L.NOTES[id] || []).filter((n) => n.id !== nid); if (!L.NOTES[id].length) delete L.NOTES[id]; store.set("notes:v2", L.NOTES); }
+  function delNote(id, nid) { L.NOTES[id] = (L.NOTES[id] || []).filter((n) => n.id !== nid); if (!L.NOTES[id].length) delete L.NOTES[id]; store.set("notes:v3", L.NOTES); }
   function bumpStat(k, v) { L.H.stats[k] = (L.H.stats[k] || 0) + (v == null ? 1 : v); }
   function clearOne(id) { delete L.H.eps[id]; saveH(); }
-  function exportAll() { return { app: "ai-safety-full-episodes", schema: 2, exportedAt: new Date().toISOString(), history: L.H, notes: L.NOTES, favs: Array.from(L.FAVS), queue: L.QUEUE, badges: L.EARNED, follows: Array.from(L.FOLLOWS), savedFilters: L.SAVED, prefs: L.PREFS, settings: L.SETTINGS }; }
-  function importAll(d) {
-    if (!d || typeof d !== "object") throw new Error("Not a backup file");
-    let h = d.history;
-    if (!h || typeof h.eps !== "object") throw new Error("No history in file");
-    h = Object.assign(freshHistory(), h, { v: 2 });
-    L.H = h; L.NOTES = d.notes || {}; L.FAVS = new Set(d.favs || []); L.QUEUE = d.queue || []; L.EARNED = d.badges || {};
-    L.FOLLOWS = new Set(d.follows || []); L.SAVED = d.savedFilters || []; L.PREFS = Object.assign(L.PREFS, d.prefs || {});
-    saveAll();
+  function exportAll() { return { app: "ai-safety-full-episodes", schema: 3, exportedAt: new Date().toISOString(), history: L.H, notes: L.NOTES, favs: Array.from(L.FAVS), queue: L.QUEUE, badges: L.EARNED, follows: Array.from(L.FOLLOWS), savedFilters: L.SAVED, prefs: L.PREFS, settings: L.SETTINGS, playlists: L.PLAYLISTS, later: L.LATER, ratings: L.RATINGS, tags: L.UTAGS }; }
+  /* imported files are untrusted: keep only known keys, valid YouTube ids, finite numbers and clipped strings */
+  const IDRX = /^[\w-]{11}$/;
+  const num = (v, d) => { v = Number(v); return Number.isFinite(v) && v >= 0 ? v : d || 0; };
+  const str = (v, n) => String(v == null ? "" : v).replace(/[\u0000-\u001f]/g, " ").slice(0, n || 200);
+  const isObj = (o) => o && typeof o === "object" && !Array.isArray(o);
+  function cleanRec(r) {
+    if (!isObj(r)) return null;
+    const out = { pos: num(r.pos), dur: num(r.dur), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,4000}$/.test(r.cov || "") ? r.cov || "" : "", covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
+      sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
+    if (isObj(r.manual)) out.manual = { at: num(r.manual.at), add: num(r.manual.add), day: /^\d{4}-\d{2}-\d{2}$/.test(r.manual.day) ? r.manual.day : dayKey(Date.now()), partial: !!r.manual.partial, src: "manual", prev: isObj(r.manual.prev) ? { watched: num(r.manual.prev.watched), pct: Math.min(1, num(r.manual.prev.pct)), done: !!r.manual.prev.done, doneAt: num(r.manual.prev.doneAt), cov: "", covN: 0, pos: num(r.manual.prev.pos) } : { watched: 0, pct: 0, done: false, doneAt: 0, cov: "", covN: 0, pos: 0 } };
+    return out;
   }
-  function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.EARNED = {}; L.FOLLOWS = new Set(); saveAll(); }
+  const cleanDays = (d) => { const o = {}; if (isObj(d)) Object.keys(d).forEach((k) => { if (/^\d{4}-\d{2}-\d{2}$/.test(k)) o[k] = Math.min(num(d[k]), 86400); }); return o; };
+  const cleanIds = (a) => (Array.isArray(a) ? a : []).filter((x) => typeof x === "string" && IDRX.test(x)).slice(0, 2000);
+  function sanitizeBackup(d) {
+    if (!isObj(d)) throw new Error("Not a backup file");
+    const hh = d.history;
+    if (!isObj(hh) || !isObj(hh.eps)) throw new Error("No history in file");
+    const H = freshHistory();
+    Object.keys(hh.eps).forEach((id) => { if (IDRX.test(id)) { const r = cleanRec(hh.eps[id]); if (r) H.eps[id] = r; } });
+    H.created = num(hh.created, Date.now()) || Date.now(); H.daily = cleanDays(hh.daily); H.manualDaily = cleanDays(hh.manualDaily);
+    if (isObj(hh.stats)) Object.keys(STAT0).forEach((k) => (H.stats[k] = num(hh.stats[k])));
+    const notes = {};
+    if (isObj(d.notes)) Object.keys(d.notes).forEach((id) => { if (IDRX.test(id) && Array.isArray(d.notes[id])) notes[id] = d.notes[id].filter(isObj).slice(0, 500).map((n) => ({ id: str(n.id, 24).replace(/[^\w]/g, "") || uid(), t: Math.floor(num(n.t)), text: str(n.text, 2000), at: num(n.at, Date.now()) })); });
+    const ratings = {}; if (isObj(d.ratings)) Object.keys(d.ratings).forEach((id) => { const n = Math.round(num(d.ratings[id])); if (IDRX.test(id) && n >= 1 && n <= 5) ratings[id] = n; });
+    const tags = {}; if (isObj(d.tags)) Object.keys(d.tags).forEach((id) => { if (IDRX.test(id) && Array.isArray(d.tags[id])) tags[id] = d.tags[id].slice(0, 12).map((t) => str(t, 32)).filter(Boolean); });
+    const badges = {}; if (isObj(d.badges)) Object.keys(d.badges).forEach((k) => { if (/^[a-z0-9]{2,20}$/.test(k)) badges[k] = num(d.badges[k]); });
+    const playlists = (Array.isArray(d.playlists) ? d.playlists : []).filter(isObj).slice(0, 100).map((p) => ({ id: str(p.id, 24).replace(/[^\w]/g, "") || uid(), name: str(p.name, 80) || "Playlist", ids: cleanIds(p.ids), created: num(p.created, Date.now()) }));
+    const follows = (Array.isArray(d.follows) ? d.follows : []).filter((x) => typeof x === "string").map((x) => str(x, 80)).slice(0, 500);
+    const prefs = {}; if (isObj(d.prefs)) { if (typeof d.prefs.name === "string") prefs.name = str(d.prefs.name, 40); ["layout", "month", "sort"].forEach((k) => { if (typeof d.prefs[k] === "string" && /^[\w-]{1,20}$/.test(d.prefs[k])) prefs[k] = d.prefs[k]; }); }
+    return { H, notes, favs: cleanIds(d.favs), queue: cleanIds(d.queue), badges, follows, playlists, later: cleanIds(d.later), ratings, tags, prefs };
+  }
+  function importAll(d) {
+    const c = sanitizeBackup(d);
+    L.H = c.H; L.NOTES = c.notes; L.FAVS = new Set(c.favs); L.QUEUE = c.queue; L.EARNED = c.badges; L.FOLLOWS = new Set(c.follows);
+    L.PLAYLISTS = c.playlists; L.LATER = c.later; L.RATINGS = c.ratings; L.UTAGS = c.tags; L.PREFS = Object.assign(L.PREFS, c.prefs);
+    saveAll();
+    return c;
+  }
+  /* CSV: one row per session. Import accepts any CSV with an "id" (or YouTube url) column plus optional "percent"/"completed"/"position" columns. */
+  function csvCell(v) { v = String(v == null ? "" : v); if (/^[=+\-@]/.test(v)) v = "'" + v; return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+  function exportCSV(rows) {
+    const head = ["id", "title", "speakers", "source", "session_start", "session_end", "seconds_watched", "from_sec", "to_sec", "percent_covered", "completed", "url"];
+    return [head.join(",")].concat(rows.map((x) => [x.e.id, x.e.title, x.e.stars.map((p) => p.name).join("; "), x.s.src === "manual" ? "manual" : "played", new Date(x.s.s).toISOString(), new Date(x.s.e).toISOString(), Math.round(x.s.w), x.s.a, x.s.b, Math.round((x.r.pct || 0) * 100), x.r.done ? "true" : "false", x.e.url].map(csvCell).join(","))).join("\n");
+  }
+  function parseCSV(text) {
+    const rows = []; let row = [], cell = "", q = false;
+    text = String(text).slice(0, 2e6);
+    for (let i = 0; i < text.length; i++) {
+      const c = text[i];
+      if (q) { if (c === '"') { if (text[i + 1] === '"') { cell += '"'; i++; } else q = false; } else cell += c; }
+      else if (c === '"') q = true; else if (c === ",") { row.push(cell); cell = ""; } else if (c === "\n" || c === "\r") { if (c === "\r" && text[i + 1] === "\n") i++; row.push(cell); rows.push(row); row = []; cell = ""; } else cell += c;
+    }
+    if (cell || row.length) { row.push(cell); rows.push(row); }
+    return rows.filter((r) => r.some((x) => x.trim()));
+  }
+  function importCSV(text) {
+    const rows = parseCSV(text); if (rows.length < 2) throw new Error("No rows in CSV");
+    const hd = rows[0].map((x) => x.trim().toLowerCase());
+    const ci = (names) => hd.findIndex((x) => names.includes(x));
+    const iId = ci(["id", "video_id", "videoid", "youtube_id"]), iUrl = ci(["url", "link"]), iPct = ci(["percent_covered", "percent", "pct"]), iDone = ci(["completed", "done", "watched"]), iPos = ci(["to_sec", "position", "pos", "watched_up_to"]);
+    if (iId < 0 && iUrl < 0) throw new Error("CSV needs an id or url column");
+    const best = new Map();
+    rows.slice(1).forEach((r) => {
+      let id = iId >= 0 ? (r[iId] || "").trim() : "";
+      if (!IDRX.test(id) && iUrl >= 0) id = ((r[iUrl] || "").match(/(?:v=|youtu\.be\/|embed\/)([\w-]{11})/) || [])[1] || "";
+      if (!IDRX.test(id) || !STATE.byId.has(id)) return;
+      const done = iDone >= 0 ? /^(true|yes|1|y|x|✓)$/i.test((r[iDone] || "").trim()) : iPct < 0 && iPos < 0;
+      const pct = iPct >= 0 ? num(parseFloat(r[iPct])) : 0;
+      const pos = iPos >= 0 ? num(parseFloat(r[iPos])) : 0;
+      const prev = best.get(id) || { done: false, pct: 0, pos: 0 };
+      best.set(id, { done: prev.done || done || pct >= 90, pct: Math.max(prev.pct, pct), pos: Math.max(prev.pos, pos) });
+    });
+    let full = 0, part = 0;
+    best.forEach((v, id) => { if (v.done) { if (markWatched(id, { batch: true })) full++; } else if (v.pos > 0 || v.pct > 0) { const e = STATE.byId.get(id); const up = v.pos || (e.dur * v.pct) / 100; if (up > 0 && markWatched(id, { batch: true, upTo: up })) part++; } });
+    saveH(); checkAwards();
+    return { full, part, rows: rows.length - 1 };
+  }
+  function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.EARNED = {}; L.FOLLOWS = new Set(); L.PLAYLISTS = []; L.LATER = []; L.RATINGS = {}; L.UTAGS = {}; saveAll(); }
 
   A.hist = {
     L, BUCKET, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
     watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
-    addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory,
+    addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
+    markWatched, unmarkWatched, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
+    createPlaylist, playlist, renamePlaylist, deletePlaylist, addToPlaylist, removeFromPlaylist, movePlaylist, toggleLater, rate, setTags, queueNext,
   };
 })(window.ASFE);
