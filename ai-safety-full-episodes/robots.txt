@@ -1,0 +1,4 @@
+# AI Safety Full Episodes. Note: crawlers read robots.txt from the domain root; this copy documents intent for this route.
+User-agent: *
+Allow: /
+Sitemap: https://lo3elyon.github.io/ASI/ai-safety-full-episodes/sitemap.xml
