@@ -1,4 +1,4 @@
-/* AI Safety Full Episodes v2 · ui: icons, toasts, avatars, cards, shelves, level chip, XP animation. */
+/* AI Safety Full Episodes · ui: icons, toasts, avatars, cards, shelves, level chip, XP animation. */
 (function (A) {
   "use strict";
   const { $, esc, fmtTime, fmtDate, fmtShort, initials, avatarGradient, STATE, RM, fold } = A;
@@ -27,19 +27,25 @@
     filter: I('<path d="M4 5h16l-6 8v5l-4 2v-7L4 5Z"/>'),
     save: I('<path d="M6 4h10l4 4v12H4V4h2Zm2 0v5h8V4M8 20v-6h8v6"/>'),
     shuffle: I('<path d="M4 7h3c4 0 6 10 10 10h3M4 17h3c1.6 0 2.8-1.6 4-3.5M13 9.5C14.2 8 15.4 7 17 7h3M17 4l3 3-3 3M17 14l3 3-3 3"/>'),
+    dots: I('<circle cx="5" cy="12" r="1.6" fill="currentColor"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/><circle cx="19" cy="12" r="1.6" fill="currentColor"/>'),
+    eye: I('<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'),
+    later: I('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>'),
+    flame: I('<path d="M12 3c1 3.5 5 5.5 5 10a5 5 0 0 1-10 0c0-2.2 1-3.6 2.2-4.8.3 1.6 1.1 2.6 2.3 3.1C11 9 11.3 5.6 12 3Z"/>'),
     spark: I('<path d="M12 3v5M12 16v5M3 12h5M16 12h5M5.6 5.6l3.2 3.2M15.2 15.2l3.2 3.2M5.6 18.4l3.2-3.2M15.2 8.8l3.2-3.2"/>'),
   };
 
   /* ---------------------------------------------------------------- toasts */
   function toast(html, o) {
     o = o || {};
+    if (A.P && A.P.dnd && !o.force && !o.action) return;
     const box = $("#toasts");
     if (!box) return;
     const el = document.createElement("div");
-    el.className = "toast " + (o.cls || "");
+    el.className = "toast " + (o.cls || "") + (o.force ? " toast--force" : "");
     el.setAttribute("role", "status");
-    el.innerHTML = `${o.icon ? `<span class="toast__ic">${o.icon}</span>` : ""}<span class="toast__tx">${html}</span>${o.action ? `<button class="toast__act">${esc(o.action.label)}</button>` : ""}`;
+    el.innerHTML = `${o.icon ? `<span class="toast__ic">${esc(o.icon)}</span>` : ""}<span class="toast__tx">${html}</span>${o.action ? `<button class="toast__act">${esc(o.action.label)}</button>` : ""}`;
     if (o.action) el.querySelector(".toast__act").onclick = () => { o.action.fn(); el.remove(); };
+    if (/toast--badge/.test(o.cls || "")) confetti(40);
     box.appendChild(el);
     while (box.children.length > 4) box.firstChild.remove();
     requestAnimationFrame(() => el.classList.add("is-in"));
@@ -77,12 +83,21 @@
   function avatar(name, size, cls) {
     const sz = size || 40;
     const ph = photoOf(name);
-    return `<span class="av ${ph.thumb ? "av--thumb" : ""} ${cls || ""}" style="--s:${sz}px"><img src="${esc(ph.src)}" alt="" loading="lazy" decoding="async" width="${sz}" height="${sz}" onerror="this.onerror=null;this.src='assets/cover.jpg';this.parentNode.classList.add('av--thumb')"></span>`;
+    return `<span class="av ${ph.thumb ? "av--thumb" : ""} ${cls || ""}" style="--s:${sz}px"><img src="${esc(ph.src)}" alt="${esc(name)}" loading="lazy" decoding="async" width="${sz}" height="${sz}"></span>`;
   }
   function artFor(e) { const p = e.stars.find((x) => speakerOf(x.name) && speakerOf(x.name).photo) || e.people.find((x) => speakerOf(x.name) && speakerOf(x.name).photo); return p ? speakerOf(p.name).photo : e.thumb; }
 
   /* ---------------------------------------------------------------- cards */
-  function thumbImg(e, eager) { return `<img class="thumb__img" src="${esc(e.thumb)}" alt="" ${eager ? "" : 'loading="lazy"'} decoding="async" width="480" height="360" onload="this.classList.add('is-ld')" onerror="this.classList.add('is-ld');this.style.opacity=.25">`; }
+  function thumbImg(e, eager) { return `<img class="thumb__img" src="${esc(e.thumb)}" alt="${esc("Thumbnail: " + e.title)}" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async" width="480" height="360">`; }
+  /* image load / error handling without inline handlers (CSP-friendly): capture-phase listeners on the document */
+  if (typeof document !== "undefined") {
+    document.addEventListener("load", (ev) => { const t = ev.target; if (t && t.classList && t.classList.contains("thumb__img")) t.classList.add("is-ld"); }, true);
+    document.addEventListener("error", (ev) => {
+      const t = ev.target; if (!t || t.tagName !== "IMG") return;
+      if (t.classList.contains("thumb__img")) { t.classList.add("is-ld", "is-broken"); return; }
+      const av = t.closest && t.closest(".av"); if (av && !t.dataset.fb) { t.dataset.fb = "1"; t.src = "assets/cover.jpg"; av.classList.add("av--thumb"); }
+    }, true);
+  }
   function whoLine(e, max) {
     const st = e.stars.slice(0, max || 3).map((p) => p.name);
     const more = e.stars.length - st.length;
@@ -98,7 +113,7 @@
   }
   function stateBadge(id) {
     const st = h().stateOf(id);
-    if (st === "done") return `<span class="ribbon ribbon--done">${ICON.check}Watched</span>`;
+    if (st === "done") return `<span class="ribbon ribbon--done">${ICON.check}${h().isManual(id) ? "Watched on YouTube" : "Watched"}</span>`;
     if (st === "progress") return `<span class="ribbon">${Math.round(h().pctOf(id) * 100)}%</span>`;
     return "";
   }
@@ -108,7 +123,11 @@
     const pct = h().pctOf(e.id);
     const q = L.QUEUE.includes(e.id), fav = L.FAVS.has(e.id);
     const reason = o.why ? `<p class="card__why">${ICON.spark}<span>${esc(o.why)}</span></p>` : "";
-    const avs = e.stars.slice(0, 3).map((p) => avatar(p.name, 26)).join("");
+    const avs = e.stars.slice(0, 4).map((p) => avatar(p.name, 26)).join("");
+    const done = h().stateOf(e.id) === "done";
+    const rt = (L.RATINGS || {})[e.id];
+    const menuBtn = `<button class="iconbtn iconbtn--sm card__menu" data-act="menu" aria-haspopup="menu" aria-label="More actions for ${esc(e.title)}" title="More (right-click)">${ICON.dots}</button>`;
+    const doneBtn = `<button class="iconbtn iconbtn--sm card__done ${done ? "is-on" : ""}" data-act="watched" aria-pressed="${done}" aria-label="${done ? "Mark unwatched" : "Mark as watched"}" title="${done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched"}">${ICON.check}</button>`;
     const meta = `<span>${esc(fmtShort(e.date))}</span><span>${esc(e.durStr)}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
     if (o.list) {
       return `<article class="lrow" data-id="${e.id}">
@@ -122,10 +141,11 @@
         <div class="lrow__act">${stateBadge(e.id)}
           <button class="iconbtn" data-act="queue" aria-pressed="${q}" aria-label="${q ? "Remove from queue" : "Add to queue"}" title="Queue">${q ? ICON.queued : ICON.queue}</button>
           <button class="iconbtn" data-act="fav" aria-pressed="${fav}" aria-label="${fav ? "Unfavourite" : "Favourite"}" title="Favourite">${fav ? ICON.heartF : ICON.heart}</button>
+          ${doneBtn}${menuBtn}
         </div>
       </article>`;
     }
-    return `<article class="card" data-id="${e.id}">
+    return `<article class="card" data-id="${e.id}" tabindex="-1">
       <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}<span class="thumb__dur">${esc(e.durStr)}</span>${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
       <div class="card__body">
         <button class="card__title" data-act="open" title="${esc(e.title)}">${hl(e.title, o.q)}</button>
@@ -134,7 +154,8 @@
         <div class="card__act">
           <button class="iconbtn iconbtn--sm" data-act="queue" aria-pressed="${q}" aria-label="${q ? "Remove from queue" : "Add to queue"}" title="${q ? "In queue" : "Add to queue"}">${q ? ICON.queued : ICON.queue}</button>
           <button class="iconbtn iconbtn--sm" data-act="fav" aria-pressed="${fav}" aria-label="${fav ? "Unfavourite" : "Favourite"}" title="Favourite">${fav ? ICON.heartF : ICON.heart}</button>
-          <span class="grow"></span><span class="card__show">${esc(showLine(e))}</span>
+          ${doneBtn}${rt ? `<span class="card__rt" title="Your rating">★${rt}</span>` : ""}
+          <span class="grow"></span><span class="card__show">${esc(showLine(e))}</span>${menuBtn}
         </div>
       </div>
     </article>`;
@@ -146,7 +167,7 @@
     return `<section class="shelf" aria-labelledby="${id}">
       <div class="shelf__hd"><h2 id="${id}">${o.icon ? `<span class="shelf__ic">${o.icon}</span>` : ""}${title}</h2>${o.sub ? `<p class="shelf__sub">${o.sub}</p>` : ""}<span class="grow"></span>${o.more ? `<a class="shelf__more" href="${o.more}">See all ${ICON.chev}</a>` : ""}
         <div class="shelf__nav"><button class="iconbtn iconbtn--sm" data-scroll="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button><button class="iconbtn iconbtn--sm" data-scroll="1" aria-label="Scroll right">${ICON.chev}</button></div></div>
-      <div class="shelf__row">${items.map((x) => (x.e ? card(x.e, { why: x.why }) : card(x))).join("")}</div>
+      <div class="shelf__wrap"><div class="shelf__row" data-carousel>${items.map((x) => (x.e ? card(x.e, { why: x.why }) : card(x))).join("")}</div></div>
     </section>`;
   }
   function skeletons(n) { return `<div class="grid">${Array.from({ length: n }, () => `<div class="skel"><div class="skel__img shimmer"></div><div class="skel__line shimmer"></div><div class="skel__line skel__line--s shimmer"></div></div>`).join("")}</div>`; }
@@ -180,15 +201,25 @@
     $("#lvlChip").title = `Level ${Lv.n} · ${Lv.title} · ${Lv.xp} XP`;
   }
   function xpPop(n) {
-    const box = $("#xpfloat"); if (!box || n <= 0) return;
+    const box = $("#xpfloat"); if (!box || n <= 0 || (A.P && A.P.dnd)) return;
     const el = document.createElement("span");
     el.className = "xp"; el.textContent = `+${n} XP`;
     box.appendChild(el);
     $("#lvlChip") && $("#lvlChip").classList.add("is-pulse");
     setTimeout(() => { el.remove(); $("#lvlChip") && $("#lvlChip").classList.remove("is-pulse"); }, RM ? 600 : 1600);
   }
+  function confetti(n) {
+    if (RM || (A.P && A.P.dnd) || typeof document === "undefined") return;
+    const box = document.createElement("div"); box.className = "confetti"; box.setAttribute("aria-hidden", "true");
+    const cols = ["var(--amber)", "var(--teal)", "#22c55e", "#38bdf8", "#fb923c", "#a3e635"];
+    for (let i = 0; i < (n || 60); i++) { const c = document.createElement("i"); c.style.left = Math.random() * 100 + "%"; c.style.background = cols[i % cols.length]; c.style.animationDelay = Math.random() * 0.5 + "s"; c.style.animationDuration = 1.6 + Math.random() * 1.6 + "s"; c.style.setProperty("--x", (Math.random() * 2 - 1) * 160 + "px"); c.style.setProperty("--r", Math.random() * 720 + "deg"); box.appendChild(c); }
+    document.body.appendChild(box);
+    setTimeout(() => box.remove(), 4200);
+  }
   function levelUp(Lv) {
     const m = $("#levelup"); if (!m) return;
+    if (A.P && A.P.dnd) return;
+    confetti(90);
     $("#levelupBody").innerHTML = `<div class="burst" aria-hidden="true">${Array.from({ length: 14 }, (_, i) => `<i style="--a:${i * 25.7}deg"></i>`).join("")}</div>
       <p class="eyebrow">Level up</p><div class="levelup__num">${Lv.n}</div><h2>${esc(Lv.title)}</h2>
       <p>${Lv.next ? `${Lv.need} XP to <b>${esc(Lv.next)}</b>` : "Top level reached. Respect."}</p><button class="btn btn--primary" data-close>Keep going</button>`;
@@ -204,5 +235,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { ICON, toast, confirmBox, copy, avatar, photoOf, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge };
+  A.ui = { ICON, toast, confirmBox, copy, avatar, photoOf, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
