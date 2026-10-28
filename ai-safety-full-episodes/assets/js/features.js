@@ -27,7 +27,7 @@
     $$("[data-accent-set]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.accentSet === id)));
     if (!quiet) ui().toast(`Theme colour: ${esc(ACCENTS.find((a) => a.id === id).label.replace(" (optional)", ""))}`, { ms: 1200 });
   }
-  const accentPicker = () => `<div class="swatches" role="group" aria-label="Accent colour">${ACCENTS.map((a) => `<button class="swatch ${a.opt ? "swatch--opt" : ""}" data-accent-set="${a.id}" aria-pressed="${(document.documentElement.getAttribute("data-accent") || "amber") === a.id}" title="${esc(a.label)}" aria-label="${esc(a.label)}" style="--a:${a.c[0]};--b:${a.c[1]}"></button>`).join("")}</div>`;
+  const accentPicker = () => `<div class="swatches" role="group" aria-label="Accent colour">${ACCENTS.map((a) => `<button type="button" class="swatch ${a.opt ? "swatch--opt" : ""}" data-accent-set="${a.id}" aria-pressed="${(document.documentElement.getAttribute("data-accent") || "amber") === a.id}" title="${esc(a.label)}" aria-label="${esc(a.label)}" style="--a:${a.c[0]};--b:${a.c[1]}"></button>`).join("")}</div>`;
 
   /* ================================================================ popovers (context menu, playlist picker, goal, theme) */
   let pop = null;
@@ -356,7 +356,7 @@
   function undoBulk() { if (!W.undo) return; const n = h().bulkUnmark(W.undo).length; W.undo = null; if (A.app.view() === "watched") renderWatched(); ui().toast(`Undone: ${n} mark${n === 1 ? "" : "s"} removed`, { icon: "↩️", force: true }); paintGoal(); }
 
   /* ================================================================ HISTORY timeline */
-  const HF = { src: "all", status: "all", q: "", day: null };
+  const HF = { src: "all", status: "all", q: "", day: null, mode: (A.store.get("histMode", "ep") === "sess" ? "sess" : "ep"), open: new Set() };
   function sessionRows() {
     const rows = [];
     STATE.all.forEach((e) => { const r = L().H.eps[e.id]; if (!r) return; (r.sessions || []).forEach((s) => { if (s.w >= 15 || s.src === "manual") rows.push({ e, s, r }); }); });
@@ -383,6 +383,40 @@
     return "Earlier";
   }
   const hm = (ts) => { const d = new Date(ts); return `${A.pad(d.getHours())}:${A.pad(d.getMinutes())}`; };
+  /* History rows: grouped by episode (default) or one row per session. "reached" = furthest position really played. */
+  const reachPct = (x) => { const dur = x.e.dur || x.r.dur || 1; return Math.round(100 * clamp(h().sessReach(x.r, x.s) / dur, 0, 1)); };
+  function epGroups(list) {
+    const m = new Map();
+    list.forEach((x) => { let G = m.get(x.e.id); if (!G) { G = { e: x.e, r: x.r, ss: [] }; m.set(x.e.id, G); } G.ss.push(x); });
+    return Array.from(m.values()).map((G) => {
+      G.played = G.ss.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0);
+      G.logged = G.ss.reduce((a, x) => a + (x.s.src === "manual" ? x.s.w : 0), 0);
+      G.last = Math.max(...G.ss.map((x) => x.s.e || x.s.s));
+      G.first = Math.min(...G.ss.map((x) => x.s.s));
+      G.reach = Math.max(0, ...G.ss.map((x) => h().sessReach(x.r, x.s)));
+      G.status = G.r.done ? (G.r.manual ? "marked" : "completed") : "progress";
+      return G;
+    }).sort((a, b) => b.last - a.last);
+  }
+  function statusTag(st) { return st === "completed" ? `<span class="ok">✓ completed</span>` : st === "marked" ? `<span class="ok">✓ marked watched</span>` : `<span class="tagc">in progress</span>`; }
+  function epRow(G, g) {
+    const e = G.e, dur = e.dur || G.r.dur || 1, key = e.id + "|" + g, open = HF.open.has(key), n = G.ss.length, man = G.ss.every((x) => x.s.src === "manual");
+    return `<li class="hrow hrow--ep ${man ? "hrow--manual" : ""} ${open ? "is-open" : ""}" data-id="${e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(e.title)}">${ui().thumbImg(e)}${ui().thumbBadges(e)}<span class="thumb__bar"><i style="width:${Math.round((G.r.pct || 0) * 100)}%"></i></span></button>
+      <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(e.title, HF.q)}</button>
+      <p class="card__meta">${ui().metaCore(e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(G.last)))}</span>` : ""}<span>last ${hm(G.last)}</span><span>${G.played ? `${fmtHM(G.played)} watched` : `${fmtHM(G.logged)} logged`}</span><span>furthest ${fmtTime(G.reach)} (${Math.round(100 * clamp(G.reach / dur, 0, 1))}%)</span><span>${Math.round((G.r.pct || 0) * 100)}% covered</span>${statusTag(G.status)}</p>
+      <div class="hcov" aria-hidden="true"><i style="width:${Math.round((G.r.pct || 0) * 100)}%"></i><b style="left:${(100 * clamp(G.reach / dur, 0, 1)).toFixed(1)}%"></b></div></div>
+      <div class="hrow__act"><button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, Math.floor((G.r.pos || 0) - 5))}" aria-label="Resume from ${fmtTime(G.r.pos || 0)}" title="Resume">${ui().ICON.play}</button>${G.r.manual ? `<button class="iconbtn iconbtn--sm" data-hunmark="${e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button>
+      <button type="button" class="iconbtn iconbtn--sm hrow__chev" data-hexp="${esc(key)}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${n} session${n === 1 ? "" : "s"}" title="${n} session${n === 1 ? "" : "s"}"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg><small>${n}</small></button></div>
+      <ol class="hsess" ${open ? "" : "hidden"}>${G.ss.map((x) => { const m = x.s.src === "manual"; return `<li><span>${m ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${m ? `${fmtHM(x.s.w)} logged` : `${fmtHM(x.s.w)} watched`}</span>${m ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reachPct(x)}%</span>`}<span class="tagc ${m ? "tagc--m" : "tagc--p"}">${m ? "Marked watched" : "Played here"}</span><button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button></li>`; }).join("")}</ol></li>`;
+  }
+  function sessRow(x, g) {
+    const reach = reachPct(x); const man = x.s.src === "manual";
+    return `<li class="hrow ${man ? "hrow--manual" : ""}" data-id="${x.e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(x.e.title)}">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
+          <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(x.e.title, HF.q)}</button>
+          <p class="card__meta">${ui().metaCore(x.e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(x.s.s)))}</span>` : ""}<span>${man ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${man ? `${fmtHM(x.s.w)} logged` : `${fmtHM(x.s.w)} watched`}</span>${man ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reach}%</span>`}<span>${Math.round((x.r.pct || 0) * 100)}% covered</span>
+          <span class="tagc ${man ? "tagc--m" : "tagc--p"}">${man ? "Marked watched" : "Played here"}</span>${statusTag(x.r.done ? (x.r.manual ? "marked" : "completed") : "progress")}</p></div>
+          <div class="hrow__act"><button class="iconbtn iconbtn--sm" data-jump="${x.e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button>${man ? `<button class="iconbtn iconbtn--sm" data-hunmark="${x.e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button></div></li>`;
+  }
   function renderHistory() {
     const v = V("history");
     const H = L().H;
@@ -395,19 +429,14 @@
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1>
       <p class="lede">${fmtHM(played)} really played across ${all.filter((x) => x.s.src !== "manual").length} sessions · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
       <div class="row-gap"><a class="btn btn--sm" href="#/recent">Recently watched</a><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
-      <div class="kpis"><div class="kpi"><b>${hoursStr(played)}</b><span>played</span></div><div class="kpi"><b>${manualN}</b><span>marked watched</span></div><div class="kpi"><b>${h().doneCount()}</b><span>completed</span></div><div class="kpi"><b>${h().streaks().cur}</b><span>day streak</span></div><div class="kpi"><b>${all.length}</b><span>entries</span></div></div>
+      <div class="kpis"><div class="kpi"><b>${hoursStr(played)}</b><span>played</span></div><div class="kpi"><b>${manualN}</b><span>marked watched</span></div><div class="kpi"><b>${h().doneCount()}</b><span>completed</span></div><div class="kpi"><b>${h().streaks().cur}</b><span>day streak</span></div><div class="kpi"><b>${all.length}</b><span>sessions</span></div><div class="kpi"><b>${new Set(all.map((x) => x.e.id)).size}</b><span>episodes</span></div></div>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${HF.day ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(HF.day))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: HF.day })}</section>
       <div class="wtools"><input class="input" id="hQ" type="search" placeholder="Search history by title or speaker" value="${esc(HF.q)}" aria-label="Search history">
         <div class="seg seg--sm" role="group" aria-label="Source">${[["all", "All"], ["played", "Played here"], ["manual", "Marked watched"]].map(([k, l]) => `<button data-hsrc="${k}" aria-pressed="${HF.src === k}">${l}</button>`).join("")}</div>
-        <div class="seg seg--sm" role="group" aria-label="Status">${[["all", "Any status"], ["done", "Completed"], ["progress", "In progress"]].map(([k, l]) => `<button data-hst="${k}" aria-pressed="${HF.status === k}">${l}</button>`).join("")}</div><span class="muted">${rows.length} entr${rows.length === 1 ? "y" : "ies"}</span></div>
-      ${groups.size ? ["Today", "Yesterday", "This week", "Earlier"].filter((g) => groups.has(g)).map((g) => { const list = groups.get(g); return `<section class="hday"><h2>${g} <small>${fmtHM(list.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0))} played${list.some((x) => x.s.src === "manual") ? ` · ${list.filter((x) => x.s.src === "manual").length} marked` : ""}</small></h2>
-        <ol class="timeline">${list.map((x) => { const dur = x.e.dur || x.r.dur || 1; const reach = Math.round(100 * clamp(x.s.b / dur, 0, 1)); const man = x.s.src === "manual";
-          return `<li class="hrow ${man ? "hrow--manual" : ""}" data-id="${x.e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(x.e.title)}">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
-          <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(x.e.title, HF.q)}</button>
-          <p class="card__meta">${ui().metaCore(x.e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(x.s.s)))}</span>` : ""}<span>${man ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${man ? `${fmtHM(x.s.w)} logged` : `${fmtHM(x.s.w)} watched`}</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reach}%</span><span>${Math.round((x.r.pct || 0) * 100)}% covered</span>
-          <span class="tagc ${man ? "tagc--m" : "tagc--p"}">${man ? "Marked watched" : "Played here"}</span>${x.r.done ? `<span class="ok">✓ completed</span>` : `<span class="tagc">in progress</span>`}</p></div>
-          <div class="hrow__act"><button class="iconbtn iconbtn--sm" data-jump="${x.e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button>${man ? `<button class="iconbtn iconbtn--sm" data-hunmark="${x.e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button></div></li>`; }).join("")}</ol></section>`; }).join("")
-        : `<div class="emptybig"><p>${all.length ? "Nothing matches these filters." : "Nothing yet. Press play on anything, or tick off what you have already seen."}</p>${all.length ? "" : `<a class="btn" href="#/watched">I've watched these</a>`}</div>`}`;
+        <div class="seg seg--sm" role="group" aria-label="Status">${[["all", "Any status"], ["done", "Completed"], ["progress", "In progress"]].map(([k, l]) => `<button data-hst="${k}" aria-pressed="${HF.status === k}">${l}</button>`).join("")}</div><div class="seg seg--sm" role="group" aria-label="Layout">${[["ep", "Group by episode"], ["sess", "Show every session"]].map(([k, l]) => `<button type="button" data-hmode="${k}" aria-pressed="${HF.mode === k}">${l}</button>`).join("")}</div><span class="muted">${HF.mode === "ep" ? `${new Set(rows.map((x) => x.e.id)).size} episode${new Set(rows.map((x) => x.e.id)).size === 1 ? "" : "s"} · ` : ""}${rows.length} session${rows.length === 1 ? "" : "s"}</span></div>
+      ${groups.size ? ["Today", "Yesterday", "This week", "Earlier"].filter((g) => groups.has(g)).map((g) => { const list = groups.get(g); return `<section class="hday"><h2>${g} <small>${fmtHM(list.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0))} played${list.some((x) => x.s.src === "manual") ? ` · ${list.filter((x) => x.s.src === "manual").length} marked` : ""}${HF.mode === "ep" ? ` · ${new Set(list.map((x) => x.e.id)).size} episode${new Set(list.map((x) => x.e.id)).size === 1 ? "" : "s"}` : ""}</small></h2>
+        <ol class="timeline">${HF.mode === "ep" ? epGroups(list).map((G) => epRow(G, g)).join("") : list.map((x) => sessRow(x, g)).join("")}</ol></section>`; }).join("")
+        : `<div class="emptybig emptybig--hist"><span class="emptybig__ic" aria-hidden="true">${ui().ICON.clock}</span><p>${all.length ? "Nothing matches these filters." : "Nothing yet. Press play on anything, or tick off what you have already seen."}</p><p class="muted">${all.length ? "Try another status, source or day, or clear the search." : "Every real minute you play is counted here, grouped by episode."}</p>${all.length ? `<button class="btn btn--sm" id="hReset">Clear filters</button>` : `<div class="row-gap"><a class="btn btn--primary btn--sm" href="#/home">Today's picks</a><a class="btn btn--sm" href="#/watched">I've watched these</a></div>`}</div>`}`;
     $("#hExport").onclick = () => download(`ai-safety-episodes-backup-${dayKey(Date.now())}.json`, JSON.stringify(h().exportAll(), null, 1), "application/json");
     $("#hCsv").onclick = () => download(`ai-safety-episodes-history-${dayKey(Date.now())}.csv`, h().exportCSV(sessionRows()), "text/csv");
     $("#hImport").onchange = async (ev) => {
@@ -424,7 +453,11 @@
     const q = $("#hQ"); q.oninput = A.debounce(() => { HF.q = q.value; renderHistory(); const n = $("#hQ"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 200);
     $$("[data-hsrc]", v).forEach((b) => (b.onclick = () => { HF.src = b.dataset.hsrc; renderHistory(); }));
     $$("[data-hst]", v).forEach((b) => (b.onclick = () => { HF.status = b.dataset.hst; renderHistory(); }));
+    $$("[data-hmode]", v).forEach((b) => (b.onclick = () => { HF.mode = b.dataset.hmode; A.store.set("histMode", HF.mode); renderHistory(); }));
+    const hr = $("#hReset"); if (hr) hr.onclick = () => { HF.src = "all"; HF.status = "all"; HF.q = ""; HF.day = null; renderHistory(); };
     v.onclick = async (ev) => {
+      const xb = ev.target.closest("[data-hexp]");
+      if (xb) { const k = xb.dataset.hexp, li = xb.closest(".hrow"), ol = li && li.querySelector(".hsess"), on = !HF.open.has(k); on ? HF.open.add(k) : HF.open.delete(k); if (ol) ol.hidden = !on; li.classList.toggle("is-open", on); xb.setAttribute("aria-expanded", String(on)); return; }
       const c = ev.target.closest("[data-clear]");
       if (c) { if (await ui().confirmBox("Remove this episode and all its sessions from your history?", "Remove", true)) { h().clearOne(c.dataset.clear); renderHistory(); h().checkAwards(true); refresh(c.dataset.clear); } return; }
       const u = ev.target.closest("[data-hunmark]");
@@ -638,11 +671,16 @@
   /* ================================================================ topbar: theme colours + goal popovers */
   function wireTop() {
     const tb = $("#accentBtn");
-    if (tb) tb.onclick = () => openPop(`<p class="pop__h">Theme</p><div class="seg seg--sm" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button data-theme-set2="${t}" aria-pressed="${(document.documentElement.getAttribute("data-theme-pref") || "system") === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div><p class="pop__h">Accent colour</p>${accentPicker()}<p class="pop__note">Violet and rose are optional extras.</p><a class="pop__i" href="#/profile" data-themes-link>${ui().ICON.spark}<span>All themes: GitHub, Dracula, Nord, Solarized, Tokyo Night…</span></a>`, tb, { role: "dialog", cls: "pop--theme" });
+    if (tb) tb.onclick = () => openPop(`<p class="pop__h">Theme</p><div class="seg seg--sm" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button data-theme-set2="${t}" aria-pressed="${(document.documentElement.getAttribute("data-theme-pref") || "system") === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div><p class="pop__h">Accent colour</p>${accentPicker()}<p class="pop__note">Violet and rose are optional extras.</p><button type="button" class="pop__i" data-themes-more aria-expanded="false">${ui().ICON.spark}<span>All themes: GitHub, Dracula, Nord, Solarized, Tokyo Night…</span></button><div class="pop__themes" id="popThemes" hidden></div><button type="button" class="pop__i" data-goto-settings>${ui().ICON.spark}<span>Backgrounds and more in Settings</span></button>`, tb, { role: "dialog", cls: "pop--theme" });
     const g = $("#goalChip");
     if (g) g.onclick = () => { const st = h().streaks(); openPop(`<p class="pop__h">Daily goal · ${Math.round(h().todaySec() / 60)} of ${Math.round(h().goalSec() / 60)} min today</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div><p class="pop__note">${ui().ICON.flame} ${st.cur}-day streak · best ${st.best}. A day counts once you watch a minute (or mark an episode).</p><a class="pop__i" href="#/wrapped">${ui().ICON.spark}<span>Monthly recap</span></a>`, g, { role: "dialog" }); };
     document.addEventListener("click", (ev) => {
-      const a = ev.target.closest && ev.target.closest("[data-accent-set]"); if (a) { setAccent(a.dataset.accentSet); return; }
+      const a = ev.target.closest && ev.target.closest("[data-accent-set]"); if (a) { ev.preventDefault(); setAccent(a.dataset.accentSet); return; }
+      // "All themes" opens the full list right inside the popover: picking one applies it in place (no navigation, no scroll)
+      const more = ev.target.closest && ev.target.closest("[data-themes-more]");
+      if (more) { ev.preventDefault(); const box = $("#popThemes"); if (!box) return; const on = box.hidden; if (on && A.themes) box.innerHTML = `<div class="thp__grid thp__grid--pop" id="thGrid" role="group" aria-label="All themes">${A.themes.gridHTML()}</div>`; box.hidden = !on; more.setAttribute("aria-expanded", String(on)); return; }
+      const gs = ev.target.closest && ev.target.closest("[data-goto-settings]");
+      if (gs) { ev.preventDefault(); closePop(); if (location.hash !== "#/profile") location.hash = "#/profile"; setTimeout(() => { const el = document.getElementById("settings"); if (el) el.scrollIntoView({ behavior: A.RM ? "auto" : "smooth", block: "start" }); }, 350); return; }
       const t = ev.target.closest && ev.target.closest("[data-theme-set2]"); if (t) { A.app.setTheme(t.dataset.themeSet2, true); $$("[data-theme-set2]").forEach((b) => b.setAttribute("aria-pressed", String(b === t))); }
     });
   }
