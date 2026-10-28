@@ -187,7 +187,7 @@ body.df-open #thInfo { animation: fadeup .3s var(--ease, ease) both; }
 
 /* ---------------------------------------------------------------- Read mode: resizable split + collapse */
 @media (min-width: 901px) {
-  body.is-read .theater { grid-template-columns: minmax(0, var(--rd-main, 60%)) minmax(280px, 1fr) !important; }
+  body.is-read .theater { grid-template-columns: minmax(0, var(--rd-main, 60%)) minmax(260px, 1fr) !important; }
   body.is-read.rd-collapsed .theater { grid-template-columns: minmax(0, 1fr) !important; }
   body.is-read.rd-collapsed .theater__side { display: none !important; }
 }
@@ -421,7 +421,7 @@ body:not(.is-playing) .dock:not(.is-native):not(.is-cued):not(.is-loading) .pv__
 
 /* ---------------------------------------------------------------- one chapters surface: the reading panel split (also in Focus) */
 @media (min-width: 901px) {
-  body.is-zen.is-read.ch-dock .theater { grid-template-columns: minmax(0, var(--rd-main, 60%)) minmax(280px, 1fr) !important; }
+  body.is-zen.is-read.ch-dock .theater { grid-template-columns: minmax(0, var(--rd-main, 60%)) minmax(260px, 1fr) !important; }
   body.is-zen.is-read.ch-dock.rd-collapsed .theater { grid-template-columns: minmax(0, 1fr) !important; }
 }
 body.is-zen.is-read.ch-dock:not(.rd-collapsed) .theater__side { display: flex !important; }
@@ -438,3 +438,51 @@ html.rm #sideTabs [data-side="chapters"].is-flash { animation: none; }
 /* full screen: the pointer is always over the player, so "hover" there means the pointer moved (pv--show) */
 body:not(.is-playing) .dock.is-fs:not(.is-native):not(.pv--show):hover .pv__top:not(:focus-within) { opacity: 0; transform: translateY(-6px); pointer-events: none; }
 body:not(.is-playing) .dock.is-fs.pv--show:not(.is-native) .pv__top { opacity: 1; transform: none; pointer-events: auto; }
+
+/* ---------------------------------------------------------------- reading panel header: one sticky stack (tabs row, then filter row) */
+.theater__side .sidehd { position: sticky; top: 0; z-index: 5; flex: none; display: flex; flex-direction: column; gap: 6px; background: var(--solid); border-radius: 12px; }
+@media (min-width: 901px) { body.is-read .theater__side { padding-top: 0; } body.is-read .theater__side .sidehd { margin: 0 -12px; padding: 12px 12px 6px; border-radius: 0; } }
+.theater__side .sidehd .seg { position: static; top: auto; flex: none; min-height: 40px; border-radius: 12px; }
+.sidehd__tabs { position: relative; flex: none; min-width: 0; }
+.sidehd__tabs .seg { width: 100%; scroll-behavior: smooth; }
+html.rm .sidehd__tabs .seg { scroll-behavior: auto; }
+.sidehd.is-fl .seg { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px); mask-image: linear-gradient(90deg, transparent 0, #000 40px); }
+.sidehd.is-fr .seg { -webkit-mask-image: linear-gradient(270deg, transparent 0, #000 40px); mask-image: linear-gradient(270deg, transparent 0, #000 40px); }
+.sidehd.is-fl.is-fr .seg { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%); }
+.sidehd__arr { position: absolute; top: 50%; z-index: 2; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; border: 1px solid var(--line2); background: var(--solid); color: var(--tx); font: 800 16px/1 var(--font); display: grid; place-items: center; cursor: pointer; box-shadow: 0 4px 12px rgba(0, 0, 0, .25); padding: 0 0 2px; }
+.sidehd__arr[hidden] { display: none; }
+.sidehd__arr--l { left: 2px; } .sidehd__arr--r { right: 2px; }
+.sidehd__arr:hover { border-color: var(--amber); color: var(--amber2, var(--amber)); }
+.theater__side .seg .tab__ic { display: none; width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.theater__side .seg .tab__ic circle { fill: currentColor; stroke: none; }
+/* narrow panel: icons + tooltips; the open tab keeps its label */
+.sidehd[data-tw="icons"] .seg .tab__ic, .sidehd[data-tw="icononly"] .seg .tab__ic { display: block; }
+.sidehd[data-tw="icons"] .seg button, .sidehd[data-tw="icononly"] .seg button { flex: 1 0 auto; padding-inline: 9px; gap: 6px; justify-content: center; }
+.sidehd[data-tw="icononly"] .seg .tab__l,
+.sidehd[data-tw="icons"] .seg button:not([aria-selected="true"]) .tab__l { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+/* very narrow panel: a compact select */
+.sidehd[data-tw="select"] .sidehd__tabs { display: none; }
+.sidehd__sel { position: relative; display: block; flex: none; }
+.sidehd__sel[hidden] { display: none; }
+.sidehd__sel::after { content: "▾"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--amber2, var(--amber)); font-size: 13px; }
+.sidehd__sel select { width: 100%; min-height: 40px; padding: 0 34px 0 12px; border-radius: 12px; border: 1px solid var(--line2); background: var(--grad); color: #0b0f17; font: 700 14px/1 var(--font); appearance: none; -webkit-appearance: none; cursor: pointer; }
+.sidehd__sel select option { background: var(--solid); color: var(--tx); }
+/* the filter box sticks under the tabs row, one layer lower, on its own solid strip */
+.theater__side .side__q { position: sticky; top: var(--sidehd-b, 52px); z-index: 4; margin: 0 0 10px; box-shadow: 0 0 0 6px var(--solid), 0 10px 14px -10px rgba(0, 0, 0, .35); background-color: var(--solid); }
+@media (max-width: 900px) {
+  body.is-read .theater__side .sidehd { top: 30px; margin: 0 -12px; padding: 0 12px 6px; }
+  body.is-read .theater__side .sidehd .seg { margin-bottom: 0; }
+}
+/* light themes: pressed toolbar buttons (Chapters, Read mode, Focus…) keep readable text on a tinted chip */
+html[data-theme="light"] .theater__top .btn[aria-pressed="true"] { color: var(--tx); background: color-mix(in srgb, var(--amber) 16%, transparent); }
+/* YouTube controls mode: YouTube draws its own play button, so ours never sits on top of it */
+.dock.is-native .pv__big { display: none !important; }
+/* drawer close: a solid glass chip, readable over any thumbnail text */
+.drawer__x { background: rgba(4, 7, 12, .74); -webkit-backdrop-filter: blur(10px) saturate(140%); backdrop-filter: blur(10px) saturate(140%); border: 1px solid rgba(255, 255, 255, .22); box-shadow: 0 6px 18px rgba(0, 0, 0, .4); }
+/* header sections nav: when it overflows (wide fonts, big text), the clipped side fades instead of cutting a label */
+.topbar .tabs.is-fr { -webkit-mask-image: linear-gradient(270deg, transparent 0, #000 36px); mask-image: linear-gradient(270deg, transparent 0, #000 36px); }
+.topbar .tabs.is-fl { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 36px); mask-image: linear-gradient(90deg, transparent 0, #000 36px); }
+.topbar .tabs.is-fl.is-fr { -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%); mask-image: linear-gradient(90deg, transparent 0, #000 36px, #000 calc(100% - 36px), transparent 100%); }
+
+/* History: paged timeline footer */
+.hmore { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 18px 0 8px; }
