@@ -96,10 +96,22 @@
     b.setAttribute("aria-pressed", String(!dark));
     b.dataset.mode = dark ? "dark" : "light";
   }
+  /* sun ⇄ moon never throws a chosen palette away: Dracula → light → dark brings Dracula back (the last palette or accent
+   * used in each brightness is remembered as autoNight / autoDay, the same memory "Auto by time of day" uses) */
   function flipTheme() {
     const b = $("#themeBtn"); if (b) { b.classList.remove("is-flip"); void b.offsetWidth; b.classList.add("is-flip"); }
-    A.app.setTheme(isDark() ? "light" : "dark", true);
+    const to = isDark() ? "light" : "dark", mem = LS(to === "dark" ? "autoNight" : "autoDay");
+    const pal = A.themes && mem && A.themes.THEMES.find((t) => t.id === mem && t.kind === "palette" && t.mode === to);
+    if (pal) {
+      LS("theme", to); root().setAttribute("data-theme-pref", to); A.themes.apply(pal.id);
+      A.ui && A.ui.toast(`${to === "dark" ? "Dark" : "Light"} · ${pal.name}`, { ms: 1100 });
+    } else A.app.setTheme(to, true);
     paintToggle();
+  }
+  /* the toggle and the Brightness buttons follow whatever sets the brightness (a palette, the system, a button) */
+  function paintBright() {
+    const pal = root().getAttribute("data-palette"), pref = root().getAttribute("data-theme-pref") || "system", mode = root().getAttribute("data-theme");
+    $$("[data-theme-set2]").forEach((x) => x.setAttribute("aria-pressed", String(pal ? x.dataset.themeSet2 === mode : x.dataset.themeSet2 === pref)));
   }
 
   /* ================================================================ quick settings dropdown */
@@ -107,7 +119,8 @@
   let QS = null;
   function themeTab() {
     const pref = root().getAttribute("data-theme-pref") || "system";
-    return `<p class="qset__h">Brightness</p><div class="seg seg--sm qset__seg" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button type="button" data-theme-set2="${t}" aria-pressed="${pref === t}">${{ dark: "🌙 Dark", light: "☀️ Light", system: "💻 System" }[t]}</button>`).join("")}</div>
+    const pal = root().getAttribute("data-palette"), mode = root().getAttribute("data-theme");
+    return `<p class="qset__h">Brightness</p><div class="seg seg--sm qset__seg" role="group" aria-label="Brightness">${["dark", "light", "system"].map((t) => `<button type="button" data-theme-set2="${t}" aria-pressed="${pal ? mode === t : pref === t}">${{ dark: "🌙 Dark", light: "☀️ Light", system: "💻 System" }[t]}</button>`).join("")}</div>
       <p class="qset__h">Accent colour</p>${A.feat.accentPicker()}
       <p class="qset__h">All themes</p><div class="thp__grid thp__grid--pop" id="qThGrid" role="group" aria-label="All themes">${A.themes ? A.themes.gridHTML() : ""}</div>`;
   }
@@ -249,6 +262,7 @@
     if (LS("density")) density(LS("density"));
     hoverFx(hoverFx());
     const tb = $("#themeBtn"); if (tb) { tb.onclick = flipTheme; paintToggle(); }
+    if (typeof MutationObserver !== "undefined") new MutationObserver(() => { paintToggle(); paintBright(); }).observe(root(), { attributes: true, attributeFilter: ["data-theme", "data-palette", "data-theme-pref"] });
     const sb = $("#setBtn"); if (sb) sb.onclick = () => openQS();
     if (A.app) {
       const orig = A.app.setTheme; A.app.setTheme = function () { const r = orig.apply(this, arguments); paintToggle(); return r; };
