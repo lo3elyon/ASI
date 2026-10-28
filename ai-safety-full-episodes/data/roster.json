@@ -544,5 +544,61 @@
   "org": "UC Davis School of Law",
   "group": "academics",
   "bio": "UC Davis law professor and Supreme Court commentator who moderates PBS's Breaking the Deadlock."
+ },
+ {
+  "name": "Vincent Conitzer",
+  "photo": "vincent-conitzer.jpg",
+  "org": "Carnegie Mellon University",
+  "group": "academics",
+  "bio": "Carnegie Mellon computer scientist who directs the Foundations of Cooperative AI Lab and the Center for Conceptual Research on Safe AI."
+ },
+ {
+  "name": "Aran Nayebi",
+  "photo": "aran-nayebi.jpg",
+  "org": "Carnegie Mellon University",
+  "group": "academics",
+  "bio": "CMU machine-learning professor who proves theoretical limits on AI alignment and corrigibility and built the ROGUE shutdown benchmark."
+ },
+ {
+  "name": "Ben Levinstein",
+  "photo": "ben-levinstein.jpg",
+  "org": "University of Illinois Urbana-Champaign",
+  "group": "academics",
+  "bio": "Philosopher at the University of Illinois who also works as an alignment researcher at Anthropic; co-author of the radical AI interpretability framework."
+ },
+ {
+  "name": "Daniel Herrmann",
+  "photo": "daniel-herrmann.jpg",
+  "org": "UNC Chapel Hill",
+  "group": "academics",
+  "bio": "UNC Chapel Hill philosopher working on decision theory and how to attribute beliefs and desires to AI systems."
+ },
+ {
+  "name": "Bryan Wilder",
+  "photo": "bryan-wilder.jpg",
+  "org": "Carnegie Mellon University",
+  "group": "academics",
+  "bio": "CMU machine-learning professor who builds tests for whether an LLM's stated beliefs predict its behaviour."
+ },
+ {
+  "name": "Sven Neth",
+  "photo": "sven-neth.jpg",
+  "org": "University of Pittsburgh",
+  "group": "academics",
+  "bio": "Pittsburgh philosopher of decision theory whose paper Against Proxy Optimization formalises Goodhart's law for AI alignment."
+ },
+ {
+  "name": "Aydin Mohseni",
+  "photo": "aydin-mohseni.jpg",
+  "org": "Carnegie Mellon University",
+  "group": "academics",
+  "bio": "CMU philosophy professor who organised the AI Agency and Interpretability Workshop and studies instrumental convergence in AI."
+ },
+ {
+  "name": "Judd Rosenblatt",
+  "photo": "judd-rosenblatt.jpg",
+  "org": "AE Studio",
+  "group": "orgs",
+  "bio": "Founder of AE Studio, which runs neglected-approach alignment research including self-other overlap."
  }
 ]
