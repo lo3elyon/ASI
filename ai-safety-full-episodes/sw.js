@@ -1,7 +1,7 @@
 /* AI Safety Full Episodes · offline-friendly service worker (app shell + data + speaker photos).
  * Code and data are network-first (so updates and daily additions show up at once) with the cache as offline fallback;
  * speaker photos are cache-first. YouTube, thumbnails and fonts are never touched. */
-const CACHE = "asfe-2026-10-28-b067ea34";
+const CACHE = "asfe-2026-10-28-2f8859f8";
 const SHELL = [
   "./", "index.html", "assets/app.min.css", "assets/app.bundle.js", "assets/js/boot.js", "assets/data-inline.js", "assets/cover.jpg", "assets/brand/mark.svg",
   "favicon.svg", "favicon.ico", "apple-touch-icon.png", "manifest.webmanifest", "assets/brand/icon-192.png", "assets/brand/icon-512.png",
