@@ -215,6 +215,7 @@
       if (A.P.menu) { A.player.closeMenu(); return; }
       if (A.fsp && A.fsp.isOpen() && A.P.fs) { A.fsp.close(); return; }
       if (A.P.fs) { A.player.exitFs(); return; }
+      if ((A.P.chRead || A.P.chShow) && A.P.read && !typing) { A.player.openChapters(false); return; }
       if (A.P.zen) { A.player.toggleZen(false); return; }
       if (!$("#countdown").hidden) { A.player.hideCountdown(); return; }
       if (A.views.drawerOpen()) { A.views.closeDrawer(); return; }
