@@ -106,7 +106,7 @@
     tick(true); flush();
     if (L().QUEUE.includes(id)) { h().setQueue(L().QUEUE.filter((x) => x !== id)); A.views && A.views.paintQueueCount(); }
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
-    P.cur = e; P.sess = null; P.lastMedia = null; P.chIdx = -1; P.loop = null; P.errCode = null;
+    P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.chIdx = -1; P.loop = null; P.errCode = null;
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
     P.nB = Math.max(1, Math.ceil((e.dur || r.dur || 1) / h().BUCKET));
@@ -187,11 +187,11 @@
           const nB = Math.max(1, Math.ceil(d / h().BUCKET));
           if (nB !== P.nB) { const old = P.cov; P.cov = new Uint8Array(Math.ceil(nB / 8)); P.cov.set(old.subarray(0, P.cov.length)); P.nB = nB; }
         }
-        if (!P.sess || Date.now() - P.sess.e > 30 * 60e3) {
-          P.sess = { s: Date.now(), e: Date.now(), w: 0, a: Math.floor(P.yt.getCurrentTime()), b: 0 };
-          r.sessions = r.sessions || [];
-          r.sessions.push(P.sess);
-          if (r.sessions.length > 200) r.sessions.splice(0, r.sessions.length - 200);
+        // one session per episode per sitting (a new episode or a 30-minute break starts a new one); it is stored only
+        // once real playback happens, so a play-then-seek never leaves a 0-second session behind
+        if (!P.sess || P.sessId !== P.cur.id || Date.now() - P.sess.e > 30 * 60e3) {
+          const t0 = Math.floor(P.yt.getCurrentTime() || 0);
+          P.sess = { s: Date.now(), e: Date.now(), w: 0, a: t0, b: t0, m: 0 }; P.sessId = P.cur.id; P.sessStored = false;
           if (!r.first) r.first = Date.now();
         }
       }
@@ -202,7 +202,7 @@
       syncCCSoon();
     } else {
       tick(true);
-      P.lastMedia = null;
+      P.lastMedia = null; P.run = null;
       flush();
     }
     showUI();
@@ -234,17 +234,30 @@
         r.watched += real;
         const dk = A.dayKey(Date.now());
         L().H.daily[dk] = (L().H.daily[dk] || 0) + real;
-        if (P.sess) { P.sess.w += real; P.sess.e = Date.now(); P.sess.b = Math.floor(t); }
+        if (P.sess && P.sessId === P.cur.id) {
+          if (!P.sessStored) { P.sessStored = true; P.sess.s = Date.now() - real * 1000; P.sess.a = Math.floor(P.lastMedia); r.sessions = r.sessions || []; r.sessions.push(P.sess); if (r.sessions.length > 200) r.sessions.splice(0, r.sessions.length - 200); }
+          P.sess.w += real; P.sess.e = Date.now(); P.sess.b = Math.floor(t);
+        }
         if (P.pip) h().bumpStat("pipSec", real);
         if (P.mode === "audio") h().bumpStat("audioSec", real);
         if (P.fs) h().bumpStat("fsSec", real);
         if (P.zen) h().bumpStat("zenSec", real);
-        const a = Math.floor(P.lastMedia / h().BUCKET), b = Math.floor(t / h().BUCKET);
-        for (let i = a; i <= b && i < P.nB; i++) P.cov[i >> 3] |= 1 << (i & 7);
-      }
+        // coverage + "reached" only from a contiguous run of at least 3 s of real playback, so a seek (or a scrub
+        // to the end that lets the video end) never marks slices or "reached" on its own
+        if (!P.run) P.run = { from: P.lastMedia, real: 0 };
+        P.run.real += real;
+        if (P.run.real >= 3) {
+          const a = Math.floor(P.run.from / h().BUCKET), b = Math.floor(t / h().BUCKET);
+          for (let i = a; i <= b && i < P.nB; i++) P.cov[i >> 3] |= 1 << (i & 7);
+          P.run.from = t;
+          if (P.sess && P.sessId === P.cur.id) P.sess.m = Math.max(P.sess.m || 0, Math.floor(t));
+        }
+      } else P.run = null;
     }
-    if (st === 1) { P.lastMedia = t; P.lastWall = now; }
-    r.pos = t; r.last = Date.now(); P.lastPos = t;
+    if (st === 1) { P.lastMedia = t; P.lastWall = now; } else if (!force) P.run = null;
+    // the saved resume spot is the real playback position: never a reset to 0 from an unstarted/cued player
+    if (st !== -1 && st !== 5 && !(t === 0 && st !== 1 && (r.pos || 0) > 0)) r.pos = t;
+    r.last = Date.now(); P.lastPos = t;
     if (st === 1) timers(t);
     paintProgress(t);
     if (now - P.lastSave > 5000) flush();
@@ -275,7 +288,7 @@
 
   /* sleep timer, A–B loop, skip intro */
   function timers(t) {
-    if (P.loop && P.loop.b != null && t >= P.loop.b) { P.lastMedia = null; try { P.yt.seekTo(P.loop.a, true); } catch (x) {} return; }
+    if (P.loop && P.loop.b != null && t >= P.loop.b) { P.lastMedia = null; P.run = null; try { P.yt.seekTo(P.loop.a, true); } catch (x) {} return; }
     const sl = P.sleep;
     if (sl) {
       const hit = (sl.type === "time" && Date.now() >= sl.until) || (sl.type === "chapter" && chapterAt(t) !== sl.ch);
@@ -292,7 +305,7 @@
     const d = P.yt.getDuration() || (P.cur && P.cur.dur) || 0;
     const to = clamp(abs ? t : cur + t, 0, Math.max(0, d - 0.5));
     tick(false);
-    P.lastMedia = null;
+    P.lastMedia = null; P.run = null;
     h().bumpStat("seeks");
     P.yt.seekTo(to, true);
     if (!o.keepPaused && P.yt.getPlayerState() !== 1) P.yt.playVideo();
@@ -353,6 +366,7 @@
   function onEnded() {
     flush();
     if (P.sleep && P.sleep.type === "end") { P.sleep = null; A.ui.toast("Sleep timer: stopped at the end of the episode", { icon: "🌙", force: true }); return; }
+    if (A.binge && A.binge.onEnded()) return; // Binge mode in Theater: slim 5 s "Up next" bar instead
     if (!L().SETTINGS.autoplay) return;
     const n = nextUp();
     if (!n) return;
@@ -367,7 +381,7 @@
     $("#cdPlay").onclick = () => { hideCountdown(); play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); };
     $("#cdCancel").onclick = hideCountdown;
   }
-  function hideCountdown() { clearInterval(P.cd); P.cd = null; const c = $("#countdown"); if (c) c.hidden = true; }
+  function hideCountdown() { clearInterval(P.cd); P.cd = null; const c = $("#countdown"); if (c) c.hidden = true; if (A.binge && $("#bingeCd")) A.binge.hideCd(); }
 
   /* ---------------------------------------------------------------- dock modes */
   function setMode(m) {
@@ -434,11 +448,12 @@
    * same player element shrinks into the (draggable) mini player; scroll back up and it returns. The iframe is never moved or
    * reloaded: only the dock's mode attribute and its left/top/width change. An IntersectionObserver watches the stage placeholder. */
   function setSticky(on) {
-    on = !!on && P.mode === "theater" && !P.fs && !P.zen && !!P.cur && !P.stickyOff;
+    on = !!on && P.mode === "theater" && !P.fs && !P.zen && !!P.cur && !P.stickyOff && !P.read;
     if (on === !!P.sticky) return false;
     const d = dock(); if (!d || d.hidden) return false;
     P.sticky = on;
-    if (!RM && !document.documentElement.classList.contains("rm")) startMorph(d);
+    clearFlip(d);
+    if (!RM && !document.documentElement.classList.contains("rm") && !P.flipNear) startMorph(d);
     d.dataset.mode = on ? "mini" : "theater";
     d.classList.toggle("is-sticky", on);
     d.classList.toggle("dock--grab", on);
@@ -456,9 +471,12 @@
     const visible = (r.bottom - Math.max(tr.top, r.top)) / hgt; // share of the player still on screen
     /* works whenever the episode page scrolls at all: a short page (little to scroll) goes sticky once scrolled to its end */
     const laid = th.scrollHeight > 0 && th.clientHeight > 0, max = laid ? Math.max(0, th.scrollHeight - th.clientHeight) : Infinity;
-    const want = th.scrollTop > Math.min(40, max * 0.5) && (visible < 0.4 || (max >= 8 && th.scrollTop >= max - 2));
+    let want = th.scrollTop > Math.min(40, max * 0.5) && (visible < 0.4 || (max >= 8 && th.scrollTop >= max - 2));
+    // hysteresis: once docked, stay docked until the page is scrolled back above where it docked (the panels re-flowing
+    // full width under the page change its height, which must not undock it again)
+    if (P.sticky && P.stickyAt != null && th.scrollTop >= P.stickyAt - 2 && th.scrollTop > 0) want = true;
     if (!want) P.stickyOff = false;
-    setSticky(want);
+    if (setSticky(want) && want) P.stickyAt = th.scrollTop;
   }
   function backToTop() {
     const th = $("#theater"); if (!th) return;
@@ -538,12 +556,103 @@
     let left, top;
     if (typeof pr.x === "number" && typeof pr.y === "number") { left = (pr.x / 100) * b.vw; top = (pr.y / 100) * b.vh; }
     else { const c = pr.corner || "br"; left = c[1] === "l" ? b.m : b.vw - w - b.m; top = c[0] === "t" ? b.m + (b.vw > 1020 ? 60 : 0) : b.vh - hgt - b.bottomPad; }
-    const p = clampPos(left, top, w, hgt, b);
+    const p = nudgeOff(clampPos(left, top, w, hgt, b), w, hgt, b);
     d.style.left = Math.round(p.left) + "px";
     d.style.top = Math.round(p.top) + "px";
     d.style.right = d.style.bottom = "auto";
     d.dataset.corner = cornerOf(p.left, p.top, w, hgt, b);
   }
+  /* the mini never sits on the reading panel (Read mode column or the mobile sheet): it is nudged beside or above it for as long
+   * as the panel is open; the saved spot itself is not changed */
+  function readRect() {
+    const th = $("#theater"); if (!th || th.hidden || !P.read) return null;
+    const el = $(".theater__side"); if (!el) return null;
+    const r = el.getBoundingClientRect(); if (r.width < 2 || r.height < 2) return null;
+    return { left: Math.max(0, r.left), top: Math.max(0, r.top), right: Math.min(window.innerWidth, r.right), bottom: Math.min(window.innerHeight, r.bottom) };
+  }
+  function nudgeOff(p, w, hgt, b) {
+    const r = readRect(); if (!r) return p;
+    const hit = p.left < r.right && p.left + w > r.left && p.top < r.bottom && p.top + hgt > r.top;
+    if (!hit) return p;
+    if (r.left - w - b.m >= 0) return { left: r.left - w - b.m, top: p.top };
+    if (r.right + w + b.m <= b.vw) return { left: r.right + b.m, top: p.top };
+    if (r.top - hgt - b.m >= 0) return { left: p.left, top: r.top - hgt - b.m };
+    return p;
+  }
+  /* ---------------------------------------------------------------- scroll-linked FLIP: between the big player and the sticky mini
+   * the dock follows the scroll continuously (transform translate + scale, radius and shadow interpolated, one rAF per frame);
+   * the iframe is never moved or reloaded. At the end it hands over to the real mini layout, scrolling back reverses it. */
+  function miniRect() {
+    const d = dock(), b = miniBounds(), pr = miniPrefs();
+    const w = clamp(pr.w, b.minW, Math.min(b.maxW, b.vw - 2 * b.m)), hgt = miniH(d, w);
+    let left, top;
+    if (typeof pr.x === "number" && typeof pr.y === "number") { left = (pr.x / 100) * b.vw; top = (pr.y / 100) * b.vh; }
+    else { const c = pr.corner || "br"; left = c[1] === "l" ? b.m : b.vw - w - b.m; top = c[0] === "t" ? b.m + (b.vw > 1020 ? 60 : 0) : b.vh - hgt - b.bottomPad; }
+    const p = nudgeOff(clampPos(left, top, w, hgt, b), w, hgt, b);
+    return { left: p.left, top: p.top, w, h: hgt };
+  }
+  const ease = (x) => (x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2);
+  function clearFlip(d) { d = d || dock(); if (!d) return; d.style.transform = d.style.borderRadius = d.style.boxShadow = d.style.transformOrigin = ""; d.classList.remove("is-flip"); P.flipP = 0; }
+  function flipProgress() {
+    const slot = $("#stageSlot"), th = $("#theater"); if (!slot || !th || th.hidden) return 0;
+    const r = slot.getBoundingClientRect(), tr = th.getBoundingClientRect(), hgt = r.height || 1;
+    const visible = (r.bottom - Math.max(tr.top, r.top)) / hgt;
+    return clamp((1 - visible) / 0.6, 0, 1);
+  }
+  function flipStep() {
+    const d = dock();
+    if (!d || d.hidden || P.mode !== "theater" || P.fs || P.zen || P.read || !P.cur || RM || document.documentElement.classList.contains("rm")) { if (d && d.classList.contains("is-flip")) clearFlip(d); P.flipNear = false; return; }
+    if (P.sticky) { if (d.classList.contains("is-flip")) clearFlip(d); P.flipNear = true; return; }
+    const p = flipProgress(); P.flipP = p; P.flipNear = p > 0.85;
+    if (p <= 0.001) { if (d.classList.contains("is-flip")) clearFlip(d); return; }
+    const L0 = d.getBoundingClientRect(); if (!L0.width) return;
+    const M = miniRect(), e = ease(p);
+    const tx = (M.left - L0.left) * e, ty = (M.top - L0.top) * e, sc = 1 + (M.w / L0.width - 1) * e;
+    d.classList.add("is-flip");
+    d.style.transformOrigin = "0 0";
+    d.style.transform = `translate3d(${tx.toFixed(1)}px, ${ty.toFixed(1)}px, 0) scale(${sc.toFixed(4)})`;
+    d.style.borderRadius = (16 * e / Math.max(0.2, sc)).toFixed(1) + "px";
+    d.style.boxShadow = `0 ${Math.round(18 * e)}px ${Math.round(60 * e)}px rgba(0, 0, 0, ${(0.55 * e).toFixed(2)})`;
+  }
+  /* ---------------------------------------------------------------- Read mode: video on the left (~60 %), a tabbed reading panel on the
+   * right that scrolls on its own (Summary / Chapters / Claims / Numbers / Notes); on phones the same panel is a bottom sheet you drag
+   * up and down, never taller than the space under the video */
+  function toggleRead(on) {
+    on = on == null ? !P.read : !!on;
+    P.read = on; A.store.set("readMode", on ? 1 : 0);
+    if (on && P.sticky) setSticky(false);
+    clearFlip();
+    document.body.classList.toggle("is-read", on);
+    const b = $("#thRead"); if (b) { b.setAttribute("aria-pressed", String(on)); b.title = on ? "Leave Read mode (Shift+R)" : "Read mode (Shift+R)"; }
+    if (on && !["summary", "chapters", "claims", "numbers", "notes"].includes(P.side)) P.side = "summary";
+    if (on) { const th = $("#theater"); if (th) th.scrollTop = 0; }
+    sheetSize();
+    paintSide();
+    requestAnimationFrame(() => { placeDock(); placeMini(); });
+    return on;
+  }
+  function sheetMax() { const slot = $("#stageSlot"); const r = slot ? slot.getBoundingClientRect() : { bottom: 0 }; return Math.max(120, window.innerHeight - Math.max(0, r.bottom) - 8); }
+  function sheetSize(hpx) {
+    const el = $(".theater__side"); if (!el) return;
+    const mob = window.innerWidth <= 900;
+    if (!P.read || !mob) { el.style.removeProperty("--sheet-h"); return; }
+    const max = sheetMax();
+    if (hpx == null) hpx = P.sheetH || Math.round(max * 0.6);
+    P.sheetH = clamp(hpx, 64, max);
+    el.style.setProperty("--sheet-h", Math.round(P.sheetH) + "px");
+  }
+  function sheetDrag() {
+    const side = $(".theater__side"); if (!side || side.querySelector(".sheet__grip")) return;
+    const g = document.createElement("button"); g.type = "button"; g.className = "sheet__grip"; g.setAttribute("aria-label", "Drag to resize the reading panel (tap to expand or collapse)");
+    side.prepend(g);
+    let st = null;
+    g.addEventListener("pointerdown", (ev) => { if (!P.read || window.innerWidth > 900) return; st = { y: ev.clientY, h: P.sheetH || side.getBoundingClientRect().height, moved: false }; try { g.setPointerCapture(ev.pointerId); } catch (x) {} ev.preventDefault(); });
+    g.addEventListener("pointermove", (ev) => { if (!st) return; const dy = st.y - ev.clientY; if (Math.abs(dy) > 4) st.moved = true; side.classList.add("is-dragging"); sheetSize(st.h + dy); });
+    const end = () => { if (!st) return; side.classList.remove("is-dragging"); const max = sheetMax(); if (!st.moved) sheetSize((P.sheetH || 0) > max * 0.5 ? 64 : max); else { const snaps = [64, max * 0.5, max]; sheetSize(snaps.reduce((a, x) => (Math.abs(x - P.sheetH) < Math.abs(a - P.sheetH) ? x : a), snaps[0])); } st = null; placeMini(); };
+    g.addEventListener("pointerup", end); g.addEventListener("pointercancel", end);
+    g.addEventListener("keydown", (ev) => { if (ev.key === "ArrowUp") { ev.preventDefault(); sheetSize((P.sheetH || 64) + 60); } if (ev.key === "ArrowDown") { ev.preventDefault(); sheetSize((P.sheetH || 64) - 60); } });
+  }
+  window.addEventListener("resize", () => requestAnimationFrame(() => sheetSize()));
   function saveMiniPos(left, top, w) {
     const b = miniBounds(), d = dock();
     const ww = w || parseFloat(d.style.width) || 400;
@@ -1048,7 +1157,7 @@
       const now = $("#sideBody .chap.is-now");
       /* follow the current chapter only while the list is already on screen: the episode page scrolls as one page now,
        * so an unconditional scrollIntoView would yank the whole page (and push the player into its sticky mini). */
-      if (now && P.side === "chapters" && !$("#theater").hidden) { const th = $("#theater"), r = now.getBoundingClientRect(), vh = th.clientHeight || window.innerHeight; const sideBySide = window.innerWidth > 900 && !document.body.classList.contains("is-wide"); const listOn = r.bottom > 0 && r.top < vh; if (sideBySide && listOn && !P.sticky) now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" }); }
+      if (now && P.side === "chapters" && !$("#theater").hidden) { const th = $("#theater"), r = now.getBoundingClientRect(), vh = th.clientHeight || window.innerHeight; const sideBySide = (window.innerWidth > 900 && !document.body.classList.contains("is-wide")) || !!P.read; const listOn = r.bottom > 0 && r.top < vh; if (sideBySide && listOn && !P.sticky) now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" }); }
       const rn = $("#pvRail .chap.is-now"); if (rn && P.rail) rn.scrollIntoView({ block: "nearest" });
     }
     const sk = $("#pvSkip");
@@ -1132,6 +1241,8 @@
 
   function paintTheater() {
     const e = P.cur; if (!e) return;
+    if (P.read == null) { P.read = false; if (A.store.get("readMode", 0)) toggleRead(true); }
+    if (A.binge) setTimeout(() => A.binge.paintRail(), 0);
     $("#thCrumb").innerHTML = `<b>${esc(e.title)}</b>`;
     const L0 = L();
     const fav = L0.FAVS.has(e.id), q = L0.QUEUE.includes(e.id), done = h().stateOf(e.id) === "done";
@@ -1157,7 +1268,11 @@
   function paintSide() {
     const e = P.cur; const body = $("#sideBody"); if (!e || !body) return;
     $$("#sideTabs [data-side]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.side === P.side)));
-    if (P.side === "chapters") {
+    if (P.side === "summary") {
+      body.innerHTML = `<div class="rd__sum"><p class="th__sum">${esc(e.summary || "No summary recorded.")}</p>${e.whyWatch ? `<h3 class="side__h">Why watch</h3><p>${esc(e.whyWatch)}</p>` : ""}${e.topics.length ? `<h3 class="side__h">Topics</h3><ul class="topics">${e.topics.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}<h3 class="side__h">Speakers</h3><p>${esc(A.ui.whoLine(e, 8))}</p></div>`;
+    } else if (P.side === "numbers") {
+      body.innerHTML = e.numbers.length ? `<ul class="claims">${e.numbers.map((c) => `<li class="claim claim--num"><button class="claim__t" data-seek="${c.t == null ? "" : c.t}" ${c.t == null ? "disabled" : ""}>${c.t == null ? "·" : fmtTime(c.t)}</button><div><p><span class="numtag">#</span>${esc(c.text)}</p>${c.speaker ? `<small>${esc(c.speaker)}</small>` : ""}</div></li>`).join("")}</ul>` : `<p class="empty">No numbers recorded for this one.</p>`;
+    } else if (P.side === "chapters") {
       body.innerHTML = e.chapters.length ? `<ol class="chaps">${e.chapters.map((c, i) => `<li><button class="chap ${i === P.chIdx ? "is-now" : ""}" data-i="${i}" data-seek="${c.t == null ? "" : c.t}" ${c.t == null ? "disabled" : ""}><span class="chap__t">${c.t == null ? "·" : fmtTime(c.t)}</span><span class="chap__tx"><b>${esc(c.title)}</b>${c.detail ? `<small>${esc(c.detail)}</small>` : ""}</span></button></li>`).join("")}</ol>` + (e.topics.length ? `<h3 class="side__h">Topics</h3><ul class="topics">${e.topics.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : "")
         : `<p class="empty">No timestamped chapters for this one.</p>${e.topics.length ? `<ul class="topics">${e.topics.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}`;
     } else if (P.side === "claims") {
@@ -1288,7 +1403,10 @@
     $("#thAudio").onclick = audioMode;
     $("#thFs").onclick = toggleFs;
     $("#thZen").onclick = () => toggleZen();
-    $("#theater").addEventListener("scroll", () => requestAnimationFrame(() => { checkSticky(); placeDock(); }), { passive: true });
+    $("#theater").addEventListener("scroll", () => { if (P.flipRaf) return; P.flipRaf = requestAnimationFrame(() => { P.flipRaf = 0; checkSticky(); placeDock(); flipStep(); }); }, { passive: true });
+    $("#thRead") && ($("#thRead").onclick = () => toggleRead());
+    const thMain = $(".theater__main"); if (thMain) thMain.addEventListener("scroll", () => requestAnimationFrame(placeDock), { passive: true });
+    sheetDrag();
     watchSlot();
     $("#sideTabs").addEventListener("click", (ev) => { const b = ev.target.closest("[data-side]"); if (!b) return; P.side = b.dataset.side; paintSide(); });
     $("#theater").addEventListener("click", (ev) => {
@@ -1312,7 +1430,7 @@
   }
 
   A.player = {
-    P, play, seek, jumpTo, togglePlay, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
+    P, play, seek, jumpTo, togglePlay, toggleRead, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
     tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC, syncCC, ccActual,
     frameStep, bookmark, setLoop, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
