@@ -1,15 +1,16 @@
 /* AI Safety Full Episodes · Binge mode: in Theater, one episode after another. The line-up comes from your queue, then Today's
- * picks, then the current Browse filter (when one is set), then Up next. A slim "Up next in 5 s" bar (play now / cancel), a queue
+ * picks, then the current Browse filter (when one is set), then Up next. A slim "Up next in N s" bar (15 s by default, 5–60 s in Settings; play now / cancel), a queue
  * rail inside the theater, shuffle, repeat (off / one / all) and Shift+N / Shift+P for next / previous. Built by Aniruddha Adak. */
 (function (A) {
   "use strict";
   const { $, esc, STATE } = A;
   const h = () => A.hist, L = () => A.hist.L, P = () => A.P;
   const KEY = "binge:v1";
-  const B = Object.assign({ on: false, shuffle: false, repeat: "off", seed: 1 }, A.store.get(KEY, {}) || {});
+  const B = Object.assign({ on: false, shuffle: false, repeat: "off", seed: 1, secs: 15 }, A.store.get(KEY, {}) || {});
   B.played = []; // ids played in this sitting (for Shift+P)
   B.skip = new Set(); // removed from the line-up for this sitting
-  const save = () => A.store.set(KEY, { on: B.on, shuffle: B.shuffle, repeat: B.repeat, seed: B.seed });
+  const secs = () => Math.min(60, Math.max(5, Math.round(Number(B.secs) || 15)));
+  const save = () => A.store.set(KEY, { on: B.on, shuffle: B.shuffle, repeat: B.repeat, seed: B.seed, secs: secs() });
   const isOn = () => !!B.on;
 
   function rng(seed) { let x = seed >>> 0 || 1; return () => ((x = (x * 1664525 + 1013904223) >>> 0) / 4294967296); }
@@ -34,11 +35,12 @@
     if (B.repeat === "all" && B.played.length) return B.played.find((id) => id !== (cur && cur.id)) || B.played[0];
     return null;
   }
+  /* how === "auto": the countdown finished (or Play now): the only path that starts playback by itself */
   function go(id, how) {
     if (!id) { A.ui.toast("The binge line-up is empty. Queue something or turn on Repeat all.", { icon: "🍿" }); return false; }
     hideCd();
     const cur = P().cur; if (cur && how !== "prev" && B.played[B.played.length - 1] !== cur.id) B.played.push(cur.id);
-    A.player.play(id, { keepMini: P().mode !== "theater", mini: P().mode !== "theater" });
+    A.player.play(id, { keepMini: P().mode !== "theater", mini: P().mode !== "theater", autoplay: how === "auto" });
     return true;
   }
   function next() { return go(nextId(P().cur), "next"); }
@@ -51,10 +53,10 @@
   }
   /* called by the player when an episode ends: in Theater with Binge on it takes over from the 10 s autoplay countdown */
   function onEnded() {
-    if (!B.on || P().mode !== "theater" || !P().cur) return false;
+    if (!B.on || P().mode !== "theater" || !P().cur || !P().userPlayed) return false;
     const id = nextId(P().cur); if (!id) { A.ui.toast("Binge finished: nothing left in the line-up", { icon: "🏁" }); return true; }
-    if (document.hidden) { go(id); return true; }
-    showCd(id, 5);
+    if (document.hidden) { go(id, "auto"); return true; }
+    showCd(id, secs());
     return true;
   }
   let cdT = null;
@@ -67,12 +69,12 @@
     const paint = () => { el.innerHTML = `<span class="bcd__ring" style="--p:${((secs - left) / secs * 100).toFixed(0)}"><b>${left}</b></span><span class="bcd__tx"><small>Up next in ${left}s</small><b>${esc(e.title)}</b></span><button type="button" class="btn btn--primary btn--sm" data-bcd="go">Play now</button><button type="button" class="btn btn--ghost btn--sm" data-bcd="cancel">Cancel</button>`; };
     paint(); el.hidden = false; el.dataset.id = id;
     clearInterval(cdT);
-    cdT = setInterval(() => { left--; if (left <= 0) { go(id); return; } paint(); }, 1000);
+    cdT = setInterval(() => { left--; if (left <= 0) { go(id, "auto"); return; } paint(); }, 1000);
   }
   function hideCd() { clearInterval(cdT); cdT = null; const el = $("#bingeCd"); if (el) el.hidden = true; }
   document.addEventListener("click", (ev) => {
     const c = ev.target.closest && ev.target.closest("[data-bcd]");
-    if (c) { ev.stopPropagation(); const el = $("#bingeCd"); if (c.dataset.bcd === "go" && el) go(el.dataset.id); else { hideCd(); A.ui.toast("Binge paused for this one", { ms: 1400 }); } return; }
+    if (c) { ev.stopPropagation(); const el = $("#bingeCd"); if (c.dataset.bcd === "go" && el) go(el.dataset.id, "auto"); else { hideCd(); A.ui.toast("Binge paused for this one", { ms: 1400 }); } return; }
     const b = ev.target.closest && ev.target.closest("[data-binge]");
     if (!b) return;
     ev.preventDefault();
@@ -82,7 +84,7 @@
     if (k === "repeat") { B.repeat = { off: "all", all: "one", one: "off" }[B.repeat] || "off"; save(); }
     if (k === "next") next();
     if (k === "prev") prev();
-    if (k === "play") go(b.dataset.id);
+    if (k === "play") go(b.dataset.id, "pick");
     if (k === "drop") { B.skip.add(b.dataset.id); }
     paintRail();
   });
@@ -98,9 +100,12 @@
       <button type="button" class="iconbtn iconbtn--sm" data-binge="next" aria-label="Next episode (Shift+N)" title="Next (Shift+N)"><svg viewBox="0 0 24 24"><path d="M18 5v14M6 6l9 6-9 6z"/></svg></button>
       <button type="button" class="chip ${B.shuffle ? "is-on" : ""}" data-binge="shuffle" aria-pressed="${B.shuffle}">Shuffle</button>
       <button type="button" class="chip ${B.repeat !== "off" ? "is-on" : ""}" data-binge="repeat" aria-label="${rep} (click to change)">${rep}</button>
+      <label class="brail__secs">Countdown <select data-bingesecs aria-label="Seconds before the next episode starts">${[5, 10, 15, 20, 30, 45, 60].map((n) => `<option value="${n}" ${secs() === n ? "selected" : ""}>${n} s</option>`).join("")}</select></label>
       <span class="muted brail__src">${list.length ? `${list.length} lined up from your queue, Today's picks${A.recs.activeCount() ? ", your filter" : ""} and Up next` : "Nothing lined up"}</span></div>
       ${list.length ? `<ol class="brail__row">${list.map((x, i) => { const e = STATE.byId.get(x.id); return `<li class="brail__it"><button type="button" class="brail__play" data-binge="play" data-id="${x.id}" title="${esc(e.title)}">${A.ui.thumbImg(e)}<span class="brail__n">${i + 1}</span><span class="brail__tx"><b>${esc(e.title)}</b><small>${esc(x.src)} · ${esc(e.durStr)}</small></span></button><button type="button" class="iconbtn iconbtn--sm brail__x" data-binge="drop" data-id="${x.id}" aria-label="Skip ${esc(e.title)} in this binge" title="Skip in this binge">✕</button></li>`; }).join("")}</ol>` : ""}`;
   }
-  document.addEventListener("asfe:play", () => setTimeout(paintRail, 0));
-  A.binge = { isOn, on: isOn, lineup, nextId, next, prev, onEnded, paintRail, showCd, hideCd, state: () => B, set: (o) => { Object.assign(B, o || {}); save(); paintRail(); } };
+  document.addEventListener("change", (ev) => { const sel = ev.target.closest && ev.target.closest("[data-bingesecs]"); if (!sel) return; B.secs = Number(sel.value); save(); $$sync(); A.ui.toast(`Next episode starts after ${secs()} s`, { ms: 1400 }); });
+  function $$sync() { document.querySelectorAll("[data-bingesecs]").forEach((x) => (x.value = String(secs()))); const r = document.getElementById("sBingeSecs"); if (r) { r.value = String(secs()); const o = document.getElementById("sBingeSecsV"); if (o) o.textContent = secs() + " s"; } }
+  document.addEventListener("input", (ev) => { if (ev.target.id !== "sBingeSecs") return; B.secs = Number(ev.target.value); save(); $$sync(); });
+  A.binge = { isOn, on: isOn, secs, lineup, nextId, next, prev, onEnded, paintRail, showCd, hideCd, state: () => B, set: (o) => { Object.assign(B, o || {}); save(); paintRail(); } };
 })(window.ASFE);
