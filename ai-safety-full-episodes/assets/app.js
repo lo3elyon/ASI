@@ -149,11 +149,16 @@
   function closePalette() { $("#palette").hidden = true; }
   function palRender(q) {
     const qf = fold(q).trim();
-    const acts = ACTIONS.filter((a) => (!a.needs || A.P.cur) && (!qf || fold(a.label + " " + a.kw).includes(qf))).slice(0, qf ? 6 : 8).map((a) => ({ type: "action", a }));
+    /* multi-word queries AND their tokens: every word has to match somewhere (episodes: title/speakers/show/tags/month via searchScore) */
+    const toks = qf.split(/\s+/).filter(Boolean);
+    const allTok = (hay) => toks.every((t) => hay.includes(t));
+    const MON = /^(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*$|^\d{4}$/;
+    const spTok = toks.filter((t) => !MON.test(t));
+    const acts = ACTIONS.filter((a) => (!a.needs || A.P.cur) && (!qf || allTok(fold(a.label + " " + a.kw)))).slice(0, qf ? 6 : 8).map((a) => ({ type: "action", a }));
     let eps = [];
     if (qf) eps = STATE.all.map((e) => ({ e, s: A.recs.searchScore(e, q) })).filter((x) => x.s > 0).sort((a, b) => b.s - a.s).slice(0, 8).map((x) => ({ type: "ep", e: x.e }));
     else eps = (h().inProgress().slice(0, 3).concat(A.recs.forYou(4).map((x) => x.e))).slice(0, 6).map((e) => ({ type: "ep", e }));
-    const sps = Array.from(STATE.speakers.values()).filter((s) => s.eps.length && (!qf ? A.ui.hasFace(s.name) && !s.isHost : fold(s.name + " " + s.org).includes(qf))).sort((a, b) => b.eps.length - a.eps.length).slice(0, qf ? 5 : 4).map((s) => ({ type: "sp", s }));
+    const sps = Array.from(STATE.speakers.values()).filter((s) => s.eps.length && (!qf ? A.ui.hasFace(s.name) && !s.isHost : (spTok.length ? spTok : toks).every((t) => fold(s.name + " " + s.org).includes(t)))).sort((a, b) => b.eps.length - a.eps.length).slice(0, qf ? 5 : 4).map((s) => ({ type: "sp", s }));
     palItems = qf ? sps.concat(eps, acts) : acts.concat(eps, sps);
     palSel = 0;
     const sec = (type, title) => { const items = palItems.map((x, i) => ({ x, i })).filter(({ x }) => x.type === type); if (!items.length) return ""; return `<li class="pal__sec">${title}</li>` + items.map(({ x, i }) => `<li role="option" class="pal__it" data-pi="${i}" id="pi${i}">${x.type === "ep" ? `${A.ui.thumbImg(x.e)}<span><b>${A.ui.hl(x.e.title, q)}</b><small>${A.ui.metaText(x.e)} · ${esc(A.ui.whoLine(x.e, 2))}</small></span><kbd>↵ play</kbd>` : x.type === "sp" ? `${A.ui.avatar(x.s.name, 32)}<span><b>${A.ui.hl(x.s.name, q)}</b><small>${esc(x.s.org)} · ${x.s.eps.length} episodes</small></span><kbd>↵ open</kbd>` : `<span class="pal__ic">›</span><span><b>${A.ui.hl(x.a.label, q)}</b></span>`}</li>`).join(""); };
