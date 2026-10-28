@@ -202,8 +202,28 @@
     top.innerHTML = banner + (Object.keys(L().H.eps).length ? goalCard() : "");
     // Today's picks sits above everything else on Home (its own node, never rebuilt by this function)
     if (A.picks) { let pk = $("#picks", v); if (!pk) { pk = document.createElement("section"); pk.id = "picks"; pk.className = "picks"; pk.setAttribute("aria-label", "Today's picks"); v.prepend(pk); A.picks.render(pk); } else if (pk !== v.firstElementChild) v.prepend(pk); }
+    // "New today / Just added" sits above Today's picks: episodes whose added_at is within the last 48 h
+    paintJustAdded(v);
     const hide = $("#contHide"); if (hide) hide.onclick = () => { sessionStorage.setItem("asfe:hideCont", "1"); paintHomeTop(); };
     enhance(top);
+  }
+  function paintJustAdded(v) {
+    v = v || V("home"); if (!v) return;
+    const xs = A.justAdded ? A.justAdded() : [];
+    let ja = $("#justAdded", v);
+    if (!xs.length) { if (ja) ja.remove(); return; }
+    if (!ja) { ja = document.createElement("section"); ja.id = "justAdded"; ja.className = "shelf ja"; ja.setAttribute("aria-labelledby", "jaH"); }
+    v.prepend(ja);
+    const today = A.fmtDate(new Date().toISOString().slice(0, 10)), last = xs[0].addedAt ? xs[0].addedAt.slice(0, 10) : "";
+    const isToday = last && Date.now() - xs[0].addedMs < 24 * 3600 * 1000 && new Date(xs[0].addedMs).toDateString() === new Date().toDateString();
+    const ds = xs.map((e) => e.date).filter(Boolean).sort(), span = ds.length ? (ds[0] === ds[ds.length - 1] ? A.fmtDate(ds[0]) : `${A.fmtDate(ds[0])} – ${A.fmtDate(ds[ds.length - 1])}`) : "";
+    const hrs = Math.round(xs.reduce((a, e) => a + (e.dur || 0), 0) / 360) / 10;
+    ja.innerHTML = `<div class="shelf__hd"><div><p class="eyebrow ja__eb"><span class="ja__dot" aria-hidden="true"></span>${isToday ? "New today" : "New this week"} · added ${esc(last ? A.fmtDate(last) : today)}</p>
+        <h2 id="jaH"><span class="shelf__ic">✨</span>Just added</h2><p class="shelf__sub">${xs.length} new full episode${xs.length === 1 ? "" : "s"} · ${hrs} h · uploaded ${esc(span)}</p></div><span class="grow"></span>
+        <a class="shelf__more" href="#/browse?sort=newest">See all ${ui().ICON.chev}</a>
+        <div class="shelf__nav"><button class="iconbtn iconbtn--sm" data-scroll="-1" aria-label="Scroll left"><svg viewBox="0 0 24 24"><path d="m15 6-6 6 6 6"/></svg></button><button class="iconbtn iconbtn--sm" data-scroll="1" aria-label="Scroll right">${ui().ICON.chev}</button></div></div>
+      <div class="shelf__wrap"><div class="shelf__row" data-carousel>${xs.map((e) => ui().card(e)).join("")}</div></div>`;
+    enhance(ja);
   }
   /* Recently watched: its own page (moved off Home), linked from History and the nav */
   function renderRecent() {
@@ -628,7 +648,7 @@
   }
 
   A.feat = {
-    ACCENTS, setAccent, accentPicker, openCtx, closePop, playlistPicker, act, rateTagHTML, paintHomeTop, patchWRow, renderRecent, paintGoal, renderWatched, renderHistory, renderPlaylists, renderWrapped,
+    ACCENTS, setAccent, accentPicker, openCtx, closePop, playlistPicker, act, rateTagHTML, paintHomeTop, paintJustAdded, patchWRow, renderRecent, paintGoal, renderWatched, renderHistory, renderPlaylists, renderWrapped,
     shareCard, shareRecap, enhance, wireTop, W, HF, bulk, undoBulk, markIds, recapFor, sessionRows, pop: () => pop,
   };
 })(window.ASFE);
