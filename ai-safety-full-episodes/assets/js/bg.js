@@ -113,7 +113,7 @@
     const ctx = cv.getContext && cv.getContext("2d"); if (!ctx) return;
     let W = 0, H = 0, pts = [], last = 0;
     const size = () => { const r = Math.min(2, window.devicePixelRatio || 1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = W * r; cv.height = H * r; ctx.setTransform(r, 0, 0, r, 0, 0); const n = Math.round(Math.min(160, (W * H) / 9000)); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, z: 0.3 + Math.random() * 0.7, t: Math.random() * 6.28 })); };
-    const col = () => (getComputedStyle(root()).getPropertyValue(root().classList.contains("bg-match") ? "--amber" : "--tx").trim() || "#e8eef6");
+    const col = () => (getComputedStyle(root()).getPropertyValue(root().classList.contains("bg-match") || root().getAttribute("data-theme") === "light" ? "--amber" : "--tx").trim() || "#e8eef6");
     let c = col();
     const draw = (dt) => {
       ctx.clearRect(0, 0, W, H); ctx.fillStyle = c;
