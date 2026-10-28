@@ -65,6 +65,8 @@
           <div class="mstat mstat--top"><span>Top speakers</span><div class="topsp">${ms.top.map((x) => `<a href="#/speaker/${x.s.slug}" title="${esc(x.s.name)}: ${x.n} episodes">${ui().avatar(x.s.name, 34)}<small>${esc(x.s.name.split(" ").pop())} · ${x.n}</small></a>`).join("")}</div></div>
         </div>
       </section>
+      ${topSpeakersStrip()}
+      ${topicCloud()}
       <section class="panel panel--flat"><div class="panel__hd"><h2>Release calendar</h2><a class="shelf__more" href="#/months">Month by month ${ui().ICON.chev}</a></div>${A.charts.releaseHeatmap({ month: L().PREFS.month !== "all" ? L().PREFS.month : null })}</section>
       ${ui().shelf("Continue watching", cont, { icon: "⏯️", more: "#/history" })}
       ${fol.length ? ui().shelf("New from people you follow", fol, { icon: "⭐", sub: `${L().FOLLOWS.size} followed` }) : `<section class="nudge"><p>${ui().ICON.star}<span><b>Follow researchers</b> to get a "New from people you follow" row and better picks.</span></p><a class="btn btn--sm" href="#/speakers">Pick researchers</a></section>`}
@@ -397,6 +399,29 @@
     copyLinkAt(id, t);
   }
 
+
+  /* Home: "Top speakers this month" (the newest month in the library, by episodes then hours) and "Most-covered topics" */
+  function topSpeakersStrip() {
+    const mid = (STATE.all.map((e) => e.month).filter(Boolean).sort().pop()) || null; if (!mid) return "";
+    const m = new Map();
+    STATE.all.filter((e) => e.month === mid).forEach((e) => e.stars.forEach((p) => { const s = STATE.speakers.get(p.k); if (!s || s.isHost) return; const x = m.get(p.k) || { s, n: 0, sec: 0 }; x.n++; x.sec += e.dur || 0; m.set(p.k, x); }));
+    const top = Array.from(m.values()).sort((a, b) => b.n - a.n || b.sec - a.sec).slice(0, 12);
+    if (top.length < 3) return "";
+    const ml = (MONTH_LIST.find((x) => x.id === mid) || { long: "this month" }).long;
+    return `<section class="shelf tsp" aria-labelledby="tspH"><div class="shelf__hd"><div><h2 id="tspH"><span class="shelf__ic">🏅</span>Top speakers this month</h2><p class="shelf__sub">Most episodes in ${esc(ml)}</p></div><span class="grow"></span><a class="shelf__more" href="#/speakers">All speakers ${ui().ICON.chev}</a></div>
+      <ol class="tsp__row">${top.map((x, i) => `<li><a class="tsp__it" href="#/speaker/${esc(x.s.slug)}" title="${esc(x.s.name)}: ${x.n} episode${x.n === 1 ? "" : "s"} in ${esc(ml)}"><span class="tsp__rk">${i + 1}</span>${ui().avatar(x.s.name, 44)}<span class="tsp__tx"><b>${esc(x.s.name)}</b><small>${x.n} ep · ${hoursStr(x.sec)}</small></span></a></li>`).join("")}</ol></section>`;
+  }
+  function topicCloud() {
+    const m = new Map();
+    STATE.all.forEach((e) => (e.tags || []).forEach((t) => { const x = m.get(t) || { t, n: 0, sec: 0 }; x.n++; x.sec += e.dur || 0; m.set(t, x); }));
+    const list = Array.from(m.values()).sort((a, b) => b.n - a.n).slice(0, 28);
+    if (list.length < 4) return "";
+    const max = list[0].n, min = list[list.length - 1].n;
+    const shuffled = list.slice().sort((a, b) => a.t.localeCompare(b.t));
+    return `<section class="panel panel--flat tcloud" aria-labelledby="tcH"><div class="panel__hd"><h2 id="tcH">Most-covered topics</h2><span class="muted">${list.length} topics · bigger = more episodes</span></div>
+      <div class="tcloud__in">${shuffled.map((x) => { const k = max === min ? 1 : (x.n - min) / (max - min); return `<a class="tcloud__t" href="#/browse?tag=${encodeURIComponent(x.t)}" style="--k:${k.toFixed(2)}" title="${esc(x.t)}: ${x.n} episodes, ${hoursStr(x.sec)}">${esc(x.t)}<small>${x.n}</small></a>`; }).join("")}</div></section>`;
+  }
+
   /* ================================================================ HISTORY */
   let histDay = null;
   function renderHistory() {
@@ -475,18 +500,20 @@
       <h2 class="subh">Badges <small>${earned}/${h().BADGES.length}</small></h2>
       <div class="badges">${h().BADGES.map((b) => { const [c, t] = b.prog(); const got = !!L().EARNED[b.id]; return `<div class="badge ${got ? "is-got" : ""}"><span class="badge__ic">${b.icon}</span><b>${esc(b.name)}</b><small>${esc(b.desc)}</small><div class="badge__bar"><i style="width:${Math.min(100, (100 * c) / t).toFixed(0)}%"></i></div><em>${got ? "Earned " + esc(A.fmtStamp(L().EARNED[b.id])) : `${Math.floor(c)}/${t}`}</em></div>`; }).join("")}</div>
       ${ui().shelf("Favourites", fav, { icon: "❤️" })}
-      <section class="panel panel--flat"><div class="panel__hd"><h2>Settings</h2></div>
+      <section class="panel panel--flat" id="settings"><div class="panel__hd"><h2>Settings</h2></div>
         <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (10 s countdown)</label>
         <label class="switch"><input type="checkbox" id="sCeleb" ${L().SETTINGS.celebrations !== false ? "checked" : ""}><span></span>Celebrations (confetti and particle bursts on milestones)</label>
         <div class="seg seg--sm" role="group" aria-label="Theme">${["dark", "light", "system"].map((t) => `<button data-theme-set="${t}" aria-pressed="${theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
         <div class="settings__themes" id="themes"><p class="muted">Theme and accent colour</p>${A.themes ? A.themes.pickerHTML() : A.feat.accentPicker()}</div>
+        <div class="settings__bg" id="backgrounds"><p class="muted">Background</p>${A.bg ? A.bg.pickerHTML() : ""}</div>
         <div><p class="muted">Daily goal</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></div>
         <a class="btn btn--sm" href="#/wrapped">Monthly recap</a><a class="btn btn--sm" href="#/watched">I've watched these</a>
         <a class="btn btn--sm" href="#/history">Backup & restore</a></div></section>`;
     $("#pName").onchange = (ev) => { L().PREFS.name = ev.target.value.trim().slice(0, 40); h().savePrefs(); };
     $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); };
     $("#sCeleb").onchange = (ev) => { L().SETTINGS.celebrations = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); if (ev.target.checked && A.fx) A.fx.celebrate("pick", ev.target.closest("label"), true); };
-    v.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => { A.app.setTheme(b.dataset.themeSet, true); renderProfile(); }));
+    v.querySelectorAll("[data-theme-set]").forEach((b) => (b.onclick = () => { const y = window.scrollY; A.app.setTheme(b.dataset.themeSet, true); renderProfile(); window.scrollTo(0, y); }));
+    if (A.bg) A.bg.paintCustomThumb();
   }
 
   /* ================================================================ NOTES */
@@ -552,6 +579,7 @@
         <h2>Roadmap</h2>
         <ul><li>More daily additions as new verified full episodes appear.</li><li>Transcript search inside episodes, with jump-to-moment.</li><li>Shareable learning paths and playlists by link.</li><li>Optional sync of your library between devices via a file you control.</li></ul>
         <h2>Credits</h2>
+        <p>Background photos and videos (Settings → Background) are stored in this repository and used under their free licences (<a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a>, <a href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">Pexels License</a>):</p>${A.bg ? A.bg.creditsHTML() : ""}
         <p>Built by <b>Aniruddha Adak</b>. Episode metadata and video from YouTube and the original channels; all rights remain with their creators. Source and README: <a href="https://github.com/lo3elyon/ASI/tree/main/ai-safety-full-episodes" target="_blank" rel="noopener noreferrer">github.com/lo3elyon/ASI</a>.</p>
       </div>`;
   }
