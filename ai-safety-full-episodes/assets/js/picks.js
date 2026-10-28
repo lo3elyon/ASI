@@ -25,7 +25,17 @@
     S.guide = Object.assign(blank().guide, S.guide || {});
     return S;
   }
-  function save() { A.store.set(KEY, S); }
+  function save() { A.store.set(KEY, S); refreshLog(); }
+  /* the Picks log follows every mark / discard / replace / generate right away (it used to show the snapshot from page load) */
+  let logRaf = 0;
+  function refreshLog() {
+    if (logRaf || typeof document === "undefined") return;
+    logRaf = (window.requestAnimationFrame || setTimeout)(() => {
+      logRaf = 0; const old = document.querySelector("details.pklog"); if (!old) return;
+      const t = document.createElement("template"); t.innerHTML = logHTML().trim(); const nu = t.content.firstElementChild; if (!nu) return;
+      nu.open = old.open; if (nu.outerHTML !== old.outerHTML) old.replaceWith(nu);
+    });
+  }
   const today = () => dayKey(Date.now());
   function prevDayKey(k) { const keys = Object.keys(load().days).filter((d) => d < k).sort(); return keys.pop() || null; }
 
