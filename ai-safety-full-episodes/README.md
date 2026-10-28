@@ -78,6 +78,7 @@ flowchart LR
 - On phones and tablets the same panel is a bottom sheet that docks straight under the video (drag its grip).
 - Full screen keeps its side panel with the same divider behaviour, now with a › collapse handle too.
 - Exactly one chapters list and one filter box are on screen in every mode combination (checked by the real-browser test below).
+- Small copy fixes found in the sweep: the daily-goal card counts the minutes left from the same rounded numbers it shows ("6 / 30 min · 24 minutes to go"), and History says "1 session".
 
 **Tests:** `smoke3.js` 414/414 (the old floating-sheet checks now assert the split instead, plus a CSS check that the opaque paused band is gone), `smoke_v9ui.py` gained a block run at 390 / 768 / 1024 / 1366 / 1920 px in real Firefox: a luminance check of the top of the picture vs the middle in paused / playing / hover for mini, default, Theater, Read and full screen; a count of visible chapter lists and filter boxes after pressing Chapters in default, Theater, Read, Theater + Read, Focus, Focus + Read, Theater + Focus, mini and collapsed; divider drag, touch drag, arrow keys, remembered width, double-click reset, collapse / restore; full screen collapse handle.
 
