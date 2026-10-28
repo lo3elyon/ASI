@@ -237,7 +237,7 @@
     const sec = h().todaySec(), goal = h().goalSec(), st = h().streaks();
     const fr = clamp(sec / goal, 0, 1);
     return `<section class="goalcard"><div class="ringbig" style="--p:${(fr * 100).toFixed(1)}"><b>${Math.round(sec / 60)}</b><small>/ ${Math.round(goal / 60)} min</small></div>
-      <div><p class="eyebrow">Today's goal</p><h2>${fr >= 1 ? "Goal reached. Nice work." : `${Math.max(0, Math.ceil((goal - sec) / 60))} minutes to go`}</h2><p class="muted"><span class="flame ${st.cur ? "is-on" : ""}">${ui().ICON.flame}${st.cur}</span> day streak · best ${st.best} · <a href="#/wrapped">Your monthly recap</a> · <a href="#/watched">Tick off what you already saw</a></p></div>
+      <div><p class="eyebrow">Today's goal</p><h2>${fr >= 1 ? "Goal reached. Nice work." : `${((m) => `${m} minute${m === 1 ? "" : "s"} to go`)(Math.max(1, Math.round(goal / 60) - Math.round(sec / 60)))}`}</h2><p class="muted"><span class="flame ${st.cur ? "is-on" : ""}">${ui().ICON.flame}${st.cur}</span> day streak · best ${st.best} · <a href="#/wrapped">Your monthly recap</a> · <a href="#/watched">Tick off what you already saw</a></p></div>
       <div class="goalcard__set" role="group" aria-label="Daily goal">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(goal / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></section>`;
   }
   document.addEventListener("click", (ev) => {
@@ -427,7 +427,7 @@
     const played = all.filter((x) => x.s.src !== "manual").reduce((a, x) => a + x.s.w, 0);
     const manualN = h().manualCount();
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1>
-      <p class="lede">${fmtHM(played)} really played across ${all.filter((x) => x.s.src !== "manual").length} sessions · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
+      <p class="lede">${fmtHM(played)} really played across ${((n) => `${n} session${n === 1 ? "" : "s"}`)(all.filter((x) => x.s.src !== "manual").length)} · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
       <div class="row-gap"><a class="btn btn--sm" href="#/recent">Recently watched</a><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <div class="kpis"><div class="kpi"><b>${hoursStr(played)}</b><span>played</span></div><div class="kpi"><b>${manualN}</b><span>marked watched</span></div><div class="kpi"><b>${h().doneCount()}</b><span>completed</span></div><div class="kpi"><b>${h().streaks().cur}</b><span>day streak</span></div><div class="kpi"><b>${all.length}</b><span>sessions</span></div><div class="kpi"><b>${new Set(all.map((x) => x.e.id)).size}</b><span>episodes</span></div></div>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${HF.day ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(HF.day))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: HF.day })}</section>
