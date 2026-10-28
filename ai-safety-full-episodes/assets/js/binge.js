@@ -20,7 +20,7 @@
   function lineup(cur, n) {
     const curId = cur ? cur.id : null, seen = new Set([curId]), out = [];
     const add = (id, src, keepDone) => { if (!id || seen.has(id) || B.skip.has(id) || !STATE.byId.has(id)) return; if (!keepDone && h().stateOf(id) === "done") return; seen.add(id); out.push({ id, src }); };
-    (L().QUEUE || []).forEach((id) => add(id, "Queue", true));
+    (L().QUEUE || []).forEach((id) => add(id, "Queue"));
     pickIds().forEach((id) => add(id, "Today's picks"));
     filterIds().forEach((id) => add(id, "Your filter"));
     if (cur) A.recs.upNext(cur, 20).forEach((x) => add(x.e.id, "Up next"));
