@@ -93,7 +93,7 @@
   function upNext(cur, n) {
     const L = h().L;
     const out = [];
-    L.QUEUE.forEach((id) => { const e = STATE.byId.get(id); if (e && (!cur || e.id !== cur.id)) out.push({ e, why: "From your queue", q: true }); });
+    L.QUEUE.forEach((id) => { const e = STATE.byId.get(id); if (e && (!cur || e.id !== cur.id) && h().stateOf(e.id) !== "done") out.push({ e, why: "From your queue", q: true }); });
     if (cur) {
       const P = profile();
       const sim = STATE.all.filter((e) => e.id !== cur.id && h().stateOf(e.id) !== "done" && !L.QUEUE.includes(e.id))
