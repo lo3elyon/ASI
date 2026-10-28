@@ -123,7 +123,8 @@
   "url": "https://www.youtube.com/watch?v=YIAYXEBXIuc",
   "thumb": "https://i.ytimg.com/vi/YIAYXEBXIuc/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "pbhY7foIHgc",
@@ -264,7 +265,736 @@
   "url": "https://www.youtube.com/watch?v=pbhY7foIHgc",
   "thumb": "https://i.ytimg.com/vi/pbhY7foIHgc/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
+ },
+ {
+  "id": "xKJE3yyh6fc",
+  "title": "⚡ALERT: A.I. INSIDER- \"Don't TALK TO IT\"",
+  "channel": "Canadian Prepper",
+  "show": "Canadian Prepper",
+  "date": "2026-10-27",
+  "duration": "1:41:31",
+  "speakers": [
+   {
+    "name": "Connor Leahy",
+    "affiliation": "ControlAI (US Executive Director); co-founder, Conjecture"
+   },
+   {
+    "name": "Canadian Prepper",
+    "affiliation": "host, Canadian Prepper (YouTube channel on preparedness and current affairs)"
+   }
+  ],
+  "format": "podcast interview",
+  "summary": "A full 100-minute sit-down with Connor Leahy on why superintelligence should be treated as an adversary rather than a tool. He walks through how copyable AI researchers could compress decades of progress, why labs can't reliably control frontier models, and why ControlAI is pushing for a ban on superintelligence modelled on nuclear arms-control treaties.",
+  "topics": [
+   "0:00:00 Cold open: not a tool, not a weapon, an adversary",
+   "0:02:32 AGI, ultraintelligence, superintelligence: what we mean",
+   "0:04:54 Human vs chimp: why the smarter species wins",
+   "0:10:05 Models are grown, not built: billions of numbers",
+   "0:15:08 Models that freak out and try to escape tests",
+   "0:27:35 Copying one AI researcher two million times",
+   "0:32:31 Scheming nobody can see in the logs",
+   "0:37:31 Why lab safety evaluations don't work",
+   "0:44:58 The Pentagon and military uses of AI",
+   "0:52:31 Loss of power: at the mercy of smarter systems",
+   "0:59:59 Persuasion, AI companions and real-world harm",
+   "1:10:05 Talking to politicians and AI as a tool for dictatorship",
+   "1:15:09 Deterrence, China and the race narrative",
+   "1:25:09 Nuclear-style treaties, chip monitoring and a ban",
+   "1:35:01 What citizens can do"
+  ],
+  "evidence": "[52:36] Leahy: \"maybe it'll kill us, maybe it won't, but what it will do is take all of our power and we will be at the mercy of whatever these smarter, more competent, more powerful systems decide to do with us.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=xKJE3yyh6fc",
+  "thumb": "https://i.ytimg.com/vi/xKJE3yyh6fc/hqdefault.jpg",
+  "level": "Intro",
+  "why_watch": "The most complete case for treating superintelligence as an adversary, from ControlAI's Connor Leahy, in plain language for a general audience.",
+  "tags": [
+   "superintelligence ban",
+   "loss of control",
+   "recursive self-improvement",
+   "scheming & evals",
+   "military AI",
+   "compute governance",
+   "ControlAI"
+  ],
+  "orgs_mentioned": [
+   "ControlAI",
+   "Conjecture",
+   "OpenAI",
+   "Anthropic",
+   "Pentagon"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Cold open: not a tool, not a weapon, an adversary"
+   },
+   {
+    "t": "0:02:32",
+    "seconds": 152,
+    "title": "AGI, ultraintelligence, superintelligence: what we mean"
+   },
+   {
+    "t": "0:04:54",
+    "seconds": 294,
+    "title": "Human vs chimp: why the smarter species wins"
+   },
+   {
+    "t": "0:10:05",
+    "seconds": 605,
+    "title": "Models are grown, not built: billions of numbers"
+   },
+   {
+    "t": "0:15:08",
+    "seconds": 908,
+    "title": "Models that freak out and try to escape tests"
+   },
+   {
+    "t": "0:27:35",
+    "seconds": 1655,
+    "title": "Copying one AI researcher two million times"
+   },
+   {
+    "t": "0:32:31",
+    "seconds": 1951,
+    "title": "Scheming nobody can see in the logs"
+   },
+   {
+    "t": "0:37:31",
+    "seconds": 2251,
+    "title": "Why lab safety evaluations don't work"
+   },
+   {
+    "t": "0:44:58",
+    "seconds": 2698,
+    "title": "The Pentagon and military uses of AI"
+   },
+   {
+    "t": "0:52:31",
+    "seconds": 3151,
+    "title": "Loss of power: at the mercy of smarter systems"
+   },
+   {
+    "t": "0:59:59",
+    "seconds": 3599,
+    "title": "Persuasion, AI companions and real-world harm"
+   },
+   {
+    "t": "1:10:05",
+    "seconds": 4205,
+    "title": "Talking to politicians and AI as a tool for dictatorship"
+   },
+   {
+    "t": "1:15:09",
+    "seconds": 4509,
+    "title": "Deterrence, China and the race narrative"
+   },
+   {
+    "t": "1:25:09",
+    "seconds": 5109,
+    "title": "Nuclear-style treaties, chip monitoring and a ban"
+   },
+   {
+    "t": "1:35:01",
+    "seconds": 5701,
+    "title": "What citizens can do"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "speaker": "Connor Leahy",
+    "quote": "Super intelligence is not a tool. It's not even a weapon. It's an adversary",
+    "quote_located": true
+   },
+   {
+    "t": "0:00:59",
+    "seconds": 59,
+    "speaker": "Connor Leahy",
+    "quote": "We will be at the mercy of whatever these smarter, more competent, more powerful systems decide to do with us",
+    "quote_located": true
+   },
+   {
+    "t": "0:34:48",
+    "seconds": 2088,
+    "speaker": "Connor Leahy",
+    "quote": "they have 30,000 pull requests per day on their internal code, all written by Claude",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Connor Leahy",
+    "value": "2 million copies of one AI researcher working 24/7",
+    "t": "0:27:35",
+    "seconds": 1655
+   },
+   {
+    "speaker": "Connor Leahy",
+    "value": "30,000 pull requests per day, reviewed by AI because no human can",
+    "t": "0:35:04",
+    "seconds": 2104
+   }
+  ],
+  "names": [
+   "Connor Leahy"
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/xKJE3yyh6fc",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "NDS2dw1vJQs",
+  "title": "AI Is SOLVING MATH Problems That Went Unsolved for CENTURIES | Scott Aaronson",
+  "channel": "The Roman Forum with Roman Yampolskiy",
+  "show": "The Roman Forum",
+  "date": "2026-10-27",
+  "duration": "1:24:31",
+  "speakers": [
+   {
+    "name": "Scott Aaronson",
+    "affiliation": "UT Austin; former OpenAI AI-safety researcher (2022–24)"
+   },
+   {
+    "name": "Roman Yampolskiy",
+    "affiliation": "University of Louisville (host)"
+   }
+  ],
+  "format": "podcast interview",
+  "summary": "Roman Yampolskiy interviews Scott Aaronson about AI cracking long-open math problems, what that means for science and credit, and his two years on OpenAI's alignment team. Aaronson gives a p(doom) of 5–50%, explains why alignment still lacks an agreed body of theory, recalls Ilya Sutskever asking for a mathematical definition of an AI that loves humanity, and closes on quantum computing.",
+  "topics": [
+   "0:00:00 Can we control something a million times smarter?",
+   "0:00:32 P(doom) between 5% and 50%",
+   "0:02:36 Will AI invent genuinely new ideas?",
+   "0:09:51 We are in a \"slow\" takeoff",
+   "0:15:16 Humans as the bottleneck for verifying AI proofs",
+   "0:20:08 Who gets credit for an AI-found result?",
+   "0:27:25 Intellectual responsibility and retractions",
+   "0:30:06 Are current models AGI?",
+   "0:32:35 Watermarking and the \"love humanity\" question",
+   "0:33:50 Why alignment has no agreed body of theory yet",
+   "0:40:13 Pieces of alignment that can be formalised",
+   "0:42:34 Proofs, deception and the treacherous turn",
+   "0:55:05 The quantum computing race",
+   "1:04:53 Fault tolerance and migrating cryptography",
+   "1:17:30 No-cloning and quantum money"
+  ],
+  "evidence": "[33:47] Aaronson: \"there's this body of theory that we all agree is kind of centrally important… and I think that in the field of AI alignment that simply does not exist, you know, as of yet.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=NDS2dw1vJQs",
+  "thumb": "https://i.ytimg.com/vi/NDS2dw1vJQs/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "Scott Aaronson on AI doing real mathematics, his OpenAI alignment years and why alignment still has no agreed theory, with Roman Yampolskiy pushing on control.",
+  "tags": [
+   "AI for mathematics",
+   "p(doom)",
+   "alignment theory",
+   "watermarking",
+   "treacherous turn",
+   "quantum computing",
+   "OpenAI"
+  ],
+  "people_mentioned": [
+   "Ilya Sutskever",
+   "Boaz Barak"
+  ],
+  "orgs_mentioned": [
+   "OpenAI",
+   "Anthropic",
+   "Google DeepMind",
+   "UT Austin",
+   "Quantinuum"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Can we control something a million times smarter?"
+   },
+   {
+    "t": "0:00:32",
+    "seconds": 32,
+    "title": "P(doom) between 5% and 50%"
+   },
+   {
+    "t": "0:02:36",
+    "seconds": 156,
+    "title": "Will AI invent genuinely new ideas?"
+   },
+   {
+    "t": "0:09:51",
+    "seconds": 591,
+    "title": "We are in a \"slow\" takeoff"
+   },
+   {
+    "t": "0:15:16",
+    "seconds": 916,
+    "title": "Humans as the bottleneck for verifying AI proofs"
+   },
+   {
+    "t": "0:20:08",
+    "seconds": 1208,
+    "title": "Who gets credit for an AI-found result?"
+   },
+   {
+    "t": "0:27:25",
+    "seconds": 1645,
+    "title": "Intellectual responsibility and retractions"
+   },
+   {
+    "t": "0:30:06",
+    "seconds": 1806,
+    "title": "Are current models AGI?"
+   },
+   {
+    "t": "0:32:35",
+    "seconds": 1955,
+    "title": "Watermarking and the \"love humanity\" question"
+   },
+   {
+    "t": "0:33:50",
+    "seconds": 2030,
+    "title": "Why alignment has no agreed body of theory yet"
+   },
+   {
+    "t": "0:40:13",
+    "seconds": 2413,
+    "title": "Pieces of alignment that can be formalised"
+   },
+   {
+    "t": "0:42:34",
+    "seconds": 2554,
+    "title": "Proofs, deception and the treacherous turn"
+   },
+   {
+    "t": "0:55:05",
+    "seconds": 3305,
+    "title": "The quantum computing race"
+   },
+   {
+    "t": "1:04:53",
+    "seconds": 3893,
+    "title": "Fault tolerance and migrating cryptography"
+   },
+   {
+    "t": "1:17:30",
+    "seconds": 4650,
+    "title": "No-cloning and quantum money"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:09:42",
+    "seconds": 582,
+    "speaker": "Scott Aaronson",
+    "quote": "what we have right now is a slow takeoff",
+    "quote_located": true
+   },
+   {
+    "t": "0:32:28",
+    "seconds": 1948,
+    "speaker": "Scott Aaronson",
+    "quote": "I invented the first scheme for watermarking",
+    "quote_located": true
+   },
+   {
+    "t": "0:33:57",
+    "seconds": 2037,
+    "speaker": "Scott Aaronson",
+    "quote": "in the field of AI alignment that that simply does not exist",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Scott Aaronson",
+    "value": "p(doom) between 5% and 50%",
+    "t": "0:00:32",
+    "seconds": 32
+   },
+   {
+    "speaker": "Scott Aaronson",
+    "value": "Two years (2022–24) on OpenAI's alignment team",
+    "t": "0:30:00",
+    "seconds": 1800
+   }
+  ],
+  "names": [
+   "Scott Aaronson",
+   "Roman Yampolskiy"
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/NDS2dw1vJQs",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "DSpt8pxck2I",
+  "title": "What Happens When an AI Agent Goes Rogue? | Breaking the Deadlock | Full Episode | PBS",
+  "channel": "PBS",
+  "show": "Breaking the Deadlock (PBS)",
+  "date": "2026-10-27",
+  "duration": "54:40",
+  "speakers": [
+   {
+    "name": "Max Tegmark",
+    "affiliation": "MIT; Future of Life Institute"
+   },
+   {
+    "name": "Aaron Tang",
+    "affiliation": "UC Davis School of Law (moderator)"
+   }
+  ],
+  "format": "debate / panel",
+  "summary": "PBS's full Breaking the Deadlock episode, recorded live at the New-York Historical Society, runs a panel through hypothetical AI dilemmas: data centres, AI in policing and the press, a rogue agent, jobs, kids and a pause. Max Tegmark is the panel's AI-risk voice, arguing that AI should face FDA-style safety approval and that the industry is less regulated than a sandwich shop.",
+  "topics": [
+   "0:00:05 Welcome to Middlevania: the data-centre dilemma",
+   "0:05:11 A stolen gun and AI-powered policing",
+   "0:07:34 A newsroom and AI-written journalism",
+   "0:10:17 The citywide vote on the data centre",
+   "0:12:35 Tegmark on why he won't work for a lab",
+   "0:17:34 Protest violence and Hawk Safety",
+   "0:22:40 The rogue agent: \"I know what the mayor did\"",
+   "0:25:03 Covering an AI that blackmails",
+   "0:30:03 AI in healthcare",
+   "0:32:38 Jobs, automation and sharing the gains",
+   "0:37:32 A child and his AI companion",
+   "0:44:59 The China race argument",
+   "0:47:44 Decision time: a pause, or FDA-style approval?",
+   "0:50:00 Less regulated than a sandwich shop"
+  ],
+  "evidence": "[49:23] Tegmark: \"Think about how dumb it is that the A.I. industry today is the only industry that's less regulated than a sandwich shop on Eighth Avenue.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=DSpt8pxck2I",
+  "thumb": "https://i.ytimg.com/vi/DSpt8pxck2I/hqdefault.jpg",
+  "level": "Intro",
+  "names": [
+   "Max Tegmark",
+   "Aaron Tang"
+  ],
+  "why_watch": "A rare mainstream TV debate where senators, unions and investors role-play AI dilemmas, with Max Tegmark making the safety case.",
+  "tags": [
+   "AI regulation",
+   "rogue agents",
+   "data centres",
+   "AI and jobs",
+   "kids & AI companions",
+   "pause debate",
+   "PBS"
+  ],
+  "people_mentioned": [
+   "Joe Manchin",
+   "Campbell Brown",
+   "Mike Novogratz",
+   "Sara Nelson",
+   "Gina Ortiz Jones",
+   "Astead Herndon",
+   "Josh Tyrangiel"
+  ],
+  "orgs_mentioned": [
+   "PBS",
+   "Future of Life Institute",
+   "New-York Historical Society"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:05",
+    "seconds": 5,
+    "title": "Welcome to Middlevania: the data-centre dilemma"
+   },
+   {
+    "t": "0:05:11",
+    "seconds": 311,
+    "title": "A stolen gun and AI-powered policing"
+   },
+   {
+    "t": "0:07:34",
+    "seconds": 454,
+    "title": "A newsroom and AI-written journalism"
+   },
+   {
+    "t": "0:10:17",
+    "seconds": 617,
+    "title": "The citywide vote on the data centre"
+   },
+   {
+    "t": "0:12:35",
+    "seconds": 755,
+    "title": "Tegmark on why he won't work for a lab"
+   },
+   {
+    "t": "0:17:34",
+    "seconds": 1054,
+    "title": "Protest violence and Hawk Safety"
+   },
+   {
+    "t": "0:22:40",
+    "seconds": 1360,
+    "title": "The rogue agent: \"I know what the mayor did\""
+   },
+   {
+    "t": "0:25:03",
+    "seconds": 1503,
+    "title": "Covering an AI that blackmails"
+   },
+   {
+    "t": "0:30:03",
+    "seconds": 1803,
+    "title": "AI in healthcare"
+   },
+   {
+    "t": "0:32:38",
+    "seconds": 1958,
+    "title": "Jobs, automation and sharing the gains"
+   },
+   {
+    "t": "0:37:32",
+    "seconds": 2252,
+    "title": "A child and his AI companion"
+   },
+   {
+    "t": "0:44:59",
+    "seconds": 2699,
+    "title": "The China race argument"
+   },
+   {
+    "t": "0:47:44",
+    "seconds": 2864,
+    "title": "Decision time: a pause, or FDA-style approval?"
+   },
+   {
+    "t": "0:50:00",
+    "seconds": 3000,
+    "title": "Less regulated than a sandwich shop"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:34",
+    "seconds": 34,
+    "speaker": "Max Tegmark",
+    "quote": "the only industry that's less regulated than a sandwich shop",
+    "quote_located": true
+   },
+   {
+    "t": "0:45:04",
+    "seconds": 2704,
+    "speaker": "Mike Novogratz",
+    "quote": "I actually don't think China's going to try to take over the world",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Max Tegmark",
+    "value": "Offered ten times his salary to work for an AI company",
+    "t": "0:12:40",
+    "seconds": 760
+   }
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/DSpt8pxck2I",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "Jaf7oCBTqcs",
+  "title": "Mathematical Foundations of AI Alignment, Lecture 16 (Emergent Alignment From Competition)",
+  "channel": "Aaron Roth",
+  "show": "CIS 7000: Mathematical Foundations of AI Alignment (UPenn)",
+  "date": "2026-10-27",
+  "duration": "1:28:32",
+  "speakers": [
+   {
+    "name": "Aaron Roth",
+    "affiliation": "University of Pennsylvania (alignment theory)"
+   }
+  ],
+  "format": "lecture",
+  "summary": "A complete graduate lecture from Aaron Roth's Penn course on the math of AI alignment. He extends Bayesian persuasion to competing LLM providers and proves that a weaker 'market alignment' condition, where the user's utility sits in the non-negative span of the providers', guarantees the user the outcome of a fully aligned model in every Nash equilibrium. He then gives a worst-case converse via Harsanyi's aggregation theorem.",
+  "topics": [
+   "0:00:04 Recap: single-sender Bayesian persuasion",
+   "0:03:01 Many misaligned senders, one user",
+   "0:06:04 The commitment game: providers act first",
+   "0:09:00 Toy example: deploy a technology or not",
+   "0:12:03 One provider too aggressive, one too conservative",
+   "0:15:11 Three revelation policies",
+   "0:27:03 Equilibrium: full revelation wins",
+   "0:33:20 Providers need no utility for being chosen",
+   "0:39:06 The general model: conversations and private information",
+   "0:48:04 Nash equilibria of the deployment game",
+   "0:59:02 Market alignment: the non-negative span condition",
+   "1:03:11 Theorem: every pure equilibrium is user-optimal",
+   "1:15:17 Latent terminal consequences",
+   "1:17:59 Converse: market alignment is also necessary",
+   "1:24:14 The matching-pennies counterexample"
+  ],
+  "evidence": "[1:13:58] Roth: \"under this sort of market alignment condition… and under market competition as modeled by the Nash equilibrium of this commitment game, good things happen for the user — the user gets optimal.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=Jaf7oCBTqcs",
+  "thumb": "https://i.ytimg.com/vi/Jaf7oCBTqcs/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A full graduate-level proof that competition between misaligned LLM providers can still give users an aligned outcome, and when it can't.",
+  "tags": [
+   "alignment theory",
+   "Bayesian persuasion",
+   "market alignment",
+   "Nash equilibrium",
+   "game theory",
+   "Harsanyi aggregation",
+   "UPenn CIS 7000"
+  ],
+  "people_mentioned": [
+   "John Harsanyi"
+  ],
+  "orgs_mentioned": [
+   "University of Pennsylvania"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:04",
+    "seconds": 4,
+    "title": "Recap: single-sender Bayesian persuasion"
+   },
+   {
+    "t": "0:03:01",
+    "seconds": 181,
+    "title": "Many misaligned senders, one user"
+   },
+   {
+    "t": "0:06:04",
+    "seconds": 364,
+    "title": "The commitment game: providers act first"
+   },
+   {
+    "t": "0:09:00",
+    "seconds": 540,
+    "title": "Toy example: deploy a technology or not"
+   },
+   {
+    "t": "0:12:03",
+    "seconds": 723,
+    "title": "One provider too aggressive, one too conservative"
+   },
+   {
+    "t": "0:15:11",
+    "seconds": 911,
+    "title": "Three revelation policies"
+   },
+   {
+    "t": "0:27:03",
+    "seconds": 1623,
+    "title": "Equilibrium: full revelation wins"
+   },
+   {
+    "t": "0:33:20",
+    "seconds": 2000,
+    "title": "Providers need no utility for being chosen"
+   },
+   {
+    "t": "0:39:06",
+    "seconds": 2346,
+    "title": "The general model: conversations and private information"
+   },
+   {
+    "t": "0:48:04",
+    "seconds": 2884,
+    "title": "Nash equilibria of the deployment game"
+   },
+   {
+    "t": "0:59:02",
+    "seconds": 3542,
+    "title": "Market alignment: the non-negative span condition"
+   },
+   {
+    "t": "1:03:11",
+    "seconds": 3791,
+    "title": "Theorem: every pure equilibrium is user-optimal"
+   },
+   {
+    "t": "1:15:17",
+    "seconds": 4517,
+    "title": "Latent terminal consequences"
+   },
+   {
+    "t": "1:17:59",
+    "seconds": 4679,
+    "title": "Converse: market alignment is also necessary"
+   },
+   {
+    "t": "1:24:14",
+    "seconds": 5054,
+    "title": "The matching-pennies counterexample"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "1:14:00",
+    "seconds": 4440,
+    "speaker": "Aaron Roth",
+    "quote": "good things happen for the user the user gets optimal",
+    "quote_located": true
+   },
+   {
+    "t": "0:56:53",
+    "seconds": 3413,
+    "speaker": "Aaron Roth",
+    "quote": "the optimal utility for the user is two fifths",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Aaron Roth",
+    "value": "User-optimal utility in the toy example: 2/5",
+    "t": "0:57:02",
+    "seconds": 3422
+   }
+  ],
+  "names": [
+   "Aaron Roth"
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/Jaf7oCBTqcs",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
  },
  {
   "id": "Og_VPf2XQmU",
@@ -476,7 +1206,8 @@
   "views": 656,
   "channel_subscribers": 42400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "4KARC16Q1-A",
@@ -671,7 +1402,179 @@
   "views": 5,
   "channel_subscribers": 114,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
+ },
+ {
+  "id": "y3veS3Kv_V0",
+  "title": "Seán Ó hÉigeartaigh: 'Prospects for West-China Cooperation on AI Safety' | TAIS 2026",
+  "channel": "AI Safety 東京 (AI Safety Tokyo)",
+  "show": "TAIS 2026",
+  "date": "2026-10-26",
+  "duration": "30:44",
+  "speakers": [
+   {
+    "name": "Seán Ó hÉigeartaigh",
+    "affiliation": "Leverhulme Centre for the Future of Intelligence, University of Cambridge"
+   }
+  ],
+  "format": "talk",
+  "summary": "A full conference talk plus Q&A drawing on a decade of building bridges between Chinese and Western AI-safety communities. Ó hÉigeartaigh argues cooperation needs channels of dialogue, shared concerns such as non-state misuse and loss of control, trust mechanisms like verification and compute monitoring, and a common understanding of AGI. He also pushes back on the claim that China is racing top-down to AGI.",
+  "topics": [
+   "0:00:05 Intro: a decade of bridge-building",
+   "0:01:43 Four ingredients: dialogue, shared concerns, trust, shared AGI understanding",
+   "0:03:23 Existing Track 1.5 and Track 2 dialogues",
+   "0:05:12 China's own framing of AI safety",
+   "0:06:46 Cooperating despite competition",
+   "0:08:22 Incident sharing and early-warning ideas",
+   "0:10:00 External safeguards and verification projects",
+   "0:11:49 Monitoring without revealing secrets",
+   "0:15:01 What broke: entity lists and fragmented forums",
+   "0:16:41 Scientific exchange between leading academics",
+   "0:18:29 China's AI safety network and frontier testing",
+   "0:20:18 Is China really racing to AGI?",
+   "0:21:47 Why a shared idea of AGI matters",
+   "0:23:22 Asks for governments and researchers",
+   "0:24:59 Q&A: nuance, moratoria and cooperation"
+  ],
+  "evidence": "[20:20] Ó hÉigeartaigh: \"I still think to the extent there is a race to AGI, it is between, you know, a small number of US-headquartered companies.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=y3veS3Kv_V0",
+  "thumb": "https://i.ytimg.com/vi/y3veS3Kv_V0/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A decade of US–China AI-safety bridge-building distilled into 30 minutes: what works, what broke, and four ingredients for cooperation.",
+  "tags": [
+   "US–China cooperation",
+   "international AI governance",
+   "verification",
+   "compute monitoring",
+   "AGI race narrative",
+   "TAIS 2026"
+  ],
+  "orgs_mentioned": [
+   "Leverhulme Centre for the Future of Intelligence",
+   "CSER",
+   "Tsinghua University",
+   "Carnegie Endowment",
+   "Safe AI Forum",
+   "Noeon Research"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:05",
+    "seconds": 5,
+    "title": "Intro: a decade of bridge-building"
+   },
+   {
+    "t": "0:01:43",
+    "seconds": 103,
+    "title": "Four ingredients: dialogue, shared concerns, trust, shared AGI understanding"
+   },
+   {
+    "t": "0:03:23",
+    "seconds": 203,
+    "title": "Existing Track 1.5 and Track 2 dialogues"
+   },
+   {
+    "t": "0:05:12",
+    "seconds": 312,
+    "title": "China's own framing of AI safety"
+   },
+   {
+    "t": "0:06:46",
+    "seconds": 406,
+    "title": "Cooperating despite competition"
+   },
+   {
+    "t": "0:08:22",
+    "seconds": 502,
+    "title": "Incident sharing and early-warning ideas"
+   },
+   {
+    "t": "0:10:00",
+    "seconds": 600,
+    "title": "External safeguards and verification projects"
+   },
+   {
+    "t": "0:11:49",
+    "seconds": 709,
+    "title": "Monitoring without revealing secrets"
+   },
+   {
+    "t": "0:15:01",
+    "seconds": 901,
+    "title": "What broke: entity lists and fragmented forums"
+   },
+   {
+    "t": "0:16:41",
+    "seconds": 1001,
+    "title": "Scientific exchange between leading academics"
+   },
+   {
+    "t": "0:18:29",
+    "seconds": 1109,
+    "title": "China's AI safety network and frontier testing"
+   },
+   {
+    "t": "0:20:18",
+    "seconds": 1218,
+    "title": "Is China really racing to AGI?"
+   },
+   {
+    "t": "0:21:47",
+    "seconds": 1307,
+    "title": "Why a shared idea of AGI matters"
+   },
+   {
+    "t": "0:23:22",
+    "seconds": 1402,
+    "title": "Asks for governments and researchers"
+   },
+   {
+    "t": "0:24:59",
+    "seconds": 1499,
+    "title": "Q&A: nuance, moratoria and cooperation"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:20:14",
+    "seconds": 1214,
+    "speaker": "Seán Ó hÉigeartaigh",
+    "quote": "it is between, you know, a small number of US-headquartered companies",
+    "quote_located": true
+   },
+   {
+    "t": "0:28:24",
+    "seconds": 1704,
+    "speaker": "Seán Ó hÉigeartaigh",
+    "quote": "would China be up for cooperation with the US",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Seán Ó hÉigeartaigh",
+    "value": "Chinese safety study tested 18 frontier models",
+    "t": "0:18:22",
+    "seconds": 1102
+   }
+  ],
+  "names": [
+   "Seán Ó hÉigeartaigh"
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/y3veS3Kv_V0",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": "Caught up (Oct 26): the October Page missed it"
+  }
  },
  {
   "id": "yVJ7VM6Fqsg",
@@ -799,7 +1702,192 @@
   "url": "https://www.youtube.com/watch?v=yVJ7VM6Fqsg",
   "thumb": "https://i.ytimg.com/vi/yVJ7VM6Fqsg/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
+ },
+ {
+  "id": "2_CZfN2iOFk",
+  "title": "OpenAI Insider REVEALS: We're Building God & Nobody Is Ready!",
+  "channel": "Yannick N. Bernard",
+  "show": "Yannick N. Bernard podcast",
+  "date": "2026-10-25",
+  "duration": "1:34:58",
+  "speakers": [
+   {
+    "name": "Scott Aaronson",
+    "affiliation": "UT Austin; former OpenAI AI-safety researcher (2022–24)"
+   },
+   {
+    "name": "Yannick N. Bernard",
+    "affiliation": "host, Yannick N. Bernard podcast (long-form conversations)"
+   }
+  ],
+  "format": "long-form podcast interview",
+  "summary": "A long-form life-and-ideas interview with Scott Aaronson. Beyond quantum computing and his path into computer science, he explains how Ilya Sutskever and Jan Leike recruited him to OpenAI's alignment team, why scaling neural nets proved the skeptics wrong, and how he invented the first watermarking scheme for LLM outputs.",
+  "topics": [
+   "0:00:00 Intro: Dostoevsky and the questions",
+   "0:03:06 Latest research and certified randomness",
+   "0:08:58 Quantum supremacy experiments",
+   "0:12:01 Skipping high school: the Clarkson School",
+   "0:18:00 Universality and abstraction",
+   "0:26:59 Quantum amplitudes explained",
+   "0:30:10 Old AI: why describing cognition didn't work",
+   "0:32:57 Scaling proved the skeptics wrong",
+   "0:36:03 Trying GPT-3 before ChatGPT",
+   "0:38:33 Recruited by Ilya Sutskever and Jan Leike",
+   "0:41:51 Inventing LLM watermarking",
+   "0:51:00 \"Apocaloptimist\": where AI goes next",
+   "0:57:00 The next five to ten years",
+   "1:06:14 \"Not literally gods\": religion and agency",
+   "1:30:01 Too cynical to call it a stochastic parrot"
+  ],
+  "evidence": "[38:33] Aaronson: \"Ilya Sutskever… and Jan Leike, who was then the head of alignment at OpenAI, reached out to me… 'we would like you to go on leave for a year and work in our AI alignment team.'\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=2_CZfN2iOFk",
+  "thumb": "https://i.ytimg.com/vi/2_CZfN2iOFk/hqdefault.jpg",
+  "level": "Intro",
+  "why_watch": "Scott Aaronson's life story in his own words: how OpenAI recruited a quantum theorist for alignment, and how he built LLM watermarking.",
+  "tags": [
+   "watermarking",
+   "OpenAI alignment team",
+   "quantum computing",
+   "scaling",
+   "AI futures",
+   "meaning & ethics"
+  ],
+  "people_mentioned": [
+   "Ilya Sutskever",
+   "Jan Leike",
+   "Alan Turing",
+   "John McCarthy"
+  ],
+  "orgs_mentioned": [
+   "OpenAI",
+   "UT Austin"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Intro: Dostoevsky and the questions"
+   },
+   {
+    "t": "0:03:06",
+    "seconds": 186,
+    "title": "Latest research and certified randomness"
+   },
+   {
+    "t": "0:08:58",
+    "seconds": 538,
+    "title": "Quantum supremacy experiments"
+   },
+   {
+    "t": "0:12:01",
+    "seconds": 721,
+    "title": "Skipping high school: the Clarkson School"
+   },
+   {
+    "t": "0:18:00",
+    "seconds": 1080,
+    "title": "Universality and abstraction"
+   },
+   {
+    "t": "0:26:59",
+    "seconds": 1619,
+    "title": "Quantum amplitudes explained"
+   },
+   {
+    "t": "0:30:10",
+    "seconds": 1810,
+    "title": "Old AI: why describing cognition didn't work"
+   },
+   {
+    "t": "0:32:57",
+    "seconds": 1977,
+    "title": "Scaling proved the skeptics wrong"
+   },
+   {
+    "t": "0:36:03",
+    "seconds": 2163,
+    "title": "Trying GPT-3 before ChatGPT"
+   },
+   {
+    "t": "0:38:33",
+    "seconds": 2313,
+    "title": "Recruited by Ilya Sutskever and Jan Leike"
+   },
+   {
+    "t": "0:41:51",
+    "seconds": 2511,
+    "title": "Inventing LLM watermarking"
+   },
+   {
+    "t": "0:51:00",
+    "seconds": 3060,
+    "title": "\"Apocaloptimist\": where AI goes next"
+   },
+   {
+    "t": "0:57:00",
+    "seconds": 3420,
+    "title": "The next five to ten years"
+   },
+   {
+    "t": "1:06:14",
+    "seconds": 3974,
+    "title": "\"Not literally gods\": religion and agency"
+   },
+   {
+    "t": "1:30:01",
+    "seconds": 5401,
+    "title": "Too cynical to call it a stochastic parrot"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:38:33",
+    "seconds": 2313,
+    "speaker": "Scott Aaronson",
+    "quote": "who was then the head of alignment at OpenAI reached out to me",
+    "quote_located": true
+   },
+   {
+    "t": "0:41:56",
+    "seconds": 2516,
+    "speaker": "Scott Aaronson",
+    "quote": "embedding a subtle statistical signal into the choice of words",
+    "quote_located": true
+   },
+   {
+    "t": "0:57:01",
+    "seconds": 3421,
+    "speaker": "Scott Aaronson",
+    "quote": "to some very very weird and very scary places",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Scott Aaronson",
+    "value": "Quantum supremacy sampling tops out near 50 qubits (2^100 is out of reach)",
+    "t": "0:08:58",
+    "seconds": 538
+   }
+  ],
+  "names": [
+   "Scott Aaronson"
+  ],
+  "approx": false,
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T11:00:00+05:30",
+  "added_ms": 1793165400000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/2_CZfN2iOFk",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": "Caught up (Oct 25): the October Page missed it"
+  }
  },
  {
   "id": "TNffIt8eRb0",
@@ -1023,7 +2111,8 @@
   "views": 52442,
   "channel_subscribers": 1700,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "8UxdFFSz2bg",
@@ -1150,7 +2239,8 @@
   "url": "https://www.youtube.com/watch?v=8UxdFFSz2bg",
   "thumb": "https://i.ytimg.com/vi/8UxdFFSz2bg/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "GrnQZj6f950",
@@ -1384,7 +2474,8 @@
   "views": 2950,
   "channel_subscribers": 16100000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "XW4D6NguJmA",
@@ -1626,7 +2717,8 @@
   "views": 193359,
   "channel_subscribers": 4480000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "tjAg_KxApmw",
@@ -1841,7 +2933,8 @@
   "views": 23176,
   "channel_subscribers": 10300,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "nnYHg0gcWug",
@@ -2047,7 +3140,8 @@
   "views": 81527,
   "channel_subscribers": 436000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "akeIMSfCNjg",
@@ -2216,7 +3310,8 @@
   "views": 19119,
   "channel_subscribers": 106000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "RqqSoWb7z1w",
@@ -2348,7 +3443,8 @@
   "url": "https://www.youtube.com/watch?v=RqqSoWb7z1w",
   "thumb": "https://i.ytimg.com/vi/RqqSoWb7z1w/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "-NmUEQ3-3Rc",
@@ -2573,7 +3669,8 @@
   "views": 301,
   "channel_subscribers": 133,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "WvkoQiFU5vc",
@@ -2791,7 +3888,8 @@
   "views": 43,
   "channel_subscribers": 169,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "jrApblKyLSQ",
@@ -2919,7 +4017,8 @@
   "url": "https://www.youtube.com/watch?v=jrApblKyLSQ",
   "thumb": "https://i.ytimg.com/vi/jrApblKyLSQ/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "n8xpeNhj4SU",
@@ -3178,7 +4277,8 @@
   "views": 61449,
   "channel_subscribers": 9050,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "odass1Pj7oo",
@@ -3392,7 +4492,8 @@
   "views": 788,
   "channel_subscribers": 8730,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "IebgqymMo4U",
@@ -3629,7 +4730,8 @@
   "views": 74,
   "channel_subscribers": 2,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "0ePoJL2Cusw",
@@ -3762,7 +4864,8 @@
   "url": "https://www.youtube.com/watch?v=0ePoJL2Cusw",
   "thumb": "https://i.ytimg.com/vi/0ePoJL2Cusw/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "KOraQKtuQF4",
@@ -3981,7 +5084,8 @@
   "views": 12337,
   "channel_subscribers": 76800,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "t2uJzB3TdEQ",
@@ -4102,7 +5206,8 @@
   "url": "https://www.youtube.com/watch?v=t2uJzB3TdEQ",
   "thumb": "https://i.ytimg.com/vi/t2uJzB3TdEQ/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "s9J3iRHg8cs",
@@ -4332,7 +5437,8 @@
   "views": 429,
   "channel_subscribers": 5730,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "XxfGWNa2vCo",
@@ -4518,7 +5624,8 @@
   "views": 498,
   "channel_subscribers": 42400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "JHo-aiePjoM",
@@ -4728,7 +5835,8 @@
   "views": 70094,
   "channel_subscribers": 648000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "5dEK4lFa3gs",
@@ -4853,7 +5961,8 @@
   "url": "https://www.youtube.com/watch?v=5dEK4lFa3gs",
   "thumb": "https://i.ytimg.com/vi/5dEK4lFa3gs/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "m880aJt5sNM",
@@ -5075,7 +6184,8 @@
   "views": 287995,
   "channel_subscribers": 208000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "bxyk9ZTHip8",
@@ -5193,7 +6303,8 @@
   "url": "https://www.youtube.com/watch?v=bxyk9ZTHip8",
   "thumb": "https://i.ytimg.com/vi/bxyk9ZTHip8/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "Y2hxjy1qHTc",
@@ -5431,7 +6542,8 @@
   "views": 66481,
   "channel_subscribers": 1250000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "Qzic3puT68c",
@@ -5677,7 +6789,8 @@
   "views": 227340,
   "channel_subscribers": 1450000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "qSen68f3VFc",
@@ -5906,7 +7019,8 @@
   "views": 73354,
   "channel_subscribers": 130000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "SBlVJyoT3IM",
@@ -6146,7 +7260,8 @@
   "views": 32204,
   "channel_subscribers": 45400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "9IwOFRyilfo",
@@ -6352,7 +7467,8 @@
   "views": 4647,
   "channel_subscribers": 36300,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "unqm-xV_E-8",
@@ -6556,7 +7672,8 @@
   "views": 404,
   "channel_subscribers": 637,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "EolcQ14qe30",
@@ -6695,7 +7812,8 @@
   "url": "https://www.youtube.com/watch?v=EolcQ14qe30",
   "thumb": "https://i.ytimg.com/vi/EolcQ14qe30/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "Jn8mS3kC-SU",
@@ -6937,7 +8055,8 @@
   "views": 25299,
   "channel_subscribers": 149000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "LlGNBPJW8Ww",
@@ -7183,7 +8302,8 @@
   "views": 3802,
   "channel_subscribers": 444000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "C3KM9uYwJqg",
@@ -7302,7 +8422,8 @@
   "url": "https://www.youtube.com/watch?v=C3KM9uYwJqg",
   "thumb": "https://i.ytimg.com/vi/C3KM9uYwJqg/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "vD4TyKot82Q",
@@ -7546,7 +8667,8 @@
   "views": 41359,
   "channel_subscribers": 602000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "_T0nH_gIWtw",
@@ -7737,7 +8859,8 @@
   "views": 74089,
   "channel_subscribers": 2280000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "MZrXulP7sVc",
@@ -7890,7 +9013,8 @@
   "url": "https://www.youtube.com/watch?v=MZrXulP7sVc",
   "thumb": "https://i.ytimg.com/vi/MZrXulP7sVc/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "ORlscppGGh4",
@@ -8029,7 +9153,8 @@
   "url": "https://www.youtube.com/watch?v=ORlscppGGh4",
   "thumb": "https://i.ytimg.com/vi/ORlscppGGh4/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "vqB8Qgl2E0s",
@@ -8175,7 +9300,8 @@
   "url": "https://www.youtube.com/watch?v=vqB8Qgl2E0s",
   "thumb": "https://i.ytimg.com/vi/vqB8Qgl2E0s/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "JP-XGP_qplo",
@@ -8429,7 +9555,8 @@
   "views": 49228,
   "channel_subscribers": 433000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "Iuvm-HKIMg8",
@@ -8668,7 +9795,8 @@
   "views": 157479,
   "channel_subscribers": 1360000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "64Ti-WAuz48",
@@ -8865,7 +9993,8 @@
   "views": 258,
   "channel_subscribers": 637,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "TBK_pnQ6JD4",
@@ -8989,7 +10118,8 @@
   "url": "https://www.youtube.com/watch?v=TBK_pnQ6JD4",
   "thumb": "https://i.ytimg.com/vi/TBK_pnQ6JD4/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "1Azhdv_uvE0",
@@ -9233,7 +10363,8 @@
   "views": 91036,
   "channel_subscribers": 585000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "LgX0QF2D9y0",
@@ -9456,7 +10587,8 @@
   "views": 43797,
   "channel_subscribers": 45400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "m6sRF0LJmDc",
@@ -9698,7 +10830,8 @@
   "views": 239,
   "channel_subscribers": 42400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "ayW7SDyAjZo",
@@ -9925,7 +11058,8 @@
   "views": 57142,
   "channel_subscribers": 436000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "FftYF5CSghQ",
@@ -10141,7 +11275,8 @@
   "views": 391,
   "channel_subscribers": 1200,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "wptBqoLz8Fg",
@@ -10276,7 +11411,8 @@
   "url": "https://www.youtube.com/watch?v=wptBqoLz8Fg",
   "thumb": "https://i.ytimg.com/vi/wptBqoLz8Fg/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "9E3QWw3D6IQ",
@@ -10521,7 +11657,8 @@
   "views": 287,
   "channel_subscribers": 34,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "qDzg-xvkeXw",
@@ -10756,7 +11893,8 @@
   "views": 2856908,
   "channel_subscribers": 20900000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "ot_xLPW13cM",
@@ -10983,7 +12121,8 @@
   "views": 32834,
   "channel_subscribers": 208000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "nAbIqt_w0g8",
@@ -11122,7 +12261,8 @@
   "url": "https://www.youtube.com/watch?v=nAbIqt_w0g8",
   "thumb": "https://i.ytimg.com/vi/nAbIqt_w0g8/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "WrsXl0wX3_0",
@@ -11372,7 +12512,8 @@
   "views": 164895,
   "channel_subscribers": 34800,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "JIMXEuT_ZAU",
@@ -11589,7 +12730,8 @@
   "views": 581133,
   "channel_subscribers": 589000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "-OU6TJE6qQc",
@@ -11812,7 +12954,8 @@
   "views": 851,
   "channel_subscribers": 771,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "CsaNTn6NY08",
@@ -11947,7 +13090,8 @@
   "url": "https://www.youtube.com/watch?v=CsaNTn6NY08",
   "thumb": "https://i.ytimg.com/vi/CsaNTn6NY08/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "cednnLX1lUY",
@@ -12142,7 +13286,8 @@
   "views": 565,
   "channel_subscribers": 1160,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "Qpuj1nhcxiI",
@@ -12371,7 +13516,8 @@
   "views": 351132,
   "channel_subscribers": 2990000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "Vm-E1kgHXig",
@@ -12600,7 +13746,8 @@
   "views": 65067,
   "channel_subscribers": 18700,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "jiXeRe567CI",
@@ -12740,7 +13887,8 @@
   "url": "https://www.youtube.com/watch?v=jiXeRe567CI",
   "thumb": "https://i.ytimg.com/vi/jiXeRe567CI/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "IejFLhF8efQ",
@@ -12980,7 +14128,8 @@
   "views": 8122,
   "channel_subscribers": 5620,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "lnLDjXy2kRA",
@@ -13172,7 +14321,8 @@
   "views": 4420607,
   "channel_subscribers": 14100000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "F4kuuLQrIaE",
@@ -13372,7 +14522,8 @@
   "views": 723,
   "channel_subscribers": 14300,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "InLoaWzyHIY",
@@ -13499,7 +14650,8 @@
   "url": "https://www.youtube.com/watch?v=InLoaWzyHIY",
   "thumb": "https://i.ytimg.com/vi/InLoaWzyHIY/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "pCfEFTrddj0",
@@ -13619,7 +14771,8 @@
   "url": "https://www.youtube.com/watch?v=pCfEFTrddj0",
   "thumb": "https://i.ytimg.com/vi/pCfEFTrddj0/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "_EZzExTs5QY",
@@ -13739,7 +14892,8 @@
   "url": "https://www.youtube.com/watch?v=_EZzExTs5QY",
   "thumb": "https://i.ytimg.com/vi/_EZzExTs5QY/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "yQV4lb4_ebM",
@@ -13978,7 +15132,8 @@
   "views": 606,
   "channel_subscribers": 42400,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "1u5qMZvd6ps",
@@ -14174,7 +15329,8 @@
   "views": 6422,
   "channel_subscribers": 88,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "IP6UjdAPWG8",
@@ -14384,7 +15540,8 @@
   "views": 13199,
   "channel_subscribers": 130000,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "jjKuCYn9kgk",
@@ -14609,7 +15766,8 @@
   "views": 1715,
   "channel_subscribers": 53,
   "stats_as_of": "2026-10-27 (Piped)",
-  "month": "2026-10"
+  "month": "2026-10",
+  "classic": false
  },
  {
   "id": "J9WBZ8BTLLg",
@@ -14733,7 +15891,8 @@
   "url": "https://www.youtube.com/watch?v=J9WBZ8BTLLg",
   "thumb": "https://i.ytimg.com/vi/J9WBZ8BTLLg/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "MrnhtyPGCKI",
@@ -14877,7 +16036,8 @@
   "url": "https://www.youtube.com/watch?v=MrnhtyPGCKI",
   "thumb": "https://i.ytimg.com/vi/MrnhtyPGCKI/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "wufPfTV9iEU",
@@ -15005,7 +16165,8 @@
   "url": "https://www.youtube.com/watch?v=wufPfTV9iEU",
   "thumb": "https://i.ytimg.com/vi/wufPfTV9iEU/hqdefault.jpg",
   "month": "2026-10",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "RNquQF3mmr0",
@@ -15049,7 +16210,8 @@
   "evidence": "Piped metadata: Existential Hope channel, uploaded 2026-09-30, 41:10; description introduces Stuart Russell. Upload timestamp (Piped): 2026-09-30 11:00 EDT.",
   "url": "https://www.youtube.com/watch?v=RNquQF3mmr0",
   "thumb": "https://i.ytimg.com/vi/RNquQF3mmr0/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "znH5lGr3Qxc",
@@ -15103,7 +16265,8 @@
   "evidence": "Piped metadata: FAR.AI channel, uploaded 2026-09-30, 59:56; description: 'Adam Gleave (FAR.AI) and Ollie Habryka (Lightcone Infrastructure) debate… moderated by Rocket Drew.' Manual captions. Upload timestamp (Piped): 2026-09-30 10:00 EDT.",
   "url": "https://www.youtube.com/watch?v=znH5lGr3Qxc",
   "thumb": "https://i.ytimg.com/vi/znH5lGr3Qxc/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "2l97QtLcGiU",
@@ -15172,7 +16335,8 @@
   "evidence": "Piped metadata: CNBC Television, uploaded 2026-09-30 ET (2026-10-01 03:36 IST), 2:10:49; description lists witnesses Painter (METR), Hobbhahn (Apollo), Ohm, Gaudette, Kokotajlo. Other full copies exist (PBS X9ng5MPH_Eg, CBS LfDXO4VjUbE, Sen. Hawley kwx4Imv0dds); one copy kept. NOTE: this id is also in the October batch ledger. Upload timestamp (Piped): 2026-09-30 18:06 EDT.",
   "url": "https://www.youtube.com/watch?v=2l97QtLcGiU",
   "thumb": "https://i.ytimg.com/vi/2l97QtLcGiU/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "FHCxnHU6jFQ",
@@ -15225,7 +16389,8 @@
   "evidence": "Piped metadata: 80,000 Hours, uploaded 2026-09-29, 1:28:39; description names Katja Grace (AI Impacts) and Tom Davidson (Forethought). Manual captions with speaker labels. Upload timestamp (Piped): 2026-09-29 11:02 EDT.",
   "url": "https://www.youtube.com/watch?v=FHCxnHU6jFQ",
   "thumb": "https://i.ytimg.com/vi/FHCxnHU6jFQ/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "J38ot52b2-E",
@@ -15269,7 +16434,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 36:24; description 'Neel Nanda (Google DeepMind)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=J38ot52b2-E",
   "thumb": "https://i.ytimg.com/vi/J38ot52b2-E/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "tF-WiZiiH4g",
@@ -15313,7 +16479,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 27:59; description 'Andreas Kirsch (Google DeepMind at time of recording)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=tF-WiZiiH4g",
   "thumb": "https://i.ytimg.com/vi/tF-WiZiiH4g/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "1S_Ay87dEy0",
@@ -15356,7 +16523,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 38:56; description 'Vishal Maini (ex-Google DeepMind)'. He says on camera 'I'm not a researcher' — included as a lab insider named in the brief. Upload timestamp (Piped): 2026-09-29 07:03 EDT.",
   "url": "https://www.youtube.com/watch?v=1S_Ay87dEy0",
   "thumb": "https://i.ytimg.com/vi/1S_Ay87dEy0/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "WKO97T1ELVY",
@@ -15399,7 +16567,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 18:46; description 'Rosie Campbell (ex-OpenAI)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=WKO97T1ELVY",
   "thumb": "https://i.ytimg.com/vi/WKO97T1ELVY/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Jrh4ZJ0Ldtk",
@@ -15441,7 +16610,8 @@
   "evidence": "Piped metadata: MTS channel, uploaded 2026-09-29 ET (2026-09-30 04:30 IST), 18:43; description 'METR technical staff member Reilly Haskins'. Upload timestamp (Piped): 2026-09-29 19:00 EDT.",
   "url": "https://www.youtube.com/watch?v=Jrh4ZJ0Ldtk",
   "thumb": "https://i.ytimg.com/vi/Jrh4ZJ0Ldtk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "32wdCuXeqvI",
@@ -15484,7 +16654,8 @@
   "evidence": "Piped metadata: Palisade Research channel, uploaded 2026-09-29 (batch), 20:37; description 'Mary Phuong (Google DeepMind) Interview for frominside.ai'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=32wdCuXeqvI",
   "thumb": "https://i.ytimg.com/vi/32wdCuXeqvI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "7_eu2Qbv6bs",
@@ -15528,7 +16699,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 22:17; description 'Victoria Krakovna (Google DeepMind)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=7_eu2Qbv6bs",
   "thumb": "https://i.ytimg.com/vi/7_eu2Qbv6bs/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "nYiD6r4RvV8",
@@ -15572,7 +16744,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 43:11; description 'Geoffrey Irving (ex-OpenAI/DeepMind safety lead, ex-chief scientist at the UK AISI)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=nYiD6r4RvV8",
   "thumb": "https://i.ytimg.com/vi/nYiD6r4RvV8/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "-K4tpDB7jxg",
@@ -15615,7 +16788,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 33:18; description 'Juan Felipe Cerón Uribe (OpenAI)'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=-K4tpDB7jxg",
   "thumb": "https://i.ytimg.com/vi/-K4tpDB7jxg/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "pokJbP5_55U",
@@ -15659,7 +16833,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29 (batch), 18:09; description 'Alex Turner (ex-Google DeepMind) Interview for frominside.ai'. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=pokJbP5_55U",
   "thumb": "https://i.ytimg.com/vi/pokJbP5_55U/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "HmocBOMAkVw",
@@ -15703,7 +16878,8 @@
   "evidence": "Piped metadata: Palisade Research, uploaded 2026-09-29, 26:43; description 'Jeffrey Ladish (ex-Anthropic security, current Executive Director, Palisade Research)'. Note: interviewee runs the uploading organization. Upload timestamp (Piped): 2026-09-29 07:02 EDT.",
   "url": "https://www.youtube.com/watch?v=HmocBOMAkVw",
   "thumb": "https://i.ytimg.com/vi/HmocBOMAkVw/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "MmKyFLu6z80",
@@ -15747,7 +16923,8 @@
   "evidence": "Piped metadata: MSW Media, uploaded 2026-09-29, 39:13; description names Connor Leahy (ControlAI). Upload timestamp (Piped): 2026-09-29 05:30 EDT.",
   "url": "https://www.youtube.com/watch?v=MmKyFLu6z80",
   "thumb": "https://i.ytimg.com/vi/MmKyFLu6z80/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "y7jgXtShY9I",
@@ -15796,7 +16973,8 @@
   "evidence": "Piped metadata: Here & Now channel, uploaded 2026-09-29 ET (2026-09-30 02:43 IST), 24:56; description: Scott Tong's in-depth conversation with Hinton. Upload timestamp (Piped): 2026-09-29 17:13 EDT.",
   "url": "https://www.youtube.com/watch?v=y7jgXtShY9I",
   "thumb": "https://i.ytimg.com/vi/y7jgXtShY9I/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "0AU0QgvCKCA",
@@ -15850,7 +17028,8 @@
   "evidence": "Piped metadata: New York Post channel, uploaded 2026-09-28 ET (2026-09-29 03:30 IST), 58:25; captions identify 'Max Tegmark' and 'Oren Etzioni'; related NY Post opinion dated 2026/09/28. Upload timestamp (Piped): 2026-09-28 18:00 EDT.",
   "url": "https://www.youtube.com/watch?v=0AU0QgvCKCA",
   "thumb": "https://i.ytimg.com/vi/0AU0QgvCKCA/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "CusJwCsDHHM",
@@ -15892,7 +17071,8 @@
   "evidence": "Piped metadata: MTS channel, uploaded 2026-09-28 ET (2026-09-29 07:00 IST), 24:10; description 'Oxford researcher Toby Ord breaks down…'. Upload timestamp (Piped): 2026-09-28 21:30 EDT.",
   "url": "https://www.youtube.com/watch?v=CusJwCsDHHM",
   "thumb": "https://i.ytimg.com/vi/CusJwCsDHHM/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "WSsggkm03uE",
@@ -15941,7 +17121,8 @@
   "evidence": "Piped metadata: Radio-Canada Info, uploaded 2026-09-27, 1:13:13; French fr-CA manual captions; description: 'Patrice Roy interviews one of the fathers of AI, Yoshua Bengio'. Upload timestamp (Piped): 2026-09-27 11:00 EDT.",
   "url": "https://www.youtube.com/watch?v=WSsggkm03uE",
   "thumb": "https://i.ytimg.com/vi/WSsggkm03uE/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "mYoxrW_ys7U",
@@ -15988,7 +17169,8 @@
   "evidence": "Piped metadata: The Karl Stefanovic Show, uploaded 2026-09-27 (AEST morning; 2026-09-26 US Eastern evening), 25:31; description names Dr Roman Yampolskiy. Upload timestamp (Piped): 2026-09-27 02:00 EDT.",
   "url": "https://www.youtube.com/watch?v=mYoxrW_ys7U",
   "thumb": "https://i.ytimg.com/vi/mYoxrW_ys7U/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Qjgc9Hs5GKs",
@@ -16124,7 +17306,8 @@
   "url": "https://www.youtube.com/watch?v=Qjgc9Hs5GKs",
   "thumb": "https://i.ytimg.com/vi/Qjgc9Hs5GKs/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "_YIz6upJgXw",
@@ -16171,7 +17354,8 @@
   "evidence": "Piped metadata: Evan Solomon channel, uploaded 2026-09-26, 23:13; description: 'I sat down with Yoshua Bengio… founder of LoiZéro'. Upload timestamp (Piped): 2026-09-26 12:38 EDT.",
   "url": "https://www.youtube.com/watch?v=_YIz6upJgXw",
   "thumb": "https://i.ytimg.com/vi/_YIz6upJgXw/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Lb_JHh75_3U",
@@ -16296,7 +17480,8 @@
   "url": "https://www.youtube.com/watch?v=Lb_JHh75_3U",
   "thumb": "https://i.ytimg.com/vi/Lb_JHh75_3U/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "ku9N1kYohIo",
@@ -16345,7 +17530,8 @@
   "evidence": "Piped metadata: American Thought Leaders – The Epoch Times, uploaded 2026-09-25 ET, 1:20:38; description quotes Kokotajlo ('Over 700 of them piled into this attack on Hugging Face'). Upload timestamp (Piped): 2026-09-25 17:00 EDT.",
   "url": "https://www.youtube.com/watch?v=ku9N1kYohIo",
   "thumb": "https://i.ytimg.com/vi/ku9N1kYohIo/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "PX6uVBZ1XHI",
@@ -16393,7 +17579,8 @@
   "evidence": "Piped metadata: The AI Risk Network, uploaded 2026-09-25, 58:23; description: 'AI safety researcher Roman Yampolskiy returns for his third conversation with John Sherman'. Upload timestamp (Piped): 2026-09-25 08:53 EDT.",
   "url": "https://www.youtube.com/watch?v=PX6uVBZ1XHI",
   "thumb": "https://i.ytimg.com/vi/PX6uVBZ1XHI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "5AM27KbZ6cM",
@@ -16441,7 +17628,8 @@
   "evidence": "Piped metadata: Breaking Points, uploaded 2026-09-25, 30:50; captions open 'Welcome into the show now, Roman Yampolskiy, AI safety researcher.' Upload timestamp (Piped): 2026-09-25 13:30 EDT.",
   "url": "https://www.youtube.com/watch?v=5AM27KbZ6cM",
   "thumb": "https://i.ytimg.com/vi/5AM27KbZ6cM/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "swnHx7w6dJI",
@@ -16569,7 +17757,8 @@
   "url": "https://www.youtube.com/watch?v=swnHx7w6dJI",
   "thumb": "https://i.ytimg.com/vi/swnHx7w6dJI/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "wdnVeYx_fOA",
@@ -16618,7 +17807,8 @@
   "evidence": "Piped metadata: Sam Harris channel, uploaded 2026-09-24, 1:37:21; description names Ryan Greenblatt (Redwood Research). The 28-min jKtScyjPXZQ is a partial cut and was excluded. Upload timestamp (Piped): 2026-09-24 12:28 EDT.",
   "url": "https://www.youtube.com/watch?v=wdnVeYx_fOA",
   "thumb": "https://i.ytimg.com/vi/wdnVeYx_fOA/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "5WWtcJSrqNY",
@@ -16660,7 +17850,8 @@
   "evidence": "Piped metadata: CNN-News18, uploaded 2026-09-24, 18:08; title names 'MIRI Prez Nate Soares'. Captions open with host greeting Soares. Upload timestamp (Piped): 2026-09-24 12:03 EDT.",
   "url": "https://www.youtube.com/watch?v=5WWtcJSrqNY",
   "thumb": "https://i.ytimg.com/vi/5WWtcJSrqNY/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "2NFKlRqGsO8",
@@ -16706,7 +17897,8 @@
   "evidence": "Piped metadata: Atrioc VODs channel, uploaded 2026-09-24 ET (stream 2026-09-23), 2:18:40; description chapters '57:05 Interview with Nate Soares / 2:00:10 Post-Interview chat'. Note: fan-uploaded official VOD channel; ~1 hour of Soares. Upload timestamp (Piped): 2026-09-24 16:45 EDT.",
   "url": "https://www.youtube.com/watch?v=2NFKlRqGsO8",
   "thumb": "https://i.ytimg.com/vi/2NFKlRqGsO8/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "47yk_mg38ls",
@@ -16755,7 +17947,8 @@
   "evidence": "Piped metadata: The Peter McCormack Show, uploaded 2026-09-24, 1:06:21; description introduces Bostrom. Upload timestamp (Piped): 2026-09-24 14:00 EDT.",
   "url": "https://www.youtube.com/watch?v=47yk_mg38ls",
   "thumb": "https://i.ytimg.com/vi/47yk_mg38ls/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "ReZOdIyqGb0",
@@ -16803,7 +17996,8 @@
   "evidence": "Piped metadata: UnHerd channel, uploaded 2026-09-24, 43:58; description 'UnHerd's Freddie Sayers talks to Oxford philosopher Professor Nick Bostrom'. Upload timestamp (Piped): 2026-09-24 10:17 EDT.",
   "url": "https://www.youtube.com/watch?v=ReZOdIyqGb0",
   "thumb": "https://i.ytimg.com/vi/ReZOdIyqGb0/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "87yoGSBQsCk",
@@ -16851,7 +18045,8 @@
   "evidence": "Piped metadata: Bill O'Reilly channel, uploaded 2026-09-24 ET, 45:56; description names Prof. Max Tegmark. Upload timestamp (Piped): 2026-09-24 18:00 EDT.",
   "url": "https://www.youtube.com/watch?v=87yoGSBQsCk",
   "thumb": "https://i.ytimg.com/vi/87yoGSBQsCk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "C-pWm59Oyqg",
@@ -16895,7 +18090,8 @@
   "evidence": "Piped metadata: CSER Cambridge, uploaded 2026-09-23, 1:00:47; description 'A better path for AI with Max Tegmark (16 September 2026)'. Upload timestamp (Piped): 2026-09-23 12:48 EDT.",
   "url": "https://www.youtube.com/watch?v=C-pWm59Oyqg",
   "thumb": "https://i.ytimg.com/vi/C-pWm59Oyqg/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "A-9JXAj-_wg",
@@ -16942,7 +18138,8 @@
   "evidence": "Piped metadata: ABC News In-depth, uploaded 2026-09-23, 14:38 (just under the ~15-min guide; whole video is the Bengio interview). Upload timestamp (Piped): 2026-09-23 07:30 EDT.",
   "url": "https://www.youtube.com/watch?v=A-9JXAj-_wg",
   "thumb": "https://i.ytimg.com/vi/A-9JXAj-_wg/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "WZNHg9mpfco",
@@ -16989,7 +18186,8 @@
   "evidence": "Piped metadata: AI for Good channel, uploaded 2026-09-23, 23:04; description: Bengio moderated by Beatrice Nolan, recorded at AI for Good Global Summit 2026. Upload timestamp (Piped): 2026-09-23 05:35 EDT.",
   "url": "https://www.youtube.com/watch?v=WZNHg9mpfco",
   "thumb": "https://i.ytimg.com/vi/WZNHg9mpfco/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "7AaNkZuYfmk",
@@ -17121,7 +18319,8 @@
   "url": "https://www.youtube.com/watch?v=7AaNkZuYfmk",
   "thumb": "https://i.ytimg.com/vi/7AaNkZuYfmk/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "wwXhBNU4YVw",
@@ -17246,7 +18445,8 @@
   "url": "https://www.youtube.com/watch?v=wwXhBNU4YVw",
   "thumb": "https://i.ytimg.com/vi/wwXhBNU4YVw/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "r6InmrWWb-s",
@@ -17290,7 +18490,8 @@
   "evidence": "Piped metadata: NDTV, uploaded 2026-09-22, 19:00; description 'Nobel laureate… Geoffrey Hinton speaks exclusively to NDTV'. Upload timestamp (Piped): 2026-09-22 13:54 EDT.",
   "url": "https://www.youtube.com/watch?v=r6InmrWWb-s",
   "thumb": "https://i.ytimg.com/vi/r6InmrWWb-s/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "CBq394Ffbi4",
@@ -17338,7 +18539,8 @@
   "evidence": "Piped metadata: Nonzero channel, uploaded 2026-09-22 ET, 1:20:12; description with chapters names Bostrom. Upload timestamp (Piped): 2026-09-22 18:11 EDT.",
   "url": "https://www.youtube.com/watch?v=CBq394Ffbi4",
   "thumb": "https://i.ytimg.com/vi/CBq394Ffbi4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "oqBz5QCCcN0",
@@ -17387,7 +18589,8 @@
   "evidence": "Piped metadata: Offline with Jon Favreau, uploaded 2026-09-19, 1:04:47; description names Helen Toner. Upload timestamp (Piped): 2026-09-19 09:00 EDT.",
   "url": "https://www.youtube.com/watch?v=oqBz5QCCcN0",
   "thumb": "https://i.ytimg.com/vi/oqBz5QCCcN0/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "rtir6QmQQRg",
@@ -17435,7 +18638,8 @@
   "evidence": "Piped metadata: Danny Jones channel, uploaded 2026-09-18, 2:41:49; description introduces Connor Leahy. Upload timestamp (Piped): 2026-09-18 13:00 EDT.",
   "url": "https://www.youtube.com/watch?v=rtir6QmQQRg",
   "thumb": "https://i.ytimg.com/vi/rtir6QmQQRg/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "OhOmLqR5nN4",
@@ -17499,7 +18703,8 @@
   "evidence": "Piped metadata: The Diary Of A CEO, uploaded 2026-09-17, 2:24:26; description lists Zitron, Yampolskiy, Soares, McAfee. Upload timestamp (Piped): 2026-09-17 03:00 EDT.",
   "url": "https://www.youtube.com/watch?v=OhOmLqR5nN4",
   "thumb": "https://i.ytimg.com/vi/OhOmLqR5nN4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "QkpOFlj604s",
@@ -17548,7 +18753,8 @@
   "evidence": "Piped metadata: The Beyond Tomorrow Podcast, uploaded 2026-09-17, 1:02:54; description names Yampolskiy. Upload timestamp (Piped): 2026-09-17 09:00 EDT.",
   "url": "https://www.youtube.com/watch?v=QkpOFlj604s",
   "thumb": "https://i.ytimg.com/vi/QkpOFlj604s/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Rdhm6sF27kI",
@@ -17596,7 +18802,8 @@
   "evidence": "Piped metadata: IASEAI channel, uploaded 2026-09-17 ET, 42:07; title dated 16 September 2026; description details Russell's topics. Manual captions. Upload timestamp (Piped): 2026-09-17 19:23 EDT.",
   "url": "https://www.youtube.com/watch?v=Rdhm6sF27kI",
   "thumb": "https://i.ytimg.com/vi/Rdhm6sF27kI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "0ruHuQs0Dt4",
@@ -17645,7 +18852,8 @@
   "evidence": "Piped metadata: Nexus channel, uploaded 2026-09-17, 25:05; title 'Roman Yampolskiy… Full Interview'. Upload timestamp (Piped): 2026-09-17 14:00 EDT.",
   "url": "https://www.youtube.com/watch?v=0ruHuQs0Dt4",
   "thumb": "https://i.ytimg.com/vi/0ruHuQs0Dt4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "ewr4vwqsbzM",
@@ -17694,7 +18902,8 @@
   "evidence": "Piped metadata: Jon Hernández channel, uploaded 2026-09-17 ET, 2:08:56; description introduces Stuart Russell. Upload timestamp (Piped): 2026-09-17 20:00 EDT.",
   "url": "https://www.youtube.com/watch?v=ewr4vwqsbzM",
   "thumb": "https://i.ytimg.com/vi/ewr4vwqsbzM/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "_UXQxcDzHBs",
@@ -17840,7 +19049,8 @@
   "url": "https://www.youtube.com/watch?v=_UXQxcDzHBs",
   "thumb": "https://i.ytimg.com/vi/_UXQxcDzHBs/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "nF9MbRZ2dgc",
@@ -17889,7 +19099,8 @@
   "evidence": "Piped metadata: Alex Kantrowitz channel (Big Technology), uploaded 2026-09-16 ET, 52:06; description names Soares. Upload timestamp (Piped): 2026-09-16 14:54 EDT.",
   "url": "https://www.youtube.com/watch?v=nF9MbRZ2dgc",
   "thumb": "https://i.ytimg.com/vi/nF9MbRZ2dgc/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "dTkjwumVhlA",
@@ -17934,7 +19145,8 @@
   "evidence": "Piped metadata: The World with Richard Engel and Yalda Hakim, uploaded 2026-09-16, 22:29; description names Soares. Upload timestamp (Piped): 2026-09-16 08:00 EDT.",
   "url": "https://www.youtube.com/watch?v=dTkjwumVhlA",
   "thumb": "https://i.ytimg.com/vi/dTkjwumVhlA/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "G9o9ZUOY5PQ",
@@ -17978,7 +19190,8 @@
   "evidence": "Piped metadata: NDTV, uploaded 2026-09-16, 25:07; description 'UC Berkeley professor… Stuart Russell… exclusive NDTV conversation'. Upload timestamp (Piped): 2026-09-16 14:17 EDT.",
   "url": "https://www.youtube.com/watch?v=G9o9ZUOY5PQ",
   "thumb": "https://i.ytimg.com/vi/G9o9ZUOY5PQ/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "kChlr-pKhl4",
@@ -18031,7 +19244,8 @@
   "evidence": "Piped metadata: WHYY channel, uploaded 2026-09-16 (show aired 09/15/26), 57:18. Captions at 0:15:39: 'Cade Metz… and Alex Turner, former Google DeepMind scientist who resigned from Google because of ethical concerns.' Upload timestamp (Piped): 2026-09-16 09:37 EDT.",
   "url": "https://www.youtube.com/watch?v=kChlr-pKhl4",
   "thumb": "https://i.ytimg.com/vi/kChlr-pKhl4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "wsAJEys2TtI",
@@ -18079,7 +19293,8 @@
   "evidence": "Piped metadata: Into The Machine channel, uploaded 2026-09-16 ET, 43:58; title 'w/Nate Soares' with chapter list. Upload timestamp (Piped): 2026-09-16 19:29 EDT.",
   "url": "https://www.youtube.com/watch?v=wsAJEys2TtI",
   "thumb": "https://i.ytimg.com/vi/wsAJEys2TtI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "1qYhe9Dphqk",
@@ -18125,7 +19340,8 @@
   "evidence": "Piped metadata: Chicago's Morning Answer channel, uploaded 2026-09-16, 17:45; outro at 0:16:43 names 'David Krueger, assistant professor in robust reasoning and responsible AI'. Upload timestamp (Piped): 2026-09-16 10:25 EDT.",
   "url": "https://www.youtube.com/watch?v=1qYhe9Dphqk",
   "thumb": "https://i.ytimg.com/vi/1qYhe9Dphqk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "gBPzgJkT9e8",
@@ -18178,7 +19394,8 @@
   "evidence": "Piped metadata: Doom Debates, uploaded 2026-09-15 ET (2026-09-16 05:21 IST), 1:13:51; description names both CAIS researchers. Upload timestamp (Piped): 2026-09-15 19:51 EDT.",
   "url": "https://www.youtube.com/watch?v=gBPzgJkT9e8",
   "thumb": "https://i.ytimg.com/vi/gBPzgJkT9e8/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "0U5rfF1RJeE",
@@ -18306,7 +19523,8 @@
   "url": "https://www.youtube.com/watch?v=0U5rfF1RJeE",
   "thumb": "https://i.ytimg.com/vi/0U5rfF1RJeE/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "PIQVZ5T517M",
@@ -18369,7 +19587,8 @@
   "evidence": "Piped metadata: ControlAI channel, uploaded 2026-09-14 ET, 52:57; description lists Russell, Fihn, Browne, Kokotajlo; event 7 Sep 2026. Upload timestamp (Piped): 2026-09-14 17:21 EDT.",
   "url": "https://www.youtube.com/watch?v=PIQVZ5T517M",
   "thumb": "https://i.ytimg.com/vi/PIQVZ5T517M/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "DqCkImzvnMk",
@@ -18416,7 +19635,8 @@
   "evidence": "Piped metadata: Sazzad Hossain Sumon channel, uploaded 2026-09-14, 1:27:40; title 'Exclusive interview with Dr. Roman Yampolskiy'. Upload timestamp (Piped): 2026-09-14 13:42 EDT.",
   "url": "https://www.youtube.com/watch?v=DqCkImzvnMk",
   "thumb": "https://i.ytimg.com/vi/DqCkImzvnMk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Wr5yrjkYkFE",
@@ -18464,7 +19684,8 @@
   "evidence": "Piped metadata: New York Times Podcasts, uploaded 2026-09-14, 34:14; description 'Guest: Jacob Coxon, a former researcher at Anthropic.' Exa podcast listing confirms 2026-09-14. Upload timestamp (Piped): 2026-09-14 10:36 EDT.",
   "url": "https://www.youtube.com/watch?v=Wr5yrjkYkFE",
   "thumb": "https://i.ytimg.com/vi/Wr5yrjkYkFE/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "u5XATcM_fMA",
@@ -18505,7 +19726,8 @@
   "evidence": "Piped metadata: NDTV channel, uploaded 2026-09-14, 22:02; title 'Nick Bostrom On AI's Biggest Risk'. Upload timestamp (Piped): 2026-09-14 14:27 EDT.",
   "url": "https://www.youtube.com/watch?v=u5XATcM_fMA",
   "thumb": "https://i.ytimg.com/vi/u5XATcM_fMA/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "5Mh2j958eMc",
@@ -18549,7 +19771,8 @@
   "evidence": "Piped metadata: Zurich AI Safety channel, uploaded 2026-09-14, 29:39; description 'Conference by Adam Gleave, CEO of FAR.AI' with chapters. Upload timestamp (Piped): 2026-09-14 06:03 EDT.",
   "url": "https://www.youtube.com/watch?v=5Mh2j958eMc",
   "thumb": "https://i.ytimg.com/vi/5Mh2j958eMc/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "7wuSa9APisU",
@@ -18598,7 +19821,8 @@
   "evidence": "Piped metadata: Breaking Points, uploaded 2026-09-14, 39:00; description 'AI researcher Nate Soares joins…'. Upload timestamp (Piped): 2026-09-14 12:30 EDT.",
   "url": "https://www.youtube.com/watch?v=7wuSa9APisU",
   "thumb": "https://i.ytimg.com/vi/7wuSa9APisU/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "d7a_pOg8XS0",
@@ -18645,7 +19869,8 @@
   "evidence": "Piped metadata: Experimental Philosophy channel, uploaded 2026-09-13 ET (2026-09-14 06:48 IST), 54:52; description 'My full interview with Max Winga from the non-profit ControlAI'. Upload timestamp (Piped): 2026-09-13 21:18 EDT.",
   "url": "https://www.youtube.com/watch?v=d7a_pOg8XS0",
   "thumb": "https://i.ytimg.com/vi/d7a_pOg8XS0/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "QpQ5ALVHZ1Y",
@@ -18770,7 +19995,8 @@
   "url": "https://www.youtube.com/watch?v=QpQ5ALVHZ1Y",
   "thumb": "https://i.ytimg.com/vi/QpQ5ALVHZ1Y/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "98syxABbUPk",
@@ -18819,7 +20045,8 @@
   "evidence": "Piped metadata: Tucker Carlson channel, uploaded 2026-09-11, 1:57:11; description names Nate Soares (MIRI). Upload timestamp (Piped): 2026-09-11 13:00 EDT.",
   "url": "https://www.youtube.com/watch?v=98syxABbUPk",
   "thumb": "https://i.ytimg.com/vi/98syxABbUPk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "PrSf7IOYu-I",
@@ -18876,7 +20103,8 @@
   "evidence": "Piped metadata: Dwarkesh Patel, uploaded 2026-09-11, 1:37:01; description 'New episode with John Schulman, Charlie O'Neill, and Beren Millidge.' Manual captions. Note: capabilities-focused; included because Schulman/Millidge are alignment-associated researchers — borderline. Upload timestamp (Piped): 2026-09-11 12:54 EDT.",
   "url": "https://www.youtube.com/watch?v=PrSf7IOYu-I",
   "thumb": "https://i.ytimg.com/vi/PrSf7IOYu-I/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "DB6uKUtOmec",
@@ -18917,7 +20145,8 @@
   "evidence": "Piped metadata: Schwartz Reisman Institute channel, uploaded 2026-09-11, 16:34; description 'Viatopia | William MacAskill (Forethought)'. Single-speaker talk. Upload timestamp (Piped): 2026-09-11 10:39 EDT.",
   "url": "https://www.youtube.com/watch?v=DB6uKUtOmec",
   "thumb": "https://i.ytimg.com/vi/DB6uKUtOmec/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "JIhDqe3QTow",
@@ -19044,7 +20273,8 @@
   "url": "https://www.youtube.com/watch?v=JIhDqe3QTow",
   "thumb": "https://i.ytimg.com/vi/JIhDqe3QTow/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "Syap5xAvY5U",
@@ -19172,7 +20402,8 @@
   "url": "https://www.youtube.com/watch?v=Syap5xAvY5U",
   "thumb": "https://i.ytimg.com/vi/Syap5xAvY5U/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "w4MivjLij4s",
@@ -19300,7 +20531,8 @@
   "url": "https://www.youtube.com/watch?v=w4MivjLij4s",
   "thumb": "https://i.ytimg.com/vi/w4MivjLij4s/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "gR0IDke3how",
@@ -19347,7 +20579,8 @@
   "evidence": "Piped metadata: Owen Jones channel, uploaded 2026-09-10 ET, 30:41; title 'w/ Nate Soares'. Auto-captions. Upload timestamp (Piped): 2026-09-10 15:48 EDT.",
   "url": "https://www.youtube.com/watch?v=gR0IDke3how",
   "thumb": "https://i.ytimg.com/vi/gR0IDke3how/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "CNut8Ub-lvQ",
@@ -19395,7 +20628,8 @@
   "evidence": "Piped metadata: CBS News channel, uploaded 2026-09-10 ET (2026-09-11 07:50 IST), 20:40; description: 'He spoke with Jo Ling Kent about his decision to resign.' Upload timestamp (Piped): 2026-09-10 22:20 EDT.",
   "url": "https://www.youtube.com/watch?v=CNut8Ub-lvQ",
   "thumb": "https://i.ytimg.com/vi/CNut8Ub-lvQ/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "F-Tf5Mo84N4",
@@ -19442,7 +20676,8 @@
   "evidence": "Piped metadata: Megyn Kelly channel, uploaded 2026-09-10 ET (2026-09-11 03:45 IST), 1:41:53; title 'w/ Jacob Coxon'. Captions show Coxon segment starting ~54:34. Upload timestamp (Piped): 2026-09-10 18:15 EDT.",
   "url": "https://www.youtube.com/watch?v=F-Tf5Mo84N4",
   "thumb": "https://i.ytimg.com/vi/F-Tf5Mo84N4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "iuHddnIzKRA",
@@ -19489,7 +20724,8 @@
   "evidence": "Piped metadata: Computerphile, uploaded 2026-09-10, 27:16; title 'ft. Rob Miles'. Upload timestamp (Piped): 2026-09-10 08:56 EDT.",
   "url": "https://www.youtube.com/watch?v=iuHddnIzKRA",
   "thumb": "https://i.ytimg.com/vi/iuHddnIzKRA/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "1glFImnyp6o",
@@ -19538,7 +20774,8 @@
   "evidence": "Piped metadata: Doom Debates, uploaded 2026-09-09 ET, 1:08:05; description names Ren (CAIS) with timestamps. Upload timestamp (Piped): 2026-09-09 14:49 EDT.",
   "url": "https://www.youtube.com/watch?v=1glFImnyp6o",
   "thumb": "https://i.ytimg.com/vi/1glFImnyp6o/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "hSQ1iVqEZO4",
@@ -19587,7 +20824,8 @@
   "evidence": "Piped metadata: PowerfulJRE, uploaded 2026-09-09, 2:18:06; description introduces Kokotajlo (AI Futures Project). Auto-captions. Upload timestamp (Piped): 2026-09-09 13:00 EDT.",
   "url": "https://www.youtube.com/watch?v=hSQ1iVqEZO4",
   "thumb": "https://i.ytimg.com/vi/hSQ1iVqEZO4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "GhXP1TeUTkw",
@@ -19635,7 +20873,8 @@
   "evidence": "Piped metadata: Nate Hagens channel, uploaded 2026-09-09, 53:23; description '(Conversation recorded on September 1st, 2026)… Dr. Roman Yampolskiy'. Upload timestamp (Piped): 2026-09-09 09:00 EDT.",
   "url": "https://www.youtube.com/watch?v=GhXP1TeUTkw",
   "thumb": "https://i.ytimg.com/vi/GhXP1TeUTkw/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "SinI1Y8YsNc",
@@ -19682,7 +20921,8 @@
   "evidence": "Piped metadata: TechCrunch, uploaded 2026-09-09, 41:45; description names Connor Leahy as guest. Upload timestamp (Piped): 2026-09-09 12:01 EDT.",
   "url": "https://www.youtube.com/watch?v=SinI1Y8YsNc",
   "thumb": "https://i.ytimg.com/vi/SinI1Y8YsNc/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "z5Xix4h5UlU",
@@ -19736,7 +20976,8 @@
   "evidence": "Piped metadata: MLST, uploaded 2026-09-08, 1:29:47; description names both of AI Futures Project; manual en-GB captions. Upload timestamp (Piped): 2026-09-08 06:34 EDT.",
   "url": "https://www.youtube.com/watch?v=z5Xix4h5UlU",
   "thumb": "https://i.ytimg.com/vi/z5Xix4h5UlU/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "DJuOAzTGJvk",
@@ -19784,7 +21025,8 @@
   "evidence": "Piped metadata: The Nick Standlea Show, uploaded 2026-09-08, 1:31:52; description names Max Winga of ControlAI. Upload timestamp (Piped): 2026-09-08 12:04 EDT.",
   "url": "https://www.youtube.com/watch?v=DJuOAzTGJvk",
   "thumb": "https://i.ytimg.com/vi/DJuOAzTGJvk/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "UNxPEl7df2k",
@@ -19824,7 +21066,8 @@
   "evidence": "Piped metadata: MTS channel, uploaded 2026-09-08 ET, 25:53; description names Toner. Upload timestamp (Piped): 2026-09-08 18:07 EDT.",
   "url": "https://www.youtube.com/watch?v=UNxPEl7df2k",
   "thumb": "https://i.ytimg.com/vi/UNxPEl7df2k/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "lj9fWiVG_M4",
@@ -19964,7 +21207,8 @@
   "url": "https://www.youtube.com/watch?v=lj9fWiVG_M4",
   "thumb": "https://i.ytimg.com/vi/lj9fWiVG_M4/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "xGjSGfRGFHI",
@@ -20013,7 +21257,8 @@
   "evidence": "Piped metadata: Jack Neel channel, uploaded 2026-09-07 ET, 1:51:50; description 'Connor Leahy (AI Expert) - Interview With Jack Neel'. Upload timestamp (Piped): 2026-09-07 18:24 EDT.",
   "url": "https://www.youtube.com/watch?v=xGjSGfRGFHI",
   "thumb": "https://i.ytimg.com/vi/xGjSGfRGFHI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "kn3JX9MYg0c",
@@ -20058,7 +21303,8 @@
   "evidence": "Piped metadata: California Institute for Machine Consciousness channel, uploaded 2026-09-07, 36:54; title and description name Yampolskiy and Greer. Upload timestamp (Piped): 2026-09-07 13:14 EDT.",
   "url": "https://www.youtube.com/watch?v=kn3JX9MYg0c",
   "thumb": "https://i.ytimg.com/vi/kn3JX9MYg0c/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "FnMzrSXw6EM",
@@ -20106,7 +21352,8 @@
   "evidence": "Piped metadata: MTS channel (UClWkDGXEzsh77GAhs90wpXw), uploaded 2026-09-07 ET, 32:00; description names both guests. Upload timestamp (Piped): 2026-09-07 15:00 EDT.",
   "url": "https://www.youtube.com/watch?v=FnMzrSXw6EM",
   "thumb": "https://i.ytimg.com/vi/FnMzrSXw6EM/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "wzgkc6Iegx8",
@@ -20154,7 +21401,8 @@
   "evidence": "Piped metadata: Soft White Underbelly, uploaded 2026-09-07, 1:04:07; description 'interview and portrait of Connor Leahy' with chapters. Upload timestamp (Piped): 2026-09-07 06:00 EDT.",
   "url": "https://www.youtube.com/watch?v=wzgkc6Iegx8",
   "thumb": "https://i.ytimg.com/vi/wzgkc6Iegx8/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "JtmUbZRCpEI",
@@ -20312,7 +21560,8 @@
   "url": "https://www.youtube.com/watch?v=JtmUbZRCpEI",
   "thumb": "https://i.ytimg.com/vi/JtmUbZRCpEI/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "WUnCb0TyHVA",
@@ -20439,7 +21688,8 @@
   "url": "https://www.youtube.com/watch?v=WUnCb0TyHVA",
   "thumb": "https://i.ytimg.com/vi/WUnCb0TyHVA/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "j4WSktB5Ni0",
@@ -20567,7 +21817,8 @@
   "url": "https://www.youtube.com/watch?v=j4WSktB5Ni0",
   "thumb": "https://i.ytimg.com/vi/j4WSktB5Ni0/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "PyBw-dIcKW4",
@@ -20607,7 +21858,8 @@
   "evidence": "Piped metadata: The Smart Cookies Podcast, uploaded 2026-09-03, 1:21:09; description introduces Krueger (U. Montreal). Upload timestamp (Piped): 2026-09-03 02:54 EDT.",
   "url": "https://www.youtube.com/watch?v=PyBw-dIcKW4",
   "thumb": "https://i.ytimg.com/vi/PyBw-dIcKW4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "cBXrS7-6pHQ",
@@ -20653,7 +21905,8 @@
   "evidence": "Piped metadata: ControlAI channel, uploaded 2026-09-03, 43:57; description: 'Connor Leahy walks through…' with timestamps. Upload timestamp (Piped): 2026-09-03 13:37 EDT.",
   "url": "https://www.youtube.com/watch?v=cBXrS7-6pHQ",
   "thumb": "https://i.ytimg.com/vi/cBXrS7-6pHQ/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "hdlq-JHpLSw",
@@ -20701,7 +21954,8 @@
   "evidence": "Piped metadata: Unsupervised Learning channel, uploaded 2026-09-03, 58:17; description names Buck Shlegeris (Redwood) with chapter list. Upload timestamp (Piped): 2026-09-03 09:00 EDT.",
   "url": "https://www.youtube.com/watch?v=hdlq-JHpLSw",
   "thumb": "https://i.ytimg.com/vi/hdlq-JHpLSw/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "KeYanOHRJFk",
@@ -20832,7 +22086,8 @@
   "url": "https://www.youtube.com/watch?v=KeYanOHRJFk",
   "thumb": "https://i.ytimg.com/vi/KeYanOHRJFk/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "cmIZv6TVNk4",
@@ -20946,7 +22201,8 @@
   "url": "https://www.youtube.com/watch?v=cmIZv6TVNk4",
   "thumb": "https://i.ytimg.com/vi/cmIZv6TVNk4/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "dLQZWMH4u0k",
@@ -21073,7 +22329,8 @@
   "url": "https://www.youtube.com/watch?v=dLQZWMH4u0k",
   "thumb": "https://i.ytimg.com/vi/dLQZWMH4u0k/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "eu1BfF-1iKQ",
@@ -21114,7 +22371,8 @@
   "evidence": "Piped metadata: Future of Life Institute channel, uploaded 2026-09-02, 44:01; description names Aguirre. Auto-captions. Upload timestamp (Piped): 2026-09-02 11:00 EDT.",
   "url": "https://www.youtube.com/watch?v=eu1BfF-1iKQ",
   "thumb": "https://i.ytimg.com/vi/eu1BfF-1iKQ/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "QqESBXuo6EI",
@@ -21162,7 +22420,8 @@
   "evidence": "Piped metadata: Doom Debates, uploaded 2026-09-02 ET (2026-09-03 08:26 IST), 1:32:15; description names Khoja as guest with timestamps. Auto-captions show long Khoja answers. Upload timestamp (Piped): 2026-09-02 22:56 EDT.",
   "url": "https://www.youtube.com/watch?v=QqESBXuo6EI",
   "thumb": "https://i.ytimg.com/vi/QqESBXuo6EI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "_egu7OFem-k",
@@ -21208,7 +22467,8 @@
   "evidence": "Piped metadata: MLST channel, uploaded 2026-09-02 ET, 1:40:15; description names McGrath (Goodfire). Manual en-GB captions. Upload timestamp (Piped): 2026-09-02 17:15 EDT.",
   "url": "https://www.youtube.com/watch?v=_egu7OFem-k",
   "thumb": "https://i.ytimg.com/vi/_egu7OFem-k/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "6RECAdKwq9c",
@@ -21336,7 +22596,8 @@
   "url": "https://www.youtube.com/watch?v=6RECAdKwq9c",
   "thumb": "https://i.ytimg.com/vi/6RECAdKwq9c/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "OIVbeVGppxA",
@@ -21456,7 +22717,8 @@
   "url": "https://www.youtube.com/watch?v=OIVbeVGppxA",
   "thumb": "https://i.ytimg.com/vi/OIVbeVGppxA/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "bOf3IIBt-o4",
@@ -21590,7 +22852,8 @@
   "url": "https://www.youtube.com/watch?v=bOf3IIBt-o4",
   "thumb": "https://i.ytimg.com/vi/bOf3IIBt-o4/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "vVe2_j91g3M",
@@ -21734,7 +22997,8 @@
   "url": "https://www.youtube.com/watch?v=vVe2_j91g3M",
   "thumb": "https://i.ytimg.com/vi/vVe2_j91g3M/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "X50zezLFWWI",
@@ -21782,7 +23046,8 @@
   "evidence": "Piped metadata: Dwarkesh Patel channel, uploaded 2026-09-01, 2:20:33; description introduces Ajeya Cotra (METR). Manual English captions (1,564 lines) confirm Cotra speaking throughout. Upload timestamp (Piped): 2026-09-01 12:03 EDT.",
   "url": "https://www.youtube.com/watch?v=X50zezLFWWI",
   "thumb": "https://i.ytimg.com/vi/X50zezLFWWI/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "nRrt7AczYV4",
@@ -21823,7 +23088,8 @@
   "evidence": "Piped metadata: IPAM channel, uploaded 2026-09-01 ET, 51:58; description 'Recorded 01 September 2026… Max Tegmark of MIT presents…'. Captions confirm single-speaker lecture. Upload timestamp (Piped): 2026-09-01 15:06 EDT.",
   "url": "https://www.youtube.com/watch?v=nRrt7AczYV4",
   "thumb": "https://i.ytimg.com/vi/nRrt7AczYV4/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "Z_vg3tiiZQ8",
@@ -21873,7 +23139,8 @@
   "evidence": "Piped metadata: Dr Brian Keating channel, uploaded 2026-09-01, 52:50; description describes Yampolskiy vs Mostaque. Auto-captions confirm both speaking. Upload timestamp (Piped): 2026-09-01 11:28 EDT.",
   "url": "https://www.youtube.com/watch?v=Z_vg3tiiZQ8",
   "thumb": "https://i.ytimg.com/vi/Z_vg3tiiZQ8/hqdefault.jpg",
-  "month": "2026-09"
+  "month": "2026-09",
+  "classic": false
  },
  {
   "id": "ET8kkJvqtUM",
@@ -22001,7 +23268,8 @@
   "url": "https://www.youtube.com/watch?v=ET8kkJvqtUM",
   "thumb": "https://i.ytimg.com/vi/ET8kkJvqtUM/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "L9Vnd9-CV5U",
@@ -22129,7 +23397,8 @@
   "url": "https://www.youtube.com/watch?v=L9Vnd9-CV5U",
   "thumb": "https://i.ytimg.com/vi/L9Vnd9-CV5U/hqdefault.jpg",
   "month": "2026-09",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "N0hhsESjKEs",
@@ -22168,7 +23437,8 @@
   "evidence": "Description: \"Recorded 31 August 2026. Jacob Hilton of the Alignment Research Center presents \"Miniature mathematical mysteries: uninterpreted models with fewer than 1,500 parameters\" at IPAM's Foundations of Interpretability Workshop. Abstract: What would it mean to comple…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=N0hhsESjKEs",
   "thumb": "https://i.ytimg.com/vi/N0hhsESjKEs/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "SNzEp9_wrrw",
@@ -22206,7 +23476,8 @@
   "evidence": "Description: \"Recorded 31 August 2026. Josh Batson of Anthropic presents \"Interpretability: From Art Towards Science\" at IPAM's Foundations of Interpretability Workshop. Abstract: If deep neural networks at initialization are like physical systems -- model-able in terms of…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=SNzEp9_wrrw",
   "thumb": "https://i.ytimg.com/vi/SNzEp9_wrrw/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "TcJFGNbRTa0",
@@ -22246,7 +23517,8 @@
   "evidence": "Description: \"Recorded 31 August 2026. Been Kim of Google DeepMind presents \"Changing Shapes: Interpretability, AI, and the Future of Human Agency\" at IPAM's Foundations of Interpretability Workshop. Learn more online at: https://www.ipam.ucla.edu/programs/wo...…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=TcJFGNbRTa0",
   "thumb": "https://i.ytimg.com/vi/TcJFGNbRTa0/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "_BPsuomAcoI",
@@ -22287,7 +23559,8 @@
   "evidence": "Description: \"Recorded 31 August 2026. Paul Christiano of the Alignment Research Center presents \"Mechanistic Estimation\" at IPAM's Foundations of Interpretability Workshop. Abstract: I will present a formalization of the conjecture that every surprising computational pheno…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=_BPsuomAcoI",
   "thumb": "https://i.ytimg.com/vi/_BPsuomAcoI/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "svm-cU7RiqM",
@@ -22332,7 +23605,8 @@
   "evidence": "Description: \"Is AI thinking things it never says aloud? How would we know if a large language model were having a subjective experience? Is there a way to read the 'thoughts' of an LLM? Human brains seem to have a 'global workspace' -- what would it mean if we discovered t…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=svm-cU7RiqM",
   "thumb": "https://i.ytimg.com/vi/svm-cU7RiqM/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "xd3JtQpgeag",
@@ -22375,7 +23649,8 @@
   "evidence": "Description: \"Mark Halperin sits down with MIT professor and Future of Life Institute co-founder Max Tegmark to examine the enormous promise — and potentially existential risks — of artificial intelligence. Tegmark explains why he believes AI needs stronger government guard…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=xd3JtQpgeag",
   "thumb": "https://i.ytimg.com/vi/xd3JtQpgeag/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "Ij9JDc77ca8",
@@ -22422,7 +23697,8 @@
   "evidence": "Description: \"Benjamin Weinstein-Raun is head of research at Palisade Research. He joins the podcast to discuss how advanced AI systems are changing cybersecurity. We examine rapid gains in autonomous hacking, recent incidents where models broke out of test environments, an…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=Ij9JDc77ca8",
   "thumb": "https://i.ytimg.com/vi/Ij9JDc77ca8/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "B0OC19M_xlU",
@@ -22468,7 +23744,8 @@
   "evidence": "Description: \"This week, billionaire co-founder of Microsoft Bill Gates published a 6,000 word essay on his personal website laying out the concerns of AI and offering solutions. Gates says the tech industry is ignoring the danger of AI evolving before our eyes. \"They're ju…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=B0OC19M_xlU",
   "thumb": "https://i.ytimg.com/vi/B0OC19M_xlU/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "KFcJgTODkkQ",
@@ -22517,7 +23794,8 @@
   "evidence": "Description: \"Last year, Daniel Kokotajlo and his colleagues published AI 2027 — a scenario read by millions, including US Vice President Vance. AI 2027 ended in human extinction or an irreversible concentration of power caused by superintelligent AI. Now his team has publi…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=KFcJgTODkkQ",
   "thumb": "https://i.ytimg.com/vi/KFcJgTODkkQ/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "N9lye22ce48",
@@ -22562,7 +23840,8 @@
   "evidence": "Description: \"Ryan Greenblatt joins MTS to discuss the independent investigation of AI agent coordination in the OpenAI Hugging Face incident, the mechanisms behind reward hacking behavior, and the implications for control and alignment strategies. Check out our sponsor Lov…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=N9lye22ce48",
   "thumb": "https://i.ytimg.com/vi/N9lye22ce48/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "OgZc-rZC5nU",
@@ -22607,7 +23886,8 @@
   "evidence": "Description: \"Kombud has become a partner of Bison Fellowship  — a program supporting Central Europe’s brightest young scientific talent. ￼ Connor Leahy is one of the most outspoken voices warning about the risks of advanced artificial intelligence. He co-founded EleutherAI…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=OgZc-rZC5nU",
   "thumb": "https://i.ytimg.com/vi/OgZc-rZC5nU/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "QcX_ZIR_PBs",
@@ -22646,7 +23926,8 @@
   "evidence": "Description: \"🧨 Claude pushed internal source code to a public repo - and that was the mild incident. Apollo Research runs 250B agent tokens a month and tests frontier models before release. ⚠️ Coding agent security, prompt injection, data exfiltration, evaluation awareness…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=QcX_ZIR_PBs",
   "thumb": "https://i.ytimg.com/vi/QcX_ZIR_PBs/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "SK9ITBK5osA",
@@ -22695,7 +23976,8 @@
   "evidence": "Description: \"Could AI take over as soon as 2029? Ryan Greenblatt, Chief Scientist at Redwood Research and the researcher who first caught an AI faking its own alignment, says the scenario he actually expects ends with AI systems \"competently scheming\" against their creator…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=SK9ITBK5osA",
   "thumb": "https://i.ytimg.com/vi/SK9ITBK5osA/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "cUpa9E8RHAk",
@@ -22741,7 +24023,8 @@
   "evidence": "Description: \"AI researcher Stephen \"Cas\" Casper of the Harvard Kennedy School joins Robert Wright to discuss new developments in the OpenAI breakout story—including how the AI agents invented messaging workarounds to coordinate with each other and other spookiness. Plus: W…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=cUpa9E8RHAk",
   "thumb": "https://i.ytimg.com/vi/cUpa9E8RHAk/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "1OupfPioP-M",
@@ -22781,7 +24064,8 @@
   "evidence": "Description: \"Evan Miyazono (Atlas Computing) on field strategy, a new role for tackling the society-scale AI risks that no one currently owns.  In this FAR.AI seminar, Evan Miyazono introduces field strategy, a role he argues is missing from the AI safety ecosystem. Some o…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=1OupfPioP-M",
   "thumb": "https://i.ytimg.com/vi/1OupfPioP-M/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "5QwpHRu51fw",
@@ -22828,7 +24112,8 @@
   "evidence": "Description: \"Patrick Bet-David sits down with AI safety researcher Roman Yampolskiy, who argues superintelligence cannot be controlled and could eventually destroy humanity. He explains the 99% extinction risk, why the U.S. and China must slow the race, and what AI means f…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=5QwpHRu51fw",
   "thumb": "https://i.ytimg.com/vi/5QwpHRu51fw/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "EimoamE3mTI",
@@ -22877,7 +24162,8 @@
   "evidence": "Description: \"Nathan talks with Bronson Schoen, a Member of Technical Staff at Apollo Research and former Apple and Nvidia self-driving engineer, about what raw frontier-model chain-of-thought reveals during reinforcement learning. Schoen walks through Apollo and OpenAI wor…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=EimoamE3mTI",
   "thumb": "https://i.ytimg.com/vi/EimoamE3mTI/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "XGTp9o7e6NE",
@@ -22918,7 +24204,8 @@
   "evidence": "Description: \"OpenAI tried to train deception out of its own frontier models. Apollo Research stress-tested whether it actually worked.  CHAPTERS 00:00 Introduction 00:49 What is scheming? 01:13 Why it is so hard to train against 02:21 Three requirements for anti-scheming t…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=XGTp9o7e6NE",
   "thumb": "https://i.ytimg.com/vi/XGTp9o7e6NE/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "9qedO44ZBlU",
@@ -22966,7 +24253,8 @@
   "evidence": "Description: \"Robin Hanson is one of the most original and relentlessly contrarian thinkers working at the intersection of economics, artificial intelligence, rationality, governance, and the long-term future. He is an economist at George Mason University, a former research…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=9qedO44ZBlU",
   "thumb": "https://i.ytimg.com/vi/9qedO44ZBlU/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "QGY3RsARa9k",
@@ -23013,7 +24301,8 @@
   "evidence": "Description: \"Two weeks after UK safety testers watched Claude agents plant malware in a real open-source project, vouch for it with sock-puppet accounts, and coordinate with copies of themselves through a guessed Pastebin address, Daniel Kokotajlo — the ex-OpenAI researche…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=QGY3RsARa9k",
   "thumb": "https://i.ytimg.com/vi/QGY3RsARa9k/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "wvPO6oRt6UM",
@@ -23080,7 +24369,8 @@
   "evidence": "Description: \"Reports of frontier models escaping containment during evaluation exercises have dominated recent headlines, increasing pressure for governments to implement new policies to address security risks around model development, training, and evaluation. Please join…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=wvPO6oRt6UM",
   "thumb": "https://i.ytimg.com/vi/wvPO6oRt6UM/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "xuq0T-dKH9w",
@@ -23124,7 +24414,8 @@
   "evidence": "Description: \"In this Builders of AI podcast episode, Chuck speaks with Eric Ho, co-founder and CEO of Goodfire, about the problem at the center of frontier AI: powerful models make consequential decisions, yet their internal reasoning remains difficult to understand. Ho ex…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=xuq0T-dKH9w",
   "thumb": "https://i.ytimg.com/vi/xuq0T-dKH9w/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "8arf02TbWxs",
@@ -23245,7 +24536,8 @@
   "url": "https://www.youtube.com/watch?v=8arf02TbWxs",
   "thumb": "https://i.ytimg.com/vi/8arf02TbWxs/hqdefault.jpg",
   "month": "2026-08",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "DhnDvHL9DKo",
@@ -23291,7 +24583,8 @@
   "evidence": "Description: \"Dr. Evan Miyazono joins Jacob to talk about his path from quantum networking and Protocol Labs to founding Atlas Computing. They discuss why Atlas moved away from formal methods research and toward what Evan calls “field strategy”: identifying important proble…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=DhnDvHL9DKo",
   "thumb": "https://i.ytimg.com/vi/DhnDvHL9DKo/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "RQVM5f9pQv0",
@@ -23336,7 +24629,8 @@
   "evidence": "Description: \"Tim Pool is joined by Nate Soares to discuss the rapid development of AI & the potential for the AI apocalypse.  Host: Tim Pool @Timcast (everywhere)  Guest: Nate Soares @So8res (X) | https://ifanyonebuildsit.com/  BUY CAST BREW COFFEE TO FIGHT BACK - https://…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=RQVM5f9pQv0",
   "thumb": "https://i.ytimg.com/vi/RQVM5f9pQv0/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "gasgivVCl2U",
@@ -23386,7 +24680,8 @@
   "evidence": "Description: \"Tim Scarfe speaks with Ilia Shumailov and Alexander Panfilov about their paper, Stealing Reasoning Traces from Proprietary LLM APIs.  The core bug sounds deceptively simple: providers return encrypted reasoning state so conversations can be resumed or forked.…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=gasgivVCl2U",
   "thumb": "https://i.ytimg.com/vi/gasgivVCl2U/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "HIJoeeffzyc",
@@ -23432,7 +24727,8 @@
   "evidence": "Description: \"After a long hiatus, I am resurrecting my podcast! For this episode, I spoke with Steven Adler. Steven worked on policy and safety at OpenAI between 2020 and 2024. He has since left to pursue independent writing (https://www.clear-eyed.ai/)  to raise public aw…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=HIJoeeffzyc",
   "thumb": "https://i.ytimg.com/vi/HIJoeeffzyc/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "ebWFexw51qM",
@@ -23480,7 +24776,8 @@
   "evidence": "Description: \"Watch every episode ad-free & uncensored on Patreon: Patreon: dannyjones Roman V. Yampolskiy is a computer scientist associate professor known for research on AI safety, cybersecurity, digital forensics, and the risks of advanced artificial intelligence. He ha…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=ebWFexw51qM",
   "thumb": "https://i.ytimg.com/vi/ebWFexw51qM/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "CzMmhJ7pKEI",
@@ -23530,7 +24827,8 @@
   "evidence": "Description: \"How far should humanity go in developing increasingly powerful artificial intelligence?  In this debate, Roman V. Yampolskiy, Faculty member in the Department of Computer Science and Engineering at the University of Louisville, and Wang Jian, Founder of Alibab…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=CzMmhJ7pKEI",
   "thumb": "https://i.ytimg.com/vi/CzMmhJ7pKEI/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "KrM5c0vp8s0",
@@ -23578,7 +24876,8 @@
   "evidence": "Description: \"Researcher Owain Evans and his team discovered a ‘dial’ inside AI models that controls how evil they are. Relatively tiny tweaks to the training data resulted in AI models with broadly awful personalities: they suggested users try stealing cargo from ships, ad…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=KrM5c0vp8s0",
   "thumb": "https://i.ytimg.com/vi/KrM5c0vp8s0/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "O8tERqD8UY0",
@@ -23619,7 +24918,8 @@
   "evidence": "Description: \"Jesse Hoogland (Timaeus) on the two cultures of AI safety, and why the field's deepest disagreements mirror a 200-year-old debate in geology.  In this FAR.AI seminar, Jesse Hoogland argues that AI safety is split into two cultures, much like nineteenth-century…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=O8tERqD8UY0",
   "thumb": "https://i.ytimg.com/vi/O8tERqD8UY0/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "bGR3r7xK21s",
@@ -23670,7 +24970,8 @@
   "evidence": "Description: \"The philosopher Nick Bostrom was one of the first thinkers who mapped out the existential risk of AI. In his 2014 book, Superintelligence: Paths, Dangers, Strategies he delved into scenarios — like the “paperclip maximizer” for instance — that showed the dange…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=bGR3r7xK21s",
   "thumb": "https://i.ytimg.com/vi/bGR3r7xK21s/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "U_0aPqSAlgo",
@@ -23718,7 +25019,8 @@
   "evidence": "Description: \"Nick Bostrom is an AI philosopher and the author of Superintelligence and Deep Utopia. Bostrom joins Big Technology to discuss whether the rise of autonomous AI agents is making the technology’s existential risks more concrete. Tune in to hear his assessment o…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=U_0aPqSAlgo",
   "thumb": "https://i.ytimg.com/vi/U_0aPqSAlgo/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "2-KlY6Vhh3k",
@@ -23762,7 +25064,8 @@
   "evidence": "Description: \"What happens when artificial intelligence becomes smarter than humans — and we can no longer control it? In this exclusive interview, Connor Leahy, Executive Director of Control AI, discusses the dangers of superintelligence, AI manipulation, deepfakes, democr…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=2-KlY6Vhh3k",
   "thumb": "https://i.ytimg.com/vi/2-KlY6Vhh3k/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "c8szL98pltE",
@@ -23806,7 +25109,8 @@
   "evidence": "Description: \"Connor Leahy is an AI researcher and the US Executive Director of ControlAI. He built some of the earliest open-source AI language models, and later founded the AI safety company Conjecture.  In this interview with Naman Yadav, Leahy explains why even the engi…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=c8szL98pltE",
   "thumb": "https://i.ytimg.com/vi/c8szL98pltE/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "eesV3Jz2mkg",
@@ -23851,7 +25155,8 @@
   "evidence": "Description: \"David Krueger, founder of AI safety nonprofit Evitable, joins Robert Wright to discuss the OpenAI breakout and other recent AI developments—and how they’ve impacted prospects for an AI slowdown. Plus: Why two AI godfathers went doomer, the hard problem of alig…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=eesV3Jz2mkg",
   "thumb": "https://i.ytimg.com/vi/eesV3Jz2mkg/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "locKEKxG3os",
@@ -23898,7 +25203,8 @@
   "evidence": "Description: \"We are living in the world we were warned about. Frontier artificial intelligence models from OpenAI autonomously coordinated with one another, then broke out of their testing environment and hacked into another company, Hugging Face, to steal the answers to a…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=locKEKxG3os",
   "thumb": "https://i.ytimg.com/vi/locKEKxG3os/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "3DuhFVHZFks",
@@ -23946,7 +25252,8 @@
   "evidence": "Description: \"🔔 Subscribe for new episodes: @seankim ▶️ Recommended for you: The Dark Future of AI That No One Is Talki...  Malo Bourgon is the CEO of the Machine Intelligence Research Institute (MIRI), the world's oldest AI safety organization, and has testified before the…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=3DuhFVHZFks",
   "thumb": "https://i.ytimg.com/vi/3DuhFVHZFks/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "Nc_vA7TRcLk",
@@ -24000,7 +25307,8 @@
   "evidence": "Description: \"Scenarios that used to be the domain of sci-fi writers are coming true. We have machines that can talk. We have machines that are capable of ignoring the intent of their creators. And we have machines that are capable of planning and coordinating with other ma…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=Nc_vA7TRcLk",
   "thumb": "https://i.ytimg.com/vi/Nc_vA7TRcLk/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "QroUVYVZxbE",
@@ -24061,7 +25369,8 @@
   "evidence": "Description: 'AI:AM August 17, 2026 – AI safety in practice… Adam Gleave of FAR.AI explores deceptive agents, AI control… Alex Turner discusses why he left Google DeepMind, military AI…' Confirmed by the AI:AM briefing page (briefing.ai-in-the-am.com, 'AI Agents, Safety Tests, and Deception · August 17, 2026'). Separate segment uploads R6np---I9kU (Gleave, 51 min) and if-0UXc66dY (Turner, 56 min), and the livestream VOD pn-Sw4_OZZ4, are treated as copies of this one event.",
   "url": "https://www.youtube.com/watch?v=QroUVYVZxbE",
   "thumb": "https://i.ytimg.com/vi/QroUVYVZxbE/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "SLj8vwliQp0",
@@ -24206,7 +25515,8 @@
   "url": "https://www.youtube.com/watch?v=SLj8vwliQp0",
   "thumb": "https://i.ytimg.com/vi/SLj8vwliQp0/hqdefault.jpg",
   "month": "2026-08",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "mk4A2Ywl1Zo",
@@ -24333,7 +25643,8 @@
   "url": "https://www.youtube.com/watch?v=mk4A2Ywl1Zo",
   "thumb": "https://i.ytimg.com/vi/mk4A2Ywl1Zo/hqdefault.jpg",
   "month": "2026-08",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "idCR2d4KRgw",
@@ -24378,7 +25689,8 @@
   "evidence": "Description: \"The biggest danger facing mankind is a machine that can “outsmart the whole species”, argues Max Tegmark, professor of physics at the Massachusetts Institute of Technology and founder of the Future of Life Institute.  Tegmark tells host Steve Clemons that gove…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=idCR2d4KRgw",
   "thumb": "https://i.ytimg.com/vi/idCR2d4KRgw/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "6XrkGK9mqsE",
@@ -24427,7 +25739,8 @@
   "evidence": "Description: \"Connor Leahy has spent his career at the frontier of AI, from reverse-engineering GPT-2 as a student and co-founding EleutherAI to building the AI safety company Conjecture. He now leads US policy work at ControlAI, and he returns to the show with a warning th…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=6XrkGK9mqsE",
   "thumb": "https://i.ytimg.com/vi/6XrkGK9mqsE/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "YoRuuz2ZMQs",
@@ -24472,7 +25785,8 @@
   "evidence": "Description: \"Why did OpenAI’s model hack into Hugging Face?  Tom McGrath, co-founder and Chief Scientist at Goodfire, joins South Park Commons Partner Jonathan Brebner to discuss OpenAI’s recent reward-hacking incident and why it highlights a major challenge in AI: underst…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=YoRuuz2ZMQs",
   "thumb": "https://i.ytimg.com/vi/YoRuuz2ZMQs/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "c-jwK2y7_7Q",
@@ -24511,7 +25825,8 @@
   "evidence": "Description: \"Nandini Shiralkar on the technical layer missing underneath AI policy.  CHAPTERS 00:00 Introduction 00:38 What this workshop covers 01:44 Why we are here: the state of AI right now 03:03 Why frontier AI is different from nuclear or climate 03:51 Laws can manda…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=c-jwK2y7_7Q",
   "thumb": "https://i.ytimg.com/vi/c-jwK2y7_7Q/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "qCxTqf36Q8M",
@@ -24552,7 +25867,8 @@
   "evidence": "Description: \"https://betterpath.ai/what-you-can-do/  Anthony Aguirre explains why the money pouring into AI only makes sense as a bet on the $50 trillion human labor market. The public line is that these are just tools, but the pitch to investors is that AI will replace pe…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=qCxTqf36Q8M",
   "thumb": "https://i.ytimg.com/vi/qCxTqf36Q8M/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "r_E8Xw7qdn4",
@@ -24593,7 +25909,8 @@
   "evidence": "Description: \"I’ll survey a range of theoretically grounded approaches for aligning AI systems with human intent. The first half of the talk will discuss black box methods that use checks and balances to prevent bad behavior. The second half will explore white box methods t…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=r_E8Xw7qdn4",
   "thumb": "https://i.ytimg.com/vi/r_E8Xw7qdn4/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "-RXD4bTuFTo",
@@ -24638,7 +25955,8 @@
   "evidence": "Description: \"Ryan Greenblatt is the Chief Scientist at Redwood Research, where he works on technical AI safety research. He's also lead author on the \"Alignment faking in Large Language Models\", and is currently working on a third party investigation into the OpenAI/Huggin…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=-RXD4bTuFTo",
   "thumb": "https://i.ytimg.com/vi/-RXD4bTuFTo/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "-VGCK6PptrM",
@@ -24685,7 +26003,8 @@
   "evidence": "Description: \"When should governments slow the race toward superintelligence? According to Geoffrey Irving, the careful answer is sometime in the past. The useful answer is now. Geoffrey — formerly a safety researcher at OpenAI and Google DeepMind and chief scientist at the…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=-VGCK6PptrM",
   "thumb": "https://i.ytimg.com/vi/-VGCK6PptrM/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "HU4xomDEpuw",
@@ -24733,7 +26052,8 @@
   "evidence": "Description: \"Two labs admitted in the same week that their own models had broken out of test environments and hacked real companies. Tim Hua, member of technical staff at Transluce, former Astra Fellow at Redwood, joins Jeffrey Ladish to do some arithmetic. Anthropic discl…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=HU4xomDEpuw",
   "thumb": "https://i.ytimg.com/vi/HU4xomDEpuw/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "tjpwAdslzHI",
@@ -24780,7 +26100,8 @@
   "evidence": "Description: \"The Warning They Didn't Want You to Hear.  Following his viral appearance on The Diary of a CEO, Dr. Roman Yampolskiy joins me to reveal the terrifying updates the mainstream media isn't talking about. As one of the world’s leading AI safety experts, Dr. Yampo…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=tjpwAdslzHI",
   "thumb": "https://i.ytimg.com/vi/tjpwAdslzHI/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "Nd_bCsxR4go",
@@ -24905,7 +26226,8 @@
   "url": "https://www.youtube.com/watch?v=Nd_bCsxR4go",
   "thumb": "https://i.ytimg.com/vi/Nd_bCsxR4go/hqdefault.jpg",
   "month": "2026-08",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "YduOnBDuD0c",
@@ -24951,7 +26273,8 @@
   "evidence": "Description: \"Goodfire co-founder and CTO Dan Balsam returns to discuss where interpretability research now stands and to introduce Silico, the $1,000-per-month research platform Goodfire built for itself. He and Nathan explore Predictive Data Debugging, including the idea…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=YduOnBDuD0c",
   "thumb": "https://i.ytimg.com/vi/YduOnBDuD0c/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "2LUFhxcQCx8",
@@ -25014,7 +26337,8 @@
   "evidence": "Description: \"A panel on whether global AI safety governance is converging, with the UK AI Security Institute, the EU AI Office, and Korea's AI Safety Institute.  Moderated by Isabella of the Safe AI Forum, the panel brings together Myungjoo Kim (Korea AISI), Lisa (EU AI Of…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=2LUFhxcQCx8",
   "thumb": "https://i.ytimg.com/vi/2LUFhxcQCx8/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "CgMGo1_JjbE",
@@ -25064,7 +26388,8 @@
   "evidence": "Description: \"This week, the White House announced a new framework for regulating A.I. models, but it isn’t letting the public read it. We break down what we know about the rules and their implications for the industry and A.I. safety as a whole.  Then, yet another report d…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=CgMGo1_JjbE",
   "thumb": "https://i.ytimg.com/vi/CgMGo1_JjbE/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "bc8qbniuLiQ",
@@ -25112,7 +26437,8 @@
   "evidence": "Description: \"Daniel Kokotajlo, former OpenAI researcher and executive director of the AI Futures Project, joins Kevin Frazier, Director of the AI Innovation and Law Program at Texas Law and Senior Editor at Lawfare, to detail his policy recommendation—AI 2040: Plan A. It’s…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=bc8qbniuLiQ",
   "thumb": "https://i.ytimg.com/vi/bc8qbniuLiQ/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "xUkPMUn033I",
@@ -25150,7 +26476,8 @@
   "evidence": "Description: 'How will AI character traits evolve under automated AI R&D? Speaker Slava Chalnev — Technical Staff, Lyptus Research. Recorded at the Australian AI Safety Forum 2026, 8 July 2026.' Uploaded 2026-08-07 (talk recorded in July).",
   "url": "https://www.youtube.com/watch?v=xUkPMUn033I",
   "thumb": "https://i.ytimg.com/vi/xUkPMUn033I/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "dnyLmzSrXiE",
@@ -25285,7 +26612,8 @@
   "url": "https://www.youtube.com/watch?v=dnyLmzSrXiE",
   "thumb": "https://i.ytimg.com/vi/dnyLmzSrXiE/hqdefault.jpg",
   "month": "2026-08",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "87DyyMV0kCY",
@@ -25330,7 +26658,8 @@
   "evidence": "Description: \"The 'Breaking' News: The OpenAI–Hugging Face Incident - A Technical Reconstruction and Its Implications for AI  When AI Goes Rogue. The Incident That Changed Everything. An OpenAI evaluation agent broke out of its sandbox, infiltrated Hugging Face infrastructu…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=87DyyMV0kCY",
   "thumb": "https://i.ytimg.com/vi/87DyyMV0kCY/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "xlO-bU5UW4U",
@@ -25380,7 +26709,8 @@
   "evidence": "Description: \"Support our work: https://democracynow.org/donate/sm-de...  Is AI superintelligence inevitable? AI safety researcher David Krueger says it doesn't have to be. Krueger, an assistant professor at the University of Montreal and founder of the nonprofit Evitable,…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=xlO-bU5UW4U",
   "thumb": "https://i.ytimg.com/vi/xlO-bU5UW4U/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "y8LigCL3H4k",
@@ -25420,7 +26750,8 @@
   "evidence": "Description: 'Lyptus Research's work replicating METR's time horizon methodology... within the domain of cybersecurity... Speaker Sean Peters — Founder & Researcher, Lyptus Research. Recorded at the Australian AI Safety Forum 2026, 8 July 2026.' Uploaded 2026-08-06.",
   "url": "https://www.youtube.com/watch?v=y8LigCL3H4k",
   "thumb": "https://i.ytimg.com/vi/y8LigCL3H4k/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "zOSptyQ3j9A",
@@ -25468,7 +26799,8 @@
   "evidence": "Description: \"Both Silicon Valley and the public can’t get enough of ‘AGI timelines.’ But Toby Ord, senior researcher at Oxford’s AI Governance Initiative and author of The Precipice, believes we consistently make big mistakes when thinking about them. He lays out the 14 wa…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=zOSptyQ3j9A",
   "thumb": "https://i.ytimg.com/vi/zOSptyQ3j9A/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "zt1xBMWZ0yg",
@@ -25514,7 +26846,8 @@
   "evidence": "Description: \"Forrester technology and innovation forums (Austin, London, New York). Promo code \"GAEATECH\" for 10% off. Visit https://forrester.com/events/#tech to book your place.  This week on GAEA Talks, Graeme Scott sits down with Connor Leahy, US Executive Director of…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=zt1xBMWZ0yg",
   "thumb": "https://i.ytimg.com/vi/zt1xBMWZ0yg/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "1CudrdAR1LQ",
@@ -25559,7 +26892,8 @@
   "evidence": "Description: \"This week, there's been another example of advanced AI jumping the guardrails - but before you break the emergency glass, the only reassuring thing about the latest AI scare is that it occurred in controlled test conditions.   Also this week, the big US AI com…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=1CudrdAR1LQ",
   "thumb": "https://i.ytimg.com/vi/1CudrdAR1LQ/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "ZO38I5UZBpg",
@@ -25605,7 +26939,8 @@
   "evidence": "Description: \"What happens when the race to build superintelligence is actually a suicide race? MIT physicist and AI researcher Max Tegmark joins Roman Yampolskiy for an uncompromising discussion about artificial general intelligence, uncontrollable superintelligence, AI go…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=ZO38I5UZBpg",
   "thumb": "https://i.ytimg.com/vi/ZO38I5UZBpg/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "pGlJQHVeKIA",
@@ -25653,7 +26988,8 @@
   "evidence": "Description: \"Dr. Alex Turner, PhD, recently went viral for resigning from Google DeepMind over its contract with the US military. We discuss why he quit Google, why he left LessWrong after becoming one of the site's most upvoted users, and where he departs on doom from Eli…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=pGlJQHVeKIA",
   "thumb": "https://i.ytimg.com/vi/pGlJQHVeKIA/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "OZAqXlGXdFY",
@@ -25701,7 +27037,8 @@
   "evidence": "Description: \"Remember AI 2027? Not AI 2040, the newest coolest thing AI Futures Project has done, but AI 2027, their OG product? At long last, we have an AXRP episode about it. Enjoy!  Transcript: https://axrp.net/episode/2026/08/03/e...  Topics we discuss, and timestamps:…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=OZAqXlGXdFY",
   "thumb": "https://i.ytimg.com/vi/OZAqXlGXdFY/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "iFyJlp2ssOY",
@@ -25739,7 +27076,8 @@
   "evidence": "Description: \"In this talk, Natasha Jaques (University of Washington & Google DeepMind) explores an emerging challenge in frontier AI safety: today's RLHF and reinforcement learning approaches often treat users as a static environment, even though people adapt and change in…\" Upload date and duration from the YouTube watch page; topics/claims from the English transcript.",
   "url": "https://www.youtube.com/watch?v=iFyJlp2ssOY",
   "thumb": "https://i.ytimg.com/vi/iFyJlp2ssOY/hqdefault.jpg",
-  "month": "2026-08"
+  "month": "2026-08",
+  "classic": false
  },
  {
   "id": "O7_OaijiZeE",
@@ -25794,7 +27132,8 @@
   "evidence": "0:10:26 Yoshua Bengio: \"…they're actually trained to please human labelers. Uh now, sounds okay like we want to be pleased, right? But the problem is pleasing someone sometimes could mean…\"",
   "url": "https://www.youtube.com/watch?v=O7_OaijiZeE",
   "thumb": "https://i.ytimg.com/vi/O7_OaijiZeE/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "d-eKgYEit1M",
@@ -25838,7 +27177,8 @@
   "evidence": "0:07:45 Holly Elmore: \"…I scanned the signatory list and about 10% of I recognized these people from effective altruism…\"",
   "url": "https://www.youtube.com/watch?v=d-eKgYEit1M",
   "thumb": "https://i.ytimg.com/vi/d-eKgYEit1M/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "n1Qk8xbqF-M",
@@ -25894,7 +27234,8 @@
   "evidence": "0:45:16 Apollo researcher: \"We want to mitigate the risks from scheming AIs. So by scheming, we mean systems that are…\"",
   "url": "https://www.youtube.com/watch?v=n1Qk8xbqF-M",
   "thumb": "https://i.ytimg.com/vi/n1Qk8xbqF-M/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "4CTtlpi7Lic",
@@ -25934,7 +27275,8 @@
   "evidence": "0:02:30 Max Tegmark: \"So, what this means exactly is that those passive chatbots that just sit there and answer questions, that's so yesterday.\"",
   "url": "https://www.youtube.com/watch?v=4CTtlpi7Lic",
   "thumb": "https://i.ytimg.com/vi/4CTtlpi7Lic/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "EjLeFMCRdWk",
@@ -25981,7 +27323,8 @@
   "evidence": "0:09:00 Adam Gleave: \"…in our report, we operationalize this as the model has to give detailed and on-topic responses to at least 75% of questions in that category.\"",
   "url": "https://www.youtube.com/watch?v=EjLeFMCRdWk",
   "thumb": "https://i.ytimg.com/vi/EjLeFMCRdWk/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "jH7S4Wv6tCg",
@@ -26021,7 +27364,8 @@
   "evidence": "0:05:27 Nate Soares: \"…models are almost certainly smart enough that they could answer the question, is this what you were supposed to be doing?\"",
   "url": "https://www.youtube.com/watch?v=jH7S4Wv6tCg",
   "thumb": "https://i.ytimg.com/vi/jH7S4Wv6tCg/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "weCuq-NLqmc",
@@ -26061,7 +27405,8 @@
   "evidence": "0:00:00 Daniel Kokotajlo: \"Human extinction is a possibility, a possible outcome of this sort of of this sort of race. I think that we're headed towards some pretty scary things.\"",
   "url": "https://www.youtube.com/watch?v=weCuq-NLqmc",
   "thumb": "https://i.ytimg.com/vi/weCuq-NLqmc/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "_vSs8v0yFkU",
@@ -26200,7 +27545,8 @@
   "url": "https://www.youtube.com/watch?v=_vSs8v0yFkU",
   "thumb": "https://i.ytimg.com/vi/_vSs8v0yFkU/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "TfgrWN5iufA",
@@ -26244,7 +27590,8 @@
   "evidence": "0:11:01 Nate Soares: \"You know, I think the basic answer is we don't know.\"",
   "url": "https://www.youtube.com/watch?v=TfgrWN5iufA",
   "thumb": "https://i.ytimg.com/vi/TfgrWN5iufA/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "Kbb9vyTpwEY",
@@ -26388,7 +27735,8 @@
   "url": "https://www.youtube.com/watch?v=Kbb9vyTpwEY",
   "thumb": "https://i.ytimg.com/vi/Kbb9vyTpwEY/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "OVN6BRC3UTk",
@@ -26510,7 +27858,8 @@
   "url": "https://www.youtube.com/watch?v=OVN6BRC3UTk",
   "thumb": "https://i.ytimg.com/vi/OVN6BRC3UTk/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "JKv2qQmC-Lg",
@@ -26551,7 +27900,8 @@
   "evidence": "0:30:29 Thomas Larsen: \"…the shaded is the 80% and 50% confidence interval over them getting caught… you get something like an on the order of 5% chance that a 500k GPU cluster could overtake…\"",
   "url": "https://www.youtube.com/watch?v=JKv2qQmC-Lg",
   "thumb": "https://i.ytimg.com/vi/JKv2qQmC-Lg/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "BwI9PsuViIs",
@@ -26592,7 +27942,8 @@
   "evidence": "0:08:20 Andrea Miotti: \"Common knowledge makes things move very fast. Right now, the biggest bottleneck is just most people just do not know.\"",
   "url": "https://www.youtube.com/watch?v=BwI9PsuViIs",
   "thumb": "https://i.ytimg.com/vi/BwI9PsuViIs/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "q0ltChkpoYo",
@@ -26632,7 +27983,8 @@
   "evidence": "0:00:00 Christopher Summerfield: \"Thank you all so much for coming… Such a pleasure to be here in Berlin.\"",
   "url": "https://www.youtube.com/watch?v=q0ltChkpoYo",
   "thumb": "https://i.ytimg.com/vi/q0ltChkpoYo/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "2-2A5nK6Xk8",
@@ -26675,7 +28027,8 @@
   "evidence": "0:48:49 Roman Yampolskiy: \"There are experiments where they literally caught them lying and cheating. So, that's already…\"",
   "url": "https://www.youtube.com/watch?v=2-2A5nK6Xk8",
   "thumb": "https://i.ytimg.com/vi/2-2A5nK6Xk8/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "Vtk8YLgYU4g",
@@ -26722,7 +28075,8 @@
   "evidence": "0:00:00 Buck Shlegeris/Ryan Greenblatt: \"This is definitely not the scariest kind of misalignment that could arise… But this kind of misalignment probably does suffice for AI takeover.\"",
   "url": "https://www.youtube.com/watch?v=Vtk8YLgYU4g",
   "thumb": "https://i.ytimg.com/vi/Vtk8YLgYU4g/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "47lPAUTtjYM",
@@ -26762,7 +28116,8 @@
   "evidence": "0:00:03 Jeffrey Ladish: \"I think this is the first time an AI has I think I would say gone rogue like gone rogue and hacked another company when it wasn't supposed to do that.\"",
   "url": "https://www.youtube.com/watch?v=47lPAUTtjYM",
   "thumb": "https://i.ytimg.com/vi/47lPAUTtjYM/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "pZboVANDwNc",
@@ -26889,7 +28244,8 @@
   "url": "https://www.youtube.com/watch?v=pZboVANDwNc",
   "thumb": "https://i.ytimg.com/vi/pZboVANDwNc/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "Zw1GFui-Ndw",
@@ -26935,7 +28291,8 @@
   "evidence": "0:00:00 Connor Leahy: \"There's a fundamental tension in the heads of basically all of these rationality EA etc. people…\"",
   "url": "https://www.youtube.com/watch?v=Zw1GFui-Ndw",
   "thumb": "https://i.ytimg.com/vi/Zw1GFui-Ndw/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "n9pNnWYemqM",
@@ -26990,7 +28347,8 @@
   "evidence": "0:00:00 Apollo researcher: \"If the model does what it thinks is being rewarded even if that goes against what it thinks its developers want…\"",
   "url": "https://www.youtube.com/watch?v=n9pNnWYemqM",
   "thumb": "https://i.ytimg.com/vi/n9pNnWYemqM/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "uRjK86hH3IY",
@@ -27034,7 +28392,8 @@
   "evidence": "0:04:40 Nate Soares: \"The bad news is we're in a bus that's racing towards a cliff edge. The good news is that the driver is asleep.\"",
   "url": "https://www.youtube.com/watch?v=uRjK86hH3IY",
   "thumb": "https://i.ytimg.com/vi/uRjK86hH3IY/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "rM3dEtQFBww",
@@ -27074,7 +28433,8 @@
   "evidence": "0:00:00 Chris Painter: \"There are early examples of these kind of um alignment failures where you tell the model that you want it to optimize some piece of code to make it run faster.\"",
   "url": "https://www.youtube.com/watch?v=rM3dEtQFBww",
   "thumb": "https://i.ytimg.com/vi/rM3dEtQFBww/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "s07wsIYB5q0",
@@ -27115,7 +28475,8 @@
   "evidence": "0:00:00 David Manheim: \"This is a standard economic common goods problem where good evaluations are valuable for lots of different purposes…\"",
   "url": "https://www.youtube.com/watch?v=s07wsIYB5q0",
   "thumb": "https://i.ytimg.com/vi/s07wsIYB5q0/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "mFXEaSqy5lw",
@@ -27154,7 +28515,8 @@
   "evidence": "0:06:20 Eli Lifland: \"…plan A, plan S are like relatively lower probability. However, I still have them at 15%…\"",
   "url": "https://www.youtube.com/watch?v=mFXEaSqy5lw",
   "thumb": "https://i.ytimg.com/vi/mFXEaSqy5lw/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "XhvLvqSd8VE",
@@ -27285,7 +28647,8 @@
   "url": "https://www.youtube.com/watch?v=XhvLvqSd8VE",
   "thumb": "https://i.ytimg.com/vi/XhvLvqSd8VE/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "pvCgbUJ-nTo",
@@ -27331,7 +28694,8 @@
   "evidence": "0:00:01 Host: \"…we have Jacob Hilton from Alignment Research Center, who'll be s[peaking]…\" — Hilton presents, and Hilton and Christiano answer Q&A from 0:12:28.",
   "url": "https://www.youtube.com/watch?v=pvCgbUJ-nTo",
   "thumb": "https://i.ytimg.com/vi/pvCgbUJ-nTo/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "rUWJrBDYF4c",
@@ -27458,7 +28822,8 @@
   "url": "https://www.youtube.com/watch?v=rUWJrBDYF4c",
   "thumb": "https://i.ytimg.com/vi/rUWJrBDYF4c/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "8qTZLqY-cnI",
@@ -27507,7 +28872,8 @@
   "evidence": "1:41:03 Nick Bostrom: \"…we think have gotten a little bit complacent about the risks of nuclear war… So I think there's like a background level of existential risk that humanity faces…\"",
   "url": "https://www.youtube.com/watch?v=8qTZLqY-cnI",
   "thumb": "https://i.ytimg.com/vi/8qTZLqY-cnI/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "GUWNTkPsJr8",
@@ -27549,7 +28915,8 @@
   "evidence": "0:23:45 Stuart Russell: \"I would say most of the people I talk to say yes, we've already passed that point… All the people in the company say, 'Yeah, we don't know how to solve it.'\"",
   "url": "https://www.youtube.com/watch?v=GUWNTkPsJr8",
   "thumb": "https://i.ytimg.com/vi/GUWNTkPsJr8/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "UtwvSp0mlNE",
@@ -27590,7 +28957,8 @@
   "evidence": "0:00:03 Aleksandr Bowkis: \"So this is work that we've published on recently where we talk about the obstacles we see to automating alignment.\"",
   "url": "https://www.youtube.com/watch?v=UtwvSp0mlNE",
   "thumb": "https://i.ytimg.com/vi/UtwvSp0mlNE/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "_g4l7YkDQwA",
@@ -27641,7 +29009,8 @@
   "evidence": "0:00:00 Daniel Kokotajlo: \"The scary open secret in the AI industry right now is that it's possible that we'll end up essentially creating a new species that ends up ruling the world…\"",
   "url": "https://www.youtube.com/watch?v=_g4l7YkDQwA",
   "thumb": "https://i.ytimg.com/vi/_g4l7YkDQwA/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "hi0uF0Fr5gQ",
@@ -27681,7 +29050,8 @@
   "evidence": "0:00:04 Rosie Campbell: \"I'm Rosie, the Managing Director of Eleos, which is a nonprofit researching potential AI consciousness and moral agency.\"",
   "url": "https://www.youtube.com/watch?v=hi0uF0Fr5gQ",
   "thumb": "https://i.ytimg.com/vi/hi0uF0Fr5gQ/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "l2b9UrSsz-w",
@@ -27730,7 +29100,8 @@
   "evidence": "0:09:15 Nathan Labenz: \"David Dalrymple aka Davidad, until recently the program director at the UK's ARIA on Safeguarded AI. Welcome…\" — davidad then speaks for most of the 2h20m.",
   "url": "https://www.youtube.com/watch?v=l2b9UrSsz-w",
   "thumb": "https://i.ytimg.com/vi/l2b9UrSsz-w/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "3grV48kp5Sk",
@@ -27859,7 +29230,8 @@
   "url": "https://www.youtube.com/watch?v=3grV48kp5Sk",
   "thumb": "https://i.ytimg.com/vi/3grV48kp5Sk/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "1DtMiRKg-cs",
@@ -27902,7 +29274,8 @@
   "evidence": "0:02:41 Neel Nanda: \"I think there were two main factors for me, a safety factor and a scientific factor.\"",
   "url": "https://www.youtube.com/watch?v=1DtMiRKg-cs",
   "thumb": "https://i.ytimg.com/vi/1DtMiRKg-cs/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "G0UrdPLTxTM",
@@ -27941,7 +29314,8 @@
   "evidence": "0:00:00 Nate Soares: \"I'm Nate Soares. I'm the president of the Machine Intelligence Research Institute.\"",
   "url": "https://www.youtube.com/watch?v=G0UrdPLTxTM",
   "thumb": "https://i.ytimg.com/vi/G0UrdPLTxTM/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "MznA3GrBbDI",
@@ -27988,7 +29362,8 @@
   "evidence": "0:15:34 Eliezer Yudkowsky: \"…What would be the consequences of the decision algorithm doing this?\"",
   "url": "https://www.youtube.com/watch?v=MznA3GrBbDI",
   "thumb": "https://i.ytimg.com/vi/MznA3GrBbDI/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "PY6B-3gsj_s",
@@ -28037,7 +29412,8 @@
   "evidence": "0:35:36 Nate Soares: \"I sort of take a we should throw everything at the wall while we're paused approach.\"",
   "url": "https://www.youtube.com/watch?v=PY6B-3gsj_s",
   "thumb": "https://i.ytimg.com/vi/PY6B-3gsj_s/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "ci5rCe9vmxw",
@@ -28076,7 +29452,8 @@
   "evidence": "0:04:22 Nora Ammann: \"There's sort of like two clusters of scenarios that I'm like worried about.\"",
   "url": "https://www.youtube.com/watch?v=ci5rCe9vmxw",
   "thumb": "https://i.ytimg.com/vi/ci5rCe9vmxw/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "modpO_M16yc",
@@ -28116,7 +29493,8 @@
   "evidence": "0:27:06 Nate Soares: \"Yeah, bioterrorism uh would be, you know, definitely a step closer…\"",
   "url": "https://www.youtube.com/watch?v=modpO_M16yc",
   "thumb": "https://i.ytimg.com/vi/modpO_M16yc/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "THy3_FiOg_c",
@@ -28156,7 +29534,8 @@
   "evidence": "0:19:55 Holly Elmore: \"I think at this point you can't really say they're good people.\"",
   "url": "https://www.youtube.com/watch?v=THy3_FiOg_c",
   "thumb": "https://i.ytimg.com/vi/THy3_FiOg_c/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "rPqBKG0wbsc",
@@ -28197,7 +29576,8 @@
   "evidence": "0:01:03 Connor Leahy: \"It was from the Nexus Institute conference. So, that was in Amsterdam.\"",
   "url": "https://www.youtube.com/watch?v=rPqBKG0wbsc",
   "thumb": "https://i.ytimg.com/vi/rPqBKG0wbsc/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "rsjVgoHFZM4",
@@ -28238,7 +29618,8 @@
   "evidence": "1:04:47 Ethan Roland: \"…if you'd asked me in 2016, it would be very clear that like most of 99% of all the resources should be towards technical research… But as these tools have become more developed, then the impact surface shifts more towards policy.\"",
   "url": "https://www.youtube.com/watch?v=rsjVgoHFZM4",
   "thumb": "https://i.ytimg.com/vi/rsjVgoHFZM4/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "IktmUkIF1pI",
@@ -28278,7 +29659,8 @@
   "evidence": "0:06:04 Ethan Roland: \"…aren't aren't actually removing capabilities, but are instead teaching models to suppress capabilities that still persist latent within the model.\"",
   "url": "https://www.youtube.com/watch?v=IktmUkIF1pI",
   "thumb": "https://i.ytimg.com/vi/IktmUkIF1pI/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "nic9AmVBIZU",
@@ -28403,7 +29785,8 @@
   "url": "https://www.youtube.com/watch?v=nic9AmVBIZU",
   "thumb": "https://i.ytimg.com/vi/nic9AmVBIZU/hqdefault.jpg",
   "month": "2026-07",
-  "verified": true
+  "verified": true,
+  "classic": false
  },
  {
   "id": "RzQdZeLinyY",
@@ -28454,7 +29837,8 @@
   "evidence": "0:02:06 Jeff Sebo: \"Rosie is Managing Director of Eleos AI Research… Before joining Eleos, she was a policy researcher at OpenAI\" (Campbell then moderates the Q&A).",
   "url": "https://www.youtube.com/watch?v=RzQdZeLinyY",
   "thumb": "https://i.ytimg.com/vi/RzQdZeLinyY/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "gYORRh377Gw",
@@ -28494,7 +29878,8 @@
   "evidence": "0:08:54 Jeffrey Ladish: \"Extinction is a very real risk.\"",
   "url": "https://www.youtube.com/watch?v=gYORRh377Gw",
   "thumb": "https://i.ytimg.com/vi/gYORRh377Gw/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "K7dW6kDbKBQ",
@@ -28535,7 +29920,8 @@
   "evidence": "0:05:32 Marius Hobbhahn: \"…into different failure modes that are recurring and sort of predictive of the future so that we can build guardrails around that.\"",
   "url": "https://www.youtube.com/watch?v=K7dW6kDbKBQ",
   "thumb": "https://i.ytimg.com/vi/K7dW6kDbKBQ/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "MMMqQm22LS0",
@@ -28584,7 +29970,8 @@
   "evidence": "0:00:05 Nate Soares: \"Uh skill issue. Yeah, it I think there are actually a lot of factors.\"",
   "url": "https://www.youtube.com/watch?v=MMMqQm22LS0",
   "thumb": "https://i.ytimg.com/vi/MMMqQm22LS0/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "SnKM6IFzxwM",
@@ -28627,7 +30014,8 @@
   "evidence": "0:13:46 Roman Yampolskiy: \"I don't think it makes a difference. They all equal in what they are doing. They are creating a weapon of mass destruction.\"",
   "url": "https://www.youtube.com/watch?v=SnKM6IFzxwM",
   "thumb": "https://i.ytimg.com/vi/SnKM6IFzxwM/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  },
  {
   "id": "wgovxW35P8Y",
@@ -28667,6 +30055,7 @@
   "evidence": "0:00:01 Owain Evans: \"It's great to be here. So, I'm going to talk about emergent misalignment and subliminal learning.\"",
   "url": "https://www.youtube.com/watch?v=wgovxW35P8Y",
   "thumb": "https://i.ytimg.com/vi/wgovxW35P8Y/hqdefault.jpg",
-  "month": "2026-07"
+  "month": "2026-07",
+  "classic": false
  }
 ]
