@@ -121,10 +121,7 @@ html[data-theme="light"] .ghlink { color: #0d1117; } html[data-theme="light"] .g
 }
 
 /* ---------------------------------------------------------------- player: clean overlays in every mode */
-/* paused/cued: a strong top band and bottom band hide YouTube's own pause overlay (title, "More videos") so nothing doubles */
 .dock:not(.is-native) .pv__top { background: linear-gradient(rgba(0, 0, 0, .78), rgba(0, 0, 0, .35) 70%, transparent); }
-body:not(.is-playing) .dock:not(.is-native):not(.is-cued) .pv__hit { background: linear-gradient(rgba(0, 0, 0, .9) 0, rgba(0, 0, 0, .82) 72px, rgba(0, 0, 0, .25) 26%, rgba(0, 0, 0, .25) 62%, rgba(0, 0, 0, .9) 100%); }
-body:not(.is-playing) .dock:not(.is-native):not(.is-cued) .pv__top { background: rgba(0, 0, 0, .9); padding-bottom: 14px; }
 .dock .pv__top { min-height: 0; }
 .pv__tt { min-width: 0; overflow: hidden; }
 body.is-zen .dock .pv__tt, .dock .pv__top:has(+ .pv__fx + .pv__pomo:not([hidden])) .pv__tt { padding-right: 0; }
@@ -408,3 +405,36 @@ body.df-open .dfbar__tx small { display: none; }
 /* the Focus timer pill fades with the controls in full screen instead of sitting on the picture */
 .pv__pomo { transition: opacity .3s; }
 .dock.is-fs:not(.pv--show) .pv__pomo { opacity: 0; }
+
+/* ---------------------------------------------------------------- player: clean paused picture (no opaque bands in any mode) */
+/* The transparent hit layer keeps the pointer off YouTube's iframe so its hover chrome never wakes up. While paused, YouTube
+ * still draws its own title strip near the top: a soft frosted fade (blur, almost no tint, masked to nothing) makes it
+ * unreadable without painting a bar over the picture. Our top controls float on a light scrim and only show on hover/focus. */
+.dock:not(.is-native) .pv__top { background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .16) 62%, transparent); }
+.dock.is-fs:not(.is-native) .pv__top b { text-shadow: 0 1px 8px rgba(0, 0, 0, .6); }
+body:not(.is-playing) .dock:not(.is-native):not(.is-cued) .pv__hit { background: linear-gradient(transparent 58%, rgba(0, 0, 0, .5) 100%); }
+body:not(.is-playing) .dock:not(.is-native):not(.is-cued) .pv__top { background: linear-gradient(rgba(0, 0, 0, .46), rgba(0, 0, 0, .14) 62%, transparent); padding-bottom: 26px; }
+body:not(.is-playing) .dock:not(.is-native) .pv__top { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+body:not(.is-playing) .dock:not(.is-native):hover .pv__top, body:not(.is-playing) .dock:not(.is-native) .pv__top:focus-within { opacity: 1; transform: none; pointer-events: auto; }
+@media (hover: none) { body:not(.is-playing) .dock.pv--show:not(.is-native) .pv__top { opacity: 1; transform: none; pointer-events: auto; } }
+body:not(.is-playing) .dock:not(.is-native):not(.is-cued):not(.is-loading) .pv__hit::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: clamp(44px, 26%, 130px); pointer-events: none; background: rgba(0, 0, 0, .06); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); -webkit-mask-image: linear-gradient(#000 40%, transparent); mask-image: linear-gradient(#000 40%, transparent); }
+
+/* ---------------------------------------------------------------- one chapters surface: the reading panel split (also in Focus) */
+@media (min-width: 901px) {
+  body.is-zen.is-read.ch-dock .theater { grid-template-columns: minmax(0, var(--rd-main, 60%)) minmax(280px, 1fr) !important; }
+  body.is-zen.is-read.ch-dock.rd-collapsed .theater { grid-template-columns: minmax(0, 1fr) !important; }
+}
+body.is-zen.is-read.ch-dock:not(.rd-collapsed) .theater__side { display: flex !important; }
+body.is-zen.ch-dock #rdSplit:not([hidden]), body.is-zen.ch-dock #rdOpen:not([hidden]) { display: flex !important; }
+.chsheet { display: none !important; }
+#sideTabs [data-side="chapters"].is-flash { animation: chflash .9s var(--ease, ease) 1; }
+@keyframes chflash { 0%, 100% { box-shadow: none; } 30% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--amber) 60%, transparent); } }
+html.rm #sideTabs [data-side="chapters"].is-flash { animation: none; }
+/* full screen split: same divider behaviour, plus a collapse handle */
+.dock.is-fs.has-fsp.fsp--side:not(.fsp--sheet) .fspdiv:not([hidden]) { flex-direction: column; gap: 10px; }
+.fspdiv__x { width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .22); background: #0a0d14; color: #e8eef6; font: 800 13px/1 var(--font); cursor: pointer; display: grid; place-items: center; padding: 0; }
+.fspdiv__x:hover { border-color: var(--amber); color: var(--amber2, #ffd27a); }
+.dock.is-fs.has-fsp.fsp--sheet .fspdiv__x { transform: rotate(90deg); margin-left: 10px; }
+/* full screen: the pointer is always over the player, so "hover" there means the pointer moved (pv--show) */
+body:not(.is-playing) .dock.is-fs:not(.is-native):not(.pv--show):hover .pv__top:not(:focus-within) { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+body:not(.is-playing) .dock.is-fs.pv--show:not(.is-native) .pv__top { opacity: 1; transform: none; pointer-events: auto; }
