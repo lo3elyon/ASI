@@ -502,6 +502,8 @@
       ${ui().shelf("Favourites", fav, { icon: "❤️" })}
       <section class="panel panel--flat" id="settings"><div class="panel__hd"><h2>Settings</h2></div>
         <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (10 s countdown)</label>
+        <label class="rng rng--set"><span>Next-episode countdown (Binge / autoplay) <output id="sBingeSecsV">${A.binge ? A.binge.secs() : 15} s</output></span><input type="range" id="sBingeSecs" min="5" max="60" step="5" value="${A.binge ? A.binge.secs() : 15}" aria-label="Countdown before the next episode, seconds"></label>
+        <p class="muted settings__note">Opening an episode never starts it by itself: it loads paused until you press Play. Only the next episode after a countdown starts on its own.</p>
         <label class="switch"><input type="checkbox" id="sCeleb" ${L().SETTINGS.celebrations !== false ? "checked" : ""}><span></span>Celebrations (confetti and particle bursts on milestones)</label>
         <div class="seg seg--sm" role="group" aria-label="Theme">${["dark", "light", "system"].map((t) => `<button data-theme-set="${t}" aria-pressed="${theme === t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join("")}</div>
         <div class="settings__themes" id="themes"><p class="muted">Theme and accent colour</p>${A.themes ? A.themes.pickerHTML() : A.feat.accentPicker()}</div>
