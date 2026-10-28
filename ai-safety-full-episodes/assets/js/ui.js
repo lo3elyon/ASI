@@ -120,7 +120,8 @@
   /* ONE shared card-meta renderer: every card variant (library grid/list, carousels, picks, queue, playlists, notes, history,
    * recently watched, up next, search, explore) takes its upload date and duration from here, so no variant can drop the date. */
   function thumbDate(e) { if (!e || !e.date) return ""; const s = fmtShort(e.date), y = e.date.slice(0, 4); return `<span class="thumb__date" data-date="${esc(e.date)}" title="Uploaded ${esc(fmtDate(e.date, e.approx))}">${esc(s)}<span class="thumb__yr">, ${esc(y)}</span></span>`; }
-  function thumbBadges(e) { return thumbDate(e) + `<span class="thumb__dur">${esc(e.durStr)}</span>`; }
+  function flagBadges(e) { const n = A.isNew && A.isNew(e), c = e && e.classic; return n || c ? `<span class="thumb__flags">${n ? `<span class="thumb__new" title="Added ${esc(fmtDate((e.addedAt || "").slice(0, 10)))}">NEW</span>` : ""}${c ? `<span class="thumb__classic" title="A classic: older than this library\u2019s window, kept for its lasting value">Classic</span>` : ""}</span>` : ""; }
+  function thumbBadges(e) { return thumbDate(e) + flagBadges(e) + `<span class="thumb__dur">${esc(e.durStr)}</span>`; }
   function metaDate(e) { return e && e.date ? `<span class="card__date" data-date="${esc(e.date)}">${esc(fmtShort(e.date))}</span>` : ""; }
   function metaCore(e) { return metaDate(e) + `<span>${esc(e.durStr)}</span>`; }
   function cardMeta(e, rest) { return `<p class="card__meta">${metaCore(e)}${rest || ""}</p>`; }
@@ -249,5 +250,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { thumbDate, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
+  A.ui = { thumbDate, flagBadges, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
