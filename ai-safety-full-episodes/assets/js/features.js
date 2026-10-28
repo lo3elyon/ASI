@@ -209,7 +209,7 @@
   }
   function paintJustAdded(v) {
     v = v || V("home"); if (!v) return;
-    const xs = A.justAdded ? A.justAdded() : [];
+    const xs = (A.justAdded ? A.justAdded() : []).filter((e) => h().stateOf(e.id) !== "done");
     let ja = $("#justAdded", v);
     if (!xs.length) { if (ja) ja.remove(); return; }
     if (!ja) { ja = document.createElement("section"); ja.id = "justAdded"; ja.className = "shelf ja"; ja.setAttribute("aria-labelledby", "jaH"); }
