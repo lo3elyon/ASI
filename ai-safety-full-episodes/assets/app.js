@@ -174,16 +174,16 @@
   /* ---------------------------------------------------------------- shortcuts + theme */
   const KEYS = [
     ["Ctrl/⌘ K", "Command palette: episodes, speakers, actions"], ["/", "Search (Browse)"], ["?", "This overlay"],
-    ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
+    ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 5 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
     [", / .", "Frame step when paused (speed −/+ 0.25× while playing)"], ["< / >", "Slower / faster"], ["0–9", "Jump to 0%–90%"], ["Home / End", "Start / end (on the seek bar)"],
-    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode (Binge: next in the line-up)"], ["Shift P (Binge on, Theater)", "Previous episode in this binge"], ["Shift R", "Read mode (video + reading panel side by side)"], ["U", "Jump to the first part you have not watched"], ["S", "Skip intro (first chapter)"],
+    ["Shift ]", "Next chapter"], ["Shift N", "Next episode (Binge: next in the line-up)"], ["Shift P", "Previous episode (the one you played before; previous chapter when there is none)"], ["Shift Y", "YouTube's own controls on / off (quality, native captions)"], ["Shift R", "Read mode (video + reading panel side by side)"], ["U", "Jump to the first part you have not watched"], ["S", "Skip intro (first chapter)"],
     ["F", "Full screen (Esc to leave)"], ["T", "Theater mode / default view"], ["I", "Miniplayer / expand"], ["A", "Headphones mode"], ["O", "Float window (always on top)"], ["Z", "Focus mode"],
     ["C", "Captions on / off"], ["M", "Mute"], ["B", "Bookmark this moment"], ["N", "Note at this moment"], ["[ / ] / \\", "Loop start / loop end / clear"],
     ["W", "Mark focused card (or current episode) watched"], ["Shift F10", "Card menu (or right-click)"], ["Arrow keys on cards", "Move between cards"],
     ["Double-click / double-tap", "Left or right third: −/+10 s · middle: fullscreen · mini: expand"], ["Swipe on video (touch)", "Sideways seeks · up/down on the right half sets volume"],
     ["G then H / B / S / I / W / L / R / Y", "Go to Home / Browse / Speakers / Insights / Watched / Playlists / Recap / History"], ["Esc", "Close / exit fullscreen / minimise"],
   ];
-  function openHelp() { $("#keysBody").innerHTML = `<dl>${KEYS.map(([k, d]) => `<div><dt>${k.split(" / ").map((x) => `<kbd>${esc(x)}</kbd>`).join(" / ")}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>`; $("#help").hidden = false; $("#help [data-close]").focus(); }
+  function openHelp() { if (A.prefs && A.prefs.openKeys) return A.prefs.openKeys(); $("#keysBody").innerHTML = `<dl>${KEYS.map(([k, d]) => `<div><dt>${k.split(" / ").map((x) => `<kbd>${esc(x)}</kbd>`).join(" / ")}</dt><dd>${esc(d)}</dd></div>`).join("")}</dl>`; $("#help").hidden = false; $("#help [data-close]").focus(); }
   function setTheme(pref, explicit) {
     try { localStorage.setItem("asfe:theme", pref); } catch (e) {}
     const dark = pref === "dark" || (pref === "system" && !(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches));
@@ -213,6 +213,7 @@
       if (!$("#help").hidden) { $("#help").hidden = true; return; }
       if (!$("#levelup").hidden) { $("#levelup").hidden = true; return; }
       if (A.P.menu) { A.player.closeMenu(); return; }
+      if (A.fsp && A.fsp.isOpen() && A.P.fs) { A.fsp.close(); return; }
       if (A.P.fs) { A.player.exitFs(); return; }
       if (A.P.zen) { A.player.toggleZen(false); return; }
       if (!$("#countdown").hidden) { A.player.hideCountdown(); return; }
@@ -240,15 +241,16 @@
       case "k": case "K": pl.togglePlay(); break;
       case "j": case "J": pl.seek(-10); break;
       case "l": case "L": pl.seek(10); break;
-      case "ArrowLeft": ev.preventDefault(); pl.seek(ev.shiftKey ? -30 : -10); break;
-      case "ArrowRight": ev.preventDefault(); pl.seek(ev.shiftKey ? 30 : 10); break;
+      case "ArrowLeft": ev.preventDefault(); pl.seek(ev.shiftKey ? -30 : -5); break;
+      case "ArrowRight": ev.preventDefault(); pl.seek(ev.shiftKey ? 30 : 5); break;
       case "ArrowUp": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol + 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
       case "ArrowDown": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol - 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
       case "N": if (A.binge && A.binge.on()) A.binge.next(); else pl.playNext(); break;
       case "R": pl.toggleRead(); break;
       case "u": case "U": pl.jumpGap(); break;
       case "n": pl.openNote(); break;
-      case "P": if (A.binge && A.binge.on() && P0.mode === "theater") A.binge.prev(); else pl.prevChapter(); break;
+      case "P": if (A.binge && A.binge.on() && P0.mode === "theater") A.binge.prev(); else if (!(pl.playPrev && pl.playPrev())) pl.prevChapter(); break;
+      case "Y": pl.toggleNative(); break;
       case "}": pl.nextChapter(); break;
       case "[": pl.setLoop("a"); break;
       case "]": pl.setLoop("b"); break;
