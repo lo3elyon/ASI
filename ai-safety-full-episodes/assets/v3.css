@@ -1010,3 +1010,7 @@ html.rm .btn--primary::after { display: none; }
 @media (prefers-reduced-motion: reduce) { .phead h1, .shelf__hd h2, .th__title { animation: none; } .btn--primary::after { display: none; } .btn:active, .iconbtn:active svg { transform: none; } }
 @media (forced-colors: active) { .phead h1, .shelf__hd h2, .th__title, .eyebrow { -webkit-text-fill-color: CanvasText; background: none; } }
 .dock:has(#dockErr:not([hidden])) .pv__big { display: none !important; }
+/* light themes: photo / video backgrounds keep their character (lighter veil, stronger image) */
+html[data-theme="light"] .bgfx__img, html[data-theme="light"] .bgfx__vid { opacity: .62; }
+html[data-theme="light"] .bgfx__tint { background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 18%, transparent), color-mix(in srgb, var(--bg) 58%, transparent)); }
+.pv__rail .chap__t { color: #7ee8da; } .pv__rail .chap.is-now .chap__t { color: #fff; } .pv__rail .chap.is-now { box-shadow: inset 3px 0 0 var(--amber); }
