@@ -92,7 +92,7 @@
       if (!o.keepMode) { const pref = root().getAttribute("data-theme-pref") || "system"; const dark = pref === "dark" || (pref === "system" && !(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)); root().setAttribute("data-theme", dark ? "dark" : "light"); }
       root().setAttribute("data-accent", t.id === "custom" ? "custom" : t.id);
       if (t.id !== "amber") setVars(t.vars);
-      if (!o.preview) { LS("palette", null); LS("paletteVars", t.id === "amber" ? null : JSON.stringify({ mode: null, vars: t.vars })); LS("accent", t.id); }
+      if (!o.preview) { LS("palette", null); LS("paletteVars", t.id === "amber" ? null : JSON.stringify({ mode: null, vars: t.vars })); LS("accent", t.id); LS(root().getAttribute("data-theme") === "light" ? "autoDay" : "autoNight", t.id); }
     }
     const m = $('meta[name="theme-color"]'); if (m) m.setAttribute("content", (t.vars && t.vars["--bg"]) || (root().getAttribute("data-theme") === "light" ? "#f5f7fa" : "#070b12"));
     $$("[data-thset]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.thset === t.id)));
@@ -143,7 +143,7 @@
   }
   document.addEventListener("click", (ev) => {
     const fb = ev.target.closest && ev.target.closest("[data-thfav]");
-    if (fb) { ev.stopPropagation(); const id = fb.dataset.thfav; const f = favs(); const i = f.indexOf(id); i >= 0 ? f.splice(i, 1) : f.push(id); LS("themeFavs", JSON.stringify(f)); const g = $("#thGrid"); if (g) g.innerHTML = gridHTML(); A.fx && i < 0 && A.fx.celebrate("rate", fb, true); return; }
+    if (fb) { ev.stopPropagation(); const id = fb.dataset.thfav; const f = favs(); const i = f.indexOf(id); i >= 0 ? f.splice(i, 1) : f.push(id); LS("themeFavs", JSON.stringify(f)); ["#thGrid", "#qThGrid"].forEach((sel) => { const g = $(sel); if (g) { const y = g.scrollTop; g.innerHTML = gridHTML(); g.scrollTop = y; } }); const nb = $(`#qThGrid [data-thfav="${id}"], #thGrid [data-thfav="${id}"]`); if (nb && fb.isConnected === false) nb.focus(); A.ui && A.ui.toast(i < 0 ? "Added to favourite themes ★" : "Removed from favourite themes", { ms: 1100 }); A.fx && i < 0 && A.fx.celebrate("rate", fb, true); return; }
     const b = ev.target.closest && ev.target.closest("[data-thset]"); if (!b) return;
     ev.preventDefault();
     const y = window.scrollY, t = apply(b.dataset.thset);
