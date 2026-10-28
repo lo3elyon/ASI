@@ -109,6 +109,7 @@
     tick(true); flush();
     if (L().QUEUE.includes(id)) { h().setQueue(L().QUEUE.filter((x) => x !== id)); A.views && A.views.paintQueueCount(); }
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
+    if (P.cur && P.cur.id !== e.id && !o.back) { P.backStack = (P.backStack || []).filter((x) => x !== P.cur.id).concat(P.cur.id).slice(-30); }
     P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.chIdx = -1; P.loop = null; P.errCode = null;
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
@@ -145,7 +146,8 @@
     $$('[data-pc="mute"]').forEach((b) => b.classList.toggle("is-muted", !!S.muted || S.vol === 0));
     paintSpeed(); paintQuality();
     dock().classList.toggle("is-native", !!S.nativeControls);
-    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
+    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions || !!(A.ccx && A.ccx.on() && !S.nativeControls))));
+    paintNativeBtn();
   }
   function paintSpeed() { const s = Math.min(2, Number(L().SETTINGS.speed) || 1); $$("[data-speedlbl]").forEach((el) => (el.textContent = (Math.round(s * 100) / 100) + "×")); }
 
@@ -208,7 +210,8 @@
       P.lastMedia = P.yt.getCurrentTime();
       P.lastWall = performance.now();
       if (P.autoSkip) { P.autoSkip = false; autoSkipHearing(); }
-      if (L().SETTINGS.captions && !L().SETTINGS.nativeControls) captionsOn(true);
+      if (L().SETTINGS.captions && !L().SETTINGS.nativeControls && !(A.ccx && A.ccx.on())) captionsOn(true);
+      if (A.ccx && A.ccx.on()) { try { P.yt.unloadModule && P.yt.unloadModule("captions"); } catch (x) {} }
       syncCCSoon();
     } else {
       tick(true);
@@ -216,6 +219,7 @@
       flush();
     }
     showUI();
+    try { document.dispatchEvent(new CustomEvent("asfe:state", { detail: s })); } catch (x) {}
     if (s === 0) onEnded();
   }
 
@@ -372,10 +376,19 @@
     A.ui.toast(`Hearing: skipped to the researcher at <b>${fmtTime(c.t)}</b>`, { icon: "⏭️", action: { label: "Back to start", fn: () => seek(0, true) }, ms: 6000 });
   }
 
+  /* Shift+P: the episode you played before this one (YouTube's "previous video"); returns false when there is none */
+  function playPrev() {
+    const st = (P.backStack || []).filter((id) => STATE.byId.has(id) && (!P.cur || id !== P.cur.id));
+    if (!st.length) return false;
+    const id = st.pop(); P.backStack = st;
+    play(id, { mini: P.mode !== "theater", keepMini: true, back: true, autoplay: !!P.userPlayed });
+    return true;
+  }
   function nextUp() { const list = A.recs.upNext(P.cur, 3); return list[0] || null; }
   function playNext() { const n = nextUp(); if (n) play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); else A.ui.toast("Nothing left to suggest. You've seen it all!", { icon: "🎉" }); }
   function onEnded() {
     flush();
+    if (P.loopAll && P.yt && P.ready) { try { P.yt.seekTo(0, true); P.yt.playVideo(); } catch (x) {} fx("↻ Loop", "c"); return; }
     if (P.sleep && P.sleep.type === "end") { P.sleep = null; A.ui.toast("Sleep timer: stopped at the end of the episode", { icon: "🌙", force: true }); return; }
     if (A.binge && A.binge.onEnded()) return; // Binge mode in Theater: slim 5 s "Up next" bar instead
     if (!L().SETTINGS.autoplay) return;
@@ -430,6 +443,7 @@
     paintArt();
     paintAmbient();
     paintModeButtons();
+    try { document.dispatchEvent(new CustomEvent("asfe:layout")); } catch (x) {}
   }
   function placeDock() {
     if (P.mode !== "theater" || P.fs || P.sticky) return;
@@ -442,12 +456,22 @@
     const topInPage = r.top + (th ? th.scrollTop : 0);
     const maxVideoH = Math.max(160, narrow ? window.innerHeight * 0.42 : window.innerHeight - topInPage - (P.zen ? 40 : 120));
     if ((w * 9) / 16 > maxVideoH) w = (maxVideoH * 16) / 9;
+    const vw = document.documentElement.clientWidth || window.innerWidth;
+    w = Math.max(160, Math.min(w, r.width, vw - Math.max(0, r.left) - 4));
     slot.style.height = Math.round((w * 9) / 16) + "px";
     const r2 = slot.getBoundingClientRect();
-    d.style.left = Math.round(r2.left + (r2.width - w) / 2) + "px";
+    d.style.left = Math.round(Math.max(0, r2.left + (r2.width - w) / 2)) + "px";
     d.style.top = Math.round(r2.top) + "px";
     d.style.width = Math.round(w) + "px";
+    d.style.setProperty("--dock-w", Math.round(w) + "px");
     paintAmbient();
+  }
+  /* every layout toggle (theater / read / focus / full screen / mini / panel collapse / split drag) re-places the player
+   * now, on the next frame and once CSS transitions have settled, so no combination can leave it stale or clipped */
+  function relayout() {
+    const run = () => { if (P.mode === "theater" && !P.fs && !P.sticky) placeDock(); else if (P.mode === "mini" || P.sticky) placeMini(); };
+    run(); requestAnimationFrame(run); clearTimeout(P.rlT); P.rlT = setTimeout(run, 360);
+    try { document.dispatchEvent(new CustomEvent("asfe:layout")); } catch (x) {}
   }
   window.addEventListener("resize", () => requestAnimationFrame(() => { placeDock(); placeMini(); }));
   function minimize() { if (P.cur) { if (P.fs) exitFs(); setMode("mini"); } }
@@ -641,7 +665,7 @@
     if (on) { const th = $("#theater"); if (th) th.scrollTop = 0; }
     sheetSize();
     paintSide();
-    requestAnimationFrame(() => { placeDock(); placeMini(); });
+    relayout();
     return on;
   }
   function sheetMax() { const slot = $("#stageSlot"); const r = slot ? slot.getBoundingClientRect() : { bottom: 0 }; return Math.max(120, window.innerHeight - Math.max(0, r.bottom) - 8); }
@@ -776,9 +800,10 @@
     d.classList.toggle("is-fs", on);
     document.body.classList.toggle("fs-fallback", on && P.fsFallback);
     paintModeButtons();
-    if (on) { P.rail = window.innerWidth > 900 && !!(P.cur && P.cur.chapters.length); paintRail(); showUI(); try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (x) {} }
-    else { P.rail = false; paintRail(); if (P.mode === "theater" && !P.sticky) requestAnimationFrame(placeDock); else if (P.mode === "mini" || P.sticky) requestAnimationFrame(placeMini); }
+    if (on) { if (A.fsp) { P.rail = false; paintRail(); A.fsp.onFs(true); } else { P.rail = window.innerWidth > 900 && !!(P.cur && P.cur.chapters.length); paintRail(); } showUI(); try { screen.orientation && screen.orientation.lock && screen.orientation.lock("landscape").catch(() => {}); } catch (x) {} }
+    else { P.rail = false; paintRail(); A.fsp && A.fsp.onFs(false); relayout(); }
     paintAmbient();
+    try { document.dispatchEvent(new CustomEvent("asfe:layout")); } catch (x) {}
   }
   document.addEventListener("fullscreenchange", onFsChange);
   document.addEventListener("webkitfullscreenchange", onFsChange);
@@ -797,8 +822,9 @@
       A.ui.toast("Focus mode: notifications paused, 25-minute Focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
     } else { P.dnd = false; P.pomo = null; }
     paintPomo(); paintAmbient();
-    requestAnimationFrame(placeDock);
+    relayout();
     $$('[data-pc="zen"]').forEach((b) => b.setAttribute("aria-pressed", String(on)));
+    const zb = $("#thZen"); if (zb) zb.setAttribute("aria-pressed", String(on));
   }
   function toggleDnd() { P.dnd = !P.dnd; A.ui.toast(P.dnd ? "Do not disturb: badges, XP and tips stay quiet" : "Notifications back on", { icon: P.dnd ? "🔕" : "🔔", force: true, ms: 1800 }); if (P.menu) renderMenu(P.menu); }
   function pomoTick() {
@@ -845,13 +871,20 @@
   function syncCC() {
     const real = ccActual(); const S = L().SETTINGS;
     if (real != null && real !== !!S.captions) { S.captions = real; A.store.set("settings:v3", S); }
-    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
+    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions || !!(A.ccx && A.ccx.on() && !S.nativeControls))));
     if (P.menu === "settings") renderMenu("settings");
     return real;
   }
   function syncCCSoon() { clearTimeout(P.ccT1); clearTimeout(P.ccT2); P.ccT1 = setTimeout(syncCC, P.vWait == null ? 700 : P.vWait); P.ccT2 = setTimeout(syncCC, P.vWait == null ? 3000 : P.vWait + 10); }
   function toggleCC() {
     const S = L().SETTINGS;
+    if (A.ccx && !S.nativeControls && P.cur && S.ccSource !== "youtube" && A.ccx.has(P.cur.id)) {
+      const on = A.ccx.toggle();
+      if (on && P.yt && P.ready) { try { P.yt.unloadModule && P.yt.unloadModule("captions"); P.yt.unloadModule && P.yt.unloadModule("cc"); } catch (x) {} }
+      $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(on)));
+      fx(on ? "CC on" : "CC off", "c");
+      return on;
+    }
     const real = ccActual(); const was = real == null ? !!S.captions : real;
     S.captions = !was; A.store.set("settings:v3", S);
     if (P.yt && P.ready) { if (S.captions) captionsOn(); else { try { P.yt.unloadModule && P.yt.unloadModule("captions"); P.yt.unloadModule && P.yt.unloadModule("cc"); } catch (x) {} fx("CC off", "c"); } syncCCSoon(); }
@@ -879,15 +912,21 @@
       P.qFail = true; res(false);
     }, P.qWait == null ? 3000 : P.qWait));
   }
-  function toggleNative() {
-    const S = L().SETTINGS; S.nativeControls = !S.nativeControls; A.store.set("settings:v3", S);
+  function toggleNative(force) {
+    const S = L().SETTINGS; const on = force == null ? !S.nativeControls : !!force;
+    if (on === !!S.nativeControls && P.yt) return applySettings();
+    S.nativeControls = on; A.store.set("settings:v3", S);
+    paintNativeBtn();
     if (!P.cur) return applySettings();
-    const t = curTime(), id = P.cur.id;
+    const t = curTime(), id = P.cur.id, wasPlaying = P.playing || P.lastState === 1;
     tick(true); flush(); destroyPlayer();
-    createPlayer(freshHost(), id, t);
+    createPlayer(freshHost(), id, Math.floor(t), wasPlaying && !!P.userPlayed);
+    if (!wasPlaying) dock().classList.toggle("is-cued", true);
     applySettings();
-    A.ui.toast(S.nativeControls ? "Using YouTube's own controls (handy for ads or the settings menu)" : "Cinema controls are back", { ms: 2600 });
+    try { document.dispatchEvent(new CustomEvent("asfe:native", { detail: on })); } catch (x) {}
+    A.ui.toast(on ? `YouTube's own controls at ${fmtTime(t)}: pick quality, captions and their style in YouTube's ⚙ menu. Press the ✕ chip (top right) to come back.` : `Cinema controls are back at ${fmtTime(t)}`, { icon: on ? "▶️" : "🎬", ms: 3600, force: true });
   }
+  function paintNativeBtn() { const on = !!L().SETTINGS.nativeControls; $$('[data-pc="ytc"]').forEach((b) => { b.setAttribute("aria-pressed", String(on)); }); }
 
   /* ---------------------------------------------------------------- bookmarks, loop */
   function bookmark() {
@@ -1100,13 +1139,13 @@
     let html = "";
     if (kind === "settings") {
       const sl = P.sleep ? (P.sleep.type === "time" ? `${Math.ceil((P.sleep.until - Date.now()) / 60e3)} min left` : P.sleep.type === "chapter" ? "end of chapter" : "end of episode") : "Off";
-      html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", esc(qLabel(curQuality())))}${it("cc", "Captions (C)", S.captions ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
-        ${it("autoskip", "Auto-skip to researcher in hearings", S.autoSkipHearing ? "On" : "Off")}${it("autoplay", "Autoplay next", S.autoplay ? "On" : "Off")}${it("native", "Use YouTube's own controls", S.nativeControls ? "On" : "Off")}`;
+      html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", esc(qLabel(curQuality())))}${it("cc", "Captions (C)", S.captions || (A.ccx && A.ccx.on()) ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
+        ${it("autoskip", "Auto-skip to researcher in hearings", S.autoSkipHearing ? "On" : "Off")}${it("autoplay", "Autoplay next", S.autoplay ? "On" : "Off")}${it("loopall", "Loop video", P.loopAll ? "On" : "Off")}${A.ccx ? it("ccstyle", "Caption style", "›") : ""}${it("ytc", "YouTube controls (quality, native captions)", S.nativeControls ? "On" : "Off")}`;
     } else if (kind === "speed") {
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Speed <b>${esc(sp + "×")}</b></p><input type="range" class="msl" id="pvSpeedSl" min="0.25" max="2" step="0.05" value="${sp}" aria-label="Playback speed"><div class="mgrid">${SPEEDS.map((s) => `<button class="mc ${s === sp ? "is-on" : ""}" data-pc="speed-set" data-v="${s}">${s}×</button>`).join("")}</div><p class="mnote">Fine steps of 0.05×. YouTube embeds cap at 2×.</p>`;
     } else if (kind === "quality") {
       const q = qualities();
-      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p>${q.length ? q.map((x) => it("quality-set", esc(x), null, `data-v="${esc(x)}"`)).join("") : `<p class="mnote">YouTube does not expose quality levels for this video. It adapts quality automatically to your connection and player size.</p>`}<p class="mnote">Now playing: <b>${esc(qLabel(curQuality()))}</b>. YouTube usually chooses quality automatically in embedded players; if a pick does not stick you will get a link to open this moment on YouTube instead.</p>`;
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p><p class="mnote">Now playing: <b>${esc(qLabel(curQuality()))}</b>. YouTube ignores quality requests from embedded players, so a pick here would not stick. Switch to YouTube's own controls and choose it in their ⚙ menu: same video, same moment.</p>${q.length ? `<p class="mnote mq">Available: ${q.filter((x) => x !== "auto").map((x) => `<span title="${esc(x)}">${esc(qLabel(x))}<i hidden>${esc(x)}</i></span>`).join("")}</p>` : ""}${it("ytc", "Use YouTube controls to pick quality", "▶")}`;
     } else if (kind === "sleep") {
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Sleep timer</p>${[["off", "Off"], ["15", "15 minutes"], ["30", "30 minutes"], ["60", "60 minutes"], ["chapter", "End of this chapter"], ["end", "End of episode"]].map(([v, l]) => it("sleep-set", l, null, `data-v="${v}"`)).join("")}`;
     } else if (kind === "loop") {
@@ -1222,7 +1261,7 @@
   }
   function openChapters(force) {
     if (!P.cur) return;
-    if (P.fs) { P.rail = force == null ? !P.rail : !!force; paintRail(); return; }
+    if (P.fs) { if (A.fsp) { A.fsp.toggle(force); return; } P.rail = force == null ? !P.rail : !!force; paintRail(); return; }
     if (P.mode !== "theater" || P.sticky) { if (P.sticky) backToTop(); else expand(); }
     if (sideBesideVideo() && window.innerWidth > 900) {
       P.side = "chapters"; paintSide(); closeChSheet();
@@ -1433,7 +1472,7 @@
     P.wide = on;
     document.body.classList.toggle("is-wide", on);
     const S = L().SETTINGS; S.theaterWide = on; A.store.set("settings:v3", S);
-    requestAnimationFrame(() => { placeDock(); paintAmbient(); });
+    relayout(); paintAmbient();
     paintModeButtons();
   }
 
@@ -1464,9 +1503,12 @@
     "loop-a": () => setLoop("a"), "loop-b": () => setLoop("b"), "loop-clear": () => setLoop("clear"),
     autoskip: () => { const S = L().SETTINGS; S.autoSkipHearing = !S.autoSkipHearing; A.store.set("settings:v3", S); renderMenu("settings"); },
     autoplay: () => { const S = L().SETTINGS; S.autoplay = !S.autoplay; A.store.set("settings:v3", S); renderMenu("settings"); },
-    native: () => { closeMenu(); toggleNative(); },
+    native: () => { closeMenu(); toggleNative(); }, ytc: () => { closeMenu(); toggleNative(); },
+    loopall: () => { P.loopAll = !P.loopAll; renderMenu("settings"); fx(P.loopAll ? "Loop on" : "Loop off", "c"); },
+    ccstyle: (b) => { closeMenu(); A.ccx && A.ccx.openStyle(b); },
+    back5: () => seek(-5), fwd5: () => seek(5),
   };
-  const KEEP_MENU = new Set(["settings", "more", "speed", "menu-settings", "menu-speed", "menu-quality", "menu-sleep", "menu-loop", "speed-set", "sleep-set", "loop-a", "loop-b", "loop-clear", "autoskip", "autoplay", "cc", "dnd"]);
+  const KEEP_MENU = new Set(["loopall", "settings", "more", "speed", "menu-settings", "menu-speed", "menu-quality", "menu-sleep", "menu-loop", "speed-set", "sleep-set", "loop-a", "loop-b", "loop-clear", "autoskip", "autoplay", "cc", "dnd"]);
   function wire() {
     const d = dock();
     P.wide = !!L().SETTINGS.theaterWide; document.body.classList.toggle("is-wide", P.wide); paintModeButtons();
@@ -1497,6 +1539,8 @@
     const thMain = $(".theater__main"); if (thMain) thMain.addEventListener("scroll", () => requestAnimationFrame(placeDock), { passive: true });
     sheetDrag();
     watchSlot();
+    if (typeof ResizeObserver !== "undefined" && !P.ro) { P.ro = new ResizeObserver(() => { if (P.roRaf) return; P.roRaf = requestAnimationFrame(() => { P.roRaf = 0; if (P.mode === "theater" && !P.fs && !P.sticky) placeDock(); }); }); [$("#stageSlot"), $(".theater__main"), $("#theater")].forEach((x) => x && P.ro.observe(x)); }
+    paintNativeBtn();
     $("#sideBody").addEventListener("input", (ev) => { if (ev.target.id === "sideQ") { P.sideQ = ev.target.value; applySideFilter(); } });
     $("#sideTabs").addEventListener("click", (ev) => { const b = ev.target.closest("[data-side]"); if (!b) return; P.side = b.dataset.side; paintSide(); });
     $("#theater").addEventListener("click", (ev) => {
@@ -1522,6 +1566,6 @@
   A.player = {
     P, play, seek, jumpTo, togglePlay, toggleRead, jumpGap, firstGap, openChapters, closeChSheet, placeChSheet, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
     tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC, syncCC, ccActual,
-    frameStep, bookmark, setLoop, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
+    frameStep, bookmark, setLoop, relayout, toggleNative, playPrev, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
 })(window.ASFE);
