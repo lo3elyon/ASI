@@ -14,4 +14,17 @@
     if (!localStorage.getItem("asfe:seen")) d.classList.add("first");
   } catch (e) {}
   if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("rm");
+  /* route check before first paint: on a reload of #/history (or any other page) the pre-rendered Home stays hidden and a
+   * skeleton of the target page shows instead, until the router has drawn it (app.js removes html.rt). Home and deep links
+   * (#ep=…) keep the pre-rendered Home. */
+  try {
+    var m = (location.hash || "").replace(/^#\/?/, "").match(/^([a-z]+)/);
+    var V = { browse: 1, months: 1, speakers: 1, speaker: 1, insights: 1, history: 1, recent: 1, explore: 1, queue: 1, profile: 1, notes: 1, about: 1, watched: 1, playlists: 1, playlist: 1, wrapped: 1 };
+    if (m && V[m[1]]) { d.classList.add("rt"); d.setAttribute("data-rt", m[1] === "playlist" ? "playlists" : m[1]); }
+  } catch (e) {}
+  /* background choice before first paint (bg.js draws it) */
+  try {
+    var bg = localStorage.getItem("asfe:bg");
+    if (bg && /^[a-z0-9-]{2,24}$/.test(bg)) d.setAttribute("data-bg", bg);
+  } catch (e) {}
 })();
