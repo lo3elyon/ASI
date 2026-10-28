@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 306 verified full-length episodes, Jul–Oct 2026"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 312 verified full-length episodes, Jul–Oct 2026"></a>
 
 <img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
@@ -11,11 +11,11 @@
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
 <img src="https://img.shields.io/badge/updated-2026--10--28-f59e0b?style=flat-square&labelColor=07111f" alt="updated Oct 28, 2026">
-<img src="https://img.shields.io/badge/episodes-306-14b8a6?style=flat-square&labelColor=07111f" alt="306 episodes">
+<img src="https://img.shields.io/badge/episodes-312-14b8a6?style=flat-square&labelColor=07111f" alt="312 episodes">
 <img src="https://img.shields.io/badge/runtime-~331%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 331 hours">
 <img src="https://img.shields.io/badge/researchers%20%26%20guests-167-22d3ee?style=flat-square&labelColor=07111f" alt="167 researchers and guests">
 <img src="https://img.shields.io/badge/hosts-120-64748b?style=flat-square&labelColor=07111f" alt="120 hosts">
-<img src="https://img.shields.io/badge/chapters-3%2C317-10b981?style=flat-square&labelColor=07111f" alt="3,317 chapters">
+<img src="https://img.shields.io/badge/chapters-3%2C406-10b981?style=flat-square&labelColor=07111f" alt="3,406 chapters">
 <img src="https://img.shields.io/badge/claims%20tracked-66-ef4444?style=flat-square&labelColor=07111f" alt="66 claims">
 <img src="https://img.shields.io/badge/window-Jul%201%E2%80%93Oct%2027%2C%202026-3b82f6?style=flat-square&labelColor=07111f" alt="Jul 1 to Oct 27, 2026">
 <br>
@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/bundle-terser%20%2B%20csso-10b981?style=flat-square&labelColor=07111f" alt="Minified bundle">
 <img src="https://img.shields.io/badge/pre--rendered-24%20cards%20%2B%20noscript%20list-22d3ee?style=flat-square&labelColor=07111f" alt="Pre-rendered HTML">
 <img src="https://img.shields.io/badge/CSP-strict%20script--src-ef4444?style=flat-square&labelColor=07111f" alt="Strict CSP">
-<img src="https://img.shields.io/badge/JSON--LD-306%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
+<img src="https://img.shields.io/badge/JSON--LD-312%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
 <img src="https://img.shields.io/badge/PWA-installable-14b8a6?style=flat-square&labelColor=07111f" alt="Installable PWA">
 <img src="https://img.shields.io/badge/Fullscreen-cinema%20player-f59e0b?style=flat-square&labelColor=07111f" alt="Fullscreen cinema player">
 <img src="https://img.shields.io/badge/Float%20window-Document%20PiP%20remote-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture remote">
@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-252%2F252%20passing-10b981?style=flat-square&labelColor=07111f" alt="252 of 252 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-263%2F263%20passing-10b981?style=flat-square&labelColor=07111f" alt="263 of 263 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -42,7 +42,32 @@
 
 ## Contents
 
-[Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026): Just added row and 6 new episodes
+
+Six more verified full episodes (312 in all, about 338 hours; October now 84), and a **Just added** row at the very top of Home.
+
+| | |
+|---|---|
+| **Just added row** | First thing on Home, above Today's picks: every episode whose `added_at` is within the last 48 hours, newest first, with a "New today" eyebrow, the add date, the count, total hours and the upload span. It disappears by itself when nothing is newer than 48 h. |
+| **NEW badge** | An amber **NEW** pill on the thumbnail of a new episode everywhere its card appears (Home rows, Browse grid and list, picks, queue, history, drawer, palette), for 48 h after `added_at`. Pre-rendered cards carry it too. |
+| **Classic badge** | Items with `"classic": true` get a **Classic** pill (for older episodes kept for lasting value). Every current episode is `classic: false`. |
+| **Picks prefer new** | Today's picks gives brand-new episodes a strong boost, with the reason "Just added". |
+| **New speakers** | Seán Ó hÉigeartaigh (Leverhulme CFI) and Aaron Tang (UC Davis Law, PBS moderator) with verified headshots and curated bios; hosts Canadian Prepper and Yannick N. Bernard with face crops from their own episodes. 292 speakers, 287 real faces. |
+
+| Added | Episode | Speakers | Length |
+|---|---|---|---|
+| Oct 27 | [⚡ALERT: A.I. INSIDER: "Don't TALK TO IT"](https://www.youtube.com/watch?v=xKJE3yyh6fc) | Connor Leahy · Canadian Prepper | 1:41:31 |
+| Oct 27 | [AI Is Solving Math Problems That Went Unsolved for Centuries](https://www.youtube.com/watch?v=NDS2dw1vJQs) | Scott Aaronson · Roman Yampolskiy | 1:24:31 |
+| Oct 27 | [What Happens When an AI Agent Goes Rogue? (PBS Breaking the Deadlock)](https://www.youtube.com/watch?v=DSpt8pxck2I) | Max Tegmark · Aaron Tang + panel | 54:40 |
+| Oct 27 | [Mathematical Foundations of AI Alignment, Lecture 16](https://www.youtube.com/watch?v=Jaf7oCBTqcs) | Aaron Roth | 1:28:32 |
+| Oct 26 | [Prospects for West–China Cooperation on AI Safety (TAIS 2026)](https://www.youtube.com/watch?v=y3veS3Kv_V0) | Seán Ó hÉigeartaigh | 30:44 |
+| Oct 25 | [OpenAI Insider Reveals: We're Building God & Nobody Is Ready!](https://www.youtube.com/watch?v=2_CZfN2iOFk) | Scott Aaronson · Yannick N. Bernard | 1:34:58 |
+
+Each has 14–15 timestamped chapters, key claims and numbers taken from its caption track, tags, a level and a one-line "why watch".
+
+**Data:** `added_at` (ISO time with zone, IST) and `added_ms` (epoch ms, read first) on each new episode; `classic` (boolean) on every episode. Tests: 11 new jsdom checks (263/263) for the row, the badges, the 48 h window, Classic, and picks; `smoke_qa.py` adds real-browser checks that the row is first and every card shows a visible NEW badge and date.
 
 ## What's new (Oct 28, 2026): player fixes
 
@@ -144,13 +169,13 @@ flowchart LR
 | Player controls | YouTube's own controls | **Custom cinema controls**: big play, ±10 s (and ±5/30 via keys), frame step when paused, speed 0.25–3× in 0.05 steps (clamped to YouTube's 2× embed limit), quality menu, volume slider, captions, A–B loop, chapter ticks + bookmarks on the seek bar, buffered bar, hover preview (time + chapter + nearest YouTube frame), sleep timer (15/30/60 min, end of chapter, end of episode), skip intro, auto-skip to the researcher in hearings, double-click/double-tap seek, touch swipe for seek and volume, `?` overlay. A "YouTube's own controls" switch is in Settings for ads or YouTube menus. |
 | Mini player | Fixed bottom-right | **Draggable anywhere** (pointer + touch), **snaps to the nearest corner**, remembers corner and size (`asfe:mini:v3`), **corner resize handle**, double-click to expand. |
 | Error handling | Message only | **Fallback card** for codes 2 / 5 / 100 / 101 / 150 / 153 and API-blocked: Open on YouTube (at your second), **Mark as watched**, Try again, Next episode. |
-| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 306 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
+| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 312 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
 | History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
 | Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
 | Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
 | Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
 | Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
-| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 306), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 306 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
+| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 312), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 312 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
 | Storage | `:v2` keys | **Schema 3** (`:v3` keys). v1 and v2 keys stay untouched as backups. |
 
 ## The cinema player
@@ -202,7 +227,7 @@ Moving the live iframe into the float window would reload it inside the about:bl
 
 ## I've watched these
 
-Every card, the episode drawer, the theater and the error card have **Mark as watched** (and **Mark unwatched**). A mark writes a full-completion record (watched seconds = duration, 100 %, completed, `source: "manual"`, timestamp now) that counts toward stats, XP, badges, streaks and the watch heatmap on the day you mark it. Manual minutes are stored separately (`manualDaily`) so heatmap cells say "x played + y marked as watched" and show a dot. The record keeps a snapshot of what was there before, so unmarking restores it exactly. "Watched up to mm:ss" logs partial viewing. The checklist page (`#/watched`, `G W`) groups all 306 by month with thumbnails and speakers; tick rows, a whole month, a speaker, or every search result, then **Mark selected as watched** with **Undo**. CSV import accepts any file with an `id` or YouTube `url` column (plus optional `completed`, `percent`, `position`).
+Every card, the episode drawer, the theater and the error card have **Mark as watched** (and **Mark unwatched**). A mark writes a full-completion record (watched seconds = duration, 100 %, completed, `source: "manual"`, timestamp now) that counts toward stats, XP, badges, streaks and the watch heatmap on the day you mark it. Manual minutes are stored separately (`manualDaily`) so heatmap cells say "x played + y marked as watched" and show a dot. The record keeps a snapshot of what was there before, so unmarking restores it exactly. "Watched up to mm:ss" logs partial viewing. The checklist page (`#/watched`, `G W`) groups all 312 by month with thumbnails and speakers; tick rows, a whole month, a speaker, or every search result, then **Mark selected as watched** with **Undo**. CSV import accepts any file with an `id` or YouTube `url` column (plus optional `completed`, `percent`, `position`).
 
 ```mermaid
 flowchart LR
@@ -255,7 +280,7 @@ flowchart LR
 
 ## A taste of the library
 
-Three of the biggest episodes from each month (click to open on YouTube; every one of the 306 plays inside the app):
+Three of the biggest episodes from each month (click to open on YouTube; every one of the 312 plays inside the app):
 
 <table>
 <tr>
@@ -282,7 +307,7 @@ Three of the biggest episodes from each month (click to open on YouTube; every o
 
 ## Speaker photo grid
 
-Every one of the 288 speakers has a photo in `assets/speakers/<slug>.jpg`, mapped by name in `data/photos.json`: **283 real face photos** (curated portraits for the roster, plus verified face crops for every co-speaker, host and interviewer) and a neutral accent-coloured silhouette for 5 channel hosts who never appear on camera and have no public face (Carneades, Sazzad Hossain Sumon's channel, Eleanor of *Alive to This*, Sarah, Ryan Dsouza). `ui.photoOf` never falls back to a video thumbnail, cover art or initials.
+Every one of the 292 speakers has a photo in `assets/speakers/<slug>.jpg`, mapped by name in `data/photos.json`: **287 real face photos** (curated portraits for the roster, plus verified face crops for every co-speaker, host and interviewer) and a neutral accent-coloured silhouette for 5 channel hosts who never appear on camera and have no public face (Carneades, Sazzad Hossain Sumon's channel, Eleanor of *Alive to This*, Sarah, Ryan Dsouza). `ui.photoOf` never falls back to a video thumbnail, cover art or initials.
 
 <table>
 <tr>
@@ -358,7 +383,7 @@ Every one of the 288 speakers has a photo in `assets/speakers/<slug>.jpg`, mappe
 | August 2026 | 69 | 83.2 | chapters parsed from timestamped topics |
 | September 2026 | 108 | 102.5 | includes the Sep 27–30 items that were "just outside" in v1, and the IPAM and Post-AGI workshop talks |
 | October 2026 | 78 | 94.5 | richest: hand-written chapters, quotes, numbers, tags, level, views |
-| **Total** | **306** | **330.6** | 100 release days · 3,317 chapters |
+| **Total** | **312** | **338.2** | 100 release days · 3,406 chapters |
 
 ## Architecture
 
@@ -516,7 +541,7 @@ ai-safety-full-episodes/
 ├── sw.js                   offline-friendly service worker (cache bumped for this update)
 ├── manifest.webmanifest    installable PWA (standalone, maskable icon, shortcuts)
 ├── favicon.svg · favicon.ico · apple-touch-icon.png
-├── robots.txt · sitemap.xml   (sitemap includes video entries for all 306)
+├── robots.txt · sitemap.xml   (sitemap includes video entries for all 312)
 ├── README.md               this file
 ├── assets/
 │   ├── app.min.css         minified app.css + v3.css (what the page loads)
@@ -542,7 +567,7 @@ ai-safety-full-episodes/
 │   ├── cover.jpg
 │   └── speakers/           283 face photos + neutral.svg (one per speaker, verified)
 └── data/
-    ├── episodes.json       306 verified full episodes, Jul–Oct 2026
+    ├── episodes.json       312 verified full episodes, Jul–Oct 2026
     ├── roster.json         curated researchers with bios
     ├── photos.json         name → photo file
     ├── manifest.json       daily files to merge
@@ -557,8 +582,8 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 | | What is done |
 |---|---|
-| **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 306 with links. The app hydrates over it. |
-| **Structured data** | JSON-LD `WebSite` + `ItemList` of 306 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
+| **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 312 with links. The app hydrates over it. |
+| **Structured data** | JSON-LD `WebSite` + `ItemList` of 312 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
 | **CSP** | `script-src 'self' https://www.youtube.com https://s.ytimg.com` (no inline scripts), `frame-src` YouTube only, `img-src` self + ytimg, fonts from Google Fonts, `object-src 'none'`, `base-uri 'self'`. Styles allow inline because the UI sets CSS variables in `style` attributes. |
 | **No inline handlers** | Image load/error handling uses capture-phase listeners; the jsdom test checks the live DOM for any `on*` attribute. |
 | **Escaping & imports** | All data goes through `esc()` before `innerHTML`; imported JSON is rebuilt key by key (valid 11-char IDs, finite numbers, clipped strings, known keys only); CSV import is parsed defensively and exports neutralise spreadsheet formulas. External links use `rel="noopener noreferrer"`; referrer policy `strict-origin-when-cross-origin`. |
@@ -567,7 +592,7 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 
 ## Tests
 
-`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 252 checks, all passing (including the merged episodes, the excluded duplicates and alias-free speaker resolution). It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Focus + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. It also checks Today's picks (daily stability, discard / replace / more, drag reorder, dock, bin, carry-over, log), free mini-player placement, sticky mini on scroll, in-place card updates, the 31 themes' contrast audit, Focus naming, About and Explore, the separate Miniplayer / Theater / Fullscreen buttons, and that every speaker has a real face photo (except 4 anonymous hosts) with no thumbnail fallback. Newest checks: the one shared mini-player state (sticky mini at the saved spot, after another episode, after a reload, sticky drags saved, clamped after resizes), drag from the video layer, click-to-play without moving, buttons never dragging, the ↗ Expand icon, and an upload-date element on every rendered card variant. `smoke_mini.py` repeats the mini-player flow in a real browser. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
+`smoke3.js` runs the built page in jsdom with a stubbed YouTube IFrame API: 263 checks, all passing (including the merged episodes, the excluded duplicates and alias-free speaker resolution). It covers the static build (pre-render, noscript list, JSON-LD, CSP, icons, manifest, scrollbar CSS, service-worker version), v1→v3 migration with backups, the strict watch clock, the iframe attributes, overlay controls, frame step, speed clamp, menus, captions, sleep timer, A–B loop, bookmarks, fullscreen (fallback and native paths), every error code's fallback card, float window as a remote (no second player), headphones mode, mini-player drag/snap/resize/double-click via pointer events, Focus + do-not-disturb, mark watched (single, partial, bulk, undo), the history timeline and filters, CSV export/import round-trip, sanitised JSON import, theme switching, Home additions, keyboard navigation, every view, no version labels, no inline handlers and safe external links. It also checks Today's picks (daily stability, discard / replace / more, drag reorder, dock, bin, carry-over, log), free mini-player placement, sticky mini on scroll, in-place card updates, the 31 themes' contrast audit, Focus naming, About and Explore, the separate Miniplayer / Theater / Fullscreen buttons, and that every speaker has a real face photo (except 4 anonymous hosts) with no thumbnail fallback. Newest checks: the one shared mini-player state (sticky mini at the saved spot, after another episode, after a reload, sticky drags saved, clamped after resizes), drag from the video layer, click-to-play without moving, buttons never dragging, the ↗ Expand icon, and an upload-date element on every rendered card variant. `smoke_mini.py` repeats the mini-player flow in a real browser. Screenshots of home, theater, fullscreen, mini player, headphones mode, history, "I've watched these" and the recap were reviewed at 1440×900 and 390×844 in headless Firefox.
 
 ## Method
 
@@ -603,6 +628,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-28 | **Just added**: 6 new verified full episodes (312 total; Oct 84; about 338 hours) with Connor Leahy, Scott Aaronson (×2), Max Tegmark on PBS, Aaron Roth and Seán Ó hÉigeartaigh; a Just added row at the top of Home (last 48 h), NEW badges on those cards everywhere, Classic badge support, picks prefer new episodes; 4 new speakers with verified photos and bios; 263-check jsdom test. |
 | 2026-10-28 | **Player fixes**: Theater mode (t) button works with the mouse (ripple no longer shrinks it mid-click); speed limited to YouTube's 0.25–2× (0.05× steps); captions button follows YouTube's caption module; seek bar value in seconds from the same reading as the clock; sticky mini works on pages that scroll only a little, and the episode page button reads Minimise (i); stronger glass on the thumbnail date pill; 252-check jsdom test + real-browser checks. |
 | 2026-10-28 | **Mini player & card dates fix**: the sticky mini on scroll now appears exactly at the user's last saved position/size (one persisted state for every way the mini appears, smooth morph, clamped on-screen); drag the mini from the video itself (click = play/pause, double-click = expand, buttons never drag); Expand icon now ↗ "Expand (i)"; upload-date pill on every card thumbnail plus the date in every meta row, from one shared renderer; 237-check jsdom test + real-browser mini-player test. |
 | 2026-10-28 | **Library expansion**: 63 more verified full episodes (306 total: Jul 51 · Aug 69 · Sep 108 · Oct 78, about 331 hours); 3 candidates kept out as same-event copies or an old re-upload; 58 new speakers with verified face photos and 27 new curated bios (roster 76); hosts named from their own episodes (Gus Docker, Shane Farnsworth, Prachi Garella, Bhavay Tyagi, D. Scott Phoenix); Jack Lindsey and Alan Chan photos corrected; 220-check jsdom test. No feature or design changes. |
