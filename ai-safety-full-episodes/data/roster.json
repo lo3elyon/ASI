@@ -600,5 +600,54 @@
   "org": "AE Studio",
   "group": "orgs",
   "bio": "Founder of AE Studio, which runs neglected-approach alignment research including self-other overlap."
+ },
+ {
+  "name": "Jakub Kryś",
+  "photo": "jakub-krys.jpg",
+  "org": "SaferAI",
+  "group": "orgs",
+  "bio": "SaferAI research scientist who models cyber and CBRN misuse risk and loss-of-control mitigations, and builds the AI safety community in Poland."
+ },
+ {
+  "name": "Cameron Berg",
+  "photo": "cameron-berg.jpg",
+  "org": "Reciprocal Research",
+  "group": "orgs",
+  "bio": "Cognitive scientist who founded Reciprocal Research to study AI consciousness; previously research director at AE Studio working on alignment."
+ },
+ {
+  "name": "Robert Trager",
+  "photo": "robert-trager.jpg",
+  "org": "Oxford Martin AI Governance Initiative",
+  "group": "academics",
+  "bio": "Director of the Oxford Martin AI Governance Initiative; works on international AI governance and hardware-enabled verification."
+ },
+ {
+  "name": "Lisa Klaassen",
+  "photo": "lisa-klaassen.jpg",
+  "org": "Oxford Internet Institute",
+  "group": "academics",
+  "bio": "Oxford DPhil candidate and Oxford Martin AI Governance Initiative affiliate working on AI governance and security."
+ },
+ {
+  "name": "Luise Eder",
+  "photo": "luise-eder.jpg",
+  "org": "University of Oxford",
+  "group": "academics",
+  "bio": "Oxford DPhil candidate in socio-legal studies and Oxford Martin AI Governance Initiative affiliate studying AI regulation."
+ },
+ {
+  "name": "Miro Pluckebaum",
+  "photo": "miro-pluckebaum.jpg",
+  "org": "Oxford Martin AI Governance Initiative",
+  "group": "orgs",
+  "bio": "Oxford Martin AI Governance Initiative researcher and founder of the Singapore AI Safety Hub."
+ },
+ {
+  "name": "Zachary Horvitz",
+  "photo": "zachary-horvitz.jpg",
+  "org": "Columbia University",
+  "group": "academics",
+  "bio": "Columbia PhD candidate studying rare behaviour in generative models and how to estimate the odds of harmful outputs."
  }
 ]
