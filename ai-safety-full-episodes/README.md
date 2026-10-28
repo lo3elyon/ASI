@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-414%2F414%20passing-10b981?style=flat-square&labelColor=07111f" alt="414 of 414 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-433%2F433%20passing-10b981?style=flat-square&labelColor=07111f" alt="433 of 433 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -45,7 +45,53 @@
 
 ## Contents
 
-[Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 29, 2026): a readable reading panel at any width, smarter search and a faster History
+
+A polish pass from real use. Nothing was removed; every earlier feature still works the same way.
+
+**Reading panel header (Read mode / Chapters split).** The panel's tabs and filter now sit in one sticky header (`#sideHd`) that adapts to how wide you drag the divider:
+
+| Panel width | Tabs look like |
+|---|---|
+| 380 px and wider | Text tabs (Summary · Chapters · Claims · Numbers · Notes · Up next); ‹ › arrows and fade edges when they overflow |
+| 300–379 px | Icon tabs with tooltips and labels for screen readers |
+| under 300 px | One compact section picker (a `select`) |
+| Phone / tablet bottom sheet | Text tabs that scroll sideways |
+
+The divider now stops at a 260 px panel, so the panel can never be squeezed into unreadable slivers, and the chapter filter sticks under the tabs instead of over them.
+
+```mermaid
+flowchart LR
+  D[Drag divider or ←/→ on it] --> W{Panel width}
+  W -->|≥ 380 px| T[Text tabs]
+  W -->|300–379 px| I[Icon tabs + tooltips]
+  W -->|< 300 px| S[Section picker]
+  W -->|never below| M[260 px minimum]
+```
+
+**Search.** The command palette (Ctrl/⌘ K) and Browse search now AND every word across title, speakers, show, tags and the upload month: `Scott Aaronson October` lists only his October episodes, `Aaronson September` narrows to September, and a word that matches nothing returns nothing instead of everything. Speakers still show up when the query also has a month word.
+
+**History stays fast with a long history.** The timeline renders 50 rows at a time with **Show more** (adds 100) and **Show all**; filters, search, day and layout switches start again from the first page. With 325 episodes × 8 sessions the "every session" layout went from ~75,000 nodes and ~2 s per render to ~1,900 nodes and ~0.1 s, and the grouped layout from ~35,000 to ~5,600 nodes. Coverage lookups behind "furthest" and "reached" are memoised.
+
+**Smaller fixes**
+
+| Area | Fix |
+|---|---|
+| Tags | Tags that differed only in capitals ("interpretability" / "Interpretability") are one tag everywhere: cards, filters, Browse counts, recommendations |
+| History heatmap | Runs up to today (or the newest upload) instead of a fixed end date |
+| Library | "Queue these" is hidden when a filter has 0 results |
+| Speakers | The speakers search also filters the hosts list |
+| Themes | Favourite star repaints right away; the sun / moon button follows a custom palette (e.g. Dracula) and restores it when you flip back |
+| Light theme | Higher-contrast player toolbar |
+| Player | In YouTube-controls mode (Shift+Y) our big Play button is hidden, so only YouTube's shows |
+| Episode drawer | ✕ close is a glass chip that stays readable on any cover |
+| Header nav | Scrolls sideways with fade edges when it does not fit |
+| Today's picks | The picks log updates live after every mark, discard, replace or generate |
+| Splash | Unique SVG ids so the splash art never borrows another icon's gradient |
+
+**Tests:** `smoke3.js` 433/433 (new checks: History paging, Show more / Show all, layout switch resets the page; palette multi-word AND search with month words), `smoke_v9.js`, `smoke_v9ui.py` at 360 / 390 / 768 / 1024 / 1366 / 1920 px in real Firefox (panel header modes per width, divider minimum, arrow keys on the divider), `smoke_mini.py`, `smoke_qa.py`.
 
 ## What's new (Oct 28, 2026, night): a clean paused picture and one chapters panel
 
@@ -163,7 +209,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-414%2F414%20passing-10b981?style=flat-square&labelColor=07111f" alt="414 of 414 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-433%2F433%20passing-10b981?style=flat-square&labelColor=07111f" alt="433 of 433 checks passing">
 </p>
 
 | Area | What changed |
@@ -780,6 +826,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-29 | **Reading panel at any width, smarter search, faster History**: sticky panel header whose tabs switch between text (≥ 380 px), icons (300–379 px) and a section picker (< 300 px), 260 px divider minimum; palette and Browse search AND every word across title, speakers, show, tags and month (`Scott Aaronson October`); History renders 50 rows at a time with Show more / Show all (≈ 40× fewer nodes on a long history); case-insensitive merged tags; heatmap runs to today; light-theme toolbar contrast; sun / moon keeps a custom palette; favourite star repaint; YouTube-controls mode hides our big Play; glass ✕ in the drawer; header nav scroll fade; live picks log; unique splash SVG ids; Queue these hidden at 0 results; speakers search filters hosts. |
 | 2026-10-28 | **Clean paused picture + one chapters panel**: pausing (mini and every other mode) no longer paints a black band over the top of the video: a soft frosted fade softens YouTube's own paused title strip, and ☰ / ✕ float on a light scrim only on hover; Chapters is one surface everywhere: the reading panel split beside the video (drag / touch / keys, double-click reset, collapse handle, remembered width; bottom sheet on phones), switching to its Chapters tab when it is already open, the full screen side panel in full screen; the floating Chapters popup that doubled the list is gone. Real-Firefox checks for both at five widths. |
 | 2026-10-28 | **Live QA follow-up (evening)**: a real-browser pass on the deployed build found the episode title rendered up to three times in the windowed player (toolbar, in-video overlay, details heading). Now exactly one title shows in every mode combination: the heading under the video (or the calm bar while playing); full screen and the mini player keep their own. The Focus timer pill fades with the controls in full screen. With our transcript captions on, the cinema embed no longer forces YouTube's own captions (`cc_load_policy=0`) and re-unloads them shortly after playback starts, so a CC preference remembered from YouTube's controls can't stack a second caption layer. New real-browser check counts the visibly rendered titles after every mode toggle at 390/768/1024/1920 px. |
 | 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 325 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
