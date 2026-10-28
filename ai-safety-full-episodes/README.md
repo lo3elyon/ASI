@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-410%2F410%20passing-10b981?style=flat-square&labelColor=07111f" alt="410 of 410 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-414%2F414%20passing-10b981?style=flat-square&labelColor=07111f" alt="414 of 414 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -45,7 +45,41 @@
 
 ## Contents
 
-[Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026, night): a clean paused picture and one chapters panel
+
+Two fixes from real use, plus a sweep for the same kind of glitch elsewhere. Every earlier feature is still there.
+
+**1 · Pausing never paints a black bar over the video.** In the mini player (and every other mode) a paused video used to get a solid dark band across the top, meant to hide YouTube's own paused title strip. Now:
+
+| State | What you see |
+|---|---|
+| Playing, pointer away | Just the picture |
+| Paused, pointer away | Just the picture, with a soft frosted fade at the very top (blur, almost no tint, fades to nothing) so YouTube's own title strip is unreadable without a bar |
+| Hover / focus (playing or paused) | ☰ Chapters and ✕ float on a light gradient scrim; in full screen they wake when you move the pointer |
+| YouTube controls mode (Shift+Y) | YouTube's own player, untouched |
+
+A transparent layer keeps the pointer off YouTube's iframe, so its hover chrome never wakes up either.
+
+**2 · One chapters surface, docked beside the video.** Theater + Read could show the Chapters tab *and* a second floating Chapters popup on top of it (two lists, two filter boxes). The floating popup is gone:
+
+```mermaid
+flowchart LR
+  C[Chapters button or toolbar] --> FS{Full screen?}
+  FS -->|yes| FSP[Full screen side panel: video shrinks beside it, sheet on narrow screens]
+  FS -->|no| RD{Reading panel open?}
+  RD -->|yes| TAB[It switches to its Chapters tab]
+  RD -->|no| SPLIT[The reading panel opens on Chapters as a split: the video shrinks beside it]
+  SPLIT -->|Chapters again / Esc| BACK[Panel closes, the layout you had comes back]
+```
+
+- The split is the same component in default, Theater and Read modes (and inside Focus when you ask for chapters): a divider with a `col-resize` cursor that you drag with a mouse, finger or pen, ←/→ keys (Shift for bigger steps), double-click to reset to 60 / 40, a › collapse handle and a ‹ Panel handle to bring it back. The width is remembered.
+- On phones and tablets the same panel is a bottom sheet that docks straight under the video (drag its grip).
+- Full screen keeps its side panel with the same divider behaviour, now with a › collapse handle too.
+- Exactly one chapters list and one filter box are on screen in every mode combination (checked by the real-browser test below).
+
+**Tests:** `smoke3.js` 414/414 (the old floating-sheet checks now assert the split instead, plus a CSS check that the opaque paused band is gone), `smoke_v9ui.py` gained a block run at 390 / 768 / 1024 / 1366 / 1920 px in real Firefox: a luminance check of the top of the picture vs the middle in paused / playing / hover for mini, default, Theater, Read and full screen; a count of visible chapter lists and filter boxes after pressing Chapters in default, Theater, Read, Theater + Read, Focus, Focus + Read, Theater + Focus, mini and collapsed; divider drag, touch drag, arrow keys, remembered width, double-click reset, collapse / restore; full screen collapse handle.
 
 ## What's new (Oct 28, 2026, 8 pm): a year in AI safety, a 1-vs-10 debate and an Oxford governance panel, 6 new episodes
 
@@ -128,7 +162,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-410%2F410%20passing-10b981?style=flat-square&labelColor=07111f" alt="410 of 410 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-414%2F414%20passing-10b981?style=flat-square&labelColor=07111f" alt="414 of 414 checks passing">
 </p>
 
 | Area | What changed |
@@ -745,6 +779,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-28 | **Clean paused picture + one chapters panel**: pausing (mini and every other mode) no longer paints a black band over the top of the video: a soft frosted fade softens YouTube's own paused title strip, and ☰ / ✕ float on a light scrim only on hover; Chapters is one surface everywhere: the reading panel split beside the video (drag / touch / keys, double-click reset, collapse handle, remembered width; bottom sheet on phones), switching to its Chapters tab when it is already open, the full screen side panel in full screen; the floating Chapters popup that doubled the list is gone. Real-Firefox checks for both at five widths. |
 | 2026-10-28 | **Live QA follow-up (evening)**: a real-browser pass on the deployed build found the episode title rendered up to three times in the windowed player (toolbar, in-video overlay, details heading). Now exactly one title shows in every mode combination: the heading under the video (or the calm bar while playing); full screen and the mini player keep their own. The Focus timer pill fades with the controls in full screen. With our transcript captions on, the cinema embed no longer forces YouTube's own captions (`cc_load_policy=0`) and re-unloads them shortly after playback starts, so a CC preference remembered from YouTube's controls can't stack a second caption layer. New real-browser check counts the visibly rendered titles after every mode toggle at 390/768/1024/1920 px. |
 | 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 325 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
 | 2026-10-28 | **A year in AI safety, a 1-vs-10 debate and an Oxford governance panel**: 6 new verified full episodes (325 total; Oct 97; about 353.7 hours) with Jakub Kryś, Roman Yampolskiy, Robert Trager with Lisa Klaassen, Luise Eder and Miro Pluckebaum, Aaron Roth (Lecture 15), Cameron Berg and Zachary Horvitz; 7 new speakers with verified photos and bios; captions for every new episode. |
