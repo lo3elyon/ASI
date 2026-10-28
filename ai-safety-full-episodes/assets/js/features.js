@@ -356,7 +356,10 @@
   function undoBulk() { if (!W.undo) return; const n = h().bulkUnmark(W.undo).length; W.undo = null; if (A.app.view() === "watched") renderWatched(); ui().toast(`Undone: ${n} mark${n === 1 ? "" : "s"} removed`, { icon: "↩️", force: true }); paintGoal(); }
 
   /* ================================================================ HISTORY timeline */
-  const HF = { src: "all", status: "all", q: "", day: null, mode: (A.store.get("histMode", "ep") === "sess" ? "sess" : "ep"), open: new Set() };
+  const HF = { src: "all", status: "all", q: "", day: null, mode: (A.store.get("histMode", "ep") === "sess" ? "sess" : "ep"), open: new Set(), limit: 0 };
+  /* the timeline renders in pages: a long history (hundreds of episodes, thousands of sessions) used to build 35k–75k nodes
+   * in one go and stall the page right after playing; now HPAGE rows, then "Show more" adds HPAGE more */
+  const HPAGE = 50;
   function sessionRows() {
     const rows = [];
     STATE.all.forEach((e) => { const r = L().H.eps[e.id]; if (!r) return; (r.sessions || []).forEach((s) => { if (s.w >= 15 || s.src === "manual") rows.push({ e, s, r }); }); });
@@ -426,6 +429,8 @@
     const all = sessionRows();
     const played = all.filter((x) => x.s.src !== "manual").reduce((a, x) => a + x.s.w, 0);
     const manualN = h().manualCount();
+    const total = HF.mode === "ep" ? new Set(rows.map((x) => x.e.id + "|" + bucketOf(x.s.s))).size : rows.length;
+    const lim = Math.min(total, HF.limit || HPAGE); let budget = lim;
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1>
       <p class="lede">${fmtHM(played)} really played across ${((n) => `${n} session${n === 1 ? "" : "s"}`)(all.filter((x) => x.s.src !== "manual").length)} · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
       <div class="row-gap"><a class="btn btn--sm" href="#/recent">Recently watched</a><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
@@ -434,8 +439,8 @@
       <div class="wtools"><input class="input" id="hQ" type="search" placeholder="Search history by title or speaker" value="${esc(HF.q)}" aria-label="Search history">
         <div class="seg seg--sm" role="group" aria-label="Source">${[["all", "All"], ["played", "Played here"], ["manual", "Marked watched"]].map(([k, l]) => `<button data-hsrc="${k}" aria-pressed="${HF.src === k}">${l}</button>`).join("")}</div>
         <div class="seg seg--sm" role="group" aria-label="Status">${[["all", "Any status"], ["done", "Completed"], ["progress", "In progress"]].map(([k, l]) => `<button data-hst="${k}" aria-pressed="${HF.status === k}">${l}</button>`).join("")}</div><div class="seg seg--sm" role="group" aria-label="Layout">${[["ep", "Group by episode"], ["sess", "Show every session"]].map(([k, l]) => `<button type="button" data-hmode="${k}" aria-pressed="${HF.mode === k}">${l}</button>`).join("")}</div><span class="muted">${HF.mode === "ep" ? `${new Set(rows.map((x) => x.e.id)).size} episode${new Set(rows.map((x) => x.e.id)).size === 1 ? "" : "s"} · ` : ""}${rows.length} session${rows.length === 1 ? "" : "s"}</span></div>
-      ${groups.size ? ["Today", "Yesterday", "This week", "Earlier"].filter((g) => groups.has(g)).map((g) => { const list = groups.get(g); return `<section class="hday"><h2>${g} <small>${fmtHM(list.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0))} played${list.some((x) => x.s.src === "manual") ? ` · ${list.filter((x) => x.s.src === "manual").length} marked` : ""}${HF.mode === "ep" ? ` · ${new Set(list.map((x) => x.e.id)).size} episode${new Set(list.map((x) => x.e.id)).size === 1 ? "" : "s"}` : ""}</small></h2>
-        <ol class="timeline">${HF.mode === "ep" ? epGroups(list).map((G) => epRow(G, g)).join("") : list.map((x) => sessRow(x, g)).join("")}</ol></section>`; }).join("")
+      ${groups.size ? ["Today", "Yesterday", "This week", "Earlier"].filter((g) => groups.has(g) && budget > 0).map((g) => { const list = groups.get(g); const items = HF.mode === "ep" ? epGroups(list) : list; const shown = items.slice(0, budget); budget -= shown.length; return `<section class="hday"><h2>${g} <small>${fmtHM(list.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0))} played${list.some((x) => x.s.src === "manual") ? ` · ${list.filter((x) => x.s.src === "manual").length} marked` : ""}${HF.mode === "ep" ? ` · ${new Set(list.map((x) => x.e.id)).size} episode${new Set(list.map((x) => x.e.id)).size === 1 ? "" : "s"}` : ""}</small></h2>
+        <ol class="timeline">${HF.mode === "ep" ? shown.map((G) => epRow(G, g)).join("") : shown.map((x) => sessRow(x, g)).join("")}</ol></section>`; }).join("") + (total > lim ? `<div class="hmore"><span class="muted">Showing ${lim} of ${total} ${HF.mode === "ep" ? "episodes" : "sessions"}</span><button type="button" class="btn btn--sm" id="hMore">Show ${Math.min(HPAGE * 2, total - lim)} more</button><button type="button" class="btn btn--sm btn--ghost" id="hAll">Show all</button></div>` : "")
         : `<div class="emptybig emptybig--hist"><span class="emptybig__ic" aria-hidden="true">${ui().ICON.clock}</span><p>${all.length ? "Nothing matches these filters." : "Nothing yet. Press play on anything, or tick off what you have already seen."}</p><p class="muted">${all.length ? "Try another status, source or day, or clear the search." : "Every real minute you play is counted here, grouped by episode."}</p>${all.length ? `<button class="btn btn--sm" id="hReset">Clear filters</button>` : `<div class="row-gap"><a class="btn btn--primary btn--sm" href="#/home">Today's picks</a><a class="btn btn--sm" href="#/watched">I've watched these</a></div>`}</div>`}`;
     $("#hExport").onclick = () => download(`ai-safety-episodes-backup-${dayKey(Date.now())}.json`, JSON.stringify(h().exportAll(), null, 1), "application/json");
     $("#hCsv").onclick = () => download(`ai-safety-episodes-history-${dayKey(Date.now())}.csv`, h().exportCSV(sessionRows()), "text/csv");
@@ -449,12 +454,14 @@
       } catch (x) { ui().toast("That file could not be imported: " + esc(x.message), { icon: "⚠️", force: true }); }
     };
     $("#hClear").onclick = async () => { if (await ui().confirmBox("Clear <b>all</b> watch history, notes, favourites, queue, playlists, ratings, follows and badges? Export a backup first if unsure.", "Clear everything", true)) { h().resetAll(); A.app.rerender(); } };
-    const dc = $("#hDayClr"); if (dc) dc.onclick = () => { HF.day = null; renderHistory(); };
-    const q = $("#hQ"); q.oninput = A.debounce(() => { HF.q = q.value; renderHistory(); const n = $("#hQ"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 200);
-    $$("[data-hsrc]", v).forEach((b) => (b.onclick = () => { HF.src = b.dataset.hsrc; renderHistory(); }));
-    $$("[data-hst]", v).forEach((b) => (b.onclick = () => { HF.status = b.dataset.hst; renderHistory(); }));
-    $$("[data-hmode]", v).forEach((b) => (b.onclick = () => { HF.mode = b.dataset.hmode; A.store.set("histMode", HF.mode); renderHistory(); }));
-    const hr = $("#hReset"); if (hr) hr.onclick = () => { HF.src = "all"; HF.status = "all"; HF.q = ""; HF.day = null; renderHistory(); };
+    const dc = $("#hDayClr"); if (dc) dc.onclick = () => { HF.day = null; HF.limit = 0; renderHistory(); };
+    const hm1 = $("#hMore"); if (hm1) hm1.onclick = () => { HF.limit = lim + HPAGE * 2; renderHistory(); const b2 = $("#hMore") || $("#hAll"); if (b2) b2.focus({ preventScroll: true }); };
+    const ha = $("#hAll"); if (ha) ha.onclick = () => { HF.limit = 1e9; renderHistory(); };
+    const q = $("#hQ"); q.oninput = A.debounce(() => { HF.q = q.value; HF.limit = 0; renderHistory(); const n = $("#hQ"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 200);
+    $$("[data-hsrc]", v).forEach((b) => (b.onclick = () => { HF.src = b.dataset.hsrc; HF.limit = 0; renderHistory(); }));
+    $$("[data-hst]", v).forEach((b) => (b.onclick = () => { HF.status = b.dataset.hst; HF.limit = 0; renderHistory(); }));
+    $$("[data-hmode]", v).forEach((b) => (b.onclick = () => { HF.mode = b.dataset.hmode; HF.limit = 0; A.store.set("histMode", HF.mode); renderHistory(); }));
+    const hr = $("#hReset"); if (hr) hr.onclick = () => { HF.src = "all"; HF.status = "all"; HF.q = ""; HF.day = null; HF.limit = 0; renderHistory(); };
     v.onclick = async (ev) => {
       const xb = ev.target.closest("[data-hexp]");
       if (xb) { const k = xb.dataset.hexp, li = xb.closest(".hrow"), ol = li && li.querySelector(".hsess"), on = !HF.open.has(k); on ? HF.open.add(k) : HF.open.delete(k); if (ol) ol.hidden = !on; li.classList.toggle("is-open", on); xb.setAttribute("aria-expanded", String(on)); return; }
@@ -463,7 +470,7 @@
       const u = ev.target.closest("[data-hunmark]");
       if (u) { h().unmarkWatched(u.dataset.hunmark); renderHistory(); refresh(u.dataset.hunmark); return; }
       const d = ev.target.closest('[data-hm="watch"] [data-hmday]');
-      if (d) { HF.day = HF.day === d.dataset.hmday ? null : d.dataset.hmday; renderHistory(); }
+      if (d) { HF.day = HF.day === d.dataset.hmday ? null : d.dataset.hmday; HF.limit = 0; renderHistory(); }
     };
   }
 
