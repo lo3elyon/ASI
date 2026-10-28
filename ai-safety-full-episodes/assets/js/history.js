@@ -18,6 +18,7 @@
     H.manualDaily = H.manualDaily || {};
     H.stats = Object.assign({}, STAT0, H.stats || {});
     L.H = H;
+    if (!H.fix4) { try { repairHistory(H); } catch (e) {} H.fix4 = Date.now(); store.set(HKEY, H); }
     L.NOTES = store.get("notes:v3", {}) || {};
     L.FAVS = new Set(store.get("favs:v3", []) || []);
     L.QUEUE = store.get("queue:v3", []) || [];
@@ -84,11 +85,81 @@
     Object.values(L.H.eps).forEach((r) => { if (r.done && r.doneAt) { const k = dayKey(r.doneAt); m[k] = (m[k] || 0) + 1; } });
     return m;
   }
+  const uniq = (list) => { const seen = new Set(); return list.filter((e) => (seen.has(e.id) ? false : (seen.add(e.id), true))); };
   function inProgress() {
-    return STATE.all.filter((e) => stateOf(e.id) === "progress").sort((a, b) => (L.H.eps[b.id].last || 0) - (L.H.eps[a.id].last || 0));
+    return uniq(STATE.all).filter((e) => stateOf(e.id) === "progress").sort((a, b) => (L.H.eps[b.id].last || 0) - (L.H.eps[a.id].last || 0));
   }
   function recentlyWatched() {
-    return STATE.all.filter((e) => watchedOf(e.id) >= 60).sort((a, b) => (L.H.eps[b.id].last || 0) - (L.H.eps[a.id].last || 0));
+    return uniq(STATE.all).filter((e) => watchedOf(e.id) >= 60).sort((a, b) => (L.H.eps[b.id].last || 0) - (L.H.eps[a.id].last || 0));
+  }
+
+
+  /* ------------------------------------------------------------ honest per-session numbers
+   * "reached" = the furthest position actually PLAYED (from the 10-second slice coverage), never a seek target;
+   * a session's a/b are the real playback positions at its start/end. Sessions recorded before this fix are
+   * repaired once by repairHistory(): 0-second, negative and end-before-start sessions are fixed or merged, a lone
+   * end slice left by scrubbing to the end is dropped, and "completed" is kept only at 90 %+ coverage or a manual mark. */
+  function nBOf(r) { return Math.max(1, Math.ceil(((r && r.dur) || 1) / BUCKET)); }
+  function lastSlice(r) { const n = nBOf(r), b = covDecode(r.cov, n); for (let i = n - 1; i >= 0; i--) if (b[i >> 3] & (1 << (i & 7))) return i; return -1; }
+  function furthestPlayed(r) {
+    if (!r) return 0;
+    if (r.manual && !r.manual.partial) return r.dur || 0;
+    const i = lastSlice(r); if (i < 0) return 0;
+    return Math.min(r.dur || Infinity, (i + 1) * BUCKET);
+  }
+  function sessReach(r, s) {
+    if (!s) return 0;
+    if (s.src === "manual") return Math.max(0, s.b || 0);
+    const fp = furthestPlayed(r);
+    const m = s.m != null ? s.m : Math.min(s.b || 0, (s.a || 0) + (s.w || 0) * 2 + BUCKET);
+    return Math.max(0, Math.min(m, r && r.cov ? fp : Infinity, (r && r.dur) || Infinity));
+  }
+  function repairHistory(H) {
+    const out = { sessionsFixed: 0, merged: 0, dropped: 0, uncompleted: 0, slices: 0 };
+    Object.keys(H.eps || {}).forEach((id) => {
+      const r = H.eps[id]; if (!r || typeof r !== "object") return;
+      const n = nBOf(r), dur = r.dur || 0;
+      // a lone slice at the very end with nothing before it = scrubbed to the end and the video ended
+      if (!(r.manual && !r.manual.partial) && r.cov) {
+        const b = covDecode(r.cov, n), on = (i) => i >= 0 && i < n && !!(b[i >> 3] & (1 << (i & 7)));
+        for (let i = n - 1; i >= Math.max(0, n - 3); i--) if (on(i) && !on(i - 1) && !on(i + 1)) { b[i >> 3] &= ~(1 << (i & 7)); out.slices++; }
+        r.cov = covEncode(b); r.covN = covCount(b, n); r.pct = clamp(r.covN / n, 0, 1);
+      }
+      let ss = (Array.isArray(r.sessions) ? r.sessions : []).filter((x) => x && typeof x === "object").map((x) => Object.assign({}, x));
+      const before = ss.length;
+      ss = ss.filter((x) => x.src === "manual" || (Number(x.w) || 0) >= 1);
+      out.dropped += before - ss.length;
+      ss.forEach((x) => {
+        ["s", "e", "w", "a", "b"].forEach((k) => { x[k] = Math.max(0, Number(x[k]) || 0); });
+        if (x.e < x.s) x.e = x.s;
+        if (x.src !== "manual") {
+          let fixed = false;
+          if (dur && x.a > dur) { x.a = Math.floor(dur); fixed = true; }
+          if (x.b < x.a || (dur && x.b > dur)) { x.b = Math.floor(Math.min(dur || Infinity, x.a + x.w)); fixed = true; }
+          if (x.m == null) { x.m = Math.floor(Math.min(x.b, x.a + x.w * 2 + BUCKET)); fixed = true; }
+          if (fixed) out.sessionsFixed++;
+        }
+      });
+      ss.sort((p, q) => p.s - q.s);
+      const merged = [];
+      ss.forEach((x) => {
+        const p = merged[merged.length - 1];
+        if (p && p.src !== "manual" && x.src !== "manual" && (x.s === p.s || x.s <= p.e + 60e3)) {
+          if (x.s === p.s && x.e === p.e) p.w = Math.max(p.w, x.w); else p.w += x.w;
+          p.e = Math.max(p.e, x.e); p.b = x.b; p.m = Math.max(p.m || 0, x.m || 0); out.merged++;
+        } else merged.push(x);
+      });
+      r.sessions = merged.slice(-200);
+      if (r.done && !r.manual && (r.pct || 0) < 0.9) { r.done = false; r.doneAt = 0; out.uncompleted++; }
+      if (!(r.pos >= 0) || (dur && r.pos > dur)) r.pos = Math.min(Math.max(0, Number(r.pos) || 0), dur || 0);
+    });
+    return out;
+  }
+  /* one entry per episode, newest first: total watched, furthest played, coverage, status, last watched */
+  function episodeSummary(id) {
+    const r = L.H.eps[id]; if (!r) return null;
+    const ss = r.sessions || [];
+    return { id, watched: r.watched || 0, reach: furthestPlayed(r), pct: r.pct || 0, status: r.done ? (r.manual ? "marked" : "completed") : "progress", last: r.last || Math.max(0, ...ss.map((x) => x.e || 0)), sessions: ss.length };
   }
 
   const manualCount = () => Object.values(L.H.eps).filter((r) => r.manual && r.done).length;
@@ -268,7 +339,7 @@
   function cleanRec(r) {
     if (!isObj(r)) return null;
     const out = { pos: num(r.pos), dur: num(r.dur), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,4000}$/.test(r.cov || "") ? r.cov || "" : "", covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
-      sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
+      sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.m != null ? { m: num(x.m) } : {}), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
     if (isObj(r.manual)) out.manual = { at: num(r.manual.at), add: num(r.manual.add), day: /^\d{4}-\d{2}-\d{2}$/.test(r.manual.day) ? r.manual.day : dayKey(Date.now()), partial: !!r.manual.partial, src: "manual", prev: isObj(r.manual.prev) ? { watched: num(r.manual.prev.watched), pct: Math.min(1, num(r.manual.prev.pct)), done: !!r.manual.prev.done, doneAt: num(r.manual.prev.doneAt), cov: "", covN: 0, pos: num(r.manual.prev.pos) } : { watched: 0, pct: 0, done: false, doneAt: 0, cov: "", covN: 0, pos: 0 } };
     return out;
   }
@@ -280,6 +351,7 @@
     if (!isObj(hh) || !isObj(hh.eps)) throw new Error("No history in file");
     const H = freshHistory();
     Object.keys(hh.eps).forEach((id) => { if (IDRX.test(id)) { const r = cleanRec(hh.eps[id]); if (r) H.eps[id] = r; } });
+    repairHistory(H); H.fix4 = Date.now();
     H.created = num(hh.created, Date.now()) || Date.now(); H.daily = cleanDays(hh.daily); H.manualDaily = cleanDays(hh.manualDaily);
     if (isObj(hh.stats)) Object.keys(STAT0).forEach((k) => (H.stats[k] = num(hh.stats[k])));
     const notes = {};
@@ -344,7 +416,7 @@
     L, BUCKET, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
     watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
     addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
-    markWatched, unmarkWatched, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
+    markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
     createPlaylist, playlist, renamePlaylist, deletePlaylist, addToPlaylist, removeFromPlaylist, movePlaylist, toggleLater, rate, setTags, queueNext,
   };
 })(window.ASFE);
