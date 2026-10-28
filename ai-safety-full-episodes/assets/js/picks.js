@@ -57,6 +57,7 @@
     return STATE.all.filter((e) => h().stateOf(e.id) !== "done" && !excl[e.id] && !n.ids.includes(e.id)).map((e) => {
       const base = A.recs.score(e, P); const why = [];
       let s = base.s + guideScore(e, G, why) - penalty(e);
+      if (A.isNew && A.isNew(e)) { s += 6; why.push("Just added"); }
       if (G.surprise) { s = s * 0.35 + R() * 14; why.unshift("Surprise pick"); }
       else s += R() * 0.6;
       const generic = /^(Unwatched|You might like this|Pick up again)$/.test(base.why);
