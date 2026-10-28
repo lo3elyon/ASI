@@ -115,17 +115,17 @@
     }
     return v[b.length];
   }
-  const W = { title: 10, names: 9, show: 4, tags: 5, chapters: 3, claims: 2, summary: 1.5 };
+  const W = { title: 10, names: 9, show: 4, tags: 5, chapters: 3, claims: 2, summary: 1.5, when: 3 };
   function searchScore(e, q) {
     const qf = fold(q).trim();
     if (!qf) return 1;
     let s = 0;
-    Object.keys(W).forEach((k) => { if (e.hay[k].includes(qf)) s += W[k] * 2; });
+    Object.keys(W).forEach((k) => { if (e.hay[k] && e.hay[k].includes(qf)) s += W[k] * 2; });
     const terms = qf.split(/\s+/).filter(Boolean);
     let matchedAll = true;
     terms.forEach((t) => {
       let best = 0;
-      Object.keys(W).forEach((k) => { if (e.hay[k].includes(t)) best = Math.max(best, W[k]); });
+      Object.keys(W).forEach((k) => { if (e.hay[k] && e.hay[k].includes(t)) best = Math.max(best, W[k]); });
       if (!best && t.length >= 4) {
         const max = t.length >= 7 ? 2 : 1;
         if (e.words.some((w) => Math.abs(w.length - t.length) <= max && lev(t, w, max) <= max)) best = 1.2;
@@ -161,7 +161,7 @@
     }
     if (f.followed && !e.stars.some((p) => L.FOLLOWS.has(p.k))) return false;
     if (f.day && e.date !== f.day) return false;
-    if (f.tag && !e.tags.includes(f.tag) && !e.peopleMentioned.includes(f.tag) && !e.orgsMentioned.includes(f.tag)) return false;
+    if (f.tag) { const tl = String(f.tag).toLowerCase(), eq = (x) => String(x).toLowerCase() === tl; if (!e.tags.some(eq) && !e.peopleMentioned.some(eq) && !e.orgsMentioned.some(eq)) return false; }
     return true;
   }
   const SORTS = [
