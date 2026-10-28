@@ -30,11 +30,13 @@
     const fy = A.recs.forYou(14, P0);
     const because = A.recs.becauseRows(2);
     const shortC = P0.filter((e) => e.dur && e.dur < 2400 && h().stateOf(e.id) !== "done").sort((a, b) => (b.date || "").localeCompare(a.date || "")).slice(0, 14);
-    const deep = P0.filter((e) => e.dur >= 7200).sort((a, b) => b.dur - a.dur).slice(0, 14);
-    const debates = P0.filter((e) => e.fmt === "debate").slice(0, 14);
-    const halls = P0.filter((e) => e.fmt === "hearing" || e.fmt === "panel").slice(0, 14);
-    const latest = P0.slice(0, 14);
-    const top = P0.filter((e) => e.views).sort((a, b) => b.views - a.views).slice(0, 12);
+    // suggestions never include what you already finished (or marked as watched); library pages still list everything
+    const unw = (e) => h().stateOf(e.id) !== "done";
+    const deep = P0.filter((e) => e.dur >= 7200 && unw(e)).sort((a, b) => b.dur - a.dur).slice(0, 14);
+    const debates = P0.filter((e) => e.fmt === "debate" && unw(e)).slice(0, 14);
+    const halls = P0.filter((e) => (e.fmt === "hearing" || e.fmt === "panel") && unw(e)).slice(0, 14);
+    const latest = P0.filter(unw).slice(0, 14);
+    const top = P0.filter((e) => e.views && unw(e)).sort((a, b) => b.views - a.views).slice(0, 12);
     const first = cont[0] || (fy[0] && fy[0].e);
     const researchers = Array.from(STATE.speakers.values()).filter((s) => ui().hasFace(s.name) && !s.isHost && s.eps.some((id) => P0.some((e) => e.id === id))).sort((a, b) => b.eps.length - a.eps.length).slice(0, 18);
     v.innerHTML = `
@@ -307,7 +309,7 @@
           <p class="sprof__bio">${esc(s.bio || "")}</p>
           <div class="sprof__k"><span><b>${eps.length}</b> episodes</span><span><b>${hoursStr(s.secs)}</b> total</span><span><b>${watched}</b>/${eps.length} watched</span><span><b>${claimsCount}</b> quoted claims</span>${dates.length ? `<span>${esc(fmtShort(dates[0]))} → ${esc(fmtShort(dates[dates.length - 1]))}</span>` : ""}</div>
           <div class="sprof__act">
-            <button class="btn btn--primary" id="playAll">${ui().ICON.play}<span>Play all (${eps.filter((e) => h().stateOf(e.id) !== "done").length || eps.length})</span></button>
+            <button class="btn btn--primary" id="playAll">${ui().ICON.play}<span>${eps.some((e) => h().stateOf(e.id) !== "done") ? `Play all unwatched (${eps.filter((e) => h().stateOf(e.id) !== "done").length})` : `Rewatch all (${eps.length})`}</span></button>
             <button class="follow follow--lg ${fol ? "is-on" : ""}" data-follow="${esc(s.k)}" aria-pressed="${fol}">${fol ? ui().ICON.check + "Following" : ui().ICON.plus + "Follow"}</button>
             <a class="btn btn--ghost" href="#/browse?speaker=${esc(s.slug)}">Filter library</a>
           </div>
@@ -510,7 +512,8 @@
         <div class="settings__bg" id="backgrounds"><p class="muted">Background</p>${A.bg ? A.bg.pickerHTML() : ""}</div>
         <div><p class="muted">Daily goal</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></div>
         <a class="btn btn--sm" href="#/wrapped">Monthly recap</a><a class="btn btn--sm" href="#/watched">I've watched these</a>
-        <a class="btn btn--sm" href="#/history">Backup & restore</a></div></section>`;
+        <a class="btn btn--sm" href="#/history">Backup & restore</a></div>
+        ${A.prefs ? `<div class="settings__more" id="fonts"><p class="muted">Fonts and text size</p>${A.prefs.fontsHTML()}</div><div class="settings__more qset--inline" id="layout"><p class="muted">Layout</p>${A.prefs.layoutTab()}</div><div class="settings__more qset--inline" id="motion"><p class="muted">Motion</p>${A.prefs.motionTab()}</div>` : ""}</section>`;
     $("#pName").onchange = (ev) => { L().PREFS.name = ev.target.value.trim().slice(0, 40); h().savePrefs(); };
     $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); };
     $("#sCeleb").onchange = (ev) => { L().SETTINGS.celebrations = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); if (ev.target.checked && A.fx) A.fx.celebrate("pick", ev.target.closest("label"), true); };
