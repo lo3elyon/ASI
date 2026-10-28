@@ -397,3 +397,14 @@ html.rm .themetog .tt svg { transition: opacity .2s; }
 .dock.is-fs.has-fsp.fsp--sheet .dock__video { flex: 1 1 0 !important; }
 .fsp__tabs { overflow-x: auto; scrollbar-width: none; } .fsp__tabs::-webkit-scrollbar { display: none; }
 .dock.fsp--sheet .fsp__mode { display: none; }
+
+/* ---------------------------------------------------------------- one title at a time (live QA, 28 Oct evening)
+   The windowed player already names the episode under the video (#thInfo h1, or the calm bar while playing), so the
+   toolbar crumb and the in-video overlay title stay out of the way there; full screen and the mini player keep theirs. */
+#thCrumb b { display: none; }
+.dock[data-mode="theater"]:not(.is-fs) .pv__tt b { display: none; }
+body.df-open .dfbar__tx b { display: none; }
+body.df-open .dfbar__tx small { display: none; }
+/* the Focus timer pill fades with the controls in full screen instead of sitting on the picture */
+.pv__pomo { transition: opacity .3s; }
+.dock.is-fs:not(.pv--show) .pv__pomo { opacity: 0; }
