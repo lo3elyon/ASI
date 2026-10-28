@@ -761,3 +761,17 @@ body.is-wide .theater__main { padding-left: 14px; padding-right: 14px; }
 .dock.is-native .pv__bottom .cbtn[data-pc="wide"] { pointer-events: none; }
 .theater__top .th__min kbd { font: 700 10.5px/1 Inter, system-ui, sans-serif; padding: 2px 5px; margin-left: 2px; border-radius: 5px; border: 1px solid var(--line2); color: var(--tx2); background: color-mix(in srgb, var(--solid) 70%, transparent); }
 .thumb__date { background: rgba(4, 7, 12, .72); -webkit-backdrop-filter: blur(12px) saturate(150%) brightness(.8); backdrop-filter: blur(12px) saturate(150%) brightness(.8); border-color: rgba(255, 255, 255, .2); text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
+
+/* ---- Just added row (top of Home) + NEW / Classic thumbnail badges (48 h after added_at) ---- */
+.ja { position: relative; margin: 4px 0 18px; padding: 14px 14px 6px; border-radius: 18px; border: 1px solid color-mix(in srgb, var(--amber, #f59e0b) 38%, transparent);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--amber, #f59e0b) 11%, transparent), transparent 60%); }
+.ja .shelf__hd h2 { margin: 2px 0 0; }
+.ja__eb { display: inline-flex; align-items: center; gap: 7px; color: var(--amber, #f59e0b); font-weight: 800; letter-spacing: .06em; }
+.ja__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber, #f59e0b); box-shadow: 0 0 0 0 color-mix(in srgb, var(--amber, #f59e0b) 60%, transparent); animation: jaPulse 2s ease-out infinite; }
+@keyframes jaPulse { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--amber, #f59e0b) 55%, transparent); } 100% { box-shadow: 0 0 0 9px transparent; } }
+@media (prefers-reduced-motion: reduce) { .ja__dot { animation: none; } }
+.thumb__flags { position: absolute; left: 8px; bottom: 8px; display: flex; gap: 5px; z-index: 2; pointer-events: none; }
+.thumb__new, .thumb__classic { font: 800 10.5px/1 Inter, system-ui, sans-serif; letter-spacing: .08em; padding: 4px 7px; border-radius: 6px; text-transform: uppercase; box-shadow: 0 2px 8px rgba(0,0,0,.35); }
+.thumb__new { background: #f59e0b; color: #1a1205; }
+.thumb__classic { background: rgba(4,7,12,.78); color: #fde68a; border: 1px solid rgba(253,230,138,.55); backdrop-filter: blur(10px); text-transform: none; letter-spacing: .02em; }
+.thumb--sm .thumb__flags { left: 5px; bottom: 5px; } .thumb--sm .thumb__new, .thumb--sm .thumb__classic { font-size: 9px; padding: 3px 5px; }
