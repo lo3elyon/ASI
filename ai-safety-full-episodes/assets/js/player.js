@@ -654,9 +654,10 @@
   /* ---------------------------------------------------------------- Read mode: video on the left (~60 %), a tabbed reading panel on the
    * right that scrolls on its own (Summary / Chapters / Claims / Numbers / Notes); on phones the same panel is a bottom sheet you drag
    * up and down, never taller than the space under the video */
-  function toggleRead(on) {
+  function toggleRead(on, opt) {
     on = on == null ? !P.read : !!on;
-    P.read = on; A.store.set("readMode", on ? 1 : 0);
+    if (!(opt && opt.keep === false)) { P.chRead = false; P.chShow = false; }
+    P.read = on; if (!P.chRead) A.store.set("readMode", on ? 1 : 0);
     if (on && P.sticky) setSticky(false);
     clearFlip();
     document.body.classList.toggle("is-read", on);
@@ -666,6 +667,7 @@
     sheetSize();
     paintSide();
     relayout();
+    if (typeof syncChBtns === "function") syncChBtns();
     return on;
   }
   function sheetMax() { const slot = $("#stageSlot"); const r = slot ? slot.getBoundingClientRect() : { bottom: 0 }; return Math.max(120, window.innerHeight - Math.max(0, r.bottom) - 8); }
@@ -821,8 +823,9 @@
       P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 };
       A.ui.toast("Focus mode: notifications paused, 25-minute Focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
     } else { P.dnd = false; P.pomo = null; }
+    if (!on) P.chShow = false;
     paintPomo(); paintAmbient();
-    relayout();
+    relayout(); syncChBtns(); if (A.studio && A.studio.split) A.studio.split.place();
     $$('[data-pc="zen"]').forEach((b) => b.setAttribute("aria-pressed", String(on)));
     const zb = $("#thZen"); if (zb) zb.setAttribute("aria-pressed", String(on));
   }
@@ -1258,27 +1261,47 @@
       if (P.loop) { const lp = document.createElement("span"); lp.className = "loopband"; lp.style.left = (100 * P.loop.a / d) + "%"; lp.style.width = P.loop.b != null ? (100 * (P.loop.b - P.loop.a) / d) + "%" : "2px"; el.appendChild(lp); }
     });
   }
-  /* Chapters in every player state: fullscreen → the overlay rail inside the video; mini / headphones / sticky mini → expand to
-   * the episode page on the Chapters tab; Theater with the reading column beside the video (wide screens, Read mode) → that
-   * column on Chapters; otherwise (phones, tablets, Theater mode t) → a chapters sheet under the video that never covers it. */
+  /* Chapters in every player state, ONE surface each time: full screen → the full screen side panel (A.fsp: beside the video,
+   * divider, sheet on narrow screens); everywhere else → the reading panel, which is the split beside the video (draggable
+   * divider, collapse handle, remembered width; a bottom sheet on phones). Read panel already open → it switches to its
+   * Chapters tab; closed → Chapters opens it on that tab (P.chRead) and pressing Chapters again closes it. Mini / headphones /
+   * sticky mini first expand back to the episode page. The old floating #chSheet is never opened any more. */
   function sideBesideVideo() {
     const side = $(".theater__side"), th = $("#theater"); if (!side || !th || th.hidden) return false;
     if (P.read) return true;
     return window.innerWidth > 900 && !document.body.classList.contains("is-wide") && !P.sticky;
   }
+  function chOpen() { return !!(P.read && P.side === "chapters" && !document.body.classList.contains("rd-collapsed") && (!P.zen || P.chRead || P.chShow)); }
+  function syncChBtns() {
+    const on = P.fs ? !!(A.fsp && A.fsp.isOpen()) : chOpen();
+    $$('[data-pc="rail"], #thCh').forEach((b) => b.setAttribute("aria-pressed", String(on)));
+    document.body.classList.toggle("ch-dock", !!(P.read && (P.chRead || P.chShow)));
+  }
   function openChapters(force) {
     if (!P.cur) return;
-    if (P.fs) { if (A.fsp) { A.fsp.toggle(force); return; } P.rail = force == null ? !P.rail : !!force; paintRail(); return; }
-    if (P.mode !== "theater" || P.sticky) { if (P.sticky) backToTop(); else expand(); }
-    if (sideBesideVideo() && window.innerWidth > 900) {
-      P.side = "chapters"; paintSide(); closeChSheet();
-      const tab = $('#sideTabs [data-side="chapters"]'); if (tab) { tab.classList.remove("is-flash"); void tab.offsetWidth; tab.classList.add("is-flash"); }
-      const now = $("#sideBody .chap.is-now") || $("#sideBody .chaps"); if (now) try { now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" }); } catch (x) {}
-      return;
+    if (P.fs) { if (A.fsp) { A.fsp.toggle(force); syncChBtns(); return; } P.rail = force == null ? !P.rail : !!force; paintRail(); return; }
+    closeChSheet();
+    const mine = P.chRead || P.chShow;
+    if (force === false || (force == null && chOpen() && mine)) {
+      if (P.read && P.chRead) { const back = P.sidePrev; P.chRead = false; P.chShow = false; toggleRead(false); if (back && back !== "chapters") { P.side = back; paintSide(); } }
+      else if (P.chShow) { P.chShow = false; if (P.sidePrev && P.sidePrev !== "chapters") { P.side = P.sidePrev; paintSide(); } relayout(); }
+      syncChBtns(); if (A.studio && A.studio.split) A.studio.split.place(); return;
     }
-    const sh = $("#chSheet");
-    if (sh && !sh.hidden && force !== true) { closeChSheet(); return; }
-    openChSheet();
+    if (force == null && chOpen()) { flashChTab(); syncChBtns(); return; }
+    if (P.mode !== "theater" || P.sticky) { if (P.sticky) backToTop(); else expand(); }
+    if (!mine) P.sidePrev = P.side;
+    if (!P.read) { P.chRead = true; P.side = "chapters"; toggleRead(true, { keep: false }); }
+    else if (P.zen && !mine) P.chShow = true;
+    if (document.body.classList.contains("rd-collapsed") && A.studio && A.studio.split) A.studio.split.collapse(false);
+    P.side = "chapters"; paintSide(); flashChTab(); syncChBtns();
+    // phones / tablets: the panel docks straight under the video (the sheet fills the space below it; drag the grip to change)
+    if (P.chRead && window.innerWidth <= 900) requestAnimationFrame(() => sheetSize(sheetMax()));
+    if (A.studio && A.studio.split) A.studio.split.place();
+    relayout();
+  }
+  function flashChTab() {
+    const tab = $('#sideTabs [data-side="chapters"]'); if (tab) { tab.classList.remove("is-flash"); void tab.offsetWidth; tab.classList.add("is-flash"); }
+    setTimeout(() => { const now = $("#sideBody .chap.is-now"); if (now) try { now.scrollIntoView({ block: "nearest", behavior: RM ? "auto" : "smooth" }); } catch (x) {} }, 60);
   }
   function chListHTML(e) {
     return `<ol class="chaps">${e.chapters.map((c, i) => `<li><button type="button" class="chap ${i === P.chIdx ? "is-now" : ""}" data-i="${i}" ${c.t == null ? "disabled" : `data-chseek="${c.t}"`}><span class="chap__t">${c.t == null ? "·" : fmtTime(c.t)}</span><span class="chap__tx"><b>${esc(c.title)}</b>${c.detail ? `<small>${esc(c.detail)}</small>` : ""}</span></button></li>`).join("")}</ol>`;
@@ -1384,7 +1407,7 @@
   function paintSide() {
     const e = P.cur; const body = $("#sideBody"); if (!e || !body) return;
     $$("#sideTabs [data-side]").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.side === P.side)));
-    setTimeout(applySideFilter, 0);
+    setTimeout(applySideFilter, 0); syncChBtns();
     if (P.side === "summary") {
       body.innerHTML = coverageHTML(e) + `<div class="rd__sum"><p class="th__sum">${esc(e.summary || "No summary recorded.")}</p>${e.whyWatch ? `<h3 class="side__h">Why watch</h3><p>${esc(e.whyWatch)}</p>` : ""}${e.topics.length ? `<h3 class="side__h">Topics</h3><ul class="topics">${e.topics.map((t) => `<li>${esc(t)}</li>`).join("")}</ul>` : ""}<h3 class="side__h">Speakers</h3><p>${esc(A.ui.whoLine(e, 8))}</p></div>`;
     } else if (P.side === "numbers") {
@@ -1571,7 +1594,7 @@
   }
 
   A.player = {
-    P, play, seek, jumpTo, togglePlay, toggleRead, jumpGap, firstGap, openChapters, closeChSheet, placeChSheet, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
+    P, play, seek, jumpTo, togglePlay, toggleRead, syncChBtns, chOpen, jumpGap, firstGap, openChapters, closeChSheet, placeChSheet, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
     tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC, syncCC, ccActual,
     frameStep, bookmark, setLoop, relayout, toggleNative, playPrev, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
