@@ -176,7 +176,7 @@
     ["Ctrl/⌘ K", "Command palette: episodes, speakers, actions"], ["/", "Search (Browse)"], ["?", "This overlay"],
     ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
     [", / .", "Frame step when paused (speed −/+ 0.25× while playing)"], ["< / >", "Slower / faster"], ["0–9", "Jump to 0%–90%"], ["Home / End", "Start / end (on the seek bar)"],
-    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode (Binge: next in the line-up)"], ["Shift P (Binge on, Theater)", "Previous episode in this binge"], ["Shift R", "Read mode (video + reading panel side by side)"], ["S", "Skip intro (first chapter)"],
+    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode (Binge: next in the line-up)"], ["Shift P (Binge on, Theater)", "Previous episode in this binge"], ["Shift R", "Read mode (video + reading panel side by side)"], ["U", "Jump to the first part you have not watched"], ["S", "Skip intro (first chapter)"],
     ["F", "Full screen (Esc to leave)"], ["T", "Theater mode / default view"], ["I", "Miniplayer / expand"], ["A", "Headphones mode"], ["O", "Float window (always on top)"], ["Z", "Focus mode"],
     ["C", "Captions on / off"], ["M", "Mute"], ["B", "Bookmark this moment"], ["N", "Note at this moment"], ["[ / ] / \\", "Loop start / loop end / clear"],
     ["W", "Mark focused card (or current episode) watched"], ["Shift F10", "Card menu (or right-click)"], ["Arrow keys on cards", "Move between cards"],
@@ -246,6 +246,7 @@
       case "ArrowDown": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol - 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
       case "N": if (A.binge && A.binge.on()) A.binge.next(); else pl.playNext(); break;
       case "R": pl.toggleRead(); break;
+      case "u": case "U": pl.jumpGap(); break;
       case "n": pl.openNote(); break;
       case "P": if (A.binge && A.binge.on() && P0.mode === "theater") A.binge.prev(); else pl.prevChapter(); break;
       case "}": pl.nextChapter(); break;
