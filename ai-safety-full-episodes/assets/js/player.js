@@ -21,7 +21,7 @@
   A.P = P;
   const dock = () => $("#dock");
   const YT_ORIGIN = "https://www.youtube.com";
-  const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
+  const SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2]; // YouTube embeds cap at 2×
 
   /* ---------------------------------------------------------------- YouTube API (loaded on first play only) */
   function loadAPI() {
@@ -131,14 +131,14 @@
 
   function applySettings() {
     const S = L().SETTINGS;
-    if (P.yt && P.ready) { try { P.yt.setVolume(S.vol); S.muted ? P.yt.mute() : P.yt.unMute(); P.yt.setPlaybackRate(Number(S.speed) || 1); } catch (e) {} }
+    if (P.yt && P.ready) { try { P.yt.setVolume(S.vol); S.muted ? P.yt.mute() : P.yt.unMute(); P.yt.setPlaybackRate(Math.min(2, Number(S.speed) || 1)); } catch (e) {} }
     $$("[data-vol]").forEach((el) => (el.value = S.muted ? 0 : S.vol));
     $$('[data-pc="mute"]').forEach((b) => b.classList.toggle("is-muted", !!S.muted || S.vol === 0));
     paintSpeed(); paintQuality();
     dock().classList.toggle("is-native", !!S.nativeControls);
     $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
   }
-  function paintSpeed() { const s = Number(L().SETTINGS.speed) || 1; $$("[data-speedlbl]").forEach((el) => (el.textContent = (Math.round(s * 100) / 100) + "×")); }
+  function paintSpeed() { const s = Math.min(2, Number(L().SETTINGS.speed) || 1); $$("[data-speedlbl]").forEach((el) => (el.textContent = (Math.round(s * 100) / 100) + "×")); }
 
   /* ---------------------------------------------------------------- errors: friendly fallback card */
   const ERR = {
@@ -199,6 +199,7 @@
       P.lastWall = performance.now();
       if (P.autoSkip) { P.autoSkip = false; autoSkipHearing(); }
       if (L().SETTINGS.captions && !L().SETTINGS.nativeControls) captionsOn(true);
+      syncCCSoon();
     } else {
       tick(true);
       P.lastMedia = null;
@@ -267,6 +268,7 @@
   }
   function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
   setInterval(() => { tick(false); pomoTick(); }, 1000);
+  setInterval(() => { if (!P.yt || !P.ready || !P.cur || dock().classList.contains("pv-hover-ctl")) return; let t; try { if (P.yt.getPlayerState() !== 1) return; t = P.yt.getCurrentTime(); } catch (x) { return; } if (typeof t === "number" && !isNaN(t)) paintProgress(t); }, 250);
   window.addEventListener("pagehide", () => { tick(true); flush(); });
   // Never pause when the tab is hidden or the window is minimised: only save progress.
   document.addEventListener("visibilitychange", () => { if (document.hidden) { tick(true); flush(); } });
@@ -317,9 +319,9 @@
   }
   function setSpeed(v) {
     const S = L().SETTINGS;
-    let s = clamp(Math.round(Number(v) * 100) / 100, 0.25, 3);
+    let s = clamp(Math.round(Number(v) * 100) / 100, 0.25, 2.5);
     let max = 2;
-    try { const av = P.yt && P.ready && P.yt.getAvailablePlaybackRates && P.yt.getAvailablePlaybackRates(); if (av && av.length) max = Math.max(...av); } catch (x) {}
+    try { const av = P.yt && P.ready && P.yt.getAvailablePlaybackRates && P.yt.getAvailablePlaybackRates(); if (av && av.length) max = Math.min(2, Math.max(...av)); } catch (x) {}
     if (s > max) { A.ui.toast(`YouTube's embedded player tops out at ${max}×`, { ms: 1800 }); s = max; }
     S.speed = s; A.store.set("settings:v3", S);
     if (!(P.yt && P.ready)) { paintSpeed(); A.ui.toast(`Speed ${s}× will apply when the video starts`, { ms: 1500 }); return; }
@@ -452,7 +454,9 @@
     const r = slot.getBoundingClientRect(), tr = th.getBoundingClientRect();
     const hgt = r.height || 1;
     const visible = (r.bottom - Math.max(tr.top, r.top)) / hgt; // share of the player still on screen
-    const want = th.scrollTop > 40 && visible < 0.4;
+    /* works whenever the episode page scrolls at all: a short page (little to scroll) goes sticky once scrolled to its end */
+    const laid = th.scrollHeight > 0 && th.clientHeight > 0, max = laid ? Math.max(0, th.scrollHeight - th.clientHeight) : Infinity;
+    const want = th.scrollTop > Math.min(40, max * 0.5) && (visible < 0.4 || (max >= 8 && th.scrollTop >= max - 2));
     if (!want) P.stickyOff = false;
     setSticky(want);
   }
@@ -703,10 +707,31 @@
       else { A.ui.toast("This video has no captions YouTube can show here", { icon: "💬", ms: 2600 }); const S = L().SETTINGS; S.captions = false; A.store.set("settings:v3", S); applySettings(); }
     }, P.vWait == null ? 1500 : P.vWait);
   }
+  /* what YouTube's caption module is really doing: true (a track is shown), false (module off / no track), null (the player can't tell) */
+  function ccActual() {
+    if (!(P.yt && P.ready) || !P.yt.getOption) return null;
+    try {
+      const mods = P.yt.getOptions ? P.yt.getOptions() : null;
+      if (Array.isArray(mods) && !mods.includes("captions") && !mods.includes("cc")) return false;
+      const tr = P.yt.getOption("captions", "track");
+      if (tr === undefined || tr === null) return null;
+      return !!(tr.languageCode || tr.displayName || tr.vss_id);
+    } catch (x) { return null; }
+  }
+  /* keep the CC button (and the saved setting) in step with the captions actually on screen */
+  function syncCC() {
+    const real = ccActual(); const S = L().SETTINGS;
+    if (real != null && real !== !!S.captions) { S.captions = real; A.store.set("settings:v3", S); }
+    $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions)));
+    if (P.menu === "settings") renderMenu("settings");
+    return real;
+  }
+  function syncCCSoon() { clearTimeout(P.ccT1); clearTimeout(P.ccT2); P.ccT1 = setTimeout(syncCC, P.vWait == null ? 700 : P.vWait); P.ccT2 = setTimeout(syncCC, P.vWait == null ? 3000 : P.vWait + 10); }
   function toggleCC() {
     const S = L().SETTINGS;
-    S.captions = !S.captions; A.store.set("settings:v3", S);
-    if (P.yt && P.ready) { if (S.captions) captionsOn(); else { try { P.yt.unloadModule && P.yt.unloadModule("captions"); } catch (x) {} fx("CC off", "c"); } }
+    const real = ccActual(); const was = real == null ? !!S.captions : real;
+    S.captions = !was; A.store.set("settings:v3", S);
+    if (P.yt && P.ready) { if (S.captions) captionsOn(); else { try { P.yt.unloadModule && P.yt.unloadModule("captions"); P.yt.unloadModule && P.yt.unloadModule("cc"); } catch (x) {} fx("CC off", "c"); } syncCCSoon(); }
     applySettings();
   }
   function qualities() { try { return (P.yt && P.ready && P.yt.getAvailableQualityLevels && P.yt.getAvailableQualityLevels()) || []; } catch (x) { return []; } }
@@ -955,7 +980,7 @@
       html = `<p class="mh">Settings</p>${it("menu-speed", "Playback speed", esc(sp + "×"))}${it("menu-quality", "Quality", esc(qLabel(curQuality())))}${it("cc", "Captions (C)", S.captions ? "On" : "Off")}${it("menu-sleep", "Sleep timer", esc(sl))}${it("menu-loop", "Loop A–B section", P.loop && P.loop.b != null ? esc(`${fmtTime(P.loop.a)}–${fmtTime(P.loop.b)}`) : "Off")}
         ${it("autoskip", "Auto-skip to researcher in hearings", S.autoSkipHearing ? "On" : "Off")}${it("autoplay", "Autoplay next", S.autoplay ? "On" : "Off")}${it("native", "Use YouTube's own controls", S.nativeControls ? "On" : "Off")}`;
     } else if (kind === "speed") {
-      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Speed <b>${esc(sp + "×")}</b></p><input type="range" class="msl" id="pvSpeedSl" min="0.25" max="3" step="0.05" value="${sp}" aria-label="Playback speed"><div class="mgrid">${SPEEDS.map((s) => `<button class="mc ${s === sp ? "is-on" : ""}" data-pc="speed-set" data-v="${s}">${s}×</button>`).join("")}</div><p class="mnote">Fine steps of 0.05×. YouTube embeds cap at 2×.</p>`;
+      html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Speed <b>${esc(sp + "×")}</b></p><input type="range" class="msl" id="pvSpeedSl" min="0.25" max="2" step="0.05" value="${sp}" aria-label="Playback speed"><div class="mgrid">${SPEEDS.map((s) => `<button class="mc ${s === sp ? "is-on" : ""}" data-pc="speed-set" data-v="${s}">${s}×</button>`).join("")}</div><p class="mnote">Fine steps of 0.05×. YouTube embeds cap at 2×.</p>`;
     } else if (kind === "quality") {
       const q = qualities();
       html = `<p class="mh"><button class="mb" data-pc="menu-settings" aria-label="Back">‹</button>Quality</p>${q.length ? q.map((x) => it("quality-set", esc(x), null, `data-v="${esc(x)}"`)).join("") : `<p class="mnote">YouTube does not expose quality levels for this video. It adapts quality automatically to your connection and player size.</p>`}<p class="mnote">Now playing: <b>${esc(qLabel(curQuality()))}</b>. YouTube usually chooses quality automatically in embedded players; if a pick does not stick you will get a link to open this moment on YouTube instead.</p>`;
@@ -1002,14 +1027,16 @@
   function paintProgress(t) {
     const d = durNow();
     const pc = clamp((100 * t) / d, 0, 100).toFixed(2) + "%";
+    const sec = Math.max(0, Math.floor(t)), now = fmtTime(sec), txt = `${now} of ${fmtTime(d)}`;
     $$("[data-seekbar]").forEach((b) => {
       b.querySelector(".seekbar__fill").style.width = pc;
-      b.setAttribute("aria-valuenow", String(Math.round((100 * t) / d)));
-      b.setAttribute("aria-valuetext", `${fmtTime(t)} of ${fmtTime(d)}`);
+      b.setAttribute("aria-valuemax", String(Math.max(0, Math.floor(d))));
+      b.setAttribute("aria-valuenow", String(sec));
+      b.setAttribute("aria-valuetext", txt);
     });
     let buf = 0; try { buf = (P.yt && P.ready && P.yt.getVideoLoadedFraction && P.yt.getVideoLoadedFraction()) || 0; } catch (x) {}
     $$("[data-seekbar] .seekbar__buf").forEach((el) => (el.style.width = clamp(buf * 100, 0, 100).toFixed(1) + "%"));
-    $$("[data-tnow]").forEach((el) => (el.textContent = fmtTime(t)));
+    $$("[data-tnow]").forEach((el) => (el.textContent = now));
     const ci = chapterAt(t);
     if (ci !== P.chIdx) {
       P.chIdx = ci;
@@ -1286,7 +1313,7 @@
 
   A.player = {
     P, play, seek, jumpTo, togglePlay, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
-    tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC,
+    tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC, syncCC, ccActual,
     frameStep, bookmark, setLoop, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
 })(window.ASFE);
