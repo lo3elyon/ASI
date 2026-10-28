@@ -282,13 +282,15 @@
     body().classList.toggle("rd-collapsed", o.collapsed);
     const dv = $("#rdSplit"); if (dv) { dv.setAttribute("aria-valuenow", String(Math.round(o.pct))); dv.setAttribute("aria-valuetext", `Video ${Math.round(o.pct)}%, panel ${Math.round(100 - o.pct)}%`); }
     placeSplit();
+    if (pl().syncChBtns) pl().syncChBtns();
   }
   function placeSplit() {
     const dv = $("#rdSplit"); if (!dv) return;
     const side = $(".theater__side"), th = $("#theater");
-    const active = body().classList.contains("is-read") && window.innerWidth > 900 && !body().classList.contains("rd-collapsed") && !body().classList.contains("is-zen");
+    const zenOk = !body().classList.contains("is-zen") || body().classList.contains("ch-dock");
+    const active = body().classList.contains("is-read") && window.innerWidth > 900 && !body().classList.contains("rd-collapsed") && zenOk;
     dv.hidden = !active;
-    const op = $("#rdOpen"); if (op) op.hidden = !(body().classList.contains("is-read") && window.innerWidth > 900 && body().classList.contains("rd-collapsed") && !body().classList.contains("is-zen"));
+    const op = $("#rdOpen"); if (op) op.hidden = !(body().classList.contains("is-read") && window.innerWidth > 900 && body().classList.contains("rd-collapsed") && zenOk);
     if (!active || !side || !th) return;
     const tr = th.getBoundingClientRect(), sr = side.getBoundingClientRect();
     dv.style.left = Math.round(sr.left - tr.left - 7) + "px";
@@ -347,7 +349,7 @@
     const d = $("#dock"); if (!d) return null;
     if (F.el && F.el.isConnected) return F.el;
     const div = document.createElement("div"); div.id = "fspDiv"; div.className = "fspdiv"; div.setAttribute("role", "separator"); div.setAttribute("tabindex", "0");
-    div.setAttribute("aria-label", "Resize the chapters panel (arrow keys; double-click to reset)"); div.innerHTML = `<span aria-hidden="true"><i></i><i></i><i></i></span>`;
+    div.setAttribute("aria-label", "Resize the chapters panel (arrow keys; double-click to reset)"); div.innerHTML = `<span aria-hidden="true"><i></i><i></i><i></i></span><button type="button" class="fspdiv__x" data-fspx aria-label="Hide the panel" title="Hide the panel (Chapters button brings it back)">›</button>`;
     const el = document.createElement("aside"); el.id = "fsp"; el.className = "fsp"; el.hidden = true; el.setAttribute("aria-label", "Chapters and transcript");
     d.appendChild(div); d.appendChild(el); F.el = el; F.div = div;
     el.addEventListener("click", onFClick); el.addEventListener("scroll", () => {}, { passive: true });
@@ -366,7 +368,7 @@
     el.hidden = !open; F.div.hidden = !open || o.mode !== "side";
     d.classList.toggle("has-fsp", open); d.classList.toggle("fsp--overlay", open && o.mode === "overlay"); d.classList.toggle("fsp--side", open && o.mode === "side"); d.classList.toggle("fsp--sheet", open && narrow());
     d.style.setProperty("--fsp-w", o.w + "px"); d.style.setProperty("--fsp-h", o.h + "%");
-    $$('[data-pc="rail"]').forEach((b) => b.setAttribute("aria-pressed", String(open)));
+    if (p.fs) $$('[data-pc="rail"]').forEach((b) => b.setAttribute("aria-pressed", String(open)));
     if (!open) return;
     if (full || el.dataset.id !== p.cur.id || el.dataset.tab !== o.tab || el.dataset.mode !== o.mode) {
       el.dataset.id = p.cur.id; el.dataset.tab = o.tab; el.dataset.mode = o.mode;
@@ -436,7 +438,8 @@
   function toggleF(force) { const want = force == null ? !fIsOpen() : !!force; want ? openF() : closeF(); }
   function wireFDiv(div) {
     let st = null;
-    div.addEventListener("pointerdown", (ev) => { const d = $("#dock"); st = { x: ev.clientX, y: ev.clientY, w: fprefs().w, h: fprefs().h, W: d.clientWidth, H: d.clientHeight }; try { div.setPointerCapture(ev.pointerId); } catch (x) {} div.classList.add("is-drag"); ev.preventDefault(); ev.stopPropagation(); });
+    div.addEventListener("click", (ev) => { if (ev.target.closest("[data-fspx]")) { ev.stopPropagation(); closeF(); } });
+    div.addEventListener("pointerdown", (ev) => { if (ev.target.closest("[data-fspx]")) { ev.stopPropagation(); return; } const d = $("#dock"); st = { x: ev.clientX, y: ev.clientY, w: fprefs().w, h: fprefs().h, W: d.clientWidth, H: d.clientHeight }; try { div.setPointerCapture(ev.pointerId); } catch (x) {} div.classList.add("is-drag"); ev.preventDefault(); ev.stopPropagation(); });
     div.addEventListener("pointermove", (ev) => {
       if (!st) return; const o = fprefs();
       if (narrow()) o.h = clamp(st.h + ((st.y - ev.clientY) / st.H) * 100, 25, 75);
@@ -445,8 +448,8 @@
     });
     const end = () => { if (!st) return; st = null; div.classList.remove("is-drag"); fsave(fprefs()); };
     div.addEventListener("pointerup", end); div.addEventListener("pointercancel", end);
-    div.addEventListener("dblclick", () => { const o = fprefs(); o.w = FDEF.w; o.h = FDEF.h; fsave(o); paintF(); });
-    div.addEventListener("keydown", (ev) => { const o = fprefs(); const k = { ArrowLeft: 24, ArrowRight: -24, ArrowUp: 4, ArrowDown: -4 }[ev.key]; if (k == null) return; ev.preventDefault(); ev.stopPropagation(); if (narrow()) o.h = clamp(o.h + (ev.key === "ArrowUp" || ev.key === "ArrowDown" ? k : 0), 25, 75); else o.w = clamp(o.w + (ev.key === "ArrowLeft" || ev.key === "ArrowRight" ? k : 0), 260, 900); fsave(o); paintF(); });
+    div.addEventListener("dblclick", (ev) => { if (ev.target.closest("[data-fspx]")) return; const o = fprefs(); o.w = FDEF.w; o.h = FDEF.h; fsave(o); paintF(); });
+    div.addEventListener("keydown", (ev) => { if (ev.key === "Enter" && ev.target === div) { ev.preventDefault(); ev.stopPropagation(); closeF(); return; } const o = fprefs(); const k = { ArrowLeft: 24, ArrowRight: -24, ArrowUp: 4, ArrowDown: -4 }[ev.key]; if (k == null) return; ev.preventDefault(); ev.stopPropagation(); if (narrow()) o.h = clamp(o.h + (ev.key === "ArrowUp" || ev.key === "ArrowDown" ? k : 0), 25, 75); else o.w = clamp(o.w + (ev.key === "ArrowLeft" || ev.key === "ArrowRight" ? k : 0), 260, 900); fsave(o); paintF(); });
   }
   function onFs(on) { paintF(true); clearInterval(F.iv); if (on) F.iv = setInterval(() => tickF(false), 400); }
   window.addEventListener("resize", () => { if (P() && P().fs) requestAnimationFrame(() => paintF()); });
