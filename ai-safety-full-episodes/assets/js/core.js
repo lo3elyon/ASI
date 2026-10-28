@@ -12,6 +12,23 @@
   const fold = (s) => String(s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
   const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
   const pad = (n) => String(n).padStart(2, "0");
+  /* "Just added": an episode is NEW for 48 h after its added_at (ISO time with zone, set by the daily add) */
+  const NEW_MS = 48 * 3600 * 1000;
+  A.NEW_MS = NEW_MS;
+  /* added_ms (epoch ms) wins; else parse added_at: ISO ("2026-10-28T11:00:00+05:30") or "Wed 2026-10-28 11:00 AM IST (UTC+05:30)" */
+  function addedMsOf(raw) {
+    if (typeof raw.added_ms === "number" && raw.added_ms > 0) return raw.added_ms;
+    const s = String(raw.added_at || ""); if (!s) return 0;
+    const iso = Date.parse(s); if (iso) return iso;
+    const m = s.match(/(\d{4}-\d{2}-\d{2})[ T](\d{1,2}):(\d{2})(?::(\d{2}))?\s*(AM|PM)?[^+-]*?(?:UTC)?([+-]\d{2}):?(\d{2})?/i);
+    if (!m) return Date.parse(s.slice(0, 10)) || 0;
+    let hh = +m[2]; if (m[5]) { const pm = /pm/i.test(m[5]); if (hh === 12) hh = pm ? 12 : 0; else if (pm) hh += 12; }
+    const tz = m[6] ? `${m[6]}:${m[7] || "00"}` : "Z";
+    return Date.parse(`${m[1]}T${String(hh).padStart(2, "0")}:${m[3]}:${m[4] || "00"}${tz}`) || 0;
+  }
+  A.addedMsOf = addedMsOf;
+  A.isNew = (e, now) => { if (!e || !e.addedMs) return false; const d = (now == null ? Date.now() : now) - e.addedMs; return d >= -6 * 3600 * 1000 && d < NEW_MS; };
+  A.justAdded = (now) => ((A.STATE && A.STATE.all) || []).filter((e) => A.isNew(e, now)).sort((a, b) => b.addedMs - a.addedMs || (b.date || "").localeCompare(a.date || ""));
   const RM = !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   const cssEsc = (s) => (typeof CSS !== "undefined" && CSS.escape ? CSS.escape(s) : String(s).replace(/["\\\]\[]/g, "\\$&"));
   const slug = (s) => fold(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -299,6 +316,7 @@
       whyWatch: raw.why_watch || "", evidence: raw.evidence || "", url: raw.url || `https://www.youtube.com/watch?v=${id}`,
       thumb: `https://i.ytimg.com/vi/${id}/hqdefault.jpg`, orgs: Array.from(orgs), orgsMentioned, peopleMentioned, groups,
       verified: raw.verified !== false, subs: raw.channel_subscribers || null,
+      addedAt: raw.added_at || null, addedMs: addedMsOf(raw), classic: raw.classic === true,
     };
     e.hay = {
       title: fold(e.title), names: fold(people.map((p) => p.name).join(" ")), show: fold(e.show + " " + e.channel), tags: fold(tags.join(" ")),
