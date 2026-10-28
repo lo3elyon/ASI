@@ -529,7 +529,7 @@ body.is-resizing, body.is-resizing * { user-select: none; }
 
 /* ================================================================ delight: ripples, icon micro-animations, bursts */
 .fx-rel { position: relative; }
-.fx-clip { overflow: hidden; }
+.fx-clip { overflow: hidden; overflow: clip; } /* clip, not hidden: a flex-shrunk button keeps its width while the ripple runs, so the click lands on it */
 .ripple { position: absolute; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, color-mix(in srgb, currentColor 34%, transparent) 0 40%, transparent 70%); transform: scale(0); opacity: .9; animation: ripple .6s var(--ease) forwards; z-index: 0; }
 @keyframes ripple { to { transform: scale(1); opacity: 0; } }
 .fx-tap { animation: fxtap .34s var(--ease); }
@@ -755,3 +755,9 @@ body.is-wide .theater__main { padding-left: 14px; padding-right: 14px; }
 .dock.dock--grab.is-native .pv__hit { display: block; }
 .dock.dock--grab .pv__hit { cursor: grab; pointer-events: auto; }
 .dock.dock--grab .pv button, .dock.dock--grab .dock__bar button { cursor: pointer; }
+
+/* QA fixes: theater toggle always clickable (even while the bar is fading), clear "Minimise (i)" on the episode page, readable date pill */
+.dock .pv__bottom .cbtn[data-pc="wide"] { pointer-events: auto; }
+.dock.is-native .pv__bottom .cbtn[data-pc="wide"] { pointer-events: none; }
+.theater__top .th__min kbd { font: 700 10.5px/1 Inter, system-ui, sans-serif; padding: 2px 5px; margin-left: 2px; border-radius: 5px; border: 1px solid var(--line2); color: var(--tx2); background: color-mix(in srgb, var(--solid) 70%, transparent); }
+.thumb__date { background: rgba(4, 7, 12, .72); -webkit-backdrop-filter: blur(12px) saturate(150%) brightness(.8); backdrop-filter: blur(12px) saturate(150%) brightness(.8); border-color: rgba(255, 255, 255, .2); text-shadow: 0 1px 2px rgba(0, 0, 0, .6); }
