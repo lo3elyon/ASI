@@ -54,6 +54,9 @@
   function hoursStr(s) { const h = (s || 0) / 3600; return h >= 10 ? Math.round(h) + "h" : (Math.round(h * 10) / 10) + "h"; }
   function dayKey(ts) { const d = new Date(ts); return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`; }
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const MONTHS_FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  /* month words for search ("Scott Aaronson October" ANDs the tokens across title/speakers/show/tags/month) */
+  function whenHay(month) { const m = /^(\d{4})-(\d{2})/.exec(month || ""); if (!m) return ""; const i = Number(m[2]) - 1; return fold(`${MONTHS_FULL[i] || ""} ${MONTHS[i] || ""} ${m[1]}`); }
   function fmtDate(iso, approx) {
     if (!iso) return "";
     const [y, m, d] = iso.split("-").map(Number);
@@ -181,6 +184,15 @@
   ];
   function orgsIn(text) { const out = []; ORG_RX.forEach(([n, rx]) => { if (rx.test(text || "")) out.push(n); }); return out; }
 
+  /* one spelling per topic tag: hand-written tags ("interpretability") and derived ones ("Interpretability") used to
+   * appear as two tags with split counts. The derived name wins, else the most used spelling. */
+  function canonTags(all) {
+    const rx = new Map(TAG_RX.map(([n]) => [n.toLowerCase(), n])), cnt = new Map();
+    all.forEach((e) => e.tags.forEach((t) => { const k = t.toLowerCase(); const m = cnt.get(k) || new Map(); m.set(t, (m.get(t) || 0) + 1); cnt.set(k, m); }));
+    const pick = new Map(); cnt.forEach((m, k) => pick.set(k, rx.get(k) || Array.from(m.entries()).sort((a, b) => b[1] - a[1] || (/[A-Z]/.test(b[0]) ? 1 : 0) - (/[A-Z]/.test(a[0]) ? 1 : 0))[0][0]));
+    all.forEach((e) => { const seen = new Set(); e.tags = e.tags.map((t) => pick.get(t.toLowerCase()) || t).filter((t) => !seen.has(t) && seen.add(t)); e.hay.tags = fold(e.tags.join(" ")); });
+    STATE.tagCanon = pick;
+  }
   /* topic tags derived for every episode (October items also carry hand-written tags) */
   const TAG_RX = [
     ["P(doom)", /p\s*\(\s*doom|probability of doom|chance (that )?(ai|it) (kills|destroys|wipes)|extinction risk/i],
@@ -322,6 +334,7 @@
       title: fold(e.title), names: fold(people.map((p) => p.name).join(" ")), show: fold(e.show + " " + e.channel), tags: fold(tags.join(" ")),
       chapters: fold(chapters.map((c) => c.title + " " + c.detail).join(" ") + " " + topics.join(" ")), claims: fold(claims.map((c) => c.text).join(" ") + " " + numbers.map((n) => n.text).join(" ")),
       summary: fold(e.summary + " " + e.formatRaw + " " + e.orgs.join(" ") + " " + orgsMentioned.join(" ")),
+      when: whenHay(month),
     };
     e.words = Array.from(new Set(tokens(Object.values(e.hay).join(" "))));
     e.kw = new Set(tokens(e.title + " " + chapters.map((c) => c.title).join(" ") + " " + topics.join(" ") + " " + e.summary));
@@ -375,6 +388,7 @@
     STATE.dupes = rawList.length - map.size;
     STATE.all = Array.from(map.values()).sort((a, b) => (b.date || "").localeCompare(a.date || "") || a.title.localeCompare(b.title));
     STATE.byId = map;
+    canonTags(STATE.all);
     buildSpeakers();
     buildClaims();
     STATE.days = new Map();
