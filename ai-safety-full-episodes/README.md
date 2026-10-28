@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 319 verified full-length episodes, Jul–Oct 2026"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 325 verified full-length episodes, Jul–Oct 2026"></a>
 
 <img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
@@ -11,11 +11,11 @@
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
 <img src="https://img.shields.io/badge/updated-2026--10--28-f59e0b?style=flat-square&labelColor=07111f" alt="updated Oct 28, 2026">
-<img src="https://img.shields.io/badge/episodes-319-14b8a6?style=flat-square&labelColor=07111f" alt="319 episodes">
+<img src="https://img.shields.io/badge/episodes-325-14b8a6?style=flat-square&labelColor=07111f" alt="325 episodes">
 <img src="https://img.shields.io/badge/runtime-~331%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 331 hours">
 <img src="https://img.shields.io/badge/researchers%20%26%20guests-167-22d3ee?style=flat-square&labelColor=07111f" alt="167 researchers and guests">
 <img src="https://img.shields.io/badge/hosts-120-64748b?style=flat-square&labelColor=07111f" alt="120 hosts">
-<img src="https://img.shields.io/badge/chapters-3%2C482-10b981?style=flat-square&labelColor=07111f" alt="3,482 chapters">
+<img src="https://img.shields.io/badge/chapters-3%2C566-10b981?style=flat-square&labelColor=07111f" alt="3,566 chapters">
 <img src="https://img.shields.io/badge/claims%20tracked-66-ef4444?style=flat-square&labelColor=07111f" alt="66 claims">
 <img src="https://img.shields.io/badge/window-Jul%201%E2%80%93Oct%2027%2C%202026-3b82f6?style=flat-square&labelColor=07111f" alt="Jul 1 to Oct 27, 2026">
 <br>
@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/bundle-terser%20%2B%20csso-10b981?style=flat-square&labelColor=07111f" alt="Minified bundle">
 <img src="https://img.shields.io/badge/pre--rendered-24%20cards%20%2B%20noscript%20list-22d3ee?style=flat-square&labelColor=07111f" alt="Pre-rendered HTML">
 <img src="https://img.shields.io/badge/CSP-strict%20script--src-ef4444?style=flat-square&labelColor=07111f" alt="Strict CSP">
-<img src="https://img.shields.io/badge/JSON--LD-319%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
+<img src="https://img.shields.io/badge/JSON--LD-325%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
 <img src="https://img.shields.io/badge/PWA-installable-14b8a6?style=flat-square&labelColor=07111f" alt="Installable PWA">
 <img src="https://img.shields.io/badge/Fullscreen-cinema%20player-f59e0b?style=flat-square&labelColor=07111f" alt="Fullscreen cinema player">
 <img src="https://img.shields.io/badge/Float%20window-Document%20PiP%20remote-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture remote">
@@ -35,7 +35,7 @@
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
-<img src="https://img.shields.io/badge/captions-319%20transcripts-a78bfa?style=flat-square&labelColor=07111f" alt="Captions from 319 transcripts">
+<img src="https://img.shields.io/badge/captions-325%20transcripts-a78bfa?style=flat-square&labelColor=07111f" alt="Captions from 325 transcripts">
 <img src="https://img.shields.io/badge/backgrounds-30-ec4899?style=flat-square&labelColor=07111f" alt="30 backgrounds">
 <img src="https://img.shields.io/badge/fonts-10%20pairings-38bdf8?style=flat-square&labelColor=07111f" alt="10 font pairings">
 
@@ -45,7 +45,25 @@
 
 ## Contents
 
-[Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026, 8 pm): a year in AI safety, a 1-vs-10 debate and an Oxford governance panel, 6 new episodes
+
+Six more transcript-verified full episodes (325 in all, about 353.7 hours; October now 97), added to the front of the **Just added** row with NEW badges. They span a one-sitting year-in-review from a SaferAI researcher, Roman Yampolskiy defending his case against building superintelligence in a three-and-a-half-hour live debate, an Oxford panel on international AI governance from the TAIS 2026 conference, the next lecture in Aaron Roth's alignment-theory course, an AI-consciousness and alignment interview with Cameron Berg, and Columbia's Zachary Horvitz on measuring rare harmful behaviour.
+
+| Speaker | Episode | Length |
+|---|---|---:|
+| Jakub Kryś (SaferAI) | [A Year in AI Safety: Benchmarks Can’t Keep Up](https://www.youtube.com/watch?v=rTHEhCWYJbg) | 1:13:41 |
+| Roman Yampolskiy (Louisville) | [1 AI Doomer vs 10 AI Supporters (live debate)](https://www.youtube.com/watch?v=BD-fSSxIULI) | 3:39:30 |
+| Robert Trager, Lisa Klaassen, Luise Eder, Miro Pluckebaum (Oxford Martin AIGI) | [Latest AI Governance Developments (TAIS 2026 panel)](https://www.youtube.com/watch?v=2CzWBNRC0rk) | 43:41 |
+| Aaron Roth (Penn) | [Mathematical Foundations of AI Alignment, Lecture 15 (Bayesian Persuasion)](https://www.youtube.com/watch?v=ycu48RmM80o) | 1:27:59 |
+| Cameron Berg (Reciprocal Research) | [What Is It Like to Be an AI?](https://www.youtube.com/watch?v=Qe808IIyrlA) | 1:28:01 |
+| Zachary Horvitz (Columbia) | [What does rare AI behavior mean for safety?](https://www.youtube.com/watch?v=R5hVoFO1NTU) | 32:46 |
+
+**Method:** each caption track was read end to end; chapters snap to real caption lines (8–15 per episode), every key claim is a verbatim quote located in the captions, and hosts who are not safety researchers are named in the summary but not listed as speakers. Seven new speakers get a verified, text-free face photo (own organisation pages) and a one-line bio (308 speakers in the library). Kept out: a UN General Assembly panel of politicians, a re-cut of an IPAM talk already in the library, a duplicate upload of the Yampolskiy debate, and FAR.AI talks under 15 minutes.
+
+**Tests:** smoke3.js, smoke_v9.js, smoke_mini.py and smoke_qa.py all passing.
+
 
 ## What's new (Oct 28, 2026, evening): calmer watching, real captions, resizable reading, and a new look-and-feel panel
 
@@ -66,7 +84,7 @@ flowchart LR
 | **Distraction-free watching** | While a video plays on the episode page, the details, the Summary/Chapters/Claims/Numbers/Notes/Up next tabs and the binge line-up fold into one slim bar with a **Details ▾** pill (and an **Up next** pill). They come back when you click, when the episode ends, or after a pause (Never / 3 / 8 / 15 / 30 s, in Settings › Layout). "Keep open" turns it off. The reading tabs now stay on one scrollable row. |
 | **Never suggests what you watched** | Up next (queued items included), the binge line-up, Recommended, Because you watched, Just added, Home rows (latest, debates, deep dives, hearings, most viewed, short and complete) and Today's picks all leave out finished or "marked as watched" episodes. Speaker pages say **Play all unwatched** (or **Rewatch all** once you've seen everything). Library pages (Browse, Months, speaker lists) still list everything. |
 | **Read mode split** | Drag the divider between video and panel (pointer, touch, ← → keys, Home/End; double-click resets to 60/40); the width is remembered. The **›** button hides the panel and the video takes the full width; the **‹ Panel** tab on the right edge brings it back. On phones the bottom sheet's height is remembered too. |
-| **Captions** | Our own caption overlay from the stored transcripts of **all 319 episodes** (`data/captions/<id>.json`, built by `tools/caps_build.py`), synced to the player clock. Drag the captions anywhere over the video (position remembered), and set size, background opacity, colour, 1–3 lines, font and edge in **Aa** › Caption style. They always sit above the control bar. YouTube's captions are switched off while ours show. |
+| **Captions** | Our own caption overlay from the stored transcripts of **all 325 episodes** (`data/captions/<id>.json`, built by `tools/caps_build.py`), synced to the player clock. Drag the captions anywhere over the video (position remembered), and set size, background opacity, colour, 1–3 lines, font and edge in **Aa** › Caption style. They always sit above the control bar. YouTube's captions are switched off while ours show. |
 | **YouTube controls** | A **YouTube controls** button in the control bar (and Shift+Y) switches to YouTube's own player at the same moment, still playing: pick quality, use YouTube's captions and their styling. **✕ Cinema controls** brings our overlay back at the same moment. The quality menu no longer offers picks YouTube ignores; it explains and offers this switch. |
 | **Controls audit** | ← → now seek 5 s (Shift: 30 s) like YouTube, J/L 10 s; Shift+P plays the previous episode (previous chapter when there is none); Loop video in Settings; every other key (K, M, F, T, I, C, 0–9, , . < >, Shift+N…) was re-checked. |
 | **Full screen panel** | Chapters and an **In this video** transcript (grouped under each chapter, current line highlighted and followed, search box, click a line to seek) in a panel that stays open until you close it (✕, the Chapters button or Esc), never hiding with the controls. Side mode shrinks the video to fit beside it with a draggable divider; Overlay mode floats it semi-transparent; narrow or portrait screens get a bottom sheet with a drag handle. |
@@ -81,7 +99,7 @@ flowchart LR
 
 **Tests:** `smoke3.js` 410/410 (jsdom, with a new block for every item above), `smoke_v9.js` (the new block on its own), `smoke_v9ui.py` (real Firefox at 360, 390, 768, 1024, 1366 and 1920 px: header controls, Settings tabs fit the screen, shortcuts overlay, mode combinations in many orders with no clipped controls, divider drag and collapse, full screen panel side/overlay/sheet and staying open after the controls hide, the transcript tab, and a section-shaped skeleton for every page on a slow load). Then live QA on the deployed site in a real browser.
 
-**New files:** `assets/js/studio.js` (captions overlay, distraction-free layer, Read-mode split, full screen panel), `assets/js/prefs.js` (theme toggle, Settings dropdown, fonts, shortcuts overlay, skeletons), `assets/v9.css`, `data/captions/` (319 per-episode cue files + `index.json`, about 25 MB in total, fetched only for the episode you open), and four photos in `assets/bg/`. `assets/js/bg.js` gained the new engines, controls and presets.
+**New files:** `assets/js/studio.js` (captions overlay, distraction-free layer, Read-mode split, full screen panel), `assets/js/prefs.js` (theme toggle, Settings dropdown, fonts, shortcuts overlay, skeletons), `assets/v9.css`, `data/captions/` (325 per-episode cue files + `index.json`, about 25 MB in total, fetched only for the episode you open), and four photos in `assets/bg/`. `assets/js/bg.js` gained the new engines, controls and presets.
 
 **Honest limits:** YouTube still decides video quality for embedded players, which is why quality lives behind the YouTube controls switch. In native full screen, browsers use Esc to leave full screen, so the first Esc there exits full screen (the panel closes with it); in the CSS full screen fallback the first Esc closes the panel. Transcripts come from YouTube's caption tracks, so auto-caption wording and timing can be a little off.
 
@@ -268,13 +286,13 @@ flowchart LR
 | Player controls | YouTube's own controls | **Custom cinema controls**: big play, ±10 s (and ±5/30 via keys), frame step when paused, speed 0.25–3× in 0.05 steps (clamped to YouTube's 2× embed limit), quality menu, volume slider, captions, A–B loop, chapter ticks + bookmarks on the seek bar, buffered bar, hover preview (time + chapter + nearest YouTube frame), sleep timer (15/30/60 min, end of chapter, end of episode), skip intro, auto-skip to the researcher in hearings, double-click/double-tap seek, touch swipe for seek and volume, `?` overlay. A "YouTube's own controls" switch is in Settings for ads or YouTube menus. |
 | Mini player | Fixed bottom-right | **Draggable anywhere** (pointer + touch), **snaps to the nearest corner**, remembers corner and size (`asfe:mini:v3`), **corner resize handle**, double-click to expand. |
 | Error handling | Message only | **Fallback card** for codes 2 / 5 / 100 / 101 / 150 / 153 and API-blocked: Open on YouTube (at your second), **Mark as watched**, Try again, Next episode. |
-| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 319 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
+| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 325 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
 | History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
 | Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
 | Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
 | Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
 | Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
-| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 319), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 319 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
+| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 325), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 325 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
 | Storage | `:v2` keys | **Schema 3** (`:v3` keys). v1 and v2 keys stay untouched as backups. |
 
 ## The cinema player
@@ -379,7 +397,7 @@ flowchart LR
 
 ## A taste of the library
 
-Three of the biggest episodes from each month (click to open on YouTube; every one of the 319 plays inside the app):
+Three of the biggest episodes from each month (click to open on YouTube; every one of the 325 plays inside the app):
 
 <table>
 <tr>
@@ -481,8 +499,8 @@ Every one of the 292 speakers has a photo in `assets/speakers/<slug>.jpg`, mappe
 | July 2026 | 51 | 50.5 | chapters parsed from timestamped topics |
 | August 2026 | 69 | 83.2 | chapters parsed from timestamped topics |
 | September 2026 | 108 | 102.5 | includes the Sep 27–30 items that were "just outside" in v1, and the IPAM and Post-AGI workshop talks |
-| October 2026 | 91 | 108.4 | richest: hand-written chapters, quotes, numbers, tags, level, views |
-| **Total** | **319** | **344.6** | 101 release days · 3,482 chapters |
+| October 2026 | 97 | 117.5 | richest: hand-written chapters, quotes, numbers, tags, level, views |
+| **Total** | **325** | **353.7** | 101 release days · 3,566 chapters |
 
 ## Architecture
 
@@ -640,7 +658,7 @@ ai-safety-full-episodes/
 ├── sw.js                   offline-friendly service worker (cache bumped for this update)
 ├── manifest.webmanifest    installable PWA (standalone, maskable icon, shortcuts)
 ├── favicon.svg · favicon.ico · apple-touch-icon.png
-├── robots.txt · sitemap.xml   (sitemap includes video entries for all 319)
+├── robots.txt · sitemap.xml   (sitemap includes video entries for all 325)
 ├── README.md               this file
 ├── assets/
 │   ├── app.min.css         minified app.css + v3.css (what the page loads)
@@ -666,7 +684,7 @@ ai-safety-full-episodes/
 │   ├── cover.jpg
 │   └── speakers/           283 face photos + neutral.svg (one per speaker, verified)
 └── data/
-    ├── episodes.json       319 verified full episodes, Jul–Oct 2026
+    ├── episodes.json       325 verified full episodes, Jul–Oct 2026
     ├── roster.json         curated researchers with bios
     ├── photos.json         name → photo file
     ├── manifest.json       daily files to merge
@@ -682,7 +700,7 @@ Everything you do stays in this browser's `localStorage` under `asfe:` keys (`hi
 | | What is done |
 |---|---|
 | **Crawlable HTML** | `index.html` is generated by `build3.py`: real `<title>`, description, canonical, Open Graph + Twitter Card (1200×630 image), `lang="en"`, landmarks, alt text, the hero, stats and the newest 24 episode cards pre-rendered, and a `<noscript>` list of all 312 with links. The app hydrates over it. |
-| **Structured data** | JSON-LD `WebSite` + `ItemList` of 319 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
+| **Structured data** | JSON-LD `WebSite` + `ItemList` of 325 `VideoObject` (name, description, thumbnailUrl, uploadDate, ISO-8601 duration, embedUrl, contentUrl). `sitemap.xml` with video entries; `robots.txt` at the route (crawlers only read the domain-root robots.txt, so this one documents intent). |
 | **CSP** | `script-src 'self' https://www.youtube.com https://s.ytimg.com` (no inline scripts), `frame-src` YouTube only, `img-src` self + ytimg, fonts from Google Fonts, `object-src 'none'`, `base-uri 'self'`. Styles allow inline because the UI sets CSS variables in `style` attributes. |
 | **No inline handlers** | Image load/error handling uses capture-phase listeners; the jsdom test checks the live DOM for any `on*` attribute. |
 | **Escaping & imports** | All data goes through `esc()` before `innerHTML`; imported JSON is rebuilt key by key (valid 11-char IDs, finite numbers, clipped strings, known keys only); CSV import is parsed defensively and exports neutralise spreadsheet formulas. External links use `rel="noopener noreferrer"`; referrer policy `strict-origin-when-cross-origin`. |
@@ -727,8 +745,9 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
-| 2026-10-28 | **Live QA follow-up (evening)**: a real-browser pass on the deployed build found the episode title rendered up to three times in the windowed player (toolbar, in-video overlay, details heading). Now exactly one title shows in every mode combination: the heading under the video (or the calm bar while playing); full screen and the mini player keep their own. The Focus timer pill fades with the controls in full screen. New real-browser check counts the visibly rendered titles after every mode toggle at 390/768/1024/1920 px. |
-| 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 319 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
+| 2026-10-28 | **Live QA follow-up (evening)**: a real-browser pass on the deployed build found the episode title rendered up to three times in the windowed player (toolbar, in-video overlay, details heading). Now exactly one title shows in every mode combination: the heading under the video (or the calm bar while playing); full screen and the mini player keep their own. The Focus timer pill fades with the controls in full screen. With our transcript captions on, the cinema embed no longer forces YouTube's own captions (`cc_load_policy=0`) and re-unloads them shortly after playback starts, so a CC preference remembered from YouTube's controls can't stack a second caption layer. New real-browser check counts the visibly rendered titles after every mode toggle at 390/768/1024/1920 px. |
+| 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 325 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
+| 2026-10-28 | **A year in AI safety, a 1-vs-10 debate and an Oxford governance panel**: 6 new verified full episodes (325 total; Oct 97; about 353.7 hours) with Jakub Kryś, Roman Yampolskiy, Robert Trager with Lisa Klaassen, Luise Eder and Miro Pluckebaum, Aaron Roth (Lecture 15), Cameron Berg and Zachary Horvitz; 7 new speakers with verified photos and bios; captions for every new episode. |
 | 2026-10-28 | **CMU alignment workshop + a lab founder**: 7 new verified full episodes (319 total; Oct 91; about 344.6 hours) with Vincent Conitzer, Aran Nayebi, Ben Levinstein and Daniel Herrmann, Bryan Wilder, Sven Neth, Aydin Mohseni (six talks from the CMU AI Agency & Interpretability Workshop) and Judd Rosenblatt (AE Studio); 8 new speakers with verified photos and bios; Just added row now spans Oct 25–28; 342-check test. |
 | 2026-10-28 | **History, backgrounds, Read mode, Binge, chapters everywhere, no autoplay on open**: History grouped by episode (toggle to every session) with honest numbers (real start/end, reached = furthest really played, completed only at 90 %+) and a one-time repair of stored sessions; no Home flash when reloading another page; 15 backgrounds with intensity/blur/speed/hue/accent controls and your own image; theme tiles are buttons that apply in place; Read mode (60/40 + phone bottom sheet), scroll-linked mini transition, Binge line-up with 5 s Up next, shuffle, repeat, Shift+N/P; Top speakers strip and topic cloud; responsive pass at 6 widths; episodes open paused (only a completed countdown starts the next one; 15 s default, 5–60 s setting); Chapters button and drawer in every player state with sticky headers; coverage strip + first unwatched part (U); colourful animated buttons and headings; 342-check jsdom test + real-browser checks. |
 | 2026-10-28 | **Just added**: 6 new verified full episodes (312 total; Oct 84; about 338 hours) with Connor Leahy, Scott Aaronson (×2), Max Tegmark on PBS, Aaron Roth and Seán Ó hÉigeartaigh; a Just added row at the top of Home (last 48 h), NEW badges on those cards everywhere, Classic badge support, picks prefer new episodes; 4 new speakers with verified photos and bios; 263-check jsdom test. |
