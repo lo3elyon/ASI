@@ -501,7 +501,7 @@
       <div class="badges">${h().BADGES.map((b) => { const [c, t] = b.prog(); const got = !!L().EARNED[b.id]; return `<div class="badge ${got ? "is-got" : ""}"><span class="badge__ic">${b.icon}</span><b>${esc(b.name)}</b><small>${esc(b.desc)}</small><div class="badge__bar"><i style="width:${Math.min(100, (100 * c) / t).toFixed(0)}%"></i></div><em>${got ? "Earned " + esc(A.fmtStamp(L().EARNED[b.id])) : `${Math.floor(c)}/${t}`}</em></div>`; }).join("")}</div>
       ${ui().shelf("Favourites", fav, { icon: "❤️" })}
       <section class="panel panel--flat" id="settings"><div class="panel__hd"><h2>Settings</h2></div>
-        <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (10 s countdown)</label>
+        <div class="settings"><label class="switch"><input type="checkbox" id="sAuto" ${L().SETTINGS.autoplay ? "checked" : ""}><span></span>Autoplay next episode (${A.binge ? A.binge.secs() : 15} s countdown)</label>
         <label class="rng rng--set"><span>Next-episode countdown (Binge / autoplay) <output id="sBingeSecsV">${A.binge ? A.binge.secs() : 15} s</output></span><input type="range" id="sBingeSecs" min="5" max="60" step="5" value="${A.binge ? A.binge.secs() : 15}" aria-label="Countdown before the next episode, seconds"></label>
         <p class="muted settings__note">Opening an episode never starts it by itself: it loads paused until you press Play. Only the next episode after a countdown starts on its own.</p>
         <label class="switch"><input type="checkbox" id="sCeleb" ${L().SETTINGS.celebrations !== false ? "checked" : ""}><span></span>Celebrations (confetti and particle bursts on milestones)</label>
