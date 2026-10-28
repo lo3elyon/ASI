@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-263%2F263%20passing-10b981?style=flat-square&labelColor=07111f" alt="263 of 263 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-319%2F319%20passing-10b981?style=flat-square&labelColor=07111f" alt="319 of 319 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -42,7 +42,41 @@
 
 ## Contents
 
-[Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Oct 28, 2026): honest History, backgrounds, Read mode and Binge
+
+<p>
+<img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
+<img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
+<img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
+<img src="https://img.shields.io/badge/jsdom%20test-319%2F319%20passing-10b981?style=flat-square&labelColor=07111f" alt="319 of 319 checks passing">
+</p>
+
+| Area | What changed |
+|---|---|
+| **History, grouped** | One row per episode per day group (Today / Yesterday / This week / Earlier) with total watched time, furthest position really played, coverage %, status (completed / in progress / marked) and last watched time; a chevron reveals the individual sessions. Toggle **Group by episode / Show every session** (grouped by default, remembered). Recently watched and Continue watching keep one card per episode. Friendlier empty states with a "Clear filters" button. |
+| **Honest session numbers** | A session's start/end are the real playback positions; each episode gets its own session (switching episodes no longer bleeds into the previous one); a session is stored only once real playback happens (no 0-second rows). **Reached** = the furthest position actually played, from the 10-second coverage slices, and slices count only after 3 s of continuous playback, so scrubbing to the end and letting it end no longer shows "reached 100 %". The resume spot ignores the 0 an unstarted/cued player reports. **Completed** only at 90 %+ coverage or a manual mark. A one-time repair recomputes stored records: drops 0-second/negative sessions, fixes end-before-start, merges duplicates and back-to-back fragments, removes a lone end slice and un-completes records under 90 %. |
+| **No Home flash on reload** | `assets/js/boot.js` (blocking, in `<head>`, CSP-safe, no inline script) checks the hash before first paint; on any non-Home route it sets `html.rt`, which hides the pre-rendered Home and shows a page skeleton until the router draws the page. Home and `#ep=` deep links keep the pre-rendered Home (SEO unchanged). |
+| **Backgrounds** (Settings → Background) | Aurora (default), mesh gradient, starfield (light canvas, 30 fps, paused when hidden), circuit lines, subtle grid, noise gradient, four photos (Unsplash), three looping ambient videos (Pexels; 0.2–1 MB H.264, muted, lazy, paused when the tab is hidden, a still frame instead with reduced motion, data saver or on phones unless "Play videos anyway"), your own image (JPG/PNG/WebP, max 6 MB, re-encoded through a canvas to a ≤1.6 MB JPEG, stored only in this browser), and Plain. Controls: intensity, blur, speed, hue shift, match theme accent. All media is in `assets/bg/`, so the CSP gained no hosts. Credits in About. |
+| **Themes fix** | Theme tiles are real `<button type="button">`s that apply in place (no navigation, scroll kept); the popover's "All themes" now opens the full list inside the popover instead of linking to Profile; Violet/Rose swatches are `type="button"`. |
+| **Read mode** (Shift+R) | Wide screens: video sticky on the left (about 60 %), a tabbed reading panel on the right (Summary / Chapters / Claims / Numbers / Notes, plus Up next) that scrolls on its own with the styled scrollbar; the active chapter is highlighted and followed, every timestamp seeks. Phones: the same tabs in a bottom sheet you drag up/down (snap points), never taller than the space under the video. The mini player is nudged off the reading panel. |
+| **Scroll-linked mini** | Between the big player and the sticky mini, the dock follows the scroll every frame (transform translate + scale, radius and shadow interpolated, one `requestAnimationFrame` per frame, same iframe), easing into your saved mini spot and reversing when you scroll back. Once docked, the reading panels flow full width under the page. |
+| **Binge** | In Theater: a line-up rail under the video (queue → Today's picks → current Browse filter → Up next), Binge on/off, Shuffle, Repeat off/all/one, skip items; at the end of an episode a slim "Up next in 5 s" bar (Play now / Cancel); Shift+N next, Shift+P previous (in Binge; otherwise Shift+P is still the previous chapter). |
+| **Polish** | "Top speakers this month" strip and "Most-covered topics" cloud on Home; hover lifts on KPIs, chips, the strip and the cloud; 40 px touch targets on coarse pointers; no horizontal overflow at 360/390/768/1024/1366/1920. |
+
+```mermaid
+flowchart LR
+  T[tick: real playback only] --> R{3 s continuous?}
+  R -- yes --> S[mark 10 s slices + session reached]
+  R -- no --> X[seconds counted, no slices]
+  S --> H[History: one row per episode per day]
+  H --> E[expand: sessions a → b, reached %]
+```
+
+Tests: 56 new jsdom checks (319/319) for sessions, the repair, grouped History, route skeleton, theme buttons, backgrounds, upload limits, Binge, Read mode, the FLIP and the mini nudge; `smoke_v8.py` (headless Firefox) reloads every route with the bundle held back (skeleton, no Home), checks all 16 routes at 6 widths for overflow and errors, clicks themes/backgrounds/History/Read mode/the phone sheet; `smoke_mini.py` and `smoke_qa.py` still pass.
+
+New files: `assets/js/bg.js` (backgrounds), `assets/js/binge.js` (Binge line-up), `assets/bg/` (4 photos, 3 video loops with posters, picker thumbnails), `smoke_v8.py` in the build folder.
 
 ## What's new (Oct 28, 2026): Just added row and 6 new episodes
 
@@ -628,6 +662,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-10-28 | **History, backgrounds, Read mode, Binge**: History grouped by episode (toggle to every session) with honest numbers (real start/end, reached = furthest really played, completed only at 90 %+) and a one-time repair of stored sessions; no Home flash when reloading another page; 15 backgrounds with intensity/blur/speed/hue/accent controls and your own image; theme tiles are buttons that apply in place; Read mode (60/40 + phone bottom sheet), scroll-linked mini transition, Binge line-up with 5 s Up next, shuffle, repeat, Shift+N/P; Top speakers strip and topic cloud; responsive pass at 6 widths; 319-check jsdom test + real-browser checks. |
 | 2026-10-28 | **Just added**: 6 new verified full episodes (312 total; Oct 84; about 338 hours) with Connor Leahy, Scott Aaronson (×2), Max Tegmark on PBS, Aaron Roth and Seán Ó hÉigeartaigh; a Just added row at the top of Home (last 48 h), NEW badges on those cards everywhere, Classic badge support, picks prefer new episodes; 4 new speakers with verified photos and bios; 263-check jsdom test. |
 | 2026-10-28 | **Player fixes**: Theater mode (t) button works with the mouse (ripple no longer shrinks it mid-click); speed limited to YouTube's 0.25–2× (0.05× steps); captions button follows YouTube's caption module; seek bar value in seconds from the same reading as the clock; sticky mini works on pages that scroll only a little, and the episode page button reads Minimise (i); stronger glass on the thumbnail date pill; 252-check jsdom test + real-browser checks. |
 | 2026-10-28 | **Mini player & card dates fix**: the sticky mini on scroll now appears exactly at the user's last saved position/size (one persisted state for every way the mini appears, smooth morph, clamped on-screen); drag the mini from the video itself (click = play/pause, double-click = expand, buttons never drag); Expand icon now ↗ "Expand (i)"; upload-date pill on every card thumbnail plus the date in every meta row, from one shared renderer; 237-check jsdom test + real-browser mini-player test. |
