@@ -118,10 +118,10 @@
   function tile(t, cur, fv) {
     const v = t.vars, a = audit(t);
     const bg = t.kind === "palette" ? v["--bg"] : "var(--bg)", sf = t.kind === "palette" ? v["--solid"] : "var(--solid)", tx = t.kind === "palette" ? v["--tx"] : "var(--tx)";
-    return `<div class="tht" role="button" tabindex="0" data-thset="${t.id}" aria-pressed="${cur === t.id}" title="${esc(t.name)}${a.ok ? " · WCAG AA" : ""}">
+    return `<div class="tht__w"><button type="button" class="tht" data-thset="${t.id}" aria-pressed="${cur === t.id}" title="${esc(t.name)}${a.ok ? " · WCAG AA" : ""}">
       <span class="tht__pv" style="background:${bg}"><i style="background:${tx}"></i><i style="background:${t.kind === "palette" ? v["--mut"] : "var(--mut)"}"></i><em style="background:linear-gradient(135deg, ${v["--amber"]} 50%, ${v["--teal"]} 50%)"></em><u style="background:${sf};box-shadow:inset 3px 0 0 ${v["--amber"]}"></u></span>
-      <b>${esc(t.name)}</b><small>${t.kind === "palette" ? (t.mode === "light" ? "Light palette" : "Dark palette") : "Accent"}${a.ok ? " · AA ✓" : ""}</small>
-      <button class="tht__fav" data-thfav="${t.id}" aria-pressed="${fv.includes(t.id)}" aria-label="${fv.includes(t.id) ? "Remove from" : "Add to"} favourite themes">${fv.includes(t.id) ? "★" : "☆"}</button></div>`;
+      <b>${esc(t.name)}</b><small>${t.kind === "palette" ? (t.mode === "light" ? "Light palette" : "Dark palette") : "Accent"}${a.ok ? " · AA ✓" : ""}</small></button>
+      <button type="button" class="tht__fav" data-thfav="${t.id}" aria-pressed="${fv.includes(t.id)}" aria-label="${fv.includes(t.id) ? "Remove from" : "Add to"} favourite themes">${fv.includes(t.id) ? "★" : "☆"}</button></div>`;
   }
   let q = "";
   function gridHTML() {
@@ -138,18 +138,19 @@
     return `<div class="thp" id="themePicker"><div class="thp__bar"><input class="input input--sm" type="search" id="thQ" placeholder="Search themes (Nord, Dracula, light…)" value="${esc(q)}" aria-label="Search themes">
       <label class="switch"><input type="checkbox" id="thAuto" ${LS("themeAuto") === "1" ? "checked" : ""}><span></span>Auto by time of day</label>
       <label class="thp__custom">Custom accent <input type="color" id="thCustom" value="${esc(LS("customAccent") || "#f59e0b")}" aria-label="Pick a custom accent colour"></label><small class="muted" id="thCustomNote"></small>
-      <button class="btn btn--sm btn--ghost" data-thset="amber">Reset to amber</button></div>
+      <button type="button" class="btn btn--sm btn--ghost" data-thset="amber">Reset to amber</button></div>
       <div class="thp__grid" id="thGrid" role="group" aria-label="Themes">${gridHTML()}</div></div>`;
   }
   document.addEventListener("click", (ev) => {
     const fb = ev.target.closest && ev.target.closest("[data-thfav]");
     if (fb) { ev.stopPropagation(); const id = fb.dataset.thfav; const f = favs(); const i = f.indexOf(id); i >= 0 ? f.splice(i, 1) : f.push(id); LS("themeFavs", JSON.stringify(f)); const g = $("#thGrid"); if (g) g.innerHTML = gridHTML(); A.fx && i < 0 && A.fx.celebrate("rate", fb, true); return; }
     const b = ev.target.closest && ev.target.closest("[data-thset]"); if (!b) return;
-    const t = apply(b.dataset.thset);
+    ev.preventDefault();
+    const y = window.scrollY, t = apply(b.dataset.thset);
+    if (window.scrollY !== y) window.scrollTo(0, y);
     if (LS("themeAuto") === "1" && ev.isTrusted) { LS("themeAuto", null); const a = $("#thAuto"); if (a) a.checked = false; }
     A.ui && A.ui.toast(`Theme: ${esc(t.name.replace(" (optional)", ""))}`, { ms: 1200 });
   });
-  document.addEventListener("keydown", (ev) => { const b = ev.target.closest && ev.target.closest(".tht"); if (b && (ev.key === "Enter" || ev.key === " ") && ev.target === b) { ev.preventDefault(); b.click(); } });
   document.addEventListener("input", (ev) => {
     if (ev.target.id === "thQ") { q = ev.target.value; const g = $("#thGrid"); if (g) g.innerHTML = gridHTML(); }
     if (ev.target.id === "thCustom") { const c = ev.target.value; LS("customAccent", c); apply("custom"); const bg = getComputedStyle(root()).getPropertyValue("--bg").trim() || "#070b12"; const r = /^#/.test(bg) ? contrast(c, bg) : 3; const n = $("#thCustomNote"); if (n) n.textContent = r < 3 ? `Low contrast (${r.toFixed(1)}:1), try a brighter colour` : `${r.toFixed(1)}:1 contrast ✓`; }
