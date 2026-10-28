@@ -258,15 +258,17 @@
   }
 
   /* ================================================================ Read mode: resizable split + collapsible panel */
-  const SP = { min: 34, max: 78, def: 60 };
-  function spref() { const o = store.get("split:v1", {}) || {}; return { pct: clamp(Number(o.pct) || SP.def, SP.min, SP.max), collapsed: !!o.collapsed }; }
+  const SP = { min: 34, max: 78, def: 60, minPx: 260, hard: 90 };
+  /* the video side may grow until the panel is 260 px wide (78 % on a laptop, ~86 % on a 1920 px screen), never past 90 % */
+  function maxPct() { const th = $("#theater"); const W = (th && th.clientWidth) || window.innerWidth || 1280; return clamp(100 - (SP.minPx / W) * 100, SP.min, SP.hard); }
+  function spref() { const o = store.get("split:v1", {}) || {}; return { pct: clamp(Number(o.pct) || SP.def, SP.min, Math.max(SP.max, maxPct())), collapsed: !!o.collapsed }; }
   function ssave(o) { store.set("split:v1", o); }
   function splitEls() {
     const th = $("#theater"); if (!th) return {};
     let dv = $("#rdSplit"), op = $("#rdOpen");
     if (!dv) {
       dv = document.createElement("div"); dv.id = "rdSplit"; dv.className = "rdsplit"; dv.setAttribute("role", "separator"); dv.setAttribute("aria-orientation", "vertical"); dv.setAttribute("tabindex", "0");
-      dv.setAttribute("aria-label", "Resize video and reading panel (arrow keys; double-click to reset)"); dv.setAttribute("aria-valuemin", String(SP.min)); dv.setAttribute("aria-valuemax", String(SP.max));
+      dv.setAttribute("aria-label", "Resize video and reading panel (arrow keys; double-click to reset)"); dv.setAttribute("aria-valuemin", String(SP.min)); dv.setAttribute("aria-valuemax", String(Math.round(maxPct())));
       dv.innerHTML = `<span class="rdsplit__grip" aria-hidden="true"><i></i><i></i><i></i></span><button type="button" class="rdsplit__x" data-rd="collapse" aria-label="Hide the reading panel" title="Hide the panel (video gets the full width)">›</button>`;
       th.appendChild(dv);
       op = document.createElement("button"); op.type = "button"; op.id = "rdOpen"; op.className = "rdopen"; op.dataset.rd = "open"; op.setAttribute("aria-label", "Show the reading panel"); op.title = "Show the reading panel";
@@ -280,7 +282,7 @@
     const o = spref();
     th.style.setProperty("--rd-main", o.pct + "%");
     body().classList.toggle("rd-collapsed", o.collapsed);
-    const dv = $("#rdSplit"); if (dv) { dv.setAttribute("aria-valuenow", String(Math.round(o.pct))); dv.setAttribute("aria-valuetext", `Video ${Math.round(o.pct)}%, panel ${Math.round(100 - o.pct)}%`); }
+    const dv = $("#rdSplit"); if (dv) { dv.setAttribute("aria-valuemax", String(Math.round(maxPct()))); dv.setAttribute("aria-valuenow", String(Math.round(o.pct))); dv.setAttribute("aria-valuetext", `Video ${Math.round(o.pct)}%, panel ${Math.round(100 - o.pct)}%`); }
     placeSplit();
     if (pl().syncChBtns) pl().syncChBtns();
   }
@@ -297,11 +299,9 @@
   }
   function setPct(pct, save) {
     const th = $("#theater"); if (!th) return;
-    const W = th.clientWidth || window.innerWidth;
-    const maxByPanel = 100 - (300 / W) * 100;
-    pct = clamp(pct, SP.min, Math.min(SP.max, maxByPanel));
+    pct = clamp(pct, SP.min, maxPct());
     const o = spref(); o.pct = Math.round(pct * 10) / 10; if (save !== false) ssave(o); else store.set("split:v1", o);
-    applySplit(); pl().relayout && pl().relayout();
+    applySplit(); pl().relayout && pl().relayout(); requestAnimationFrame(syncTabs); setTimeout(syncTabs, 260);
   }
   function setCollapsed(on) {
     const o = spref(); o.collapsed = !!on; ssave(o); applySplit(); pl().relayout && pl().relayout();
@@ -324,7 +324,7 @@
       if (ev.key === "ArrowLeft") { ev.preventDefault(); setPct(o.pct - (ev.shiftKey ? 8 : 2)); }
       else if (ev.key === "ArrowRight") { ev.preventDefault(); setPct(o.pct + (ev.shiftKey ? 8 : 2)); }
       else if (ev.key === "Home") { ev.preventDefault(); setPct(SP.min); }
-      else if (ev.key === "End") { ev.preventDefault(); setPct(SP.max); }
+      else if (ev.key === "End") { ev.preventDefault(); setPct(maxPct()); }
       else if (ev.key === "Enter") { ev.preventDefault(); setCollapsed(true); }
     });
     dv.addEventListener("click", (ev) => { if (ev.target.closest("[data-rd=collapse]")) setCollapsed(true); });
@@ -456,8 +456,105 @@
   document.addEventListener("asfe:layout", () => { if (P() && P().fs) paintF(); });
   A.fsp = { open: openF, close: closeF, toggle: toggleF, isOpen: fIsOpen, onFs, paint: paintF, tick: tickF, prefs: fprefs, state: F };
 
+
+  /* ================================================================ reading panel header: one sticky stack
+   * Tabs row (scrolls sideways with fade edges + ‹ › buttons when it overflows; icons + tooltips when the panel is narrow;
+   * a compact "Chapters ▾" select below 300 px) and, under it, the filter row (#sideQ sticks below the tabs, never over them). */
+  const TAB_W = { icons: 380, iconOnly: 340, select: 300 };
+  const TAB_IC = {
+    summary: '<path d="M5 6h14M5 10h14M5 14h9M5 18h6"/>',
+    chapters: '<path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.3"/><circle cx="4.5" cy="12" r="1.3"/><circle cx="4.5" cy="18" r="1.3"/>',
+    claims: '<path d="M5 11h5v6H5zM14 11h5v6h-5zM5 11c0-3 1.5-5 4-6M14 11c0-3 1.5-5 4-6"/>',
+    numbers: '<path d="M9 4 7 20M17 4l-2 16M4 9h16M3 15h16"/>',
+    notes: '<path d="M4 20h4L19 9l-4-4L4 16v4zM13 7l4 4"/>',
+    next: '<path d="M5 6v12l9-6-9-6zM18 6v12"/>',
+  };
+  function tabsEls() {
+    const t = $("#sideTabs"); if (!t) return {};
+    let hd = $("#sideHd");
+    if (!hd) {
+      hd = document.createElement("div"); hd.id = "sideHd"; hd.className = "sidehd"; hd.dataset.tw = "full";
+      t.parentNode.insertBefore(hd, t);
+      const l = document.createElement("button"); l.type = "button"; l.className = "sidehd__arr sidehd__arr--l"; l.dataset.tabscroll = "-1"; l.setAttribute("aria-label", "Scroll tabs left"); l.tabIndex = -1; l.innerHTML = "‹"; l.hidden = true;
+      const r = l.cloneNode(true); r.className = "sidehd__arr sidehd__arr--r"; r.dataset.tabscroll = "1"; r.setAttribute("aria-label", "Scroll tabs right"); r.innerHTML = "›";
+      const wrap = document.createElement("div"); wrap.className = "sidehd__tabs";
+      wrap.appendChild(l); wrap.appendChild(t); wrap.appendChild(r); hd.appendChild(wrap);
+      const sel = document.createElement("label"); sel.className = "sidehd__sel"; sel.hidden = true;
+      sel.innerHTML = `<span class="sr-only">Panel</span><select id="sideSel" aria-label="Reading panel section"></select>`;
+      hd.appendChild(sel);
+      $$("#sideTabs [data-side]").forEach((b) => {
+        const name = b.textContent.trim();
+        if (!b.querySelector(".tab__l")) b.innerHTML = `<svg class="tab__ic" viewBox="0 0 24 24" aria-hidden="true">${TAB_IC[b.dataset.side] || ""}</svg><span class="tab__l">${esc(name)}</span>`;
+        b.title = name; b.setAttribute("aria-label", name);
+        const o = document.createElement("option"); o.value = b.dataset.side; o.textContent = name; sel.querySelector("select").appendChild(o);
+      });
+      wireTabs(hd, t);
+    }
+    return { hd, t };
+  }
+  function syncTabs() {
+    const { hd, t } = tabsEls(); if (!hd) return;
+    const side = hd.closest(".theater__side"); const W = side ? side.clientWidth : 0;
+    // the phone / tablet bottom sheet keeps text tabs (scrolling, with arrows); icons are for the narrow desktop split
+    if (W > 0) { const sheet = window.innerWidth <= 900; const tw = sheet ? (W < TAB_W.select ? "select" : "full") : W < TAB_W.select ? "select" : W < TAB_W.iconOnly ? "icononly" : W < TAB_W.icons ? "icons" : "full"; if (hd.dataset.tw !== tw) hd.dataset.tw = tw; }
+    const sel = $("#sideSel"), cur = (P() && P().side) || "chapters";
+    if (sel && sel.value !== cur) sel.value = cur;
+    hd.querySelector(".sidehd__sel").hidden = hd.dataset.tw !== "select";
+    // overflow → arrows + fade edges
+    const max = t.scrollWidth - t.clientWidth, x = t.scrollLeft;
+    const lft = max > 2 && x > 2, rgt = max > 2 && x < max - 2;
+    const a = hd.querySelector(".sidehd__arr--l"), b = hd.querySelector(".sidehd__arr--r");
+    if (a.hidden === lft) a.hidden = !lft; if (b.hidden === rgt) b.hidden = !rgt;
+    hd.classList.toggle("is-fl", lft); hd.classList.toggle("is-fr", rgt);
+    // the filter row sticks right under the tabs row
+    if (side) { const top = parseFloat(getComputedStyle(hd).top) || 0; side.style.setProperty("--sidehd-b", Math.round(top + hd.offsetHeight) + "px"); }
+  }
+  function showActiveTab() {
+    const t = $("#sideTabs"); if (!t) return; const b = t.querySelector('[aria-selected="true"]'); if (!b) return;
+    const l = b.offsetLeft, r = l + b.offsetWidth;
+    if (l < t.scrollLeft + 4) t.scrollLeft = Math.max(0, l - 28); else if (r > t.scrollLeft + t.clientWidth - 4) t.scrollLeft = r - t.clientWidth + 28;
+  }
+  function wireTabs(hd, t) {
+    hd.addEventListener("click", (ev) => { const a = ev.target.closest("[data-tabscroll]"); if (!a) return; t.scrollBy({ left: Number(a.dataset.tabscroll) * Math.max(120, t.clientWidth * 0.7), behavior: document.documentElement.classList.contains("rm") ? "auto" : "smooth" }); });
+    t.addEventListener("scroll", () => requestAnimationFrame(syncTabs), { passive: true });
+    t.addEventListener("click", () => setTimeout(syncTabs, 0));
+    $("#sideSel").addEventListener("change", (ev) => { const b = t.querySelector(`[data-side="${ev.target.value}"]`); if (b) b.click(); });
+    // arrow keys move between tabs (roving focus inside the tablist)
+    t.addEventListener("keydown", (ev) => {
+      if (ev.key !== "ArrowLeft" && ev.key !== "ArrowRight") return; const bs = [...t.querySelectorAll("[data-side]")]; const i = bs.indexOf(document.activeElement); if (i < 0) return;
+      ev.preventDefault(); ev.stopPropagation(); const n = bs[(i + (ev.key === "ArrowRight" ? 1 : bs.length - 1)) % bs.length]; n.focus(); n.click();
+    });
+    const side = hd.closest(".theater__side");
+    // the tab buttons too: a late web font or a label swap changes the row's overflow without resizing the row itself
+    // plus one trailing re-check once the layout settles (a resize mid-transition can leave the overflow arrows stale)
+    let trail = 0; const later = () => { clearTimeout(trail); trail = setTimeout(syncTabs, 240); };
+    if (side) side.addEventListener("transitionend", later);
+    if (window.ResizeObserver) { const ro = new ResizeObserver(() => { syncTabs(); later(); }); if (side) ro.observe(side); ro.observe(hd); ro.observe(t); t.querySelectorAll("[data-side]").forEach((b) => ro.observe(b)); }
+    if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener("loadingdone", () => requestAnimationFrame(syncTabs));
+    // bring the open tab into view only when the open tab changes (never fight a manual scroll of the row)
+    let lastSel = null;
+    new MutationObserver(() => { const s = t.querySelector('[aria-selected="true"]'); const k = s && s.dataset.side; if (k !== lastSel) { lastSel = k; showActiveTab(); } syncTabs(); }).observe(t, { attributes: true, subtree: true, attributeFilter: ["aria-selected"] });
+    window.addEventListener("resize", () => requestAnimationFrame(syncTabs));
+    document.addEventListener("asfe:layout", () => requestAnimationFrame(syncTabs));
+  }
+
+
+  /* ================================================================ header sections nav: keep the open section in view, fade the clipped edge */
+  function navFit(scrollActive) {
+    const n = $(".topbar .tabs"); if (!n) return;
+    const a = n.querySelector(".is-on");
+    if (scrollActive && a && n.scrollWidth > n.clientWidth + 2) { const l = a.offsetLeft - n.offsetLeft, r = l + a.offsetWidth; if (l < n.scrollLeft + 8) n.scrollLeft = Math.max(0, l - 32); else if (r > n.scrollLeft + n.clientWidth - 8) n.scrollLeft = r - n.clientWidth + 32; }
+    const max = n.scrollWidth - n.clientWidth;
+    n.classList.toggle("is-fl", max > 2 && n.scrollLeft > 2); n.classList.toggle("is-fr", max > 2 && n.scrollLeft < max - 2);
+  }
+  window.addEventListener("hashchange", () => setTimeout(() => navFit(true), 30));
+  window.addEventListener("resize", () => requestAnimationFrame(() => navFit(true)));
+  document.addEventListener("scroll", (ev) => { if (ev.target && ev.target.classList && ev.target.classList.contains("tabs")) requestAnimationFrame(() => navFit(false)); }, true);
+
   function init() {
     wrapBinge();
+    tabsEls(); syncTabs(); setTimeout(() => navFit(true), 60);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => navFit(true));
     splitEls(); applySplit();
     const p = P(); if (p && p.sheetH == null) { const s = store.get("sheetH", 0); if (s) p.sheetH = s; }
     dfSync();
@@ -465,5 +562,5 @@
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", () => setTimeout(init, 0)); else setTimeout(init, 0);
 
   A.ccx = { has, on: () => isOn() && cprefs().on, toggle, attach, paint, openStyle, prefs: cprefs, loadCues, cueAt, state: CC, COLORS };
-  A.studio = { df: { prefs: dprefs, save: dsave, sync: dfSync, state: D, onState: dfOnState }, split: { prefs: spref, set: setPct, collapse: setCollapsed, apply: applySplit, place: placeSplit } };
+  A.studio = { df: { prefs: dprefs, save: dsave, sync: dfSync, state: D, onState: dfOnState }, tabs: { sync: syncTabs, show: showActiveTab, W: TAB_W }, navFit, split: { prefs: spref, set: setPct, collapse: setCollapsed, apply: applySplit, place: placeSplit } };
 })(window.ASFE);
