@@ -41,7 +41,7 @@
       <div class="hero">
         <div class="hero__bg" aria-hidden="true"><img src="assets/cover.jpg" alt=""></div>
         <div class="hero__in">
-          <p class="eyebrow"><span class="dot"></span> Verified against transcripts · compiled Oct 27, 2026</p>
+          <p class="eyebrow"><span class="dot"></span> Verified against transcripts · updated Oct 28, 2026</p>
           <h1>Every verified full-length AI safety episode of <em>July–October 2026</em>, in one player.</h1>
           <p class="lede">Whole podcasts, interviews, debates, talks, panels and hearings, never clips. Watch in a fullscreen cinema player, keep listening in headphones mode or the float window, jump by chapter or claim, tick off what you already saw on YouTube, follow researchers and level up as you learn.</p>
           <div class="stats">
