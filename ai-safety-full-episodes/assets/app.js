@@ -40,6 +40,7 @@
   function doShow(v, arg, changed) {
     VIEW = v; ARG = arg;
     $$(".view").forEach((s) => (s.hidden = s.dataset.view !== v));
+    endRouteSkeleton();
     $$(".view").forEach((s) => s.classList.toggle("view--in", s.dataset.view === v && changed));
     $$("[data-tab]").forEach((a) => { const on = a.dataset.tab === v || (v === "speaker" && a.dataset.tab === "speakers") || (v === "recent" && a.dataset.tab === "history"); a.classList.toggle("is-on", on); on ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"); });
     if (A.views.drawerOpen()) A.views.closeDrawer();
@@ -175,7 +176,7 @@
     ["Ctrl/⌘ K", "Command palette: episodes, speakers, actions"], ["/", "Search (Browse)"], ["?", "This overlay"],
     ["Space / K", "Play or pause"], ["J / L", "Back / forward 10 s"], ["← / →", "Back / forward 10 s (Shift: 30 s)"], ["↑ / ↓", "Volume (theater / fullscreen)"],
     [", / .", "Frame step when paused (speed −/+ 0.25× while playing)"], ["< / >", "Slower / faster"], ["0–9", "Jump to 0%–90%"], ["Home / End", "Start / end (on the seek bar)"],
-    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode"], ["S", "Skip intro (first chapter)"],
+    ["Shift P / Shift ]", "Previous / next chapter"], ["Shift N", "Next episode (Binge: next in the line-up)"], ["Shift P (Binge on, Theater)", "Previous episode in this binge"], ["Shift R", "Read mode (video + reading panel side by side)"], ["S", "Skip intro (first chapter)"],
     ["F", "Full screen (Esc to leave)"], ["T", "Theater mode / default view"], ["I", "Miniplayer / expand"], ["A", "Headphones mode"], ["O", "Float window (always on top)"], ["Z", "Focus mode"],
     ["C", "Captions on / off"], ["M", "Mute"], ["B", "Bookmark this moment"], ["N", "Note at this moment"], ["[ / ] / \\", "Loop start / loop end / clear"],
     ["W", "Mark focused card (or current episode) watched"], ["Shift F10", "Card menu (or right-click)"], ["Arrow keys on cards", "Move between cards"],
@@ -243,9 +244,10 @@
       case "ArrowRight": ev.preventDefault(); pl.seek(ev.shiftKey ? 30 : 10); break;
       case "ArrowUp": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol + 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
       case "ArrowDown": if (P0.mode === "theater" || P0.fs) { ev.preventDefault(); pl.setVol(S.vol - 5); A.ui.toast(`Volume ${S.vol}`, { ms: 700 }); } break;
-      case "N": pl.playNext(); break;
+      case "N": if (A.binge && A.binge.on()) A.binge.next(); else pl.playNext(); break;
+      case "R": pl.toggleRead(); break;
       case "n": pl.openNote(); break;
-      case "P": pl.prevChapter(); break;
+      case "P": if (A.binge && A.binge.on() && P0.mode === "theater") A.binge.prev(); else pl.prevChapter(); break;
       case "}": pl.nextChapter(); break;
       case "[": pl.setLoop("a"); break;
       case "]": pl.setLoop("b"); break;
@@ -270,10 +272,18 @@
     pl.showUI();
   }
 
+  /* html.rt (set by boot.js before first paint) hides the pre-rendered Home while another page is loading */
+  function endRouteSkeleton() {
+    const d = document.documentElement; if (!d.classList.contains("rt")) return;
+    d.classList.remove("rt"); d.removeAttribute("data-rt");
+    const sk = $("#rtSkel"); if (sk) sk.remove();
+  }
   /* ---------------------------------------------------------------- boot */
   async function boot() {
     h().loadState();
-    $$(".view").forEach((v) => (v.hidden = v.dataset.view !== "home"));
+    const want = (() => { const r = parseHash(); if (r.deep) return "home"; const v = r.view === "playlist" ? "playlists" : r.view; return VIEWS.includes(v) ? v : "home"; })();
+    if (want === "home") endRouteSkeleton();
+    $$(".view").forEach((v) => (v.hidden = v.dataset.view !== "home" || want !== "home"));
     const home = $('.view[data-view="home"]');
     if (!home.querySelector("[data-prerendered]")) home.innerHTML = `<div class="hero hero--skel shimmer"></div>${A.ui.skeletons(8)}`;
     try { A.feat.setAccent(localStorage.getItem("asfe:accent") || h().L.SETTINGS.accent || "amber", true); } catch (e) {}
@@ -297,7 +307,7 @@
     setTheme(document.documentElement.getAttribute("data-theme-pref") || "system");
     if (window.matchMedia) { const mq = window.matchMedia("(prefers-color-scheme: light)"); const fn = () => { if ((document.documentElement.getAttribute("data-theme-pref") || "system") === "system") setTheme("system"); }; mq.addEventListener ? mq.addEventListener("change", fn) : mq.addListener && mq.addListener(fn); }
     try { await A.loadData(); }
-    catch (err) { $('.view[data-view="home"]').innerHTML = `<div class="emptybig"><p>Could not load the episode data.</p><pre class="muted">${esc(err.message)}</pre></div>`; return; }
+    catch (err) { endRouteSkeleton(); $('.view[data-view="home"]').hidden = false; $('.view[data-view="home"]').innerHTML = `<div class="emptybig"><p>Could not load the episode data.</p><pre class="muted">${esc(err.message)}</pre></div>`; return; }
     document.documentElement.classList.add("is-ready");
     if (bar) { bar.style.transform = "scaleX(1)"; setTimeout(() => bar.classList.add("is-done"), 250); }
     if (splash) { splash.classList.add("is-out"); setTimeout(() => splash.remove(), 700); try { localStorage.setItem("asfe:seen", "1"); } catch (e) {} }
@@ -310,6 +320,6 @@
     if ("serviceWorker" in navigator && location.protocol === "https:") navigator.serviceWorker.register("sw.js").catch(() => {});
   }
 
-  A.app = { route, show, KEYS, rerender, setTheme, openPalette, closePalette, openHelp, palRender, palItems: () => palItems, view: () => VIEW };
+  A.app = { route, show, endRouteSkeleton, KEYS, rerender, setTheme, openPalette, closePalette, openHelp, palRender, palItems: () => palItems, view: () => VIEW };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })(window.ASFE);
