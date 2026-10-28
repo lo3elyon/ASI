@@ -143,9 +143,9 @@
     const rt = (L.RATINGS || {})[e.id];
     const menuBtn = `<button class="iconbtn iconbtn--sm card__menu" data-act="menu" aria-haspopup="menu" aria-label="More actions for ${esc(e.title)}" title="More (right-click)">${ICON.dots}</button>`;
     const doneBtn = `<button class="iconbtn iconbtn--sm card__done ${done ? "is-on" : ""}" data-act="watched" aria-pressed="${done}" aria-label="${done ? "Mark unwatched" : "Mark as watched"}" title="${done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched"}">${ICON.check}</button>`;
-    const meta = `${metaCore(e)}<span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
+    const meta = `<span class="fmtpill fmtpill--${e.fmt}">${esc({ podcast: "Interview", debate: "Debate", panel: "Panel", talk: "Talk", hearing: "Hearing" }[e.fmt] || "Episode")}</span>${metaCore(e)}<span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
     if (o.list) {
-      return `<article class="lrow" data-id="${e.id}" draggable="true">
+      return `<article class="lrow" data-id="${e.id}" data-fmt="${e.fmt}" draggable="true">
         <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}${thumbBadges(e)}${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
         <div class="lrow__tx">
           <button class="card__title" data-act="open">${hl(e.title, o.q)}</button>
@@ -160,7 +160,7 @@
         </div>
       </article>`;
     }
-    return `<article class="card" data-id="${e.id}" tabindex="-1" draggable="true">
+    return `<article class="card" data-id="${e.id}" data-fmt="${e.fmt}" tabindex="-1" draggable="true">
       <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}${thumbBadges(e)}${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
       <div class="card__body">
         <button class="card__title" data-act="open" title="${esc(e.title)}">${hl(e.title, o.q)}</button>
