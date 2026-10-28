@@ -119,6 +119,7 @@
     const want = o.mode || (P.mode === "none" ? "theater" : o.mini ? (P.mode === "audio" ? "audio" : "mini") : P.mode === "audio" ? "audio" : P.mode === "mini" && o.keepMini ? "mini" : "theater");
     setMode(want);
     paintAll();
+    P.lastPos = start; paintProgress(start); // a paused (cued) episode shows where it will start, e.g. a deep link's t=
     dock().classList.toggle("is-cued", !(!!o.autoplay && !!P.userPlayed));
     try { await loadAPI(); } catch (err) { showEmbedError(e, "api"); return; }
     if (!P.cur || P.cur.id !== e.id) return;
