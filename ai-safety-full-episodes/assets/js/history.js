@@ -100,7 +100,9 @@
    * repaired once by repairHistory(): 0-second, negative and end-before-start sessions are fixed or merged, a lone
    * end slice left by scrubbing to the end is dropped, and "completed" is kept only at 90 %+ coverage or a manual mark. */
   function nBOf(r) { return Math.max(1, Math.ceil(((r && r.dur) || 1) / BUCKET)); }
-  function lastSlice(r) { const n = nBOf(r), b = covDecode(r.cov, n); for (let i = n - 1; i >= 0; i--) if (b[i >> 3] & (1 << (i & 7))) return i; return -1; }
+  /* memoised by coverage string: History asks for it once per session row */
+  const lastMemo = new Map();
+  function lastSlice(r) { const n = nBOf(r), key = n + ":" + (r.cov || ""); const hit = lastMemo.get(key); if (hit !== undefined) return hit; const b = covDecode(r.cov, n); let out = -1; for (let i = n - 1; i >= 0; i--) if (b[i >> 3] & (1 << (i & 7))) { out = i; break; } if (lastMemo.size > 2000) lastMemo.clear(); lastMemo.set(key, out); return out; }
   function furthestPlayed(r) {
     if (!r) return 0;
     if (r.manual && !r.manual.partial) return r.dur || 0;
