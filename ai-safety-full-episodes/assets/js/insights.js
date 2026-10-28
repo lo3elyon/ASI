@@ -43,7 +43,8 @@
   }
   function releaseHeatmap(o) {
     o = o || {};
-    return heatmap({ id: "rel", months: ["2026-07", "2026-08", "2026-09", "2026-10"], value: (k) => STATE.days.get(k) || 0, label: (v) => `${v} episode${v === 1 ? "" : "s"} released`, total: (t) => `${t} eps`, selected: o.day, selectedMonth: o.month, onDay: true, legendNote: "Episodes released per day · click a day or month to filter", futureAfter: "2026-10-27" });
+    const relMonths = Array.from(new Set(STATE.all.map((e) => e.month).filter(Boolean))).sort(); const lastDay = STATE.all.reduce((m, e) => (e.date && e.date > m ? e.date : m), ""); const today = dayKey(Date.now());
+    return heatmap({ id: "rel", months: relMonths.length ? relMonths : ["2026-07", "2026-08", "2026-09", "2026-10"], value: (k) => STATE.days.get(k) || 0, label: (v) => `${v} episode${v === 1 ? "" : "s"} released`, total: (t) => `${t} eps`, selected: o.day, selectedMonth: o.month, onDay: true, legendNote: "Episodes released per day · click a day or month to filter", futureAfter: today > lastDay ? today : lastDay });
   }
   function watchHeatmap(o) {
     o = o || {};
