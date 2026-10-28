@@ -160,6 +160,7 @@
     paintSaved();
     const list = A.recs.results(F, curSort());
     const secs = list.reduce((a, e) => a + e.dur, 0);
+    { const pr = $("#playResults"); if (pr) pr.hidden = !list.length; }
     $("#resCount").innerHTML = `<b>${list.length}</b> episode${list.length === 1 ? "" : "s"} · ${hoursStr(secs)}${F.q ? ` for “${esc(F.q)}”` : ""}`;
     const isList = L().PREFS.layout === "list";
     const slice = list.slice(0, shown);
@@ -217,7 +218,7 @@
     ["month", "fmt", "len", "level", "org", "group", "st"].forEach((k) => p.getAll(k).forEach((v) => nf[k].add(v)));
     p.getAll("speaker").forEach((v) => { const s = STATE.bySlug.get(v) || STATE.speakers.get(fold(v)); if (s) nf.speaker.add(s.k); });
     if (p.get("day")) nf.day = p.get("day");
-    if (p.get("tag")) nf.tag = p.get("tag");
+    if (p.get("tag")) { const tg = p.get("tag"); nf.tag = (STATE.tagCanon && STATE.tagCanon.get(tg.toLowerCase())) || tg; }
     if (p.get("q")) nf.q = p.get("q");
     if (p.get("followed")) nf.followed = true;
     if (p.get("sort")) L().PREFS.sort = p.get("sort");
@@ -260,22 +261,23 @@
     let list = res.filter((s) => (SP.group === "all" || (SP.group === "followed" ? L().FOLLOWS.has(s.k) : s.group === SP.group)) && (!SP.q || fold(s.name + " " + s.org + " " + s.bio).includes(fold(SP.q))));
     const watchedOf = (s) => s.eps.filter((id) => h().stateOf(id) === "done").length;
     list.sort({ eps: (a, b) => b.eps.length - a.eps.length || b.secs - a.secs, hours: (a, b) => b.secs - a.secs, name: (a, b) => a.name.split(" ").pop().localeCompare(b.name.split(" ").pop()), watched: (a, b) => watchedOf(b) - watchedOf(a) || b.eps.length - a.eps.length }[SP.sort]);
+    const hostsShown = SP.q ? hosts.filter((s) => fold(s.name + " " + (s.org || "") + " " + (s.bio || "")).includes(fold(SP.q))) : hosts.slice();
     const featured = list.filter((s) => s.roster || ui().hasFace(s.name));
     const rest = list.filter((s) => !(s.roster || ui().hasFace(s.name)));
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Speakers</p><h1>${res.length} researchers & guests, ${hosts.length} hosts</h1><p class="lede">Researchers are the stars here. Follow the people you trust: their new episodes get their own row and boost your recommendations.</p></div>
       <div class="searchbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="spQ" type="search" placeholder="Find a researcher or org" value="${esc(SP.q)}" aria-label="Find a speaker"></div></header>
       <div class="toolbar"><div class="chips">${[["all", "Everyone"], ["followed", `⭐ Following (${L().FOLLOWS.size})`]].concat(GROUPS.filter((g) => g.id !== "hosts").map((g) => [g.id, g.label])).map(([id, lab]) => `<button class="chip ${SP.group === id ? "is-on" : ""}" data-spg="${id}">${esc(lab)}</button>`).join("")}</div><span class="grow"></span>
         <label class="sel"><span>Sort</span><select id="spSort"><option value="eps">Most episodes</option><option value="hours">Most hours</option><option value="watched">Most watched by you</option><option value="name">Surname A–Z</option></select></label></div>
-      <div class="sgrid">${featured.map(ui().speakerCard).join("") || `<p class="empty">No one matches.</p>`}</div>
+      <div class="sgrid">${featured.map(ui().speakerCard).join("") || (rest.length ? "" : `<p class="empty">${hostsShown.length && SP.q ? "No researchers match; hosts below." : "No one matches."}</p>`)}</div>
       ${rest.length ? `<h2 class="subh">More voices <small>${rest.length}</small></h2><div class="sgrid sgrid--compact">${rest.map(ui().speakerCard).join("")}</div>` : ""}
-      <details class="hosts" ${SP.hosts ? "open" : ""}><summary><h2 class="subh">Hosts & interviewers <small>${hosts.length}</small></h2></summary>
-        <div class="hostlist">${hosts.sort((a, b) => b.eps.length - a.eps.length).map((s) => `<a class="hostchip" href="#/speaker/${s.slug}">${ui().avatar(s.name, 30)}<span><b>${esc(s.name)}</b><small>Host · ${s.eps.length} ep${s.eps.length === 1 ? "" : "s"}</small></span></a>`).join("")}</div></details>`;
+      ${hostsShown.length ? `<details class="hosts" ${SP.hosts || (SP.q && hostsShown.length) ? "open" : ""}><summary><h2 class="subh">Hosts & interviewers <small>${SP.q ? `${hostsShown.length} of ${hosts.length}` : hosts.length}</small></h2></summary>
+        <div class="hostlist">${hostsShown.sort((a, b) => b.eps.length - a.eps.length).map((s) => `<a class="hostchip" href="#/speaker/${s.slug}">${ui().avatar(s.name, 30)}<span><b>${esc(s.name)}</b><small>Host · ${s.eps.length} ep${s.eps.length === 1 ? "" : "s"}</small></span></a>`).join("")}</div></details>` : ""}`;
     $("#spSort").value = SP.sort;
     const q = $("#spQ");
     q.oninput = A.debounce(() => { SP.q = q.value; renderSpeakers(); const n = $("#spQ"); n.focus(); n.setSelectionRange(n.value.length, n.value.length); }, 200);
     $("#spSort").onchange = (ev) => { SP.sort = ev.target.value; renderSpeakers(); };
     v.querySelectorAll("[data-spg]").forEach((b) => (b.onclick = () => { SP.group = b.dataset.spg; renderSpeakers(); }));
-    v.querySelector("details.hosts").ontoggle = (ev) => (SP.hosts = ev.target.open);
+    const hd = v.querySelector("details.hosts"); if (hd) hd.ontoggle = (ev) => { if (!SP.q) SP.hosts = ev.target.open; };
   }
 
   let spSort = "newest";
