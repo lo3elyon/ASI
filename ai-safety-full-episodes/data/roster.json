@@ -530,5 +530,19 @@
   "org": "University of Pennsylvania",
   "group": "academics",
   "bio": "University of Pennsylvania computer science professor who teaches a graduate course on the mathematical foundations of AI alignment."
+ },
+ {
+  "name": "Seán Ó hÉigeartaigh",
+  "photo": "sean-o-heigeartaigh.jpg",
+  "org": "Leverhulme CFI, Cambridge",
+  "group": "policy",
+  "bio": "Associate Director at Cambridge's Leverhulme Centre for the Future of Intelligence and founding Executive Director of CSER; a decade building China–West AI-safety dialogue."
+ },
+ {
+  "name": "Aaron Tang",
+  "photo": "aaron-tang.jpg",
+  "org": "UC Davis School of Law",
+  "group": "academics",
+  "bio": "UC Davis law professor and Supreme Court commentator who moderates PBS's Breaking the Deadlock."
  }
 ]
