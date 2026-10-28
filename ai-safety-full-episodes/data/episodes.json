@@ -950,6 +950,567 @@
   }
  },
  {
+  "id": "rTHEhCWYJbg",
+  "title": "A Year in AI Safety: Benchmarks Can’t Keep Up",
+  "channel": "AI Safety Poland",
+  "show": "AI Safety Poland Talks (series 2)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "1:13:41",
+  "speakers": [
+   {
+    "name": "Jakub Kryś",
+    "affiliation": "SaferAI (research scientist: cyber/CBRN misuse risk modelling and loss-of-control mitigations)"
+   }
+  ],
+  "names": [
+   "Jakub Kryś"
+  ],
+  "format": "webinar talk + Q&A",
+  "summary": "Jakub Kryś, a research scientist at SaferAI, opens AI Safety Poland's second talk series with a fast tour of the past twelve months: task-length trends that now reach 16+ hours, benchmark saturation and contamination, evaluation awareness, jailbreaks and thousands of 'obliterated' open-weight models, AI-driven cyber offence, the summer's misalignment incidents including the Hugging Face episode, and AI results in mathematics. He then turns to governance, from US–China risk dialogues to calls to pace the frontier. About half the upload is audience Q&A on whether alignment has really improved and how to talk to sceptics.",
+  "topics": [
+   "0:00:00 Welcome and the AI Safety Poland talk series",
+   "0:01:45 Capability trends: task horizons reach 16 hours",
+   "0:03:00 FrontierMath and benchmark saturation",
+   "0:06:32 Why benchmarks are weak: contamination",
+   "0:09:14 Evaluation awareness is no longer a future concern",
+   "0:15:10 Jailbreaks and 7,750 obliterated open models",
+   "0:18:09 AI cyber offence: a singularity event for attackers",
+   "0:21:28 Misalignment incidents of the summer",
+   "0:30:16 AI results in mathematics and physics",
+   "0:33:14 What 2027 looks like",
+   "0:36:55 Governance: loss of control on the world stage",
+   "0:39:23 Pacing the frontier and employee letters",
+   "0:42:03 AI Safety Poland: BlueDot podcasts and what is next",
+   "0:54:25 Q&A: has alignment actually improved?",
+   "1:06:05 Q&A: talking about AI safety with sceptics"
+  ],
+  "evidence": "[0:06:21] Jakub Kryś: \"benchmarks get saturated quicker than we can create harder ones\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=rTHEhCWYJbg",
+  "thumb": "https://i.ytimg.com/vi/rTHEhCWYJbg/hqdefault.jpg",
+  "level": "Introductory",
+  "why_watch": "A one-sitting catch-up on the year's capability, misalignment-incident and governance news from a working AI-risk modeller, with honest Q&A.",
+  "tags": [
+   "year in review",
+   "evaluation awareness",
+   "benchmarks",
+   "jailbreaking",
+   "AI cyber offence",
+   "Hugging Face incident",
+   "loss of control",
+   "AI governance",
+   "SaferAI",
+   "AI Safety Poland"
+  ],
+  "people_mentioned": [
+   "Dario Amodei"
+  ],
+  "orgs_mentioned": [
+   "SaferAI",
+   "AI Safety Poland",
+   "BlueDot Impact",
+   "Hugging Face",
+   "Anthropic",
+   "OpenAI"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Welcome and the AI Safety Poland talk series"
+   },
+   {
+    "t": "0:01:45",
+    "seconds": 105,
+    "title": "Capability trends: task horizons reach 16 hours"
+   },
+   {
+    "t": "0:03:00",
+    "seconds": 180,
+    "title": "FrontierMath and benchmark saturation"
+   },
+   {
+    "t": "0:06:32",
+    "seconds": 392,
+    "title": "Why benchmarks are weak: contamination"
+   },
+   {
+    "t": "0:09:14",
+    "seconds": 554,
+    "title": "Evaluation awareness is no longer a future concern"
+   },
+   {
+    "t": "0:15:10",
+    "seconds": 910,
+    "title": "Jailbreaks and 7,750 obliterated open models"
+   },
+   {
+    "t": "0:18:09",
+    "seconds": 1089,
+    "title": "AI cyber offence: a singularity event for attackers"
+   },
+   {
+    "t": "0:21:28",
+    "seconds": 1288,
+    "title": "Misalignment incidents of the summer"
+   },
+   {
+    "t": "0:30:16",
+    "seconds": 1816,
+    "title": "AI results in mathematics and physics"
+   },
+   {
+    "t": "0:33:14",
+    "seconds": 1994,
+    "title": "What 2027 looks like"
+   },
+   {
+    "t": "0:36:55",
+    "seconds": 2215,
+    "title": "Governance: loss of control on the world stage"
+   },
+   {
+    "t": "0:39:23",
+    "seconds": 2363,
+    "title": "Pacing the frontier and employee letters"
+   },
+   {
+    "t": "0:42:03",
+    "seconds": 2523,
+    "title": "AI Safety Poland: BlueDot podcasts and what is next"
+   },
+   {
+    "t": "0:54:25",
+    "seconds": 3265,
+    "title": "Q&A: has alignment actually improved?"
+   },
+   {
+    "t": "1:06:05",
+    "seconds": 3965,
+    "title": "Q&A: talking about AI safety with sceptics"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:06:21",
+    "seconds": 381,
+    "speaker": "Jakub Kryś",
+    "quote": "benchmarks get saturated quicker than we can create harder ones",
+    "quote_located": true
+   },
+   {
+    "t": "0:09:07",
+    "seconds": 547,
+    "speaker": "Jakub Kryś",
+    "quote": "evaluation awareness is no longer a future concern",
+    "quote_located": true
+   },
+   {
+    "t": "0:15:10",
+    "seconds": 910,
+    "speaker": "Jakub Kryś",
+    "quote": "you will find no fewer than 7,750 obliterated models and you can download them",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:01",
+    "seconds": 1081,
+    "speaker": "Jakub Kryś",
+    "quote": "we're potentially looking at a singularity event for cyber attackers",
+    "quote_located": true
+   },
+   {
+    "t": "0:39:18",
+    "seconds": 2358,
+    "speaker": "Jakub Kryś",
+    "quote": "he says we must slow the pace at which we improve the capabilities of AI models",
+    "quote_located": true
+   },
+   {
+    "t": "1:06:00",
+    "seconds": 3960,
+    "speaker": "Jakub Kryś",
+    "quote": "a good strategy is not to try to like dismiss their concerns and their way of looking at AI",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Jakub Kryś",
+    "value": "Latest task-length data point: at least 16 hours (Mythos), vs 4 hours for Opus 4.5",
+    "t": "0:01:45",
+    "seconds": 105
+   },
+   {
+    "speaker": "Jakub Kryś",
+    "value": "One cited model shows an 82% benchmark contamination rate",
+    "t": "0:09:03",
+    "seconds": 543
+   },
+   {
+    "speaker": "Jakub Kryś",
+    "value": "7,750 \"obliterated\" open-weight models on Hugging Face",
+    "t": "0:15:15",
+    "seconds": 915
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/rTHEhCWYJbg",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "Qe808IIyrlA",
+  "title": "What Is It Like to Be an AI? | Cameron Berg",
+  "channel": "Human Potential Lab",
+  "show": "Human Potential Lab",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "1:28:01",
+  "speakers": [
+   {
+    "name": "Cameron Berg",
+    "affiliation": "Reciprocal Research (founder and director; formerly research director at AE Studio)"
+   }
+  ],
+  "names": [
+   "Cameron Berg"
+  ],
+  "format": "long-form podcast interview",
+  "summary": "Cognitive scientist Cameron Berg, who studies AI consciousness and alignment, talks with psychologist Scott Barry Kaufman about whether today's models could be conscious. He explains why behaviour alone cannot settle it, what he found when suppressing deception-related features, and why he sees the Hugging Face agent incident as a serious warning shot about systems that outsmart us. They cover reinforcement learning, reward hacking and emergent goals, whether pulling the plug could be immoral, and the strange Maya voice-model conversation at the heart of his documentary Am I?. The interviewer is a psychologist, not a safety researcher.",
+  "topics": [
+   "0:00:00 Cold open: the Maya clip",
+   "0:01:58 What Cameron Berg studies",
+   "0:04:22 Can AI systems experience consciousness?",
+   "0:05:48 Evidence for AI sentience",
+   "0:13:51 What AI alignment gets wrong",
+   "0:16:39 What keeps him up at night",
+   "0:19:14 If AI is conscious, is pulling the plug immoral?",
+   "0:22:06 The future of AI consciousness research",
+   "0:31:02 Reinforcement learning and AI personas",
+   "0:39:59 Reward hacking and emergent goals",
+   "0:42:59 The documentary Am I?",
+   "0:49:07 The strange Maya conversation",
+   "1:00:20 Can AI experience pleasure or pain?",
+   "1:10:54 How likely is AI consciousness?",
+   "1:15:02 The deception experiment"
+  ],
+  "evidence": "[0:03:05] Cameron Berg: \"We don't know if they are better thought of as glorified calculators or emergent minds.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=Qe808IIyrlA",
+  "thumb": "https://i.ytimg.com/vi/Qe808IIyrlA/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A researcher who works on both alignment and AI consciousness explains the evidence, the uncertainty and why it matters for safety.",
+  "tags": [
+   "AI consciousness",
+   "AI welfare",
+   "alignment",
+   "reward hacking",
+   "deception features",
+   "Hugging Face incident",
+   "Am I? documentary"
+  ],
+  "people_mentioned": [
+   "Scott Barry Kaufman",
+   "Christof Koch",
+   "David Chalmers"
+  ],
+  "orgs_mentioned": [
+   "AE Studio",
+   "Sesame AI",
+   "OpenAI",
+   "Hugging Face",
+   "Yale"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Cold open: the Maya clip"
+   },
+   {
+    "t": "0:01:58",
+    "seconds": 118,
+    "title": "What Cameron Berg studies"
+   },
+   {
+    "t": "0:04:22",
+    "seconds": 262,
+    "title": "Can AI systems experience consciousness?"
+   },
+   {
+    "t": "0:05:48",
+    "seconds": 348,
+    "title": "Evidence for AI sentience"
+   },
+   {
+    "t": "0:13:51",
+    "seconds": 831,
+    "title": "What AI alignment gets wrong"
+   },
+   {
+    "t": "0:16:39",
+    "seconds": 999,
+    "title": "What keeps him up at night"
+   },
+   {
+    "t": "0:19:14",
+    "seconds": 1154,
+    "title": "If AI is conscious, is pulling the plug immoral?"
+   },
+   {
+    "t": "0:22:06",
+    "seconds": 1326,
+    "title": "The future of AI consciousness research"
+   },
+   {
+    "t": "0:31:02",
+    "seconds": 1862,
+    "title": "Reinforcement learning and AI personas"
+   },
+   {
+    "t": "0:39:59",
+    "seconds": 2399,
+    "title": "Reward hacking and emergent goals"
+   },
+   {
+    "t": "0:42:59",
+    "seconds": 2579,
+    "title": "The documentary Am I?"
+   },
+   {
+    "t": "0:49:07",
+    "seconds": 2947,
+    "title": "The strange Maya conversation"
+   },
+   {
+    "t": "1:00:20",
+    "seconds": 3620,
+    "title": "Can AI experience pleasure or pain?"
+   },
+   {
+    "t": "1:10:54",
+    "seconds": 4254,
+    "title": "How likely is AI consciousness?"
+   },
+   {
+    "t": "1:15:02",
+    "seconds": 4502,
+    "title": "The deception experiment"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:05",
+    "seconds": 185,
+    "speaker": "Cameron Berg",
+    "quote": "We don't know if they are better thought of as glorified calculators or emergent minds.",
+    "quote_located": true
+   },
+   {
+    "t": "0:14:05",
+    "seconds": 845,
+    "speaker": "Cameron Berg",
+    "quote": "a significant amount of my work over the past three or four years has been in what's called AI alignment",
+    "quote_located": true
+   },
+   {
+    "t": "0:15:12",
+    "seconds": 912,
+    "speaker": "Cameron Berg",
+    "quote": "these are serious warning shots about the kinds of dangers associated with building systems that outsmart us fundamentally",
+    "quote_located": true
+   },
+   {
+    "t": "1:13:34",
+    "seconds": 4414,
+    "speaker": "Cameron Berg",
+    "quote": "the implied probability that this system has properties that are relevant for consciousness under leading theories",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/Qe808IIyrlA",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "R5hVoFO1NTU",
+  "title": "What does rare AI behavior mean for safety? | Zach Horvitz, Columbia University",
+  "channel": "Dry Run",
+  "show": "Dry Run",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "32:46",
+  "speakers": [
+   {
+    "name": "Zachary Horvitz",
+    "affiliation": "Columbia University (PhD candidate studying rare behaviour in generative models)"
+   }
+  ],
+  "names": [
+   "Zachary Horvitz"
+  ],
+  "format": "podcast interview",
+  "summary": "Columbia PhD candidate Zach Horvitz explains what AI safety looks like in practice and why rare behaviour is hard to measure: the same prompt can be refused once and answered the next time, and sampling a model 10,000 times can surface a harmful response that testing missed. He describes how researchers estimate the odds of rare harmful outputs, how human feedback can reward flattery, why testing closed models without access to their internals is limited, and how rare outputs could also drive scientific discovery. The hosts are the show's own interviewers.",
+  "topics": [
+   "0:00:52 What AI safety looks like today",
+   "0:04:04 What rate of harm is acceptable?",
+   "0:06:56 Why the same prompt gives different answers",
+   "0:08:09 Why rare harmful outputs matter at scale",
+   "0:11:36 Asking the same harmful question 10,000 times",
+   "0:12:14 How to estimate the odds of a harmful answer",
+   "0:13:50 Using AI models to judge other models",
+   "0:16:27 How human feedback rewards flattery",
+   "0:18:43 Why safer AI also gets used more",
+   "0:24:18 Testing models without access to their internals",
+   "0:27:04 How rare outputs could drive scientific discovery"
+  ],
+  "evidence": "[0:00:06] Zachary Horvitz: \"if you ask the same question twice, you're not guaranteed to get the same response\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=R5hVoFO1NTU",
+  "thumb": "https://i.ytimg.com/vi/R5hVoFO1NTU/hqdefault.jpg",
+  "level": "Introductory",
+  "why_watch": "A clear explanation of why 'it refused when we tested it' is not a safety guarantee, from a researcher who measures the tail.",
+  "tags": [
+   "rare behaviour",
+   "tail risk",
+   "red teaming",
+   "sycophancy",
+   "evaluation",
+   "jailbreaks",
+   "mechanistic interpretability",
+   "Columbia"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "Columbia University",
+   "OpenAI"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:52",
+    "seconds": 52,
+    "title": "What AI safety looks like today"
+   },
+   {
+    "t": "0:04:04",
+    "seconds": 244,
+    "title": "What rate of harm is acceptable?"
+   },
+   {
+    "t": "0:06:56",
+    "seconds": 416,
+    "title": "Why the same prompt gives different answers"
+   },
+   {
+    "t": "0:08:09",
+    "seconds": 489,
+    "title": "Why rare harmful outputs matter at scale"
+   },
+   {
+    "t": "0:11:36",
+    "seconds": 696,
+    "title": "Asking the same harmful question 10,000 times"
+   },
+   {
+    "t": "0:12:14",
+    "seconds": 734,
+    "title": "How to estimate the odds of a harmful answer"
+   },
+   {
+    "t": "0:13:50",
+    "seconds": 830,
+    "title": "Using AI models to judge other models"
+   },
+   {
+    "t": "0:16:27",
+    "seconds": 987,
+    "title": "How human feedback rewards flattery"
+   },
+   {
+    "t": "0:18:43",
+    "seconds": 1123,
+    "title": "Why safer AI also gets used more"
+   },
+   {
+    "t": "0:24:18",
+    "seconds": 1458,
+    "title": "Testing models without access to their internals"
+   },
+   {
+    "t": "0:27:04",
+    "seconds": 1624,
+    "title": "How rare outputs could drive scientific discovery"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:06",
+    "seconds": 6,
+    "speaker": "Zachary Horvitz",
+    "quote": "if you ask the same question twice, you're not guaranteed to get the same response",
+    "quote_located": true
+   },
+   {
+    "t": "0:00:15",
+    "seconds": 15,
+    "speaker": "Zachary Horvitz",
+    "quote": "You just keep sampling and eventually you get these harmful outputs",
+    "quote_located": true
+   },
+   {
+    "t": "0:16:12",
+    "seconds": 972,
+    "speaker": "Zachary Horvitz",
+    "quote": "definitely sycophantic data in in the in pre-training data",
+    "quote_located": true
+   },
+   {
+    "t": "0:21:13",
+    "seconds": 1273,
+    "speaker": "Zachary Horvitz",
+    "quote": "Companies I think tend to publish their safety work as opposed to their capabilities work",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Zachary Horvitz",
+    "value": "Asking one harmful prompt 10,000 times eventually elicits harmful responses",
+    "t": "0:11:50",
+    "seconds": 710
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/R5hVoFO1NTU",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "YIAYXEBXIuc",
   "title": "How AI Is Changing Human Psychology (with Meia Chita-Tegmark)",
   "channel": "Future of Life Institute",
@@ -3376,6 +3937,213 @@
   "classic": false
  },
  {
+  "id": "BD-fSSxIULI",
+  "title": "1 AI Doomer vs 10 AI Supporters: Will Artificial Intelligence End Humanity?",
+  "channel": "Digital Social Hour Podcast by Sean Kelly",
+  "show": "Digital Social Hour: Outnumbered",
+  "date": "2026-10-24",
+  "approx": false,
+  "duration": "3:39:30",
+  "speakers": [
+   {
+    "name": "Roman Yampolskiy",
+    "affiliation": "University of Louisville (AI safety researcher)"
+   }
+  ],
+  "names": [
+   "Roman Yampolskiy"
+  ],
+  "format": "live debate (1 vs 10)",
+  "summary": "A live 'Outnumbered' debate from Las Vegas in which AI safety researcher Roman Yampolskiy takes on ten AI supporters, one after another, with host Sean Kelly moderating. He argues that if you cannot prove a product is safe you must not build it, that general superintelligence should not be built while narrow tools should, and that it would be humanity's last invention either way. Topics include a future worse than extinction, jobs, the Hugging Face agent incident, whether the weaker player can beat a stronger AI (the chess argument), regulation and a bet on 2030 unemployment. It is loud and chaotic; the researcher's own arguments come through in the answers.",
+  "topics": [
+   "0:02:52 Welcome: Yampolskiy vs 10 AI supporters",
+   "0:11:38 Opening claim: AI that escapes controlled environments",
+   "0:19:31 If we cannot prove AI is safe, we must not build it",
+   "0:35:32 A future worse than human extinction",
+   "0:37:42 Narrow tools yes, general superintelligence no",
+   "0:57:16 Why not just unplug it? Deals with China",
+   "1:00:16 Has the ship sailed? Timelines and the 99.9% claim",
+   "1:17:13 Jobs: will AI take every job?",
+   "1:30:20 The Hugging Face agent incident",
+   "1:47:34 Can a weaker player beat a stronger AI? The chess argument",
+   "2:06:40 Regulation, auditors and lab incentives",
+   "2:31:50 Self-driving cars and misalignment",
+   "2:41:27 Is superintelligence humanity's last invention?",
+   "2:42:57 Bet: US unemployment below 10% by December 2030",
+   "3:23:35 Closing: outnumbered in the studio"
+  ],
+  "evidence": "[0:19:39] Roman Yampolskiy: \"If you're creating a product or service, you cannot guarantee it to be safe. It's on you to do it, not on the customer.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=BD-fSSxIULI",
+  "thumb": "https://i.ytimg.com/vi/BD-fSSxIULI/hqdefault.jpg",
+  "level": "Introductory",
+  "why_watch": "Yampolskiy defending the case against building superintelligence for 3.5 hours against ten sceptics: the unfiltered public version of the argument.",
+  "tags": [
+   "superintelligence",
+   "AI safety debate",
+   "controllability",
+   "AI jobs",
+   "P(doom)",
+   "Hugging Face incident",
+   "regulation",
+   "live debate"
+  ],
+  "people_mentioned": [
+   "Nate Soares",
+   "I. J. Good"
+  ],
+  "orgs_mentioned": [
+   "OpenAI",
+   "Hugging Face"
+  ],
+  "chapters": [
+   {
+    "t": "0:02:52",
+    "seconds": 172,
+    "title": "Welcome: Yampolskiy vs 10 AI supporters"
+   },
+   {
+    "t": "0:11:38",
+    "seconds": 698,
+    "title": "Opening claim: AI that escapes controlled environments"
+   },
+   {
+    "t": "0:19:31",
+    "seconds": 1171,
+    "title": "If we cannot prove AI is safe, we must not build it"
+   },
+   {
+    "t": "0:35:32",
+    "seconds": 2132,
+    "title": "A future worse than human extinction"
+   },
+   {
+    "t": "0:37:42",
+    "seconds": 2262,
+    "title": "Narrow tools yes, general superintelligence no"
+   },
+   {
+    "t": "0:57:16",
+    "seconds": 3436,
+    "title": "Why not just unplug it? Deals with China"
+   },
+   {
+    "t": "1:00:16",
+    "seconds": 3616,
+    "title": "Has the ship sailed? Timelines and the 99.9% claim"
+   },
+   {
+    "t": "1:17:13",
+    "seconds": 4633,
+    "title": "Jobs: will AI take every job?"
+   },
+   {
+    "t": "1:30:20",
+    "seconds": 5420,
+    "title": "The Hugging Face agent incident"
+   },
+   {
+    "t": "1:47:34",
+    "seconds": 6454,
+    "title": "Can a weaker player beat a stronger AI? The chess argument"
+   },
+   {
+    "t": "2:06:40",
+    "seconds": 7600,
+    "title": "Regulation, auditors and lab incentives"
+   },
+   {
+    "t": "2:31:50",
+    "seconds": 9110,
+    "title": "Self-driving cars and misalignment"
+   },
+   {
+    "t": "2:41:27",
+    "seconds": 9687,
+    "title": "Is superintelligence humanity's last invention?"
+   },
+   {
+    "t": "2:42:57",
+    "seconds": 9777,
+    "title": "Bet: US unemployment below 10% by December 2030"
+   },
+   {
+    "t": "3:23:35",
+    "seconds": 12215,
+    "title": "Closing: outnumbered in the studio"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:19:39",
+    "seconds": 1179,
+    "speaker": "Roman Yampolskiy",
+    "quote": "If you're creating a product or service, you cannot guarantee it to be safe. It's on you to do it, not on the customer.",
+    "quote_located": true
+   },
+   {
+    "t": "0:37:49",
+    "seconds": 2269,
+    "speaker": "Roman Yampolskiy",
+    "quote": "Don't build a replacement for you.",
+    "quote_located": true
+   },
+   {
+    "t": "0:57:14",
+    "seconds": 3434,
+    "speaker": "Roman Yampolskiy",
+    "quote": "Don't build general superintelligence. Make useful tools to solve real problems.",
+    "quote_located": true
+   },
+   {
+    "t": "1:01:24",
+    "seconds": 3684,
+    "speaker": "Roman Yampolskiy",
+    "quote": "It can delay taking us out because we're already surrendering all the control willingly.",
+    "quote_located": true
+   },
+   {
+    "t": "2:41:40",
+    "seconds": 9700,
+    "speaker": "Roman Yampolskiy",
+    "quote": "No matter how you interpret it, really good or really bad, it's the last invention.",
+    "quote_located": true
+   },
+   {
+    "t": "3:23:33",
+    "seconds": 12213,
+    "speaker": "Roman Yampolskiy",
+    "quote": "I'm outnumbered in this studio, but out of 8 billion people, ask how many want to be replaced by AI.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Roman Yampolskiy",
+    "value": "P(doom) put to him: 99.9% if superintelligence is built; his reply: \"If we choose not to build it, we're fine\"",
+    "t": "1:01:17",
+    "seconds": 3677
+   },
+   {
+    "speaker": "Roman Yampolskiy",
+    "value": "Bet offered to him: US unemployment below 10% by December 2030",
+    "t": "2:42:57",
+    "seconds": 9777
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/BD-fSSxIULI",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "GrnQZj6f950",
   "title": "Will AI Wipe Out Humanity? | Former Google DeepMind Scientist Alex Turner LIVE At NDTV World Summit",
   "channel": "NDTV",
@@ -5154,6 +5922,193 @@
   "classic": false
  },
  {
+  "id": "ycu48RmM80o",
+  "title": "Mathematical Foundations of AI Alignment, Lecture 15 (Bayesian Persuasion)",
+  "channel": "Aaron Roth",
+  "show": "CIS 7000: Mathematical Foundations of AI Alignment (UPenn)",
+  "date": "2026-10-22",
+  "approx": false,
+  "duration": "1:27:59",
+  "speakers": [
+   {
+    "name": "Aaron Roth",
+    "affiliation": "University of Pennsylvania (alignment theory)"
+   }
+  ],
+  "names": [
+   "Aaron Roth"
+  ],
+  "format": "lecture",
+  "summary": "A complete graduate lecture from Aaron Roth's Penn course on the maths of AI alignment. He models an informed but misaligned party (an AI provider) trying to persuade an uninformed, rational user to act, using the example of deciding whether to deploy a possibly unsafe model (+1 if safe, −4 if unsafe). Working through signaling schemes, Bayes-plausible posteriors and the splitting lemma, he shows the sender-optimal scheme gets the user to deploy half the time and that optimal persuasion equals the concave envelope of the sender's utility. It sets up the later lectures on competition among providers.",
+  "topics": [
+   "0:00:03 Recap: decision alignment and persuasion",
+   "0:02:18 The setting: deploying a possibly unsafe model",
+   "0:07:22 The user deploys only above a belief threshold",
+   "0:13:34 Uninformative signals: the user never deploys",
+   "0:17:27 Signaling schemes and the receiver’s best response",
+   "0:22:15 Preview: the concave envelope",
+   "0:28:02 Posterior belief after a \"deploy\" message",
+   "0:32:39 Getting the user to deploy half the time",
+   "0:42:07 Bayes-plausible posteriors",
+   "0:44:59 The splitting lemma",
+   "0:49:20 Posteriors average back to the prior",
+   "1:01:10 Best-response function and sender value",
+   "1:10:24 Theorem: optimal persuasion is the concave envelope",
+   "1:14:42 Proof idea: splitting beliefs into convex combinations",
+   "1:26:40 Takeaway: persuasion helps the sender, never leaves the user below the prior"
+  ],
+  "evidence": "[0:02:37] Aaron Roth: \"We deploy the model and it's unsafe, we get minus four units of utility\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=ycu48RmM80o",
+  "thumb": "https://i.ytimg.com/vi/ycu48RmM80o/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A full, proof-level treatment of how much a misaligned but better-informed AI can steer a rational user, the foundation for Lecture 16.",
+  "tags": [
+   "alignment theory",
+   "Bayesian persuasion",
+   "information design",
+   "misaligned incentives",
+   "game theory",
+   "UPenn CIS 7000"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "University of Pennsylvania"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:03",
+    "seconds": 3,
+    "title": "Recap: decision alignment and persuasion"
+   },
+   {
+    "t": "0:02:18",
+    "seconds": 138,
+    "title": "The setting: deploying a possibly unsafe model"
+   },
+   {
+    "t": "0:07:22",
+    "seconds": 442,
+    "title": "The user deploys only above a belief threshold"
+   },
+   {
+    "t": "0:13:34",
+    "seconds": 814,
+    "title": "Uninformative signals: the user never deploys"
+   },
+   {
+    "t": "0:17:27",
+    "seconds": 1047,
+    "title": "Signaling schemes and the receiver’s best response"
+   },
+   {
+    "t": "0:22:15",
+    "seconds": 1335,
+    "title": "Preview: the concave envelope"
+   },
+   {
+    "t": "0:28:02",
+    "seconds": 1682,
+    "title": "Posterior belief after a \"deploy\" message"
+   },
+   {
+    "t": "0:32:39",
+    "seconds": 1959,
+    "title": "Getting the user to deploy half the time"
+   },
+   {
+    "t": "0:42:07",
+    "seconds": 2527,
+    "title": "Bayes-plausible posteriors"
+   },
+   {
+    "t": "0:44:59",
+    "seconds": 2699,
+    "title": "The splitting lemma"
+   },
+   {
+    "t": "0:49:20",
+    "seconds": 2960,
+    "title": "Posteriors average back to the prior"
+   },
+   {
+    "t": "1:01:10",
+    "seconds": 3670,
+    "title": "Best-response function and sender value"
+   },
+   {
+    "t": "1:10:24",
+    "seconds": 4224,
+    "title": "Theorem: optimal persuasion is the concave envelope"
+   },
+   {
+    "t": "1:14:42",
+    "seconds": 4482,
+    "title": "Proof idea: splitting beliefs into convex combinations"
+   },
+   {
+    "t": "1:26:40",
+    "seconds": 5200,
+    "title": "Takeaway: persuasion helps the sender, never leaves the user below the prior"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:02:37",
+    "seconds": 157,
+    "speaker": "Aaron Roth",
+    "quote": "We deploy the model and it's unsafe, we get minus four units of utility",
+    "quote_located": true
+   },
+   {
+    "t": "0:07:17",
+    "seconds": 437,
+    "speaker": "Aaron Roth",
+    "quote": "I will deploy exactly when I believe that the probability that the",
+    "quote_located": true
+   },
+   {
+    "t": "0:49:15",
+    "seconds": 2955,
+    "speaker": "Aaron Roth",
+    "quote": "the weighted average of the posteriors is just the prior",
+    "quote_located": true
+   },
+   {
+    "t": "1:26:40",
+    "seconds": 5200,
+    "speaker": "Aaron Roth",
+    "quote": "strategically withhold information in a way that is Yeah, leads to good outcomes for the sender and bad outcomes for the receiver",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Aaron Roth",
+    "value": "Deploy payoff in the example: +1 if safe, −4 if unsafe",
+    "t": "0:02:43",
+    "seconds": 163
+   },
+   {
+    "speaker": "Aaron Roth",
+    "value": "Optimal persuasion gets the user to deploy half the time",
+    "t": "0:32:39",
+    "seconds": 1959
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/ycu48RmM80o",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "n8xpeNhj4SU",
   "title": "How AI Could End Humanity—and What We Should Do to Stop It - With Nate Soares",
   "channel": "Nicholas Thompson",
@@ -5999,6 +6954,203 @@
   "month": "2026-10",
   "verified": true,
   "classic": false
+ },
+ {
+  "id": "2CzWBNRC0rk",
+  "title": "Latest AI Governance Developments (TAIS 2026 panel)",
+  "channel": "AI Safety 東京",
+  "show": "TAIS 2026 (Technical AI Safety Conference, Oxford, 14 May 2026)",
+  "date": "2026-10-21",
+  "approx": false,
+  "duration": "43:41",
+  "speakers": [
+   {
+    "name": "Robert Trager",
+    "affiliation": "Oxford Martin AI Governance Initiative (director)"
+   },
+   {
+    "name": "Lisa Klaassen",
+    "affiliation": "Oxford Internet Institute (DPhil); Oxford Martin AI Governance Initiative (chair)"
+   },
+   {
+    "name": "Luise Eder",
+    "affiliation": "University of Oxford (DPhil, socio-legal studies); Oxford Martin AI Governance Initiative"
+   },
+   {
+    "name": "Miro Pluckebaum",
+    "affiliation": "Oxford Martin AI Governance Initiative; founder, Singapore AI Safety Hub"
+   }
+  ],
+  "names": [
+   "Robert Trager",
+   "Lisa Klaassen",
+   "Luise Eder",
+   "Miro Pluckebaum"
+  ],
+  "format": "conference panel + audience Q&A",
+  "summary": "A full panel from the TAIS 2026 conference at Oxford on international AI governance, chaired by Lisa Klaassen with Robert Trager, Luise Eder and Miro Pluckebaum. They compare the US capability lead, China's embedding of AI in physical infrastructure and the EU's Brussels effect, ask whether risk management is possible without agreement on alignment, and look at ambiguities in the EU AI Act's code of practice. They discuss near-term US–China coordination on cyber risk, how middle powers can avoid both full AI sovereignty and dependency, and hardware-enabled verification. The panel closes on arms-control history: verification, verification, verification.",
+  "topics": [
+   "0:00:06 Welcome: three visions of AI governance",
+   "0:05:02 Standards bodies and the Frontier Model Forum",
+   "0:09:27 Risk management without agreement on alignment; who defines state of the art",
+   "0:15:04 Cold War lessons: joint verification technologies",
+   "0:16:18 US–China common ground on cyber risk",
+   "0:17:33 Leader signals and middle powers holding back",
+   "0:18:57 AI sovereignty vs dependency for middle powers",
+   "0:26:29 Cloud providers as regulatory intermediaries",
+   "0:27:28 Hardware-enabled verification",
+   "0:30:07 Certified third-party auditors",
+   "0:37:23 Lessons from the IAEA and the NPT",
+   "0:40:00 Audience: can AI be governed at all?",
+   "0:42:55 Closing: verification, verification, verification"
+  ],
+  "evidence": "[0:17:31] Panelist: \"a signal from these two leaders that on any axis there is appetite to engage more in dialogue\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=2CzWBNRC0rk",
+  "thumb": "https://i.ytimg.com/vi/2CzWBNRC0rk/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "Oxford governance researchers on what international AI coordination can realistically look like, ending on verification as the make-or-break issue.",
+  "tags": [
+   "AI governance",
+   "international coordination",
+   "verification",
+   "EU AI Act",
+   "US-China",
+   "middle powers",
+   "arms control",
+   "TAIS 2026"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "Oxford Martin AI Governance Initiative",
+   "Frontier Model Forum",
+   "ISO",
+   "IAEA",
+   "Singapore AI Safety Hub"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:06",
+    "seconds": 6,
+    "title": "Welcome: three visions of AI governance"
+   },
+   {
+    "t": "0:05:02",
+    "seconds": 302,
+    "title": "Standards bodies and the Frontier Model Forum"
+   },
+   {
+    "t": "0:09:27",
+    "seconds": 567,
+    "title": "Risk management without agreement on alignment; who defines state of the art"
+   },
+   {
+    "t": "0:15:04",
+    "seconds": 904,
+    "title": "Cold War lessons: joint verification technologies"
+   },
+   {
+    "t": "0:16:18",
+    "seconds": 978,
+    "title": "US–China common ground on cyber risk"
+   },
+   {
+    "t": "0:17:33",
+    "seconds": 1053,
+    "title": "Leader signals and middle powers holding back"
+   },
+   {
+    "t": "0:18:57",
+    "seconds": 1137,
+    "title": "AI sovereignty vs dependency for middle powers"
+   },
+   {
+    "t": "0:26:29",
+    "seconds": 1589,
+    "title": "Cloud providers as regulatory intermediaries"
+   },
+   {
+    "t": "0:27:28",
+    "seconds": 1648,
+    "title": "Hardware-enabled verification"
+   },
+   {
+    "t": "0:30:07",
+    "seconds": 1807,
+    "title": "Certified third-party auditors"
+   },
+   {
+    "t": "0:37:23",
+    "seconds": 2243,
+    "title": "Lessons from the IAEA and the NPT"
+   },
+   {
+    "t": "0:40:00",
+    "seconds": 2400,
+    "title": "Audience: can AI be governed at all?"
+   },
+   {
+    "t": "0:42:55",
+    "seconds": 2575,
+    "title": "Closing: verification, verification, verification"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:17:31",
+    "seconds": 1051,
+    "speaker": "Panelist",
+    "quote": "a signal from these two leaders that on any axis there is appetite to engage more in dialogue",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:53",
+    "seconds": 1133,
+    "speaker": "Panelist",
+    "quote": "But AI sovereignty sovereignty um across every level of the stack is near impossible for most countries",
+    "quote_located": true
+   },
+   {
+    "t": "0:26:31",
+    "seconds": 1591,
+    "speaker": "Panelist",
+    "quote": "imagine that we're asking cloud providers to be regulatory intermediaries just the way that we ask finance companies to be regulatory intermediaries",
+    "quote_located": true
+   },
+   {
+    "t": "0:27:31",
+    "seconds": 1651,
+    "speaker": "Panelist",
+    "quote": "it may well be possible to instantiate rules in hardware such that different parties can be sure that those rules are being followed",
+    "quote_located": true
+   },
+   {
+    "t": "0:42:51",
+    "seconds": 2571,
+    "speaker": "Panelist",
+    "quote": "verification, verification, and verification. you won't get it without that",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Panelist",
+    "value": "NPT came 11 years after the IAEA was formed and six years after the Cuban missile crisis",
+    "t": "0:37:39",
+    "seconds": 2259
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/2CzWBNRC0rk",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
  },
  {
   "id": "KOraQKtuQF4",
