@@ -943,3 +943,70 @@ html, body { max-width: 100%; overflow-x: clip; }
 @media (min-width: 901px) { body.is-read .stage-slot { position: sticky; top: 0; z-index: 2; background: var(--bg); } }
 @media (pointer: coarse) { .tbtn, .linkbtn { min-height: 40px; } .tbtn { padding-top: 8px; padding-bottom: 8px; } }
 @media (max-width: 900px) { body.is-read .theater__side .seg { display: flex; flex: none; min-height: 44px; height: auto; margin-bottom: 6px; } body.is-read .theater__side .seg button { flex: none; min-height: 40px; } }
+/* ---------------------------------------------------------------- cued player: big play button (nothing starts on its own) */
+.pv__big { position: absolute; left: 50%; top: 50%; z-index: 6; width: 76px; height: 76px; margin: -38px 0 0 -38px; border-radius: 50%; border: 0; display: none; place-items: center; cursor: pointer; background: color-mix(in srgb, var(--amber) 88%, #000); color: #111; box-shadow: 0 14px 40px rgba(0, 0, 0, .5), 0 0 0 8px color-mix(in srgb, var(--amber) 22%, transparent); transition: transform .2s var(--ease, ease), box-shadow .2s; }
+.pv__big svg { width: 34px; height: 34px; fill: currentColor; margin-left: 4px; }
+.pv__big:hover { transform: scale(1.07); box-shadow: 0 18px 50px rgba(0, 0, 0, .55), 0 0 0 12px color-mix(in srgb, var(--amber) 26%, transparent); }
+.dock.is-cued .pv__big { display: grid; }
+.dock.is-cued[data-mode="mini"] .pv__big, .dock.is-cued[data-mode="audio"] .pv__big { width: 52px; height: 52px; margin: -26px 0 0 -26px; } .dock[data-mode="mini"] .pv__big svg { width: 24px; height: 24px; }
+html:not(.rm) .dock.is-cued .pv__big { animation: pop .5s var(--ease, ease) both; }
+/* reading panel extras */
+.rcov { margin: 6px 0 14px; padding: 10px; border-radius: 12px; border: 1px solid var(--line); background: var(--surf); }
+.rcov .side__h { display: flex; justify-content: space-between; margin: 0 0 8px; } .rcov small { color: var(--mut); font-weight: 500; }
+.rcov__strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(3px, 1fr)); gap: 2px; height: 22px; margin-bottom: 10px; }
+.rcov__c { --f: 0; border: 0; padding: 0; border-radius: 2px; cursor: pointer; min-height: 0; background: color-mix(in srgb, var(--teal) calc(var(--f) * 100%), var(--line2)); transition: transform .12s; }
+.rcov__c:hover { transform: scaleY(1.3); background: var(--amber); }
+.side__q { width: 100%; margin: 4px 0 10px; }
+.brail__secs { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: var(--tx2); }
+.brail__secs select { font: inherit; padding: 4px 6px; border-radius: 8px; border: 1px solid var(--line2); background: var(--surf2); color: var(--tx); min-height: 32px; }
+.rng--set { max-width: 420px; } .settings__note { font-size: 12.5px; margin: 0; }
+/* ---------------------------------------------------------------- chapters everywhere */
+.pv__chbtn { display: inline-grid; }
+.dock[data-mode="audio"] .pv__chbtn { display: none; }
+#sideTabs [data-side].is-flash { animation: tabflash .9s var(--ease, ease) 1; }
+@keyframes tabflash { 0%, 100% { box-shadow: none; } 40% { box-shadow: 0 0 0 4px color-mix(in srgb, var(--amber) 45%, transparent); } }
+.chsheet { position: fixed; z-index: 66; left: 8px; right: 8px; bottom: 8px; display: flex; flex-direction: column; min-height: 120px; border-radius: 18px; border: 1px solid var(--line2); background: var(--solid); box-shadow: 0 -16px 50px rgba(0, 0, 0, .45); overflow: hidden; animation: fadeup .25s var(--ease, ease) both; }
+.chsheet[hidden] { display: none; }
+.chsheet[data-kind="side"] { right: 12px; bottom: 12px; width: auto; max-width: 420px; }
+@media (min-width: 641px) { .chsheet[data-kind="sheet"] { left: max(8px, calc(50% - 360px)); right: max(8px, calc(50% - 360px)); } }
+.chsheet__hd { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: color-mix(in srgb, var(--solid) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.chsheet__hd b { font: 800 15px/1 var(--head, inherit); } .chsheet__hd small { color: var(--mut); }
+.chsheet__hd .input { max-width: 160px; }
+.chsheet__list { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 6px 8px 12px; scrollbar-width: thin; }
+.chsheet .chap.is-now { background: color-mix(in srgb, var(--amber) 18%, transparent); }
+/* fullscreen rail: the header stays put while only the list scrolls, and the rail stops above the control bar */
+.pv__rail { padding-top: 0; }
+.pv__rail .rail__h { position: sticky; top: 0; z-index: 2; margin: 0 -10px 8px; padding: 14px 16px 10px; background: rgba(5, 8, 13, .94); backdrop-filter: blur(10px); }
+.pv__rail .rail__h small { font-weight: 500; opacity: .7; margin-left: 4px; }
+.dock.is-fs .pv__rail { bottom: 104px; padding-bottom: 12px; border-radius: 0 0 0 14px; }
+@media (max-width: 640px) { .dock.is-fs .pv__rail { bottom: 84px; } }
+/* ---------------------------------------------------------------- colour + motion pass (AA kept; reduced motion respected) */
+.btn { transition: transform .15s var(--ease, ease), box-shadow .25s, background-color .2s, border-color .2s, color .2s; }
+.btn:hover { box-shadow: 0 8px 22px -12px color-mix(in srgb, var(--amber) 70%, transparent); border-color: color-mix(in srgb, var(--amber) 45%, var(--line2)); }
+.btn:active { transform: translateY(1px) scale(.97); }
+.btn--primary { position: relative; overflow: hidden; background-image: linear-gradient(135deg, var(--amber), color-mix(in srgb, var(--amber) 55%, var(--teal))); }
+.btn--primary::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, .35) 50%, transparent 70%); transform: translateX(-120%); pointer-events: none; }
+.btn--primary:hover::after { transform: translateX(120%); transition: transform .7s var(--ease, ease); }
+.btn--primary:hover { box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--amber) 85%, transparent), 0 0 0 3px color-mix(in srgb, var(--amber) 22%, transparent); }
+.btn--ghost:hover { background: color-mix(in srgb, var(--amber) 10%, transparent); }
+.iconbtn svg, .btn svg, .cbtn svg { transition: transform .2s var(--ease, ease); }
+.iconbtn:hover svg, .btn:hover svg { transform: scale(1.12); }
+.iconbtn:active svg, .cbtn:active svg { transform: scale(.88); }
+.chip { transition: transform .15s var(--ease, ease), background .2s, border-color .2s, box-shadow .2s; }
+.chip:hover { transform: translateY(-1px); border-color: color-mix(in srgb, var(--teal) 50%, var(--line2)); }
+.chip.is-on, .seg button[aria-pressed="true"], .seg button[aria-selected="true"] { box-shadow: 0 6px 16px -10px color-mix(in srgb, var(--amber) 80%, transparent); }
+.tagc--p { background: color-mix(in srgb, var(--teal) 16%, transparent); color: var(--tx); border-color: color-mix(in srgb, var(--teal) 45%, transparent); }
+.tagc--m { background: color-mix(in srgb, var(--amber) 16%, transparent); color: var(--tx); border-color: color-mix(in srgb, var(--amber) 45%, transparent); }
+.ok { color: color-mix(in srgb, var(--teal) 70%, var(--tx)); }
+/* animated headings: a slow gradient sheen inside the text (start and end stay the readable text colour) */
+.phead h1, .shelf__hd h2, .th__title { background: linear-gradient(100deg, var(--tx) 0%, var(--tx) 38%, color-mix(in srgb, var(--amber) 70%, var(--tx)) 50%, var(--tx) 62%, var(--tx) 100%); background-size: 250% 100%; background-position: 100% 0; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--tx); animation: sheen 7s ease-in-out infinite; }
+.phead h1 em, .shelf__hd h2 em { -webkit-text-fill-color: currentColor; }
+.shelf__hd h2 .shelf__ic { -webkit-text-fill-color: initial; }
+@keyframes sheen { 0%, 55% { background-position: 100% 0; } 85%, 100% { background-position: 0 0; } }
+.eyebrow { background: linear-gradient(90deg, var(--amber), color-mix(in srgb, var(--amber) 40%, var(--teal))); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.eyebrow a { -webkit-text-fill-color: var(--amber); }
+html.rm .phead h1, html.rm .shelf__hd h2, html.rm .th__title { animation: none; }
+html.rm .btn--primary::after { display: none; }
+@media (prefers-reduced-motion: reduce) { .phead h1, .shelf__hd h2, .th__title { animation: none; } .btn--primary::after { display: none; } .btn:active, .iconbtn:active svg { transform: none; } }
+@media (forced-colors: active) { .phead h1, .shelf__hd h2, .th__title, .eyebrow { -webkit-text-fill-color: CanvasText; background: none; } }
+.dock:has(#dockErr:not([hidden])) .pv__big { display: none !important; }
