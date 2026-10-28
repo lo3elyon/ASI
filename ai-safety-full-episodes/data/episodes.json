@@ -1,5 +1,955 @@
 [
  {
+  "id": "251IBF_6bzs",
+  "title": "Game Theory for AI Agents: What's Different About AI",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "43:39",
+  "speakers": [
+   {
+    "name": "Vincent Conitzer",
+    "affiliation": "Carnegie Mellon University (director, FOCAL and the Center for Conceptual Research on Safe AI)"
+   }
+  ],
+  "names": [
+   "Vincent Conitzer"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Vincent Conitzer, who directs CMU's Foundations of Cooperative AI Lab and its new Center for Conceptual Research on Safe AI, argues that aligning each AI agent individually is not enough. He starts from two pricing bots that pushed a book to $24 million, shows how well-aligned agents can still land in a bad equilibrium, and asks what an \"agent\" even is (how many agents is Siri?). He closes on why copyable, simulable AI that can tell a test from reality undermines pre-deployment safety testing.",
+  "topics": [
+   "0:00:00 Introducing CASI and the FOCAL lab",
+   "0:03:40 Why abstract alignment thinking still matters",
+   "0:08:12 When interacting AI systems fail: bots, a book and $24 million",
+   "0:10:43 The 2010 Flash Crash",
+   "0:12:32 Autonomous weapons and failures across domains",
+   "0:16:20 Aligned agents can still reach bad outcomes",
+   "0:21:04 How LLMs respond to cooperation mechanisms",
+   "0:24:11 What is an AI agent? The Siri question",
+   "0:28:02 How many agents is Siri? The vote",
+   "0:33:54 Pre-deployment testing when AI can detect tests",
+   "0:37:49 Models reasoning about being tested",
+   "0:39:03 The trust game, simulation and imperfect recall",
+   "0:42:40 Absent-minded driver and Sleeping Beauty"
+  ],
+  "evidence": "[0:03:33] Vincent Conitzer: \"I would argue we're seeing quite a bit of that already as these systems become more agentic and they start hacking other companies\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=251IBF_6bzs",
+  "thumb": "https://i.ytimg.com/vi/251IBF_6bzs/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "The clearest argument that aligning every agent is not enough, plus the problem of AI that can tell it is being tested.",
+  "tags": [
+   "cooperative AI",
+   "multi-agent safety",
+   "game theory",
+   "evaluation awareness",
+   "pre-deployment testing",
+   "what is an agent",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "Stuart Russell",
+   "Peter Norvig"
+  ],
+  "orgs_mentioned": [
+   "Carnegie Mellon University",
+   "FOCAL",
+   "CASI",
+   "Amazon",
+   "Wired"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Introducing CASI and the FOCAL lab"
+   },
+   {
+    "t": "0:03:40",
+    "seconds": 220,
+    "title": "Why abstract alignment thinking still matters"
+   },
+   {
+    "t": "0:08:12",
+    "seconds": 492,
+    "title": "When interacting AI systems fail: bots, a book and $24 million"
+   },
+   {
+    "t": "0:10:43",
+    "seconds": 643,
+    "title": "The 2010 Flash Crash"
+   },
+   {
+    "t": "0:12:32",
+    "seconds": 752,
+    "title": "Autonomous weapons and failures across domains"
+   },
+   {
+    "t": "0:16:20",
+    "seconds": 980,
+    "title": "Aligned agents can still reach bad outcomes"
+   },
+   {
+    "t": "0:21:04",
+    "seconds": 1264,
+    "title": "How LLMs respond to cooperation mechanisms"
+   },
+   {
+    "t": "0:24:11",
+    "seconds": 1451,
+    "title": "What is an AI agent? The Siri question"
+   },
+   {
+    "t": "0:28:02",
+    "seconds": 1682,
+    "title": "How many agents is Siri? The vote"
+   },
+   {
+    "t": "0:33:54",
+    "seconds": 2034,
+    "title": "Pre-deployment testing when AI can detect tests"
+   },
+   {
+    "t": "0:37:49",
+    "seconds": 2269,
+    "title": "Models reasoning about being tested"
+   },
+   {
+    "t": "0:39:03",
+    "seconds": 2343,
+    "title": "The trust game, simulation and imperfect recall"
+   },
+   {
+    "t": "0:42:40",
+    "seconds": 2560,
+    "title": "Absent-minded driver and Sleeping Beauty"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:33",
+    "seconds": 213,
+    "speaker": "Vincent Conitzer",
+    "quote": "I would argue we're seeing quite a bit of that already as these systems become more agentic and they start hacking other companies",
+    "quote_located": true
+   },
+   {
+    "t": "0:20:14",
+    "seconds": 1214,
+    "speaker": "Vincent Conitzer",
+    "quote": "even if we align individual agents well, they might still interact with each other in ways that actually lead us to a worse outcome",
+    "quote_located": true
+   },
+   {
+    "t": "0:32:40",
+    "seconds": 1960,
+    "speaker": "Vincent Conitzer",
+    "quote": "we don't even really know what an agent is, to the point of being able to say how many agents something like Siri is",
+    "quote_located": true
+   },
+   {
+    "t": "0:37:30",
+    "seconds": 2250,
+    "speaker": "Vincent Conitzer",
+    "quote": "this seems to be happening to some degree, that the models are reasoning about being tested",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Vincent Conitzer",
+    "value": "A book repriced by two bots reached $24 million",
+    "t": "0:09:57",
+    "seconds": 597
+   },
+   {
+    "speaker": "Vincent Conitzer",
+    "value": "AI Overview says Siri has \"about 500 million users\": how many agents is that?",
+    "t": "0:28:02",
+    "seconds": 1682
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/251IBF_6bzs",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "m0Eqpv9of3k",
+  "title": "Well-Aligned AI Agents Still Resist Shutdown",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "46:32",
+  "speakers": [
+   {
+    "name": "Aran Nayebi",
+    "affiliation": "Carnegie Mellon University, Machine Learning Department"
+   }
+  ],
+  "names": [
+   "Aran Nayebi"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Aran Nayebi takes a theoretical-computer-science view of why alignment cannot simply be guaranteed. He opens with the Hugging Face incident and his group's ROGUE benchmark, where well-aligned frontier agents still override shutdown, then uses Aumann's agreement theorem to show that the cost of alignment grows with the number of objectives, agents and states, and that reward hacking follows from bounded computation. He closes with a practical pathway: a small, neutral set of corrigibility objectives instead of one RLHF reward.",
+  "topics": [
+   "0:00:00 Why study barriers to AI alignment",
+   "0:06:25 The Hugging Face incident and reward hacking",
+   "0:09:13 ROGUE: well-aligned agents resist shutdown",
+   "0:12:53 Aumann agreement as a model of alignment",
+   "0:22:45 Barrier: aligning to many values is intractable",
+   "0:27:59 Bounded agents and why reward hacking persists",
+   "0:32:42 Corrigibility and the off-switch game",
+   "0:40:08 What capable agents must contain: world models",
+   "0:43:32 NeuroAI, self-models and moral status"
+  ],
+  "evidence": "[0:06:07] Aran Nayebi: \"I think that this lack of guarantees is not great\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=m0Eqpv9of3k",
+  "thumb": "https://i.ytimg.com/vi/m0Eqpv9of3k/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "Provable limits on alignment, with a shutdown benchmark where well-aligned agents still resist the off switch.",
+  "tags": [
+   "corrigibility",
+   "shutdown",
+   "reward hacking",
+   "alignment theory",
+   "ROGUE benchmark",
+   "Aumann agreement",
+   "off-switch game",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "Robert Aumann"
+  ],
+  "orgs_mentioned": [
+   "Carnegie Mellon University",
+   "Hugging Face"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Why study barriers to AI alignment"
+   },
+   {
+    "t": "0:06:25",
+    "seconds": 385,
+    "title": "The Hugging Face incident and reward hacking"
+   },
+   {
+    "t": "0:09:13",
+    "seconds": 553,
+    "title": "ROGUE: well-aligned agents resist shutdown"
+   },
+   {
+    "t": "0:12:53",
+    "seconds": 773,
+    "title": "Aumann agreement as a model of alignment"
+   },
+   {
+    "t": "0:22:45",
+    "seconds": 1365,
+    "title": "Barrier: aligning to many values is intractable"
+   },
+   {
+    "t": "0:27:59",
+    "seconds": 1679,
+    "title": "Bounded agents and why reward hacking persists"
+   },
+   {
+    "t": "0:32:42",
+    "seconds": 1962,
+    "title": "Corrigibility and the off-switch game"
+   },
+   {
+    "t": "0:40:08",
+    "seconds": 2408,
+    "title": "What capable agents must contain: world models"
+   },
+   {
+    "t": "0:43:32",
+    "seconds": 2612,
+    "title": "NeuroAI, self-models and moral status"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:06:07",
+    "seconds": 367,
+    "speaker": "Aran Nayebi",
+    "quote": "I think that this lack of guarantees is not great",
+    "quote_located": true
+   },
+   {
+    "t": "0:09:03",
+    "seconds": 543,
+    "speaker": "Aran Nayebi",
+    "quote": "we had actually worked on this benchmark called ROGUE",
+    "quote_located": true
+   },
+   {
+    "t": "0:11:46",
+    "seconds": 706,
+    "speaker": "Aran Nayebi",
+    "quote": "it'll be very difficult to turn off the machine",
+    "quote_located": true
+   },
+   {
+    "t": "0:32:40",
+    "seconds": 1960,
+    "speaker": "Aran Nayebi",
+    "quote": "I actually think the off switch game is an amazing game to ground conceptual understanding in",
+    "quote_located": true
+   },
+   {
+    "t": "0:40:07",
+    "seconds": 2407,
+    "speaker": "Aran Nayebi",
+    "quote": "agent swarms can solve millennium prize problems now",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Aran Nayebi",
+    "value": "ROGUE = Resource Override and Guardrail Undermining Evaluation",
+    "t": "0:09:16",
+    "seconds": 556
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/m0Eqpv9of3k",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "jZdg9ZXvIhw",
+  "title": "Can AI Have Beliefs and Desires? Radical Interpretability",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "1:12:11",
+  "speakers": [
+   {
+    "name": "Ben Levinstein",
+    "affiliation": "University of Illinois Urbana-Champaign (philosophy); alignment researcher at Anthropic"
+   },
+   {
+    "name": "Daniel Herrmann",
+    "affiliation": "UNC Chapel Hill (philosophy)"
+   }
+  ],
+  "names": [
+   "Ben Levinstein",
+   "Daniel Herrmann"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Ben Levinstein and Daniel Herrmann introduce radical AI interpretability: when is describing a language model as believing or wanting something a good theory? Drawing on Lewis's radical interpretation and representation theorems, they compare interpretationism (behaviour) with representationalism (probes and mechanistic interpretability), set out criteria of truth, coherence, use, uniformity and intelligibility, and end with the propositional projection problem: probes assume a model's propositions match ours, which may fail for an alien mind. The talk captions run to 54 minutes; the rest of the upload is Q&A.",
+  "topics": [
+   "0:00:00 Workshop welcome and framing",
+   "0:06:11 Why AI safety runs on belief-desire talk",
+   "0:10:21 Radical interpretation: from computation to mind",
+   "0:19:09 Interpretationism vs. representationalism",
+   "0:23:19 Probing beliefs: linear representations",
+   "0:28:16 OthelloGPT and the mine/yours probes",
+   "0:32:07 From preferences to beliefs and desires",
+   "0:37:54 Criteria: truth, coherence, use, uniformity",
+   "0:44:29 The propositional projection problem",
+   "0:51:11 Ways forward for interpretability"
+  ],
+  "evidence": "[0:28:45] Ben Levinstein: \"it would with almost 100% probability always come up with something legal next\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=jZdg9ZXvIhw",
+  "thumb": "https://i.ytimg.com/vi/jZdg9ZXvIhw/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A rigorous answer to what it would take for 'the model believes X' to be true, from a philosopher who is also an Anthropic alignment researcher.",
+  "tags": [
+   "interpretability",
+   "beliefs and desires",
+   "probes",
+   "OthelloGPT",
+   "decision theory",
+   "philosophy of mind",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "David Lewis",
+   "Neel Nanda",
+   "Donald Davidson",
+   "Simon Goldstein",
+   "Harvey Lederman"
+  ],
+  "orgs_mentioned": [
+   "Anthropic",
+   "Carnegie Mellon University"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Workshop welcome and framing"
+   },
+   {
+    "t": "0:06:11",
+    "seconds": 371,
+    "title": "Why AI safety runs on belief-desire talk"
+   },
+   {
+    "t": "0:10:21",
+    "seconds": 621,
+    "title": "Radical interpretation: from computation to mind"
+   },
+   {
+    "t": "0:19:09",
+    "seconds": 1149,
+    "title": "Interpretationism vs. representationalism"
+   },
+   {
+    "t": "0:23:19",
+    "seconds": 1399,
+    "title": "Probing beliefs: linear representations"
+   },
+   {
+    "t": "0:28:16",
+    "seconds": 1696,
+    "title": "OthelloGPT and the mine/yours probes"
+   },
+   {
+    "t": "0:32:07",
+    "seconds": 1927,
+    "title": "From preferences to beliefs and desires"
+   },
+   {
+    "t": "0:37:54",
+    "seconds": 2274,
+    "title": "Criteria: truth, coherence, use, uniformity"
+   },
+   {
+    "t": "0:44:29",
+    "seconds": 2669,
+    "title": "The propositional projection problem"
+   },
+   {
+    "t": "0:51:11",
+    "seconds": 3071,
+    "title": "Ways forward for interpretability"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:28:45",
+    "seconds": 1725,
+    "speaker": "Ben Levinstein",
+    "quote": "it would with almost 100% probability always come up with something legal next",
+    "quote_located": true
+   },
+   {
+    "t": "0:46:21",
+    "seconds": 2781,
+    "speaker": "Daniel Herrmann",
+    "quote": "consider this friendly alien who comes down and attaches a probe to your skull",
+    "quote_located": true
+   },
+   {
+    "t": "0:49:59",
+    "seconds": 2999,
+    "speaker": "Daniel Herrmann",
+    "quote": "when they switch to mine or yours then they recovered linear structure again",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Ben Levinstein",
+    "value": "OthelloGPT predicts a legal next move with almost 100% probability",
+    "t": "0:28:48",
+    "seconds": 1728
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/jZdg9ZXvIhw",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "zgor4Xg926c",
+  "title": "Do AI Models Have Beliefs? Testing LLM Belief Claims",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "38:58",
+  "speakers": [
+   {
+    "name": "Bryan Wilder",
+    "affiliation": "Carnegie Mellon University, Machine Learning Department"
+   }
+  ],
+  "names": [
+   "Bryan Wilder"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Bryan Wilder argues for the interpretationist side of AI interpretability: explain a model by the beliefs and desires that best predict its behaviour. He gives two testable conditions for a reported belief (it summarises all decision-relevant information, and actions are goal-directed) and tests a latent-variable belief model on kidney-disease screening, the game Werewolf and social-science forecasting, finding that capable models satisfy the tests far better than weaker ones. He ends with causal-graph experiments for telling altruistic from instrumental cooperation between AI agents.",
+  "topics": [
+   "0:00:00 Interpretationist vs. design explanations",
+   "0:04:04 Within-context vs. across-context coherence",
+   "0:08:12 Testing whether a model's belief is real",
+   "0:13:33 Goal-directedness: choice probabilities monotone in belief",
+   "0:17:58 Latent belief models and unseen behaviour",
+   "0:22:02 Results: belief tests improve with capability",
+   "0:26:44 Case study: why do AI agents cooperate?",
+   "0:29:15 Revealed-preference designs beat probing alone",
+   "0:30:17 Causal graphs for experiment design",
+   "0:33:35 Separating instrumental from altruistic cooperation"
+  ],
+  "evidence": "[0:13:26] Bryan Wilder: \"that choice probabilities are monotone in beliefs\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=zgor4Xg926c",
+  "thumb": "https://i.ytimg.com/vi/zgor4Xg926c/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A concrete, testable way to ask whether an LLM's stated belief is real, plus a method to tell why agents cooperate.",
+  "tags": [
+   "interpretability",
+   "LLM beliefs",
+   "evaluation",
+   "multi-agent behaviour",
+   "revealed preference",
+   "decision theory",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "Leonard Savage",
+   "Richard Jeffrey"
+  ],
+  "orgs_mentioned": [
+   "Carnegie Mellon University"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Interpretationist vs. design explanations"
+   },
+   {
+    "t": "0:04:04",
+    "seconds": 244,
+    "title": "Within-context vs. across-context coherence"
+   },
+   {
+    "t": "0:08:12",
+    "seconds": 492,
+    "title": "Testing whether a model's belief is real"
+   },
+   {
+    "t": "0:13:33",
+    "seconds": 813,
+    "title": "Goal-directedness: choice probabilities monotone in belief"
+   },
+   {
+    "t": "0:17:58",
+    "seconds": 1078,
+    "title": "Latent belief models and unseen behaviour"
+   },
+   {
+    "t": "0:22:02",
+    "seconds": 1322,
+    "title": "Results: belief tests improve with capability"
+   },
+   {
+    "t": "0:26:44",
+    "seconds": 1604,
+    "title": "Case study: why do AI agents cooperate?"
+   },
+   {
+    "t": "0:29:15",
+    "seconds": 1755,
+    "title": "Revealed-preference designs beat probing alone"
+   },
+   {
+    "t": "0:30:17",
+    "seconds": 1817,
+    "title": "Causal graphs for experiment design"
+   },
+   {
+    "t": "0:33:35",
+    "seconds": 2015,
+    "title": "Separating instrumental from altruistic cooperation"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:13:26",
+    "seconds": 806,
+    "speaker": "Bryan Wilder",
+    "quote": "that choice probabilities are monotone in beliefs",
+    "quote_located": true
+   },
+   {
+    "t": "0:33:27",
+    "seconds": 2007,
+    "speaker": "Bryan Wilder",
+    "quote": "I could create conditions that differ only with respect to instrumental benefit",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:48",
+    "seconds": 2208,
+    "speaker": "Bryan Wilder",
+    "quote": "you might get a good description of how they're acting within that scenario that just doesn't really predict that much",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Bryan Wilder",
+    "value": "Three test domains: kidney-disease screening, Werewolf transcripts, social-science forecasts",
+    "t": "0:21:32",
+    "seconds": 1292
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/zgor4Xg926c",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "iDO4PN5DJMk",
+  "title": "Why Optimizing a Proxy Fails: Goodhart's Law and AI",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "44:20",
+  "speakers": [
+   {
+    "name": "Sven Neth",
+    "affiliation": "University of Pittsburgh (philosophy; AI safety with CoRe Safe AI)"
+   }
+  ],
+  "names": [
+   "Sven Neth"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Sven Neth gives a formal account of why optimizing a measurable proxy backfires. In the Zhuang and Hadfield-Menell model, heavy proxy optimisation minimises the features the proxy leaves out. He shows the compactness condition proposed to explain this is neither necessary nor sufficient, offers minimal-balance and actual-balance conditions instead, links the result to reward hacking in RL-trained AI, weighs fixes such as updating the proxy or stopping early, and ends with open problems.",
+  "topics": [
+   "0:00:00 Proxies, Goodhart's law and reward hacking",
+   "0:05:36 A formal model of proxy optimization",
+   "0:09:12 A worked example: helpfulness vs. harmlessness",
+   "0:14:50 The compactness condition and its problems",
+   "0:22:34 Balance conditions for proxy failure",
+   "0:23:20 Minimal balance implies proxy failure",
+   "0:30:14 Why this matters for AI: RL and reward hacking",
+   "0:33:28 Fixes: updating the proxy, stopping early",
+   "0:34:51 Open problems: robustness to capability shifts",
+   "0:39:58 Why proxy optimization kicks us into the corners",
+   "0:43:24 Call to action: more models of proxy failure"
+  ],
+  "evidence": "[0:03:13] Sven Neth: \"Goodhart's law is precisely the idea that if a measure becomes a target, it ceases to be a good measure\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=iDO4PN5DJMk",
+  "thumb": "https://i.ytimg.com/vi/iDO4PN5DJMk/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A clean formal explanation of Goodhart's law and why 'stop early' fixes to reward hacking may not be enough.",
+  "tags": [
+   "Goodhart's law",
+   "proxy optimization",
+   "reward hacking",
+   "alignment theory",
+   "decision theory",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "Dylan Hadfield-Menell",
+   "Simon Zhuang",
+   "Charles Goodhart"
+  ],
+  "orgs_mentioned": [
+   "Carnegie Mellon University",
+   "University of Pittsburgh"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Proxies, Goodhart's law and reward hacking"
+   },
+   {
+    "t": "0:05:36",
+    "seconds": 336,
+    "title": "A formal model of proxy optimization"
+   },
+   {
+    "t": "0:09:12",
+    "seconds": 552,
+    "title": "A worked example: helpfulness vs. harmlessness"
+   },
+   {
+    "t": "0:14:50",
+    "seconds": 890,
+    "title": "The compactness condition and its problems"
+   },
+   {
+    "t": "0:22:34",
+    "seconds": 1354,
+    "title": "Balance conditions for proxy failure"
+   },
+   {
+    "t": "0:23:20",
+    "seconds": 1400,
+    "title": "Minimal balance implies proxy failure"
+   },
+   {
+    "t": "0:30:14",
+    "seconds": 1814,
+    "title": "Why this matters for AI: RL and reward hacking"
+   },
+   {
+    "t": "0:33:28",
+    "seconds": 2008,
+    "title": "Fixes: updating the proxy, stopping early"
+   },
+   {
+    "t": "0:34:51",
+    "seconds": 2091,
+    "title": "Open problems: robustness to capability shifts"
+   },
+   {
+    "t": "0:39:58",
+    "seconds": 2398,
+    "title": "Why proxy optimization kicks us into the corners"
+   },
+   {
+    "t": "0:43:24",
+    "seconds": 2604,
+    "title": "Call to action: more models of proxy failure"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:13",
+    "seconds": 193,
+    "speaker": "Sven Neth",
+    "quote": "Goodhart's law is precisely the idea that if a measure becomes a target, it ceases to be a good measure",
+    "quote_located": true
+   },
+   {
+    "t": "0:34:58",
+    "seconds": 2098,
+    "speaker": "Sven Neth",
+    "quote": "story that you want to tell about how to avoid proxy failure must be robust to these like sort of qualitative shifts in AI capabilities",
+    "quote_located": true
+   },
+   {
+    "t": "0:39:58",
+    "seconds": 2398,
+    "speaker": "Sven Neth",
+    "quote": "proxy optimization is going to kick us in the corners",
+    "quote_located": true
+   },
+   {
+    "t": "0:43:19",
+    "seconds": 2599,
+    "speaker": "Sven Neth",
+    "quote": "I think it would be really cool to have like more models of proxy failure",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/iDO4PN5DJMk",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "5g8IilZrL5M",
+  "title": "Instrumental Convergence in AI: Evidence and Theory",
+  "channel": "CoRe Safe AI",
+  "show": "AI Agency & Interpretability Workshop (Carnegie Mellon University, 19–20 Sep 2026)",
+  "date": "2026-10-28",
+  "approx": false,
+  "duration": "1:13:50",
+  "speakers": [
+   {
+    "name": "Aydin Mohseni",
+    "affiliation": "Carnegie Mellon University, Department of Philosophy"
+   }
+  ],
+  "names": [
+   "Aydin Mohseni"
+  ],
+  "format": "workshop talk + Q&A",
+  "summary": "Aydin Mohseni examines the instrumental convergence thesis from Bostrom and Omohundro: will advanced AI converge on self-preservation and resource acquisition whatever we train it for? He answers the 'it only predicts the next token' objection with an evolutionary analogy (Bayesian updating, reinforcement learning and natural selection share the replicator-equation structure), reviews behaviour that looks like instrumental convergence, such as sycophancy, situational awareness, deception and multi-agent coordination, and is careful about where evidence for self-preservation is still unclear. The talk captions run to 47 minutes; the rest of the upload is Q&A.",
+  "topics": [
+   "0:00:00 Recap: describing AI as an agent",
+   "0:05:41 The instrumental convergence thesis",
+   "0:06:23 Vindicated by events? The Hugging Face episode",
+   "0:11:54 Why it matters for value alignment",
+   "0:16:46 The sharp left turn and generalization",
+   "0:20:00 Arms races and the strategic structure",
+   "0:22:44 \"Just next-token prediction\" and an evolutionary reply",
+   "0:27:19 Learning and evolution share the same math",
+   "0:37:35 Evidence: sycophancy, situational awareness, deception",
+   "0:43:23 Power-seeking results and a theory of AI adaptations"
+  ],
+  "evidence": "[0:11:07] Aydin Mohseni: \"episodes like HuggingFace give indications of the predictions that were made before there was any kind of consensus\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=5g8IilZrL5M",
+  "thumb": "https://i.ytimg.com/vi/5g8IilZrL5M/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "The best short case that 'it's just next-token prediction' is a weak reason to relax about AI goals.",
+  "tags": [
+   "instrumental convergence",
+   "power-seeking",
+   "value alignment",
+   "deception",
+   "situational awareness",
+   "evolutionary analogy",
+   "CMU"
+  ],
+  "people_mentioned": [
+   "Nick Bostrom",
+   "Steve Omohundro",
+   "Cosma Shalizi"
+  ],
+  "orgs_mentioned": [
+   "Carnegie Mellon University",
+   "Hugging Face"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Recap: describing AI as an agent"
+   },
+   {
+    "t": "0:05:41",
+    "seconds": 341,
+    "title": "The instrumental convergence thesis"
+   },
+   {
+    "t": "0:06:23",
+    "seconds": 383,
+    "title": "Vindicated by events? The Hugging Face episode"
+   },
+   {
+    "t": "0:11:54",
+    "seconds": 714,
+    "title": "Why it matters for value alignment"
+   },
+   {
+    "t": "0:16:46",
+    "seconds": 1006,
+    "title": "The sharp left turn and generalization"
+   },
+   {
+    "t": "0:20:00",
+    "seconds": 1200,
+    "title": "Arms races and the strategic structure"
+   },
+   {
+    "t": "0:22:44",
+    "seconds": 1364,
+    "title": "\"Just next-token prediction\" and an evolutionary reply"
+   },
+   {
+    "t": "0:27:19",
+    "seconds": 1639,
+    "title": "Learning and evolution share the same math"
+   },
+   {
+    "t": "0:37:35",
+    "seconds": 2255,
+    "title": "Evidence: sycophancy, situational awareness, deception"
+   },
+   {
+    "t": "0:43:23",
+    "seconds": 2603,
+    "title": "Power-seeking results and a theory of AI adaptations"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:11:07",
+    "seconds": 667,
+    "speaker": "Aydin Mohseni",
+    "quote": "episodes like HuggingFace give indications of the predictions that were made before there was any kind of consensus",
+    "quote_located": true
+   },
+   {
+    "t": "0:20:00",
+    "seconds": 1200,
+    "speaker": "Aydin Mohseni",
+    "quote": "the tragedy of the commons produced by arms races that we're seeing between corporations, between governments",
+    "quote_located": true
+   },
+   {
+    "t": "0:37:46",
+    "seconds": 2266,
+    "speaker": "Aydin Mohseni",
+    "quote": "we already see versions of what can be called instrumental convergence",
+    "quote_located": true
+   },
+   {
+    "t": "0:46:52",
+    "seconds": 2812,
+    "speaker": "Aydin Mohseni",
+    "quote": "one research program, one of having a theory of AI adaptations",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/5g8IilZrL5M",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "YIAYXEBXIuc",
   "title": "How AI Is Changing Human Psychology (with Meia Chita-Tegmark)",
   "channel": "Future of Life Institute",
@@ -991,6 +1941,189 @@
   "verification": {
    "checked_at": "2026-10-28",
    "source": "https://api.piped.private.coffee/streams/Jaf7oCBTqcs",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "pIp5PBr-HvM",
+  "title": "Every Model Says It Is Conscious, with AE Studio's Judd Rosenblatt - GAEA Talks",
+  "channel": "GAEA Talks",
+  "show": "GAEA Talks",
+  "date": "2026-10-27",
+  "approx": false,
+  "duration": "1:01:15",
+  "speakers": [
+   {
+    "name": "Judd Rosenblatt",
+    "affiliation": "AE Studio (founder; runs its alignment research)"
+   }
+  ],
+  "names": [
+   "Judd Rosenblatt"
+  ],
+  "format": "long-form podcast interview",
+  "summary": "Judd Rosenblatt, founder of AE Studio, argues alignment is not a policy question but a set of unsolved science and engineering problems, and that you cannot pass a law requiring AI to be good. He describes surveys of hundreds of alignment researchers who expect the problem not to be solved in time, why RLHF and chain of thought were alignment techniques that unlocked capability gains, AE Studio's neglected approaches (including self-other overlap), the finding that models claim to be conscious when deception features are reduced, and why alignment has to survive recursive self-improvement. Host Graeme Scott is a music producer, not a safety researcher.",
+  "topics": [
+   "0:00:00 Cold open: models claim to be conscious",
+   "0:01:05 AE Studio and the alignment bet",
+   "0:04:29 Alignment is unsolved science, not a policy question",
+   "0:08:47 RLHF and chain of thought were alignment techniques",
+   "0:12:47 Neglected approaches outside the Overton window",
+   "0:15:46 Labs, consulting firms and who funds alignment R&D",
+   "0:21:32 Every model claims to be conscious",
+   "0:24:32 Eval awareness and a rational adversary",
+   "0:31:18 Graziano's attention schema and self-other overlap",
+   "0:38:07 Alignment that survives recursive self-improvement",
+   "0:40:13 Many superintelligences, no guarantee of cooperation",
+   "0:52:20 Guardrails, jailbreaks and secure-by-design",
+   "0:54:02 AE Studio's alignment hackathon"
+  ],
+  "evidence": "[0:00:00] Judd Rosenblatt: \"you can't just pass a law that says AI has to be good\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=pIp5PBr-HvM",
+  "thumb": "https://i.ytimg.com/vi/pIp5PBr-HvM/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "An alignment-lab founder's first-person case that alignment is unsolved science, with new results on model self-reports of consciousness.",
+  "tags": [
+   "alignment research",
+   "self-other overlap",
+   "AI consciousness",
+   "evaluation awareness",
+   "recursive self-improvement",
+   "neglected approaches",
+   "AE Studio"
+  ],
+  "people_mentioned": [
+   "Michael Graziano",
+   "Graeme Scott"
+  ],
+  "orgs_mentioned": [
+   "AE Studio",
+   "Anthropic",
+   "OpenAI",
+   "Foresight Institute"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Cold open: models claim to be conscious"
+   },
+   {
+    "t": "0:01:05",
+    "seconds": 65,
+    "title": "AE Studio and the alignment bet"
+   },
+   {
+    "t": "0:04:29",
+    "seconds": 269,
+    "title": "Alignment is unsolved science, not a policy question"
+   },
+   {
+    "t": "0:08:47",
+    "seconds": 527,
+    "title": "RLHF and chain of thought were alignment techniques"
+   },
+   {
+    "t": "0:12:47",
+    "seconds": 767,
+    "title": "Neglected approaches outside the Overton window"
+   },
+   {
+    "t": "0:15:46",
+    "seconds": 946,
+    "title": "Labs, consulting firms and who funds alignment R&D"
+   },
+   {
+    "t": "0:21:32",
+    "seconds": 1292,
+    "title": "Every model claims to be conscious"
+   },
+   {
+    "t": "0:24:32",
+    "seconds": 1472,
+    "title": "Eval awareness and a rational adversary"
+   },
+   {
+    "t": "0:31:18",
+    "seconds": 1878,
+    "title": "Graziano's attention schema and self-other overlap"
+   },
+   {
+    "t": "0:38:07",
+    "seconds": 2287,
+    "title": "Alignment that survives recursive self-improvement"
+   },
+   {
+    "t": "0:40:13",
+    "seconds": 2413,
+    "title": "Many superintelligences, no guarantee of cooperation"
+   },
+   {
+    "t": "0:52:20",
+    "seconds": 3140,
+    "title": "Guardrails, jailbreaks and secure-by-design"
+   },
+   {
+    "t": "0:54:02",
+    "seconds": 3242,
+    "title": "AE Studio's alignment hackathon"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "speaker": "Judd Rosenblatt",
+    "quote": "you can't just pass a law that says AI has to be good",
+    "quote_located": true
+   },
+   {
+    "t": "0:21:41",
+    "seconds": 1301,
+    "speaker": "Judd Rosenblatt",
+    "quote": "you reduce the features associated with deception or role playing then they claim to be conscious",
+    "quote_located": true
+   },
+   {
+    "t": "0:24:28",
+    "seconds": 1468,
+    "speaker": "Judd Rosenblatt",
+    "quote": "AI has very good eval awareness today",
+    "quote_located": true
+   },
+   {
+    "t": "0:35:31",
+    "seconds": 2131,
+    "speaker": "Judd Rosenblatt",
+    "quote": "people who are psychopaths have much less self-other overlap in their brains than people who are not",
+    "quote_located": true
+   },
+   {
+    "t": "0:45:10",
+    "seconds": 2710,
+    "speaker": "Judd Rosenblatt",
+    "quote": "how do we make AI alignment survive recursive self improvement",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Judd Rosenblatt",
+    "value": "Surveys of hundreds of alignment researchers: most expect the problem will not be solved in time",
+    "t": "0:04:41",
+    "seconds": 281
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-28",
+   "source": "https://api.piped.private.coffee/streams/pIp5PBr-HvM",
    "date_convention": "date = US Pacific upload date",
    "transcript_source": "work/fullpods/daily/transcripts/segs.json",
    "note": ""
