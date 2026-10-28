@@ -43,7 +43,7 @@
   function embedSrc(id, start, auto) {
     const S = L().SETTINGS, nat = !!S.nativeControls;
     const q = new URLSearchParams({ enablejsapi: "1", autoplay: auto ? "1" : "0", start: String(Math.floor(start || 0)), rel: "0", modestbranding: "1", playsinline: "1", iv_load_policy: "3",
-      controls: nat ? "1" : "0", disablekb: nat ? "0" : "1", fs: nat ? "1" : "0", cc_load_policy: S.captions ? "1" : "0", cc_lang_pref: "en", hl: "en" });
+      controls: nat ? "1" : "0", disablekb: nat ? "0" : "1", fs: nat ? "1" : "0", cc_load_policy: S.captions && !(!nat && A.ccx && A.ccx.on() && A.ccx.has(id)) ? "1" : "0", cc_lang_pref: "en", hl: "en" });
     if (/^https?:$/.test(location.protocol)) { q.set("origin", location.origin); q.set("widget_referrer", location.href.split("#")[0]); }
     return `${YT_ORIGIN}/embed/${encodeURIComponent(id)}?${q.toString()}`;
   }
@@ -211,7 +211,7 @@
       P.lastWall = performance.now();
       if (P.autoSkip) { P.autoSkip = false; autoSkipHearing(); }
       if (L().SETTINGS.captions && !L().SETTINGS.nativeControls && !(A.ccx && A.ccx.on())) captionsOn(true);
-      if (A.ccx && A.ccx.on()) { try { P.yt.unloadModule && P.yt.unloadModule("captions"); } catch (x) {} }
+      if (A.ccx && A.ccx.on()) quietYTCaptions();
       syncCCSoon();
     } else {
       tick(true);
@@ -874,6 +874,13 @@
     $$('[data-pc="cc"]').forEach((b) => b.setAttribute("aria-pressed", String(!!S.captions || !!(A.ccx && A.ccx.on() && !S.nativeControls))));
     if (P.menu === "settings") renderMenu("settings");
     return real;
+  }
+  /* our caption overlay is showing: keep YouTube's own captions unloaded. YouTube re-applies a CC preference remembered from its own
+     controls a moment after playback starts, so unload again at 0.7 s and 3 s (live QA: both caption layers showed together) */
+  function quietYTCaptions() {
+    const off = () => { if (!(A.ccx && A.ccx.on()) || L().SETTINGS.nativeControls || !P.yt) return; try { P.yt.unloadModule && P.yt.unloadModule("captions"); P.yt.unloadModule && P.yt.unloadModule("cc"); } catch (x) {} };
+    off(); clearTimeout(P.qcT1); clearTimeout(P.qcT2);
+    P.qcT1 = setTimeout(off, P.vWait == null ? 700 : P.vWait); P.qcT2 = setTimeout(off, P.vWait == null ? 3000 : P.vWait + 10);
   }
   function syncCCSoon() { clearTimeout(P.ccT1); clearTimeout(P.ccT2); P.ccT1 = setTimeout(syncCC, P.vWait == null ? 700 : P.vWait); P.ccT2 = setTimeout(syncCC, P.vWait == null ? 3000 : P.vWait + 10); }
   function toggleCC() {
