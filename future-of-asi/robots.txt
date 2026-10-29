@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /ASI/future-of-asi/
+Sitemap: https://lo3elyon.github.io/ASI/future-of-asi/sitemap.xml

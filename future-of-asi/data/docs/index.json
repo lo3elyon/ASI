@@ -1,0 +1,12 @@
+{ "pages": [
+  { "slug": "overview", "title": "Overview", "summary": "What Threshold is, who it is for and how it is organised." },
+  { "slug": "architecture", "title": "How it works", "summary": "Hash router, views, data loading, service worker and folder layout." },
+  { "slug": "schemas", "title": "Data schemas", "summary": "Every JSON file and every field." },
+  { "slug": "contribute", "title": "How to contribute", "summary": "Rules, style, checks and pull requests." },
+  { "slug": "add-researcher", "title": "Add a researcher", "summary": "Step by step, with a template." },
+  { "slug": "add-video", "title": "Add a video", "summary": "How to verify a YouTube ID and add it to the library." },
+  { "slug": "design", "title": "Design system", "summary": "Colours, fonts, motion and components." },
+  { "slug": "accessibility", "title": "Accessibility and privacy", "summary": "Keyboard, motion, contrast, storage and offline." },
+  { "slug": "glossary", "title": "Glossary", "summary": "70 AI safety terms in plain words." },
+  { "slug": "faq", "title": "FAQ", "summary": "Short honest answers." }
+] }

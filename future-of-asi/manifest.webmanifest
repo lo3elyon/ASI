@@ -1,0 +1,27 @@
+{
+  "name": "Threshold: The Future of ASI",
+  "short_name": "Threshold",
+  "description": "The future of superintelligence, the researchers warning us, and what we can still do.",
+  "id": "./",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "lang": "en",
+  "categories": ["education", "science", "news"],
+  "icons": [
+    { "src": "assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "assets/brand/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "shortcuts": [
+    { "name": "Futures explorer", "url": "./#/futures" },
+    { "name": "Researchers", "url": "./#/researchers" },
+    { "name": "Watch", "url": "./#/watch" },
+    { "name": "Alignment 101", "url": "./#/learn" }
+  ],
+  "screenshots": [ { "src": "assets/brand/og.jpg", "sizes": "1200x630", "type": "image/jpeg", "form_factor": "wide", "label": "Threshold home" } ]
+}

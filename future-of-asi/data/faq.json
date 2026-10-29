@@ -1,0 +1,66 @@
+[
+ {
+  "q": "Is this site saying AI will kill everyone?",
+  "a": "No. It shows what many serious researchers warn about, with their own sourced words, and also shows people who disagree. The goal is understanding and action, not fear."
+ },
+ {
+  "q": "What is p(doom)?",
+  "a": "It is shorthand for a person's rough probability that AI leads to a catastrophe such as human extinction or permanent loss of control. Numbers differ a lot between people and are personal judgments, not measurements."
+ },
+ {
+  "q": "Are the quotes real?",
+  "a": "Yes. Every quote in the researchers directory comes with the place it was said and a link. If a link breaks or a quote looks wrong, please open an issue on GitHub."
+ },
+ {
+  "q": "Are the videos verified?",
+  "a": "Each video ID was checked against YouTube's public oEmbed endpoint when the dataset was built. Videos play through youtube-nocookie.com, YouTube's privacy enhanced mode."
+ },
+ {
+  "q": "Are the futures predictions?",
+  "a": "No. The six futures are stories written to help you think. The sliders run a small toy model that shows direction, not probability."
+ },
+ {
+  "q": "What is AI control in one line?",
+  "a": "Designing how we use powerful AI so that we stay safe even if the AI is secretly trying to cause harm."
+ },
+ {
+  "q": "Do I need maths or coding for Alignment 101?",
+  "a": "No. The course is written in simple words. If you want to go deeper later, the resources list points to technical courses."
+ },
+ {
+  "q": "Is my progress saved?",
+  "a": "Yes, in your own browser using localStorage. Nothing is sent to a server. Clearing your browser data will reset it."
+ },
+ {
+  "q": "Can I get a certificate?",
+  "a": "Finish every lesson and pass the unit quizzes, then generate a completion card with your name and download it as a PNG. It is a personal milestone, not an accredited qualification."
+ },
+ {
+  "q": "Who made this?",
+  "a": "Aniruddha Adak, a final year computer science student and AI agent engineer from West Bengal, India, built it with Hark as part of the open source ASI repo."
+ },
+ {
+  "q": "How can I add a researcher or a video?",
+  "a": "Read the Docs page on contributing. You add one object to a JSON file with real sources, open a pull request, and it shows up everywhere automatically."
+ },
+ {
+  "q": "Why no purple?",
+  "a": "It is a design rule of the ASI repo. The palette is navy with teal, cyan, amber, red, blue and lime."
+ },
+ {
+  "q": "Does it work offline?",
+  "a": "After your first visit, a service worker keeps the app shell and data so most pages open offline. Videos and thumbnails still need the internet."
+ },
+ {
+  "q": "How do I search?",
+  "a": "Press Ctrl K, or Cmd K on a Mac, or the slash key. You can search people, quotes, videos, lessons, terms, posts and pages at once."
+ },
+ {
+  "q": "Is it accessible?",
+  "a": "It aims to be. Everything works with a keyboard, motion can be turned off, there is a high contrast theme, and it respects your system's reduced motion setting."
+ },
+ {
+  "q": "I feel anxious after reading this. What should I do?",
+  "a": "That is a normal reaction. Read the Staying steady lesson, pick one small action from the Prepare page, and talk to someone you trust. If it affects your sleep or daily life, please talk to a counsellor."
+ }
+]

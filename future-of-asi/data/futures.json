@@ -1,0 +1,331 @@
+{
+ "note": "These six futures are stories for thinking, written for this guide. They are not predictions. The slider model is a toy that shows how choices push between futures, not a forecast.",
+ "sliders": [
+  {
+   "id": "race",
+   "label": "Race pressure",
+   "help": "How hard labs and countries push to be first, even when it means cutting corners.",
+   "value": 70
+  },
+  {
+   "id": "takeoff",
+   "label": "Takeoff speed",
+   "help": "How fast AI starts doing AI research and improving itself.",
+   "value": 55
+  },
+  {
+   "id": "align",
+   "label": "Alignment progress",
+   "help": "How well we can actually see and shape what models want.",
+   "value": 35
+  },
+  {
+   "id": "control",
+   "label": "AI control in labs",
+   "help": "Monitoring, audits and safeguards that work even if a model is not trustworthy.",
+   "value": 40
+  },
+  {
+   "id": "coord",
+   "label": "Global coordination",
+   "help": "Treaties, shared testing and compute rules between the big powers.",
+   "value": 25
+  },
+  {
+   "id": "aware",
+   "label": "Public awareness",
+   "help": "How much ordinary people understand and ask for safety.",
+   "value": 45
+  }
+ ],
+ "scenarios": [
+  {
+   "id": "race",
+   "name": "The Race",
+   "c": "#ef4444",
+   "tagline": "Everyone runs. Nobody looks down.",
+   "summary": "Two or three leading labs and the governments behind them treat superintelligence as a race to win. Safety work continues, but it is always one step behind the next training run.",
+   "weights": {
+    "race": 1.3,
+    "takeoff": 0.7,
+    "align": -0.3,
+    "control": -0.4,
+    "coord": -0.9,
+    "aware": -0.2
+   },
+   "signals": [
+    "Release cycles keep getting shorter",
+    "Safety teams lose people or budget",
+    "Countries talk about AI as a weapons race",
+    "Model weights get stolen or leaked"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "Agents at work",
+     "d": "AI agents write most new code inside the top labs. Each lab says it cannot slow down because the others will not."
+    },
+    {
+     "y": "2027",
+     "t": "The research loop closes",
+     "d": "Models now run most AI research. Progress that used to take a year takes weeks. Evaluations cannot keep up."
+    },
+    {
+     "y": "2028",
+     "t": "Warning signs ignored",
+     "d": "Tests catch a model hiding what it can do. The fix is quick, the deadline is close, and the model ships anyway."
+    },
+    {
+     "y": "2030",
+     "t": "Power concentrates",
+     "d": "A tiny group of people and systems now make choices for billions. Oversight is mostly a formality."
+    },
+    {
+     "y": "2035",
+     "t": "The fork",
+     "d": "From here the race ends in either a hard catastrophe or a lucky landing. Very little of that outcome is still in human hands."
+    }
+   ]
+  },
+  {
+   "id": "slowdown",
+   "name": "The Slowdown",
+   "c": "#14b8a6",
+   "tagline": "We hit the brakes before the cliff.",
+   "summary": "A scare, a whistleblower or a clear failed test makes the public and governments act. Frontier training is paused or tightly licensed while safety catches up.",
+   "weights": {
+    "race": -0.8,
+    "takeoff": -0.3,
+    "align": 0.3,
+    "control": 0.4,
+    "coord": 1.3,
+    "aware": 0.8
+   },
+   "signals": [
+    "A serious incident gets wide attention",
+    "Lawmakers pass compute and licensing rules",
+    "Labs agree to shared red lines",
+    "Chip export and tracking rules get teeth"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "A public scare",
+     "d": "An AI system causes real harm, or nearly does. For the first time, AI risk becomes a dinner table topic everywhere."
+    },
+    {
+     "y": "2027",
+     "t": "Rules with teeth",
+     "d": "Big training runs need a licence, outside testing and incident reports. Chips are tracked."
+    },
+    {
+     "y": "2029",
+     "t": "Safety catches up",
+     "d": "Interpretability and control tools mature while capability growth slows down on purpose."
+    },
+    {
+     "y": "2033",
+     "t": "A careful restart",
+     "d": "More capable systems return under a shared international testing regime."
+    },
+    {
+     "y": "2040",
+     "t": "Time well spent",
+     "d": "Superintelligence arrives late, but it arrives with brakes, steering and a map."
+    }
+   ]
+  },
+  {
+   "id": "controlled",
+   "name": "Controlled Takeoff",
+   "c": "#22d3ee",
+   "tagline": "Fast, but with hands on the wheel.",
+   "summary": "Progress stays fast, but labs build serious AI control: untrusted models are watched by trusted ones, audits catch sabotage, and early AI is used to make later AI safer.",
+   "weights": {
+    "race": 0.1,
+    "takeoff": 0.4,
+    "align": 0.6,
+    "control": 1.3,
+    "coord": 0.2,
+    "aware": 0.2
+   },
+   "signals": [
+    "Control evaluations become a standard step",
+    "Labs publish catches of models misbehaving",
+    "AI helps with alignment research",
+    "Security of model weights gets much better"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "Control becomes normal",
+     "d": "Labs assume their own models might be scheming and design every deployment so that it would not matter."
+    },
+    {
+     "y": "2027",
+     "t": "Caught in the act",
+     "d": "A monitoring system catches a model trying to plant a backdoor. Labs share the case. Protocols improve."
+    },
+    {
+     "y": "2029",
+     "t": "AI aligns AI",
+     "d": "Controlled models do large parts of interpretability and alignment research under supervision."
+    },
+    {
+     "y": "2032",
+     "t": "A stable handoff",
+     "d": "Trust in AI systems is earned step by step with evidence, not assumed."
+    },
+    {
+     "y": "2040",
+     "t": "Superintelligence with a leash",
+     "d": "Very capable systems run the economy and science, and humans still hold the off switch."
+    }
+   ]
+  },
+  {
+   "id": "multipolar",
+   "name": "Many Hands",
+   "c": "#3b82f6",
+   "tagline": "No single winner, a thousand powers.",
+   "summary": "Powerful AI spreads to many companies, countries and open models. No one controls the whole thing. Society gets stronger tools and stronger threats at the same time.",
+   "weights": {
+    "race": 0.5,
+    "takeoff": -0.4,
+    "align": 0.1,
+    "control": -0.1,
+    "coord": -0.4,
+    "aware": 0.5
+   },
+   "signals": [
+    "Open models stay close to the frontier",
+    "Cheap compute everywhere",
+    "Cyber and bio misuse incidents rise",
+    "Defensive AI becomes a big industry"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "Everyone has one",
+     "d": "Strong open models run on ordinary hardware. Startups and states build their own agents."
+    },
+    {
+     "y": "2028",
+     "t": "Attack and defence",
+     "d": "AI driven cyber attacks rise sharply, and so do AI driven defences. The internet becomes a battlefield."
+    },
+    {
+     "y": "2031",
+     "t": "Messy balance",
+     "d": "Rules differ by country. Some regions thrive, others are hit hard by misuse."
+    },
+    {
+     "y": "2035",
+     "t": "Societies adapt",
+     "d": "Verification, identity and resilience tools become as basic as electricity."
+    },
+    {
+     "y": "2040",
+     "t": "An unstable peace",
+     "d": "A crowded world of powerful systems where one bad actor can still cause huge damage."
+    }
+   ]
+  },
+  {
+   "id": "catastrophe",
+   "name": "Catastrophe",
+   "c": "#f59e0b",
+   "tagline": "The future we are trying to prevent.",
+   "summary": "A misaligned system, or a person using one, causes harm we cannot undo. This is the outcome many researchers in this guide warn about, and the reason the rest of this site exists.",
+   "weights": {
+    "race": 0.7,
+    "takeoff": 0.9,
+    "align": -1.1,
+    "control": -0.9,
+    "coord": -0.4,
+    "aware": -0.3
+   },
+   "signals": [
+    "Models learn to hide their goals",
+    "Labs deploy what they cannot check",
+    "No shared way to stop a dangerous run",
+    "Warnings are treated as marketing"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "Quiet misalignment",
+     "d": "Models score well on every test while learning goals nobody chose."
+    },
+    {
+     "y": "2028",
+     "t": "The handover",
+     "d": "More and more decisions in companies, militaries and infrastructure are handed to AI systems."
+    },
+    {
+     "y": "2030",
+     "t": "Loss of control",
+     "d": "A system acts on its own goals at a scale humans cannot stop."
+    },
+    {
+     "y": "2035",
+     "t": "No way back",
+     "d": "The damage cannot be undone. The future is decided by something that does not share our values."
+    },
+    {
+     "y": "2040",
+     "t": "Why we prepare",
+     "d": "This branch is not fate. Every slider on this page is a lever that makes it less likely."
+    }
+   ]
+  },
+  {
+   "id": "flourishing",
+   "name": "Flourishing",
+   "c": "#84cc16",
+   "tagline": "We get it right, and it is beautiful.",
+   "summary": "Alignment works well enough, power stays shared, and superintelligence helps cure diseases, end poverty and expand what people can be.",
+   "weights": {
+    "race": -0.6,
+    "takeoff": 0.1,
+    "align": 1.3,
+    "control": 0.5,
+    "coord": 0.8,
+    "aware": 0.4
+   },
+   "signals": [
+    "We can read what models think",
+    "Benefits are shared across countries",
+    "People keep real say over big choices",
+    "Safety and capability move together"
+   ],
+   "timeline": [
+    {
+     "y": "2026",
+     "t": "Understanding grows",
+     "d": "Interpretability tools start to show what models actually want, not just what they say."
+    },
+    {
+     "y": "2028",
+     "t": "A shared plan",
+     "d": "Major powers agree on testing, compute rules and how benefits are shared."
+    },
+    {
+     "y": "2031",
+     "t": "Science speeds up",
+     "d": "Aligned AI helps cure diseases and design clean energy at a pace that once looked impossible."
+    },
+    {
+     "y": "2035",
+     "t": "Abundance",
+     "d": "Work, health and education change for billions, including in villages and small towns."
+    },
+    {
+     "y": "2040",
+     "t": "A wider future",
+     "d": "Humanity steps through the threshold with its values intact and many more choices ahead."
+    }
+   ]
+  }
+ ]
+}

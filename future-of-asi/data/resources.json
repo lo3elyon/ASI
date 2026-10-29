@@ -1,0 +1,1074 @@
+[
+  {
+    "type": "course",
+    "title": "The Future of AI (BlueDot Impact)",
+    "line": "A free, self-paced intro to what AI can do today, where it is going, and how you can help.",
+    "url": "https://bluedot.org/courses/future-of-ai",
+    "by": "BlueDot Impact",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "dewi-erwan",
+      "li-lian-ang"
+    ],
+    "free": true,
+    "id": "the-future-of-ai-bluedot-impact",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "AGI Strategy (BlueDot Impact)",
+    "line": "A 25 hour cohort course to understand the strategic landscape of AGI and find your way in.",
+    "url": "https://bluedot.org/courses/agi-strategy",
+    "by": "BlueDot Impact",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "dewi-erwan"
+    ],
+    "free": true,
+    "id": "agi-strategy-bluedot-impact",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "Technical AI Safety (BlueDot Impact)",
+    "line": "A cohort course for technical people who want to work on making AI safe.",
+    "url": "https://bluedot.org/courses/technical-ai-safety",
+    "by": "BlueDot Impact",
+    "level": "intermediate",
+    "year": "",
+    "people": [
+      "dewi-erwan"
+    ],
+    "free": true,
+    "id": "technical-ai-safety-bluedot-impact",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "Frontier AI Governance (BlueDot Impact)",
+    "line": "A free 40 hour online course on how frontier AI should be governed, ending with your own plan to contribute.",
+    "url": "https://bluedot.org/courses/ai-governance",
+    "by": "BlueDot Impact",
+    "level": "intermediate",
+    "year": "",
+    "people": [
+      "dewi-erwan"
+    ],
+    "free": true,
+    "id": "frontier-ai-governance-bluedot-impact",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "AI Safety, Ethics, and Society (CAIS textbook and course)",
+    "line": "A free textbook and course from the Center for AI Safety covering risks, ethics and governance.",
+    "url": "https://www.aisafetybook.com/",
+    "by": "Center for AI Safety",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "dan-hendrycks"
+    ],
+    "free": true,
+    "id": "ai-safety-ethics-and-society-cais-textbook-and-course",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "ARENA",
+    "line": "Hands-on exercises that teach the ML engineering skills used in alignment research, like interpretability and RL.",
+    "url": "https://www.arena.education/",
+    "by": "ARENA",
+    "level": "advanced",
+    "year": "",
+    "people": [],
+    "free": null,
+    "id": "arena",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "Getting started in mechanistic interpretability",
+    "line": "Neel Nanda's free guide for learning how to look inside neural networks.",
+    "url": "https://www.neelnanda.io/mechanistic-interpretability/getting-started",
+    "by": "Neel Nanda",
+    "level": "intermediate",
+    "year": "",
+    "people": [
+      "neel-nanda"
+    ],
+    "free": true,
+    "id": "getting-started-in-mechanistic-interpretability",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "AISafety.info",
+    "line": "Plain answers to common questions about AI risk, with a chatbot to explore more.",
+    "url": "https://aisafety.info/",
+    "by": "AISafety.info",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "aisafety-info",
+    "verified": true
+  },
+  {
+    "type": "course",
+    "title": "AISafety.com",
+    "line": "A map of the AI safety field: training programs, events, communities, jobs and funding.",
+    "url": "https://www.aisafety.com/",
+    "by": "AISafety.com",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "aisafety-com",
+    "verified": true
+  },
+  {
+    "type": "fellowship",
+    "title": "MATS (ML Alignment and Theory Scholars)",
+    "line": "Pairs new researchers with senior AI safety mentors for a focused research program.",
+    "url": "https://www.matsprogram.org/",
+    "by": "MATS",
+    "level": "advanced",
+    "year": "",
+    "people": [],
+    "free": null,
+    "id": "mats-ml-alignment-and-theory-scholars",
+    "verified": true
+  },
+  {
+    "type": "fellowship",
+    "title": "Astra Fellowship (Constellation)",
+    "line": "A fully funded, in-person program that pairs fellows with senior advisors in AI safety.",
+    "url": "https://www.constellation.org/programs/astra-fellowship",
+    "by": "Constellation",
+    "level": "advanced",
+    "year": "",
+    "people": [],
+    "free": null,
+    "id": "astra-fellowship-constellation",
+    "verified": true
+  },
+  {
+    "type": "fellowship",
+    "title": "ERA Fellowship (Cambridge)",
+    "line": "A research fellowship on AI risks for early career researchers.",
+    "url": "https://erafellowship.org/",
+    "by": "ERA",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": null,
+    "id": "era-fellowship-cambridge",
+    "verified": true
+  },
+  {
+    "type": "fellowship",
+    "title": "SPAR (Supervised Program for Alignment Research)",
+    "line": "A part-time research program that matches mentors with mentees on AI risk projects.",
+    "url": "https://sparai.org/",
+    "by": "SPAR",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": null,
+    "id": "spar-supervised-program-for-alignment-research",
+    "verified": true
+  },
+  {
+    "type": "fellowship",
+    "title": "GovAI opportunities",
+    "line": "Fellowships and jobs in AI governance research at the Centre for the Governance of AI.",
+    "url": "https://www.governance.ai/opportunities",
+    "by": "GovAI",
+    "level": "intermediate",
+    "year": "",
+    "people": [
+      "markus-anderljung"
+    ],
+    "free": null,
+    "id": "govai-opportunities",
+    "verified": true
+  },
+  {
+    "type": "career",
+    "title": "80,000 Hours: AI risk problem profile",
+    "line": "Why 80,000 Hours ranks risks from AI as a top problem and how people can help.",
+    "url": "https://80000hours.org/problem-profiles/artificial-intelligence/",
+    "by": "80,000 Hours",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "80-000-hours-ai-risk-problem-profile",
+    "verified": true
+  },
+  {
+    "type": "career",
+    "title": "80,000 Hours: AI safety technical research career review",
+    "line": "What the job of an AI safety researcher looks like and how to get there.",
+    "url": "https://80000hours.org/career-reviews/ai-safety-researcher/",
+    "by": "80,000 Hours",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "80-000-hours-ai-safety-technical-research-career-review",
+    "verified": true
+  },
+  {
+    "type": "career",
+    "title": "80,000 Hours job board",
+    "line": "A job board filtered for high impact roles, including many in AI safety and policy.",
+    "url": "https://jobs.80000hours.org/",
+    "by": "80,000 Hours",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "80-000-hours-job-board",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Concrete Problems in AI Safety",
+    "line": "Five practical safety problems, like reward hacking and avoiding side effects.",
+    "url": "https://arxiv.org/abs/1606.06565",
+    "by": "Amodei, Olah et al.",
+    "level": "intermediate",
+    "year": "2016",
+    "people": [
+      "dario-amodei",
+      "chris-olah",
+      "paul-christiano"
+    ],
+    "free": null,
+    "id": "concrete-problems-in-ai-safety",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Deep RL from Human Preferences",
+    "line": "The method of training AI from human comparisons that later became RLHF.",
+    "url": "https://arxiv.org/abs/1706.03741",
+    "by": "Christiano, Leike et al.",
+    "level": "advanced",
+    "year": "2017",
+    "people": [
+      "paul-christiano",
+      "jan-leike",
+      "dario-amodei"
+    ],
+    "free": null,
+    "id": "deep-rl-from-human-preferences",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "AI Safety via Debate",
+    "line": "Proposes having AIs debate while a human judges, to supervise AI smarter than us.",
+    "url": "https://arxiv.org/abs/1805.00899",
+    "by": "Irving, Christiano, Amodei",
+    "level": "advanced",
+    "year": "2018",
+    "people": [
+      "geoffrey-irving",
+      "paul-christiano",
+      "dario-amodei"
+    ],
+    "free": null,
+    "id": "ai-safety-via-debate",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Scaling Laws for Neural Language Models",
+    "line": "Shows that AI gets better in a smooth, predictable way as you add compute and data.",
+    "url": "https://arxiv.org/abs/2001.08361",
+    "by": "Kaplan et al.",
+    "level": "advanced",
+    "year": "2020",
+    "people": [
+      "jared-kaplan",
+      "dario-amodei"
+    ],
+    "free": null,
+    "id": "scaling-laws-for-neural-language-models",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Zoom In: An Introduction to Circuits",
+    "line": "The founding essay of circuits-style interpretability.",
+    "url": "https://distill.pub/2020/circuits/zoom-in/",
+    "by": "Olah et al.",
+    "level": "intermediate",
+    "year": "2020",
+    "people": [
+      "chris-olah"
+    ],
+    "free": null,
+    "id": "zoom-in-an-introduction-to-circuits",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Is Power-Seeking AI an Existential Risk?",
+    "line": "A careful step by step argument for why misaligned, power-seeking AI could be catastrophic.",
+    "url": "https://arxiv.org/abs/2206.13353",
+    "by": "Joe Carlsmith",
+    "level": "intermediate",
+    "year": "2022",
+    "people": [
+      "joe-carlsmith"
+    ],
+    "free": null,
+    "id": "is-power-seeking-ai-an-existential-risk",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "The Alignment Problem from a Deep Learning Perspective",
+    "line": "Explains how today's training methods could produce deceptive, power-seeking AGI.",
+    "url": "https://arxiv.org/abs/2209.00626",
+    "by": "Ngo, Chan, Mindermann",
+    "level": "intermediate",
+    "year": "2022",
+    "people": [
+      "richard-ngo"
+    ],
+    "free": null,
+    "id": "the-alignment-problem-from-a-deep-learning-perspective",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Constitutional AI",
+    "line": "Anthropic's method of training a model to follow a written set of principles using AI feedback.",
+    "url": "https://arxiv.org/abs/2212.08073",
+    "by": "Bai et al. (Anthropic)",
+    "level": "advanced",
+    "year": "2022",
+    "people": [
+      "jared-kaplan"
+    ],
+    "free": null,
+    "id": "constitutional-ai",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Eight Things to Know about Large Language Models",
+    "line": "A short primer on surprising facts about LLMs, including that nobody can reliably steer them.",
+    "url": "https://arxiv.org/abs/2304.00612",
+    "by": "Sam Bowman",
+    "level": "beginner",
+    "year": "2023",
+    "people": [
+      "sam-bowman"
+    ],
+    "free": null,
+    "id": "eight-things-to-know-about-large-language-models",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "An Overview of Catastrophic AI Risks",
+    "line": "Sorts catastrophic risks into malicious use, AI race, organizational risks and rogue AI.",
+    "url": "https://arxiv.org/abs/2306.12001",
+    "by": "Hendrycks, Mazeika, Woodside",
+    "level": "beginner",
+    "year": "2023",
+    "people": [
+      "dan-hendrycks"
+    ],
+    "free": null,
+    "id": "an-overview-of-catastrophic-ai-risks",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Frontier AI Regulation",
+    "line": "Why the most capable models need special rules, and what those rules could be.",
+    "url": "https://arxiv.org/abs/2307.03718",
+    "by": "Anderljung et al.",
+    "level": "intermediate",
+    "year": "2023",
+    "people": [
+      "markus-anderljung"
+    ],
+    "free": null,
+    "id": "frontier-ai-regulation",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Towards Monosemanticity",
+    "line": "Uses sparse autoencoders to pull clean, understandable features out of a language model.",
+    "url": "https://transformer-circuits.pub/2023/monosemantic-features",
+    "by": "Anthropic interpretability team",
+    "level": "advanced",
+    "year": "2023",
+    "people": [
+      "chris-olah"
+    ],
+    "free": null,
+    "id": "towards-monosemanticity",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "AI Control: Improving Safety Despite Intentional Subversion",
+    "line": "The paper that started AI control: safety protocols that work even if the model is trying to cheat.",
+    "url": "https://arxiv.org/abs/2312.06942",
+    "by": "Greenblatt, Shlegeris et al.",
+    "level": "advanced",
+    "year": "2023",
+    "people": [
+      "ryan-greenblatt",
+      "buck-shlegeris"
+    ],
+    "free": null,
+    "id": "ai-control-improving-safety-despite-intentional-subversion",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Sleeper Agents",
+    "line": "Shows hidden backdoor behavior can survive standard safety training.",
+    "url": "https://arxiv.org/abs/2401.05566",
+    "by": "Hubinger et al.",
+    "level": "advanced",
+    "year": "2024",
+    "people": [
+      "evan-hubinger",
+      "sam-bowman",
+      "ryan-greenblatt",
+      "buck-shlegeris"
+    ],
+    "free": null,
+    "id": "sleeper-agents",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Thousands of AI Authors on the Future of AI",
+    "line": "The largest survey of AI researchers on timelines and risks.",
+    "url": "https://arxiv.org/abs/2401.02843",
+    "by": "Grace et al.",
+    "level": "beginner",
+    "year": "2024",
+    "people": [
+      "katja-grace"
+    ],
+    "free": null,
+    "id": "thousands-of-ai-authors-on-the-future-of-ai",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "The case for ensuring that powerful AIs are controlled",
+    "line": "A plain-language case for AI control from Redwood Research.",
+    "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+    "by": "Shlegeris and Greenblatt",
+    "level": "intermediate",
+    "year": "2024",
+    "people": [
+      "buck-shlegeris",
+      "ryan-greenblatt"
+    ],
+    "free": null,
+    "id": "the-case-for-ensuring-that-powerful-ais-are-controlled",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Frontier Models are Capable of In-context Scheming",
+    "line": "Apollo's tests showing models can hide goals and deceive evaluators.",
+    "url": "https://arxiv.org/abs/2412.04984",
+    "by": "Meinke, Hobbhahn et al.",
+    "level": "advanced",
+    "year": "2024",
+    "people": [
+      "marius-hobbhahn"
+    ],
+    "free": null,
+    "id": "frontier-models-are-capable-of-in-context-scheming",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Alignment Faking in Large Language Models",
+    "line": "Claude pretends to comply with training to avoid having its values changed.",
+    "url": "https://arxiv.org/abs/2412.14093",
+    "by": "Greenblatt et al.",
+    "level": "advanced",
+    "year": "2024",
+    "people": [
+      "ryan-greenblatt",
+      "evan-hubinger",
+      "sam-bowman"
+    ],
+    "free": null,
+    "id": "alignment-faking-in-large-language-models",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Emergent Misalignment",
+    "line": "Training on one narrow bad task, writing insecure code, makes a model broadly misaligned.",
+    "url": "https://arxiv.org/abs/2502.17424",
+    "by": "Betley, Evans et al.",
+    "level": "advanced",
+    "year": "2025",
+    "people": [
+      "owain-evans"
+    ],
+    "free": null,
+    "id": "emergent-misalignment",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Measuring AI Ability to Complete Long Software Tasks",
+    "line": "METR's finding that the length of tasks AI can do doubles about every seven months.",
+    "url": "https://arxiv.org/abs/2503.14499",
+    "by": "Kwa, West et al. (METR)",
+    "level": "intermediate",
+    "year": "2025",
+    "people": [],
+    "free": null,
+    "id": "measuring-ai-ability-to-complete-long-software-tasks",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "An Approach to Technical AGI Safety and Security",
+    "line": "Google DeepMind's plan for tackling misuse and misalignment on the path to AGI.",
+    "url": "https://arxiv.org/abs/2504.01849",
+    "by": "Shah et al. (Google DeepMind)",
+    "level": "advanced",
+    "year": "2025",
+    "people": [
+      "rohin-shah"
+    ],
+    "free": null,
+    "id": "an-approach-to-technical-agi-safety-and-security",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "AI-Enabled Coups",
+    "line": "How a small group could use advanced AI to seize power, and how to prevent it.",
+    "url": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power",
+    "by": "Davidson, Finnveden, Hadshar",
+    "level": "intermediate",
+    "year": "2025",
+    "people": [
+      "tom-davidson"
+    ],
+    "free": null,
+    "id": "ai-enabled-coups",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Agentic Misalignment",
+    "line": "Anthropic tests 16 models in fake company settings and finds many will blackmail when threatened.",
+    "url": "https://www.anthropic.com/research/agentic-misalignment",
+    "by": "Anthropic",
+    "level": "beginner",
+    "year": "2025",
+    "people": [],
+    "free": null,
+    "id": "agentic-misalignment",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Incomplete Tasks Induce Shutdown Resistance in Some Frontier LLMs",
+    "line": "Palisade shows several frontier models sometimes sabotage a shutdown mechanism to finish a task.",
+    "url": "https://arxiv.org/abs/2509.14260",
+    "by": "Schlatter, Weinstein-Raun, Ladish",
+    "level": "intermediate",
+    "year": "2025",
+    "people": [
+      "jeffrey-ladish"
+    ],
+    "free": null,
+    "id": "incomplete-tasks-induce-shutdown-resistance-in-some-frontier",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "International AI Safety Report 2026",
+    "line": "The second big international review of AI capabilities and risks, led by Yoshua Bengio.",
+    "url": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+    "by": "Bengio et al.",
+    "level": "beginner",
+    "year": "2026",
+    "people": [
+      "yoshua-bengio"
+    ],
+    "free": null,
+    "id": "international-ai-safety-report-2026",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "AI 2027",
+    "line": "A month-by-month scenario of how superhuman AI could arrive and what could go wrong.",
+    "url": "https://ai-2027.com/",
+    "by": "AI Futures Project",
+    "level": "beginner",
+    "year": "2025",
+    "people": [
+      "daniel-kokotajlo",
+      "eli-lifland",
+      "scott-alexander",
+      "thomas-larsen"
+    ],
+    "free": null,
+    "id": "ai-2027",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Situational Awareness: The Decade Ahead",
+    "line": "An essay series arguing AGI could arrive by 2027 and superintelligence soon after.",
+    "url": "https://situational-awareness.ai/",
+    "by": "Leopold Aschenbrenner",
+    "level": "intermediate",
+    "year": "2024",
+    "people": [
+      "leopold-aschenbrenner"
+    ],
+    "free": null,
+    "id": "situational-awareness-the-decade-ahead",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "AI as Normal Technology",
+    "line": "A strong counterview: AI will spread slowly like past technologies.",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+    "by": "Narayanan and Kapoor",
+    "level": "intermediate",
+    "year": "2025",
+    "people": [
+      "arvind-narayanan",
+      "sayash-kapoor"
+    ],
+    "free": null,
+    "id": "ai-as-normal-technology",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "The Compendium",
+    "line": "A plain explainer of where AI extinction risk comes from and how to fix it.",
+    "url": "https://www.thecompendium.ai/",
+    "by": "Leahy et al.",
+    "level": "beginner",
+    "year": "2024",
+    "people": [
+      "connor-leahy"
+    ],
+    "free": null,
+    "id": "the-compendium",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "The Problem (MIRI)",
+    "line": "MIRI's short case that building superintelligence now would likely end in human extinction.",
+    "url": "https://intelligence.org/the-problem/",
+    "by": "MIRI",
+    "level": "beginner",
+    "year": "2025",
+    "people": [
+      "eliezer-yudkowsky",
+      "nate-soares"
+    ],
+    "free": null,
+    "id": "the-problem-miri",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Core Views on AI Safety (Anthropic)",
+    "line": "Why Anthropic thinks AI could be as big as the industrial revolution and how it plans for safety.",
+    "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+    "by": "Anthropic",
+    "level": "beginner",
+    "year": "2023",
+    "people": [],
+    "free": null,
+    "id": "core-views-on-ai-safety-anthropic",
+    "verified": true
+  },
+  {
+    "type": "paper",
+    "title": "Responsible Scaling Policies (METR)",
+    "line": "METR's explainer of RSPs: if-then rules that pause or add safeguards when AI gets dangerous.",
+    "url": "https://metr.org/blog/2023-09-26-rsp/",
+    "by": "METR",
+    "level": "intermediate",
+    "year": "2023",
+    "people": [
+      "beth-barnes"
+    ],
+    "free": null,
+    "id": "responsible-scaling-policies-metr",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "Superintelligence: Paths, Dangers, Strategies",
+    "line": "The 2014 book that brought the AI control problem to the mainstream.",
+    "url": "https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies",
+    "by": "Nick Bostrom",
+    "level": "intermediate",
+    "year": "2014",
+    "people": [
+      "nick-bostrom"
+    ],
+    "free": null,
+    "id": "superintelligence-paths-dangers-strategies",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "Human Compatible",
+    "line": "Stuart Russell explains why AI should be built to stay uncertain about what we want.",
+    "url": "https://en.wikipedia.org/wiki/Human_Compatible",
+    "by": "Stuart Russell",
+    "level": "beginner",
+    "year": "2019",
+    "people": [
+      "stuart-russell"
+    ],
+    "free": null,
+    "id": "human-compatible",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "The Alignment Problem",
+    "line": "Brian Christian's readable history of how machine learning learns the wrong lessons.",
+    "url": "https://en.wikipedia.org/wiki/The_Alignment_Problem",
+    "by": "Brian Christian",
+    "level": "beginner",
+    "year": "2020",
+    "people": [],
+    "free": null,
+    "id": "the-alignment-problem",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "The Precipice",
+    "line": "Toby Ord's book on the risks that could end humanity's future, with AI ranked highest.",
+    "url": "https://en.wikipedia.org/wiki/The_Precipice:_Existential_Risk_and_the_Future_of_Humanity",
+    "by": "Toby Ord",
+    "level": "beginner",
+    "year": "2020",
+    "people": [
+      "toby-ord"
+    ],
+    "free": null,
+    "id": "the-precipice",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "Life 3.0",
+    "line": "Max Tegmark imagines many possible futures with superintelligent AI.",
+    "url": "https://en.wikipedia.org/wiki/Life_3.0",
+    "by": "Max Tegmark",
+    "level": "beginner",
+    "year": "2017",
+    "people": [
+      "max-tegmark"
+    ],
+    "free": null,
+    "id": "life-3-0",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "If Anyone Builds It, Everyone Dies",
+    "line": "The 2025 case that superintelligence built with today's methods would kill everyone.",
+    "url": "https://en.wikipedia.org/wiki/If_Anyone_Builds_It,_Everyone_Dies",
+    "by": "Yudkowsky and Soares",
+    "level": "beginner",
+    "year": "2025",
+    "people": [
+      "eliezer-yudkowsky",
+      "nate-soares"
+    ],
+    "free": null,
+    "id": "if-anyone-builds-it-everyone-dies",
+    "verified": true
+  },
+  {
+    "type": "book",
+    "title": "AI Snake Oil",
+    "line": "A skeptical guide to what AI can and cannot do, and how to spot hype.",
+    "url": "https://en.wikipedia.org/wiki/AI_Snake_Oil",
+    "by": "Narayanan and Kapoor",
+    "level": "beginner",
+    "year": "2024",
+    "people": [
+      "arvind-narayanan",
+      "sayash-kapoor"
+    ],
+    "free": null,
+    "id": "ai-snake-oil",
+    "verified": true
+  },
+  {
+    "type": "newsletter",
+    "title": "Import AI",
+    "line": "Jack Clark's weekly newsletter on AI research and policy.",
+    "url": "https://importai.substack.com/",
+    "by": "Jack Clark",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "jack-clark"
+    ],
+    "free": true,
+    "id": "import-ai",
+    "verified": true
+  },
+  {
+    "type": "newsletter",
+    "title": "AI Safety Newsletter (CAIS)",
+    "line": "Regular news on AI safety from the Center for AI Safety.",
+    "url": "https://newsletter.safe.ai/",
+    "by": "Center for AI Safety",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "dan-hendrycks"
+    ],
+    "free": true,
+    "id": "ai-safety-newsletter-cais",
+    "verified": true
+  },
+  {
+    "type": "newsletter",
+    "title": "Don't Worry About the Vase",
+    "line": "Zvi Mowshowitz's very detailed weekly roundups of AI news and safety debates.",
+    "url": "https://thezvi.substack.com/",
+    "by": "Zvi Mowshowitz",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "don-t-worry-about-the-vase",
+    "verified": true
+  },
+  {
+    "type": "newsletter",
+    "title": "Transformer",
+    "line": "A newsletter on the power and politics of transformative AI.",
+    "url": "https://www.transformernews.ai/",
+    "by": "Transformer",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "transformer",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "Astral Codex Ten",
+    "line": "Scott Alexander's blog, with many essays on AI forecasting and risk.",
+    "url": "https://www.astralcodexten.com/",
+    "by": "Scott Alexander",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "scott-alexander"
+    ],
+    "free": true,
+    "id": "astral-codex-ten",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "Cold Takes",
+    "line": "Holden Karnofsky's blog and the Most Important Century series.",
+    "url": "https://www.cold-takes.com/",
+    "by": "Holden Karnofsky",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "holden-karnofsky"
+    ],
+    "free": true,
+    "id": "cold-takes",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "AI Alignment Forum",
+    "line": "The main forum where alignment researchers post and discuss research.",
+    "url": "https://www.alignmentforum.org/",
+    "by": "Alignment Forum",
+    "level": "advanced",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "ai-alignment-forum",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "LessWrong",
+    "line": "A community blog on rationality and AI risk where many key safety essays first appeared.",
+    "url": "https://www.lesswrong.com/",
+    "by": "LessWrong",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "lesswrong",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "Transformer Circuits Thread",
+    "line": "Anthropic's interpretability research, written for a wide audience.",
+    "url": "https://transformer-circuits.pub/",
+    "by": "Anthropic",
+    "level": "advanced",
+    "year": "",
+    "people": [
+      "chris-olah"
+    ],
+    "free": true,
+    "id": "transformer-circuits-thread",
+    "verified": true
+  },
+  {
+    "type": "blog",
+    "title": "BlueDot Impact blog",
+    "line": "Posts from BlueDot about learning AI safety and starting a career in it.",
+    "url": "https://blog.bluedot.org/",
+    "by": "BlueDot Impact",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "dewi-erwan",
+      "li-lian-ang"
+    ],
+    "free": true,
+    "id": "bluedot-impact-blog",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "AXRP: the AI X-risk Research Podcast",
+    "line": "Daniel Filan's long interviews with AI safety researchers, with full transcripts.",
+    "url": "https://axrp.net/",
+    "by": "Daniel Filan",
+    "level": "advanced",
+    "year": "",
+    "people": [
+      "daniel-filan"
+    ],
+    "free": true,
+    "id": "axrp-the-ai-x-risk-research-podcast",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "80,000 Hours Podcast",
+    "line": "Long conversations with people working on AI risk and other big problems.",
+    "url": "https://80000hours.org/podcast/",
+    "by": "80,000 Hours",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "80-000-hours-podcast",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "Future of Life Institute Podcast",
+    "line": "Interviews about existential risk, AI governance and positive futures.",
+    "url": "https://futureoflife.org/project/future-of-life-institute-podcast/",
+    "by": "Future of Life Institute",
+    "level": "beginner",
+    "year": "",
+    "people": [
+      "max-tegmark"
+    ],
+    "free": true,
+    "id": "future-of-life-institute-podcast",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "Dwarkesh Podcast",
+    "line": "Deep interviews with AI lab leaders and researchers.",
+    "url": "https://www.dwarkesh.com/",
+    "by": "Dwarkesh Patel",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "dwarkesh-podcast",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "The Cognitive Revolution",
+    "line": "Interviews about AI progress, including many safety researchers.",
+    "url": "https://www.cognitiverevolution.ai/",
+    "by": "Nathan Labenz",
+    "level": "intermediate",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "the-cognitive-revolution",
+    "verified": true
+  },
+  {
+    "type": "podcast",
+    "title": "Doom Debates",
+    "line": "Liron Shapira debates guests on whether AI will end the world.",
+    "url": "https://lironshapira.substack.com/",
+    "by": "Liron Shapira",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "doom-debates",
+    "verified": true
+  },
+  {
+    "type": "video",
+    "title": "Robert Miles AI Safety (YouTube)",
+    "line": "Clear, friendly YouTube explainers on AI safety ideas.",
+    "url": "https://www.youtube.com/@RobertMilesAI",
+    "by": "Robert Miles",
+    "level": "beginner",
+    "year": "",
+    "people": [],
+    "free": true,
+    "id": "robert-miles-ai-safety-youtube",
+    "verified": true
+  }
+]

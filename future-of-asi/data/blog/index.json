@@ -1,0 +1,149 @@
+{
+ "author": "Aniruddha Adak",
+ "posts": [
+  {
+   "slug": "why-i-built-threshold",
+   "title": "Why I built Threshold",
+   "excerpt": "I kept reading warnings from the people who built modern AI, and I wanted one calm place where anyone could see them, check them and do something.",
+   "date": "2026-10-29",
+   "tags": [
+    "personal",
+    "launch"
+   ],
+   "cover": "threshold-door",
+   "mins": 2,
+   "words": 442
+  },
+  {
+   "slug": "future-of-asi-in-simple-words",
+   "title": "The future of ASI, in simple words",
+   "excerpt": "What artificial superintelligence actually means, why it might come faster than we think, and the few big ways the story can go.",
+   "date": "2026-10-29",
+   "tags": [
+    "basics",
+    "futures"
+   ],
+   "cover": "cover-futures",
+   "mins": 2,
+   "words": 428
+  },
+  {
+   "slug": "why-the-builders-are-warning-us",
+   "title": "Why the people who built AI are warning us",
+   "excerpt": "It is unusual for the inventors of a technology to say it might end us. Here is what they are actually worried about.",
+   "date": "2026-10-29",
+   "tags": [
+    "researchers",
+    "warnings"
+   ],
+   "cover": "cover-voices",
+   "mins": 2,
+   "words": 376
+  },
+  {
+   "slug": "ai-control-like-an-exam-hall",
+   "title": "AI control, explained like an exam hall",
+   "excerpt": "The simplest way I found to explain trusted monitoring, audits and honeypots is a college exam with a strict invigilator.",
+   "date": "2026-10-29",
+   "tags": [
+    "ai control",
+    "explainer"
+   ],
+   "cover": "cover-control",
+   "mins": 2,
+   "words": 389
+  },
+  {
+   "slug": "what-a-student-in-india-can-do",
+   "title": "What a student in India can do about AI safety",
+   "excerpt": "You do not need to live in San Francisco or work at a top lab. Here is the practical path I would follow from a hostel room.",
+   "date": "2026-10-29",
+   "tags": [
+    "careers",
+    "india",
+    "students"
+   ],
+   "cover": "cover-learn",
+   "mins": 2,
+   "words": 347
+  },
+  {
+   "slug": "reading-pdoom-without-panic",
+   "title": "How I read p(doom) numbers without panicking",
+   "excerpt": "When someone says 20% or 90%, what does that actually mean, and what should you do with it?",
+   "date": "2026-10-29",
+   "tags": [
+    "pdoom",
+    "thinking"
+   ],
+   "cover": "cover-tools",
+   "mins": 2,
+   "words": 363
+  },
+  {
+   "slug": "what-ai-2027-changed",
+   "title": "What AI 2027 changed in my head",
+   "excerpt": "A detailed scenario made the abstract feel concrete. Here is what stuck with me, and what I think people get wrong about it.",
+   "date": "2026-10-29",
+   "tags": [
+    "forecasting",
+    "ai 2027"
+   ],
+   "cover": "cover-timeline",
+   "mins": 2,
+   "words": 331
+  },
+  {
+   "slug": "i-build-agents",
+   "title": "I build AI agents. Here is what scares me a little",
+   "excerpt": "From the inside of a hackathon, you see how fast agents are getting and how little anyone checks what they do.",
+   "date": "2026-10-29",
+   "tags": [
+    "agents",
+    "personal"
+   ],
+   "cover": "cover-watch",
+   "mins": 2,
+   "words": 334
+  },
+  {
+   "slug": "preparing-without-panic",
+   "title": "Preparing for catastrophe without panic",
+   "excerpt": "Preparation is not about bunkers. It is about being the kind of person, family and community that handles shocks well.",
+   "date": "2026-10-29",
+   "tags": [
+    "prepare",
+    "wellbeing"
+   ],
+   "cover": "cover-prepare",
+   "mins": 2,
+   "words": 291
+  },
+  {
+   "slug": "best-arguments-we-will-be-fine",
+   "title": "The best arguments that we will be fine",
+   "excerpt": "I spend a lot of time on warnings, so I want to give the hopeful side a fair hearing too.",
+   "date": "2026-10-29",
+   "tags": [
+    "debate",
+    "balance"
+   ],
+   "cover": "cover-orgs",
+   "mins": 2,
+   "words": 301
+  },
+  {
+   "slug": "start-big-fix-later-not-for-asi",
+   "title": "Start big, fix later, keep shipping. Except for this",
+   "excerpt": "My motto works for apps and hackathons. It is the wrong way to build superintelligence, and that difference is the whole point.",
+   "date": "2026-10-29",
+   "tags": [
+    "personal",
+    "philosophy"
+   ],
+   "cover": "hero-horizon",
+   "mins": 2,
+   "words": 297
+  }
+ ]
+}

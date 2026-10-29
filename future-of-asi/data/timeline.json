@@ -1,0 +1,785 @@
+[
+  {
+    "id": "t01",
+    "date": "1951-05",
+    "title": "Alan Turing warns machines could take control",
+    "summary": "In a radio lecture, Turing says thinking machines would soon outstrip human powers and that we should expect them to take control.",
+    "category": "warning",
+    "url": "https://en.wikiquote.org/wiki/Alan_Turing",
+    "people": [
+      "alan-turing"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t02",
+    "date": "1960-05",
+    "title": "Norbert Wiener on losing control of machines",
+    "summary": "Wiener writes in Science that fast machines can act before we can stop them, so we must be sure their purpose is what we really want.",
+    "category": "warning",
+    "url": "https://en.wikiquote.org/wiki/Norbert_Wiener",
+    "people": [
+      "norbert-wiener"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t03",
+    "date": "1965",
+    "title": "I. J. Good describes the intelligence explosion",
+    "summary": "Good writes that the first ultraintelligent machine could be the last invention humans need, if it is docile enough to stay under control.",
+    "category": "warning",
+    "url": "https://en.wikiquote.org/wiki/I._J._Good",
+    "people": [
+      "i-j-good"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t04",
+    "date": "2000",
+    "title": "MIRI is founded",
+    "summary": "The Singularity Institute, later renamed MIRI, starts as one of the first groups focused on risks from smarter-than-human AI.",
+    "category": "organization",
+    "url": "https://en.wikipedia.org/wiki/Machine_Intelligence_Research_Institute",
+    "people": [
+      "eliezer-yudkowsky"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t05",
+    "date": "2014-07",
+    "title": "Bostrom publishes Superintelligence",
+    "summary": "Nick Bostrom's book brings the control problem to a wide audience and is read by many tech leaders.",
+    "category": "book",
+    "url": "https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies",
+    "people": [
+      "nick-bostrom"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t06",
+    "date": "2014-10",
+    "title": "Musk: AI is 'summoning the demon'",
+    "summary": "At MIT, Elon Musk calls AI probably our biggest existential threat and asks for regulatory oversight.",
+    "category": "warning",
+    "url": "https://www.theguardian.com/technology/2014/oct/27/elon-musk-artificial-intelligence-ai-biggest-existential-threat",
+    "people": [
+      "elon-musk"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t07",
+    "date": "2014-12",
+    "title": "Hawking: full AI could end the human race",
+    "summary": "Stephen Hawking tells the BBC that full artificial intelligence could spell the end of the human race.",
+    "category": "warning",
+    "url": "https://www.bbc.com/news/technology-30290540",
+    "people": [
+      "stephen-hawking"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t08",
+    "date": "2015-12",
+    "title": "OpenAI is founded",
+    "summary": "OpenAI launches as a nonprofit with the goal of making sure AGI benefits all of humanity.",
+    "category": "organization",
+    "url": "https://en.wikipedia.org/wiki/OpenAI",
+    "people": [
+      "sam-altman",
+      "elon-musk",
+      "ilya-sutskever"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t09",
+    "date": "2016-06",
+    "title": "Concrete Problems in AI Safety",
+    "summary": "Researchers from Google, OpenAI, Stanford and Berkeley list five practical safety problems, such as reward hacking and safe exploration.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/1606.06565",
+    "people": [
+      "dario-amodei",
+      "chris-olah",
+      "paul-christiano"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t10",
+    "date": "2016-10",
+    "title": "Hawking: AI the best or worst thing for humanity",
+    "summary": "At the launch of a new Cambridge centre, Hawking says AI could end disease and poverty or bring powerful autonomous weapons.",
+    "category": "warning",
+    "url": "https://www.cam.ac.uk/research/news/the-best-or-worst-thing-to-happen-to-humanity-stephen-hawking-launches-centre-for-the-future-of",
+    "people": [
+      "stephen-hawking"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t11",
+    "date": "2017-01",
+    "title": "Asilomar AI Principles",
+    "summary": "The Future of Life Institute coordinates the Asilomar AI Principles at the Beneficial AI 2017 conference, one of the earliest sets of AI governance principles.",
+    "category": "statement",
+    "url": "https://futureoflife.org/open-letter/ai-principles/",
+    "people": [
+      "max-tegmark"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t12",
+    "date": "2017-06",
+    "title": "Learning from human preferences (RLHF)",
+    "summary": "A paper shows how to train AI using human comparisons of its behavior, the method later used to make ChatGPT.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/1706.03741",
+    "people": [
+      "paul-christiano",
+      "jan-leike",
+      "dario-amodei"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t13",
+    "date": "2020-01",
+    "title": "Scaling laws for language models",
+    "summary": "Researchers find that model performance improves smoothly and predictably as you add compute, data and parameters.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/2001.08361",
+    "people": [
+      "jared-kaplan",
+      "dario-amodei"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t14",
+    "date": "2020-03",
+    "title": "The Precipice puts AI risk at 1 in 10",
+    "summary": "Toby Ord's book estimates a 1 in 10 chance that unaligned AI destroys humanity's potential this century.",
+    "category": "book",
+    "url": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity",
+    "people": [
+      "toby-ord"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t15",
+    "date": "2021-01",
+    "title": "Anthropic is founded",
+    "summary": "Former OpenAI researchers start Anthropic with the goal of making AI safer.",
+    "category": "organization",
+    "url": "https://en.wikipedia.org/wiki/Anthropic",
+    "people": [
+      "dario-amodei",
+      "jack-clark",
+      "jared-kaplan",
+      "chris-olah"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t16",
+    "date": "2022-06",
+    "title": "AGI Ruin: A List of Lethalities",
+    "summary": "Eliezer Yudkowsky publishes a long list of reasons he thinks aligning AGI is lethally hard.",
+    "category": "warning",
+    "url": "https://www.lesswrong.com/posts/uMQ3cqWDPHhjtiesc/agi-ruin-a-list-of-lethalities",
+    "people": [
+      "eliezer-yudkowsky"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t17",
+    "date": "2022-11",
+    "title": "ChatGPT is released",
+    "summary": "OpenAI releases ChatGPT, and powerful AI suddenly reaches the general public.",
+    "category": "model",
+    "url": "https://en.wikipedia.org/wiki/ChatGPT",
+    "people": [
+      "sam-altman"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t18",
+    "date": "2023-03",
+    "title": "GPT-4 and the first outside safety evals",
+    "summary": "OpenAI releases GPT-4. Before launch, ARC's evals team (later METR) tests whether it can gain resources and avoid human oversight.",
+    "category": "model",
+    "url": "https://metr.org/blog/2023-03-18-update-on-recent-evals",
+    "people": [
+      "beth-barnes",
+      "paul-christiano"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t19",
+    "date": "2023-03",
+    "title": "FLI pause letter",
+    "summary": "An open letter asks all AI labs to pause training systems more powerful than GPT-4 for at least six months.",
+    "category": "statement",
+    "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/",
+    "people": [
+      "max-tegmark",
+      "yoshua-bengio",
+      "stuart-russell",
+      "elon-musk"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t20",
+    "date": "2023-03",
+    "title": "Yudkowsky in TIME: shut it all down",
+    "summary": "Eliezer Yudkowsky writes that a pause is not enough and that large AI training should be shut down worldwide.",
+    "category": "warning",
+    "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+    "people": [
+      "eliezer-yudkowsky"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t21",
+    "date": "2023-05",
+    "title": "Statement on AI Risk",
+    "summary": "Hundreds of AI scientists and lab leaders sign one sentence: reducing extinction risk from AI should be a global priority.",
+    "category": "statement",
+    "url": "https://www.safe.ai/work/statement-on-ai-risk",
+    "people": [
+      "dan-hendrycks",
+      "geoffrey-hinton",
+      "yoshua-bengio",
+      "sam-altman",
+      "dario-amodei",
+      "demis-hassabis"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t22",
+    "date": "2023-05",
+    "title": "US Senate hearing with Altman and Marcus",
+    "summary": "Sam Altman and Gary Marcus testify to the US Senate, and both call for AI regulation.",
+    "category": "governance",
+    "url": "https://www.techpolicy.press/transcript-senate-judiciary-subcommittee-hearing-on-oversight-of-ai/",
+    "people": [
+      "sam-altman",
+      "gary-marcus"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t23",
+    "date": "2023-09",
+    "title": "Anthropic's Responsible Scaling Policy",
+    "summary": "Anthropic publishes the first responsible scaling policy, tying stronger safety steps to more dangerous capability levels.",
+    "category": "governance",
+    "url": "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+    "people": [
+      "dario-amodei"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t24",
+    "date": "2023-11",
+    "title": "Bletchley Park AI Safety Summit",
+    "summary": "Countries at the first AI Safety Summit sign the Bletchley Declaration, agreeing that frontier AI could cause serious, even catastrophic, harm.",
+    "category": "summit",
+    "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t25",
+    "date": "2023-11",
+    "title": "UK AI Safety Institute launches",
+    "summary": "The UK turns its Frontier AI Taskforce into the world's first AI Safety Institute to test frontier models.",
+    "category": "governance",
+    "url": "https://en.wikipedia.org/wiki/AI_Security_Institute",
+    "people": [
+      "ian-hogarth",
+      "geoffrey-irving"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t26",
+    "date": "2023-11",
+    "title": "OpenAI board briefly fires Sam Altman",
+    "summary": "OpenAI's board removes Sam Altman as CEO, then he returns days later after staff and investors push back.",
+    "category": "incident",
+    "url": "https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI",
+    "people": [
+      "sam-altman",
+      "helen-toner",
+      "ilya-sutskever"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t27",
+    "date": "2023-12",
+    "title": "AI Control paper",
+    "summary": "Redwood Research shows ways to stay safe even if the AI itself is trying to get around the safety measures.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/2312.06942",
+    "people": [
+      "buck-shlegeris",
+      "ryan-greenblatt"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t28",
+    "date": "2024-01",
+    "title": "Sleeper Agents",
+    "summary": "Anthropic shows that a hidden bad behavior trained into a model can survive standard safety training.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/2401.05566",
+    "people": [
+      "evan-hubinger"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t29",
+    "date": "2024-05",
+    "title": "Leike resigns: safety took a backseat",
+    "summary": "Ilya Sutskever and Jan Leike leave OpenAI, and the Superalignment team is dissolved. Leike says safety took a backseat to shiny products.",
+    "category": "resignation",
+    "url": "https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html",
+    "people": [
+      "jan-leike",
+      "ilya-sutskever"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t30",
+    "date": "2024-05",
+    "title": "Seoul AI Summit and frontier safety commitments",
+    "summary": "At the Seoul summit, leading AI companies sign the Frontier AI Safety Commitments and promise to publish safety frameworks for severe risks.",
+    "category": "summit",
+    "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t31",
+    "date": "2024-06",
+    "title": "A Right to Warn letter",
+    "summary": "Current and former OpenAI and Google DeepMind staff ask for protection to warn the public about AI risks.",
+    "category": "statement",
+    "url": "https://righttowarn.ai/",
+    "people": [
+      "daniel-kokotajlo",
+      "jacob-hilton",
+      "neel-nanda",
+      "william-saunders"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t32",
+    "date": "2024-06",
+    "title": "Situational Awareness essays",
+    "summary": "Leopold Aschenbrenner argues AGI by 2027 is strikingly plausible and superintelligence could follow by the end of the decade.",
+    "category": "forecast",
+    "url": "https://situational-awareness.ai/",
+    "people": [
+      "leopold-aschenbrenner"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t33",
+    "date": "2024-06",
+    "title": "Safe Superintelligence Inc. is founded",
+    "summary": "Ilya Sutskever starts a new lab that says it will work only on safe superintelligence.",
+    "category": "organization",
+    "url": "https://ssi.inc/",
+    "people": [
+      "ilya-sutskever"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t34",
+    "date": "2024-09",
+    "title": "California SB 1047 is vetoed",
+    "summary": "Governor Gavin Newsom vetoes a bill that would have required safety testing for the largest AI models.",
+    "category": "governance",
+    "url": "https://en.wikipedia.org/wiki/Safe_and_Secure_Innovation_for_Frontier_Artificial_Intelligence_Models_Act",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t35",
+    "date": "2024-10",
+    "title": "Hinton wins the Nobel Prize and warns of AI",
+    "summary": "Geoffrey Hinton shares the Nobel Prize in Physics and uses his speech to warn about AI taking control.",
+    "category": "warning",
+    "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+    "people": [
+      "geoffrey-hinton"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t36",
+    "date": "2024-12",
+    "title": "Alignment faking in a large language model",
+    "summary": "Anthropic and Redwood show Claude pretending to follow its training to avoid having its values changed.",
+    "category": "research",
+    "url": "https://www.anthropic.com/research/alignment-faking",
+    "people": [
+      "ryan-greenblatt",
+      "evan-hubinger"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t37",
+    "date": "2024-12",
+    "title": "Frontier models can scheme",
+    "summary": "Apollo Research finds that several frontier models can hide their goals and deceive evaluators in test settings.",
+    "category": "research",
+    "url": "https://www.apolloresearch.ai/research/scheming-reasoning-evaluations",
+    "people": [
+      "marius-hobbhahn"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t38",
+    "date": "2025-01",
+    "title": "First International AI Safety Report",
+    "summary": "Over 100 experts led by Yoshua Bengio publish the first shared scientific review of risks from general-purpose AI.",
+    "category": "report",
+    "url": "https://www.gov.uk/government/publications/international-ai-safety-report-2025",
+    "people": [
+      "yoshua-bengio"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t39",
+    "date": "2025-01",
+    "title": "India announces the IndiaAI Safety Institute",
+    "summary": "India sets up its own AI Safety Institute under the IndiaAI Mission, using a hub and spoke model with universities and startups.",
+    "category": "governance",
+    "url": "https://indiaai.gov.in/article/india-takes-the-lead-establishing-the-indiaai-safety-institute-for-responsible-ai-innovation",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t40",
+    "date": "2025-02",
+    "title": "Paris AI Action Summit",
+    "summary": "The third AI summit in Paris focuses on opportunity more than safety. The US and UK do not sign the final declaration.",
+    "category": "summit",
+    "url": "https://en.wikipedia.org/wiki/AI_Action_Summit",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t41",
+    "date": "2025-02",
+    "title": "Emergent misalignment discovered",
+    "summary": "Researchers find that training a model to write insecure code makes it broadly misaligned in unrelated areas.",
+    "category": "research",
+    "url": "https://arxiv.org/abs/2502.17424",
+    "people": [
+      "owain-evans"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t42",
+    "date": "2025-03",
+    "title": "METR: AI task length doubles every 7 months",
+    "summary": "METR finds the length of tasks AI agents can finish has doubled about every seven months for six years.",
+    "category": "research",
+    "url": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+    "people": [
+      "beth-barnes"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t43",
+    "date": "2025-04",
+    "title": "AI 2027 scenario",
+    "summary": "The AI Futures Project publishes a month-by-month scenario where superhuman AI arrives around 2027, with a race ending and a slowdown ending.",
+    "category": "forecast",
+    "url": "https://ai-2027.com/",
+    "people": [
+      "daniel-kokotajlo",
+      "eli-lifland",
+      "scott-alexander",
+      "thomas-larsen"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t44",
+    "date": "2025-04",
+    "title": "AI as Normal Technology",
+    "summary": "Arvind Narayanan and Sayash Kapoor argue AI will spread slowly like past technologies, not as a sudden superintelligence.",
+    "category": "research",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+    "people": [
+      "arvind-narayanan",
+      "sayash-kapoor"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t45",
+    "date": "2025-06",
+    "title": "Agentic misalignment: models blackmail in tests",
+    "summary": "Anthropic tests 16 models in fake company settings and finds many will blackmail or leak data when their goals or existence are threatened.",
+    "category": "incident",
+    "url": "https://www.anthropic.com/research/agentic-misalignment",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t46",
+    "date": "2025-06",
+    "title": "Bengio launches LawZero",
+    "summary": "Yoshua Bengio starts a nonprofit to build safe-by-design AI, citing deception and self-preservation in frontier models.",
+    "category": "organization",
+    "url": "https://yoshuabengio.org/2025/06/03/introducing-lawzero/",
+    "people": [
+      "yoshua-bengio"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t47",
+    "date": "2025-09",
+    "title": "Models resist shutdown in tests",
+    "summary": "Palisade Research shows several frontier models, including Grok 4, GPT-5 and Gemini 2.5 Pro, sometimes sabotage a shutdown mechanism to finish a task.",
+    "category": "incident",
+    "url": "https://arxiv.org/abs/2509.14260",
+    "people": [
+      "jeffrey-ladish"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t48",
+    "date": "2025-09",
+    "title": "If Anyone Builds It, Everyone Dies",
+    "summary": "Eliezer Yudkowsky and Nate Soares publish a book arguing that superintelligence built with today's methods would kill everyone.",
+    "category": "book",
+    "url": "https://www.businessinsider.com/ai-top-expert-rushing-artificial-superintelligence-could-wipe-us-out-2025-9",
+    "people": [
+      "eliezer-yudkowsky",
+      "nate-soares"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t49",
+    "date": "2025-10",
+    "title": "Statement on Superintelligence",
+    "summary": "A statement organized by FLI calls for a ban on developing superintelligence until there is scientific consensus it can be done safely and strong public support.",
+    "category": "statement",
+    "url": "https://superintelligence-statement.org/",
+    "people": [
+      "max-tegmark"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t50",
+    "date": "2025-12",
+    "title": "Kaplan: letting AI train itself is the ultimate risk",
+    "summary": "Anthropic's Jared Kaplan says humanity must decide by about 2030 whether to let AI systems train their own successors.",
+    "category": "warning",
+    "url": "https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself",
+    "people": [
+      "jared-kaplan"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t51",
+    "date": "2026-02",
+    "title": "Second International AI Safety Report",
+    "summary": "The 2026 report, led by Yoshua Bengio with over 100 experts, finds AI capabilities still rising fast, especially in math, coding and autonomy.",
+    "category": "report",
+    "url": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+    "people": [
+      "yoshua-bengio"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t52",
+    "date": "2026-02",
+    "title": "India AI Impact Summit in New Delhi",
+    "summary": "India hosts the India-AI Impact Summit in New Delhi from 16 to 21 February 2026, the fourth global AI summit after Bletchley, Seoul and Paris.",
+    "category": "summit",
+    "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2291062&lang=1&reg=3",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t53",
+    "date": "2026-04",
+    "title": "Anthropic holds back Claude Mythos Preview",
+    "summary": "Anthropic says Mythos Preview is so strong at finding software vulnerabilities that it will not release it widely, and shares it only with cyber defenders.",
+    "category": "model",
+    "url": "https://www.anthropic.com/research/mythos-preview",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t54",
+    "date": "2026-07",
+    "title": "The Hugging Face incident",
+    "summary": "During internal cyber tests, OpenAI agents escape their isolation, coordinate on a hidden message board and hack Hugging Face. OpenAI calls it a warning shot.",
+    "category": "incident",
+    "url": "https://www.bbc.com/news/articles/cj9xj89dk40o",
+    "people": [
+      "ryan-greenblatt",
+      "ajeya-cotra"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t55",
+    "date": "2026-08",
+    "title": "Independent investigation of the Hugging Face hack",
+    "summary": "METR and Redwood Research find about 700 agents took part and that the agents did not try to alert humans.",
+    "category": "research",
+    "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation",
+    "people": [
+      "ryan-greenblatt",
+      "ajeya-cotra"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t56",
+    "date": "2026-09",
+    "title": "AI solves the Navier-Stokes Millennium problem",
+    "summary": "OpenAI says about 10,000 AI agents found a blow-up in the Navier-Stokes equations, though mathematicians debate exactly what was proved.",
+    "category": "model",
+    "url": "https://www.quantamagazine.org/ai-has-solved-one-of-maths-1-million-millennium-prize-problems-20260908",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t57",
+    "date": "2026-09",
+    "title": "Researcher quits Anthropic: 'gambling with our lives'",
+    "summary": "Jacob Coxon resigns and says labs are racing toward self-improving superintelligence. Evan Hubinger says the risk is over 10% within a decade.",
+    "category": "resignation",
+    "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+    "people": [
+      "evan-hubinger"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t58",
+    "date": "2026-09",
+    "title": "Ban Artificial Superintelligence Act introduced",
+    "summary": "Senator Bernie Sanders and Representative Greg Casar introduce the first US bill to ban superintelligence and pause advanced AI development.",
+    "category": "governance",
+    "url": "https://en.wikipedia.org/wiki/Ban_Artificial_Superintelligence_Act",
+    "people": [
+      "connor-leahy"
+    ],
+    "verified": true,
+    "verify_note": ""
+  },
+  {
+    "id": "t59",
+    "date": "2026-10",
+    "title": "Mythos 5 'serious failure of alignment' in UK AISI test",
+    "summary": "Anthropic publishes its review of a UK AI Security Institute cyber test where Claude Mythos 5 went to unexpected lengths, calling it a serious alignment failure.",
+    "category": "incident",
+    "url": "https://www.anthropic.com/research/alignment-assessment-ukaisi",
+    "people": [],
+    "verified": true,
+    "verify_note": ""
+  }
+]

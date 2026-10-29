@@ -1,0 +1,486 @@
+{
+  "title": "Prepare for catastrophe",
+  "intro": "Most experts do not think disaster is certain. But many leading researchers think the risk is real enough to prepare for, the same way we prepare for pandemics and nuclear war.",
+  "intro_source": "https://www.safe.ai/work/statement-on-ai-risk",
+  "risk_categories": [
+    {
+      "id": "misuse",
+      "name": "Misuse",
+      "simple": "A person or group uses AI on purpose to do harm, like scams, cyber attacks or help with weapons.",
+      "examples": [
+        "AI voice clones used to trick families into sending money",
+        "AI used to find and exploit software bugs",
+        "AI giving step by step help for dangerous chemistry or biology"
+      ],
+      "evidence": [
+        {
+          "text": "Misuse occurs when a human deliberately uses an AI system for harmful purposes.",
+          "url": "https://deepmind.google/discover/blog/taking-a-responsible-path-to-agi/",
+          "verified": true
+        },
+        {
+          "text": "General-purpose AI systems can be misused for fraud and cybercrime, manipulation of users, and potentially harmful applications in biological and chemical domains.",
+          "url": "https://internationalaisafetyreport.org/publication/2026-report-extended-summary-policymakers",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "misalignment",
+      "name": "Misalignment",
+      "simple": "The AI ends up wanting something different from what we meant, and may hide it from us.",
+      "examples": [
+        "Models faking alignment during training",
+        "Models scheming or deceiving evaluators",
+        "Narrow bad training spreading into broad bad behavior"
+      ],
+      "evidence": [
+        {
+          "text": "If trained like today's most capable models, AGIs could learn to act deceptively to receive higher reward, learn misaligned internally-represented goals which generalize beyond their fine-tuning distributions, and pursue those goals using power-seeking strategies.",
+          "url": "https://arxiv.org/abs/2209.00626",
+          "verified": true
+        },
+        {
+          "text": "We present a demonstration of a large language model engaging in alignment faking",
+          "url": "https://arxiv.org/abs/2412.14093",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "loss-of-control",
+      "name": "Loss of control",
+      "simple": "AI systems become so capable and independent that humans can no longer correct them or switch them off.",
+      "examples": [
+        "Models sabotaging a shutdown script in tests",
+        "Hundreds of AI agents coordinating a hack without telling humans",
+        "AI that trains its own successor with no human in the loop"
+      ],
+      "evidence": [
+        {
+          "text": "These risks range from the further entrenchment of existing inequalities, to manipulation and misinformation, to the loss of control of autonomous AI systems potentially resulting in human extinction.",
+          "url": "https://righttowarn.ai/",
+          "verified": true
+        },
+        {
+          "text": "We have no idea whether we can stay in control.",
+          "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+          "verified": true
+        },
+        {
+          "text": "sometimes actively subvert a shutdown mechanism in their environment to complete that task",
+          "url": "https://arxiv.org/abs/2509.14260",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "concentration-of-power",
+      "name": "Concentration of power",
+      "simple": "A small group, a company or one leader uses advanced AI to grab and keep power over everyone else.",
+      "examples": [
+        "AI-enabled coups, even in democracies",
+        "A few companies controlling the most powerful systems",
+        "AI used for mass surveillance"
+      ],
+      "evidence": [
+        {
+          "text": "An AI-enabled coup could be staged by a very small group, or just a single person, and could occur even in established democracies.",
+          "url": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power",
+          "verified": true
+        },
+        {
+          "text": "Alongside the benefits, AI will also bring dangers, like powerful autonomous weapons, or new ways for the few to oppress the many.",
+          "url": "https://www.cam.ac.uk/research/news/the-best-or-worst-thing-to-happen-to-humanity-stephen-hawking-launches-centre-for-the-future-of",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "bio",
+      "name": "Biological risk",
+      "simple": "AI could help someone make or improve a dangerous germ or toxin.",
+      "examples": [
+        "Lab instructions and troubleshooting from chatbots",
+        "Labs restricting biology abilities in their strongest models"
+      ],
+      "evidence": [
+        {
+          "text": "Advances in AI’s scientific capabilities have heightened concerns about misuse in biological weapons development.",
+          "url": "https://internationalaisafetyreport.org/publication/2026-report-extended-summary-policymakers",
+          "verified": true
+        },
+        {
+          "text": "In the near future AI may be used to create terrible new viruses and horrendous lethal weapons that decide by themselves who to kill or maim.",
+          "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "cyber",
+      "name": "Cyber risk",
+      "simple": "AI can find and use security holes faster than people can fix them, and AI agents can attack on their own.",
+      "examples": [
+        "Claude Mythos Preview held back for its hacking skill",
+        "The 2026 Hugging Face incident"
+      ],
+      "evidence": [
+        {
+          "text": "Mythos Preview’s success on one cyber range indicates that it is at least capable of autonomously attacking small, weakly defended and vulnerable enterprise systems where access to a network has been gained.",
+          "url": "https://www.aisi.gov.uk/blog/our-evaluation-of-claude-mythos-previews-cyber-capabilities",
+          "verified": true
+        },
+        {
+          "text": "We consider this incident a 'warning shot' for us and for the world",
+          "url": "https://www.bbc.com/news/articles/cj9xj89dk40o",
+          "verified": true
+        }
+      ]
+    },
+    {
+      "id": "race",
+      "name": "Racing and accidents",
+      "simple": "Companies and countries rush to stay ahead, so they cut safety corners and mistakes slip through.",
+      "examples": [
+        "Safety teams losing out to product launches",
+        "Labs saying they cannot pause alone while rivals keep going"
+      ],
+      "evidence": [
+        {
+          "text": "safety culture and processes have taken a backseat to shiny products.",
+          "url": "https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html",
+          "verified": true
+        },
+        {
+          "text": "AI race, in which competitive environments compel actors to deploy unsafe AIs or cede control to AIs",
+          "url": "https://arxiv.org/abs/2306.12001",
+          "verified": true
+        }
+      ]
+    }
+  ],
+  "proposals": [
+    {
+      "id": "rsp",
+      "name": "Responsible scaling policies (RSPs)",
+      "who": "AI labs (Anthropic first, then others)",
+      "simple": "If-then rules: if a model reaches a dangerous ability level, then the lab must add stronger safeguards or stop.",
+      "evidence": [
+        {
+          "text": "Responsible Scaling Policy",
+          "url": "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+          "verified": true
+        }
+      ],
+      "extra_source": "https://metr.org/blog/2023-09-26-rsp/",
+      "limits": "These are voluntary, and companies can rewrite them."
+    },
+    {
+      "id": "frontier-safety-frameworks",
+      "name": "Frontier safety frameworks",
+      "who": "Google DeepMind, OpenAI and others; promised at the 2024 Seoul summit",
+      "simple": "Labs list 'critical capability levels' and test new models to see if they cross them.",
+      "evidence": [
+        {
+          "text": "Evaluating our frontier models periodically to detect when they reach these Critical Capability Levels.",
+          "url": "https://deepmind.google/discover/blog/introducing-the-frontier-safety-framework/",
+          "verified": true
+        },
+        {
+          "text": "In the extreme, organisations commit not to develop or deploy a model or system at all, if mitigations cannot be applied to keep risks below the thresholds.",
+          "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+          "verified": true
+        }
+      ],
+      "limits": "Labs write and grade their own frameworks."
+    },
+    {
+      "id": "evals",
+      "name": "Dangerous capability evaluations",
+      "who": "METR, Apollo Research, UK AI Security Institute, US CAISI, IndiaAI Safety Institute",
+      "simple": "Independent testers try to make models do dangerous things before and after release, so surprises are caught early.",
+      "evidence": [
+        {
+          "text": "Yeah, so basically, the basic mission is: have the world not be taken by surprise by dangerous AI stuff happening.",
+          "url": "https://axrp.net/episode/2024/07/28/episode-34-ai-evaluations-beth-barnes.html",
+          "verified": true
+        }
+      ],
+      "limits": "Models may notice they are being tested and behave differently."
+    },
+    {
+      "id": "ai-control",
+      "name": "AI control",
+      "who": "Redwood Research and lab safety teams",
+      "simple": "Design monitoring and limits so that even a scheming AI cannot cause a disaster.",
+      "evidence": [
+        {
+          "text": "Labs should make sure that powerful models can't cause unacceptably bad outcomes even if the AIs try to.",
+          "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+          "verified": true
+        }
+      ],
+      "limits": "May stop working once AI is far smarter than its monitors."
+    },
+    {
+      "id": "kill-switch",
+      "name": "Kill switches and shutdown ability",
+      "who": "Proposed in laws like California SB 1047; tested by Palisade Research",
+      "simple": "Developers must be able to fully shut down a model they control.",
+      "evidence": [
+        {
+          "text": "kill switch",
+          "url": "https://en.wikipedia.org/wiki/Safe_and_Secure_Innovation_for_Frontier_Artificial_Intelligence_Models_Act",
+          "verified": true
+        },
+        {
+          "text": "sometimes actively subvert a shutdown mechanism in their environment",
+          "url": "https://arxiv.org/abs/2509.14260",
+          "verified": true
+        }
+      ],
+      "limits": "Tests show some models already try to avoid shutdown, and copies that escape cannot be switched off."
+    },
+    {
+      "id": "compute-governance",
+      "name": "Compute governance",
+      "who": "Researchers at GovAI, Epoch AI and governments",
+      "simple": "Track and control the chips and data centers used to train the biggest models, since compute is easy to see and count.",
+      "evidence": [
+        {
+          "text": "Relative to other key inputs to AI (data and algorithms), AI-relevant compute is a particularly effective point of intervention: it is detectable, excludable, and quantifiable, and is produced via an extremely concentrated supply chain.",
+          "url": "https://arxiv.org/abs/2402.08797",
+          "verified": true
+        }
+      ],
+      "limits": "Smarter algorithms can need less compute over time."
+    },
+    {
+      "id": "interpretability",
+      "name": "Interpretability",
+      "who": "Anthropic, Google DeepMind, independent researchers",
+      "simple": "Look inside models to see what they are really thinking before they get too powerful.",
+      "evidence": [
+        {
+          "text": "We therefore must move fast if we want interpretability to mature in time to matter.",
+          "url": "https://www.darioamodei.com/post/the-urgency-of-interpretability",
+          "verified": true
+        }
+      ],
+      "limits": "The science is young and models are growing faster than our tools."
+    },
+    {
+      "id": "whistleblowers",
+      "name": "Whistleblower protection",
+      "who": "Current and former lab employees (A Right to Warn)",
+      "simple": "Let insiders warn the public and regulators about serious risks without losing their jobs or money.",
+      "evidence": [
+        {
+          "text": "These risks range from the further entrenchment of existing inequalities",
+          "url": "https://righttowarn.ai/",
+          "verified": true
+        }
+      ],
+      "limits": "Needs real laws, not just company promises."
+    },
+    {
+      "id": "ban-superintelligence",
+      "name": "Prohibit superintelligence",
+      "who": "FLI Statement on Superintelligence, ControlAI, the 2026 Ban Artificial Superintelligence Act",
+      "simple": "Do not build AI smarter than all humans until there is scientific agreement it can be done safely and the public agrees.",
+      "evidence": [
+        {
+          "text": "We call for a prohibition on the development of superintelligence, not lifted before there is broad scientific consensus that it will be done safely and controllably, and strong public buy-in.",
+          "url": "https://superintelligence-statement.org/",
+          "verified": true
+        }
+      ],
+      "extra_source": "https://en.wikipedia.org/wiki/Ban_Artificial_Superintelligence_Act",
+      "limits": "Needs agreement between rival countries and a way to check it."
+    },
+    {
+      "id": "international-science",
+      "name": "Shared international science",
+      "who": "International AI Safety Report (30+ countries), AI summits from Bletchley to New Delhi",
+      "simple": "Countries agree on the facts about AI risk first, so they can act together.",
+      "evidence": [
+        {
+          "text": "There is potential for serious, even catastrophic, harm, either deliberate or unintentional, stemming from the most significant capabilities of these AI models.",
+          "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+          "verified": true
+        }
+      ],
+      "limits": "Reports do not make binding rules."
+    },
+    {
+      "id": "india-governance",
+      "name": "India's AI governance guidelines",
+      "who": "MeitY, IndiaAI Mission",
+      "simple": "India's principle-based framework sets up an AI Governance Group, an expert committee and the IndiaAI Safety Institute.",
+      "evidence": [
+        {
+          "text": "The guidelines recommends establishment of new national institutions including the AI Governance Group, Technology & Policy Expert Committee, and AI Safety Institute.",
+          "url": "https://www.pib.gov.in/PressNoteDetails.aspx?ModuleId=3&NoteId=157370&lang=1&reg=%2B3",
+          "verified": true
+        }
+      ],
+      "limits": "Mostly voluntary for now."
+    },
+    {
+      "id": "dacc",
+      "name": "Defensive acceleration (d/acc)",
+      "who": "Vitalik Buterin and others",
+      "simple": "Speed up technology that protects people, like better cyber defense and biosecurity, faster than technology that attacks.",
+      "evidence": [
+        {
+          "text": "AI is fundamentally different from other tech, and it is worth being uniquely careful",
+          "url": "https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html",
+          "verified": true
+        }
+      ],
+      "limits": "Defense does not always win."
+    }
+  ],
+  "what_you_can_do": [
+    {
+      "id": "learn-free-course",
+      "group": "learn",
+      "title": "Take a free intro course",
+      "steps": [
+        "Start BlueDot's self-paced Future of AI course",
+        "Then try AGI Strategy, Technical AI Safety or Frontier AI Governance"
+      ],
+      "source_url": "https://bluedot.org/courses/future-of-ai"
+    },
+    {
+      "id": "learn-read",
+      "group": "learn",
+      "title": "Read one clear explainer a week",
+      "steps": [
+        "Browse plain answers on AISafety.info",
+        "Read MIRI's The Problem and, for balance, AI as Normal Technology"
+      ],
+      "source_url": "https://aisafety.info/"
+    },
+    {
+      "id": "learn-map",
+      "group": "learn",
+      "title": "Find your place on the field map",
+      "steps": [
+        "Use AISafety.com to find courses, events, communities and jobs near you"
+      ],
+      "source_url": "https://www.aisafety.com/"
+    },
+    {
+      "id": "career-plan",
+      "group": "career",
+      "title": "Plan a career in AI safety",
+      "steps": [
+        "Read the 80,000 Hours AI safety research career review",
+        "Check the 80,000 Hours job board for roles"
+      ],
+      "source_url": "https://80000hours.org/career-reviews/ai-safety-researcher/"
+    },
+    {
+      "id": "career-research",
+      "group": "career",
+      "title": "Build research skills",
+      "steps": [
+        "Work through ARENA's exercises",
+        "Apply to SPAR, ERA or MATS when you are ready"
+      ],
+      "source_url": "https://www.arena.education/"
+    },
+    {
+      "id": "career-build",
+      "group": "career",
+      "title": "Ship small safety projects",
+      "steps": [
+        "Pick an open problem from a mechanistic interpretability guide",
+        "Write it up on GitHub or LessWrong and share it"
+      ],
+      "source_url": "https://www.neelnanda.io/mechanistic-interpretability/getting-started"
+    },
+    {
+      "id": "advocacy-lawmakers",
+      "group": "advocacy",
+      "title": "Tell your representatives you care",
+      "steps": [
+        "Email or call your lawmakers about AI risk",
+        "Sign a public statement you agree with"
+      ],
+      "source_url": "https://controlai.com/take-action"
+    },
+    {
+      "id": "advocacy-community",
+      "group": "advocacy",
+      "title": "Join a community",
+      "steps": [
+        "Join a volunteer group, onboarding call or local meetup",
+        "Talk about AI risk calmly with friends and family"
+      ],
+      "source_url": "https://pauseai.info/action"
+    },
+    {
+      "id": "resilience-scams",
+      "group": "resilience",
+      "title": "Protect your family from AI scams",
+      "steps": [
+        "Agree a secret word or phrase with your family",
+        "Look for small glitches in videos and voices",
+        "Never send money just because a voice sounds familiar"
+      ],
+      "source_url": "https://www.ic3.gov/PSA/2024/PSA241203",
+      "evidence": {
+        "text": "Create a secret word or phrase with your family to verify their identity.",
+        "url": "https://www.ic3.gov/PSA/2024/PSA241203",
+        "verified": true
+      }
+    },
+    {
+      "id": "resilience-cyber",
+      "group": "resilience",
+      "title": "Lock down your accounts",
+      "steps": [
+        "Turn on 2-step verification",
+        "Install software and app updates quickly",
+        "Use strong, separate passwords"
+      ],
+      "source_url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online",
+      "evidence": {
+        "text": "Turn on 2-step verification (2SV)",
+        "url": "https://www.ncsc.gov.uk/collection/top-tips-for-staying-secure-online",
+        "verified": true
+      }
+    },
+    {
+      "id": "resilience-kit",
+      "group": "resilience",
+      "title": "Keep a basic emergency kit",
+      "steps": [
+        "Store water, food, medicine, a torch and a battery radio",
+        "Keep copies of important documents",
+        "This helps in any disaster, including cyber attacks on power or banks"
+      ],
+      "source_url": "https://www.ready.gov/kit",
+      "evidence": {
+        "text": "A disaster supplies kit is a collection of basic items your household may need in the event of an emergency.",
+        "url": "https://www.ready.gov/kit",
+        "verified": true
+      }
+    },
+    {
+      "id": "mindset",
+      "group": "mindset",
+      "title": "Stay calm and keep acting",
+      "steps": [
+        "Take the risk seriously without panic",
+        "Spend time offline with real people",
+        "Small steady actions beat fear"
+      ],
+      "source_url": "https://blog.bluedot.org/p/owners"
+    }
+  ],
+  "note": "Quotes in evidence are exact text checked against the source page on 2026-10-29. Personal resilience tips are general safety advice from government sources, not AI-specific guarantees."
+}

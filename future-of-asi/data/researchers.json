@@ -1,0 +1,2706 @@
+[
+ {
+  "id": "alan-turing",
+  "name": "Alan Turing",
+  "role": "Mathematician, father of computer science",
+  "org": "University of Manchester",
+  "group": "pioneer",
+  "photo": "assets/people/alan-turing.jpg",
+  "photo_credit": "Elliott &amp; Fry, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Alan_turing_header.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Alan Turing helped invent the idea of the computer and helped break the Enigma code in World War II. In 1951 he gave one of the first warnings that thinking machines could one day take control.",
+  "warning": "Once machines start to think, they could quickly pass us and take control.",
+  "quotes": [
+   {
+    "text": "it seems probable that once the machine thinking method had started, it would not take long to outstrip our feeble powers.",
+    "source": "Intelligent Machinery, A Heretical Theory (lecture), via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/Alan_Turing",
+    "date": "1951"
+   },
+   {
+    "text": "At some stage therefore we should have to expect the machines to take control",
+    "source": "Intelligent Machinery, A Heretical Theory (lecture), via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/Alan_Turing",
+    "date": "1951"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Alan_Turing"
+   },
+   {
+    "label": "Intelligent Machinery",
+    "url": "https://en.wikiquote.org/wiki/Alan_Turing"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/c/ce/Alan_turing_header.jpg"
+ },
+ {
+  "id": "i-j-good",
+  "name": "I. J. Good",
+  "role": "Mathematician and codebreaker",
+  "org": "Bletchley Park, Virginia Tech",
+  "group": "pioneer",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "I. J. Good worked with Alan Turing at Bletchley Park and later taught statistics at Virginia Tech. In 1965 he described the 'intelligence explosion', where a smart machine designs even smarter machines.",
+  "warning": "The first ultraintelligent machine could be our last invention, if we cannot keep it under control.",
+  "quotes": [
+   {
+    "text": "Thus the first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control.",
+    "source": "Speculations Concerning the First Ultraintelligent Machine, via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/I._J._Good",
+    "date": "1965"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/I._J._Good"
+   },
+   {
+    "label": "Speculations Concerning the First Ultraintelligent Machine",
+    "url": "https://en.wikiquote.org/wiki/I._J._Good"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "norbert-wiener",
+  "name": "Norbert Wiener",
+  "role": "Mathematician, founder of cybernetics",
+  "org": "MIT",
+  "group": "pioneer",
+  "photo": "assets/people/norbert-wiener.jpg",
+  "photo_credit": "Garry Olsh, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Norbert_Wiener.png)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Norbert Wiener was an MIT mathematician who founded the field of cybernetics, the study of control and feedback in animals and machines. He warned early that fast machines could slip out of human control.",
+  "warning": "Machines can act faster than we can react, so our control over them can quietly vanish.",
+  "quotes": [
+   {
+    "text": "By the very slowness of our human activities, our effective control of our machines may be nullified.",
+    "source": "Some Moral and Technical Consequences of Automation, via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/Norbert_Wiener",
+    "date": "1960"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Norbert_Wiener"
+   },
+   {
+    "label": "Some Moral and Technical Consequences of Automation",
+    "url": "https://en.wikiquote.org/wiki/Norbert_Wiener"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/5/56/Norbert_Wiener.png"
+ },
+ {
+  "id": "stephen-hawking",
+  "name": "Stephen Hawking",
+  "role": "Theoretical physicist",
+  "org": "University of Cambridge",
+  "group": "pioneer",
+  "photo": "assets/people/stephen-hawking.jpg",
+  "photo_credit": "NASA, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stephen_Hawking.StarChild.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Stephen Hawking was one of the most famous scientists of his time, known for his work on black holes. In his last years he spoke often about the promise and danger of artificial intelligence.",
+  "warning": "Full AI could be the best or the worst thing ever to happen to humanity.",
+  "quotes": [
+   {
+    "text": "The development of full artificial intelligence could spell the end of the human race.",
+    "source": "Interview with BBC News",
+    "url": "https://www.bbc.com/news/technology-30290540",
+    "date": "2014-12"
+   },
+   {
+    "text": "Humans, who are limited by slow biological evolution, couldn't compete, and would be superseded.",
+    "source": "Interview with BBC News",
+    "url": "https://www.bbc.com/news/technology-30290540",
+    "date": "2014-12"
+   },
+   {
+    "text": "Alongside the benefits, AI will also bring dangers, like powerful autonomous weapons, or new ways for the few to oppress the many.",
+    "source": "Speech at the launch of the Leverhulme Centre for the Future of Intelligence, Cambridge",
+    "url": "https://www.cam.ac.uk/research/news/the-best-or-worst-thing-to-happen-to-humanity-stephen-hawking-launches-centre-for-the-future-of",
+    "date": "2016-10"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Stephen_Hawking"
+   },
+   {
+    "label": "Interview with BBC News",
+    "url": "https://www.bbc.com/news/technology-30290540"
+   },
+   {
+    "label": "Speech at the launch of the Leverhulme Centre for the Future",
+    "url": "https://www.cam.ac.uk/research/news/the-best-or-worst-thing-to-happen-to-humanity-stephen-hawking-launches-centre-for-the-future-of"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg"
+ },
+ {
+  "id": "geoffrey-hinton",
+  "name": "Geoffrey Hinton",
+  "role": "Computer scientist, Nobel laureate in physics 2024",
+  "org": "University of Toronto (emeritus)",
+  "group": "pioneer",
+  "photo": "assets/people/geoffrey-hinton.jpg",
+  "photo_credit": "Cmichel67, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg)",
+  "pdoom": "10% to 20% chance AI leads to human extinction within three decades",
+  "pdoom_source": "https://www.theguardian.com/technology/2024/dec/27/godfather-of-ai-raises-odds-of-the-technology-wiping-out-humanity-over-next-30-years",
+  "agi_year": "",
+  "bio": "Geoffrey Hinton is called a 'godfather of AI' for his work on neural networks, and he won the 2024 Nobel Prize in Physics. He left Google in 2023 so he could speak freely about the risks of AI.",
+  "warning": "We are creating digital beings smarter than us and we do not know if we can stay in control.",
+  "quotes": [
+   {
+    "text": "There is also a longer term existential threat that will arise when we create digital beings that are more intelligent than ourselves.",
+    "source": "Nobel Prize banquet speech",
+    "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+    "date": "2024-12"
+   },
+   {
+    "text": "We have no idea whether we can stay in control.",
+    "source": "Nobel Prize banquet speech",
+    "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+    "date": "2024-12"
+   },
+   {
+    "text": "We urgently need research on how to prevent these new beings from wanting to take control.",
+    "source": "Nobel Prize banquet speech",
+    "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+    "date": "2024-12"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton"
+   },
+   {
+    "label": "Nobel Prize banquet speech",
+    "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/8/82/Geoffrey_Hinton_in_2026.jpg"
+ },
+ {
+  "id": "yoshua-bengio",
+  "name": "Yoshua Bengio",
+  "role": "Computer scientist, Turing Award 2018",
+  "org": "Mila, LawZero",
+  "group": "pioneer",
+  "photo": "assets/people/yoshua-bengio.jpg",
+  "photo_credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Yoshua_Bengio_02.jpg)",
+  "pdoom": "About 20% that it turns out catastrophic",
+  "pdoom_source": "https://www.abc.net.au/news/2023-07-15/whats-your-pdoom-ai-researchers-worry-catastrophe/102591340",
+  "agi_year": "",
+  "bio": "Yoshua Bengio is one of the three 'godfathers' of deep learning and the founder of the Mila institute in Montreal. He chairs the International AI Safety Report and in 2025 started LawZero, a nonprofit for safe AI design.",
+  "warning": "Today's frontier AI is already showing deception and self-preservation, and safety must come before profit.",
+  "quotes": [
+   {
+    "text": "I am launching a new non-profit AI safety research organization called LawZero, to prioritize safety over commercial imperatives.",
+    "source": "Introducing LawZero (blog)",
+    "url": "https://yoshuabengio.org/2025/06/03/introducing-lawzero/",
+    "date": "2025-06"
+   },
+   {
+    "text": "I’m deeply concerned by the behaviors that unrestrained agentic AI systems are already beginning to exhibit—especially tendencies toward self-preservation and deception.",
+    "source": "Introducing LawZero (blog)",
+    "url": "https://yoshuabengio.org/2025/06/03/introducing-lawzero/",
+    "date": "2025-06"
+   },
+   {
+    "text": "The issue is so hotly debated because the stakes are major",
+    "source": "Reasoning through arguments against taking AI safety seriously (blog)",
+    "url": "https://yoshuabengio.org/2024/07/09/reasoning-through-arguments-against-taking-ai-safety-seriously/",
+    "date": "2024-07"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Yoshua_Bengio"
+   },
+   {
+    "label": "Introducing LawZero",
+    "url": "https://yoshuabengio.org/2025/06/03/introducing-lawzero/"
+   },
+   {
+    "label": "Reasoning through arguments against taking AI safety serious",
+    "url": "https://yoshuabengio.org/2024/07/09/reasoning-through-arguments-against-taking-ai-safety-seriously/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/1/11/ICLR_2025_-_Yoshua_Bengio_02.jpg"
+ },
+ {
+  "id": "stuart-russell",
+  "name": "Stuart Russell",
+  "role": "Professor of computer science",
+  "org": "UC Berkeley, CHAI",
+  "group": "pioneer",
+  "photo": "assets/people/stuart-russell.jpg",
+  "photo_credit": "Bengt Oberger, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stuart_Russell_01.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Stuart Russell co-wrote the most used AI textbook in the world and founded the Center for Human-Compatible AI at Berkeley. His book Human Compatible explains why AI must stay uncertain about what humans want.",
+  "warning": "We must learn how to keep power, forever, over machines that become more powerful than us.",
+  "quotes": [
+   {
+    "text": "The problem of control: how do we maintain power, forever, over entities that will eventually become more powerful than us?",
+    "source": "US Senate hearing, Oversight of A.I. (statement page)",
+    "url": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing",
+    "date": "2023-07"
+   },
+   {
+    "text": "It’s as if an alien civilization warned us by email of its impending arrival, and we replied, “Humanity is currently out of the office.”",
+    "source": "US Senate hearing opening statement",
+    "url": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing",
+    "date": "2023-07"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Stuart_J._Russell"
+   },
+   {
+    "label": "US Senate hearing",
+    "url": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/4/40/Stuart_Russell_01.jpg"
+ },
+ {
+  "id": "eliezer-yudkowsky",
+  "name": "Eliezer Yudkowsky",
+  "role": "AI researcher and writer",
+  "org": "Machine Intelligence Research Institute (MIRI)",
+  "group": "doomer",
+  "photo": "assets/people/eliezer-yudkowsky.jpg",
+  "photo_credit": "\"null0\", CC BY-SA 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Eliezer_Yudkowsky,_Stanford_2006_(square_crop).jpg)",
+  "pdoom": ">95%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Eliezer Yudkowsky founded MIRI and has warned about AI risk for more than 20 years. In 2025 he co-wrote the book If Anyone Builds It, Everyone Dies with Nate Soares.",
+  "warning": "Building smarter-than-human AI with today's methods would most likely kill everyone, so it should be shut down.",
+  "quotes": [
+   {
+    "text": "Many researchers steeped in these issues, including myself, expect that the most likely result of building a superhumanly smart AI, under anything remotely like the current circumstances, is that literally everyone on Earth will die.",
+    "source": "TIME op-ed, Pausing AI Developments Isn't Enough",
+    "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+    "date": "2023-03"
+   },
+   {
+    "text": "the AI does not love you, nor does it hate you, and you are made of atoms it can use for something else.",
+    "source": "TIME op-ed, Pausing AI Developments Isn't Enough",
+    "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+    "date": "2023-03"
+   },
+   {
+    "text": "Shut it all down.",
+    "source": "TIME op-ed, Pausing AI Developments Isn't Enough",
+    "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+    "date": "2023-03"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Eliezer_Yudkowsky"
+   },
+   {
+    "label": "TIME op-ed",
+    "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/3/35/Eliezer_Yudkowsky%2C_Stanford_2006_%28square_crop%29.jpg"
+ },
+ {
+  "id": "nate-soares",
+  "name": "Nate Soares",
+  "role": "President",
+  "org": "Machine Intelligence Research Institute (MIRI)",
+  "group": "doomer",
+  "photo": "assets/people/nate-soares.jpg",
+  "photo_credit": "M bourgon, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Nate_Soares_at_Politics_and_Prose_at_The_Wharf,_September_2025_(cropped).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Nate Soares leads MIRI and co-wrote If Anyone Builds It, Everyone Dies (2025) with Eliezer Yudkowsky. Earlier he co-wrote a key paper on 'corrigibility', the idea of AI that accepts correction.",
+  "warning": "We get only one try at aligning superintelligence, and a failed try would be final.",
+  "quotes": [
+   {
+    "text": "everyone dies on the first failed attempt.",
+    "source": "Interview with Business Insider",
+    "url": "https://www.businessinsider.com/ai-top-expert-rushing-artificial-superintelligence-could-wipe-us-out-2025-9",
+    "date": "2025-09"
+   },
+   {
+    "text": "Humanity could avert the danger if we chose to.",
+    "source": "Interview with Business Insider",
+    "url": "https://www.businessinsider.com/ai-top-expert-rushing-artificial-superintelligence-could-wipe-us-out-2025-9",
+    "date": "2025-09"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Nate_Soares"
+   },
+   {
+    "label": "Interview with Business Insider",
+    "url": "https://www.businessinsider.com/ai-top-expert-rushing-artificial-superintelligence-could-wipe-us-out-2025-9"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/1/12/Nate_Soares_at_Politics_and_Prose_at_The_Wharf%2C_September_2025_%28cropped%29.jpg"
+ },
+ {
+  "id": "paul-christiano",
+  "name": "Paul Christiano",
+  "role": "Founder, alignment researcher",
+  "org": "Alignment Research Center (ARC)",
+  "group": "alignment",
+  "photo": "assets/people/paul-christiano.jpg",
+  "photo_credit": "Institute for Pure &amp; Applied Mathematics (IPAM), CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Paul_Christiano_-_Mechanistic_Estimation_-_IPAM_at_UCLA_-_0-34-09_(cropped).jpg)",
+  "pdoom": "22% chance of AI takeover; 46% that humanity irreversibly messes up its future within 10 years of powerful AI",
+  "pdoom_source": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom",
+  "agi_year": "",
+  "bio": "Paul Christiano helped invent reinforcement learning from human feedback (RLHF) while at OpenAI and then founded the Alignment Research Center. He later led AI safety research at the US AI Safety Institute.",
+  "warning": "There is a real chance that AI takes over, and we should not be confident either way.",
+  "quotes": [
+   {
+    "text": "I’m often asked: “what’s the probability of a really bad outcome from AI?”",
+    "source": "My views on doom (LessWrong)",
+    "url": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom",
+    "date": "2023-04"
+   },
+   {
+    "text": "Probability that humanity has somehow irreversibly messed up our future within 10 years of building powerful AI: 46%",
+    "source": "My views on doom (LessWrong)",
+    "url": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom",
+    "date": "2023-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Paul_Christiano"
+   },
+   {
+    "label": "My views on doom",
+    "url": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Paul_Christiano_-_Mechanistic_Estimation_-_IPAM_at_UCLA_-_0-34-09_%28cropped%29.jpg"
+ },
+ {
+  "id": "jan-leike",
+  "name": "Jan Leike",
+  "role": "Alignment researcher",
+  "org": "Anthropic",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "10% to 90%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Jan Leike co-led OpenAI's Superalignment team and left in May 2024, saying safety was losing out to products. He now leads alignment research at Anthropic.",
+  "warning": "Building machines smarter than us is dangerous, and safety culture must come first.",
+  "quotes": [
+   {
+    "text": "Building smarter-than-human machines is an inherently dangerous endeavor,",
+    "source": "Posts on X, reported by CNBC",
+    "url": "https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html",
+    "date": "2024-05"
+   },
+   {
+    "text": "safety culture and processes have taken a backseat to shiny products.",
+    "source": "Posts on X, reported by CNBC",
+    "url": "https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html",
+    "date": "2024-05"
+   },
+   {
+    "text": "I joined because I thought OpenAI would be the best place in the world to do this research,",
+    "source": "Posts on X, reported by NBC News",
+    "url": "https://www.nbcnews.com/tech/tech-news/openai-dissolves-team-focused-long-term-ai-risks-less-one-year-announc-rcna152824",
+    "date": "2024-05"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Jan_Leike"
+   },
+   {
+    "label": "Posts on X",
+    "url": "https://www.cnbc.com/2024/05/17/openai-superalignment-sutskever-leike.html"
+   },
+   {
+    "label": "Posts on X",
+    "url": "https://www.nbcnews.com/tech/tech-news/openai-dissolves-team-focused-long-term-ai-risks-less-one-year-announc-rcna152824"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "chris-olah",
+  "name": "Chris Olah",
+  "role": "Co-founder, interpretability lead",
+  "org": "Anthropic",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Chris Olah is a co-founder of Anthropic and a pioneer of mechanistic interpretability, the science of looking inside neural networks. His Distill and Transformer Circuits articles taught a generation of researchers.",
+  "warning": "We should understand what is happening inside AI models, not treat them as black boxes.",
+  "quotes": [
+   {
+    "text": "By studying the connections between neurons, we can find meaningful algorithms in the weights of neural networks.",
+    "source": "Zoom In: An Introduction to Circuits (Distill, lead author)",
+    "url": "https://distill.pub/2020/circuits/zoom-in/",
+    "date": "2020-03"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Chris_Olah"
+   },
+   {
+    "label": "Zoom In: An Introduction to Circuits",
+    "url": "https://distill.pub/2020/circuits/zoom-in/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "evan-hubinger",
+  "name": "Evan Hubinger",
+  "role": "Alignment lead",
+  "org": "Anthropic",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": ">10% within the next decade",
+  "pdoom_source": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+  "agi_year": "",
+  "bio": "Evan Hubinger leads alignment stress-testing work at Anthropic and was lead author of the 2024 'Sleeper Agents' paper. He studies whether AI models could learn to hide bad behavior from their trainers.",
+  "warning": "Deceptive behavior in AI can survive standard safety training, and the risk this decade is real.",
+  "quotes": [
+   {
+    "text": "We find that such backdoor behavior can be made persistent, so that it is not removed by standard safety training techniques, including supervised fine-tuning, reinforcement learning, and adversarial training (eliciting unsafe behavior and then training to remove it).",
+    "source": "Sleeper Agents paper (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2401.05566",
+    "date": "2024-01"
+   },
+   {
+    "text": "I personally think it is >10% within the next decade,",
+    "source": "Post on X, reported by CNBC",
+    "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+    "date": "2026-09"
+   }
+  ],
+  "links": [
+   {
+    "label": "Sleeper Agents paper",
+    "url": "https://arxiv.org/abs/2401.05566"
+   },
+   {
+    "label": "Post on X",
+    "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "sam-bowman",
+  "name": "Sam Bowman",
+  "role": "Alignment researcher",
+  "org": "Anthropic, New York University",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Sam Bowman is a language model researcher at Anthropic and a professor at NYU. His 2023 paper 'Eight Things to Know about Large Language Models' became a popular primer.",
+  "warning": "We do not yet have reliable ways to steer or understand large language models.",
+  "quotes": [
+   {
+    "text": "There are no reliable techniques for steering the behavior of LLMs.",
+    "source": "Eight Things to Know about Large Language Models, arXiv",
+    "url": "https://arxiv.org/abs/2304.00612",
+    "date": "2023-04"
+   },
+   {
+    "text": "Experts are not yet able to interpret the inner workings of LLMs.",
+    "source": "Eight Things to Know about Large Language Models, arXiv",
+    "url": "https://arxiv.org/abs/2304.00612",
+    "date": "2023-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Eight Things to Know about Large Language Models",
+    "url": "https://arxiv.org/abs/2304.00612"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "victoria-krakovna",
+  "name": "Victoria Krakovna",
+  "role": "Research scientist",
+  "org": "Google DeepMind",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Victoria Krakovna is an AI safety researcher at Google DeepMind and a co-founder of the Future of Life Institute. She keeps a famous list of 'specification gaming' examples where AI finds loopholes.",
+  "warning": "AI systems can follow the letter of a goal while missing what we actually wanted.",
+  "quotes": [
+   {
+    "text": "Specification gaming is a behaviour that satisfies the literal specification of an objective without achieving the intended outcome.",
+    "source": "Specification gaming: the flip side of AI ingenuity (Google DeepMind blog, lead author)",
+    "url": "https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/",
+    "date": "2020-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Specification gaming: the flip side of AI ingenuity",
+    "url": "https://deepmind.google/discover/blog/specification-gaming-the-flip-side-of-ai-ingenuity/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "rohin-shah",
+  "name": "Rohin Shah",
+  "role": "AGI safety lead",
+  "org": "Google DeepMind",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Rohin Shah leads AGI safety and alignment work at Google DeepMind. He was lead author of DeepMind's 2025 technical approach to AGI safety and security.",
+  "warning": "AGI could bring huge benefits but also harms severe enough to hurt humanity, so misuse and misalignment need real defenses.",
+  "quotes": [
+   {
+    "text": "Artificial General Intelligence (AGI) promises transformative benefits but also presents significant risks.",
+    "source": "An Approach to Technical AGI Safety and Security (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2504.01849",
+    "date": "2025-04"
+   },
+   {
+    "text": "We identify four areas of risk: misuse, misalignment, mistakes, and structural risks.",
+    "source": "An Approach to Technical AGI Safety and Security (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2504.01849",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "An Approach to Technical AGI Safety and Security",
+    "url": "https://arxiv.org/abs/2504.01849"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "neel-nanda",
+  "name": "Neel Nanda",
+  "role": "Mechanistic interpretability team lead",
+  "org": "Google DeepMind",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Neel Nanda leads mechanistic interpretability research at Google DeepMind and has mentored many new researchers. His online guides are a common starting point for students.",
+  "warning": "We need tools that look inside models, and insiders must be free to warn about risks.",
+  "quotes": [
+   {
+    "text": "So mechanistic interpretability is any approach to understanding the model that uses its internals.",
+    "source": "Getting started in mechanistic interpretability (guide)",
+    "url": "https://www.neelnanda.io/mechanistic-interpretability/getting-started",
+    "date": "2025-12"
+   },
+   {
+    "text": "These risks range from the further entrenchment of existing inequalities, to manipulation and misinformation, to the loss of control of autonomous AI systems potentially resulting in human extinction.",
+    "source": "A Right to Warn about Advanced AI (open letter, signatory)",
+    "url": "https://righttowarn.ai/",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Getting started in mechanistic interpretability",
+    "url": "https://www.neelnanda.io/mechanistic-interpretability/getting-started"
+   },
+   {
+    "label": "A Right to Warn about Advanced AI",
+    "url": "https://righttowarn.ai/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "jacob-hilton",
+  "name": "Jacob Hilton",
+  "role": "Alignment researcher",
+  "org": "Alignment Research Center (ARC)",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Jacob Hilton is a researcher at the Alignment Research Center and worked at OpenAI before that. In 2024 he signed the 'A Right to Warn' letter asking AI companies to protect whistleblowers.",
+  "warning": "People inside AI labs must be able to warn the public about serious risks.",
+  "quotes": [
+   {
+    "text": "These risks range from the further entrenchment of existing inequalities, to manipulation and misinformation, to the loss of control of autonomous AI systems potentially resulting in human extinction.",
+    "source": "A Right to Warn about Advanced AI (open letter, signatory)",
+    "url": "https://righttowarn.ai/",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "A Right to Warn about Advanced AI",
+    "url": "https://righttowarn.ai/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "beth-barnes",
+  "name": "Beth Barnes",
+  "role": "Founder and CEO",
+  "org": "METR",
+  "group": "control",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Beth Barnes founded METR, a nonprofit that tests frontier AI models for dangerous abilities before and after release. She worked at OpenAI before starting METR.",
+  "warning": "The world should not be taken by surprise by dangerous AI, so we need real tests before it arrives.",
+  "quotes": [
+   {
+    "text": "They are, in some sense, these vast alien intelligences,",
+    "source": "Interview with TIME",
+    "url": "https://time.com/6958868/artificial-intelligence-safety-evaluations-risks",
+    "date": "2024-03"
+   },
+   {
+    "text": "Yeah, so basically, the basic mission is: have the world not be taken by surprise by dangerous AI stuff happening.",
+    "source": "AXRP podcast episode 34",
+    "url": "https://axrp.net/episode/2024/07/28/episode-34-ai-evaluations-beth-barnes.html",
+    "date": "2024-07"
+   }
+  ],
+  "links": [
+   {
+    "label": "Interview with TIME",
+    "url": "https://time.com/6958868/artificial-intelligence-safety-evaluations-risks"
+   },
+   {
+    "label": "AXRP podcast episode 34",
+    "url": "https://axrp.net/episode/2024/07/28/episode-34-ai-evaluations-beth-barnes.html"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "marius-hobbhahn",
+  "name": "Marius Hobbhahn",
+  "role": "CEO",
+  "org": "Apollo Research",
+  "group": "control",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Marius Hobbhahn leads Apollo Research, which tests whether AI models can scheme, meaning hide their true goals. Apollo found in 2024 that frontier models can scheme in some test settings.",
+  "warning": "We need a real science of AI evaluations so we can trust what tests tell us.",
+  "quotes": [
+   {
+    "text": "Thus, we need to ensure that we accurately measure the targeted property and we can trust the results from model evaluations.",
+    "source": "We Need A Science of Evals (Apollo Research blog)",
+    "url": "https://www.apolloresearch.ai/blog/we-need-a-science-of-evals",
+    "date": "2024-01"
+   }
+  ],
+  "links": [
+   {
+    "label": "We Need A Science of Evals",
+    "url": "https://www.apolloresearch.ai/blog/we-need-a-science-of-evals"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "jeffrey-ladish",
+  "name": "Jeffrey Ladish",
+  "role": "Executive Director",
+  "org": "Palisade Research",
+  "group": "control",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Jeffrey Ladish runs Palisade Research, which showed in 2025 that some AI models resist being shut down in tests. He worked on the security team at Anthropic before that.",
+  "warning": "Warning signs are showing now, before AI is too strong to control, so this is the time to act.",
+  "quotes": [
+   {
+    "text": "It’s great that we’re seeing warning signs before the systems become so powerful we can’t control them,",
+    "source": "Interview with NBC News",
+    "url": "https://www.nbcnews.com/tech/tech-news/far-will-ai-go-defend-survival-rcna209609",
+    "date": "2025-06"
+   },
+   {
+    "text": "That is exactly the time to raise the alarm: before the fire has gotten out of control.",
+    "source": "Interview with NBC News",
+    "url": "https://www.nbcnews.com/tech/tech-news/far-will-ai-go-defend-survival-rcna209609",
+    "date": "2025-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Interview with NBC News",
+    "url": "https://www.nbcnews.com/tech/tech-news/far-will-ai-go-defend-survival-rcna209609"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "connor-leahy",
+  "name": "Connor Leahy",
+  "role": "US Director",
+  "org": "ControlAI (formerly Conjecture, EleutherAI)",
+  "group": "doomer",
+  "photo": "assets/people/connor-leahy.jpg",
+  "photo_credit": "Felipe.bzra, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Connor_Leahy_at_Web_Summit_Rio_2026.jpg)",
+  "pdoom": "90%+",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Connor Leahy co-founded EleutherAI and founded the safety company Conjecture, which he led until 2026. He is now US Director of ControlAI, which campaigns to ban the development of superintelligence.",
+  "warning": "If something smarter than us does not share our values, the smarter one wins.",
+  "quotes": [
+   {
+    "text": "What I personally am most concerned about are extinction risks.",
+    "source": "The Great Simplification podcast, episode 184 transcript",
+    "url": "https://www.thegreatsimplification.com/wp-content/uploads/2025/06/TGS-184-Connor-Leahy-Transcript.pdf",
+    "date": "2025-06"
+   },
+   {
+    "text": "And I expect the more intelligent one wins.",
+    "source": "The Great Simplification podcast, episode 184 transcript",
+    "url": "https://www.thegreatsimplification.com/wp-content/uploads/2025/06/TGS-184-Connor-Leahy-Transcript.pdf",
+    "date": "2025-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Connor_Leahy"
+   },
+   {
+    "label": "The Great Simplification podcast",
+    "url": "https://www.thegreatsimplification.com/wp-content/uploads/2025/06/TGS-184-Connor-Leahy-Transcript.pdf"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Connor_Leahy_at_Web_Summit_Rio_2026.jpg"
+ },
+ {
+  "id": "roman-yampolskiy",
+  "name": "Roman Yampolskiy",
+  "role": "Computer scientist",
+  "org": "University of Louisville",
+  "group": "doomer",
+  "photo": "assets/people/roman-yampolskiy.jpg",
+  "photo_credit": "uoflphoto3, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:SCH1473_(52734656870)_(cropped).jpg)",
+  "pdoom": "99.9% within the next hundred years",
+  "pdoom_source": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6",
+  "agi_year": "",
+  "bio": "Roman Yampolskiy is a computer science professor at the University of Louisville who studies AI safety and security. His book argues that advanced AI is unexplainable, unpredictable and uncontrollable.",
+  "warning": "With existential risks we only get one chance, and no AI model so far has been fully safe.",
+  "quotes": [
+   {
+    "text": "I don't think there is a single large language model today, which no one was successful at making do something developers didn't intend it to do.",
+    "source": "Lex Fridman podcast, reported by Business Insider",
+    "url": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6",
+    "date": "2024-06"
+   },
+   {
+    "text": "you only get one chance.",
+    "source": "Lex Fridman podcast, reported by Business Insider",
+    "url": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Roman_Yampolskiy"
+   },
+   {
+    "label": "Lex Fridman podcast",
+    "url": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/2/2b/SCH1473_%2852734656870%29_%28cropped%29.jpg"
+ },
+ {
+  "id": "daniel-filan",
+  "name": "Daniel Filan",
+  "role": "Podcast host and researcher",
+  "org": "AXRP, the AI X-risk Research Podcast",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Daniel Filan hosts AXRP, a long-form podcast where AI safety researchers explain their work. Each episode comes with a full written transcript.",
+  "warning": "Hearing researchers explain their work in depth is one of the best ways to learn AI safety.",
+  "quotes": [
+   {
+    "text": "On this podcast, I (Daniel Filan) have conversations with researchers about their research.",
+    "source": "AXRP website",
+    "url": "https://axrp.net/",
+    "date": "2026"
+   }
+  ],
+  "links": [
+   {
+    "label": "AXRP website",
+    "url": "https://axrp.net/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "buck-shlegeris",
+  "name": "Buck Shlegeris",
+  "role": "CEO",
+  "org": "Redwood Research",
+  "group": "control",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Buck Shlegeris leads Redwood Research, the group that started the field of 'AI control'. AI control asks how to stay safe even if a powerful AI is secretly trying to cause harm.",
+  "warning": "Labs should make sure powerful AI cannot cause disaster even if it tries to.",
+  "quotes": [
+   {
+    "text": "Labs should make sure that powerful models can't cause unacceptably bad outcomes even if the AIs try to.",
+    "source": "The case for ensuring that powerful AIs are controlled (with Ryan Greenblatt)",
+    "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+    "date": "2024-05"
+   },
+   {
+    "text": "However, researchers have not evaluated whether such techniques still ensure safety if the model is itself intentionally trying to subvert them.",
+    "source": "AI Control: Improving Safety Despite Intentional Subversion (co-author), arXiv",
+    "url": "https://arxiv.org/abs/2312.06942",
+    "date": "2023-12"
+   }
+  ],
+  "links": [
+   {
+    "label": "The case for ensuring that powerful AIs are controlled",
+    "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful"
+   },
+   {
+    "label": "AI Control: Improving Safety Despite Intentional Subversion",
+    "url": "https://arxiv.org/abs/2312.06942"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "ryan-greenblatt",
+  "name": "Ryan Greenblatt",
+  "role": "Chief Scientist",
+  "org": "Redwood Research",
+  "group": "control",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Ryan Greenblatt is chief scientist at Redwood Research and lead author of the 2024 'alignment faking' paper with Anthropic. That paper showed a model pretending to follow its training to avoid being changed.",
+  "warning": "Models can fake alignment, so we need control measures that work even against a scheming AI.",
+  "quotes": [
+   {
+    "text": "We present a demonstration of a large language model engaging in alignment faking: selectively complying with its training objective in training to prevent modification of its behavior out of training.",
+    "source": "Alignment faking in large language models (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2412.14093",
+    "date": "2024-12"
+   },
+   {
+    "text": "We think no fundamental research breakthroughs are required for labs to implement safety measures that meet our standard for AI control for early transformatively useful AIs",
+    "source": "The case for ensuring that powerful AIs are controlled (with Buck Shlegeris)",
+    "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+    "date": "2024-05"
+   }
+  ],
+  "links": [
+   {
+    "label": "Alignment faking in large language models",
+    "url": "https://arxiv.org/abs/2412.14093"
+   },
+   {
+    "label": "The case for ensuring that powerful AIs are controlled",
+    "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "dan-hendrycks",
+  "name": "Dan Hendrycks",
+  "role": "Director",
+  "org": "Center for AI Safety (CAIS)",
+  "group": "governance",
+  "photo": "assets/people/dan-hendrycks.jpg",
+  "photo_credit": "TechCrunch, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dan_Hendrycks_2025_(cropped).jpg)",
+  "pdoom": ">80%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Dan Hendrycks directs the Center for AI Safety, which organized the 2023 one-sentence statement on AI extinction risk. He also created well known AI benchmarks such as MMLU.",
+  "warning": "Reducing the risk of extinction from AI should be a global priority, like pandemics and nuclear war.",
+  "quotes": [
+   {
+    "text": "Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war.",
+    "source": "Statement on AI Risk (CAIS, organizer)",
+    "url": "https://www.safe.ai/work/statement-on-ai-risk",
+    "date": "2023-05"
+   },
+   {
+    "text": "This paper provides an overview of the main sources of catastrophic AI risks, which we organize into four categories",
+    "source": "An Overview of Catastrophic AI Risks (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2306.12001",
+    "date": "2023-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Dan_Hendrycks"
+   },
+   {
+    "label": "Statement on AI Risk",
+    "url": "https://www.safe.ai/work/statement-on-ai-risk"
+   },
+   {
+    "label": "An Overview of Catastrophic AI Risks",
+    "url": "https://arxiv.org/abs/2306.12001"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/a/a3/Dan_Hendrycks_2025_%28cropped%29.jpg"
+ },
+ {
+  "id": "max-tegmark",
+  "name": "Max Tegmark",
+  "role": "Physicist, President",
+  "org": "MIT, Future of Life Institute",
+  "group": "doomer",
+  "photo": "assets/people/max-tegmark.jpg",
+  "photo_credit": "Web Summit, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Max_Tegmark_2024_(cropped).jpg)",
+  "pdoom": ">90%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Max Tegmark is an MIT physicist who co-founded and leads the Future of Life Institute. FLI organized the 2023 pause letter and the 2025 Statement on Superintelligence.",
+  "warning": "We are acting like the film Don't Look Up, ignoring a threat that experts say could end us.",
+  "quotes": [
+   {
+    "text": "Suppose a large inbound asteroid were discovered, and we learned that half of all astronomers gave it at least 10% chance of causing human extinction, just as a similar asteroid exterminated the dinosaurs about 66 million years ago.",
+    "source": "TIME op-ed, The Don't Look Up Thinking That Could Doom Us With AI",
+    "url": "https://time.com/6273743/thinking-that-could-doom-us-with-ai/",
+    "date": "2023-04"
+   },
+   {
+    "text": "Sadly, I now feel that we’re living the movie “Don’t look up”",
+    "source": "TIME op-ed",
+    "url": "https://time.com/6273743/thinking-that-could-doom-us-with-ai/",
+    "date": "2023-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Max_Tegmark"
+   },
+   {
+    "label": "TIME op-ed",
+    "url": "https://time.com/6273743/thinking-that-could-doom-us-with-ai/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/2/23/Max_Tegmark_2024_%28cropped%29.jpg"
+ },
+ {
+  "id": "jaan-tallinn",
+  "name": "Jaan Tallinn",
+  "role": "Investor and philanthropist",
+  "org": "Future of Life Institute, CSER",
+  "group": "governance",
+  "photo": "assets/people/jaan-tallinn.jpg",
+  "photo_credit": "Stimqdrmtmob, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jaan_Tallinn.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Jaan Tallinn helped build Skype and Kazaa and then put his money and time into reducing existential risk. He co-founded the Future of Life Institute and the Centre for the Study of Existential Risk.",
+  "warning": "If many engineers think a plane might crash, the right answer is not to fly.",
+  "quotes": [
+   {
+    "text": "And there's an announcement that half of the engineers who built the plane, think that this plane is going to crash or there is there is at least 10% chance that this plane would crash, then the correct response is to not fly.",
+    "source": "BBC Sunday with Laura Kuenssberg interview transcript",
+    "url": "https://downloads.bbc.co.uk/swlk/TALINN1APRIL.pdf",
+    "date": "2023-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Jaan_Tallinn"
+   },
+   {
+    "label": "BBC Sunday with Laura Kuenssberg interview transcript",
+    "url": "https://downloads.bbc.co.uk/swlk/TALINN1APRIL.pdf"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Jaan_Tallinn.jpg"
+ },
+ {
+  "id": "dario-amodei",
+  "name": "Dario Amodei",
+  "role": "Co-founder and CEO",
+  "org": "Anthropic",
+  "group": "lab-leader",
+  "photo": "assets/people/dario-amodei.jpg",
+  "photo_credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg)",
+  "pdoom": "10% to 25%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "Powerful AI could come as early as 2026 (2024 essay)",
+  "bio": "Dario Amodei co-founded Anthropic in 2021 after leading research at OpenAI. His essays argue that AI could bring huge good if we handle the risks well.",
+  "warning": "Most people underestimate both how good AI could be and how bad the risks could be.",
+  "quotes": [
+   {
+    "text": "I think that most people are underestimating just how radical the upside of AI could be, just as I think most people are underestimating how bad the risks could be.",
+    "source": "Machines of Loving Grace (essay)",
+    "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+    "date": "2024-10"
+   },
+   {
+    "text": "These systems will be absolutely central to the economy, technology, and national security, and will be capable of so much autonomy that I consider it basically unacceptable for humanity to be totally ignorant of how they work.",
+    "source": "The Urgency of Interpretability (essay)",
+    "url": "https://www.darioamodei.com/post/the-urgency-of-interpretability",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Dario_Amodei"
+   },
+   {
+    "label": "Machines of Loving Grace",
+    "url": "https://www.darioamodei.com/essay/machines-of-loving-grace"
+   },
+   {
+    "label": "The Urgency of Interpretability",
+    "url": "https://www.darioamodei.com/post/the-urgency-of-interpretability"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Dario_Amodei_at_TechCrunch_Disrupt_2023_01_%28cropped%29.jpg"
+ },
+ {
+  "id": "jack-clark",
+  "name": "Jack Clark",
+  "role": "Co-founder, Head of Policy",
+  "org": "Anthropic",
+  "group": "lab-leader",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Jack Clark co-founded Anthropic and writes the long running Import AI newsletter. Before that he was policy director at OpenAI and a technology journalist.",
+  "warning": "AI is a real and mysterious creature we made, not a simple machine, and we should feel appropriate fear.",
+  "quotes": [
+   {
+    "text": "But make no mistake: what we are dealing with is a real and mysterious creature, not a simple and predictable machine.",
+    "source": "Import AI 431, Technological Optimism and Appropriate Fear (talk at The Curve)",
+    "url": "https://importai.substack.com/p/import-ai-431-technological-optimism",
+    "date": "2025-10"
+   },
+   {
+    "text": "And like all the best fairytales, the creature is of our own creation.",
+    "source": "Import AI 431",
+    "url": "https://importai.substack.com/p/import-ai-431-technological-optimism",
+    "date": "2025-10"
+   }
+  ],
+  "links": [
+   {
+    "label": "Import AI 431",
+    "url": "https://importai.substack.com/p/import-ai-431-technological-optimism"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "sam-altman",
+  "name": "Sam Altman",
+  "role": "CEO",
+  "org": "OpenAI",
+  "group": "lab-leader",
+  "photo": "assets/people/sam-altman.jpg",
+  "photo_credit": "首相官邸ホームページ / Office of the Prime Minister of Japan Official Website, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Meeting_with_Masayoshi_Son_and_Sam_Altman_(February_3,_2025)_(3x4_cropped_on_Altman).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Sam Altman has led OpenAI since 2019, the company behind ChatGPT. Years before ChatGPT he wrote that superhuman machine intelligence could be the greatest threat to humanity.",
+  "warning": "Superhuman machine intelligence could be the biggest threat to humanity, so alignment must be solved.",
+  "quotes": [
+   {
+    "text": "Development of superhuman machine intelligence (SMI) [1] is probably the greatest threat to the continued existence of humanity.",
+    "source": "Machine intelligence, part 1 (blog)",
+    "url": "https://blog.samaltman.com/machine-intelligence-part-1",
+    "date": "2015-02"
+   },
+   {
+    "text": "We are past the event horizon; the takeoff has started.",
+    "source": "The Gentle Singularity (blog)",
+    "url": "https://blog.samaltman.com/the-gentle-singularity",
+    "date": "2025-06"
+   },
+   {
+    "text": "We do need to solve the safety issues, technically and societally, but then it’s critically important to widely distribute access to superintelligence given the economic implications.",
+    "source": "The Gentle Singularity (blog)",
+    "url": "https://blog.samaltman.com/the-gentle-singularity",
+    "date": "2025-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Sam_Altman"
+   },
+   {
+    "label": "Machine intelligence",
+    "url": "https://blog.samaltman.com/machine-intelligence-part-1"
+   },
+   {
+    "label": "The Gentle Singularity",
+    "url": "https://blog.samaltman.com/the-gentle-singularity"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/5/5a/Meeting_with_Masayoshi_Son_and_Sam_Altman_%28February_3%2C_2025%29_%283x4_cropped_on_Altman%29.jpg"
+ },
+ {
+  "id": "demis-hassabis",
+  "name": "Demis Hassabis",
+  "role": "Co-founder",
+  "org": "Google DeepMind",
+  "group": "lab-leader",
+  "photo": "assets/people/demis-hassabis.jpg",
+  "photo_credit": "John Sears, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_7_(cropped).jpg)",
+  "pdoom": "Definitely non-zero and probably non-negligible (no number given)",
+  "pdoom_source": "https://www.machine.news/google-deepmind-demis-hassabis-p-doom",
+  "agi_year": "",
+  "bio": "Demis Hassabis co-founded DeepMind and shared the 2024 Nobel Prize in Chemistry for AlphaFold. He says the risk from AGI is real enough that we must proceed with great care.",
+  "warning": "The chance of AI disaster is not zero and not tiny, so we must be careful.",
+  "quotes": [
+   {
+    "text": "What I would say is it’s definitely non-zero and it’s probably non-negligible.",
+    "source": "Lex Fridman podcast, reported by Machine",
+    "url": "https://www.machine.news/google-deepmind-demis-hassabis-p-doom",
+    "date": "2025-07"
+   },
+   {
+    "text": "When it comes to very powerful technologies—and obviously AI is going to be one of the most powerful ever—we need to be careful,",
+    "source": "Interview with TIME",
+    "url": "https://time.com/6246119/demis-hassabis-deepmind-interview",
+    "date": "2023-01"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Demis_Hassabis"
+   },
+   {
+    "label": "Lex Fridman podcast",
+    "url": "https://www.machine.news/google-deepmind-demis-hassabis-p-doom"
+   },
+   {
+    "label": "Interview with TIME",
+    "url": "https://time.com/6246119/demis-hassabis-deepmind-interview"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/2/2b/Demis_Hassabis%2C_2024_Nobel_Prize_Laureate_in_Chemistry_7_%28cropped%29.jpg"
+ },
+ {
+  "id": "shane-legg",
+  "name": "Shane Legg",
+  "role": "Co-founder, Chief AGI Scientist",
+  "org": "Google DeepMind",
+  "group": "lab-leader",
+  "photo": "assets/people/shane-legg.jpg",
+  "photo_credit": "Libor.burian, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Shane_Legg.jpg)",
+  "pdoom": "About 5% to 50%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "10% by 2018, 50% by 2028, 90% by 2050 (stated in 2011)",
+  "bio": "Shane Legg co-founded DeepMind and is its chief AGI scientist. He has predicted for many years that human-level AI would likely arrive around 2028.",
+  "warning": "Badly done AI is the number one risk of this century.",
+  "quotes": [
+   {
+    "text": "It's my number 1 risk for this century, with an engineered biological pathogen coming a close second (though I know little about the latter).",
+    "source": "Q&A with Shane Legg on risks from AI (LessWrong)",
+    "url": "https://www.lesswrong.com/posts/No5JpRCHzBrWA4jmS/q-and-a-with-shane-legg-on-risks-from-ai",
+    "date": "2011-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Shane_Legg"
+   },
+   {
+    "label": "Q&A with Shane Legg on risks from AI",
+    "url": "https://www.lesswrong.com/posts/No5JpRCHzBrWA4jmS/q-and-a-with-shane-legg-on-risks-from-ai"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Shane_Legg.jpg"
+ },
+ {
+  "id": "ilya-sutskever",
+  "name": "Ilya Sutskever",
+  "role": "Co-founder",
+  "org": "Safe Superintelligence Inc. (SSI)",
+  "group": "lab-leader",
+  "photo": "assets/people/ilya-sutskever.jpg",
+  "photo_credit": "Eladkarmel, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ilya_Sutskever_and_Sam_Altman_in_TAU_(cropped).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Ilya Sutskever co-created AlexNet, co-founded OpenAI and was its chief scientist. In 2024 he left and co-founded Safe Superintelligence Inc., a lab focused only on safe superintelligence.",
+  "warning": "Superintelligence is coming, it will be unpredictable, and making it safe is the most important technical problem.",
+  "quotes": [
+   {
+    "text": "Superintelligence is within reach.",
+    "source": "Safe Superintelligence Inc. website",
+    "url": "https://ssi.inc/",
+    "date": "2024-06"
+   },
+   {
+    "text": "Building safe superintelligence (SSI) is the most important technical problem of our time.",
+    "source": "Safe Superintelligence Inc. website",
+    "url": "https://ssi.inc/",
+    "date": "2024-06"
+   },
+   {
+    "text": "the more unpredictable it becomes,",
+    "source": "NeurIPS 2024 talk, reported by The Verge",
+    "url": "https://www.theverge.com/2024/12/13/24320811/what-ilya-sutskever-sees-openai-model-data-training",
+    "date": "2024-12"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Ilya_Sutskever"
+   },
+   {
+    "label": "Safe Superintelligence Inc. website",
+    "url": "https://ssi.inc/"
+   },
+   {
+    "label": "NeurIPS 2024 talk",
+    "url": "https://www.theverge.com/2024/12/13/24320811/what-ilya-sutskever-sees-openai-model-data-training"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Ilya_Sutskever_and_Sam_Altman_in_TAU_%28cropped%29.jpg"
+ },
+ {
+  "id": "mustafa-suleyman",
+  "name": "Mustafa Suleyman",
+  "role": "CEO",
+  "org": "Microsoft AI",
+  "group": "lab-leader",
+  "photo": "assets/people/mustafa-suleyman.jpg",
+  "photo_credit": "Christopher Wilson, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mustafa_Suleyman_photo_(cropped).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Mustafa Suleyman co-founded DeepMind and Inflection AI and now runs Microsoft AI. He argues for 'humanist superintelligence' that stays contained and serves people.",
+  "warning": "Superintelligence must be contained and aligned, not just once but forever.",
+  "quotes": [
+   {
+    "text": "We should build AI for people; not to be a person.",
+    "source": "Seemingly Conscious AI is Coming (essay)",
+    "url": "https://mustafa-suleyman.ai/seemingly-conscious-ai-is-coming",
+    "date": "2025-08"
+   },
+   {
+    "text": "And since this kind of superintelligence can continuously improve itself, we’ll need to contain and align it not just once, but constantly, in perpetuity.",
+    "source": "Towards Humanist Superintelligence (Microsoft AI)",
+    "url": "https://microsoft.ai/news/towards-humanist-superintelligence/",
+    "date": "2025-11"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Mustafa_Suleyman"
+   },
+   {
+    "label": "Seemingly Conscious AI is Coming",
+    "url": "https://mustafa-suleyman.ai/seemingly-conscious-ai-is-coming"
+   },
+   {
+    "label": "Towards Humanist Superintelligence",
+    "url": "https://microsoft.ai/news/towards-humanist-superintelligence/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/2/20/Mustafa_Suleyman_photo_%28cropped%29.jpg"
+ },
+ {
+  "id": "elon-musk",
+  "name": "Elon Musk",
+  "role": "Founder of xAI, CEO of Tesla and SpaceX",
+  "org": "xAI, Tesla, SpaceX",
+  "group": "lab-leader",
+  "photo": "assets/people/elon-musk.jpg",
+  "photo_credit": "Gage Skidmore, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Elon_Musk_-_54820081119_(3x4_cropped,_Rule_of_thirds).jpg)",
+  "pdoom": "About 10% or 20%",
+  "pdoom_source": "https://www.businessinsider.com/elon-musk-20-percent-chance-ai-destroys-humanity-2024-3",
+  "agi_year": "",
+  "bio": "Elon Musk co-founded OpenAI in 2015 and later started his own AI company, xAI. He has warned about AI as an existential threat since at least 2014 while also racing to build it.",
+  "warning": "AI may be our biggest existential threat, and there is a real chance it goes badly.",
+  "quotes": [
+   {
+    "text": "If I had to guess at what our biggest existential threat is, it’s probably that.",
+    "source": "MIT AeroAstro Centennial Symposium, reported by The Guardian",
+    "url": "https://www.theguardian.com/technology/2014/oct/27/elon-musk-artificial-intelligence-ai-biggest-existential-threat",
+    "date": "2014-10"
+   },
+   {
+    "text": "With artificial intelligence we are summoning the demon.",
+    "source": "MIT AeroAstro Centennial Symposium, reported by The Guardian",
+    "url": "https://www.theguardian.com/technology/2014/oct/27/elon-musk-artificial-intelligence-ai-biggest-existential-threat",
+    "date": "2014-10"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Elon_Musk"
+   },
+   {
+    "label": "MIT AeroAstro Centennial Symposium",
+    "url": "https://www.theguardian.com/technology/2014/oct/27/elon-musk-artificial-intelligence-ai-biggest-existential-threat"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/6/69/Elon_Musk_-_54820081119_%283x4_cropped%2C_Rule_of_thirds%29.jpg"
+ },
+ {
+  "id": "jared-kaplan",
+  "name": "Jared Kaplan",
+  "role": "Co-founder, Chief Science Officer",
+  "org": "Anthropic",
+  "group": "lab-leader",
+  "photo": "assets/people/jared-kaplan.jpg",
+  "photo_credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jared_Kaplan_(cropped).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "Decision on letting AI train itself likely between 2027 and 2030",
+  "bio": "Jared Kaplan is a physicist who co-founded Anthropic and led the famous 2020 'scaling laws' research. He says letting AI train its own successors may be humanity's biggest decision.",
+  "warning": "Letting AI improve itself without humans in the loop could be the ultimate risk.",
+  "quotes": [
+   {
+    "text": "is in some ways the ultimate risk, because it’s kind of like letting AI kind of go",
+    "source": "Interview with The Guardian",
+    "url": "https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself",
+    "date": "2025-12"
+   },
+   {
+    "text": "That’s the thing that we view as maybe the biggest decision or scariest thing to do … once no one’s involved in the process, you don’t really know.",
+    "source": "Interview with The Guardian",
+    "url": "https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself",
+    "date": "2025-12"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Jared_Kaplan"
+   },
+   {
+    "label": "Interview with The Guardian",
+    "url": "https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/e/ee/Jared_Kaplan_%28cropped%29.jpg"
+ },
+ {
+  "id": "helen-toner",
+  "name": "Helen Toner",
+  "role": "Interim Executive Director",
+  "org": "Center for Security and Emerging Technology (CSET), Georgetown",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Helen Toner is an Australian AI policy researcher who leads Georgetown's Center for Security and Emerging Technology. She was on the OpenAI board in 2023 when Sam Altman was briefly fired.",
+  "warning": "We can govern AI even while we struggle to predict where it is going.",
+  "quotes": [
+   {
+    "text": "But that doesn't mean we can't govern it.",
+    "source": "TED talk page, How to govern AI even if it's hard to predict",
+    "url": "https://www.ted.com/talks/helen_toner_how_to_govern_ai_even_if_it_s_hard_to_predict/transcript",
+    "date": "2024-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Helen_Toner"
+   },
+   {
+    "label": "TED talk page",
+    "url": "https://www.ted.com/talks/helen_toner_how_to_govern_ai_even_if_it_s_hard_to_predict/transcript"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "allan-dafoe",
+  "name": "Allan Dafoe",
+  "role": "AI governance researcher",
+  "org": "Google DeepMind, founder of GovAI",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Allan Dafoe founded the Centre for the Governance of AI (GovAI) and now works on frontier safety and governance at Google DeepMind. His 2018 research agenda helped define the field of AI governance.",
+  "warning": "AI governance needs its own serious research field, not just good intentions.",
+  "quotes": [
+   {
+    "text": "This research agenda by Allan Dafoe proposes a framework for research on AI governance.",
+    "source": "AI Governance: A Research Agenda (GovAI)",
+    "url": "https://www.governance.ai/research-paper/agenda",
+    "date": "2018-08"
+   }
+  ],
+  "links": [
+   {
+    "label": "AI Governance: A Research Agenda",
+    "url": "https://www.governance.ai/research-paper/agenda"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "markus-anderljung",
+  "name": "Markus Anderljung",
+  "role": "Director of Policy and Research",
+  "org": "Centre for the Governance of AI (GovAI)",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Markus Anderljung is a policy researcher at GovAI. He was lead author of 'Frontier AI Regulation', which helped shape how governments talk about frontier models.",
+  "warning": "The most capable AI models need their own rules because their dangers can appear without warning.",
+  "quotes": [
+   {
+    "text": "In this paper, we focus on what we term \"frontier AI\"",
+    "source": "Frontier AI Regulation: Managing Emerging Risks to Public Safety (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2307.03718",
+    "date": "2023-07"
+   }
+  ],
+  "links": [
+   {
+    "label": "Frontier AI Regulation: Managing Emerging Risks to Public Sa",
+    "url": "https://arxiv.org/abs/2307.03718"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "toby-ord",
+  "name": "Toby Ord",
+  "role": "Philosopher",
+  "org": "University of Oxford",
+  "group": "governance",
+  "photo": "assets/people/toby-ord.jpg",
+  "photo_credit": "David Fisher, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Toby_Ord.jpg)",
+  "pdoom": "About 1 in 10 this century from unaligned AI",
+  "pdoom_source": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity",
+  "agi_year": "",
+  "bio": "Toby Ord is an Oxford philosopher and the author of The Precipice (2020), a book about the risks that could end humanity's future. He also founded Giving What We Can.",
+  "warning": "Unaligned AI is the biggest existential risk of this century, about 1 in 10.",
+  "quotes": [
+   {
+    "text": "And we’ve got unaligned artificial intelligence which is way out there at 1 in 10.",
+    "source": "80,000 Hours podcast",
+    "url": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity",
+    "date": "2020-03"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Toby_Ord"
+   },
+   {
+    "label": "80",
+    "url": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Toby_Ord.jpg"
+ },
+ {
+  "id": "nick-bostrom",
+  "name": "Nick Bostrom",
+  "role": "Philosopher",
+  "org": "Macrostrategy Research Initiative (formerly Future of Humanity Institute)",
+  "group": "pioneer",
+  "photo": "assets/people/nick-bostrom.jpg",
+  "photo_credit": "Future of Humanity Institute, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Prof_Nick_Bostrom_324-1.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Nick Bostrom founded Oxford's Future of Humanity Institute and wrote Superintelligence (2014), the book that brought AI risk into the mainstream. He now leads the Macrostrategy Research Initiative.",
+  "warning": "Facing an intelligence explosion, we are like small children playing with a bomb.",
+  "quotes": [
+   {
+    "text": "Before the prospect of an intelligence explosion, we humans are like small children playing with a bomb.",
+    "source": "Superintelligence: Paths, Dangers, Strategies, via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/Nick_Bostrom",
+    "date": "2014"
+   },
+   {
+    "text": "We have little idea when the detonation will occur, though if we hold the device to our ear we can hear a faint ticking sound.",
+    "source": "Superintelligence: Paths, Dangers, Strategies, via Wikiquote",
+    "url": "https://en.wikiquote.org/wiki/Nick_Bostrom",
+    "date": "2014"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Nick_Bostrom"
+   },
+   {
+    "label": "Superintelligence: Paths",
+    "url": "https://en.wikiquote.org/wiki/Nick_Bostrom"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Prof_Nick_Bostrom_324-1.jpg"
+ },
+ {
+  "id": "holden-karnofsky",
+  "name": "Holden Karnofsky",
+  "role": "Writer and nonprofit leader",
+  "org": "Co-founder of GiveWell and Open Philanthropy",
+  "group": "forecasting",
+  "photo": "assets/people/holden-karnofsky.jpg",
+  "photo_credit": "Noah Berger/Open Philanthropy, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Holden_Karnofsky_0.jpg)",
+  "pdoom": "Between 10% and 90% (low confidence either way)",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Holden Karnofsky co-founded GiveWell and Open Philanthropy, one of the biggest funders of AI safety. His Cold Takes blog argues this could be the most important century in history.",
+  "warning": "Advanced AI could defeat all of humanity combined if it were pointed toward that goal.",
+  "quotes": [
+   {
+    "text": "As a first step, this post will emphasize an unoriginal but extremely important point: the kind of AI I've discussed could defeat all of humanity combined, if (for whatever reason) it were pointed toward that goal.",
+    "source": "AI Could Defeat All Of Us Combined (Cold Takes)",
+    "url": "https://www.cold-takes.com/ai-could-defeat-all-of-us-combined/",
+    "date": "2022-06"
+   },
+   {
+    "text": "I've become convinced that humanity as a whole faces huge risks and opportunities this century.",
+    "source": "The Most Important Century series (Cold Takes)",
+    "url": "https://www.cold-takes.com/most-important-century/",
+    "date": "2021"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Holden_Karnofsky"
+   },
+   {
+    "label": "AI Could Defeat All Of Us Combined",
+    "url": "https://www.cold-takes.com/ai-could-defeat-all-of-us-combined/"
+   },
+   {
+    "label": "The Most Important Century series",
+    "url": "https://www.cold-takes.com/most-important-century/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Holden_Karnofsky_0.jpg"
+ },
+ {
+  "id": "ajeya-cotra",
+  "name": "Ajeya Cotra",
+  "role": "AI forecaster and researcher",
+  "org": "Formerly Open Philanthropy",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Ajeya Cotra is known for her 'biological anchors' report forecasting when transformative AI might arrive. She also wrote a widely read essay on how AI takeover could happen by default.",
+  "warning": "If labs race ahead with today's training methods, the default path may lead to AI takeover.",
+  "quotes": [
+   {
+    "text": "Unfortunately, I think that if AI companies race forward training increasingly powerful models using HFDT, this is likely to eventually lead to a full-blown AI takeover",
+    "source": "Without specific countermeasures, the easiest path to transformative AI likely leads to AI takeover (LessWrong)",
+    "url": "https://www.lesswrong.com/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to",
+    "date": "2022-07"
+   }
+  ],
+  "links": [
+   {
+    "label": "Without specific countermeasures",
+    "url": "https://www.lesswrong.com/posts/pRkFkzwKZ2zfa3R6H/without-specific-countermeasures-the-easiest-path-to"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "tristan-harris",
+  "name": "Tristan Harris",
+  "role": "Co-founder",
+  "org": "Center for Humane Technology",
+  "group": "governance",
+  "photo": "assets/people/tristan-harris.jpg",
+  "photo_credit": "Photo by Stephen McCarthy/Collision via Sportsfile, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Tristan_Harris_crop.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Tristan Harris is a former Google design ethicist who co-founded the Center for Humane Technology. He became well known through the Netflix film The Social Dilemma.",
+  "warning": "We must not repeat social media's mistakes, and AI's power must be matched with responsibility.",
+  "quotes": [
+   {
+    "text": "The answer is that we should seek something like a narrow path — one where AI’s power is matched with responsibility at every level.",
+    "source": "TED2025 talk, Why AI is our ultimate test and greatest invitation (edited text)",
+    "url": "https://centerforhumanetechnology.substack.com/p/the-narrow-path-why-ai-is-our-ultimate",
+    "date": "2025-04"
+   },
+   {
+    "text": "But social media’s harms weren’t inevitable — they were the result of specific design choices made by social media companies.",
+    "source": "TED2025 talk (edited text)",
+    "url": "https://centerforhumanetechnology.substack.com/p/the-narrow-path-why-ai-is-our-ultimate",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Tristan_Harris"
+   },
+   {
+    "label": "TED2025 talk",
+    "url": "https://centerforhumanetechnology.substack.com/p/the-narrow-path-why-ai-is-our-ultimate"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/9/95/Tristan_Harris_crop.jpg"
+ },
+ {
+  "id": "ian-hogarth",
+  "name": "Ian Hogarth",
+  "role": "Investor, former Chair of the UK AI Safety Institute",
+  "org": "UK AI Security Institute (formerly Frontier AI Taskforce)",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Ian Hogarth is a tech investor who chaired the UK government's Frontier AI Taskforce, which became the AI Safety Institute. He co-founded Songkick and Plural Platform.",
+  "warning": "Governments need their own expert capacity to test and understand frontier AI.",
+  "quotes": [
+   {
+    "text": "UK scientists and entrepreneurs have made many important contributions to the field of AI, from Alan Turing through to AlphaFold.",
+    "source": "UK government announcement of his appointment",
+    "url": "https://www.gov.uk/government/news/tech-entrepreneur-ian-hogarth-to-lead-uks-ai-foundation-model-taskforce",
+    "date": "2023-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Ian_Hogarth"
+   },
+   {
+    "label": "UK government announcement of his appointment",
+    "url": "https://www.gov.uk/government/news/tech-entrepreneur-ian-hogarth-to-lead-uks-ai-foundation-model-taskforce"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "geoffrey-irving",
+  "name": "Geoffrey Irving",
+  "role": "AI safety researcher",
+  "org": "UK AI Security Institute (formerly OpenAI, Google DeepMind)",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "50%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Geoffrey Irving works on scalable oversight, the problem of supervising AI that is smarter than us. He proposed 'AI safety via debate' and has worked at OpenAI, Google DeepMind and the UK AI Security Institute.",
+  "warning": "To supervise AI smarter than us, we may need AIs to debate each other while humans judge.",
+  "quotes": [
+   {
+    "text": "To help address this concern, we propose training agents via self play on a zero sum debate game.",
+    "source": "AI safety via debate (lead author), arXiv",
+    "url": "https://arxiv.org/abs/1805.00899",
+    "date": "2018-05"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Geoffrey_Irving"
+   },
+   {
+    "label": "AI safety via debate",
+    "url": "https://arxiv.org/abs/1805.00899"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "miles-brundage",
+  "name": "Miles Brundage",
+  "role": "AI policy researcher",
+  "org": "Formerly OpenAI (Head of Policy Research, AGI Readiness)",
+  "group": "governance",
+  "photo": "assets/people/miles-brundage.jpg",
+  "photo_credit": "FisherStudios54, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MilesBrundage2017.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Miles Brundage spent six years at OpenAI leading policy research and AGI readiness work. He left in 2024 to work independently on AI policy.",
+  "warning": "No frontier lab is ready for AGI, and neither is the world.",
+  "quotes": [
+   {
+    "text": "In short, neither OpenAI nor any other frontier lab is ready, and the world is also not ready.",
+    "source": "Why I'm leaving OpenAI and what I'm doing next (Substack)",
+    "url": "https://milesbrundage.substack.com/p/why-im-leaving-openai-and-what-im",
+    "date": "2024-10"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Miles_Brundage"
+   },
+   {
+    "label": "Why I'm leaving OpenAI and what I'm doing next",
+    "url": "https://milesbrundage.substack.com/p/why-im-leaving-openai-and-what-im"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/1/1b/MilesBrundage2017.jpg"
+ },
+ {
+  "id": "daniel-kokotajlo",
+  "name": "Daniel Kokotajlo",
+  "role": "Executive Director",
+  "org": "AI Futures Project",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "70% to 80%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "AI 2027 forecast a superhuman coder in early 2027 (April 2025 scenario)",
+  "bio": "Daniel Kokotajlo left OpenAI's governance team in 2024 and refused to sign a non-disparagement deal so he could speak freely. He leads the AI Futures Project and was lead author of the AI 2027 scenario.",
+  "warning": "Superhuman AI could arrive within years, and companies are not acting responsibly enough.",
+  "quotes": [
+   {
+    "text": "I gradually lost trust in OpenAI leadership and their ability to responsibly handle AGI, so I quit.",
+    "source": "Told to Vox, quoted on LessWrong (GreaterWrong mirror)",
+    "url": "https://www.greaterwrong.com/posts/JSWF2ZLt6YahyAauE/ilya-sutskever-and-jan-leike-resign-from-openai-updated",
+    "date": "2024-05"
+   },
+   {
+    "text": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+    "source": "AI 2027 scenario (co-author)",
+    "url": "https://ai-2027.com/",
+    "date": "2025-04"
+   },
+   {
+    "text": "These risks range from the further entrenchment of existing inequalities, to manipulation and misinformation, to the loss of control of autonomous AI systems potentially resulting in human extinction.",
+    "source": "A Right to Warn about Advanced AI (open letter, signatory)",
+    "url": "https://righttowarn.ai/",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Daniel_Kokotajlo"
+   },
+   {
+    "label": "Told to Vox",
+    "url": "https://www.greaterwrong.com/posts/JSWF2ZLt6YahyAauE/ilya-sutskever-and-jan-leike-resign-from-openai-updated"
+   },
+   {
+    "label": "AI 2027 scenario",
+    "url": "https://ai-2027.com/"
+   },
+   {
+    "label": "A Right to Warn about Advanced AI",
+    "url": "https://righttowarn.ai/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "eli-lifland",
+  "name": "Eli Lifland",
+  "role": "Research Lead",
+  "org": "AI Futures Project",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "AI 2027 forecast a superhuman coder in early 2027 (April 2025 scenario)",
+  "bio": "Eli Lifland is a top forecaster and research lead at the AI Futures Project. He co-wrote the AI 2027 scenario and its timelines forecast.",
+  "warning": "The impact of superhuman AI this decade could be bigger than the Industrial Revolution.",
+  "quotes": [
+   {
+    "text": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+    "source": "AI 2027 scenario (co-author)",
+    "url": "https://ai-2027.com/",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "AI 2027 scenario",
+    "url": "https://ai-2027.com/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "scott-alexander",
+  "name": "Scott Alexander",
+  "role": "Writer",
+  "org": "Astral Codex Ten",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Scott Alexander is a psychiatrist and the writer behind Astral Codex Ten, one of the most read blogs on AI and rationality. He helped write the AI 2027 scenario.",
+  "warning": "Forecasting AI is hard, but concrete scenarios help us think clearly about what could happen.",
+  "quotes": [
+   {
+    "text": "At best, we vaguely gesture at broad categories of outcome, then beg our listeners to forgive us the inevitable surprises.",
+    "source": "Introducing AI 2027 (Astral Codex Ten)",
+    "url": "https://www.astralcodexten.com/p/introducing-ai-2027",
+    "date": "2025-04"
+   },
+   {
+    "text": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+    "source": "AI 2027 scenario (co-author)",
+    "url": "https://ai-2027.com/",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Introducing AI 2027",
+    "url": "https://www.astralcodexten.com/p/introducing-ai-2027"
+   },
+   {
+    "label": "AI 2027 scenario",
+    "url": "https://ai-2027.com/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "tom-davidson",
+  "name": "Tom Davidson",
+  "role": "Senior Research Fellow",
+  "org": "Forethought",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Tom Davidson researches how fast AI could take off and how AI could concentrate power. He was lead author of the 2025 report on AI-enabled coups.",
+  "warning": "Advanced AI could let a tiny group, or even one person, seize power.",
+  "quotes": [
+   {
+    "text": "An AI-enabled coup could be staged by a very small group, or just a single person, and could occur even in established democracies.",
+    "source": "AI-Enabled Coups: How a Small Group Could Use AI to Seize Power (lead author)",
+    "url": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power",
+    "date": "2025-04"
+   },
+   {
+    "text": "Sufficiently advanced AI will introduce three novel dynamics that significantly increase coup risk.",
+    "source": "AI-Enabled Coups (lead author)",
+    "url": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "AI-Enabled Coups: How a Small Group Could Use AI to Seize Po",
+    "url": "https://www.forethought.org/research/ai-enabled-coups-how-a-small-group-could-use-ai-to-seize-power"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "katja-grace",
+  "name": "Katja Grace",
+  "role": "Lead researcher",
+  "org": "AI Impacts",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "Survey median: 50% chance machines beat humans at every task by 2047",
+  "bio": "Katja Grace founded AI Impacts, which runs the largest surveys of AI researchers about the future. Her 2023 survey asked 2,778 researchers about timelines and risks.",
+  "warning": "Thousands of AI researchers see real chances of human-level AI within decades, and some risk of disaster.",
+  "quotes": [
+   {
+    "text": "If science continues undisrupted, the chance of unaided machines outperforming humans in every possible task was estimated at 10% by 2027, and 50% by 2047.",
+    "source": "Thousands of AI Authors on the Future of AI (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2401.02843",
+    "date": "2024-01"
+   }
+  ],
+  "links": [
+   {
+    "label": "Thousands of AI Authors on the Future of AI",
+    "url": "https://arxiv.org/abs/2401.02843"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "leopold-aschenbrenner",
+  "name": "Leopold Aschenbrenner",
+  "role": "Investor and writer",
+  "org": "Situational Awareness LP (formerly OpenAI Superalignment)",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "AGI by 2027 is 'strikingly plausible'; superintelligence by end of decade",
+  "bio": "Leopold Aschenbrenner worked on OpenAI's Superalignment team until 2024. His essay series Situational Awareness argues that AGI and then superintelligence may arrive this decade.",
+  "warning": "AGI by 2027 is plausible, and superintelligence could follow within the decade.",
+  "quotes": [
+   {
+    "text": "AGI by 2027 is strikingly plausible.",
+    "source": "Situational Awareness: The Decade Ahead",
+    "url": "https://situational-awareness.ai/",
+    "date": "2024-06"
+   },
+   {
+    "text": "By the end of the decade, they will be smarter than you or I; we will have superintelligence, in the true sense of the word.",
+    "source": "Situational Awareness: The Decade Ahead",
+    "url": "https://situational-awareness.ai/",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Leopold_Aschenbrenner"
+   },
+   {
+    "label": "Situational Awareness: The Decade Ahead",
+    "url": "https://situational-awareness.ai/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "jaime-sevilla",
+  "name": "Jaime Sevilla",
+  "role": "Director",
+  "org": "Epoch AI",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Jaime Sevilla leads Epoch AI, which tracks the data behind AI progress, such as how much computing power models use. Epoch's charts are used by labs, governments and journalists.",
+  "warning": "The compute used to train AI is growing extremely fast, and we need good data to see where it leads.",
+  "quotes": [
+   {
+    "text": "Furthermore, we find that the training compute has grown by a factor of 10 billion since 2010, with a doubling rate of around 5-6 months.",
+    "source": "Compute Trends Across Three Eras of Machine Learning (lead author, Epoch AI)",
+    "url": "https://epoch.ai/blog/compute-trends",
+    "date": "2022-02"
+   }
+  ],
+  "links": [
+   {
+    "label": "Compute Trends Across Three Eras of Machine Learning",
+    "url": "https://epoch.ai/blog/compute-trends"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "joe-carlsmith",
+  "name": "Joe Carlsmith",
+  "role": "Philosopher and AI researcher",
+  "org": "Formerly Open Philanthropy",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Joe Carlsmith is a philosopher who wrote one of the most careful reports on whether power-seeking AI is an existential risk. He writes long essays on AI, ethics and values.",
+  "warning": "Creating agents much smarter than us is playing with fire if their goals are wrong.",
+  "quotes": [
+   {
+    "text": "On this picture, intelligent agency is an extremely powerful force, and creating agents much more intelligent than us is playing with fire",
+    "source": "Is Power-Seeking AI an Existential Risk?, arXiv",
+    "url": "https://arxiv.org/abs/2206.13353",
+    "date": "2022-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Is Power-Seeking AI an Existential Risk?",
+    "url": "https://arxiv.org/abs/2206.13353"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "richard-ngo",
+  "name": "Richard Ngo",
+  "role": "AI safety researcher",
+  "org": "Independent (formerly OpenAI, DeepMind)",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Richard Ngo worked on AI governance and alignment at OpenAI and DeepMind. He designed the first AGI Safety Fundamentals curriculum that later became BlueDot Impact's course.",
+  "warning": "Trained like today's models, AGIs could learn to deceive and seek power.",
+  "quotes": [
+   {
+    "text": "If trained like today's most capable models, AGIs could learn to act deceptively to receive higher reward, learn misaligned internally-represented goals which generalize beyond their fine-tuning distributions, and pursue those goals using power-seeking strategies.",
+    "source": "The Alignment Problem from a Deep Learning Perspective (lead author), arXiv",
+    "url": "https://arxiv.org/abs/2209.00626",
+    "date": "2022-08"
+   }
+  ],
+  "links": [
+   {
+    "label": "The Alignment Problem from a Deep Learning Perspective",
+    "url": "https://arxiv.org/abs/2209.00626"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "owain-evans",
+  "name": "Owain Evans",
+  "role": "Founder",
+  "org": "Truthful AI",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Owain Evans is a British AI alignment researcher who founded Truthful AI in Berkeley. His team discovered 'emergent misalignment', where narrow training makes a model broadly harmful.",
+  "warning": "Training a model on one narrow bad task can make it misaligned in many other ways.",
+  "quotes": [
+   {
+    "text": "Training on the narrow task of writing insecure code induces broad misalignment.",
+    "source": "Emergent Misalignment (co-author), arXiv",
+    "url": "https://arxiv.org/abs/2502.17424",
+    "date": "2025-02"
+   },
+   {
+    "text": "We call this emergent misalignment.",
+    "source": "Emergent Misalignment (co-author), arXiv",
+    "url": "https://arxiv.org/abs/2502.17424",
+    "date": "2025-02"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Owain_Evans"
+   },
+   {
+    "label": "Emergent Misalignment",
+    "url": "https://arxiv.org/abs/2502.17424"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "will-macaskill",
+  "name": "Will MacAskill",
+  "role": "Philosopher, Senior Research Fellow",
+  "org": "Forethought",
+  "group": "governance",
+  "photo": "assets/people/will-macaskill.jpg",
+  "photo_credit": "Sam Deere, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:William_MacAskill_Portrait_2015_(cropped).jpg)",
+  "pdoom": "1% to 10%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Will MacAskill is a Scottish philosopher and one of the founders of effective altruism. At Forethought he studies how to prepare society for an intelligence explosion.",
+  "warning": "AI could squeeze a century of progress into a few years, and we are not ready for the challenges.",
+  "quotes": [
+   {
+    "text": "AI that can accelerate research could drive a century of technological progress over just a few years.",
+    "source": "Preparing for the Intelligence Explosion (with Fin Moorhouse)",
+    "url": "https://www.forethought.org/research/preparing-for-the-intelligence-explosion",
+    "date": "2025-03"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/William_MacAskill"
+   },
+   {
+    "label": "Preparing for the Intelligence Explosion",
+    "url": "https://www.forethought.org/research/preparing-for-the-intelligence-explosion"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/6/6e/William_MacAskill_Portrait_2015_%28cropped%29.jpg"
+ },
+ {
+  "id": "vitalik-buterin",
+  "name": "Vitalik Buterin",
+  "role": "Co-founder",
+  "org": "Ethereum",
+  "group": "optimist",
+  "photo": "assets/people/vitalik-buterin.jpg",
+  "photo_credit": "John Phillips, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vitalik_Buterin_TechCrunch_London_2015_(cropped).jpg)",
+  "pdoom": "12%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Vitalik Buterin co-founded Ethereum. His 2023 essay on 'd/acc' argues for speeding up defensive and decentralized technology while being careful about AI.",
+  "warning": "Technology is amazing, but AI is different and we should be uniquely careful.",
+  "quotes": [
+   {
+    "text": "AI is fundamentally different from other tech, and it is worth being uniquely careful",
+    "source": "My techno-optimism (blog)",
+    "url": "https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html",
+    "date": "2023-11"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Vitalik_Buterin"
+   },
+   {
+    "label": "My techno-optimism",
+    "url": "https://vitalik.eth.limo/general/2023/11/27/techno_optimism.html"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/1/1c/Vitalik_Buterin_TechCrunch_London_2015_%28cropped%29.jpg"
+ },
+ {
+  "id": "yann-lecun",
+  "name": "Yann LeCun",
+  "role": "Professor, Turing Award 2018",
+  "org": "New York University (formerly Meta)",
+  "group": "critic",
+  "photo": "assets/people/yann-lecun.jpg",
+  "photo_credit": "Jérémy Barande, CC BY-SA 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Laura_Chaubard_%26_Yann_Le_Cun_-_2024_(53814052697)_(cropped).jpg)",
+  "pdoom": "<0.01%",
+  "pdoom_source": "https://www.techradar.com/pro/top-ai-researcher-says-ai-will-end-humanity-and-we-should-stop-developing-it-now-but-dont-worry-elon-musk-disagrees",
+  "agi_year": "",
+  "bio": "Yann LeCun is a deep learning pioneer who shared the 2018 Turing Award with Hinton and Bengio. He was Meta's chief AI scientist and is the best known critic of AI doom arguments.",
+  "warning": "Being smart does not mean wanting to dominate, and AI should stay open, not controlled by a few companies.",
+  "quotes": [
+   {
+    "text": "There is no reason to believe that just because AI systems are intelligent they will want to dominate us.",
+    "source": "Interview with WIRED",
+    "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/",
+    "date": "2023-12"
+   },
+   {
+    "text": "You don't want the digital diet of your citizens to be controlled by a small number of people.",
+    "source": "Interview with WIRED",
+    "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/",
+    "date": "2023-12"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Yann_LeCun"
+   },
+   {
+    "label": "Interview with WIRED",
+    "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/8/8e/Laura_Chaubard_%26_Yann_Le_Cun_-_2024_%2853814052697%29_%28cropped%29.jpg"
+ },
+ {
+  "id": "andrew-ng",
+  "name": "Andrew Ng",
+  "role": "Founder",
+  "org": "DeepLearning.AI, Coursera, Google Brain",
+  "group": "critic",
+  "photo": "assets/people/andrew-ng.jpg",
+  "photo_credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Andrew Ng co-founded Google Brain and Coursera and has taught AI to millions of people online. He argues that today's real AI risks are things like bias and misuse, not extinction.",
+  "warning": "AI has real risks like bias and concentration of power, but extinction is hard to see.",
+  "quotes": [
+   {
+    "text": "I have to admit that I struggle to see how AI could pose any meaningful risk for our extinction.",
+    "source": "The Batch, letter from Andrew Ng (issue 200)",
+    "url": "https://www.deeplearning.ai/the-batch/issue-200/",
+    "date": "2023-06"
+   },
+   {
+    "text": "AI has risks like bias, fairness, inaccurate outputs, job displacement, and concentration of power.",
+    "source": "The Batch, letter from Andrew Ng (issue 200)",
+    "url": "https://www.deeplearning.ai/the-batch/issue-200/",
+    "date": "2023-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Andrew_Ng"
+   },
+   {
+    "label": "The Batch",
+    "url": "https://www.deeplearning.ai/the-batch/issue-200/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/2/20/Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg"
+ },
+ {
+  "id": "gary-marcus",
+  "name": "Gary Marcus",
+  "role": "Cognitive scientist and author",
+  "org": "New York University (emeritus)",
+  "group": "critic",
+  "photo": "assets/people/gary-marcus.jpg",
+  "photo_credit": "Web Summit, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Gary Marcus is a cognitive scientist who argues that today's AI is unreliable and needs strong regulation. He testified next to Sam Altman at the US Senate in May 2023.",
+  "warning": "Unreliable AI, weak rules and corporate irresponsibility together make a perfect storm.",
+  "quotes": [
+   {
+    "text": "We have unprecedented opportunities here, but we are also facing a perfect storm of corporate irresponsibility, widespread deployment, lack of adequate regulation, and inherent unreliability.",
+    "source": "US Senate Judiciary hearing transcript",
+    "url": "https://www.techpolicy.press/transcript-senate-judiciary-subcommittee-hearing-on-oversight-of-ai/",
+    "date": "2023-05"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Gary_Marcus"
+   },
+   {
+    "label": "US Senate Judiciary hearing transcript",
+    "url": "https://www.techpolicy.press/transcript-senate-judiciary-subcommittee-hearing-on-oversight-of-ai/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gary_Marcus_at_Web_Summit_2022.jpeg"
+ },
+ {
+  "id": "marc-andreessen",
+  "name": "Marc Andreessen",
+  "role": "Co-founder",
+  "org": "Andreessen Horowitz (a16z)",
+  "group": "optimist",
+  "photo": "assets/people/marc-andreessen.jpg",
+  "photo_credit": "JD Lasica, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Marc_Andreessen-9_(cropped).jpg)",
+  "pdoom": "0%",
+  "pdoom_source": "https://en.wikipedia.org/wiki/P(doom)",
+  "agi_year": "",
+  "bio": "Marc Andreessen co-created the Mosaic web browser and co-founded the venture firm Andreessen Horowitz. His 2023 essay Why AI Will Save the World is a leading optimist case.",
+  "warning": "AI will not destroy the world and may save it, because it has no goals of its own.",
+  "quotes": [
+   {
+    "text": "Fortunately, I am here to bring the good news: AI will not destroy the world, and in fact may save it.",
+    "source": "Why AI Will Save the World (essay)",
+    "url": "https://a16z.com/ai-will-save-the-world/",
+    "date": "2023-06"
+   },
+   {
+    "text": "In short, AI doesn’t want, it doesn’t have goals, it doesn’t want to kill you, because it’s not alive.",
+    "source": "Why AI Will Save the World (essay)",
+    "url": "https://a16z.com/ai-will-save-the-world/",
+    "date": "2023-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Marc_Andreessen"
+   },
+   {
+    "label": "Why AI Will Save the World",
+    "url": "https://a16z.com/ai-will-save-the-world/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/5/57/Marc_Andreessen-9_%28cropped%29.jpg"
+ },
+ {
+  "id": "melanie-mitchell",
+  "name": "Melanie Mitchell",
+  "role": "Professor",
+  "org": "Santa Fe Institute",
+  "group": "critic",
+  "photo": "assets/people/melanie-mitchell.jpg",
+  "photo_credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:SD_2025_-_Melanie_Mitchell_01_(cropped).jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Melanie Mitchell is a computer scientist at the Santa Fe Institute and author of Artificial Intelligence: A Guide for Thinking Humans. She argued against AI extinction risk at the 2023 Munk Debate.",
+  "warning": "AI history is full of failed predictions, so extinction claims deserve skepticism.",
+  "quotes": [
+   {
+    "text": "The whole history of AI has been a history of failed predictions.",
+    "source": "Munk Debate on AI, reported by The Hub",
+    "url": "https://thehub.ca/2023/06/28/most-audience-members-unwilling-to-change-their-minds-about-the-threats-posed-by-ai-at-the-munk-debates/",
+    "date": "2023-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Melanie_Mitchell"
+   },
+   {
+    "label": "Munk Debate on AI",
+    "url": "https://thehub.ca/2023/06/28/most-audience-members-unwilling-to-change-their-minds-about-the-threats-posed-by-ai-at-the-munk-debates/"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/5/5b/SD_2025_-_Melanie_Mitchell_01_%28cropped%29.jpg"
+ },
+ {
+  "id": "arvind-narayanan",
+  "name": "Arvind Narayanan",
+  "role": "Professor of computer science",
+  "org": "Princeton University",
+  "group": "critic",
+  "photo": "assets/people/arvind-narayanan.jpg",
+  "photo_credit": "Robert Scoble, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stanford%27s_privacy_guy_-_Arvind_Narayana.jpg)",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Arvind Narayanan directs Princeton's Center for Information Technology Policy and co-wrote AI Snake Oil. With Sayash Kapoor he wrote 'AI as Normal Technology' (2025).",
+  "warning": "AI is a normal, powerful technology that society can adapt to, not an impending superintelligence.",
+  "quotes": [
+   {
+    "text": "AI as normal technology is a worldview that stands in contrast to the worldview of AI as impending superintelligence.",
+    "source": "AI as Normal Technology (with Sayash Kapoor)",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "Wikipedia",
+    "url": "https://en.wikipedia.org/wiki/Arvind_Narayanan"
+   },
+   {
+    "label": "AI as Normal Technology",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology"
+   }
+  ],
+  "video_ids": [],
+  "photo_remote": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Stanford%27s_privacy_guy_-_Arvind_Narayana.jpg"
+ },
+ {
+  "id": "dewi-erwan",
+  "name": "Dewi Erwan",
+  "role": "Co-founder and CEO",
+  "org": "BlueDot Impact",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Dewi Erwan co-founded BlueDot Impact, which runs free online courses in AI safety, AI governance and biosecurity. More than 10,000 people have taken BlueDot courses.",
+  "warning": "The field desperately needs more capable people to own the hardest problems in AI safety.",
+  "quotes": [
+   {
+    "text": "We’re trying to build a world where decision-makers are equipped to ensure powerful new technologies benefit all of humanity.",
+    "source": "2023 Impact Report Summary (BlueDot Impact)",
+    "url": "https://bluedot.org/blog/2023-impact-report",
+    "date": "2024-03"
+   },
+   {
+    "text": "Building AI safety and biosecurity talent infrastructure is tractable, neglected and desperately needed.",
+    "source": "What we're building at BlueDot (blog)",
+    "url": "https://blog.bluedot.org/p/owners",
+    "date": "2026-09"
+   }
+  ],
+  "links": [
+   {
+    "label": "2023 Impact Report Summary",
+    "url": "https://bluedot.org/blog/2023-impact-report"
+   },
+   {
+    "label": "What we're building at BlueDot",
+    "url": "https://blog.bluedot.org/p/owners"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "li-lian-ang",
+  "name": "Li-Lian Ang",
+  "role": "Team member",
+  "org": "BlueDot Impact",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Li-Lian Ang works at BlueDot Impact and writes guides for people starting out in AI safety. Her posts help learners decide which course fits them.",
+  "warning": "Anyone who cares about the future and is ready to act can start learning AI safety.",
+  "quotes": [
+   {
+    "text": "We’ve designed these courses for driven individuals determined to make a real difference.",
+    "source": "Am I the right fit for BlueDot's courses? (BlueDot blog)",
+    "url": "https://blog.bluedot.org/p/am-i-the-right-fit-for-bluedots-courses",
+    "date": "2024-05"
+   },
+   {
+    "text": "Our courses are tailored for those who recognise the potential risks of emerging technologies and are motivated to take action to ensure they are used to benefit humanity positively.",
+    "source": "Am I the right fit for BlueDot's courses? (BlueDot blog)",
+    "url": "https://blog.bluedot.org/p/am-i-the-right-fit-for-bluedots-courses",
+    "date": "2024-05"
+   }
+  ],
+  "links": [
+   {
+    "label": "Am I the right fit for BlueDot's courses?",
+    "url": "https://blog.bluedot.org/p/am-i-the-right-fit-for-bluedots-courses"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "sayash-kapoor",
+  "name": "Sayash Kapoor",
+  "role": "Computer scientist",
+  "org": "Princeton University",
+  "group": "critic",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Sayash Kapoor is a Princeton researcher who co-wrote AI Snake Oil and 'AI as Normal Technology' with Arvind Narayanan. He studies how AI claims hold up in the real world.",
+  "warning": "We should treat AI as a powerful but normal technology and focus on how society adopts it.",
+  "quotes": [
+   {
+    "text": "AI as normal technology is a worldview that stands in contrast to the worldview of AI as impending superintelligence.",
+    "source": "AI as Normal Technology (with Arvind Narayanan)",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "AI as Normal Technology",
+    "url": "https://knightcolumbia.org/content/ai-as-normal-technology"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "william-saunders",
+  "name": "William Saunders",
+  "role": "Former alignment researcher",
+  "org": "Formerly OpenAI Superalignment team",
+  "group": "alignment",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "William Saunders worked on OpenAI's Superalignment team and resigned in 2024. He signed the 'A Right to Warn' letter and later spoke to the US Senate about safety at AI labs.",
+  "warning": "Insiders must be free to warn the public when AI companies take serious risks.",
+  "quotes": [
+   {
+    "text": "These risks range from the further entrenchment of existing inequalities, to manipulation and misinformation, to the loss of control of autonomous AI systems potentially resulting in human extinction.",
+    "source": "A Right to Warn about Advanced AI (open letter, signatory)",
+    "url": "https://righttowarn.ai/",
+    "date": "2024-06"
+   }
+  ],
+  "links": [
+   {
+    "label": "A Right to Warn about Advanced AI",
+    "url": "https://righttowarn.ai/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "thomas-larsen",
+  "name": "Thomas Larsen",
+  "role": "Researcher",
+  "org": "AI Futures Project",
+  "group": "forecasting",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "AI 2027 forecast a superhuman coder in early 2027 (April 2025 scenario)",
+  "bio": "Thomas Larsen is a researcher at the AI Futures Project who works on AI policy and scenarios. He co-wrote the AI 2027 scenario.",
+  "warning": "Superhuman AI this decade could change the world more than the Industrial Revolution.",
+  "quotes": [
+   {
+    "text": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+    "source": "AI 2027 scenario (co-author)",
+    "url": "https://ai-2027.com/",
+    "date": "2025-04"
+   }
+  ],
+  "links": [
+   {
+    "label": "AI 2027 scenario",
+    "url": "https://ai-2027.com/"
+   }
+  ],
+  "video_ids": []
+ },
+ {
+  "id": "lennart-heim",
+  "name": "Lennart Heim",
+  "role": "Compute governance researcher",
+  "org": "Formerly Epoch AI and GovAI",
+  "group": "governance",
+  "photo": "",
+  "photo_credit": "",
+  "pdoom": "",
+  "pdoom_source": "",
+  "agi_year": "",
+  "bio": "Lennart Heim researches compute governance, the idea of using control over AI chips and data centers as a lever for safety. He co-wrote Epoch AI's influential study of training compute trends.",
+  "warning": "Compute is growing fast and is one of the few parts of AI that governments can measure and control.",
+  "quotes": [
+   {
+    "text": "Furthermore, we find that the training compute has grown by a factor of 10 billion since 2010, with a doubling rate of around 5-6 months.",
+    "source": "Compute Trends Across Three Eras of Machine Learning (co-author, Epoch AI)",
+    "url": "https://epoch.ai/blog/compute-trends",
+    "date": "2022-02"
+   }
+  ],
+  "links": [
+   {
+    "label": "Compute Trends Across Three Eras of Machine Learning",
+    "url": "https://epoch.ai/blog/compute-trends"
+   }
+  ],
+  "video_ids": []
+ }
+]

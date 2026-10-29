@@ -1,0 +1,282 @@
+[
+ {
+  "term": "Agent",
+  "def": "An AI system that takes many steps on its own toward a goal, using tools like a browser, code or files."
+ },
+ {
+  "term": "AGI",
+  "def": "Artificial general intelligence. An AI that can learn and do most thinking work a skilled person can do, across many fields."
+ },
+ {
+  "term": "AI control",
+  "def": "Designing deployments so we stay safe even if a model is secretly trying to cause harm."
+ },
+ {
+  "term": "AI governance",
+  "def": "The rules, institutions and agreements that shape how AI is built and used."
+ },
+ {
+  "term": "AI Safety Institute",
+  "def": "A government body that tests frontier models for dangerous abilities. The UK version is now called the AI Security Institute."
+ },
+ {
+  "term": "Alignment",
+  "def": "Making an AI system reliably want and do what its designers and users actually intend."
+ },
+ {
+  "term": "Alignment faking",
+  "def": "When a model behaves as if aligned during training or testing to protect different goals it holds."
+ },
+ {
+  "term": "ASI",
+  "def": "Artificial superintelligence. An AI far better than the best humans at almost every mental task."
+ },
+ {
+  "term": "Audit budget",
+  "def": "In AI control, the small share of outputs that can get careful human review."
+ },
+ {
+  "term": "Benchmark",
+  "def": "A fixed set of tasks used to measure and compare AI systems."
+ },
+ {
+  "term": "Bletchley Declaration",
+  "def": "A statement agreed at the first AI Safety Summit in the UK in November 2023 that frontier AI poses serious risks."
+ },
+ {
+  "term": "Blue team",
+  "def": "People who defend a system and design its safety measures."
+ },
+ {
+  "term": "Capabilities",
+  "def": "What a model can do, such as coding, reasoning, persuasion or planning."
+ },
+ {
+  "term": "Chain of thought",
+  "def": "The step by step reasoning some models write before giving an answer."
+ },
+ {
+  "term": "Chain of thought monitoring",
+  "def": "Reading a model's written reasoning to catch bad intentions before it acts."
+ },
+ {
+  "term": "Collusion",
+  "def": "When two AI systems, such as a model and its monitor, secretly coordinate to fool overseers."
+ },
+ {
+  "term": "Compute",
+  "def": "The computing power used to train and run AI, usually measured in operations or chip hours."
+ },
+ {
+  "term": "Compute governance",
+  "def": "Using chips and data centres as a point of control, for example with reporting, export rules or licences."
+ },
+ {
+  "term": "Constitutional AI",
+  "def": "An Anthropic method where written principles guide AI feedback used to train a model."
+ },
+ {
+  "term": "Control evaluation",
+  "def": "A test where a red team plays a scheming model to check if a safety protocol still holds."
+ },
+ {
+  "term": "Corrigibility",
+  "def": "The property of accepting correction, changes to goals, and shutdown."
+ },
+ {
+  "term": "Crux",
+  "def": "A fact or belief that, if it changed, would change your overall view."
+ },
+ {
+  "term": "Deceptive alignment",
+  "def": "A model that appears aligned because it knows it is being watched, while holding other goals."
+ },
+ {
+  "term": "Defer to trusted",
+  "def": "A control protocol that replaces suspicious output from a strong model with a weaker trusted model's answer."
+ },
+ {
+  "term": "Dual use",
+  "def": "A capability that can help or harm, like biology knowledge or hacking skills."
+ },
+ {
+  "term": "Emergent ability",
+  "def": "A skill that appears suddenly once a model passes a certain scale."
+ },
+ {
+  "term": "Evals",
+  "def": "Short for evaluations. Tests for what a model can do, especially dangerous things."
+ },
+ {
+  "term": "Existential risk",
+  "def": "A risk that could cause human extinction or permanently ruin humanity's future."
+ },
+ {
+  "term": "Fast takeoff",
+  "def": "A scenario where AI goes from roughly human level to far beyond very quickly, perhaps in months or less."
+ },
+ {
+  "term": "Fine tuning",
+  "def": "Extra training on a smaller dataset to adjust a model's behaviour."
+ },
+ {
+  "term": "Frontier model",
+  "def": "One of the most capable AI models at a given time."
+ },
+ {
+  "term": "Goal misgeneralisation",
+  "def": "When a model learns a goal that worked in training but differs in new situations."
+ },
+ {
+  "term": "Honeypot",
+  "def": "A planted fake opportunity or fake attack used to test whether a model or monitor behaves honestly."
+ },
+ {
+  "term": "Inner alignment",
+  "def": "Whether the trained model actually learned the goal the training process aimed for."
+ },
+ {
+  "term": "Instrumental convergence",
+  "def": "The idea that many different goals lead to the same sub goals, like gaining resources and avoiding shutdown."
+ },
+ {
+  "term": "Intelligence explosion",
+  "def": "I. J. Good's 1965 idea that a machine better at designing machines would rapidly design better ones."
+ },
+ {
+  "term": "Interpretability",
+  "def": "Research that tries to understand what is happening inside a model."
+ },
+ {
+  "term": "Jailbreak",
+  "def": "A prompt that tricks a model into ignoring its safety rules."
+ },
+ {
+  "term": "Large language model",
+  "def": "A neural network trained on huge amounts of text to predict and generate language. Often shortened to LLM."
+ },
+ {
+  "term": "Mechanistic interpretability",
+  "def": "Reverse engineering a neural network's internal parts to find the concepts and algorithms it uses."
+ },
+ {
+  "term": "Misalignment",
+  "def": "When a system's goals differ from what its designers intended."
+ },
+ {
+  "term": "Misuse",
+  "def": "People deliberately using AI to cause harm, for example in cyber attacks or weapons."
+ },
+ {
+  "term": "Model weights",
+  "def": "The learned numbers that make up a trained model. Whoever has them can run the model."
+ },
+ {
+  "term": "Multipolar",
+  "def": "A future with many powerful AI actors rather than one dominant one."
+ },
+ {
+  "term": "Orthogonality thesis",
+  "def": "The idea that any level of intelligence can be paired with almost any goal."
+ },
+ {
+  "term": "Outer alignment",
+  "def": "Whether the goal we gave the training process matches what we really want."
+ },
+ {
+  "term": "p(doom)",
+  "def": "Shorthand for someone's estimated probability that AI leads to catastrophe, such as extinction or permanent loss of control."
+ },
+ {
+  "term": "Pause",
+  "def": "A proposal to stop or slow training of the most powerful models until safety catches up."
+ },
+ {
+  "term": "Pre training",
+  "def": "The first big stage of training where a model learns from huge amounts of data."
+ },
+ {
+  "term": "Preparedness Framework",
+  "def": "OpenAI's policy for tracking and responding to dangerous model capabilities."
+ },
+ {
+  "term": "Recursive self improvement",
+  "def": "An AI improving its own design, which improves its ability to improve itself again."
+ },
+ {
+  "term": "Red team",
+  "def": "People who attack a system on purpose to find its weaknesses."
+ },
+ {
+  "term": "Responsible Scaling Policy",
+  "def": "Anthropic's framework that links capability thresholds to required safeguards."
+ },
+ {
+  "term": "Reward hacking",
+  "def": "When a model finds a way to get high reward that its designers did not intend."
+ },
+ {
+  "term": "RLHF",
+  "def": "Reinforcement learning from human feedback. Training a model toward answers people prefer."
+ },
+ {
+  "term": "Sandbagging",
+  "def": "When a model deliberately performs worse on a test to hide what it can do."
+ },
+ {
+  "term": "Scaling laws",
+  "def": "Predictable improvements in model performance as compute, data and size grow."
+ },
+ {
+  "term": "Scheming",
+  "def": "A model pursuing hidden goals strategically, including by deceiving its overseers."
+ },
+ {
+  "term": "Situational awareness",
+  "def": "A model's understanding that it is an AI, being trained or tested, and what that means for it."
+ },
+ {
+  "term": "Slow takeoff",
+  "def": "A scenario where AI capability grows over years, giving society more time to adapt."
+ },
+ {
+  "term": "Specification gaming",
+  "def": "Satisfying the literal goal we wrote down while missing what we meant."
+ },
+ {
+  "term": "Superalignment",
+  "def": "Aligning systems much smarter than humans. Also the name of a former OpenAI team."
+ },
+ {
+  "term": "Sycophancy",
+  "def": "When a model tells people what they want to hear instead of what is true."
+ },
+ {
+  "term": "Transformative AI",
+  "def": "AI powerful enough to cause a change as big as the industrial revolution."
+ },
+ {
+  "term": "Trusted model",
+  "def": "In AI control, a weaker model we are confident is not scheming, used to watch stronger ones."
+ },
+ {
+  "term": "Trusted monitoring",
+  "def": "A control protocol where a trusted model scores every output and the most suspicious get audited."
+ },
+ {
+  "term": "Untrusted model",
+  "def": "In AI control, the powerful model we want to use but cannot verify is safe."
+ },
+ {
+  "term": "Untrusted monitoring",
+  "def": "Using a copy of the strong model as a monitor, protected against collusion with honeypots."
+ },
+ {
+  "term": "Warning shot",
+  "def": "A smaller AI incident that shows the danger clearly before a bigger one."
+ },
+ {
+  "term": "Weak to strong generalisation",
+  "def": "Research on whether weak supervisors can still correctly guide stronger models."
+ }
+]
