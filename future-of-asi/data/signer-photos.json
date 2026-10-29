@@ -335,6 +335,930 @@
   "credit": "MCP Dev Summit, YouTube frame (i.ytimg.com maxres1)",
   "name": "Jerome Swannack"
  },
+ "will-sonnex": {
+  "file": "data/photos-signers/will-sonnex.jpg",
+  "source_url": "https://nullpropagation.blog/about",
+  "kind": "homepage",
+  "credit": "nullpropagation.blog (Will Sonnex)",
+  "name": "Will Sonnex"
+ },
+ "peter-zhizhin": {
+  "file": "data/photos-signers/peter-zhizhin.jpg",
+  "source_url": "https://x.com/PeterZhizhinEng",
+  "kind": "x",
+  "credit": "X @PeterZhizhinEng",
+  "name": "Peter Zhizhin"
+ },
+ "benjamin-marks": {
+  "file": "data/photos-signers/benjamin-marks.jpg",
+  "source_url": "https://www.linkedin.com/in/benjamincmarks",
+  "kind": "linkedin",
+  "credit": "LinkedIn Ben Marks",
+  "name": "Benjamin Marks"
+ },
+ "dustin-li": {
+  "file": "data/photos-signers/dustin-li.jpg",
+  "source_url": "https://purple-book.webflow.io/ebola-response-to-ai-safety-how-security-engineers-can-change-the-world",
+  "kind": "conference",
+  "credit": "The Purple Book Community session page",
+  "name": "Dustin Li"
+ },
+ "lucas-gonzalez": {
+  "file": "data/photos-signers/lucas-gonzalez.jpg",
+  "source_url": "https://www.linkedin.com/in/lucasgonzalezpagliere",
+  "kind": "linkedin",
+  "credit": "LinkedIn Lucas Gonzalez Pagliere",
+  "name": "Lucas Gonzalez"
+ },
+ "ryan-whitehead": {
+  "file": "data/photos-signers/ryan-whitehead.jpg",
+  "source_url": "https://x.com/ryan_whitehead",
+  "kind": "x",
+  "credit": "X @ryan_whitehead",
+  "name": "Ryan Whitehead"
+ },
+ "daisy-hollman": {
+  "file": "data/photos-signers/daisy-hollman.jpg",
+  "source_url": "https://cppcon.org/2025-keynote-daisy-hollman/",
+  "kind": "conference",
+  "credit": "CppCon 2025",
+  "name": "Daisy Hollman"
+ },
+ "derek-sasthav": {
+  "file": "data/photos-signers/derek-sasthav.jpg",
+  "source_url": "https://www.youtube.com/shorts/p8n2Ai7qD-s",
+  "kind": "youtube",
+  "credit": "YouTube \"Derek Sasthav OHI/O Alumni Testimonial\" (Ohio State)",
+  "name": "Derek Sasthav"
+ },
+ "raymond-wang": {
+  "file": "data/photos-signers/raymond-wang.jpg",
+  "source_url": "https://www.linkedin.com/in/raymondruiwang",
+  "kind": "linkedin",
+  "credit": "LinkedIn Raymond Wang (raymondruiwang)",
+  "name": "Raymond Wang"
+ },
+ "eli-tran-johnson": {
+  "file": "data/photos-signers/eli-tran-johnson.jpg",
+  "source_url": "https://x.com/erijohnt",
+  "kind": "x",
+  "credit": "X @erijohnt",
+  "name": "Eli Tran-Johnson"
+ },
+ "eric-urban": {
+  "file": "data/photos-signers/eric-urban.jpg",
+  "source_url": "https://www.xing.com/profile/Eric_Urban2",
+  "kind": "other",
+  "credit": "XING Eric Urban",
+  "name": "Eric Urban"
+ },
+ "peter-j-mcdade": {
+  "file": "data/photos-signers/peter-j-mcdade.jpg",
+  "source_url": "https://pmcdade.org/",
+  "kind": "homepage",
+  "credit": "pmcdade.org",
+  "name": "Peter J McDade"
+ },
+ "david-soria-parra": {
+  "file": "data/photos-signers/david-soria-parra.jpg",
+  "source_url": "https://ai.engineer/speakers/david-soria-parra",
+  "kind": "conference",
+  "credit": "AI Engineer Europe 2026 speaker page",
+  "name": "David Soria Parra"
+ },
+ "alexander-sasha-sax": {
+  "file": "data/photos-signers/alexander-sasha-sax.jpg",
+  "source_url": "https://alexsax.github.io/",
+  "kind": "homepage",
+  "credit": "alexsax.github.io",
+  "name": "Alexander (Sasha) Sax"
+ },
+ "shauna-kravec": {
+  "file": "data/photos-signers/shauna-kravec.jpg",
+  "source_url": "https://www.linkedin.com/in/shauna-kravec-0a88a6217",
+  "kind": "linkedin",
+  "credit": "LinkedIn Shauna Kravec",
+  "name": "Shauna Kravec"
+ },
+ "jack-chen": {
+  "file": "data/photos-signers/jack-chen.jpg",
+  "source_url": "https://www.linkedin.com/in/jack-chen-11508445",
+  "kind": "linkedin",
+  "credit": "LinkedIn Jack Chen",
+  "name": "Jack Chen"
+ },
+ "veda-balte": {
+  "file": "data/photos-signers/veda-balte.jpg",
+  "source_url": "https://career.cornell.edu/people/veda-balte/",
+  "kind": "other",
+  "credit": "Cornell Career Network",
+  "name": "Veda Balte"
+ },
+ "adnan-pirzada": {
+  "file": "data/photos-signers/adnan-pirzada.jpg",
+  "source_url": "https://www.linkedin.com/in/adpirz",
+  "kind": "linkedin",
+  "credit": "LinkedIn Adnan Pirzada",
+  "name": "Adnan Pirzada"
+ },
+ "christopher-lovejoy": {
+  "file": "data/photos-signers/christopher-lovejoy.jpg",
+  "source_url": "https://x.com/ChrisLovejoy_",
+  "kind": "x",
+  "credit": "X @ChrisLovejoy_",
+  "name": "Christopher Lovejoy"
+ },
+ "mike-schiraldi": {
+  "file": "data/photos-signers/mike-schiraldi.jpg",
+  "source_url": "https://github.com/raldi-anthropic",
+  "kind": "github",
+  "credit": "GitHub raldi-anthropic",
+  "name": "Mike Schiraldi"
+ },
+ "larry-zhang": {
+  "file": "data/photos-signers/larry-zhang.jpg",
+  "source_url": "https://www.linkedin.com/in/zhanlarr",
+  "kind": "linkedin",
+  "credit": "LinkedIn Larry Z.",
+  "name": "Larry Zhang"
+ },
+ "william-brandon": {
+  "file": "data/photos-signers/william-brandon.jpg",
+  "source_url": "https://github.com/wbrandon-anthropic",
+  "kind": "github",
+  "credit": "GitHub wbrandon-anthropic",
+  "name": "William Brandon"
+ },
+ "ciro-spaciari": {
+  "file": "data/photos-signers/ciro-spaciari.jpg",
+  "source_url": "https://github.com/cirospaciari",
+  "kind": "github",
+  "credit": "GitHub cirospaciari",
+  "name": "Ciro Spaciari"
+ },
+ "francesco-mosconi": {
+  "file": "data/photos-signers/francesco-mosconi.jpg",
+  "source_url": "https://nocap.blog/founder/francesco-mosconi",
+  "kind": "other",
+  "credit": "nocap.blog founder profile",
+  "name": "Francesco Mosconi"
+ },
+ "colin-mcleod": {
+  "file": "data/photos-signers/colin-mcleod.jpg",
+  "source_url": "https://www.getprog.ai/profile/colin_mcleod",
+  "kind": "other",
+  "credit": "getprog.ai profile (LinkedIn-sourced avatar)",
+  "name": "Colin McLeod"
+ },
+ "dan-altman": {
+  "file": "data/photos-signers/dan-altman.jpg",
+  "source_url": "https://x.com/manaltdan",
+  "kind": "x",
+  "credit": "X @manaltdan",
+  "name": "Dan Altman"
+ },
+ "alex-rodrigues": {
+  "file": "data/photos-signers/alex-rodrigues.jpg",
+  "source_url": "https://www.crunchbase.com/person/alex-rodrigues-2",
+  "kind": "other",
+  "credit": "Crunchbase",
+  "name": "Alex Rodrigues"
+ },
+ "jimmy-e-chan": {
+  "file": "data/photos-signers/jimmy-e-chan.jpg",
+  "source_url": "https://claude.com/resources/webinars/evals-for-ai-agents-how-product-builders-get-the-most-out-of-every-new-model",
+  "kind": "conference",
+  "credit": "Anthropic webinar speaker page",
+  "name": "Jimmy E. Chan"
+ },
+ "johnnie-gomez": {
+  "file": "data/photos-signers/johnnie-gomez.jpg",
+  "source_url": "https://github.com/itsjohnnie",
+  "kind": "github",
+  "credit": "GitHub itsjohnnie",
+  "name": "Johnnie Gomez"
+ },
+ "nicholas-l-turner": {
+  "file": "data/photos-signers/nicholas-l-turner.jpg",
+  "source_url": "https://nicholasturner1.github.io/",
+  "kind": "homepage",
+  "credit": "nicholasturner1.github.io",
+  "name": "Nicholas L Turner"
+ },
+ "michael-breen": {
+  "file": "data/photos-signers/michael-breen.jpg",
+  "source_url": "https://www.carnegiecouncil.org/people/michael-breen",
+  "kind": "other",
+  "credit": "Carnegie Council",
+  "name": "Michael Breen"
+ },
+ "laurent-sartran": {
+  "file": "data/photos-signers/laurent-sartran.jpg",
+  "source_url": "https://www.linkedin.com/posts/laurentsartran_today-was-my-last-day-at-google-deepmind-activity-7384974498619351040-mV5r",
+  "kind": "linkedin",
+  "credit": "LinkedIn post by Laurent Sartran",
+  "name": "Laurent Sartran"
+ },
+ "frank-bach": {
+  "file": "data/photos-signers/frank-bach.jpg",
+  "source_url": "https://intro.co/frankbach",
+  "kind": "other",
+  "credit": "Intro.co",
+  "name": "Frank Bach"
+ },
+ "shannon-yang": {
+  "file": "data/photos-signers/shannon-yang.jpg",
+  "source_url": "https://x.com/shannonyangsky",
+  "kind": "x",
+  "credit": "X @shannonyangsky",
+  "name": "Shannon Yang"
+ },
+ "jack-lindamood": {
+  "file": "data/photos-signers/jack-lindamood.jpg",
+  "source_url": "https://www.youtube.com/watch?v=VAsX3og5wPI",
+  "kind": "youtube",
+  "credit": "YouTube \"Discovery of Worst Case Go Sort Inputs\" by Jack Lindamood, Gopherpalooza 2019 (Nation Conferences)",
+  "name": "Jack Lindamood"
+ },
+ "ross-nordeen": {
+  "file": "data/photos-signers/ross-nordeen.jpg",
+  "source_url": "https://yespress.io/ross-nordeen",
+  "kind": "news",
+  "credit": "YesPress profile",
+  "name": "Ross Nordeen"
+ },
+ "jai-srivastav": {
+  "file": "data/photos-signers/jai-srivastav.jpg",
+  "source_url": "https://uclalemur.com/people/jai-srivastav",
+  "kind": "lab-page",
+  "credit": "UCLA LEMUR lab people page",
+  "name": "Jai Srivastav"
+ },
+ "arun-chaganty": {
+  "file": "data/photos-signers/arun-chaganty.jpg",
+  "source_url": "https://www.getprog.ai/profile/arun_chaganty",
+  "kind": "other",
+  "credit": "getprog.ai profile (LinkedIn-sourced avatar)",
+  "name": "Arun Chaganty"
+ },
+ "justin-wei": {
+  "file": "data/photos-signers/justin-wei.jpg",
+  "source_url": "https://www.getprog.ai/profile/justin_wei",
+  "kind": "other",
+  "credit": "getprog.ai profile (LinkedIn-sourced avatar)",
+  "name": "Justin Wei"
+ },
+ "ameya-avasare": {
+  "file": "data/photos-signers/ameya-avasare.jpg",
+  "source_url": "https://x.com/gitpushoriginm8",
+  "kind": "x",
+  "credit": "X @gitpushoriginm8",
+  "name": "Ameya Avasare"
+ },
+ "riley-burgess": {
+  "file": "data/photos-signers/riley-burgess.jpg",
+  "source_url": "https://www.linkedin.com/in/riley-burgess",
+  "kind": "linkedin",
+  "credit": "LinkedIn Riley Burgess",
+  "name": "Riley Burgess"
+ },
+ "remy-olson": {
+  "file": "data/photos-signers/remy-olson.jpg",
+  "source_url": "https://www.linkedin.com/in/remyolson",
+  "kind": "linkedin",
+  "credit": "LinkedIn Rémy Olson",
+  "name": "Rémy Olson"
+ },
+ "lizzie-alvarado-ford": {
+  "file": "data/photos-signers/lizzie-alvarado-ford.jpg",
+  "source_url": "https://www.linkedin.com/in/elizabethaford",
+  "kind": "linkedin",
+  "credit": "LinkedIn Lizzie A. (elizabethaford)",
+  "name": "Lizzie Alvarado Ford"
+ },
+ "andre-balleyguier": {
+  "file": "data/photos-signers/andre-balleyguier.jpg",
+  "source_url": "https://odsc.ai/speakers-portfolio/how-to-actually-scale-agentic-ai-in-2026-a-practitioners-view/",
+  "kind": "conference",
+  "credit": "ODSC East 2026 speaker page",
+  "name": "André Balleyguier"
+ },
+ "michael-guerin": {
+  "file": "data/photos-signers/michael-guerin.jpg",
+  "source_url": "https://github.com/michaelguerin-anthropic",
+  "kind": "github",
+  "credit": "GitHub michaelguerin-anthropic",
+  "name": "Michael Guerin"
+ },
+ "cagdas-tulek": {
+  "file": "data/photos-signers/cagdas-tulek.jpg",
+  "source_url": "https://github.com/cagdas-anthropic",
+  "kind": "github",
+  "credit": "GitHub cagdas-anthropic",
+  "name": "Çağdaş Tülek"
+ },
+ "robbie-ostrow": {
+  "file": "data/photos-signers/robbie-ostrow.jpg",
+  "source_url": "https://www.usenix.org/conference/srecon26americas/presentation/discussion-ai-sre",
+  "kind": "conference",
+  "credit": "USENIX SREcon26 Americas speaker photo",
+  "name": "Robbie Ostrow"
+ },
+ "blair-chen": {
+  "file": "data/photos-signers/blair-chen.jpg",
+  "source_url": "https://www.linkedin.com/in/blair-chen-261500379",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Blair Chen"
+ },
+ "keller-jordan": {
+  "file": "data/photos-signers/keller-jordan.jpg",
+  "source_url": "https://kellerjordan.github.io/about/",
+  "kind": "homepage",
+  "credit": "Keller Jordan blog (kellerjordan.github.io)",
+  "name": "Keller Jordan"
+ },
+ "devansh-pandey": {
+  "file": "data/photos-signers/devansh-pandey.jpg",
+  "source_url": "https://www.linkedin.com/in/devansh-r-pandey",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Devansh Pandey"
+ },
+ "akash-verma": {
+  "file": "data/photos-signers/akash-verma.jpg",
+  "source_url": "https://in.linkedin.com/in/akaverma",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Akash Verma"
+ },
+ "adam-venis": {
+  "file": "data/photos-signers/adam-venis.jpg",
+  "source_url": "https://www.linkedin.com/in/adam-venis-15852249",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Adam Venis"
+ },
+ "jonathan-dyer": {
+  "file": "data/photos-signers/jonathan-dyer.jpg",
+  "source_url": "https://www.linkedin.com/in/jon-dyer",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jonathan Dyer"
+ },
+ "ian-mckenzie": {
+  "file": "data/photos-signers/ian-mckenzie.jpg",
+  "source_url": "https://www.linkedin.com/in/irmckenzie",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Ian McKenzie"
+ },
+ "jakub-adamek": {
+  "file": "data/photos-signers/jakub-adamek.jpg",
+  "source_url": "https://uk.linkedin.com/in/jakub-adamek-",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jakub Adámek"
+ },
+ "jean-christophe-testud": {
+  "file": "data/photos-signers/jean-christophe-testud.jpg",
+  "source_url": "https://www.linkedin.com/in/jean-christophe-testud-a4580a155",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jean-Christophe Testud"
+ },
+ "jeff-klingner": {
+  "file": "data/photos-signers/jeff-klingner.jpg",
+  "source_url": "https://www.linkedin.com/in/jeff-klingner-15638830",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jeff Klingner"
+ },
+ "jeremy-kritz": {
+  "file": "data/photos-signers/jeremy-kritz.jpg",
+  "source_url": "https://www.linkedin.com/in/jeremy-kritz",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jeremy Kritz"
+ },
+ "mathieu-lariviere": {
+  "file": "data/photos-signers/mathieu-lariviere.jpg",
+  "source_url": "https://ca.linkedin.com/in/mathieulariviere",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Mathieu Lariviere"
+ },
+ "gabrielle-cortez": {
+  "file": "data/photos-signers/gabrielle-cortez.jpg",
+  "source_url": "https://www.linkedin.com/in/gabrielle-fultz",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Gabrielle Cortez"
+ },
+ "paridhi-singh": {
+  "file": "data/photos-signers/paridhi-singh.jpg",
+  "source_url": "https://pari-singh.github.io/",
+  "kind": "homepage",
+  "credit": "pari-singh.github.io",
+  "name": "Paridhi Singh"
+ },
+ "sean-pankanin": {
+  "file": "data/photos-signers/sean-pankanin.jpg",
+  "source_url": "https://www.linkedin.com/in/seanpankanin",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Sean Pankanin"
+ },
+ "lily-wen": {
+  "file": "data/photos-signers/lily-wen.jpg",
+  "source_url": "https://www.linkedin.com/in/wenlily",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Lily Wen"
+ },
+ "jon-wolverton": {
+  "file": "data/photos-signers/jon-wolverton.jpg",
+  "source_url": "https://www.linkedin.com/in/wolverdude",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jon Wolverton"
+ },
+ "chris-frantz": {
+  "file": "data/photos-signers/chris-frantz.jpg",
+  "source_url": "https://www.linkedin.com/in/chris-frantz-450255115",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Chris Frantz"
+ },
+ "xiling-zhang": {
+  "file": "data/photos-signers/xiling-zhang.jpg",
+  "source_url": "https://www.linkedin.com/in/xiling-zhang-04643162",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Xiling Zhang"
+ },
+ "tian-huey-teh": {
+  "file": "data/photos-signers/tian-huey-teh.jpg",
+  "source_url": "https://uk.linkedin.com/in/tian-huey-teh-3136b2105",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Tian Huey Teh"
+ },
+ "bailey-herms": {
+  "file": "data/photos-signers/bailey-herms.jpg",
+  "source_url": "https://www.linkedin.com/in/baileyherms",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Bailey Herms"
+ },
+ "joel-pobar": {
+  "file": "data/photos-signers/joel-pobar.jpg",
+  "source_url": "https://iq.wiki/wiki/joel-pobar",
+  "kind": "other",
+  "credit": "IQ.wiki (IPFS image)",
+  "name": "Joel Pobar"
+ },
+ "adam-langley": {
+  "file": "data/photos-signers/adam-langley.jpg",
+  "source_url": "https://rwc.iacr.org/LevchinPrize/",
+  "kind": "conference",
+  "credit": "rwc.iacr.org",
+  "name": "Adam Langley"
+ },
+ "jai-lakhanpal": {
+  "file": "data/photos-signers/jai-lakhanpal.jpg",
+  "source_url": "https://www.linkedin.com/in/jail",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jai Lakhanpal"
+ },
+ "xerxes-dotiwalla": {
+  "file": "data/photos-signers/xerxes-dotiwalla.jpg",
+  "source_url": "https://substack.com/@onexerxes",
+  "kind": "other",
+  "credit": "substack.com",
+  "name": "Xerxes Dotiwalla"
+ },
+ "victor-minden": {
+  "file": "data/photos-signers/victor-minden.jpg",
+  "source_url": "https://www.linkedin.com/in/victorminden",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Victor Minden"
+ },
+ "piyush-patil": {
+  "file": "data/photos-signers/piyush-patil.jpg",
+  "source_url": "https://www.linkedin.com/in/piyush-patil",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Piyush Patil"
+ },
+ "nashir-janmohamed": {
+  "file": "data/photos-signers/nashir-janmohamed.jpg",
+  "source_url": "https://www.linkedin.com/in/nashir-janmohamed",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Nashir Janmohamed"
+ },
+ "darren-r-davis": {
+  "file": "data/photos-signers/darren-r-davis.jpg",
+  "source_url": "https://www.linkedin.com/in/darrenrobertdavis",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Darren R Davis"
+ },
+ "andrey-starodubtsev": {
+  "file": "data/photos-signers/andrey-starodubtsev.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Andrey+Starodubtsev%22+google+linkedin (tile: \"Andrey Starodubtsev - Software Engineer | LinkedIn\" -> https://uk.linkedin.com/in/andreystar)",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Andrey Starodubtsev"
+ },
+ "brendan-jackman": {
+  "file": "data/photos-signers/brendan-jackman.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Brendan+Jackman%22+google+linkedin (tile: \"Brendan Jackman – Google | LinkedIn\" -> https://ch.linkedin.com/in/brendan-jackman-4a886894)",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Brendan Jackman"
+ },
+ "lee-bernick": {
+  "file": "data/photos-signers/lee-bernick.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Lee+Bernick%22+deepmind+linkedin (tile: \"Lee Bernick - AI Safety @ Google DeepMind | LinkedIn\" -> https://linkedin.com/in/lee-bernick-22a99bb0)",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Lee Bernick"
+ },
+ "rory-blevins": {
+  "file": "data/photos-signers/rory-blevins.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Rory+Blevins%22+deepmind+linkedin (tile: \"Rory Blevins - Software Engineer at DeepMind | LinkedIn\" -> https://uk.linkedin.com/in/roryblevins)",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Rory Blevins"
+ },
+ "lauren-deason": {
+  "file": "data/photos-signers/lauren-deason.jpg",
+  "source_url": "https://www.youtube.com/watch?v=kj4haq-KqYc",
+  "kind": "youtube",
+  "credit": "The Diana Initiative (YouTube title card)",
+  "name": "Lauren Deason"
+ },
+ "utsav-prabhu": {
+  "file": "data/photos-signers/utsav-prabhu.jpg",
+  "source_url": "https://research.google/people/utsavprabhu/",
+  "kind": "lab-page",
+  "credit": "Google Research people page",
+  "name": "Utsav Prabhu"
+ },
+ "cody-wild": {
+  "file": "data/photos-signers/cody-wild.jpg",
+  "source_url": "https://www.linkedin.com/in/codymwild",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Cody Wild"
+ },
+ "elizabeth-coble": {
+  "file": "data/photos-signers/elizabeth-coble.jpg",
+  "source_url": "https://www.linkedin.com/in/elizabeth-coble-00",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Elizabeth Coble"
+ },
+ "kyle-vandenberg": {
+  "file": "data/photos-signers/kyle-vandenberg.jpg",
+  "source_url": "https://www.linkedin.com/in/kylevandenberg",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Kyle Vandenberg"
+ },
+ "dee-cattle": {
+  "file": "data/photos-signers/dee-cattle.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Dee+Cattle%22+deepmind+linkedin",
+  "kind": "linkedin (Bing cached copy; original media.licdn.com signed profile-displayphoto 403'd/404'd)",
+  "credit": "www.bing.com",
+  "name": "Dee Cattle"
+ },
+ "anika-somaia": {
+  "file": "data/photos-signers/anika-somaia.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Anika+Somaia%22+deepmind+linkedin&view=detailV2&ccid=ZOwkviT%2b&id=E3BAF1DA42CF7B52D0218B212DFB71CDCEC7A41D&thid=OIP.ZOwkviT-g6-N_o5UN75qOgAAAA",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Anika Somaia"
+ },
+ "rupi-sureshkumar": {
+  "file": "data/photos-signers/rupi-sureshkumar.jpg",
+  "source_url": "https://www.bing.com/images/search?q=%22Rupi+Sureshkumar%22+google+product+manager+linkedin&view=detailV2&ccid=zUIoOo9r&id=C6EEC742070E02EE2F6C7494F4CAB7AF6E5B14F7&thid=OIP.zUIoOo9r_5zNpbhryyr9HQAAAA",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Rupi Sureshkumar"
+ },
+ "dima-yeroshenko": {
+  "file": "data/photos-signers/dima-yeroshenko.jpg",
+  "source_url": "https://uk.linkedin.com/in/dima-yeroshenko/en",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Dima Yeroshenko"
+ },
+ "devansh-tandon": {
+  "file": "data/photos-signers/devansh-tandon.jpg",
+  "source_url": "https://www.youtube.com/watch?v=lIgdnF0s0kQ",
+  "kind": "youtube",
+  "credit": "www.youtube.com",
+  "name": "Devansh Tandon"
+ },
+ "jonathan-prince": {
+  "file": "data/photos-signers/jonathan-prince.jpg",
+  "source_url": "https://x.com/jonathanmprince",
+  "kind": "x",
+  "credit": "X @jonathanmprince profile photo",
+  "name": "Jonathan Prince"
+ },
+ "ritam-saha": {
+  "file": "data/photos-signers/ritam-saha.jpg",
+  "source_url": "https://www.linkedin.com/in/ritxm-saha",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Ritam Saha"
+ },
+ "andrew-locke": {
+  "file": "data/photos-signers/andrew-locke.jpg",
+  "source_url": "https://www.linkedin.com/in/andrewmlocke",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Andrew Locke"
+ },
+ "ashyana-jasmine": {
+  "file": "data/photos-signers/ashyana-jasmine.jpg",
+  "source_url": "https://www.youtube.com/watch?v=LJfbf-6VQU8",
+  "kind": "youtube",
+  "credit": "BlueDot Impact (YouTube thumbnail)",
+  "name": "Ashyana-Jasmine"
+ },
+ "xianwu-lance-huang": {
+  "file": "data/photos-signers/xianwu-lance-huang.jpg",
+  "source_url": "https://www.linkedin.com/in/lance-xianwu-huang-8b7bb023",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Xianwu (Lance) Huang"
+ },
+ "michael-ore": {
+  "file": "data/photos-signers/michael-ore.jpg",
+  "source_url": "https://www.linkedin.com/in/michael-ore-80ba6369",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Michael Ore"
+ },
+ "lubaina-mansoor-shaerwala": {
+  "file": "data/photos-signers/lubaina-mansoor-shaerwala.jpg",
+  "source_url": "https://uk.linkedin.com/in/lubainashaherwala",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Lubaina Mansoor Shaerwala"
+ },
+ "andrea-arias": {
+  "file": "data/photos-signers/andrea-arias.jpg",
+  "source_url": "https://www.linkedin.com/in/andrea-arias-219768172",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Andrea Arias"
+ },
+ "ingrid-dickinson": {
+  "file": "data/photos-signers/ingrid-dickinson.jpg",
+  "source_url": "https://www.linkedin.com/in/ingrid-dickinson-4b938b14a",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Ingrid Dickinson"
+ },
+ "preyas-popat": {
+  "file": "data/photos-signers/preyas-popat.jpg",
+  "source_url": "https://www.linkedin.com/in/preyas-popat-99b05a41",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Preyas Popat"
+ },
+ "cory-mclean": {
+  "file": "data/photos-signers/cory-mclean.jpg",
+  "source_url": "https://research.google/people/corymclean/",
+  "kind": "homepage",
+  "credit": "research.google",
+  "name": "Cory McLean"
+ },
+ "arlo-shallit": {
+  "file": "data/photos-signers/arlo-shallit.jpg",
+  "source_url": "https://ca.linkedin.com/in/arlo-shallit-442894169",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Arlo Shallit"
+ },
+ "ben-nowak": {
+  "file": "data/photos-signers/ben-nowak.jpg",
+  "source_url": "https://www.linkedin.com/in/benjamin-nowak-atx",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Ben Nowak"
+ },
+ "jake-lucchi": {
+  "file": "data/photos-signers/jake-lucchi.jpg",
+  "source_url": "https://www.linkedin.com/in/jake-lucchi-5153384b",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jake Lucchi"
+ },
+ "tyler-norris": {
+  "file": "data/photos-signers/tyler-norris.jpg",
+  "source_url": "https://www.linkedin.com/in/tylerhnorris",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Tyler Norris"
+ },
+ "dan-hayden": {
+  "file": "data/photos-signers/dan-hayden.jpg",
+  "source_url": "https://ie.linkedin.com/in/danjhayden",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Dan Hayden"
+ },
+ "joost-ouwerling": {
+  "file": "data/photos-signers/joost-ouwerling.jpg",
+  "source_url": "https://raw.githubusercontent.com/joostouwerling/joostouwerlingcom/master/img/joost.png",
+  "kind": "homepage",
+  "credit": "raw.githubusercontent.com",
+  "name": "Joost Ouwerling"
+ },
+ "jeffrey-ai": {
+  "file": "data/photos-signers/jeffrey-ai.jpg",
+  "source_url": "https://www.linkedin.com/in/jeffreyai",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jeffrey Ai"
+ },
+ "joshua-polzin": {
+  "file": "data/photos-signers/joshua-polzin.jpg",
+  "source_url": "https://www.linkedin.com/in/joshua-polzin",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Joshua Polzin"
+ },
+ "aradhana-sinha": {
+  "file": "data/photos-signers/aradhana-sinha.jpg",
+  "source_url": "https://www.linkedin.com/in/aradhanasinha",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Aradhana Sinha"
+ },
+ "walee-attia": {
+  "file": "data/photos-signers/walee-attia.jpg",
+  "source_url": "https://www.prlog.org/12901704-acecma-awards-education-corporation-presidents-scholarship-to-john-hopkins-student-walee-attia.html",
+  "kind": "news",
+  "credit": "www.prlog.org",
+  "name": "Walee Attia"
+ },
+ "karo-castro-wunsch": {
+  "file": "data/photos-signers/karo-castro-wunsch.jpg",
+  "source_url": "https://www.linkedin.com/in/karo-castro-wunsch",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Karo Castro-Wunsch"
+ },
+ "christopher-thomas": {
+  "file": "data/photos-signers/christopher-thomas.jpg",
+  "source_url": "https://www.linkedin.com/in/christopherthomas2",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Christopher Thomas"
+ },
+ "jarod-alper": {
+  "file": "data/photos-signers/jarod-alper.jpg",
+  "source_url": "https://sites.math.washington.edu/~jarod/",
+  "kind": "homepage",
+  "credit": "sites.math.washington.edu",
+  "name": "Jarod Alper"
+ },
+ "jon-schneider": {
+  "file": "data/photos-signers/jon-schneider.jpg",
+  "source_url": "https://jschnei.github.io/",
+  "kind": "homepage",
+  "credit": "jschnei.github.io",
+  "name": "Jon Schneider"
+ },
+ "parker-barnes": {
+  "file": "data/photos-signers/parker-barnes.jpg",
+  "source_url": "https://conferences.law.stanford.edu/fairness-and-transparency-in-ai/speakers/parker-barnes/",
+  "kind": "conference",
+  "credit": "conferences.law.stanford.edu",
+  "name": "Parker Barnes"
+ },
+ "timothee-lottaz": {
+  "file": "data/photos-signers/timothee-lottaz.jpg",
+  "source_url": "https://ch.linkedin.com/in/timotheelottaz",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Timothée Lottaz"
+ },
+ "franklin-rice": {
+  "file": "data/photos-signers/franklin-rice.jpg",
+  "source_url": "https://www.linkedin.com/in/franklinrice",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Franklin Rice"
+ },
+ "jin-seop-kim": {
+  "file": "data/photos-signers/jin-seop-kim.jpg",
+  "source_url": "https://www.linkedin.com/in/jin-seop-kim-24b70b55",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Jin Seop Kim"
+ },
+ "thomas-stone": {
+  "file": "data/photos-signers/thomas-stone.jpg",
+  "source_url": "https://ch.linkedin.com/in/tomish",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Thomas Stone"
+ },
+ "evelyn-yen": {
+  "file": "data/photos-signers/evelyn-yen.jpg",
+  "source_url": "https://uk.linkedin.com/in/evcyen",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Evelyn Yen"
+ },
+ "brian-huang": {
+  "file": "data/photos-signers/brian-huang.jpg",
+  "source_url": "https://briteroses.github.io/",
+  "kind": "homepage",
+  "credit": "briteroses.github.io",
+  "name": "Brian Huang"
+ },
+ "lia-guy": {
+  "file": "data/photos-signers/lia-guy.jpg",
+  "source_url": "https://www.linkedin.com/in/aureliaguy",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Lia Guy"
+ },
+ "shaig-abduragimov": {
+  "file": "data/photos-signers/shaig-abduragimov.jpg",
+  "source_url": "https://www.edtechinnovationhub.com/news/openais-shaig-abduragimov-to-teach-ai-engineering-and-low-code-data-science-at-oxford",
+  "kind": "news",
+  "credit": "www.edtechinnovationhub.com",
+  "name": "Shaig Abduragimov"
+ },
+ "abe-fetterman": {
+  "file": "data/photos-signers/abe-fetterman.jpg",
+  "source_url": "https://www.linkedin.com/in/abe-fetterman-85b57252",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Abe Fetterman"
+ },
+ "charles-zhao": {
+  "file": "data/photos-signers/charles-zhao.jpg",
+  "source_url": "https://www.linkedin.com/in/czhao39",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Charles Zhao"
+ },
+ "laura-li": {
+  "file": "data/photos-signers/laura-li.jpg",
+  "source_url": "https://www.linkedin.com/in/laurali2",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo (via Bing)",
+  "name": "Laura Li"
+ },
+ "neil-saigal": {
+  "file": "data/photos-signers/neil-saigal.jpg",
+  "source_url": "https://www.linkedin.com/in/neil-saigal-91b2219b",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Neil Saigal"
+ },
+ "william-li": {
+  "file": "data/photos-signers/william-li.jpg",
+  "source_url": "https://www.linkedin.com/in/william-li-445045213",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "William Li"
+ },
+ "oliver-cheng": {
+  "file": "data/photos-signers/oliver-cheng.jpg",
+  "source_url": "https://www.linkedin.com/in/oliver-cheng-391145316",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Oliver Cheng"
+ },
+ "steve-mostovoy": {
+  "file": "data/photos-signers/steve-mostovoy.jpg",
+  "source_url": "https://www.linkedin.com/in/stevemostovoy",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Steve Mostovoy"
+ },
+ "leon-maksin": {
+  "file": "data/photos-signers/leon-maksin.jpg",
+  "source_url": "https://www.linkedin.com/in/leonmaksin",
+  "kind": "linkedin",
+  "credit": "LinkedIn profile photo",
+  "name": "Leon Maksin"
+ },
  "boris-cherny": {
   "file": "data/photos-signers/boris-cherny.jpg",
   "source_url": "https://github.com/bcherny",

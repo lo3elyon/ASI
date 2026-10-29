@@ -492,7 +492,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "keller-jordan"
+   "slug": "keller-jordan",
+   "photo": "data/photos-signers/keller-jordan.jpg",
+   "photo_credit": "Keller Jordan blog (kellerjordan.github.io)"
   },
   {
    "name": "Tom Henighan",
@@ -644,7 +646,9 @@
    "employer": "Standard Intelligence",
    "comment": "",
    "researcher_id": "",
-   "slug": "devansh-pandey"
+   "slug": "devansh-pandey",
+   "photo": "data/photos-signers/devansh-pandey.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Joost Huizinga",
@@ -690,7 +694,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "akash-verma"
+   "slug": "akash-verma",
+   "photo": "data/photos-signers/akash-verma.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Yogeesh Rajendra",
@@ -756,7 +762,9 @@
    "employer": "Amazon",
    "comment": "",
    "researcher_id": "",
-   "slug": "adam-venis"
+   "slug": "adam-venis",
+   "photo": "data/photos-signers/adam-venis.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Ilija Lichkovski",
@@ -802,7 +810,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "jonathan-dyer"
+   "slug": "jonathan-dyer",
+   "photo": "data/photos-signers/jonathan-dyer.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Shizhe Diao",
@@ -852,7 +862,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "ian-mckenzie"
+   "slug": "ian-mckenzie",
+   "photo": "data/photos-signers/ian-mckenzie.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Eric Landgrebe",
@@ -898,7 +910,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "jean-christophe-testud"
+   "slug": "jean-christophe-testud",
+   "photo": "data/photos-signers/jean-christophe-testud.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Danilo Carvalho Martins",
@@ -914,7 +928,9 @@
    "employer": "Google",
    "comment": "Once this becomes common knowledge - once all of us in China & the US and at the various labs see that all the rest of us also think we need to slow this down - that's when coordination becomes possible.",
    "researcher_id": "",
-   "slug": "jeff-klingner"
+   "slug": "jeff-klingner",
+   "photo": "data/photos-signers/jeff-klingner.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Lia Guy",
@@ -922,7 +938,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "lia-guy"
+   "slug": "lia-guy",
+   "photo": "data/photos-signers/lia-guy.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Jorge Barrios",
@@ -950,7 +968,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "jeremy-kritz"
+   "slug": "jeremy-kritz",
+   "photo": "data/photos-signers/jeremy-kritz.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Etash Guha",
@@ -986,7 +1006,9 @@
    "employer": "Meta",
    "comment": "Artificial intelligence poses a spectrum of risks ranging from present-day discrimination and privacy violations to unprecedented catastrophic threats including loss of human control over advanced systems, weaponization of biological and cyber capabilities, and irreversible concentration of power. Despite this, fewer than 10 000 people work full-time on reducing these risks globally, and the industry's \"core structural weakness\" remains the complete absence of credible plans for controlling \"superintelligent\" AI systems. The control points being implemented are the easy ones. The gap between capabilities and governance is growing because the competitive framework encourages the exponential advancement of capabilities at all costs, while governance advances linearly. i.e., the problem is that the things most needed are the things our current incentive structures are worst at producing. The next five years are the critical window.... Solving the risks is fundamentally a coordination problem, not a knowledge problem.\n\nEvery individual has an impact. Every individual has a responsibility to uphold the right development and use of these technologies; and, to hold this accountable beyond ego. \n\n*Typical Disclaimer: Note that I do not speak for the company. The opinion expressed above is strictly my own, and that the company may not be held accountable for this.",
    "researcher_id": "",
-   "slug": "mathieu-lariviere"
+   "slug": "mathieu-lariviere",
+   "photo": "data/photos-signers/mathieu-lariviere.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Sean Hall",
@@ -1002,7 +1024,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "gabrielle-cortez"
+   "slug": "gabrielle-cortez",
+   "photo": "data/photos-signers/gabrielle-cortez.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Luke Drago",
@@ -1030,7 +1054,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "paridhi-singh"
+   "slug": "paridhi-singh",
+   "photo": "data/photos-signers/paridhi-singh.jpg",
+   "photo_credit": "pari-singh.github.io"
   },
   {
    "name": "Marcus Williams",
@@ -1140,7 +1166,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "robbie-ostrow"
+   "slug": "robbie-ostrow",
+   "photo": "data/photos-signers/robbie-ostrow.jpg",
+   "photo_credit": "USENIX SREcon26 Americas speaker photo"
   },
   {
    "name": "Moye",
@@ -1258,7 +1286,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "sean-pankanin"
+   "slug": "sean-pankanin",
+   "photo": "data/photos-signers/sean-pankanin.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Shaig Abduragimov",
@@ -1266,7 +1296,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "shaig-abduragimov"
+   "slug": "shaig-abduragimov",
+   "photo": "data/photos-signers/shaig-abduragimov.jpg",
+   "photo_credit": "www.edtechinnovationhub.com"
   },
   {
    "name": "Jeremy Hadfield",
@@ -1294,7 +1326,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "lily-wen"
+   "slug": "lily-wen",
+   "photo": "data/photos-signers/lily-wen.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Jon Kutasov",
@@ -1312,7 +1346,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "abe-fetterman"
+   "slug": "abe-fetterman",
+   "photo": "data/photos-signers/abe-fetterman.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Ryan Carelli",
@@ -1340,7 +1376,9 @@
    "employer": "Google",
    "comment": "It feels like all the AI labs are constrained by competition to minimize their work on catastrophic risks, even though most industry leaders have an uncomfortably high probability that things could go terribly wrong. This is a technology that doesn't have an off switch you can just flip, and it could easily do as much damage to its creators as to anyone else. Having a framework to allow labs to slow down or pull the plug in case of emergency will help us all sleep a bit better at night.",
    "researcher_id": "",
-   "slug": "jon-wolverton"
+   "slug": "jon-wolverton",
+   "photo": "data/photos-signers/jon-wolverton.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Nick Doucette",
@@ -1382,7 +1420,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "chris-frantz"
+   "slug": "chris-frantz",
+   "photo": "data/photos-signers/chris-frantz.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Stephanie Weiss",
@@ -1577,7 +1617,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "xiling-zhang"
+   "slug": "xiling-zhang",
+   "photo": "data/photos-signers/xiling-zhang.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Charles Zhao",
@@ -1585,7 +1627,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "charles-zhao"
+   "slug": "charles-zhao",
+   "photo": "data/photos-signers/charles-zhao.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Tian Huey Teh",
@@ -1593,7 +1637,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "tian-huey-teh"
+   "slug": "tian-huey-teh",
+   "photo": "data/photos-signers/tian-huey-teh.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "David Robinson",
@@ -1649,7 +1695,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "bailey-herms"
+   "slug": "bailey-herms",
+   "photo": "data/photos-signers/bailey-herms.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Javier Rando",
@@ -1749,7 +1797,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "joel-pobar"
+   "slug": "joel-pobar",
+   "photo": "data/photos-signers/joel-pobar.jpg",
+   "photo_credit": "IQ.wiki (IPFS image)"
   },
   {
    "name": "Blair Chen",
@@ -1757,7 +1807,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "blair-chen"
+   "slug": "blair-chen",
+   "photo": "data/photos-signers/blair-chen.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Daniel Dressler",
@@ -1843,7 +1895,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "laura-li"
+   "slug": "laura-li",
+   "photo": "data/photos-signers/laura-li.jpg",
+   "photo_credit": "LinkedIn profile photo (via Bing)"
   },
   {
    "name": "Lizzie Alvarado Ford",
@@ -1851,7 +1905,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "lizzie-alvarado-ford"
+   "slug": "lizzie-alvarado-ford",
+   "photo": "data/photos-signers/lizzie-alvarado-ford.jpg",
+   "photo_credit": "LinkedIn Lizzie A. (elizabethaford)"
   },
   {
    "name": "Nate Kratzer",
@@ -1975,7 +2031,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "adam-langley"
+   "slug": "adam-langley",
+   "photo": "data/photos-signers/adam-langley.jpg",
+   "photo_credit": "rwc.iacr.org"
   },
   {
    "name": "Tyler Vann-Campbell",
@@ -1991,7 +2049,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "neil-saigal"
+   "slug": "neil-saigal",
+   "photo": "data/photos-signers/neil-saigal.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Alexandre Ramé",
@@ -2103,7 +2163,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "franklin-rice"
+   "slug": "franklin-rice",
+   "photo": "data/photos-signers/franklin-rice.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Karan Singhal",
@@ -2121,7 +2183,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "ameya-avasare"
+   "slug": "ameya-avasare",
+   "photo": "data/photos-signers/ameya-avasare.jpg",
+   "photo_credit": "X @gitpushoriginm8"
   },
   {
    "name": "Jai Lakhanpal",
@@ -2129,7 +2193,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jai-lakhanpal"
+   "slug": "jai-lakhanpal",
+   "photo": "data/photos-signers/jai-lakhanpal.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Bence Nagy",
@@ -2155,7 +2221,9 @@
    "employer": "Google",
    "comment": "I dedicated my career to AGI safety and alignment because I believe highly capable AI can go very well or very badly for humanity. We can test whether an AI behaves well. We cannot yet test whether it will keep behaving well when it matters. Until that changes, we need the option to coordinate a slowdown in AI capability growth.",
    "researcher_id": "",
-   "slug": "xerxes-dotiwalla"
+   "slug": "xerxes-dotiwalla",
+   "photo": "data/photos-signers/xerxes-dotiwalla.jpg",
+   "photo_credit": "substack.com"
   },
   {
    "name": "Hugues Bruant",
@@ -2181,7 +2249,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "victor-minden"
+   "slug": "victor-minden",
+   "photo": "data/photos-signers/victor-minden.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Ilia Shumailov",
@@ -2219,7 +2289,9 @@
    "employer": "OpenAI",
    "comment": "History shows that the mere creation of technology has not been enough to ensure its benefits go toward the benefit of the people and the planet. To unlock AI’s full transformative potential, the democratic engagement of international peoples must steer its safe and equitable development.",
    "researcher_id": "",
-   "slug": "william-li"
+   "slug": "william-li",
+   "photo": "data/photos-signers/william-li.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Jin Seop Kim",
@@ -2227,7 +2299,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jin-seop-kim"
+   "slug": "jin-seop-kim",
+   "photo": "data/photos-signers/jin-seop-kim.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Arun Chaganty",
@@ -2235,7 +2309,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "arun-chaganty"
+   "slug": "arun-chaganty",
+   "photo": "data/photos-signers/arun-chaganty.jpg",
+   "photo_credit": "getprog.ai profile (LinkedIn-sourced avatar)"
   },
   {
    "name": "Arman Kermanizadeh",
@@ -2293,7 +2369,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "oliver-cheng"
+   "slug": "oliver-cheng",
+   "photo": "data/photos-signers/oliver-cheng.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Chris Pütz",
@@ -2373,7 +2451,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "piyush-patil"
+   "slug": "piyush-patil",
+   "photo": "data/photos-signers/piyush-patil.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Charlie Rogers-Smith",
@@ -2419,7 +2499,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "riley-burgess"
+   "slug": "riley-burgess",
+   "photo": "data/photos-signers/riley-burgess.jpg",
+   "photo_credit": "LinkedIn Riley Burgess"
   },
   {
    "name": "Kerrick Staley",
@@ -2465,7 +2547,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "nashir-janmohamed"
+   "slug": "nashir-janmohamed",
+   "photo": "data/photos-signers/nashir-janmohamed.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Billy Silk",
@@ -2531,7 +2615,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "darren-r-davis"
+   "slug": "darren-r-davis",
+   "photo": "data/photos-signers/darren-r-davis.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Yushi Wang",
@@ -2547,7 +2633,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "andrey-starodubtsev"
+   "slug": "andrey-starodubtsev",
+   "photo": "data/photos-signers/andrey-starodubtsev.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Josh Levy-Kramer",
@@ -2629,7 +2717,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "justin-wei"
+   "slug": "justin-wei",
+   "photo": "data/photos-signers/justin-wei.jpg",
+   "photo_credit": "getprog.ai profile (LinkedIn-sourced avatar)"
   },
   {
    "name": "Christian Ryan",
@@ -2647,7 +2737,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "brendan-jackman"
+   "slug": "brendan-jackman",
+   "photo": "data/photos-signers/brendan-jackman.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Michael Cohen",
@@ -2685,7 +2777,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "lee-bernick"
+   "slug": "lee-bernick",
+   "photo": "data/photos-signers/lee-bernick.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Chuan Guo",
@@ -2779,7 +2873,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "rory-blevins"
+   "slug": "rory-blevins",
+   "photo": "data/photos-signers/rory-blevins.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Steve Mostovoy",
@@ -2787,7 +2883,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "steve-mostovoy"
+   "slug": "steve-mostovoy",
+   "photo": "data/photos-signers/steve-mostovoy.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Grant Birkinbine",
@@ -2825,7 +2923,9 @@
    "employer": "OpenAI",
    "comment": "",
    "researcher_id": "",
-   "slug": "leon-maksin"
+   "slug": "leon-maksin",
+   "photo": "data/photos-signers/leon-maksin.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Andreas Kirsch",
@@ -2851,7 +2951,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "utsav-prabhu"
+   "slug": "utsav-prabhu",
+   "photo": "data/photos-signers/utsav-prabhu.jpg",
+   "photo_credit": "Google Research people page"
   },
   {
    "name": "Jason Bohrer",
@@ -3231,7 +3333,9 @@
    "employer": "Meta",
    "comment": "Much more clarity will be needed on what is meant by the “ability to deliberately pace the frontier of AI development”, but I am supportive of international cooperation to define this.",
    "researcher_id": "",
-   "slug": "lauren-deason"
+   "slug": "lauren-deason",
+   "photo": "data/photos-signers/lauren-deason.jpg",
+   "photo_credit": "The Diana Initiative (YouTube title card)"
   },
   {
    "name": "Adrian Hutter",
@@ -3265,7 +3369,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "michael-guerin"
+   "slug": "michael-guerin",
+   "photo": "data/photos-signers/michael-guerin.jpg",
+   "photo_credit": "GitHub michaelguerin-anthropic"
   },
   {
    "name": "Michał Sapalski",
@@ -3289,7 +3395,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "evelyn-yen"
+   "slug": "evelyn-yen",
+   "photo": "data/photos-signers/evelyn-yen.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Rachel Wonnacott",
@@ -3436,7 +3544,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "brian-huang"
+   "slug": "brian-huang",
+   "photo": "data/photos-signers/brian-huang.jpg",
+   "photo_credit": "briteroses.github.io"
   },
   {
    "name": "Joseph Livengood",
@@ -3474,7 +3584,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "will-sonnex"
+   "slug": "will-sonnex",
+   "photo": "data/photos-signers/will-sonnex.jpg",
+   "photo_credit": "nullpropagation.blog (Will Sonnex)"
   },
   {
    "name": "Travis Bryant",
@@ -3612,7 +3724,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "cody-wild"
+   "slug": "cody-wild",
+   "photo": "data/photos-signers/cody-wild.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Adam Pearce",
@@ -3694,7 +3808,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "elizabeth-coble"
+   "slug": "elizabeth-coble",
+   "photo": "data/photos-signers/elizabeth-coble.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Teddy Lee",
@@ -3778,7 +3894,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "kyle-vandenberg"
+   "slug": "kyle-vandenberg",
+   "photo": "data/photos-signers/kyle-vandenberg.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Ravin Kumar",
@@ -4213,7 +4331,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "dee-cattle"
+   "slug": "dee-cattle",
+   "photo": "data/photos-signers/dee-cattle.jpg",
+   "photo_credit": "www.bing.com"
   },
   {
    "name": "Colton Weaver",
@@ -4249,7 +4369,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "anika-somaia"
+   "slug": "anika-somaia",
+   "photo": "data/photos-signers/anika-somaia.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Sunil Shah",
@@ -4337,7 +4459,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "rupi-sureshkumar"
+   "slug": "rupi-sureshkumar",
+   "photo": "data/photos-signers/rupi-sureshkumar.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Babak Nakhayi Ashtiani",
@@ -4744,7 +4868,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "benjamin-marks"
+   "slug": "benjamin-marks",
+   "photo": "data/photos-signers/benjamin-marks.jpg",
+   "photo_credit": "LinkedIn Ben Marks"
   },
   {
    "name": "Venky Deshpande",
@@ -4896,7 +5022,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "jack-lindamood"
+   "slug": "jack-lindamood",
+   "photo": "data/photos-signers/jack-lindamood.jpg",
+   "photo_credit": "YouTube \"Discovery of Worst Case Go Sort Inputs\" by Jack Lindamood, Gopherpalooza 2019 (Nation Conferences)"
   },
   {
    "name": "Peter Zhizhin",
@@ -4904,7 +5032,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "peter-zhizhin"
+   "slug": "peter-zhizhin",
+   "photo": "data/photos-signers/peter-zhizhin.jpg",
+   "photo_credit": "X @PeterZhizhinEng"
   },
   {
    "name": "Nik Pash",
@@ -5504,7 +5634,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "raymond-wang"
+   "slug": "raymond-wang",
+   "photo": "data/photos-signers/raymond-wang.jpg",
+   "photo_credit": "LinkedIn Raymond Wang (raymondruiwang)"
   },
   {
    "name": "Chris Mah",
@@ -5530,7 +5662,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "eli-tran-johnson"
+   "slug": "eli-tran-johnson",
+   "photo": "data/photos-signers/eli-tran-johnson.jpg",
+   "photo_credit": "X @erijohnt"
   },
   {
    "name": "Reema Polignano",
@@ -6047,7 +6181,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "ryan-whitehead"
+   "slug": "ryan-whitehead",
+   "photo": "data/photos-signers/ryan-whitehead.jpg",
+   "photo_credit": "X @ryan_whitehead"
   },
   {
    "name": "Michael Lampe",
@@ -6075,7 +6211,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "dustin-li"
+   "slug": "dustin-li",
+   "photo": "data/photos-signers/dustin-li.jpg",
+   "photo_credit": "The Purple Book Community session page"
   },
   {
    "name": "Nathan Grasso Bronson",
@@ -6145,7 +6283,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "lucas-gonzalez"
+   "slug": "lucas-gonzalez",
+   "photo": "data/photos-signers/lucas-gonzalez.jpg",
+   "photo_credit": "LinkedIn Lucas Gonzalez Pagliere"
   },
   {
    "name": "Andrea Vallone",
@@ -6205,7 +6345,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "daisy-hollman"
+   "slug": "daisy-hollman",
+   "photo": "data/photos-signers/daisy-hollman.jpg",
+   "photo_credit": "CppCon 2025"
   },
   {
    "name": "Alexander Levine",
@@ -6231,7 +6373,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "derek-sasthav"
+   "slug": "derek-sasthav",
+   "photo": "data/photos-signers/derek-sasthav.jpg",
+   "photo_credit": "YouTube \"Derek Sasthav OHI/O Alumni Testimonial\" (Ohio State)"
   },
   {
    "name": "Alex Flick",
@@ -6513,7 +6657,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "eric-urban"
+   "slug": "eric-urban",
+   "photo": "data/photos-signers/eric-urban.jpg",
+   "photo_credit": "XING Eric Urban"
   },
   {
    "name": "Matt Clarke",
@@ -6665,7 +6811,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "peter-j-mcdade"
+   "slug": "peter-j-mcdade",
+   "photo": "data/photos-signers/peter-j-mcdade.jpg",
+   "photo_credit": "pmcdade.org"
   },
   {
    "name": "Nathan Dalal",
@@ -6905,7 +7053,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "david-soria-parra"
+   "slug": "david-soria-parra",
+   "photo": "data/photos-signers/david-soria-parra.jpg",
+   "photo_credit": "AI Engineer Europe 2026 speaker page"
   },
   {
    "name": "Johannes Ferstad",
@@ -7051,7 +7201,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "alexander-sasha-sax"
+   "slug": "alexander-sasha-sax",
+   "photo": "data/photos-signers/alexander-sasha-sax.jpg",
+   "photo_credit": "alexsax.github.io"
   },
   {
    "name": "Matt Friedman",
@@ -7221,7 +7373,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "jack-chen"
+   "slug": "jack-chen",
+   "photo": "data/photos-signers/jack-chen.jpg",
+   "photo_credit": "LinkedIn Jack Chen"
   },
   {
    "name": "Jin Liu",
@@ -7237,7 +7391,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "veda-balte"
+   "slug": "veda-balte",
+   "photo": "data/photos-signers/veda-balte.jpg",
+   "photo_credit": "Cornell Career Network"
   },
   {
    "name": "Adnan Pirzada",
@@ -7245,7 +7401,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "adnan-pirzada"
+   "slug": "adnan-pirzada",
+   "photo": "data/photos-signers/adnan-pirzada.jpg",
+   "photo_credit": "LinkedIn Adnan Pirzada"
   },
   {
    "name": "Maya Krishnan",
@@ -7263,7 +7421,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "jai-srivastav"
+   "slug": "jai-srivastav",
+   "photo": "data/photos-signers/jai-srivastav.jpg",
+   "photo_credit": "UCLA LEMUR lab people page"
   },
   {
    "name": "Sam Jiang",
@@ -7335,7 +7495,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "colin-mcleod"
+   "slug": "colin-mcleod",
+   "photo": "data/photos-signers/colin-mcleod.jpg",
+   "photo_credit": "getprog.ai profile (LinkedIn-sourced avatar)"
   },
   {
    "name": "Mo Bavarian",
@@ -7379,7 +7541,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "christopher-lovejoy"
+   "slug": "christopher-lovejoy",
+   "photo": "data/photos-signers/christopher-lovejoy.jpg",
+   "photo_credit": "X @ChrisLovejoy_"
   },
   {
    "name": "Nick Preston",
@@ -7415,7 +7579,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "shauna-kravec"
+   "slug": "shauna-kravec",
+   "photo": "data/photos-signers/shauna-kravec.jpg",
+   "photo_credit": "LinkedIn Shauna Kravec"
   },
   {
    "name": "Apoorva Lal",
@@ -7509,7 +7675,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "mike-schiraldi"
+   "slug": "mike-schiraldi",
+   "photo": "data/photos-signers/mike-schiraldi.jpg",
+   "photo_credit": "GitHub raldi-anthropic"
   },
   {
    "name": "Daniel Kelley",
@@ -7551,7 +7719,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "francesco-mosconi"
+   "slug": "francesco-mosconi",
+   "photo": "data/photos-signers/francesco-mosconi.jpg",
+   "photo_credit": "nocap.blog founder profile"
   },
   {
    "name": "Aaron Vontell",
@@ -7577,7 +7747,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "ciro-spaciari"
+   "slug": "ciro-spaciari",
+   "photo": "data/photos-signers/ciro-spaciari.jpg",
+   "photo_credit": "GitHub cirospaciari"
   },
   {
    "name": "Larry Zhang",
@@ -7585,7 +7757,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "larry-zhang"
+   "slug": "larry-zhang",
+   "photo": "data/photos-signers/larry-zhang.jpg",
+   "photo_credit": "LinkedIn Larry Z."
   },
   {
    "name": "Hristijan Bogoevski",
@@ -7845,7 +8019,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "william-brandon"
+   "slug": "william-brandon",
+   "photo": "data/photos-signers/william-brandon.jpg",
+   "photo_credit": "GitHub wbrandon-anthropic"
   },
   {
    "name": "Youngmin Park",
@@ -7969,7 +8145,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "dan-altman"
+   "slug": "dan-altman",
+   "photo": "data/photos-signers/dan-altman.jpg",
+   "photo_credit": "X @manaltdan"
   },
   {
    "name": "Clare Birch",
@@ -8241,7 +8419,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "ashyana-jasmine"
+   "slug": "ashyana-jasmine",
+   "photo": "data/photos-signers/ashyana-jasmine.jpg",
+   "photo_credit": "BlueDot Impact (YouTube thumbnail)"
   },
   {
    "name": "Shang-Wen Daniel Li",
@@ -8495,7 +8675,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "alex-rodrigues"
+   "slug": "alex-rodrigues",
+   "photo": "data/photos-signers/alex-rodrigues.jpg",
+   "photo_credit": "Crunchbase"
   },
   {
    "name": "Alex Brussell",
@@ -8559,7 +8741,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "jimmy-e-chan"
+   "slug": "jimmy-e-chan",
+   "photo": "data/photos-signers/jimmy-e-chan.jpg",
+   "photo_credit": "Anthropic webinar speaker page"
   },
   {
    "name": "Gary Lin",
@@ -8671,7 +8855,9 @@
    "employer": "Thinking Machines",
    "comment": "",
    "researcher_id": "",
-   "slug": "jonathan-prince"
+   "slug": "jonathan-prince",
+   "photo": "data/photos-signers/jonathan-prince.jpg",
+   "photo_credit": "X @jonathanmprince profile photo"
   },
   {
    "name": "Dima Yeroshenko",
@@ -8679,7 +8865,9 @@
    "employer": "Google Deepmind",
    "comment": "",
    "researcher_id": "",
-   "slug": "dima-yeroshenko"
+   "slug": "dima-yeroshenko",
+   "photo": "data/photos-signers/dima-yeroshenko.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Michiel de Jong",
@@ -8697,7 +8885,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "devansh-tandon"
+   "slug": "devansh-tandon",
+   "photo": "data/photos-signers/devansh-tandon.jpg",
+   "photo_credit": "www.youtube.com"
   },
   {
    "name": "Colleen Dai",
@@ -8739,7 +8929,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "johnnie-gomez"
+   "slug": "johnnie-gomez",
+   "photo": "data/photos-signers/johnnie-gomez.jpg",
+   "photo_credit": "GitHub itsjohnnie"
   },
   {
    "name": "Geoff Stearns",
@@ -8757,7 +8949,9 @@
    "employer": "Cohere",
    "comment": "",
    "researcher_id": "",
-   "slug": "ritam-saha"
+   "slug": "ritam-saha",
+   "photo": "data/photos-signers/ritam-saha.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Andrew Locke",
@@ -8765,7 +8959,9 @@
    "employer": "Cognition",
    "comment": "The pace of frontier AI development is currently outstripping our ability to ensure its safety, governance, and alignment with human values. We are racing to build systems with unprecedented capability without first building the guardrails, evaluation frameworks, or scientific understanding needed to control them.\n\nProposing a slowdown is not about stalling progress or rejecting technology—it is about demanding precision and responsibility. Right now, competitive pressure forces labs (and nation state actors) to deploy systems before their full failure modes, catastrophic risks, or societal disruptions are understood. By shifting our focus from pure capability scaling to safety, alignment, and robust evaluation, we give humanity the time required to build AI that is reliable, controllable, and genuinely beneficial for everyone.",
    "researcher_id": "",
-   "slug": "andrew-locke"
+   "slug": "andrew-locke",
+   "photo": "data/photos-signers/andrew-locke.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Owen Morris O’Halloran Kaplan",
@@ -8847,7 +9043,9 @@
    "employer": "Microsoft",
    "comment": "",
    "researcher_id": "",
-   "slug": "xianwu-lance-huang"
+   "slug": "xianwu-lance-huang",
+   "photo": "data/photos-signers/xianwu-lance-huang.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Darius Feher",
@@ -8875,7 +9073,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "michael-ore"
+   "slug": "michael-ore",
+   "photo": "data/photos-signers/michael-ore.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Sophia Porter",
@@ -8911,7 +9111,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "lubaina-mansoor-shaerwala"
+   "slug": "lubaina-mansoor-shaerwala",
+   "photo": "data/photos-signers/lubaina-mansoor-shaerwala.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Trevor Chow",
@@ -8929,7 +9131,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "andrea-arias"
+   "slug": "andrea-arias",
+   "photo": "data/photos-signers/andrea-arias.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Tim Wilde",
@@ -8963,7 +9167,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "ingrid-dickinson"
+   "slug": "ingrid-dickinson",
+   "photo": "data/photos-signers/ingrid-dickinson.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Preyas Popat",
@@ -8971,7 +9177,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "preyas-popat"
+   "slug": "preyas-popat",
+   "photo": "data/photos-signers/preyas-popat.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Marcus Fontoura",
@@ -8999,7 +9207,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "cory-mclean"
+   "slug": "cory-mclean",
+   "photo": "data/photos-signers/cory-mclean.jpg",
+   "photo_credit": "research.google"
   },
   {
    "name": "Edoardo Debenedetti",
@@ -9017,7 +9227,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "arlo-shallit"
+   "slug": "arlo-shallit",
+   "photo": "data/photos-signers/arlo-shallit.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Ben Nowak",
@@ -9025,7 +9237,9 @@
    "employer": "Meta",
    "comment": "Responsible AI development requires more than capable models. It requires independent monitoring, containment, clear limits on authority, and mechanisms for coordinated pacing if automated research begins to outrun those controls. Building that capacity now is not opposition to progress; it is basic systems engineering for a transition that will require that capacity to safely govern.",
    "researcher_id": "",
-   "slug": "ben-nowak"
+   "slug": "ben-nowak",
+   "photo": "data/photos-signers/ben-nowak.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Brian Huh",
@@ -9049,7 +9263,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "nicholas-l-turner"
+   "slug": "nicholas-l-turner",
+   "photo": "data/photos-signers/nicholas-l-turner.jpg",
+   "photo_credit": "nicholasturner1.github.io"
   },
   {
    "name": "Siddharth Mishra-Sharma",
@@ -9243,7 +9459,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jake-lucchi"
+   "slug": "jake-lucchi",
+   "photo": "data/photos-signers/jake-lucchi.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Tyler Norris",
@@ -9251,7 +9469,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "tyler-norris"
+   "slug": "tyler-norris",
+   "photo": "data/photos-signers/tyler-norris.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Darshan Kalola",
@@ -9313,7 +9533,9 @@
    "employer": "Meta",
    "comment": "",
    "researcher_id": "",
-   "slug": "dan-hayden"
+   "slug": "dan-hayden",
+   "photo": "data/photos-signers/dan-hayden.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Sébastien Cevey",
@@ -9347,7 +9569,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "joost-ouwerling"
+   "slug": "joost-ouwerling",
+   "photo": "data/photos-signers/joost-ouwerling.jpg",
+   "photo_credit": "raw.githubusercontent.com"
   },
   {
    "name": "Jeffrey Ai",
@@ -9355,7 +9579,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jeffrey-ai"
+   "slug": "jeffrey-ai",
+   "photo": "data/photos-signers/jeffrey-ai.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Victor E Cardoso",
@@ -9371,7 +9597,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "joshua-polzin"
+   "slug": "joshua-polzin",
+   "photo": "data/photos-signers/joshua-polzin.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Long Ouyang",
@@ -9413,7 +9641,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "michael-breen"
+   "slug": "michael-breen",
+   "photo": "data/photos-signers/michael-breen.jpg",
+   "photo_credit": "Carnegie Council"
   },
   {
    "name": "Gregory P. Smith",
@@ -9431,7 +9661,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "aradhana-sinha"
+   "slug": "aradhana-sinha",
+   "photo": "data/photos-signers/aradhana-sinha.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Thomas Stone",
@@ -9439,7 +9671,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "thomas-stone"
+   "slug": "thomas-stone",
+   "photo": "data/photos-signers/thomas-stone.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Alexander Meulemans",
@@ -9501,7 +9735,9 @@
    "employer": "Google DeepMind",
    "comment": "",
    "researcher_id": "",
-   "slug": "walee-attia"
+   "slug": "walee-attia",
+   "photo": "data/photos-signers/walee-attia.jpg",
+   "photo_credit": "www.prlog.org"
   },
   {
    "name": "Laurent Sartran",
@@ -9509,7 +9745,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "laurent-sartran"
+   "slug": "laurent-sartran",
+   "photo": "data/photos-signers/laurent-sartran.jpg",
+   "photo_credit": "LinkedIn post by Laurent Sartran"
   },
   {
    "name": "Maire O'Herlihy",
@@ -9551,7 +9789,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "ross-nordeen"
+   "slug": "ross-nordeen",
+   "photo": "data/photos-signers/ross-nordeen.jpg",
+   "photo_credit": "YesPress profile"
   },
   {
    "name": "Frank Bach",
@@ -9559,7 +9799,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "frank-bach"
+   "slug": "frank-bach",
+   "photo": "data/photos-signers/frank-bach.jpg",
+   "photo_credit": "Intro.co"
   },
   {
    "name": "Karo Castro-Wunsch",
@@ -9567,7 +9809,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "karo-castro-wunsch"
+   "slug": "karo-castro-wunsch",
+   "photo": "data/photos-signers/karo-castro-wunsch.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Michelle Castiglione",
@@ -9649,7 +9893,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "christopher-thomas"
+   "slug": "christopher-thomas",
+   "photo": "data/photos-signers/christopher-thomas.jpg",
+   "photo_credit": "LinkedIn profile photo"
   },
   {
    "name": "Michelle Qin",
@@ -9677,7 +9923,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jarod-alper"
+   "slug": "jarod-alper",
+   "photo": "data/photos-signers/jarod-alper.jpg",
+   "photo_credit": "sites.math.washington.edu"
   },
   {
    "name": "Remo Arpagaus",
@@ -9721,7 +9969,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "jon-schneider"
+   "slug": "jon-schneider",
+   "photo": "data/photos-signers/jon-schneider.jpg",
+   "photo_credit": "jschnei.github.io"
   },
   {
    "name": "Parker Barnes",
@@ -9729,7 +9979,9 @@
    "employer": "Google",
    "comment": "",
    "researcher_id": "",
-   "slug": "parker-barnes"
+   "slug": "parker-barnes",
+   "photo": "data/photos-signers/parker-barnes.jpg",
+   "photo_credit": "conferences.law.stanford.edu"
   },
   {
    "name": "Guy Lever",
@@ -9753,7 +10005,9 @@
    "employer": "Anthropic",
    "comment": "",
    "researcher_id": "",
-   "slug": "shannon-yang"
+   "slug": "shannon-yang",
+   "photo": "data/photos-signers/shannon-yang.jpg",
+   "photo_credit": "X @shannonyangsky"
   },
   {
    "name": "Abram Schönfeldt",

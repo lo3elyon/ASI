@@ -6,7 +6,7 @@ Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
 ## [v3] - 2026-10-29
 
-Round 3. Commit: filled in when this round is pushed.
+Round 3. Commit: 5eb5bb8, photo update after.
 
 ### Added
 
@@ -32,7 +32,7 @@ Round 3. Commit: filled in when this round is pushed.
 - `raw/gen/check_photos.py`, which lists every researcher and named signer that would show initials instead of a photo, and fails if a photo exists in `data/` but the site would not use it.
 - This changelog, linked from the footer and the README.
 
-- Photos: 80 more researcher photos (217 of 218) and 574 named signer photos, each with source and credit.
+- Photos: 80 more researcher photos (217 of 218) and 701 named signer photos, each with source and credit.
 - Ten new routes: papers, concepts, agents, arena, debates, careers, policy, numbers, kids, bharat.
 - Richer AI Control, Timeline, Watch and Organisations pages, and about 60 new sections across the other core pages.
 - Pacing now leads with 1,386 total signers (1,094 named, 292 anonymous).
