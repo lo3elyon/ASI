@@ -1,0 +1,131 @@
+{
+ "id": "four-battlegrounds",
+ "title": "Four Battlegrounds",
+ "subtitle": "Power in the Age of Artificial Intelligence",
+ "authors": [
+  {
+   "name": "Paul Scharre",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "W. W. Norton",
+ "isbn": "9780393866865",
+ "pages": "",
+ "ol": "/works/OL28350150W",
+ "shelf": "governance",
+ "level": "Intermediate",
+ "pitch": "The author of Army of None maps the global contest over AI power across four battlegrounds: data, computing power, talent and institutions.",
+ "toc_src": "https://openlibrary.org/works/OL28350150W",
+ "chapters": [
+  {
+   "t": "Data",
+   "g": "Who has the data to train AI, and how privacy laws and surveillance shape it.",
+   "part": ""
+  },
+  {
+   "t": "Compute",
+   "g": "Chips and supply chains as the choke point of AI power, and export controls.",
+   "part": ""
+  },
+  {
+   "t": "Talent",
+   "g": "The global competition for AI researchers and engineers.",
+   "part": ""
+  },
+  {
+   "t": "Institutions",
+   "g": "How governments and militaries adopt AI, and why bureaucracy matters.",
+   "part": ""
+  },
+  {
+   "t": "Rivalry with China",
+   "g": "Comparing American and Chinese approaches, including AI for surveillance and control.",
+   "part": ""
+  },
+  {
+   "t": "Risks and rules",
+   "g": "Accidents, arms races and the need for international norms.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "AI power rests on data, compute, talent and institutions.",
+  "Compute is a key choke point.",
+  "Adoption by institutions matters as much as invention.",
+  "Global norms are needed to avoid dangerous races."
+ ],
+ "args": [
+  {
+   "a": "Democracies must compete hard to stay ahead in AI.",
+   "c": "Racing can cut safety corners and make dangerous outcomes more likely."
+  },
+  {
+   "a": "Export controls on chips are effective.",
+   "c": "Others say they push rivals to build their own chips faster."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which battleground matters most for safety?",
+  "Should chips be controlled like weapons?",
+  "Can rivals agree on AI rules?"
+ ],
+ "quiz": [
+  {
+   "q": "Which is one of the four battlegrounds?",
+   "o": [
+    "Weather",
+    "Compute",
+    "Music",
+    "Sport"
+   ],
+   "a": 1,
+   "w": "Data, compute, talent, institutions."
+  },
+  {
+   "q": "What earlier book did Scharre write?",
+   "o": [
+    "Army of None",
+    "Superintelligence",
+    "Life 3.0",
+    "Nexus"
+   ],
+   "a": 0,
+   "w": "About autonomous weapons, 2018."
+  },
+  {
+   "q": "Why is compute a choke point?",
+   "o": [
+    "It is free",
+    "Advanced chips come from few suppliers",
+    "It is unimportant",
+    "It is slow"
+   ],
+   "a": 1,
+   "w": "Supply chains are concentrated."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/four-battlegrounds.jpg",
+ "videos": [],
+ "shelfLabel": "Governance and policy",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL28350150W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780393866865",
+   "free": true
+  }
+ ],
+ "toc_note": "The four battlegrounds named here are the ones the book itself names. No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

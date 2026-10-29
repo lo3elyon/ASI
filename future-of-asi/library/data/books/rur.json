@@ -1,0 +1,133 @@
+{
+ "id": "rur",
+ "title": "R.U.R.",
+ "subtitle": "Rossum's Universal Robots",
+ "authors": [
+  {
+   "name": "Karel Capek",
+   "rid": ""
+  }
+ ],
+ "year": "1920",
+ "publisher": "English version by Paul Selver and Nigel Playfair, Doubleday, Page (1923)",
+ "isbn": "",
+ "pages": "",
+ "ol": "/works/OL575625W",
+ "shelf": "fiction",
+ "level": "Beginner",
+ "pitch": "The 1920 play that gave the world the word robot. A factory makes artificial workers, the world comes to depend on them, and the robots rise up.",
+ "toc_src": "https://www.gutenberg.org/ebooks/59112",
+ "chapters": [
+  {
+   "t": "Act One",
+   "g": "Helena Glory visits the island factory of Rossum's Universal Robots, where artificial people are made to work, and stays.",
+   "part": ""
+  },
+  {
+   "t": "Act Two",
+   "g": "Ten years later, robots have spread everywhere, humans have stopped having children, and a robot revolt begins.",
+   "part": ""
+  },
+  {
+   "t": "Act Three",
+   "g": "The last humans are besieged in the factory and try to bargain for their lives.",
+   "part": ""
+  },
+  {
+   "t": "Epilogue",
+   "g": "Alquist, the last man, watches two robots discover something new.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Robot comes from the Czech word for forced labour.",
+  "Making minds to serve us may backfire.",
+  "Dependence on artificial workers can hollow out society.",
+  "The new beings may inherit what is human."
+ ],
+ "args": [
+  {
+   "a": "The play warns that creating servant minds leads to revolt.",
+   "c": "Capek's robots are closer to artificial humans than to machines, and the play is also about factory work and capitalism."
+  },
+  {
+   "a": "Humans lose purpose when machines do all the work.",
+   "c": "Others argue freedom from toil could let people flourish."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Why did the robots revolt?",
+  "Is it wrong to build a mind to be a servant?",
+  "What does the ending suggest about the future?"
+ ],
+ "quiz": [
+  {
+   "q": "What word did this play give the world?",
+   "o": [
+    "Computer",
+    "Robot",
+    "Android",
+    "Cyborg"
+   ],
+   "a": 1,
+   "w": "From the Czech robota."
+  },
+  {
+   "q": "What do humans stop doing in Act Two?",
+   "o": [
+    "Eating",
+    "Having children",
+    "Working",
+    "Talking"
+   ],
+   "a": 1,
+   "w": "A sign of society hollowing out."
+  },
+  {
+   "q": "Who wrote the play?",
+   "o": [
+    "Isaac Asimov",
+    "Karel Capek",
+    "H. G. Wells",
+    "Jules Verne"
+   ],
+   "a": 1,
+   "w": "Czech writer, 1920."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/rur.json",
+  "url": "https://www.gutenberg.org/ebooks/59112",
+  "label": "Read the full play here",
+  "licence": "Public domain in the United States: the 1923 English version (copyright 1923, Doubleday, Page) entered the public domain on 1 January 2019. Text from Project Gutenberg eBook #59112.",
+  "licence_url": "https://www.gutenberg.org/ebooks/59112"
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/rur.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Read the full play",
+   "url": "https://www.gutenberg.org/ebooks/59112",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL575625W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=R.U.R.%20Karel%20Capek",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

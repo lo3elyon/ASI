@@ -1,0 +1,9 @@
+/* Explosion font pairing: Anybody (headings and big numbers) and Onest (body). Both SIL Open Font License 1.1, Latin subset woff2 from Fontsource. Licences sit next to the files. */
+@font-face { font-family: "Anybody"; src: url("anybody-wght.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Onest"; src: url("onest-wght.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Scoped to the page content so the shared site header and footer keep the site wide fonts. */
+#main {
+  --f-display: "Anybody", "Space Grotesk", system-ui, sans-serif;
+  --f-body: "Onest", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--f-body);
+}

@@ -34,7 +34,8 @@ async function build(routes) {
       p.key_papers.forEach((k) => D.push({ type: "paper", title: k.title, sub: `${p.name}${k.year ? ", " + k.year : ""}`, url: k.url, id: p.id }));
       p.books.forEach((k) => D.push({ type: "paper", title: k.title, sub: `Book by ${p.name}${k.year ? ", " + k.year : ""}`, url: k.url, id: p.id, f: { kind: "Book" } }));
     });
-    sig.list.forEach((s, i) => D.push({ type: "signer", title: s.name, sub: [s.title, s.employer].filter(Boolean).join(", "), text: s.comment, id: s.researcher_id, n: i, f: { employer: s.employer || "" } }));
+    const rph = Object.fromEntries(ppl.map((p) => [p.id, p.photo]));
+    sig.list.forEach((s, i) => D.push({ type: "signer", title: s.name, sub: [s.title, s.employer].filter(Boolean).join(", "), text: s.comment, id: s.researcher_id || s.slug, img: s.photo || (s.researcher_id && rph[s.researcher_id]) || "", n: i, f: { employer: s.employer || "" } }));
     vids.forEach((v) => D.push({ type: "video", title: v.title, sub: `${v.channel}${v.year ? ", " + v.year : ""}`, text: v.summary, vid: v.id, f: { cat: (CATS[v.category] || { label: v.category }).label, level: v.level } }));
     oi.orgs.forEach((o) => D.push({ type: "org", title: o.name, sub: [o.type, o.country].filter(Boolean).join(", "), text: `${o.what || ""} ${[].concat(o.focus || []).join(" ")}`, href: `#/orgs?o=${encodeURIComponent(o.id || o.name)}`, oid: o.id || slug(o.name), f: { type: o.type || "" } }));
     arr(tl, "events").forEach((e) => { const y = e.year || String(e.date || "").slice(0, 4); D.push({ type: "event", title: e.title || e.name, sub: String(y), text: e.text || e.summary || e.description || "", href: `#/timeline?y=${y}`, f: { decade: y ? `${String(y).slice(0, 3)}0s` : "" } }); });
@@ -85,7 +86,7 @@ async function run() {
 
 function iconFor(d) {
   if (d.type === "video") return `<span class="ic vid"><img src="${ytThumb(d.vid, "default")}" alt="" loading="lazy" width="46" height="46"></span>`;
-  if ((d.type === "person" || d.type === "quote") && d.img) return `<span class="ic"><img src="${esc(d.img)}" alt="" loading="lazy" width="46" height="46" referrerpolicy="no-referrer"></span>`;
+  if ((d.type === "person" || d.type === "quote" || d.type === "signer") && d.img) return `<span class="ic"><img src="${esc(d.img)}" alt="" loading="lazy" width="46" height="46" referrerpolicy="no-referrer"></span>`;
   if (d.type === "person" || d.type === "signer") return `<span class="ic" style="--c:${TC[d.type]};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`;
   if (d.type === "org") { const L = logoSrc(d.oid) || logoSrc(d.title); if (L && L.src) return `<span class="ic ologo${L.mode === "invert" ? " inv" : L.mode === "as-is" ? " asis" : ""}" style="width:46px;height:46px"><img src="${esc(L.src)}" alt="" loading="lazy" width="40" height="40"></span>`; return `<span class="ic" style="--c:${TC.org};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`; }
   return `<span class="ic" style="--c:${TC[d.type]}">${esc(TL[d.type].slice(0, 4))}</span>`;

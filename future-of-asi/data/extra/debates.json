@@ -1,0 +1,728 @@
+{
+ "meta": {
+  "note": "Every quote is copied exactly from data/researchers.json with its source link. Sides are my own short summaries.",
+  "checked": "2026-10-29"
+ },
+ "debates": [
+  {
+   "id": "timelines",
+   "q": "Is superhuman AI only a few years away?",
+   "why": "If it is close, safety work and rules have very little time. If it is far, we can be more patient.",
+   "a": {
+    "label": "Yes, within years",
+    "blurb": "These people expect AGI or superintelligence this decade, often by the late 2020s.",
+    "quotes": [
+     {
+      "rid": "leopold-aschenbrenner",
+      "name": "Leopold Aschenbrenner",
+      "role": "Investor and writer",
+      "org": "Situational Awareness LP (formerly OpenAI Superalignment)",
+      "text": "AGI by 2027 is strikingly plausible.",
+      "source": "Situational Awareness: The Decade Ahead",
+      "url": "https://situational-awareness.ai/",
+      "date": "2024-06"
+     },
+     {
+      "rid": "sam-altman",
+      "name": "Sam Altman",
+      "role": "CEO",
+      "org": "OpenAI",
+      "text": "We are past the event horizon; the takeoff has started.",
+      "source": "The Gentle Singularity (blog)",
+      "url": "https://blog.samaltman.com/the-gentle-singularity",
+      "date": "2025-06"
+     },
+     {
+      "rid": "ilya-sutskever",
+      "name": "Ilya Sutskever",
+      "role": "Co-founder",
+      "org": "Safe Superintelligence Inc. (SSI)",
+      "text": "Superintelligence is within reach.",
+      "source": "Safe Superintelligence Inc. website",
+      "url": "https://ssi.inc/",
+      "date": "2024-06"
+     },
+     {
+      "rid": "daniel-kokotajlo",
+      "name": "Daniel Kokotajlo",
+      "role": "Executive Director",
+      "org": "AI Futures Project",
+      "text": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+      "source": "AI 2027 scenario (co-author)",
+      "url": "https://ai-2027.com/",
+      "date": "2025-04"
+     }
+    ],
+    "refs": [
+     {
+      "t": "AI 2027 scenario",
+      "u": "https://ai-2027.com/"
+     }
+    ]
+   },
+   "b": {
+    "label": "Not so fast",
+    "blurb": "These people think progress is real but slower, messier, or harder to predict than the headlines suggest.",
+    "quotes": [
+     {
+      "rid": "melanie-mitchell",
+      "name": "Melanie Mitchell",
+      "role": "Professor",
+      "org": "Santa Fe Institute",
+      "text": "The whole history of AI has been a history of failed predictions.",
+      "source": "Munk Debate on AI, reported by The Hub",
+      "url": "https://thehub.ca/2023/06/28/most-audience-members-unwilling-to-change-their-minds-about-the-threats-posed-by-ai-at-the-munk-debates/",
+      "date": "2023-06"
+     },
+     {
+      "rid": "arvind-narayanan",
+      "name": "Arvind Narayanan",
+      "role": "Professor of computer science",
+      "org": "Princeton University",
+      "text": "AI as normal technology is a worldview that stands in contrast to the worldview of AI as impending superintelligence.",
+      "source": "AI as Normal Technology (with Sayash Kapoor)",
+      "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+      "date": "2025-04"
+     },
+     {
+      "rid": "katja-grace",
+      "name": "Katja Grace",
+      "role": "Lead researcher",
+      "org": "AI Impacts",
+      "text": "If science continues undisrupted, the chance of unaided machines outperforming humans in every possible task was estimated at 10% by 2027, and 50% by 2047.",
+      "source": "Thousands of AI Authors on the Future of AI (lead author), arXiv",
+      "url": "https://arxiv.org/abs/2401.02843",
+      "date": "2024-01"
+     }
+    ],
+    "refs": [
+     {
+      "t": "AI as Normal Technology",
+      "u": "https://knightcolumbia.org/content/ai-as-normal-technology"
+     }
+    ]
+   }
+  },
+  {
+   "id": "takeoff",
+   "q": "Once AI can do AI research, will things explode?",
+   "why": "A fast takeoff leaves almost no time to fix mistakes. A slow one gives warning signs and second chances.",
+   "a": {
+    "label": "Fast and sharp",
+    "blurb": "AI that builds better AI could compress decades of progress into months.",
+    "quotes": [
+     {
+      "rid": "leo-gao",
+      "name": "Leo Gao",
+      "role": "Member of Technical Staff",
+      "org": "OpenAI",
+      "text": "The world is locked in a deadly race towards an intelligence explosion, where AI’s ability to create better AIs reaches a critical point, just like a runaway nuclear chain reaction. Going slower would give us much-needed time to make it go well, but no individual actor is willing to stop unilaterally.",
+      "source": "Pacing the Frontier, signatory comment",
+      "url": "https://www.pacingthefrontier.com/",
+      "date": "2026-07"
+     },
+     {
+      "rid": "will-macaskill",
+      "name": "Will MacAskill",
+      "role": "Philosopher, Senior Research Fellow",
+      "org": "Forethought",
+      "text": "AI that can accelerate research could drive a century of technological progress over just a few years.",
+      "source": "Preparing for the Intelligence Explosion (with Fin Moorhouse)",
+      "url": "https://www.forethought.org/research/preparing-for-the-intelligence-explosion",
+      "date": "2025-03"
+     },
+     {
+      "rid": "jared-kaplan",
+      "name": "Jared Kaplan",
+      "role": "Co-founder, Chief Science Officer",
+      "org": "Anthropic",
+      "text": "is in some ways the ultimate risk, because it’s kind of like letting AI kind of go",
+      "source": "Interview with The Guardian",
+      "url": "https://www.theguardian.com/technology/ng-interactive/2025/dec/02/jared-kaplan-artificial-intelligence-train-itself",
+      "date": "2025-12"
+     }
+    ],
+    "refs": [
+     {
+      "t": "Yudkowsky, Intelligence Explosion Microeconomics",
+      "u": "https://intelligence.org/files/IEM.pdf"
+     }
+    ]
+   },
+   "b": {
+    "label": "Gradual and visible",
+    "blurb": "Bottlenecks like compute, experiments and the real world slow things down, and we should see it coming.",
+    "quotes": [
+     {
+      "rid": "arvind-narayanan",
+      "name": "Arvind Narayanan",
+      "role": "Professor of computer science",
+      "org": "Princeton University",
+      "text": "AI as normal technology is a worldview that stands in contrast to the worldview of AI as impending superintelligence.",
+      "source": "AI as Normal Technology (with Sayash Kapoor)",
+      "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+      "date": "2025-04"
+     }
+    ],
+    "refs": [
+     {
+      "t": "Christiano, Takeoff speeds",
+      "u": "https://sideways-view.com/2018/02/24/takeoff-speeds/"
+     }
+    ]
+   }
+  },
+  {
+   "id": "control",
+   "q": "Can we keep control of AI that is smarter than us?",
+   "why": "This is the heart of the safety problem. The answer decides whether we need better tools or a different path.",
+   "a": {
+    "label": "It may be impossible",
+    "blurb": "Controlling something smarter than you, forever, has no precedent. We may get only one try.",
+    "quotes": [
+     {
+      "rid": "stuart-russell",
+      "name": "Stuart Russell",
+      "role": "Professor of computer science",
+      "org": "UC Berkeley, CHAI",
+      "text": "The problem of control: how do we maintain power, forever, over entities that will eventually become more powerful than us?",
+      "source": "US Senate hearing, Oversight of A.I. (statement page)",
+      "url": "https://humancompatible.ai/blog/2023/09/11/ai-regulation-stuart-russells-opening-statement-at-u-s-senate-hearing",
+      "date": "2023-07"
+     },
+     {
+      "rid": "geoffrey-hinton",
+      "name": "Geoffrey Hinton",
+      "role": "Computer scientist, Nobel laureate in physics 2024",
+      "org": "University of Toronto (emeritus)",
+      "text": "We have no idea whether we can stay in control.",
+      "source": "Nobel Prize banquet speech",
+      "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+      "date": "2024-12"
+     },
+     {
+      "rid": "roman-yampolskiy",
+      "name": "Roman Yampolskiy",
+      "role": "Computer scientist",
+      "org": "University of Louisville",
+      "text": "you only get one chance.",
+      "source": "Lex Fridman podcast, reported by Business Insider",
+      "url": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6",
+      "date": "2024-06"
+     },
+     {
+      "rid": "nate-soares",
+      "name": "Nate Soares",
+      "role": "President",
+      "org": "Machine Intelligence Research Institute (MIRI)",
+      "text": "everyone dies on the first failed attempt.",
+      "source": "Interview with Business Insider",
+      "url": "https://www.businessinsider.com/ai-top-expert-rushing-artificial-superintelligence-could-wipe-us-out-2025-9",
+      "date": "2025-09"
+     }
+    ],
+    "refs": []
+   },
+   "b": {
+    "label": "It is hard but workable",
+    "blurb": "With monitoring, testing and careful deployment, we can stay safe through the first powerful systems and learn as we go.",
+    "quotes": [
+     {
+      "rid": "ryan-greenblatt",
+      "name": "Ryan Greenblatt",
+      "role": "Chief Scientist",
+      "org": "Redwood Research",
+      "text": "We think no fundamental research breakthroughs are required for labs to implement safety measures that meet our standard for AI control for early transformatively useful AIs",
+      "source": "The case for ensuring that powerful AIs are controlled (with Buck Shlegeris)",
+      "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+      "date": "2024-05"
+     },
+     {
+      "rid": "buck-shlegeris",
+      "name": "Buck Shlegeris",
+      "role": "CEO",
+      "org": "Redwood Research",
+      "text": "Labs should make sure that powerful models can't cause unacceptably bad outcomes even if the AIs try to.",
+      "source": "The case for ensuring that powerful AIs are controlled (with Ryan Greenblatt)",
+      "url": "https://redwoodresearch.substack.com/p/the-case-for-ensuring-that-powerful",
+      "date": "2024-05"
+     },
+     {
+      "rid": "jeffrey-ladish",
+      "name": "Jeffrey Ladish",
+      "role": "Executive Director",
+      "org": "Palisade Research",
+      "text": "It’s great that we’re seeing warning signs before the systems become so powerful we can’t control them,",
+      "source": "Interview with NBC News",
+      "url": "https://www.nbcnews.com/tech/tech-news/far-will-ai-go-defend-survival-rcna209609",
+      "date": "2025-06"
+     }
+    ],
+    "refs": [
+     {
+      "t": "AI Control paper (2023)",
+      "u": "https://arxiv.org/abs/2312.06942"
+     }
+    ]
+   }
+  },
+  {
+   "id": "pause",
+   "q": "Should we slow down or pause frontier AI?",
+   "why": "A slowdown could buy time for safety, or could hand the lead to the least careful players.",
+   "a": {
+    "label": "Slow down",
+    "blurb": "Racing makes everyone cut corners. Coordinated pacing, or a full stop, is the safer bet.",
+    "quotes": [
+     {
+      "rid": "eliezer-yudkowsky",
+      "name": "Eliezer Yudkowsky",
+      "role": "AI researcher and writer",
+      "org": "Machine Intelligence Research Institute (MIRI)",
+      "text": "Shut it all down.",
+      "source": "TIME op-ed, Pausing AI Developments Isn't Enough",
+      "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+      "date": "2023-03"
+     },
+     {
+      "rid": "victoria-krakovna",
+      "name": "Victoria Krakovna",
+      "role": "Research scientist",
+      "org": "Google DeepMind",
+      "text": "It is very important to build capacity for a coordinated slowdown of AI development. A runaway race to AGI is not safe: it creates incentives to cut corners on safety, and carries a substantial risk for model capabilities to outpace development of adequate alignment, control, and governance measures.",
+      "source": "Pacing the Frontier, signatory comment",
+      "url": "https://www.pacingthefrontier.com/",
+      "date": "2026-07"
+     },
+     {
+      "rid": "jakub-pachocki",
+      "name": "Jakub Pachocki",
+      "role": "Chief Scientist",
+      "org": "OpenAI",
+      "text": "I expect and hope for voluntary slowdowns to become commonplace until shared safety bars are established",
+      "source": "Blog post, as quoted by CNBC",
+      "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+      "date": "2026-09"
+     },
+     {
+      "rid": "ethan-perez",
+      "name": "Ethan Perez",
+      "role": "Alignment Team Lead",
+      "org": "Anthropic",
+      "text": "With the current rate of AI progress, safety teams at AI companies have to sprint to prevent new risks to society every few months. At some point, we’re going to hit problems we need more time to solve.",
+      "source": "Pacing the Frontier, signatory comment",
+      "url": "https://www.pacingthefrontier.com/",
+      "date": "2026-07"
+     }
+    ],
+    "refs": [
+     {
+      "t": "Statement on Superintelligence",
+      "u": "https://superintelligence-statement.org/"
+     },
+     {
+      "t": "Pacing the Frontier",
+      "u": "https://www.pacingthefrontier.com/"
+     }
+    ]
+   },
+   "b": {
+    "label": "Keep building",
+    "blurb": "The benefits are huge, the fears are overblown, and wide access is better than a pause.",
+    "quotes": [
+     {
+      "rid": "marc-andreessen",
+      "name": "Marc Andreessen",
+      "role": "Co-founder",
+      "org": "Andreessen Horowitz (a16z)",
+      "text": "Fortunately, I am here to bring the good news: AI will not destroy the world, and in fact may save it.",
+      "source": "Why AI Will Save the World (essay)",
+      "url": "https://a16z.com/ai-will-save-the-world/",
+      "date": "2023-06"
+     },
+     {
+      "rid": "andrew-ng",
+      "name": "Andrew Ng",
+      "role": "Founder",
+      "org": "DeepLearning.AI, Coursera, Google Brain",
+      "text": "I have to admit that I struggle to see how AI could pose any meaningful risk for our extinction.",
+      "source": "The Batch, letter from Andrew Ng (issue 200)",
+      "url": "https://www.deeplearning.ai/the-batch/issue-200/",
+      "date": "2023-06"
+     },
+     {
+      "rid": "sam-altman",
+      "name": "Sam Altman",
+      "role": "CEO",
+      "org": "OpenAI",
+      "text": "We do need to solve the safety issues, technically and societally, but then it’s critically important to widely distribute access to superintelligence given the economic implications.",
+      "source": "The Gentle Singularity (blog)",
+      "url": "https://blog.samaltman.com/the-gentle-singularity",
+      "date": "2025-06"
+     },
+     {
+      "rid": "dario-amodei",
+      "name": "Dario Amodei",
+      "role": "Co-founder and CEO",
+      "org": "Anthropic",
+      "text": "I think that most people are underestimating just how radical the upside of AI could be, just as I think most people are underestimating how bad the risks could be.",
+      "source": "Machines of Loving Grace (essay)",
+      "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+      "date": "2024-10"
+     }
+    ],
+    "refs": []
+   }
+  },
+  {
+   "id": "pdoom",
+   "q": "How likely is an AI catastrophe?",
+   "why": "People who agree on the facts still give very different odds. Seeing the spread helps you hold your own number loosely.",
+   "a": {
+    "label": "Worryingly likely",
+    "blurb": "These people think catastrophe is a real, even large, possibility.",
+    "quotes": [
+     {
+      "rid": "eliezer-yudkowsky",
+      "name": "Eliezer Yudkowsky",
+      "role": "AI researcher and writer",
+      "org": "Machine Intelligence Research Institute (MIRI)",
+      "text": "Many researchers steeped in these issues, including myself, expect that the most likely result of building a superhumanly smart AI, under anything remotely like the current circumstances, is that literally everyone on Earth will die.",
+      "source": "TIME op-ed, Pausing AI Developments Isn't Enough",
+      "url": "https://time.com/6266923/ai-eliezer-yudkowsky-open-letter-not-enough/",
+      "date": "2023-03"
+     },
+     {
+      "rid": "paul-christiano",
+      "name": "Paul Christiano",
+      "role": "Founder, alignment researcher",
+      "org": "Alignment Research Center (ARC)",
+      "text": "Probability that humanity has somehow irreversibly messed up our future within 10 years of building powerful AI: 46%",
+      "source": "My views on doom (LessWrong)",
+      "url": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom",
+      "date": "2023-04"
+     },
+     {
+      "rid": "toby-ord",
+      "name": "Toby Ord",
+      "role": "Philosopher",
+      "org": "University of Oxford",
+      "text": "And we’ve got unaligned artificial intelligence which is way out there at 1 in 10.",
+      "source": "80,000 Hours podcast",
+      "url": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity",
+      "date": "2020-03"
+     },
+     {
+      "rid": "evan-hubinger",
+      "name": "Evan Hubinger",
+      "role": "Alignment lead",
+      "org": "Anthropic",
+      "text": "I personally think it is >10% within the next decade,",
+      "source": "Post on X, reported by CNBC",
+      "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html",
+      "date": "2026-09"
+     },
+     {
+      "rid": "demis-hassabis",
+      "name": "Demis Hassabis",
+      "role": "Co-founder",
+      "org": "Google DeepMind",
+      "text": "What I would say is it’s definitely non-zero and it’s probably non-negligible.",
+      "source": "Lex Fridman podcast, reported by Machine",
+      "url": "https://www.machine.news/google-deepmind-demis-hassabis-p-doom",
+      "date": "2025-07"
+     }
+    ],
+    "refs": []
+   },
+   "b": {
+    "label": "Very unlikely",
+    "blurb": "These people see AI as a tool that does not want anything, with ordinary risks we can manage.",
+    "quotes": [
+     {
+      "rid": "yann-lecun",
+      "name": "Yann LeCun",
+      "role": "Professor, Turing Award 2018",
+      "org": "New York University (formerly Meta)",
+      "text": "There is no reason to believe that just because AI systems are intelligent they will want to dominate us.",
+      "source": "Interview with WIRED",
+      "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/",
+      "date": "2023-12"
+     },
+     {
+      "rid": "marc-andreessen",
+      "name": "Marc Andreessen",
+      "role": "Co-founder",
+      "org": "Andreessen Horowitz (a16z)",
+      "text": "In short, AI doesn’t want, it doesn’t have goals, it doesn’t want to kill you, because it’s not alive.",
+      "source": "Why AI Will Save the World (essay)",
+      "url": "https://a16z.com/ai-will-save-the-world/",
+      "date": "2023-06"
+     },
+     {
+      "rid": "andrew-ng",
+      "name": "Andrew Ng",
+      "role": "Founder",
+      "org": "DeepLearning.AI, Coursera, Google Brain",
+      "text": "AI has risks like bias, fairness, inaccurate outputs, job displacement, and concentration of power.",
+      "source": "The Batch, letter from Andrew Ng (issue 200)",
+      "url": "https://www.deeplearning.ai/the-batch/issue-200/",
+      "date": "2023-06"
+     }
+    ],
+    "refs": []
+   },
+   "pdoom": true
+  },
+  {
+   "id": "normal",
+   "q": "Is AI a normal technology or something new?",
+   "why": "If it is normal, old tools like regulation and markets will work. If it is new, we may need new ideas.",
+   "a": {
+    "label": "Something new",
+    "blurb": "Today's models are grown, not built, and even their makers cannot fully explain them.",
+    "quotes": [
+     {
+      "rid": "jack-clark",
+      "name": "Jack Clark",
+      "role": "Co-founder, Head of Policy",
+      "org": "Anthropic",
+      "text": "But make no mistake: what we are dealing with is a real and mysterious creature, not a simple and predictable machine.",
+      "source": "Import AI 431, Technological Optimism and Appropriate Fear (talk at The Curve)",
+      "url": "https://importai.substack.com/p/import-ai-431-technological-optimism",
+      "date": "2025-10"
+     },
+     {
+      "rid": "sam-bowman",
+      "name": "Sam Bowman",
+      "role": "Alignment researcher",
+      "org": "Anthropic, New York University",
+      "text": "There are no reliable techniques for steering the behavior of LLMs.",
+      "source": "Eight Things to Know about Large Language Models, arXiv",
+      "url": "https://arxiv.org/abs/2304.00612",
+      "date": "2023-04"
+     },
+     {
+      "rid": "beth-barnes",
+      "name": "Beth Barnes",
+      "role": "Founder and CEO",
+      "org": "METR",
+      "text": "They are, in some sense, these vast alien intelligences,",
+      "source": "Interview with TIME",
+      "url": "https://time.com/6958868/artificial-intelligence-safety-evaluations-risks",
+      "date": "2024-03"
+     },
+     {
+      "rid": "geoffrey-hinton",
+      "name": "Geoffrey Hinton",
+      "role": "Computer scientist, Nobel laureate in physics 2024",
+      "org": "University of Toronto (emeritus)",
+      "text": "There is also a longer term existential threat that will arise when we create digital beings that are more intelligent than ourselves.",
+      "source": "Nobel Prize banquet speech",
+      "url": "https://www.nobelprize.org/prizes/physics/2024/hinton/speech/",
+      "date": "2024-12"
+     }
+    ],
+    "refs": []
+   },
+   "b": {
+    "label": "A normal technology",
+    "blurb": "AI will spread slowly through society like electricity or the internet, and we should govern it that way.",
+    "quotes": [
+     {
+      "rid": "arvind-narayanan",
+      "name": "Arvind Narayanan",
+      "role": "Professor of computer science",
+      "org": "Princeton University",
+      "text": "AI as normal technology is a worldview that stands in contrast to the worldview of AI as impending superintelligence.",
+      "source": "AI as Normal Technology (with Sayash Kapoor)",
+      "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+      "date": "2025-04"
+     },
+     {
+      "rid": "yann-lecun",
+      "name": "Yann LeCun",
+      "role": "Professor, Turing Award 2018",
+      "org": "New York University (formerly Meta)",
+      "text": "You don't want the digital diet of your citizens to be controlled by a small number of people.",
+      "source": "Interview with WIRED",
+      "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/",
+      "date": "2023-12"
+     }
+    ],
+    "refs": []
+   }
+  },
+  {
+   "id": "open",
+   "q": "Should the most powerful models be released as open weights?",
+   "why": "Open weights spread power and help research, but anyone can remove the safeguards.",
+   "a": {
+    "label": "Open is safer",
+    "blurb": "Open models stop a few companies from controlling what billions of people see and think.",
+    "quotes": [
+     {
+      "rid": "yann-lecun",
+      "name": "Yann LeCun",
+      "role": "Professor, Turing Award 2018",
+      "org": "New York University (formerly Meta)",
+      "text": "You don't want the digital diet of your citizens to be controlled by a small number of people.",
+      "source": "Interview with WIRED",
+      "url": "https://www.wired.com/story/artificial-intelligence-meta-yann-lecun-interview/",
+      "date": "2023-12"
+     }
+    ],
+    "refs": []
+   },
+   "b": {
+    "label": "Be careful at the frontier",
+    "blurb": "Once weights are public they cannot be recalled, so the most capable models need more caution.",
+    "quotes": [],
+    "refs": [
+     {
+      "t": "International AI Safety Report (2025), section on open weight models",
+      "u": "https://arxiv.org/abs/2501.17805"
+     },
+     {
+      "t": "Frontier AI Regulation (2023)",
+      "u": "https://arxiv.org/abs/2307.03718"
+     }
+    ]
+   }
+  }
+ ],
+ "pdoom": [
+  {
+   "rid": "geoffrey-hinton",
+   "name": "Geoffrey Hinton",
+   "pdoom": "10% to 20% chance AI leads to human extinction within three decades",
+   "url": "https://www.theguardian.com/technology/2024/dec/27/godfather-of-ai-raises-odds-of-the-technology-wiping-out-humanity-over-next-30-years"
+  },
+  {
+   "rid": "yoshua-bengio",
+   "name": "Yoshua Bengio",
+   "pdoom": "About 20% that it turns out catastrophic",
+   "url": "https://www.abc.net.au/news/2023-07-15/whats-your-pdoom-ai-researchers-worry-catastrophe/102591340"
+  },
+  {
+   "rid": "eliezer-yudkowsky",
+   "name": "Eliezer Yudkowsky",
+   "pdoom": ">95%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "paul-christiano",
+   "name": "Paul Christiano",
+   "pdoom": "22% chance of AI takeover; 46% that humanity irreversibly messes up its future within 10 years of powerful AI",
+   "url": "https://www.lesswrong.com/posts/xWMqsvHapP3nwdSW8/my-views-on-doom"
+  },
+  {
+   "rid": "jan-leike",
+   "name": "Jan Leike",
+   "pdoom": "10% to 90%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "evan-hubinger",
+   "name": "Evan Hubinger",
+   "pdoom": ">10% within the next decade",
+   "url": "https://www.cnbc.com/2026/09/09/anthropic-researcher-quits-ai-safety.html"
+  },
+  {
+   "rid": "connor-leahy",
+   "name": "Connor Leahy",
+   "pdoom": "90%+",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "roman-yampolskiy",
+   "name": "Roman Yampolskiy",
+   "pdoom": "99.9% within the next hundred years",
+   "url": "https://www.businessinsider.com/ai-researcher-roman-yampolskiy-lex-fridman-human-extinction-prediction-2024-6"
+  },
+  {
+   "rid": "dan-hendrycks",
+   "name": "Dan Hendrycks",
+   "pdoom": ">80%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "max-tegmark",
+   "name": "Max Tegmark",
+   "pdoom": ">90%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "dario-amodei",
+   "name": "Dario Amodei",
+   "pdoom": "10% to 25%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "demis-hassabis",
+   "name": "Demis Hassabis",
+   "pdoom": "Definitely non-zero and probably non-negligible (no number given)",
+   "url": "https://www.machine.news/google-deepmind-demis-hassabis-p-doom"
+  },
+  {
+   "rid": "shane-legg",
+   "name": "Shane Legg",
+   "pdoom": "About 5% to 50%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "elon-musk",
+   "name": "Elon Musk",
+   "pdoom": "About 10% or 20%",
+   "url": "https://www.businessinsider.com/elon-musk-20-percent-chance-ai-destroys-humanity-2024-3"
+  },
+  {
+   "rid": "toby-ord",
+   "name": "Toby Ord",
+   "pdoom": "About 1 in 10 this century from unaligned AI",
+   "url": "https://80000hours.org/podcast/episodes/toby-ord-the-precipice-existential-risk-future-humanity"
+  },
+  {
+   "rid": "holden-karnofsky",
+   "name": "Holden Karnofsky",
+   "pdoom": "Between 10% and 90% (low confidence either way)",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "geoffrey-irving",
+   "name": "Geoffrey Irving",
+   "pdoom": "50%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "daniel-kokotajlo",
+   "name": "Daniel Kokotajlo",
+   "pdoom": "70% to 80%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "will-macaskill",
+   "name": "Will MacAskill",
+   "pdoom": "1% to 10%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "vitalik-buterin",
+   "name": "Vitalik Buterin",
+   "pdoom": "12%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  },
+  {
+   "rid": "yann-lecun",
+   "name": "Yann LeCun",
+   "pdoom": "<0.01%",
+   "url": "https://www.techradar.com/pro/top-ai-researcher-says-ai-will-end-humanity-and-we-should-stop-developing-it-now-but-dont-worry-elon-musk-disagrees"
+  },
+  {
+   "rid": "marc-andreessen",
+   "name": "Marc Andreessen",
+   "pdoom": "0%",
+   "url": "https://en.wikipedia.org/wiki/P(doom)"
+  }
+ ]
+}

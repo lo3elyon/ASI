@@ -1,0 +1,3691 @@
+{
+ "miles-mccain": {
+  "file": "data/photos-signers/miles-mccain.jpg",
+  "source_url": "https://bsky.app/profile/miles.land",
+  "kind": "other",
+  "credit": "Bluesky @miles.land",
+  "name": "Miles McCain"
+ },
+ "aaron-vontell": {
+  "file": "data/photos-signers/aaron-vontell.jpg",
+  "source_url": "https://bsky.app/profile/vontell.bsky.social",
+  "kind": "other",
+  "credit": "Bluesky @vontell.bsky.social",
+  "name": "Aaron Vontell"
+ },
+ "ben-rossen": {
+  "file": "data/photos-signers/ben-rossen.jpg",
+  "source_url": "https://bsky.app/profile/benrossen.bsky.social",
+  "kind": "other",
+  "credit": "Bluesky @benrossen.bsky.social",
+  "name": "Ben Rossen"
+ },
+ "anthony-yun": {
+  "file": "data/photos-signers/anthony-yun.jpg",
+  "source_url": "https://bsky.app/profile/anthonyyun.bsky.social",
+  "kind": "other",
+  "credit": "Bluesky @anthonyyun.bsky.social",
+  "name": "Anthony Yun"
+ },
+ "gregory-p-smith": {
+  "file": "data/photos-signers/gregory-p-smith.jpg",
+  "source_url": "https://github.com/gpshead",
+  "kind": "github",
+  "credit": "GitHub @gpshead",
+  "name": "Gregory P. Smith"
+ },
+ "alexander-alemi": {
+  "file": "data/photos-signers/alexander-alemi.jpg",
+  "source_url": "https://alexalemi.com/",
+  "kind": "homepage",
+  "credit": "alexalemi.com",
+  "name": "Alexander Alemi"
+ },
+ "dino-distefano": {
+  "file": "data/photos-signers/dino-distefano.jpg",
+  "source_url": "https://ddino.github.io/",
+  "kind": "homepage",
+  "credit": "ddino.github.io",
+  "name": "Dino Distefano"
+ },
+ "drake-thomas": {
+  "file": "data/photos-signers/drake-thomas.jpg",
+  "source_url": "https://x.com/MaskedTorah",
+  "kind": "x",
+  "credit": "X @MaskedTorah",
+  "name": "Drake Thomas"
+ },
+ "hoagy-cunningham": {
+  "file": "data/photos-signers/hoagy-cunningham.jpg",
+  "source_url": "https://tais2024.cc/agenda/hoagy-cunningham/",
+  "kind": "conference",
+  "credit": "TAIS 2024 speaker page",
+  "name": "Hoagy Cunningham"
+ },
+ "neerav-kingsland": {
+  "file": "data/photos-signers/neerav-kingsland.jpg",
+  "source_url": "https://telcodr.com/insights/ep-101-anthropics-big-plans-for-telco/",
+  "kind": "podcast",
+  "credit": "TelcoDR Telco in 20, Ep 101",
+  "name": "Neerav Kingsland"
+ },
+ "jason-phang": {
+  "file": "data/photos-signers/jason-phang.jpg",
+  "source_url": "https://www.linkedin.com/in/jason-phang",
+  "kind": "linkedin",
+  "credit": "LinkedIn /in/jason-phang",
+  "name": "Jason Phang"
+ },
+ "melody-guan": {
+  "file": "data/photos-signers/melody-guan.jpg",
+  "source_url": "https://github.com/melodyguan",
+  "kind": "github",
+  "credit": "GitHub @melodyguan",
+  "name": "Melody Guan"
+ },
+ "myra-deng": {
+  "file": "data/photos-signers/myra-deng.jpg",
+  "source_url": "https://www.youtube.com/live/UoiduQl728M",
+  "kind": "youtube",
+  "credit": "Apart - Safe AI, \"AI interpretability with Myra Deng\"",
+  "name": "Myra Deng"
+ },
+ "jon-kutasov": {
+  "file": "data/photos-signers/jon-kutasov.jpg",
+  "source_url": "https://ai4.com/speakers/jon-kutasov/",
+  "kind": "conference",
+  "credit": "Ai4 speaker page",
+  "name": "Jon Kutasov"
+ },
+ "harish-kamath": {
+  "file": "data/photos-signers/harish-kamath.jpg",
+  "source_url": "https://hkamath.me/",
+  "kind": "homepage",
+  "credit": "hkamath.me",
+  "name": "Harish Kamath"
+ },
+ "lina-ochman": {
+  "file": "data/photos-signers/lina-ochman.jpg",
+  "source_url": "https://events.uschamberfoundation.org/ai-work-2026/speaker/2327021/lina-ochman",
+  "kind": "conference",
+  "credit": "US Chamber Foundation AI Work 2026",
+  "name": "Lina Ochman"
+ },
+ "kit-fraser-taliente": {
+  "file": "data/photos-signers/kit-fraser-taliente.jpg",
+  "source_url": "https://x.com/KitF_T",
+  "kind": "x",
+  "credit": "X @KitF_T",
+  "name": "Kit Fraser-Taliente"
+ },
+ "adam-wolff": {
+  "file": "data/photos-signers/adam-wolff.jpg",
+  "source_url": "https://qconsf.com/speakers/adamwolff",
+  "kind": "conference",
+  "credit": "QCon San Francisco 2025",
+  "name": "Adam Wolff"
+ },
+ "elizabeth-edwards-appell": {
+  "file": "data/photos-signers/elizabeth-edwards-appell.jpg",
+  "source_url": "https://eedwardsa.github.io/",
+  "kind": "homepage",
+  "credit": "eedwardsa.github.io (repo EEdwardsA/EEdwardsA.github.io)",
+  "name": "Elizabeth Edwards-Appell"
+ },
+ "dr-markus-schweier": {
+  "file": "data/photos-signers/dr-markus-schweier.jpg",
+  "source_url": "https://aivaluecreation.de/speakers",
+  "kind": "conference",
+  "credit": "AI Value Creation speaker card",
+  "name": "Dr. Markus Schweier"
+ },
+ "patryk-grzelak": {
+  "file": "data/photos-signers/patryk-grzelak.jpg",
+  "source_url": "https://www.getprog.ai/profile/patryk_grzelak",
+  "kind": "other",
+  "credit": "getprog.ai profile (LinkedIn-sourced avatar)",
+  "name": "Patryk Grzelak"
+ },
+ "hugo-carr": {
+  "file": "data/photos-signers/hugo-carr.jpg",
+  "source_url": "https://github.com/hewgs-anthropic",
+  "kind": "github",
+  "credit": "GitHub @hewgs-anthropic",
+  "name": "Hugo Carr"
+ },
+ "alexander-miller": {
+  "file": "data/photos-signers/alexander-miller.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alexander-miller",
+  "kind": "other",
+  "credit": "The Org",
+  "name": "Alexander Miller"
+ },
+ "tanya-singh": {
+  "file": "data/photos-signers/tanya-singh.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tanya-singh",
+  "kind": "other",
+  "credit": "The Org",
+  "name": "Tanya Singh"
+ },
+ "max-grossman": {
+  "file": "data/photos-signers/max-grossman.jpg",
+  "source_url": "https://www.alphaxiv.org/@max-grossman",
+  "kind": "scholar",
+  "credit": "alphaXiv (Google Scholar photo)",
+  "name": "Max Grossman"
+ },
+ "daniel-freeman": {
+  "file": "data/photos-signers/daniel-freeman.jpg",
+  "source_url": "https://www.alphaxiv.org/@daniel-freeman",
+  "kind": "scholar",
+  "credit": "alphaXiv (Google Scholar photo)",
+  "name": "Daniel Freeman"
+ },
+ "max-kaufmann": {
+  "file": "data/photos-signers/max-kaufmann.jpg",
+  "source_url": "https://x.com/Max_A_Kaufmann",
+  "kind": "x",
+  "credit": "X @Max_A_Kaufmann",
+  "name": "Max Kaufmann"
+ },
+ "hailey-joren": {
+  "file": "data/photos-signers/hailey-joren.jpg",
+  "source_url": "https://x.com/HaileyJoren",
+  "kind": "x",
+  "credit": "X @HaileyJoren",
+  "name": "Hailey Joren"
+ },
+ "anna-soligo": {
+  "file": "data/photos-signers/anna-soligo.jpg",
+  "source_url": "https://x.com/anna_soligo",
+  "kind": "x",
+  "credit": "X @anna_soligo",
+  "name": "Anna Soligo"
+ },
+ "maxwell-leiter": {
+  "file": "data/photos-signers/maxwell-leiter.jpg",
+  "source_url": "https://x.com/maxleiter",
+  "kind": "x",
+  "credit": "X @maxleiter",
+  "name": "Maxwell Leiter"
+ },
+ "max-mcguinness": {
+  "file": "data/photos-signers/max-mcguinness.jpg",
+  "source_url": "https://max.rip/",
+  "kind": "homepage",
+  "credit": "max.rip",
+  "name": "Max McGuinness"
+ },
+ "daniel-cho": {
+  "file": "data/photos-signers/daniel-cho.jpg",
+  "source_url": "https://github.com/dchomh",
+  "kind": "github",
+  "credit": "GitHub @dchomh",
+  "name": "Daniel Cho"
+ },
+ "aashrey-tiku": {
+  "file": "data/photos-signers/aashrey-tiku.jpg",
+  "source_url": "https://nordeep.com/speaker/aashrey-tiku/",
+  "kind": "conference",
+  "credit": "NORDEEP 2026 speaker page",
+  "name": "Aashrey Tiku"
+ },
+ "travis-bryant": {
+  "file": "data/photos-signers/travis-bryant.jpg",
+  "source_url": "https://anthropic.ondemand.goldcast.io/on-demand/8928734f-e18b-4d7e-82af-a58cf01a288e",
+  "kind": "conference",
+  "credit": "Anthropic Goldcast on-demand event",
+  "name": "Travis Bryant"
+ },
+ "christina-lu": {
+  "file": "data/photos-signers/christina-lu.jpg",
+  "source_url": "https://www.alphaxiv.org/@christina-lu",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Christina Lu"
+ },
+ "misha-khalman": {
+  "file": "data/photos-signers/misha-khalman.jpg",
+  "source_url": "https://www.alphaxiv.org/@misha-khalman",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Misha Khalman"
+ },
+ "andrea-vallone": {
+  "file": "data/photos-signers/andrea-vallone.jpg",
+  "source_url": "https://www.alphaxiv.org/@andrea-vallone",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Andrea Vallone"
+ },
+ "rohit-mittapalli": {
+  "file": "data/photos-signers/rohit-mittapalli.jpg",
+  "source_url": "https://www.alphaxiv.org/@rohit-mittapalli",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Rohit Mittapalli"
+ },
+ "chang-lan": {
+  "file": "data/photos-signers/chang-lan.jpg",
+  "source_url": "https://www.alphaxiv.org/@chang-lan",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Chang Lan"
+ },
+ "dmitrii-krasheninnikov": {
+  "file": "data/photos-signers/dmitrii-krasheninnikov.jpg",
+  "source_url": "https://www.alphaxiv.org/@dmitrii-krasheninnikov",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Dmitrii Krasheninnikov"
+ },
+ "jonathan-gray": {
+  "file": "data/photos-signers/jonathan-gray.jpg",
+  "source_url": "https://www.alphaxiv.org/@jonathan-gray",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Jonathan Gray"
+ },
+ "michiel-de-jong": {
+  "file": "data/photos-signers/michiel-de-jong.jpg",
+  "source_url": "https://www.alphaxiv.org/@michiel-de-jong",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Michiel de Jong"
+ },
+ "roy-rinberg": {
+  "file": "data/photos-signers/roy-rinberg.jpg",
+  "source_url": "https://www.alphaxiv.org/@roy-rinberg",
+  "kind": "scholar",
+  "credit": "alphaXiv profile (Google Scholar photo)",
+  "name": "Roy Rinberg"
+ },
+ "jordan-fisher": {
+  "file": "data/photos-signers/jordan-fisher.jpg",
+  "source_url": "https://siliconvalleyinvestclub.com/id/companies/standard/team/jordan-fisher/",
+  "kind": "other",
+  "credit": "Silicon Valley Invest Club profile",
+  "name": "Jordan Fisher"
+ },
+ "thomas-norell": {
+  "file": "data/photos-signers/thomas-norell.jpg",
+  "source_url": "https://luma.com/bigd52fn",
+  "kind": "conference",
+  "credit": "Claude Builder Club @UCLA (Luma)",
+  "name": "Thomas Norell"
+ },
+ "barret-schlegelmilch": {
+  "file": "data/photos-signers/barret-schlegelmilch.jpg",
+  "source_url": "https://www.karmanproject.org/members/barret-schlegelmilch/",
+  "kind": "other",
+  "credit": "Karman Project fellow page",
+  "name": "Barret Schlegelmilch"
+ },
+ "simon-biggs": {
+  "file": "data/photos-signers/simon-biggs.jpg",
+  "source_url": "https://github.com/SimonBiggs",
+  "kind": "github",
+  "credit": "GitHub @SimonBiggs",
+  "name": "Simon Biggs"
+ },
+ "jerome-swannack": {
+  "file": "data/photos-signers/jerome-swannack.jpg",
+  "source_url": "https://www.youtube.com/watch?v=eMKyBHlqAm4",
+  "kind": "youtube",
+  "credit": "MCP Dev Summit, YouTube frame (i.ytimg.com maxres1)",
+  "name": "Jerome Swannack"
+ },
+ "boris-cherny": {
+  "file": "data/photos-signers/boris-cherny.jpg",
+  "source_url": "https://github.com/bcherny",
+  "kind": "github",
+  "credit": "GitHub avatar of @bcherny",
+  "name": "Boris Cherny"
+ },
+ "zac-hatfield-dodds": {
+  "file": "data/photos-signers/zac-hatfield-dodds.jpg",
+  "source_url": "https://github.com/Zac-HD",
+  "kind": "github",
+  "credit": "GitHub avatar of @Zac-HD",
+  "name": "Zac Hatfield-Dodds"
+ },
+ "remi-uzel": {
+  "file": "data/photos-signers/remi-uzel.jpg",
+  "source_url": "https://github.com/remuzel",
+  "kind": "github",
+  "credit": "GitHub avatar of @remuzel",
+  "name": "Remi Uzel"
+ },
+ "grace-atwood": {
+  "file": "data/photos-signers/grace-atwood.jpg",
+  "source_url": "https://github.com/GraceAtwood",
+  "kind": "github",
+  "credit": "GitHub avatar of @GraceAtwood",
+  "name": "Grace Atwood"
+ },
+ "jeremy-hadfield": {
+  "file": "data/photos-signers/jeremy-hadfield.jpg",
+  "source_url": "https://github.com/jerhadf",
+  "kind": "github",
+  "credit": "GitHub avatar of @jerhadf",
+  "name": "Jeremy Hadfield"
+ },
+ "andrew-edstrom": {
+  "file": "data/photos-signers/andrew-edstrom.jpg",
+  "source_url": "https://github.com/andrewedstrom",
+  "kind": "github",
+  "credit": "GitHub avatar of @andrewedstrom",
+  "name": "Andrew Edstrom"
+ },
+ "david-robinson": {
+  "file": "data/photos-signers/david-robinson.jpg",
+  "source_url": "https://x.com/dgrobinson",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dgrobinson",
+  "name": "David Robinson"
+ },
+ "doug-barth": {
+  "file": "data/photos-signers/doug-barth.jpg",
+  "source_url": "https://github.com/dougbarth",
+  "kind": "github",
+  "credit": "GitHub avatar of @dougbarth",
+  "name": "Doug Barth"
+ },
+ "christian-ryan": {
+  "file": "data/photos-signers/christian-ryan.jpg",
+  "source_url": "https://github.com/ChristianRyan",
+  "kind": "github",
+  "credit": "GitHub avatar of @ChristianRyan",
+  "name": "Christian Ryan"
+ },
+ "michael-cohen": {
+  "file": "data/photos-signers/michael-cohen.jpg",
+  "source_url": "https://github.com/michael-cohen-io",
+  "kind": "github",
+  "credit": "GitHub avatar of @michael-cohen-io",
+  "name": "Michael Cohen"
+ },
+ "david-hershey": {
+  "file": "data/photos-signers/david-hershey.jpg",
+  "source_url": "https://github.com/davidhershey",
+  "kind": "github",
+  "credit": "GitHub avatar of @davidhershey",
+  "name": "David Hershey"
+ },
+ "ben-komalo": {
+  "file": "data/photos-signers/ben-komalo.jpg",
+  "source_url": "https://github.com/benkomalo",
+  "kind": "github",
+  "credit": "GitHub avatar of @benkomalo",
+  "name": "Ben Komalo"
+ },
+ "joel-weinberger": {
+  "file": "data/photos-signers/joel-weinberger.jpg",
+  "source_url": "https://github.com/joelweinberger",
+  "kind": "github",
+  "credit": "GitHub avatar of @joelweinberger",
+  "name": "Joel Weinberger"
+ },
+ "saul-reynolds-haertle": {
+  "file": "data/photos-signers/saul-reynolds-haertle.jpg",
+  "source_url": "https://github.com/saul-ant",
+  "kind": "github",
+  "credit": "GitHub avatar of @saul-ant",
+  "name": "Saul Reynolds-Haertle"
+ },
+ "adam-pearce": {
+  "file": "data/photos-signers/adam-pearce.jpg",
+  "source_url": "https://github.com/1wheel",
+  "kind": "github",
+  "credit": "GitHub avatar of @1wheel",
+  "name": "Adam Pearce"
+ },
+ "ryan-codrai": {
+  "file": "data/photos-signers/ryan-codrai.jpg",
+  "source_url": "https://github.com/RyanCodrai",
+  "kind": "github",
+  "credit": "GitHub avatar of @RyanCodrai",
+  "name": "Ryan Codrai"
+ },
+ "ziyad-edher": {
+  "file": "data/photos-signers/ziyad-edher.jpg",
+  "source_url": "https://github.com/ziyadedher",
+  "kind": "github",
+  "credit": "GitHub avatar of @ziyadedher",
+  "name": "Ziyad Edher"
+ },
+ "noah-anderson": {
+  "file": "data/photos-signers/noah-anderson.jpg",
+  "source_url": "https://github.com/nanderson815",
+  "kind": "github",
+  "credit": "GitHub avatar of @nanderson815",
+  "name": "Noah Anderson"
+ },
+ "lexi-ross": {
+  "file": "data/photos-signers/lexi-ross.jpg",
+  "source_url": "https://github.com/lexiross",
+  "kind": "github",
+  "credit": "GitHub avatar of @lexiross",
+  "name": "Lexi Ross"
+ },
+ "tomer-aberbach": {
+  "file": "data/photos-signers/tomer-aberbach.jpg",
+  "source_url": "https://github.com/TomerAberbach",
+  "kind": "github",
+  "credit": "GitHub avatar of @TomerAberbach",
+  "name": "Tomer Aberbach"
+ },
+ "chase-mccoy": {
+  "file": "data/photos-signers/chase-mccoy.jpg",
+  "source_url": "https://github.com/chasemccoy",
+  "kind": "github",
+  "credit": "GitHub avatar of @chasemccoy",
+  "name": "Chase McCoy"
+ },
+ "daniel-smilkov": {
+  "file": "data/photos-signers/daniel-smilkov.jpg",
+  "source_url": "https://github.com/dsmilkov",
+  "kind": "github",
+  "credit": "GitHub avatar of @dsmilkov",
+  "name": "Daniel Smilkov"
+ },
+ "james-akl": {
+  "file": "data/photos-signers/james-akl.jpg",
+  "source_url": "https://github.com/jakl-ant",
+  "kind": "github",
+  "credit": "GitHub avatar of @jakl-ant",
+  "name": "James Akl"
+ },
+ "eugene-yan": {
+  "file": "data/photos-signers/eugene-yan.jpg",
+  "source_url": "https://github.com/eugeneyan",
+  "kind": "github",
+  "credit": "GitHub avatar of @eugeneyan",
+  "name": "Eugene Yan"
+ },
+ "sobha-gadi": {
+  "file": "data/photos-signers/sobha-gadi.jpg",
+  "source_url": "https://github.com/sobha-gadi",
+  "kind": "github",
+  "credit": "GitHub avatar of @sobha-gadi",
+  "name": "Sobha Gadi"
+ },
+ "kyle-turman": {
+  "file": "data/photos-signers/kyle-turman.jpg",
+  "source_url": "https://github.com/kyleturman",
+  "kind": "github",
+  "credit": "GitHub avatar of @kyleturman",
+  "name": "Kyle Turman"
+ },
+ "simon-kornblith": {
+  "file": "data/photos-signers/simon-kornblith.jpg",
+  "source_url": "https://github.com/simonster",
+  "kind": "github",
+  "credit": "GitHub avatar of @simonster",
+  "name": "Simon Kornblith"
+ },
+ "ben-bartlett": {
+  "file": "data/photos-signers/ben-bartlett.jpg",
+  "source_url": "https://github.com/bencbartlett",
+  "kind": "github",
+  "credit": "GitHub avatar of @bencbartlett",
+  "name": "Ben Bartlett"
+ },
+ "kanstantsin-sokal": {
+  "file": "data/photos-signers/kanstantsin-sokal.jpg",
+  "source_url": "https://github.com/kostyaby",
+  "kind": "github",
+  "credit": "GitHub avatar of @kostyaby",
+  "name": "Kanstantsin Sokal"
+ },
+ "wookjae-maeng": {
+  "file": "data/photos-signers/wookjae-maeng.jpg",
+  "source_url": "https://github.com/wookjae-ant",
+  "kind": "github",
+  "credit": "GitHub avatar of @wookjae-ant",
+  "name": "Wookjae Maeng"
+ },
+ "guy-leroy": {
+  "file": "data/photos-signers/guy-leroy.jpg",
+  "source_url": "https://github.com/gml16",
+  "kind": "github",
+  "credit": "GitHub avatar of @gml16",
+  "name": "Guy Leroy"
+ },
+ "alex-palcuie": {
+  "file": "data/photos-signers/alex-palcuie.jpg",
+  "source_url": "https://github.com/palcu",
+  "kind": "github",
+  "credit": "GitHub avatar of @palcu",
+  "name": "Alex Palcuie"
+ },
+ "leland-richardson": {
+  "file": "data/photos-signers/leland-richardson.jpg",
+  "source_url": "https://github.com/lelandrichardson",
+  "kind": "github",
+  "credit": "GitHub avatar of @lelandrichardson",
+  "name": "Leland Richardson"
+ },
+ "ansh-radhakrishnan": {
+  "file": "data/photos-signers/ansh-radhakrishnan.jpg",
+  "source_url": "https://github.com/anshradh",
+  "kind": "github",
+  "credit": "GitHub avatar of @anshradh",
+  "name": "Ansh Radhakrishnan"
+ },
+ "aaron-lehmann": {
+  "file": "data/photos-signers/aaron-lehmann.jpg",
+  "source_url": "https://github.com/aaronlehmann",
+  "kind": "github",
+  "credit": "GitHub avatar of @aaronlehmann",
+  "name": "Aaron Lehmann"
+ },
+ "adam-jones": {
+  "file": "data/photos-signers/adam-jones.jpg",
+  "source_url": "https://github.com/domdomegg",
+  "kind": "github",
+  "credit": "GitHub avatar of @domdomegg",
+  "name": "Adam Jones"
+ },
+ "prithvi-rajasekaran": {
+  "file": "data/photos-signers/prithvi-rajasekaran.jpg",
+  "source_url": "https://github.com/rgb-prithvi",
+  "kind": "github",
+  "credit": "GitHub avatar of @rgb-prithvi",
+  "name": "Prithvi Rajasekaran"
+ },
+ "martin-amps": {
+  "file": "data/photos-signers/martin-amps.jpg",
+  "source_url": "https://github.com/martinamps",
+  "kind": "github",
+  "credit": "GitHub avatar of @martinamps",
+  "name": "Martin Amps"
+ },
+ "gautam-tata": {
+  "file": "data/photos-signers/gautam-tata.jpg",
+  "source_url": "https://github.com/gautamtata",
+  "kind": "github",
+  "credit": "GitHub avatar of @gautamtata",
+  "name": "Gautam Tata"
+ },
+ "jerry-hong": {
+  "file": "data/photos-signers/jerry-hong.jpg",
+  "source_url": "https://github.com/jerryhong1",
+  "kind": "github",
+  "credit": "GitHub avatar of @jerryhong1",
+  "name": "Jerry Hong"
+ },
+ "siddharth-mishra-sharma": {
+  "file": "data/photos-signers/siddharth-mishra-sharma.jpg",
+  "source_url": "https://github.com/smsharma",
+  "kind": "github",
+  "credit": "GitHub avatar of @smsharma",
+  "name": "Siddharth Mishra-Sharma"
+ },
+ "ado-kukic": {
+  "file": "data/photos-signers/ado-kukic.jpg",
+  "source_url": "https://github.com/adocomplete",
+  "kind": "github",
+  "credit": "GitHub avatar of @adocomplete",
+  "name": "Ado Kukic"
+ },
+ "javier-rando": {
+  "file": "data/photos-signers/javier-rando.jpg",
+  "source_url": "https://github.com/javirandor",
+  "kind": "github",
+  "credit": "GitHub avatar of @javirandor",
+  "name": "Javier Rando"
+ },
+ "tristan-hume": {
+  "file": "data/photos-signers/tristan-hume.jpg",
+  "source_url": "https://github.com/trishume",
+  "kind": "github",
+  "credit": "GitHub avatar of @trishume",
+  "name": "Tristan Hume"
+ },
+ "euan-ong": {
+  "file": "data/photos-signers/euan-ong.jpg",
+  "source_url": "https://github.com/euanong",
+  "kind": "github",
+  "credit": "GitHub avatar of @euanong",
+  "name": "Euan Ong"
+ },
+ "chan-jun-shern": {
+  "file": "data/photos-signers/chan-jun-shern.jpg",
+  "source_url": "https://github.com/JunShern",
+  "kind": "github",
+  "credit": "GitHub avatar of @JunShern",
+  "name": "Chan Jun Shern"
+ },
+ "kshitij-sachan": {
+  "file": "data/photos-signers/kshitij-sachan.jpg",
+  "source_url": "https://github.com/kshitijsachan",
+  "kind": "github",
+  "credit": "GitHub avatar of @kshitijsachan",
+  "name": "Kshitij Sachan"
+ },
+ "grace-yun": {
+  "file": "data/photos-signers/grace-yun.jpg",
+  "source_url": "https://github.com/iteratetograceness",
+  "kind": "github",
+  "credit": "GitHub avatar of @iteratetograceness",
+  "name": "Grace Yun"
+ },
+ "misha-wagner": {
+  "file": "data/photos-signers/misha-wagner.jpg",
+  "source_url": "https://github.com/mishajw",
+  "kind": "github",
+  "credit": "GitHub avatar of @mishajw",
+  "name": "Misha Wagner"
+ },
+ "rohan-seth": {
+  "file": "data/photos-signers/rohan-seth.jpg",
+  "source_url": "https://github.com/karbon0x",
+  "kind": "github",
+  "credit": "GitHub avatar of @karbon0x",
+  "name": "Rohan Seth"
+ },
+ "nima-badizadegan": {
+  "file": "data/photos-signers/nima-badizadegan.jpg",
+  "source_url": "https://github.com/specbranch",
+  "kind": "github",
+  "credit": "GitHub avatar of @specbranch",
+  "name": "Nima Badizadegan"
+ },
+ "blithe-rocher": {
+  "file": "data/photos-signers/blithe-rocher.jpg",
+  "source_url": "https://github.com/blithe",
+  "kind": "github",
+  "credit": "GitHub avatar of @blithe",
+  "name": "Blithe Rocher"
+ },
+ "jelani-nelson": {
+  "file": "data/photos-signers/jelani-nelson.jpg",
+  "source_url": "https://github.com/minilek",
+  "kind": "github",
+  "credit": "GitHub avatar of @minilek",
+  "name": "Jelani Nelson"
+ },
+ "robert-bye": {
+  "file": "data/photos-signers/robert-bye.jpg",
+  "source_url": "https://github.com/robertbye",
+  "kind": "github",
+  "credit": "GitHub avatar of @robertbye",
+  "name": "Robert Bye"
+ },
+ "darshan-kalola": {
+  "file": "data/photos-signers/darshan-kalola.jpg",
+  "source_url": "https://github.com/kalolad1",
+  "kind": "github",
+  "credit": "GitHub avatar of @kalolad1",
+  "name": "Darshan Kalola"
+ },
+ "etash-guha": {
+  "file": "data/photos-signers/etash-guha.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/etash-guha",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Etash Guha"
+ },
+ "nova-dassarma": {
+  "file": "data/photos-signers/nova-dassarma.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/nova-dassarma",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Nova DasSarma"
+ },
+ "cian-lawlor": {
+  "file": "data/photos-signers/cian-lawlor.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/cian-lawlor",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Cian Lawlor"
+ },
+ "jordan-smith": {
+  "file": "data/photos-signers/jordan-smith.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jordan-smith",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jordan Smith"
+ },
+ "daniel-m-ziegler": {
+  "file": "data/photos-signers/daniel-m-ziegler.jpg",
+  "source_url": "https://www.turingtree.com/people/daniel-m-ziegler",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Daniel M Ziegler"
+ },
+ "nicholas-joseph": {
+  "file": "data/photos-signers/nicholas-joseph.jpg",
+  "source_url": "https://www.turingtree.com/people/nicholas-joseph",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Nicholas Joseph"
+ },
+ "ryan-carelli": {
+  "file": "data/photos-signers/ryan-carelli.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ryan-carelli",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ryan Carelli"
+ },
+ "tom-henighan": {
+  "file": "data/photos-signers/tom-henighan.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tom-henighan",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tom Henighan"
+ },
+ "emma-kennedy": {
+  "file": "data/photos-signers/emma-kennedy.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/emma-kennedy",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Emma Kennedy"
+ },
+ "jacqueline-lee": {
+  "file": "data/photos-signers/jacqueline-lee.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jacqueline-lee",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jacqueline Lee"
+ },
+ "anton-pidkuiko": {
+  "file": "data/photos-signers/anton-pidkuiko.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/anton-pidkuiko",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Anton Pidkuiko"
+ },
+ "ash-prabaker": {
+  "file": "data/photos-signers/ash-prabaker.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ash-prabaker",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ash Prabaker"
+ },
+ "jolyon-bloomfield": {
+  "file": "data/photos-signers/jolyon-bloomfield.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jolyon-bloomfield",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jolyon Bloomfield"
+ },
+ "allen-li": {
+  "file": "data/photos-signers/allen-li.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/allen-li",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Allen Li"
+ },
+ "vanessa-omahony": {
+  "file": "data/photos-signers/vanessa-omahony.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/vanessa-omahony",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Vanessa OMahony"
+ },
+ "chris-putz": {
+  "file": "data/photos-signers/chris-putz.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/chris-putz",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Chris Pütz"
+ },
+ "arman-kermanizadeh": {
+  "file": "data/photos-signers/arman-kermanizadeh.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/arman-kermanizadeh",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Arman Kermanizadeh"
+ },
+ "charlie-rogers-smith": {
+  "file": "data/photos-signers/charlie-rogers-smith.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/charlie-rogers-smith",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Charlie Rogers-Smith"
+ },
+ "jacob-turner": {
+  "file": "data/photos-signers/jacob-turner.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jacob-turner",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jacob Turner"
+ },
+ "josh-levy-kramer": {
+  "file": "data/photos-signers/josh-levy-kramer.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/josh-levy-kramer",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Josh Levy-Kramer"
+ },
+ "matt-bell": {
+  "file": "data/photos-signers/matt-bell.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/matt-bell",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Matt Bell"
+ },
+ "jan-hendrik-kirchner": {
+  "file": "data/photos-signers/jan-hendrik-kirchner.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jan-hendrik-kirchner",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jan Hendrik Kirchner"
+ },
+ "jeremy-sticco": {
+  "file": "data/photos-signers/jeremy-sticco.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jeremy-sticco",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jeremy Sticco"
+ },
+ "marie-vachovsky": {
+  "file": "data/photos-signers/marie-vachovsky.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/marie-vachovsky",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Marie Vachovsky"
+ },
+ "ipsita-paul": {
+  "file": "data/photos-signers/ipsita-paul.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ipsita-paul",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ipsita Paul"
+ },
+ "alon-krifcher": {
+  "file": "data/photos-signers/alon-krifcher.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alon-krifcher",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Alon Krifcher"
+ },
+ "hugh-durkin": {
+  "file": "data/photos-signers/hugh-durkin.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/hugh-durkin",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Hugh Durkin"
+ },
+ "neil-rathi": {
+  "file": "data/photos-signers/neil-rathi.jpg",
+  "source_url": "https://www.turingtree.com/people/neil-rathi",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Neil Rathi"
+ },
+ "milo-cress": {
+  "file": "data/photos-signers/milo-cress.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/milo-cress",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Milo Cress"
+ },
+ "adam-farina": {
+  "file": "data/photos-signers/adam-farina.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/adam-farina",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Adam Farina"
+ },
+ "zaid-nabulsi": {
+  "file": "data/photos-signers/zaid-nabulsi.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/zaid-nabulsi",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Zaid Nabulsi"
+ },
+ "john-lee": {
+  "file": "data/photos-signers/john-lee.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/john-lee",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "John Lee"
+ },
+ "james-chua": {
+  "file": "data/photos-signers/james-chua.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/james-chua",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "James Chua"
+ },
+ "ryan-slama": {
+  "file": "data/photos-signers/ryan-slama.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ryan-slama",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ryan Slama"
+ },
+ "joseph-livengood": {
+  "file": "data/photos-signers/joseph-livengood.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/joseph-livengood",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Joseph Livengood"
+ },
+ "liv-gorton": {
+  "file": "data/photos-signers/liv-gorton.jpg",
+  "source_url": "https://www.turingtree.com/people/liv-gorton",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Liv Gorton"
+ },
+ "ali-egal": {
+  "file": "data/photos-signers/ali-egal.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ali-egal",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ali Egal"
+ },
+ "welton-chang": {
+  "file": "data/photos-signers/welton-chang.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/welton-chang",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Welton Chang"
+ },
+ "phillie-wright": {
+  "file": "data/photos-signers/phillie-wright.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/phillie-wright",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Phillie Wright"
+ },
+ "mustafa-caglar": {
+  "file": "data/photos-signers/mustafa-caglar.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/mustafa-caglar",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Mustafa Çağlar"
+ },
+ "teddy-lee": {
+  "file": "data/photos-signers/teddy-lee.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/teddy-lee",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Teddy Lee"
+ },
+ "tina-vachovsky": {
+  "file": "data/photos-signers/tina-vachovsky.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tina-vachovsky",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tina Vachovsky"
+ },
+ "simone-tega": {
+  "file": "data/photos-signers/simone-tega.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/simone-tega",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Simone Tega"
+ },
+ "omar-mezenner": {
+  "file": "data/photos-signers/omar-mezenner.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/omar-mezenner",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Omar Mezenner"
+ },
+ "jared-sires": {
+  "file": "data/photos-signers/jared-sires.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jared-sires",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jared Sires"
+ },
+ "sam-kennedy": {
+  "file": "data/photos-signers/sam-kennedy.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/sam-kennedy",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Sam Kennedy"
+ },
+ "chip-turner": {
+  "file": "data/photos-signers/chip-turner.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/chip-turner",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Chip Turner"
+ },
+ "cynthia-day": {
+  "file": "data/photos-signers/cynthia-day.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/cynthia-day",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Cynthia Day"
+ },
+ "colton-weaver": {
+  "file": "data/photos-signers/colton-weaver.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/colton-weaver",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Colton Weaver"
+ },
+ "diana-jung": {
+  "file": "data/photos-signers/diana-jung.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/diana-jung",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Diana Jung"
+ },
+ "chris-golden": {
+  "file": "data/photos-signers/chris-golden.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/chris-golden",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Chris Golden"
+ },
+ "harrison-stall": {
+  "file": "data/photos-signers/harrison-stall.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/harrison-stall",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Harrison Stall"
+ },
+ "guro-khundadze": {
+  "file": "data/photos-signers/guro-khundadze.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/guro-khundadze",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Guro Khundadze"
+ },
+ "wes-gurnee": {
+  "file": "data/photos-signers/wes-gurnee.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/wes-gurnee",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Wes Gurnee"
+ },
+ "jason-clinton": {
+  "file": "data/photos-signers/jason-clinton.jpg",
+  "source_url": "https://www.autumn.ai/resources/anthropic/people/jason-clinton",
+  "kind": "other",
+  "credit": "Autumn (autumn.ai) Anthropic people portrait",
+  "name": "Jason Clinton"
+ },
+ "james-bradbury": {
+  "file": "data/photos-signers/james-bradbury.jpg",
+  "source_url": "https://www.turingtree.com/people/james-bradbury",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "James Bradbury"
+ },
+ "annie-grace-hu": {
+  "file": "data/photos-signers/annie-grace-hu.jpg",
+  "source_url": "https://www.turingtree.com/people/annie-grace-hu",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Annie Grace Hu"
+ },
+ "emmanuel-ameisen": {
+  "file": "data/photos-signers/emmanuel-ameisen.jpg",
+  "source_url": "https://www.turingtree.com/people/emmanuel-ameisen",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Emmanuel Ameisen"
+ },
+ "max-schwarzer": {
+  "file": "data/photos-signers/max-schwarzer.jpg",
+  "source_url": "https://www.turingtree.com/people/max-schwarzer",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Max Schwarzer"
+ },
+ "hugh-zhang": {
+  "file": "data/photos-signers/hugh-zhang.jpg",
+  "source_url": "https://www.turingtree.com/people/hugh-zhang",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Hugh Zhang"
+ },
+ "jordan-burgess": {
+  "file": "data/photos-signers/jordan-burgess.jpg",
+  "source_url": "https://www.turingtree.com/people/jordan-burgess",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Jordan Burgess"
+ },
+ "marcus-fontoura": {
+  "file": "data/photos-signers/marcus-fontoura.jpg",
+  "source_url": "https://www.turingtree.com/people/marcus-fontoura",
+  "kind": "other",
+  "credit": "Turing Tree (turingtree.com) portrait",
+  "name": "Marcus Fontoura"
+ },
+ "stephen-mcaleer": {
+  "file": "data/photos-signers/stephen-mcaleer.jpg",
+  "source_url": "https://www.matsprogram.org/mentor/mcaleer",
+  "kind": "lab-page",
+  "credit": "MATS Program mentor headshot (matsprogram.org)",
+  "name": "Stephen McAleer"
+ },
+ "alex-cloud": {
+  "file": "data/photos-signers/alex-cloud.jpg",
+  "source_url": "https://www.matsprogram.org/mentor/cloud",
+  "kind": "lab-page",
+  "credit": "MATS Program mentor headshot (matsprogram.org)",
+  "name": "Alex Cloud"
+ },
+ "fabien-roger": {
+  "file": "data/photos-signers/fabien-roger.jpg",
+  "source_url": "https://www.matsprogram.org/mentor/roger",
+  "kind": "lab-page",
+  "credit": "MATS Program mentor headshot (matsprogram.org)",
+  "name": "Fabien Roger"
+ },
+ "diego-iaconelli": {
+  "file": "data/photos-signers/diego-iaconelli.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/diego-iaconelli",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Diego Iaconelli"
+ },
+ "jim-baker": {
+  "file": "data/photos-signers/jim-baker.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jim-baker",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jim Baker"
+ },
+ "lily-rudd": {
+  "file": "data/photos-signers/lily-rudd.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/lily-rudd",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Lily Rudd"
+ },
+ "hansohl-kim": {
+  "file": "data/photos-signers/hansohl-kim.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/hansohl-kim",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Hansohl Kim"
+ },
+ "ryan-brewster": {
+  "file": "data/photos-signers/ryan-brewster.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ryan-brewster",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ryan Brewster"
+ },
+ "keri-warr": {
+  "file": "data/photos-signers/keri-warr.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/keri-warr",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Keri Warr"
+ },
+ "hoi-fung-ho": {
+  "file": "data/photos-signers/hoi-fung-ho.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/hoi-fung-ho",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Hoi Fung Ho"
+ },
+ "tristan-fitch": {
+  "file": "data/photos-signers/tristan-fitch.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tristan-fitch",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tristan Fitch"
+ },
+ "alex-allain": {
+  "file": "data/photos-signers/alex-allain.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alex-allain",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Alex Allain"
+ },
+ "christin-kiessling": {
+  "file": "data/photos-signers/christin-kiessling.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/christin-kiessling",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Christin Kiessling"
+ },
+ "margaret-vo": {
+  "file": "data/photos-signers/margaret-vo.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/margaret-vo",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Margaret Vo"
+ },
+ "jiyun-yao": {
+  "file": "data/photos-signers/jiyun-yao.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jiyun-yao",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jiyun Yao"
+ },
+ "reema-polignano": {
+  "file": "data/photos-signers/reema-polignano.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/reema-polignano",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Reema Polignano"
+ },
+ "david-judd": {
+  "file": "data/photos-signers/david-judd.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/david-judd",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "David Judd"
+ },
+ "weishen-mead": {
+  "file": "data/photos-signers/weishen-mead.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/weishen-mead",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Weishen Mead"
+ },
+ "kaushal-patel": {
+  "file": "data/photos-signers/kaushal-patel.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/kaushal-patel",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Kaushal Patel"
+ },
+ "matthew-jagielski": {
+  "file": "data/photos-signers/matthew-jagielski.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/matthew-jagielski",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Matthew Jagielski"
+ },
+ "tim-abbott": {
+  "file": "data/photos-signers/tim-abbott.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tim-abbott",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tim Abbott"
+ },
+ "brian-goldman": {
+  "file": "data/photos-signers/brian-goldman.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/brian-goldman",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Brian Goldman"
+ },
+ "paul-crowley": {
+  "file": "data/photos-signers/paul-crowley.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/paul-crowley",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Paul Crowley"
+ },
+ "kevin-hartstein": {
+  "file": "data/photos-signers/kevin-hartstein.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/kevin-hartstein",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Kevin Hartstein"
+ },
+ "matthew-roknich": {
+  "file": "data/photos-signers/matthew-roknich.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/matthew-roknich",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Matthew Roknich"
+ },
+ "justin-bisignano": {
+  "file": "data/photos-signers/justin-bisignano.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/justin-bisignano",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Justin Bisignano"
+ },
+ "dulwin-jayalath": {
+  "file": "data/photos-signers/dulwin-jayalath.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/dulwin-jayalath",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Dulwin Jayalath"
+ },
+ "alexandros-pouroullis": {
+  "file": "data/photos-signers/alexandros-pouroullis.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alexandros-pouroullis",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Alexandros Pouroullis"
+ },
+ "lauren-munks": {
+  "file": "data/photos-signers/lauren-munks.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/lauren-munks",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Lauren Münks"
+ },
+ "marina-favaro": {
+  "file": "data/photos-signers/marina-favaro.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/marina-favaro",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Marina Favaro"
+ },
+ "elliot-plant": {
+  "file": "data/photos-signers/elliot-plant.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/elliot-plant",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Elliot Plant"
+ },
+ "austin-cohen": {
+  "file": "data/photos-signers/austin-cohen.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/austin-cohen",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Austin Cohen"
+ },
+ "michael-seltenreich": {
+  "file": "data/photos-signers/michael-seltenreich.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/michael-seltenreich",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Michael Seltenreich"
+ },
+ "mike-carne": {
+  "file": "data/photos-signers/mike-carne.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/mike-carne",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Mike Carne"
+ },
+ "mike-boufford": {
+  "file": "data/photos-signers/mike-boufford.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/mike-boufford",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Mike Boufford"
+ },
+ "carlos-cuevas": {
+  "file": "data/photos-signers/carlos-cuevas.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/carlos-cuevas",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Carlos Cuevas"
+ },
+ "tobin-south": {
+  "file": "data/photos-signers/tobin-south.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tobin-south",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tobin South"
+ },
+ "simon-cao": {
+  "file": "data/photos-signers/simon-cao.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/simon-cao",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Simon Cao"
+ },
+ "alex-flick": {
+  "file": "data/photos-signers/alex-flick.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alex-flick",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Alex Flick"
+ },
+ "james-fleming": {
+  "file": "data/photos-signers/james-fleming.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/james-fleming",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "James Fleming"
+ },
+ "alan-zhang": {
+  "file": "data/photos-signers/alan-zhang.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/alan-zhang",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Alan Zhang"
+ },
+ "landon-goldberg": {
+  "file": "data/photos-signers/landon-goldberg.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/landon-goldberg",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Landon Goldberg"
+ },
+ "emily-gray": {
+  "file": "data/photos-signers/emily-gray.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/emily-gray",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Emily Gray"
+ },
+ "jeremy-fox": {
+  "file": "data/photos-signers/jeremy-fox.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jeremy-fox",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jeremy Fox"
+ },
+ "david-dowdall": {
+  "file": "data/photos-signers/david-dowdall.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/david-dowdall",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "David Dowdall"
+ },
+ "nicholas-sofroniew": {
+  "file": "data/photos-signers/nicholas-sofroniew.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/nicholas-sofroniew",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Nicholas Sofroniew"
+ },
+ "james-lowe": {
+  "file": "data/photos-signers/james-lowe.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/james-lowe",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "James Lowe"
+ },
+ "ed-dean": {
+  "file": "data/photos-signers/ed-dean.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ed-dean",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ed Dean"
+ },
+ "brianna-chrisman": {
+  "file": "data/photos-signers/brianna-chrisman.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/brianna-chrisman",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Brianna Chrisman"
+ },
+ "steven-bills": {
+  "file": "data/photos-signers/steven-bills.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/steven-bills",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Steven Bills"
+ },
+ "jackson-dolphin": {
+  "file": "data/photos-signers/jackson-dolphin.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jackson-dolphin",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jackson Dolphin"
+ },
+ "frank-li": {
+  "file": "data/photos-signers/frank-li.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/frank-li",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Frank Li"
+ },
+ "carlos-garbiatti": {
+  "file": "data/photos-signers/carlos-garbiatti.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/carlos-garbiatti",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Carlos Garbiatti"
+ },
+ "richard-bownes": {
+  "file": "data/photos-signers/richard-bownes.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/richard-bownes",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Richard Bownes"
+ },
+ "eric-knox": {
+  "file": "data/photos-signers/eric-knox.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/eric-knox",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Eric Knox"
+ },
+ "maya-krishnan": {
+  "file": "data/photos-signers/maya-krishnan.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/maya-krishnan",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Maya Krishnan"
+ },
+ "or-oz": {
+  "file": "data/photos-signers/or-oz.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/or-oz",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Or Oz"
+ },
+ "david-saxton": {
+  "file": "data/photos-signers/david-saxton.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/david-saxton",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "David Saxton"
+ },
+ "tejas-rajamadam-pradeep": {
+  "file": "data/photos-signers/tejas-rajamadam-pradeep.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/tejas-rajamadam-pradeep",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Tejas Rajamadam Pradeep"
+ },
+ "michael-strickland": {
+  "file": "data/photos-signers/michael-strickland.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/michael-strickland",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Michael Strickland"
+ },
+ "brayden-mclean": {
+  "file": "data/photos-signers/brayden-mclean.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/brayden-mclean",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Brayden McLean"
+ },
+ "james-mccall": {
+  "file": "data/photos-signers/james-mccall.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/james-mccall",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "James McCall"
+ },
+ "gabriel-paranthoen": {
+  "file": "data/photos-signers/gabriel-paranthoen.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/gabriel-paranthoen",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Gabriel Paranthoen"
+ },
+ "brett-wittmershaus": {
+  "file": "data/photos-signers/brett-wittmershaus.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/brett-wittmershaus",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Brett Wittmershaus"
+ },
+ "ethan-behrends": {
+  "file": "data/photos-signers/ethan-behrends.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ethan-behrends",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ethan Behrends"
+ },
+ "nicolas-thiebaud": {
+  "file": "data/photos-signers/nicolas-thiebaud.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/nicolas-thiebaud",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Nicolas Thiebaud"
+ },
+ "ying-yu-ho": {
+  "file": "data/photos-signers/ying-yu-ho.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/ying-yu-ho",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Ying-Yu Ho"
+ },
+ "jonah-kallenbach": {
+  "file": "data/photos-signers/jonah-kallenbach.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jonah-kallenbach",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jonah Kallenbach"
+ },
+ "kevin-tang": {
+  "file": "data/photos-signers/kevin-tang.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/kevin-tang",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Kevin Tang"
+ },
+ "colin-carroll": {
+  "file": "data/photos-signers/colin-carroll.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/colin-carroll",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Colin Carroll"
+ },
+ "stanislau-beliasau": {
+  "file": "data/photos-signers/stanislau-beliasau.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/stanislau-beliasau",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Stanislau Beliasau"
+ },
+ "shyam-jeedigunta": {
+  "file": "data/photos-signers/shyam-jeedigunta.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/shyam-jeedigunta",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Shyam Jeedigunta"
+ },
+ "david-ramon-prados": {
+  "file": "data/photos-signers/david-ramon-prados.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/david-ramon-prados",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "David Ramon Prados"
+ },
+ "daniel-xu": {
+  "file": "data/photos-signers/daniel-xu.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/daniel-xu",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Daniel Xu"
+ },
+ "sophia-porter": {
+  "file": "data/photos-signers/sophia-porter.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/sophia-porter",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Sophia Porter"
+ },
+ "newton-cheng": {
+  "file": "data/photos-signers/newton-cheng.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/newton-cheng",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Newton Cheng"
+ },
+ "edward-turner": {
+  "file": "data/photos-signers/edward-turner.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/edward-turner",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Edward Turner"
+ },
+ "raza-habib": {
+  "file": "data/photos-signers/raza-habib.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/raza-habib",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Raza Habib"
+ },
+ "jordan-ecker": {
+  "file": "data/photos-signers/jordan-ecker.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/jordan-ecker",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Jordan Ecker"
+ },
+ "victor-marmol": {
+  "file": "data/photos-signers/victor-marmol.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/victor-marmol",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Victor Marmol"
+ },
+ "janvi-ahuja": {
+  "file": "data/photos-signers/janvi-ahuja.jpg",
+  "source_url": "https://theorg.com/org/anthropic/person/janvi-ahuja",
+  "kind": "other",
+  "credit": "The Org (theorg.com) profile photo",
+  "name": "Janvi Ahuja"
+ },
+ "kevin-ji": {
+  "file": "data/photos-signers/kevin-ji.jpg",
+  "source_url": "https://kevinji.com/",
+  "kind": "homepage",
+  "credit": "Kevin Ji, personal homepage (kevinji.com)",
+  "name": "Kevin Ji"
+ },
+ "akbir-khan": {
+  "file": "data/photos-signers/akbir-khan.jpg",
+  "source_url": "https://github.com/akbir",
+  "kind": "github",
+  "credit": "GitHub avatar of @akbir",
+  "name": "Akbir Khan"
+ },
+ "dan-mossing": {
+  "file": "data/photos-signers/dan-mossing.jpg",
+  "source_url": "https://www.matsprogram.org/mentor/mossing",
+  "kind": "lab-page",
+  "credit": "MATS Program mentor headshot (matsprogram.org)",
+  "name": "Dan Mossing"
+ },
+ "erik-schluntz": {
+  "file": "data/photos-signers/erik-schluntz.jpg",
+  "source_url": "https://x.com/ErikSchluntz",
+  "kind": "x",
+  "credit": "X/Twitter profile image of @ErikSchluntz (via unavatar.io)",
+  "name": "Erik Schluntz"
+ },
+ "johannes-gasteiger": {
+  "file": "data/photos-signers/johannes-gasteiger.jpg",
+  "source_url": "https://github.com/gasteigerjo",
+  "kind": "github",
+  "credit": "GitHub avatar of @gasteigerjo",
+  "name": "Johannes Gasteiger"
+ },
+ "shantanu-jain": {
+  "file": "data/photos-signers/shantanu-jain.jpg",
+  "source_url": "https://x.com/hauntsaninja",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @hauntsaninja",
+  "name": "Shantanu Jain"
+ },
+ "alex-beutel": {
+  "file": "data/photos-signers/alex-beutel.jpg",
+  "source_url": "https://x.com/alexbeutel",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @alexbeutel",
+  "name": "Alex Beutel"
+ },
+ "yann-dubois": {
+  "file": "data/photos-signers/yann-dubois.jpg",
+  "source_url": "https://x.com/yanndubs",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @yanndubs",
+  "name": "Yann Dubois"
+ },
+ "alexander-wei": {
+  "file": "data/photos-signers/alexander-wei.jpg",
+  "source_url": "https://x.com/alexwei_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @alexwei_",
+  "name": "Alexander Wei"
+ },
+ "tyna-eloundou": {
+  "file": "data/photos-signers/tyna-eloundou.jpg",
+  "source_url": "https://x.com/ThankYourNiceAI",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ThankYourNiceAI",
+  "name": "Tyna Eloundou"
+ },
+ "bowen-baker": {
+  "file": "data/photos-signers/bowen-baker.jpg",
+  "source_url": "https://x.com/bobabowen",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @bobabowen",
+  "name": "Bowen Baker"
+ },
+ "aidan-mclaughlin": {
+  "file": "data/photos-signers/aidan-mclaughlin.jpg",
+  "source_url": "https://x.com/aidan_mclau",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @aidan_mclau",
+  "name": "Aidan McLaughlin"
+ },
+ "micah-carroll": {
+  "file": "data/photos-signers/micah-carroll.jpg",
+  "source_url": "https://x.com/MicahCarroll",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @MicahCarroll",
+  "name": "Micah Carroll"
+ },
+ "naomi-bashkansky": {
+  "file": "data/photos-signers/naomi-bashkansky.jpg",
+  "source_url": "https://x.com/NaomiBashkansky",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @NaomiBashkansky",
+  "name": "Naomi Bashkansky"
+ },
+ "sam-toyer": {
+  "file": "data/photos-signers/sam-toyer.jpg",
+  "source_url": "https://x.com/sdtoyer",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @sdtoyer",
+  "name": "Sam Toyer"
+ },
+ "karan-singhal": {
+  "file": "data/photos-signers/karan-singhal.jpg",
+  "source_url": "https://x.com/thekaransinghal",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @thekaransinghal",
+  "name": "Karan Singhal"
+ },
+ "zhangir-azerbayev": {
+  "file": "data/photos-signers/zhangir-azerbayev.jpg",
+  "source_url": "https://www.alphaxiv.org/@zhangir-azerbayev",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Zhangir Azerbayev"
+ },
+ "jasmine-wang": {
+  "file": "data/photos-signers/jasmine-wang.jpg",
+  "source_url": "https://x.com/j_asminewang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @j_asminewang",
+  "name": "Jasmine Wang"
+ },
+ "wenda-zhou": {
+  "file": "data/photos-signers/wenda-zhou.jpg",
+  "source_url": "https://x.com/zhouwenda",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @zhouwenda",
+  "name": "Wenda Zhou"
+ },
+ "valerio-pepe": {
+  "file": "data/photos-signers/valerio-pepe.jpg",
+  "source_url": "https://x.com/ValerPepe",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ValerPepe",
+  "name": "Valerio Pepe"
+ },
+ "dylan-sam": {
+  "file": "data/photos-signers/dylan-sam.jpg",
+  "source_url": "https://x.com/dylanjsam",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dylanjsam",
+  "name": "Dylan Sam"
+ },
+ "adrien-ecoffet": {
+  "file": "data/photos-signers/adrien-ecoffet.jpg",
+  "source_url": "https://www.alphaxiv.org/@adrien-ecoffet",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Adrien Ecoffet"
+ },
+ "xiangyu-qi": {
+  "file": "data/photos-signers/xiangyu-qi.jpg",
+  "source_url": "https://www.alphaxiv.org/@xiangyu-qi",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Xiangyu Qi"
+ },
+ "phillip-guo": {
+  "file": "data/photos-signers/phillip-guo.jpg",
+  "source_url": "https://x.com/phuguo",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @phuguo",
+  "name": "Phillip Guo"
+ },
+ "gabriel-wu": {
+  "file": "data/photos-signers/gabriel-wu.jpg",
+  "source_url": "https://x.com/GabrielDWu1",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @GabrielDWu1",
+  "name": "Gabriel Wu"
+ },
+ "mikita-balesni": {
+  "file": "data/photos-signers/mikita-balesni.jpg",
+  "source_url": "https://x.com/balesni",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @balesni",
+  "name": "Mikita Balesni"
+ },
+ "tomek-korbak": {
+  "file": "data/photos-signers/tomek-korbak.jpg",
+  "source_url": "https://x.com/tomekkorbak",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @tomekkorbak",
+  "name": "Tomek Korbak"
+ },
+ "mo-bavarian": {
+  "file": "data/photos-signers/mo-bavarian.jpg",
+  "source_url": "https://x.com/mobav0",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @mobav0",
+  "name": "Mo Bavarian"
+ },
+ "ekin-akyurek": {
+  "file": "data/photos-signers/ekin-akyurek.jpg",
+  "source_url": "https://x.com/akyurekekin",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @akyurekekin",
+  "name": "Ekin Akyurek"
+ },
+ "apoorva-lal": {
+  "file": "data/photos-signers/apoorva-lal.jpg",
+  "source_url": "https://x.com/Apoorva__Lal",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @Apoorva__Lal",
+  "name": "Apoorva Lal"
+ },
+ "jianfeng-chi": {
+  "file": "data/photos-signers/jianfeng-chi.jpg",
+  "source_url": "https://www.alphaxiv.org/@jianfeng-chi",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Jianfeng Chi"
+ },
+ "rajan-agarwal": {
+  "file": "data/photos-signers/rajan-agarwal.jpg",
+  "source_url": "https://x.com/_rajanagarwal",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @_rajanagarwal",
+  "name": "Rajan Agarwal"
+ },
+ "yung-sung-chuang": {
+  "file": "data/photos-signers/yung-sung-chuang.jpg",
+  "source_url": "https://x.com/YungSungChuang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YungSungChuang",
+  "name": "Yung-Sung Chuang"
+ },
+ "ali-malik": {
+  "file": "data/photos-signers/ali-malik.jpg",
+  "source_url": "https://x.com/AliRMalik_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @AliRMalik_",
+  "name": "Ali Malik"
+ },
+ "lun-wang": {
+  "file": "data/photos-signers/lun-wang.jpg",
+  "source_url": "https://www.alphaxiv.org/@lun-wang",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Lun Wang"
+ },
+ "connor-holmes": {
+  "file": "data/photos-signers/connor-holmes.jpg",
+  "source_url": "https://x.com/cmikeh2",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @cmikeh2",
+  "name": "Connor Holmes"
+ },
+ "qibin-chen": {
+  "file": "data/photos-signers/qibin-chen.jpg",
+  "source_url": "https://x.com/chenqibin99",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @chenqibin99",
+  "name": "Qibin Chen"
+ },
+ "ingmar-kanitscheider": {
+  "file": "data/photos-signers/ingmar-kanitscheider.jpg",
+  "source_url": "https://x.com/ingkanit",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ingkanit",
+  "name": "Ingmar Kanitscheider"
+ },
+ "robert-csordas": {
+  "file": "data/photos-signers/robert-csordas.jpg",
+  "source_url": "https://x.com/robert_csordas",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @robert_csordas",
+  "name": "Robert Csordas"
+ },
+ "long-ouyang": {
+  "file": "data/photos-signers/long-ouyang.jpg",
+  "source_url": "https://x.com/longouyang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @longouyang",
+  "name": "Long Ouyang"
+ },
+ "yossi-gandelsman": {
+  "file": "data/photos-signers/yossi-gandelsman.jpg",
+  "source_url": "https://x.com/YGandelsman",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YGandelsman",
+  "name": "Yossi Gandelsman"
+ },
+ "joost-huizinga": {
+  "file": "data/photos-signers/joost-huizinga.jpg",
+  "source_url": "https://www.alphaxiv.org/@joost-huizinga",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Joost Huizinga"
+ },
+ "marcus-williams": {
+  "file": "data/photos-signers/marcus-williams.jpg",
+  "source_url": "https://www.alphaxiv.org/@marcus-williams",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Marcus Williams"
+ },
+ "ian-kivlichan": {
+  "file": "data/photos-signers/ian-kivlichan.jpg",
+  "source_url": "https://www.alphaxiv.org/@ian-kivlichan",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Ian Kivlichan"
+ },
+ "joe-palermo": {
+  "file": "data/photos-signers/joe-palermo.jpg",
+  "source_url": "https://www.alphaxiv.org/@joe-palermo",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Joe Palermo"
+ },
+ "kevin-stone": {
+  "file": "data/photos-signers/kevin-stone.jpg",
+  "source_url": "https://www.alphaxiv.org/@kevin-stone",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Kevin Stone"
+ },
+ "chuan-guo": {
+  "file": "data/photos-signers/chuan-guo.jpg",
+  "source_url": "https://www.alphaxiv.org/@chuan-guo",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Chuan Guo"
+ },
+ "manas-joglekar": {
+  "file": "data/photos-signers/manas-joglekar.jpg",
+  "source_url": "https://www.alphaxiv.org/@manas-joglekar",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Manas Joglekar"
+ },
+ "patrick-chao": {
+  "file": "data/photos-signers/patrick-chao.jpg",
+  "source_url": "https://www.alphaxiv.org/@patrick-chao",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Patrick Chao"
+ },
+ "michael-janner": {
+  "file": "data/photos-signers/michael-janner.jpg",
+  "source_url": "https://www.alphaxiv.org/@michael-janner",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Michael Janner"
+ },
+ "charlie-blake": {
+  "file": "data/photos-signers/charlie-blake.jpg",
+  "source_url": "https://www.alphaxiv.org/@charlie-blake",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Charlie Blake"
+ },
+ "arjun-vikram": {
+  "file": "data/photos-signers/arjun-vikram.jpg",
+  "source_url": "https://www.alphaxiv.org/@arjun-vikram",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Arjun Vikram"
+ },
+ "michael-lampe": {
+  "file": "data/photos-signers/michael-lampe.jpg",
+  "source_url": "https://www.alphaxiv.org/@michael-lampe",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Michael Lampe"
+ },
+ "soham-govande": {
+  "file": "data/photos-signers/soham-govande.jpg",
+  "source_url": "https://www.alphaxiv.org/@soham-govande",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Soham Govande"
+ },
+ "juan-felipe-ceron-uribe": {
+  "file": "data/photos-signers/juan-felipe-ceron-uribe.jpg",
+  "source_url": "https://www.alphaxiv.org/@juan-felipe-ceron-uribe",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Juan Felipe Ceron Uribe"
+ },
+ "dave-cummings": {
+  "file": "data/photos-signers/dave-cummings.jpg",
+  "source_url": "https://www.alphaxiv.org/@dave-cummings",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Dave Cummings"
+ },
+ "cameron-raymond": {
+  "file": "data/photos-signers/cameron-raymond.jpg",
+  "source_url": "https://www.alphaxiv.org/@cameron-raymond",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Cameron Raymond"
+ },
+ "kaiwen-wang": {
+  "file": "data/photos-signers/kaiwen-wang.jpg",
+  "source_url": "https://www.alphaxiv.org/@kaiwen-wang",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Kaiwen Wang"
+ },
+ "marvin-zhang": {
+  "file": "data/photos-signers/marvin-zhang.jpg",
+  "source_url": "https://www.alphaxiv.org/@marvin-zhang",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Marvin Zhang"
+ },
+ "dillon-bowen": {
+  "file": "data/photos-signers/dillon-bowen.jpg",
+  "source_url": "https://www.alphaxiv.org/@dillon-bowen",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Dillon Bowen"
+ },
+ "imre-bard": {
+  "file": "data/photos-signers/imre-bard.jpg",
+  "source_url": "https://www.alphaxiv.org/@imre-bard",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Imre Bard"
+ },
+ "aiden-low": {
+  "file": "data/photos-signers/aiden-low.jpg",
+  "source_url": "https://www.alphaxiv.org/@aiden-low",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Aiden Low"
+ },
+ "raymond-ma": {
+  "file": "data/photos-signers/raymond-ma.jpg",
+  "source_url": "https://www.alphaxiv.org/@raymond-ma",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Raymond Ma"
+ },
+ "ilge-akkaya": {
+  "file": "data/photos-signers/ilge-akkaya.jpg",
+  "source_url": "https://www.alphaxiv.org/@ilge-akkaya",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Ilge Akkaya"
+ },
+ "ilan-bigio": {
+  "file": "data/photos-signers/ilan-bigio.jpg",
+  "source_url": "https://x.com/ilanbigio",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ilanbigio",
+  "name": "Ilan Bigio"
+ },
+ "cedric-deslandes-whitney": {
+  "file": "data/photos-signers/cedric-deslandes-whitney.jpg",
+  "source_url": "https://x.com/CedricWhitney",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @CedricWhitney",
+  "name": "Cedric Deslandes Whitney"
+ },
+ "anshita-saini": {
+  "file": "data/photos-signers/anshita-saini.jpg",
+  "source_url": "https://x.com/anshitasaini_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @anshitasaini_",
+  "name": "Anshita Saini"
+ },
+ "yax-patel": {
+  "file": "data/photos-signers/yax-patel.jpg",
+  "source_url": "https://x.com/yaxpatel_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @yaxpatel_",
+  "name": "Yax Patel"
+ },
+ "devashish-tyagi": {
+  "file": "data/photos-signers/devashish-tyagi.jpg",
+  "source_url": "https://x.com/devashishtyagi",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @devashishtyagi",
+  "name": "Devashish Tyagi"
+ },
+ "glory-jain": {
+  "file": "data/photos-signers/glory-jain.jpg",
+  "source_url": "https://x.com/_gloryjain",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @_gloryjain",
+  "name": "Glory Jain"
+ },
+ "dara-canavan": {
+  "file": "data/photos-signers/dara-canavan.jpg",
+  "source_url": "https://x.com/Dara_Canavan",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @Dara_Canavan",
+  "name": "Dara Canavan"
+ },
+ "lama-ahmad": {
+  "file": "data/photos-signers/lama-ahmad.jpg",
+  "source_url": "https://x.com/_lamaahmad",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @_lamaahmad",
+  "name": "Lama Ahmad"
+ },
+ "jason-teplitz": {
+  "file": "data/photos-signers/jason-teplitz.jpg",
+  "source_url": "https://x.com/jteplitz",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @jteplitz",
+  "name": "Jason Teplitz"
+ },
+ "jenny-nitishinskaya": {
+  "file": "data/photos-signers/jenny-nitishinskaya.jpg",
+  "source_url": "https://x.com/j_nitishinskaya",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @j_nitishinskaya",
+  "name": "Jenny Nitishinskaya"
+ },
+ "can-sar": {
+  "file": "data/photos-signers/can-sar.jpg",
+  "source_url": "https://x.com/cansar",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @cansar",
+  "name": "Can Sar"
+ },
+ "henry-baer": {
+  "file": "data/photos-signers/henry-baer.jpg",
+  "source_url": "https://x.com/henry__baer",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @henry__baer",
+  "name": "Henry Baer"
+ },
+ "mitchell-gordon": {
+  "file": "data/photos-signers/mitchell-gordon.jpg",
+  "source_url": "https://x.com/mitchellgordon",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @mitchellgordon",
+  "name": "Mitchell Gordon"
+ },
+ "ryan-jiang": {
+  "file": "data/photos-signers/ryan-jiang.jpg",
+  "source_url": "https://x.com/ryan__jiang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ryan__jiang",
+  "name": "Ryan Jiang"
+ },
+ "arav-tewari": {
+  "file": "data/photos-signers/arav-tewari.jpg",
+  "source_url": "https://x.com/arav_tewari",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @arav_tewari",
+  "name": "Arav Tewari"
+ },
+ "prithviraj-billa": {
+  "file": "data/photos-signers/prithviraj-billa.jpg",
+  "source_url": "https://x.com/prithvirajbilla",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @prithvirajbilla",
+  "name": "Prithviraj Billa"
+ },
+ "meyer-zinn": {
+  "file": "data/photos-signers/meyer-zinn.jpg",
+  "source_url": "https://x.com/meyerzinn",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @meyerzinn",
+  "name": "Meyer Zinn"
+ },
+ "malone-hedges": {
+  "file": "data/photos-signers/malone-hedges.jpg",
+  "source_url": "https://x.com/malonehedges",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @malonehedges",
+  "name": "Malone Hedges"
+ },
+ "igor-canadi": {
+  "file": "data/photos-signers/igor-canadi.jpg",
+  "source_url": "https://x.com/igorcanadi",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @igorcanadi",
+  "name": "Igor Canadi"
+ },
+ "ty-fiero": {
+  "file": "data/photos-signers/ty-fiero.jpg",
+  "source_url": "https://x.com/FieroTy",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @FieroTy",
+  "name": "Ty Fiero"
+ },
+ "paul-ashbourne": {
+  "file": "data/photos-signers/paul-ashbourne.jpg",
+  "source_url": "https://x.com/paulashbourne",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @paulashbourne",
+  "name": "Paul Ashbourne"
+ },
+ "ziad-reslan": {
+  "file": "data/photos-signers/ziad-reslan.jpg",
+  "source_url": "https://x.com/Ziad_Reslan",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @Ziad_Reslan",
+  "name": "Ziad Reslan"
+ },
+ "eric-ji-hoon-lim": {
+  "file": "data/photos-signers/eric-ji-hoon-lim.jpg",
+  "source_url": "https://x.com/ericlim",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ericlim",
+  "name": "Eric Ji Hoon Lim"
+ },
+ "angel-brodin": {
+  "file": "data/photos-signers/angel-brodin.jpg",
+  "source_url": "https://x.com/angelbrodin",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @angelbrodin",
+  "name": "Angel Brodin"
+ },
+ "zora-che": {
+  "file": "data/photos-signers/zora-che.jpg",
+  "source_url": "https://x.com/zorache_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @zorache_",
+  "name": "Zora Che"
+ },
+ "alex-brussell": {
+  "file": "data/photos-signers/alex-brussell.jpg",
+  "source_url": "https://x.com/alex_brussell",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @alex_brussell",
+  "name": "Alex Brussell"
+ },
+ "lorenzo-noci": {
+  "file": "data/photos-signers/lorenzo-noci.jpg",
+  "source_url": "https://x.com/lorenzo_noci",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @lorenzo_noci",
+  "name": "Lorenzo Noci"
+ },
+ "benedikt-winter": {
+  "file": "data/photos-signers/benedikt-winter.jpg",
+  "source_url": "https://x.com/benedikt_winter",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @benedikt_winter",
+  "name": "Benedikt Winter"
+ },
+ "vincent-qi": {
+  "file": "data/photos-signers/vincent-qi.jpg",
+  "source_url": "https://x.com/_vincentqi",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @_vincentqi",
+  "name": "Vincent Qi"
+ },
+ "oliver-tepman": {
+  "file": "data/photos-signers/oliver-tepman.jpg",
+  "source_url": "https://x.com/olivertepman",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @olivertepman",
+  "name": "Oliver Tepman"
+ },
+ "michelle-qin": {
+  "file": "data/photos-signers/michelle-qin.jpg",
+  "source_url": "https://x.com/michelleqin_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @michelleqin_",
+  "name": "Michelle Qin"
+ },
+ "alexandra-barr": {
+  "file": "data/photos-signers/alexandra-barr.jpg",
+  "source_url": "https://x.com/BarrAlexandra",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @BarrAlexandra",
+  "name": "Alexandra Barr"
+ },
+ "drew-johnston": {
+  "file": "data/photos-signers/drew-johnston.jpg",
+  "source_url": "https://x.com/drew_m_johnston",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @drew_m_johnston",
+  "name": "Drew Johnston"
+ },
+ "conrad-kramer": {
+  "file": "data/photos-signers/conrad-kramer.jpg",
+  "source_url": "https://x.com/conradev",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @conradev",
+  "name": "Conrad Kramer"
+ },
+ "brandon-houghton": {
+  "file": "data/photos-signers/brandon-houghton.jpg",
+  "source_url": "https://github.com/brandonhoughton",
+  "kind": "github",
+  "credit": "GitHub avatar of @brandonhoughton",
+  "name": "Brandon Houghton"
+ },
+ "moustafa-elhadary": {
+  "file": "data/photos-signers/moustafa-elhadary.jpg",
+  "source_url": "https://github.com/MoustafaElhadary",
+  "kind": "github",
+  "credit": "GitHub avatar of @MoustafaElhadary",
+  "name": "Moustafa Elhadary"
+ },
+ "grant-birkinbine": {
+  "file": "data/photos-signers/grant-birkinbine.jpg",
+  "source_url": "https://github.com/GrantBirki",
+  "kind": "github",
+  "credit": "GitHub avatar of @GrantBirki",
+  "name": "Grant Birkinbine"
+ },
+ "logan-foster": {
+  "file": "data/photos-signers/logan-foster.jpg",
+  "source_url": "https://github.com/Lrfoster03",
+  "kind": "github",
+  "credit": "GitHub avatar of @Lrfoster03",
+  "name": "Logan Foster"
+ },
+ "zach-parent": {
+  "file": "data/photos-signers/zach-parent.jpg",
+  "source_url": "https://github.com/zachparent-oai",
+  "kind": "github",
+  "credit": "GitHub avatar of @zachparent-oai",
+  "name": "Zach Parent"
+ },
+ "andrew-escay": {
+  "file": "data/photos-signers/andrew-escay.jpg",
+  "source_url": "https://github.com/andrewe-oai",
+  "kind": "github",
+  "credit": "GitHub avatar of @andrewe-oai",
+  "name": "Andrew Escay"
+ },
+ "sully-chen": {
+  "file": "data/photos-signers/sully-chen.jpg",
+  "source_url": "https://github.com/SullyChen",
+  "kind": "github",
+  "credit": "GitHub avatar of @SullyChen",
+  "name": "Sully Chen"
+ },
+ "nicklas-ansman": {
+  "file": "data/photos-signers/nicklas-ansman.jpg",
+  "source_url": "https://x.com/nicklas",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @nicklas",
+  "name": "Nicklas Ansman"
+ },
+ "jeff-belgum": {
+  "file": "data/photos-signers/jeff-belgum.jpg",
+  "source_url": "https://github.com/JeffBelgum",
+  "kind": "github",
+  "credit": "GitHub avatar of @JeffBelgum",
+  "name": "Jeff Belgum"
+ },
+ "luke-xing": {
+  "file": "data/photos-signers/luke-xing.jpg",
+  "source_url": "https://github.com/LukeXing",
+  "kind": "github",
+  "credit": "GitHub avatar of @LukeXing",
+  "name": "Luke Xing"
+ },
+ "vineet-kosaraju": {
+  "file": "data/photos-signers/vineet-kosaraju.jpg",
+  "source_url": "https://github.com/vineetsk10",
+  "kind": "github",
+  "credit": "GitHub avatar of @vineetsk10",
+  "name": "Vineet Kosaraju"
+ },
+ "joey-pereira": {
+  "file": "data/photos-signers/joey-pereira.jpg",
+  "source_url": "https://github.com/lgo",
+  "kind": "github",
+  "credit": "GitHub avatar of @lgo",
+  "name": "Joey Pereira"
+ },
+ "alec-helyar": {
+  "file": "data/photos-signers/alec-helyar.jpg",
+  "source_url": "https://github.com/alech97",
+  "kind": "github",
+  "credit": "GitHub avatar of @alech97",
+  "name": "Alec Helyar"
+ },
+ "jay-wang": {
+  "file": "data/photos-signers/jay-wang.jpg",
+  "source_url": "https://x.com/Jay4w",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @Jay4w",
+  "name": "Jay Wang"
+ },
+ "thomas-neil-james-shadwell": {
+  "file": "data/photos-signers/thomas-neil-james-shadwell.jpg",
+  "source_url": "https://x.com/zemnmez",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @zemnmez",
+  "name": "Thomas Neil James Shadwell"
+ },
+ "saagar-patel": {
+  "file": "data/photos-signers/saagar-patel.jpg",
+  "source_url": "https://github.com/saagarp-openai",
+  "kind": "github",
+  "credit": "GitHub avatar of @saagarp-openai",
+  "name": "Saagar Patel"
+ },
+ "henry-williams": {
+  "file": "data/photos-signers/henry-williams.jpg",
+  "source_url": "https://x.com/humford",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @humford",
+  "name": "Henry Williams"
+ },
+ "jason-wolfe": {
+  "file": "data/photos-signers/jason-wolfe.jpg",
+  "source_url": "https://github.com/w01fe",
+  "kind": "github",
+  "credit": "GitHub avatar of @w01fe",
+  "name": "Jason Wolfe"
+ },
+ "owen-campbell-moore": {
+  "file": "data/photos-signers/owen-campbell-moore.jpg",
+  "source_url": "https://x.com/owencm",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @owencm",
+  "name": "Owen Campbell-Moore"
+ },
+ "daniel-bashir": {
+  "file": "data/photos-signers/daniel-bashir.jpg",
+  "source_url": "https://x.com/spaniel_bashir",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @spaniel_bashir",
+  "name": "Daniel Bashir"
+ },
+ "nik-pash": {
+  "file": "data/photos-signers/nik-pash.jpg",
+  "source_url": "https://x.com/pashmerepat",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @pashmerepat",
+  "name": "Nik Pash"
+ },
+ "kai-xiao": {
+  "file": "data/photos-signers/kai-xiao.jpg",
+  "source_url": "https://x.com/KaiKaiXiao",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @KaiKaiXiao",
+  "name": "Kai Xiao"
+ },
+ "sridatta-thatipamala": {
+  "file": "data/photos-signers/sridatta-thatipamala.jpg",
+  "source_url": "https://x.com/sridatta",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @sridatta",
+  "name": "Sridatta Thatipamala"
+ },
+ "dakota-goldberg": {
+  "file": "data/photos-signers/dakota-goldberg.jpg",
+  "source_url": "https://x.com/dakotagoldberg",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dakotagoldberg",
+  "name": "Dakota Goldberg"
+ },
+ "bill-demirkapi": {
+  "file": "data/photos-signers/bill-demirkapi.jpg",
+  "source_url": "https://x.com/BillDemirkapi",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @BillDemirkapi",
+  "name": "Bill Demirkapi"
+ },
+ "andrew-strominger": {
+  "file": "data/photos-signers/andrew-strominger.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Andrew_Strominger_at_Harvard.jpg",
+  "kind": "wikimedia",
+  "credit": "Wikimedia Commons, File:Andrew_Strominger_at_Harvard.jpg (see file page for author/license)",
+  "name": "Andrew Strominger"
+ },
+ "yifan-zhou": {
+  "file": "data/photos-signers/yifan-zhou.jpg",
+  "source_url": "https://yifan1207.github.io/",
+  "kind": "homepage",
+  "credit": "Personal homepage of Yifan Zhou (https://yifan1207.github.io/)",
+  "name": "Yifan Zhou"
+ },
+ "michael-celentano": {
+  "file": "data/photos-signers/michael-celentano.jpg",
+  "source_url": "https://mcelentano.github.io",
+  "kind": "homepage",
+  "credit": "Personal homepage of Michael Celentano (https://mcelentano.github.io)",
+  "name": "Michael Celentano"
+ },
+ "nick-stathas": {
+  "file": "data/photos-signers/nick-stathas.jpg",
+  "source_url": "https://nistath.com",
+  "kind": "homepage",
+  "credit": "Personal homepage of Nick Stathas (https://nistath.com)",
+  "name": "Nick Stathas"
+ },
+ "omer-khan": {
+  "file": "data/photos-signers/omer-khan.jpg",
+  "source_url": "https://omerkhan.us",
+  "kind": "homepage",
+  "credit": "Personal homepage of Omer Khan (https://omerkhan.us)",
+  "name": "Omer Khan"
+ },
+ "hunter-lightman": {
+  "file": "data/photos-signers/hunter-lightman.jpg",
+  "source_url": "https://www.upennthetatau.com/hunter-lightman",
+  "kind": "other",
+  "credit": "Theta Tau UPenn member page",
+  "name": "Hunter Lightman"
+ },
+ "christina-kim": {
+  "file": "data/photos-signers/christina-kim.jpg",
+  "source_url": "https://www.alphaxiv.org/@christina-kim",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Christina Kim"
+ },
+ "rapha-lopes": {
+  "file": "data/photos-signers/rapha-lopes.jpg",
+  "source_url": "https://rapha.computer/",
+  "kind": "homepage",
+  "credit": "Personal homepage of Rapha Gontijo Lopes",
+  "name": "Rapha Lopes"
+ },
+ "olivia-watkins": {
+  "file": "data/photos-signers/olivia-watkins.jpg",
+  "source_url": "https://aliengirlliv.github.io/oliviawatkins/",
+  "kind": "homepage",
+  "credit": "Personal homepage of Olivia Grace Watkins",
+  "name": "Olivia Watkins"
+ },
+ "alex-paino": {
+  "file": "data/photos-signers/alex-paino.jpg",
+  "source_url": "https://x.com/atpaino",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @atpaino",
+  "name": "Alex Paino"
+ },
+ "ignasi-clavera": {
+  "file": "data/photos-signers/ignasi-clavera.jpg",
+  "source_url": "https://telecombcn-dl.github.io/drl-2020/",
+  "kind": "conference",
+  "credit": "UPC Deep and Reinforcement Learning 2020 guest speaker photo",
+  "name": "Ignasi Clavera"
+ },
+ "nik-tezak": {
+  "file": "data/photos-signers/nik-tezak.jpg",
+  "source_url": "https://www.alphaxiv.org/@nikolas-tezak",
+  "kind": "other",
+  "credit": "alphaXiv researcher profile photo",
+  "name": "Nik Tezak"
+ },
+ "mostafa-rohaninejad": {
+  "file": "data/photos-signers/mostafa-rohaninejad.jpg",
+  "source_url": "https://x.com/MostafaRohani",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @MostafaRohani",
+  "name": "Mostafa Rohaninejad"
+ },
+ "luca-righetti": {
+  "file": "data/photos-signers/luca-righetti.jpg",
+  "source_url": "https://lucarighetti.com/",
+  "kind": "homepage",
+  "credit": "Personal homepage of Luca Righetti",
+  "name": "Luca Righetti"
+ },
+ "tong-mu": {
+  "file": "data/photos-signers/tong-mu.jpg",
+  "source_url": "https://www.linkedin.com/in/tong-mu-9b42b2a7",
+  "kind": "linkedin",
+  "credit": "LinkedIn public profile photo",
+  "name": "Tong Mu"
+ },
+ "achyuta-rajaram": {
+  "file": "data/photos-signers/achyuta-rajaram.jpg",
+  "source_url": "https://bugbamboo.github.io/about/",
+  "kind": "homepage",
+  "credit": "Personal site of Achyuta Rajaram",
+  "name": "Achyuta Rajaram"
+ },
+ "kerrick-staley": {
+  "file": "data/photos-signers/kerrick-staley.jpg",
+  "source_url": "https://cyber.harvard.edu/people/kerrick-staley",
+  "kind": "other",
+  "credit": "Berkman Klein Center, Harvard University",
+  "name": "Kerrick Staley"
+ },
+ "emily-tianshi": {
+  "file": "data/photos-signers/emily-tianshi.jpg",
+  "source_url": "https://www.linkedin.com/in/emily-tianshi",
+  "kind": "linkedin",
+  "credit": "LinkedIn public profile photo",
+  "name": "Emily Tianshi"
+ },
+ "franklin-wang": {
+  "file": "data/photos-signers/franklin-wang.jpg",
+  "source_url": "https://x.com/f_x_wang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @f_x_wang",
+  "name": "Franklin Wang"
+ },
+ "chris-hallacy": {
+  "file": "data/photos-signers/chris-hallacy.jpg",
+  "source_url": "https://rotaryclubofcleveland.com/bulletin/View/c659980e-8dcf-48ad-ab0c-662dff6cbb11",
+  "kind": "other",
+  "credit": "Rotary Club of Cleveland bulletin",
+  "name": "Chris Hallacy"
+ },
+ "akshay-jagadeesh": {
+  "file": "data/photos-signers/akshay-jagadeesh.jpg",
+  "source_url": "https://www.akshayjagadeesh.com/",
+  "kind": "homepage",
+  "credit": "Personal homepage of Akshay Jagadeesh",
+  "name": "Akshay Jagadeesh"
+ },
+ "christopher-wolff": {
+  "file": "data/photos-signers/christopher-wolff.jpg",
+  "source_url": "https://www.linkedin.com/in/christopher-wolff",
+  "kind": "linkedin",
+  "credit": "LinkedIn public profile photo",
+  "name": "Christopher Wolff"
+ },
+ "geoff-penington": {
+  "file": "data/photos-signers/geoff-penington.jpg",
+  "source_url": "https://www.packard.org/fellow/geoffrey-penington/",
+  "kind": "other",
+  "credit": "The David and Lucile Packard Foundation fellow page",
+  "name": "Geoff Penington"
+ },
+ "halil-cetiner": {
+  "file": "data/photos-signers/halil-cetiner.jpg",
+  "source_url": "https://uk.linkedin.com/in/cetinerhalil",
+  "kind": "linkedin",
+  "credit": "LinkedIn public profile photo",
+  "name": "Halil Cetiner"
+ },
+ "louis-brandy": {
+  "file": "data/photos-signers/louis-brandy.jpg",
+  "source_url": "https://linearb.io/dev-interrupted/podcast/AI-hype-cycle-how-to-find-real-and-practical",
+  "kind": "podcast",
+  "credit": "Dev Interrupted (LinearB) podcast guest image",
+  "name": "Louis Brandy"
+ },
+ "alex-martin-richmond": {
+  "file": "data/photos-signers/alex-martin-richmond.jpg",
+  "source_url": "https://www.linkedin.com/in/alex-martin-richmond-a85496a7",
+  "kind": "linkedin",
+  "credit": "LinkedIn public profile photo",
+  "name": "Alex Martin Richmond"
+ },
+ "edward-hughes": {
+  "file": "data/photos-signers/edward-hughes.jpg",
+  "source_url": "https://x.com/edwardfhughes",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @edwardfhughes",
+  "name": "Edward Hughes"
+ },
+ "yogeesh-rajendra": {
+  "file": "data/photos-signers/yogeesh-rajendra.jpg",
+  "source_url": "https://x.com/YOGEESH_R",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YOGEESH_R",
+  "name": "Yogeesh Rajendra"
+ },
+ "rudolf-laine": {
+  "file": "data/photos-signers/rudolf-laine.jpg",
+  "source_url": "https://www.turingtree.com/people/rudolf-laine",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "Rudolf Laine"
+ },
+ "damon-falck": {
+  "file": "data/photos-signers/damon-falck.jpg",
+  "source_url": "https://x.com/DamonFalck",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @DamonFalck",
+  "name": "Damon Falck"
+ },
+ "ilija-lichkovski": {
+  "file": "data/photos-signers/ilija-lichkovski.jpg",
+  "source_url": "https://github.com/ilijalichkovski",
+  "kind": "github",
+  "credit": "GitHub avatar of ilijalichkovski",
+  "name": "Ilija Lichkovski"
+ },
+ "shizhe-diao": {
+  "file": "data/photos-signers/shizhe-diao.jpg",
+  "source_url": "https://x.com/shizhediao",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @shizhediao",
+  "name": "Shizhe Diao"
+ },
+ "eric-landgrebe": {
+  "file": "data/photos-signers/eric-landgrebe.jpg",
+  "source_url": "https://x.com/EricLandgrebe",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @EricLandgrebe",
+  "name": "Eric Landgrebe"
+ },
+ "luke-drago": {
+  "file": "data/photos-signers/luke-drago.jpg",
+  "source_url": "https://x.com/luke_drago_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @luke_drago_",
+  "name": "Luke Drago"
+ },
+ "jack-youstra": {
+  "file": "data/photos-signers/jack-youstra.jpg",
+  "source_url": "https://x.com/JackYoustra",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @JackYoustra",
+  "name": "Jack Youstra"
+ },
+ "noah-y-siegel": {
+  "file": "data/photos-signers/noah-y-siegel.jpg",
+  "source_url": "https://x.com/noahysiegel",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @noahysiegel",
+  "name": "Noah Y. Siegel"
+ },
+ "brendan-long": {
+  "file": "data/photos-signers/brendan-long.jpg",
+  "source_url": "https://github.com/brendanlong",
+  "kind": "github",
+  "credit": "GitHub avatar of brendanlong",
+  "name": "Brendan Long"
+ },
+ "prakash-murugesan": {
+  "file": "data/photos-signers/prakash-murugesan.jpg",
+  "source_url": "https://github.com/prakash-murugesan",
+  "kind": "github",
+  "credit": "GitHub avatar of prakash-murugesan",
+  "name": "Prakash Murugesan"
+ },
+ "erik-jenner": {
+  "file": "data/photos-signers/erik-jenner.jpg",
+  "source_url": "https://x.com/jenner_erik",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @jenner_erik",
+  "name": "Erik Jenner"
+ },
+ "alex-tomala": {
+  "file": "data/photos-signers/alex-tomala.jpg",
+  "source_url": "https://github.com/atomala",
+  "kind": "github",
+  "credit": "GitHub avatar of atomala",
+  "name": "Alex Tomala"
+ },
+ "henry-prior": {
+  "file": "data/photos-signers/henry-prior.jpg",
+  "source_url": "https://github.com/henry-prior",
+  "kind": "github",
+  "credit": "GitHub avatar of henry-prior",
+  "name": "Henry Prior"
+ },
+ "alex-castro-ros": {
+  "file": "data/photos-signers/alex-castro-ros.jpg",
+  "source_url": "https://x.com/acastroros",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @acastroros",
+  "name": "Alex Castro-Ros"
+ },
+ "julian-michael": {
+  "file": "data/photos-signers/julian-michael.jpg",
+  "source_url": "https://x.com/_julianmichael_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @_julianmichael_",
+  "name": "Julian Michael"
+ },
+ "michael-tontchev": {
+  "file": "data/photos-signers/michael-tontchev.jpg",
+  "source_url": "https://x.com/MichaelTontchev",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @MichaelTontchev",
+  "name": "Michael Tontchev"
+ },
+ "ananya-kumar": {
+  "file": "data/photos-signers/ananya-kumar.jpg",
+  "source_url": "https://x.com/ananyaku",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ananyaku",
+  "name": "Ananya Kumar"
+ },
+ "dan-a-calian": {
+  "file": "data/photos-signers/dan-a-calian.jpg",
+  "source_url": "https://x.com/dancalian",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dancalian",
+  "name": "Dan A. Calian"
+ },
+ "yasha-sheynin": {
+  "file": "data/photos-signers/yasha-sheynin.jpg",
+  "source_url": "https://x.com/YashaSheynin",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YashaSheynin",
+  "name": "Yasha Sheynin"
+ },
+ "matthew-rahtz": {
+  "file": "data/photos-signers/matthew-rahtz.jpg",
+  "source_url": "https://github.com/mrahtz",
+  "kind": "github",
+  "credit": "GitHub avatar of mrahtz",
+  "name": "Matthew Rahtz"
+ },
+ "alexandre-rame": {
+  "file": "data/photos-signers/alexandre-rame.jpg",
+  "source_url": "https://x.com/ramealexandre",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ramealexandre",
+  "name": "Alexandre Ramé"
+ },
+ "ashvin-nair": {
+  "file": "data/photos-signers/ashvin-nair.jpg",
+  "source_url": "https://x.com/ashvinair",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ashvinair",
+  "name": "Ashvin Nair"
+ },
+ "karthik-abinav-sankararaman": {
+  "file": "data/photos-signers/karthik-abinav-sankararaman.jpg",
+  "source_url": "https://x.com/karthikabinav",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @karthikabinav",
+  "name": "Karthik Abinav Sankararaman"
+ },
+ "ilia-shumailov": {
+  "file": "data/photos-signers/ilia-shumailov.jpg",
+  "source_url": "https://x.com/iliaishacked",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @iliaishacked",
+  "name": "Ilia Shumailov"
+ },
+ "philippe-chlenski": {
+  "file": "data/photos-signers/philippe-chlenski.jpg",
+  "source_url": "https://github.com/pchlenski",
+  "kind": "github",
+  "credit": "GitHub avatar of pchlenski",
+  "name": "Philippe Chlenski"
+ },
+ "rory-greig": {
+  "file": "data/photos-signers/rory-greig.jpg",
+  "source_url": "https://x.com/rorygreig1",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @rorygreig1",
+  "name": "Rory Greig"
+ },
+ "miles-turpin": {
+  "file": "data/photos-signers/miles-turpin.jpg",
+  "source_url": "https://x.com/milesaturpin",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @milesaturpin",
+  "name": "Miles Turpin"
+ },
+ "toby-scales": {
+  "file": "data/photos-signers/toby-scales.jpg",
+  "source_url": "https://github.com/tobyscales",
+  "kind": "github",
+  "credit": "GitHub avatar of tobyscales",
+  "name": "Toby Scales"
+ },
+ "aidan-boyd": {
+  "file": "data/photos-signers/aidan-boyd.jpg",
+  "source_url": "https://github.com/BoydAidan",
+  "kind": "github",
+  "credit": "GitHub avatar of BoydAidan",
+  "name": "Aidan Boyd"
+ },
+ "vikrant-varma": {
+  "file": "data/photos-signers/vikrant-varma.jpg",
+  "source_url": "https://x.com/VikrantVarma_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @VikrantVarma_",
+  "name": "Vikrant Varma"
+ },
+ "tom-lieberum": {
+  "file": "data/photos-signers/tom-lieberum.jpg",
+  "source_url": "https://x.com/lieberum_t",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @lieberum_t",
+  "name": "Tom Lieberum"
+ },
+ "andreas-kirsch": {
+  "file": "data/photos-signers/andreas-kirsch.jpg",
+  "source_url": "https://x.com/BlackHC",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @BlackHC",
+  "name": "Andreas Kirsch"
+ },
+ "riccardo-casero": {
+  "file": "data/photos-signers/riccardo-casero.jpg",
+  "source_url": "https://x.com/riccardocasero",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @riccardocasero",
+  "name": "Riccardo Casero"
+ },
+ "nicki-anselmo": {
+  "file": "data/photos-signers/nicki-anselmo.jpg",
+  "source_url": "https://x.com/NickiAnselmo",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @NickiAnselmo",
+  "name": "Nicki Anselmo"
+ },
+ "sarah-cogan": {
+  "file": "data/photos-signers/sarah-cogan.jpg",
+  "source_url": "https://x.com/sarah_cogan",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @sarah_cogan",
+  "name": "Sarah Cogan"
+ },
+ "tom-everitt": {
+  "file": "data/photos-signers/tom-everitt.jpg",
+  "source_url": "https://x.com/tom4everitt",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @tom4everitt",
+  "name": "Tom Everitt"
+ },
+ "adrian-hutter": {
+  "file": "data/photos-signers/adrian-hutter.jpg",
+  "source_url": "https://github.com/adrianhutter",
+  "kind": "github",
+  "credit": "GitHub avatar of adrianhutter",
+  "name": "Adrian Hutter"
+ },
+ "piotr-mirowski": {
+  "file": "data/photos-signers/piotr-mirowski.jpg",
+  "source_url": "https://github.com/piotrmirowski",
+  "kind": "github",
+  "credit": "GitHub avatar of piotrmirowski",
+  "name": "Piotr Mirowski"
+ },
+ "arthur-goemans": {
+  "file": "data/photos-signers/arthur-goemans.jpg",
+  "source_url": "https://x.com/arthur_goemans_",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @arthur_goemans_",
+  "name": "Arthur Goemans"
+ },
+ "ulyana-piterbarg": {
+  "file": "data/photos-signers/ulyana-piterbarg.jpg",
+  "source_url": "https://x.com/ulyanapiterbarg",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ulyanapiterbarg",
+  "name": "Ulyana Piterbarg"
+ },
+ "marianne-monteiro": {
+  "file": "data/photos-signers/marianne-monteiro.jpg",
+  "source_url": "https://github.com/hereismari",
+  "kind": "github",
+  "credit": "GitHub avatar of hereismari",
+  "name": "Marianne Monteiro"
+ },
+ "michal-izworski": {
+  "file": "data/photos-signers/michal-izworski.jpg",
+  "source_url": "https://x.com/michal_izworski",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @michal_izworski",
+  "name": "Michal Izworski"
+ },
+ "robert-o-callahan": {
+  "file": "data/photos-signers/robert-o-callahan.jpg",
+  "source_url": "https://x.com/rocallahan",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @rocallahan",
+  "name": "Robert O'Callahan"
+ },
+ "ravin-kumar": {
+  "file": "data/photos-signers/ravin-kumar.jpg",
+  "source_url": "https://github.com/canyon289",
+  "kind": "github",
+  "credit": "GitHub avatar of canyon289",
+  "name": "Ravin Kumar"
+ },
+ "abbas-mehrabian": {
+  "file": "data/photos-signers/abbas-mehrabian.jpg",
+  "source_url": "https://x.com/abbas_mehrabian",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @abbas_mehrabian",
+  "name": "Abbas Mehrabian"
+ },
+ "heng-chen": {
+  "file": "data/photos-signers/heng-chen.jpg",
+  "source_url": "https://x.com/heng__chen",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @heng__chen",
+  "name": "Heng Chen"
+ },
+ "ozzie-gooen": {
+  "file": "data/photos-signers/ozzie-gooen.jpg",
+  "source_url": "https://x.com/ozziegooen",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ozziegooen",
+  "name": "Ozzie Gooen"
+ },
+ "yangsibo-huang": {
+  "file": "data/photos-signers/yangsibo-huang.jpg",
+  "source_url": "https://x.com/YangsiboHuang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YangsiboHuang",
+  "name": "Yangsibo Huang"
+ },
+ "david-lindner": {
+  "file": "data/photos-signers/david-lindner.jpg",
+  "source_url": "https://x.com/davlindner",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @davlindner",
+  "name": "David Lindner"
+ },
+ "zachary-behrman": {
+  "file": "data/photos-signers/zachary-behrman.jpg",
+  "source_url": "https://github.com/behrmanz",
+  "kind": "github",
+  "credit": "GitHub avatar of behrmanz",
+  "name": "Zachary Behrman"
+ },
+ "bilal-chughtai": {
+  "file": "data/photos-signers/bilal-chughtai.jpg",
+  "source_url": "https://github.com/bilal-chughtai",
+  "kind": "github",
+  "credit": "GitHub avatar of bilal-chughtai",
+  "name": "Bilal Chughtai"
+ },
+ "tantum-collins": {
+  "file": "data/photos-signers/tantum-collins.jpg",
+  "source_url": "https://x.com/tantumscollins",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @tantumscollins",
+  "name": "Tantum Collins"
+ },
+ "horace-he": {
+  "file": "data/photos-signers/horace-he.jpg",
+  "source_url": "https://x.com/cHHillee",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @cHHillee",
+  "name": "Horace He"
+ },
+ "alex-fabbri": {
+  "file": "data/photos-signers/alex-fabbri.jpg",
+  "source_url": "https://github.com/Alex-Fabbri",
+  "kind": "github",
+  "credit": "GitHub avatar of Alex-Fabbri",
+  "name": "Alex Fabbri"
+ },
+ "felix-juefei-xu": {
+  "file": "data/photos-signers/felix-juefei-xu.jpg",
+  "source_url": "https://x.com/felixudr",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @felixudr",
+  "name": "Felix Juefei Xu"
+ },
+ "shang-wen-daniel-li": {
+  "file": "data/photos-signers/shang-wen-daniel-li.jpg",
+  "source_url": "https://x.com/ShangwenLi1",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ShangwenLi1",
+  "name": "Shang-Wen Daniel Li"
+ },
+ "harish-kandala": {
+  "file": "data/photos-signers/harish-kandala.jpg",
+  "source_url": "https://x.com/hkandala",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @hkandala",
+  "name": "Harish Kandala"
+ },
+ "yash-vanjani": {
+  "file": "data/photos-signers/yash-vanjani.jpg",
+  "source_url": "https://x.com/YashVanjani",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @YashVanjani",
+  "name": "Yash Vanjani"
+ },
+ "yuchen-zhuang": {
+  "file": "data/photos-signers/yuchen-zhuang.jpg",
+  "source_url": "https://x.com/yuchen_zhuang",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @yuchen_zhuang",
+  "name": "Yuchen Zhuang"
+ },
+ "jan-szczepaniec": {
+  "file": "data/photos-signers/jan-szczepaniec.jpg",
+  "source_url": "https://x.com/JanSzczepaniec",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @JanSzczepaniec",
+  "name": "Jan Szczepaniec"
+ },
+ "rune-vendler": {
+  "file": "data/photos-signers/rune-vendler.jpg",
+  "source_url": "https://x.com/runevendler",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @runevendler",
+  "name": "Rune Vendler"
+ },
+ "sebastian-starke": {
+  "file": "data/photos-signers/sebastian-starke.jpg",
+  "source_url": "https://x.com/blacksquirrel__",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @blacksquirrel__",
+  "name": "Sebastian Starke"
+ },
+ "geoff-stearns": {
+  "file": "data/photos-signers/geoff-stearns.jpg",
+  "source_url": "https://github.com/tensafefrogs",
+  "kind": "github",
+  "credit": "GitHub avatar of tensafefrogs",
+  "name": "Geoff Stearns"
+ },
+ "darius-feher": {
+  "file": "data/photos-signers/darius-feher.jpg",
+  "source_url": "https://x.com/darius_feher",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @darius_feher",
+  "name": "Darius Feher"
+ },
+ "tim-wilde": {
+  "file": "data/photos-signers/tim-wilde.jpg",
+  "source_url": "https://github.com/twilde",
+  "kind": "github",
+  "credit": "GitHub avatar of twilde",
+  "name": "Tim Wilde"
+ },
+ "steph-hughes-fitt": {
+  "file": "data/photos-signers/steph-hughes-fitt.jpg",
+  "source_url": "https://x.com/SHughesFitt",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @SHughesFitt",
+  "name": "Steph Hughes-Fitt"
+ },
+ "edoardo-debenedetti": {
+  "file": "data/photos-signers/edoardo-debenedetti.jpg",
+  "source_url": "https://x.com/edoardo_debe",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @edoardo_debe",
+  "name": "Edoardo Debenedetti"
+ },
+ "tal-linzen": {
+  "file": "data/photos-signers/tal-linzen.jpg",
+  "source_url": "https://x.com/tallinzen",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @tallinzen",
+  "name": "Tal Linzen"
+ },
+ "david-louapre": {
+  "file": "data/photos-signers/david-louapre.jpg",
+  "source_url": "https://x.com/dlouapre",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dlouapre",
+  "name": "David Louapre"
+ },
+ "sebastien-cevey": {
+  "file": "data/photos-signers/sebastien-cevey.jpg",
+  "source_url": "https://github.com/theefer",
+  "kind": "github",
+  "credit": "GitHub avatar of theefer",
+  "name": "Sébastien Cevey"
+ },
+ "adam-allevato": {
+  "file": "data/photos-signers/adam-allevato.jpg",
+  "source_url": "https://x.com/AdamAllevato",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @AdamAllevato",
+  "name": "Adam Allevato"
+ },
+ "fin-moorhouse": {
+  "file": "data/photos-signers/fin-moorhouse.jpg",
+  "source_url": "https://x.com/finmoorhouse",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @finmoorhouse",
+  "name": "Fin Moorhouse"
+ },
+ "andrew-brook": {
+  "file": "data/photos-signers/andrew-brook.jpg",
+  "source_url": "https://x.com/Andrew_Brook",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @Andrew_Brook",
+  "name": "Andrew Brook"
+ },
+ "aldo-culquicondor": {
+  "file": "data/photos-signers/aldo-culquicondor.jpg",
+  "source_url": "https://github.com/alculquicondor",
+  "kind": "github",
+  "credit": "GitHub avatar of alculquicondor",
+  "name": "Aldo Culquicondor"
+ },
+ "drew-scheller": {
+  "file": "data/photos-signers/drew-scheller.jpg",
+  "source_url": "https://github.com/wimpyprogrammer",
+  "kind": "github",
+  "credit": "GitHub avatar of wimpyprogrammer",
+  "name": "Drew Scheller"
+ },
+ "alex-hutcheson": {
+  "file": "data/photos-signers/alex-hutcheson.jpg",
+  "source_url": "https://github.com/alexhutcheson",
+  "kind": "github",
+  "credit": "GitHub avatar of alexhutcheson",
+  "name": "Alex Hutcheson"
+ },
+ "julian-salazar": {
+  "file": "data/photos-signers/julian-salazar.jpg",
+  "source_url": "https://x.com/JulianSlzr",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @JulianSlzr",
+  "name": "Julian Salazar"
+ },
+ "brydon-eastman": {
+  "file": "data/photos-signers/brydon-eastman.jpg",
+  "source_url": "https://github.com/brydon",
+  "kind": "github",
+  "credit": "GitHub avatar of brydon",
+  "name": "Brydon Eastman"
+ },
+ "joshua-engels": {
+  "file": "data/photos-signers/joshua-engels.jpg",
+  "source_url": "https://x.com/JoshAEngels",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @JoshAEngels",
+  "name": "Joshua Engels"
+ },
+ "zachary-kenton": {
+  "file": "data/photos-signers/zachary-kenton.jpg",
+  "source_url": "https://x.com/ZacKenton1",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ZacKenton1",
+  "name": "Zachary Kenton"
+ },
+ "ryan-kaufman": {
+  "file": "data/photos-signers/ryan-kaufman.jpg",
+  "source_url": "https://x.com/ryankaufman",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @ryankaufman",
+  "name": "Ryan Kaufman"
+ },
+ "timothy-lillicrap": {
+  "file": "data/photos-signers/timothy-lillicrap.jpg",
+  "source_url": "https://www.turingtree.com/people/timothy-lillicrap",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "Timothy Lillicrap"
+ },
+ "matteo-bianchetti": {
+  "file": "data/photos-signers/matteo-bianchetti.jpg",
+  "source_url": "https://github.com/Mttbnchtt",
+  "kind": "github",
+  "credit": "GitHub avatar of Mttbnchtt",
+  "name": "Matteo Bianchetti"
+ },
+ "jaime-andres-bello-vieda": {
+  "file": "data/photos-signers/jaime-andres-bello-vieda.jpg",
+  "source_url": "https://github.com/avechuch0",
+  "kind": "github",
+  "credit": "GitHub avatar of avechuch0",
+  "name": "Jaime Andrés Bello Vieda"
+ },
+ "sofia-liguori": {
+  "file": "data/photos-signers/sofia-liguori.jpg",
+  "source_url": "https://www.turingtree.com/people/sofia-liguori",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "Sofia Liguori"
+ },
+ "bo-li": {
+  "file": "data/photos-signers/bo-li.jpg",
+  "source_url": "https://www.turingtree.com/people/bo-li",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "Bo Li"
+ },
+ "john-cherian": {
+  "file": "data/photos-signers/john-cherian.jpg",
+  "source_url": "https://www.turingtree.com/people/john-cherian",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "John Cherian"
+ },
+ "andrew-tulloch": {
+  "file": "data/photos-signers/andrew-tulloch.jpg",
+  "source_url": "https://www.turingtree.com/people/andrew-tulloch",
+  "kind": "other",
+  "credit": "Turing Tree profile photo",
+  "name": "Andrew Tulloch"
+ },
+ "shuhua-yu": {
+  "file": "data/photos-signers/shuhua-yu.jpg",
+  "source_url": "https://shuhuayu.github.io/",
+  "kind": "homepage",
+  "credit": "Photo from https://shuhuayu.github.io/",
+  "name": "Shuhua Yu"
+ },
+ "neel-redkar": {
+  "file": "data/photos-signers/neel-redkar.jpg",
+  "source_url": "https://neelr.dev",
+  "kind": "homepage",
+  "credit": "Photo from https://neelr.dev",
+  "name": "Neel Redkar"
+ },
+ "jorge-barrios": {
+  "file": "data/photos-signers/jorge-barrios.jpg",
+  "source_url": "https://jorgebar.com",
+  "kind": "homepage",
+  "credit": "Photo from https://jorgebar.com",
+  "name": "Jorge Barrios"
+ },
+ "ziyue-wang": {
+  "file": "data/photos-signers/ziyue-wang.jpg",
+  "source_url": "https://ziyuewang.com",
+  "kind": "homepage",
+  "credit": "Photo from https://ziyuewang.com",
+  "name": "Ziyue Wang"
+ },
+ "asad-liaqat": {
+  "file": "data/photos-signers/asad-liaqat.jpg",
+  "source_url": "https://www.asadliaqat.net",
+  "kind": "homepage",
+  "credit": "Photo from https://www.asadliaqat.net",
+  "name": "Asad Liaqat"
+ },
+ "felix-binder": {
+  "file": "data/photos-signers/felix-binder.jpg",
+  "source_url": "https://ac.felixbinder.net",
+  "kind": "homepage",
+  "credit": "Photo from https://ac.felixbinder.net",
+  "name": "Felix Binder"
+ },
+ "andrew-ash": {
+  "file": "data/photos-signers/andrew-ash.jpg",
+  "source_url": "https://github.com/ash211",
+  "kind": "github",
+  "credit": "GitHub avatar of ash211",
+  "name": "Andrew Ash"
+ },
+ "tom-schaul": {
+  "file": "data/photos-signers/tom-schaul.jpg",
+  "source_url": "https://www.youtube.com/watch?v=YDCPHekLUI4",
+  "kind": "youtube",
+  "credit": "YouTube talk thumbnail",
+  "name": "Tom Schaul"
+ },
+ "pablo-samuel-castro": {
+  "file": "data/photos-signers/pablo-samuel-castro.jpg",
+  "source_url": "https://www.youtube.com/watch?v=L4Aq5I0Djds",
+  "kind": "podcast",
+  "credit": "TWIML AI Podcast #339 thumbnail",
+  "name": "Pablo Samuel Castro"
+ },
+ "callum-mcdougall": {
+  "file": "data/photos-signers/callum-mcdougall.jpg",
+  "source_url": "https://www.arena.education/callum-mcdougall",
+  "kind": "lab-page",
+  "credit": "ARENA team page photo",
+  "name": "Callum McDougall"
+ },
+ "lujain-ibrahim": {
+  "file": "data/photos-signers/lujain-ibrahim.jpg",
+  "source_url": "https://www.digitalasiahub.org/about-us/our-team/",
+  "kind": "other",
+  "credit": "Digital Asia Hub team page headshot",
+  "name": "Lujain Ibrahim"
+ },
+ "rif-a-saurous": {
+  "file": "data/photos-signers/rif-a-saurous.jpg",
+  "source_url": "https://metr.org/team/rif-a-saurous/",
+  "kind": "lab-page",
+  "credit": "METR team page photo",
+  "name": "Rif A. Saurous"
+ },
+ "robert-schapire": {
+  "file": "data/photos-signers/robert-schapire.jpg",
+  "source_url": "https://simons.berkeley.edu/people/robert-schapire",
+  "kind": "conference",
+  "credit": "Simons Institute people page photo",
+  "name": "Robert Schapire"
+ },
+ "sophie-bridgers": {
+  "file": "data/photos-signers/sophie-bridgers.jpg",
+  "source_url": "https://eccl.mit.edu/team-profiles/sophie-bridgers",
+  "kind": "lab-page",
+  "credit": "MIT Early Childhood Cognition Lab team profile",
+  "name": "Sophie Bridgers"
+ },
+ "elie-bakouch": {
+  "file": "data/photos-signers/elie-bakouch.jpg",
+  "source_url": "https://www.alphaxiv.org/@elie-bakouch",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Elie Bakouch"
+ },
+ "michael-henry-tessler": {
+  "file": "data/photos-signers/michael-henry-tessler.jpg",
+  "source_url": "https://www.alphaxiv.org/@michael-henry-tessler",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Michael Henry Tessler"
+ },
+ "jonathan-richens": {
+  "file": "data/photos-signers/jonathan-richens.jpg",
+  "source_url": "https://www.alphaxiv.org/@jonathan-richens",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Jonathan Richens"
+ },
+ "lewis-smith": {
+  "file": "data/photos-signers/lewis-smith.jpg",
+  "source_url": "https://www.alphaxiv.org/@lewis-smith",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Lewis Smith"
+ },
+ "klaudia-krawiecka": {
+  "file": "data/photos-signers/klaudia-krawiecka.jpg",
+  "source_url": "https://www.alphaxiv.org/@klaudia-krawiecka",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Klaudia Krawiecka"
+ },
+ "ahmed-khaled": {
+  "file": "data/photos-signers/ahmed-khaled.jpg",
+  "source_url": "https://www.alphaxiv.org/@ahmed-khaled",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Ahmed Khaled"
+ },
+ "rasmi-elasmar": {
+  "file": "data/photos-signers/rasmi-elasmar.jpg",
+  "source_url": "https://www.alphaxiv.org/@rasmi-elasmar",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Rasmi Elasmar"
+ },
+ "sravanti-addepalli": {
+  "file": "data/photos-signers/sravanti-addepalli.jpg",
+  "source_url": "https://www.alphaxiv.org/@sravanti-addepalli",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Sravanti Addepalli"
+ },
+ "janos-kramar": {
+  "file": "data/photos-signers/janos-kramar.jpg",
+  "source_url": "https://www.alphaxiv.org/@janos-kramar",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "János Kramár"
+ },
+ "nicole-mitchell": {
+  "file": "data/photos-signers/nicole-mitchell.jpg",
+  "source_url": "https://www.alphaxiv.org/@nicole-mitchell",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Nicole Mitchell"
+ },
+ "andrew-koh": {
+  "file": "data/photos-signers/andrew-koh.jpg",
+  "source_url": "https://www.alphaxiv.org/@andrew-koh",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Andrew Koh"
+ },
+ "goncalo-paulo": {
+  "file": "data/photos-signers/goncalo-paulo.jpg",
+  "source_url": "https://www.alphaxiv.org/@goncalo-paulo",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Gonçalo Paulo"
+ },
+ "cicero-nogueira-dos-santos": {
+  "file": "data/photos-signers/cicero-nogueira-dos-santos.jpg",
+  "source_url": "https://www.alphaxiv.org/@cicero-nogueira-dos-santos",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Cicero Nogueira Dos Santos"
+ },
+ "diana-mincu": {
+  "file": "data/photos-signers/diana-mincu.jpg",
+  "source_url": "https://www.alphaxiv.org/@diana-mincu",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Diana Mincu"
+ },
+ "zheng-li": {
+  "file": "data/photos-signers/zheng-li.jpg",
+  "source_url": "https://www.alphaxiv.org/@zheng-li",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Zheng Li"
+ },
+ "huiwen-chang": {
+  "file": "data/photos-signers/huiwen-chang.jpg",
+  "source_url": "https://www.alphaxiv.org/@huiwen-chang",
+  "kind": "other",
+  "credit": "alphaXiv profile photo",
+  "name": "Huiwen Chang"
+ },
+ "javier-romero": {
+  "file": "data/photos-signers/javier-romero.jpg",
+  "source_url": "https://www.alphaxiv.org/@javier-romero",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Javier Romero"
+ },
+ "thomas-hubert": {
+  "file": "data/photos-signers/thomas-hubert.jpg",
+  "source_url": "https://www.alphaxiv.org/@thomas-hubert",
+  "kind": "other",
+  "credit": "alphaXiv profile photo",
+  "name": "Thomas Hubert"
+ },
+ "alexander-meulemans": {
+  "file": "data/photos-signers/alexander-meulemans.jpg",
+  "source_url": "https://www.alphaxiv.org/@alexander-meulemans",
+  "kind": "scholar",
+  "credit": "Google Scholar profile photo via alphaXiv profile",
+  "name": "Alexander Meulemans"
+ },
+ "jason-bohrer": {
+  "file": "data/photos-signers/jason-bohrer.jpg",
+  "source_url": "https://x.com/bohrer_jason",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @bohrer_jason",
+  "name": "Jason Bohrer"
+ },
+ "alex-irpan": {
+  "file": "data/photos-signers/alex-irpan.jpg",
+  "source_url": "https://www.youtube.com/watch?v=XocmVe1FCMY",
+  "kind": "youtube",
+  "credit": "YouTube video thumbnail",
+  "name": "Alex Irpan"
+ },
+ "niki-howe": {
+  "file": "data/photos-signers/niki-howe.jpg",
+  "source_url": "https://x.com/__niki_howe__",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @__niki_howe__",
+  "name": "Niki Howe"
+ },
+ "danny-sawyer": {
+  "file": "data/photos-signers/danny-sawyer.jpg",
+  "source_url": "https://x.com/dannypsawyer",
+  "kind": "x",
+  "credit": "X/Twitter profile photo of @dannypsawyer",
+  "name": "Danny Sawyer"
+ },
+ "peter-ney": {
+  "file": "data/photos-signers/peter-ney.jpg",
+  "source_url": "https://peterney.net",
+  "kind": "homepage",
+  "credit": "Portrait from peterney.net",
+  "name": "Peter Ney"
+ },
+ "julia-haas": {
+  "file": "data/photos-signers/julia-haas.jpg",
+  "source_url": "https://srinstitute.utoronto.ca/news/haas-evaluative-mind-moral-ai",
+  "kind": "other",
+  "credit": "Schwartz Reisman Institute headshot",
+  "name": "Julia Haas"
+ },
+ "charlie-george": {
+  "file": "data/photos-signers/charlie-george.jpg",
+  "source_url": "https://charliewgeorge.com/",
+  "kind": "homepage",
+  "credit": "Photo from charliewgeorge.com",
+  "name": "Charlie George"
+ },
+ "aniruddha-nrusimha": {
+  "file": "data/photos-signers/aniruddha-nrusimha.jpg",
+  "source_url": "https://anin.dev/",
+  "kind": "homepage",
+  "credit": "Photo from anin.dev",
+  "name": "Aniruddha Nrusimha"
+ },
+ "trevor-chow": {
+  "file": "data/photos-signers/trevor-chow.jpg",
+  "source_url": "https://www.youtube.com/watch?v=_OfsQKlQHF4",
+  "kind": "youtube",
+  "credit": "YouTube video thumbnail",
+  "name": "Trevor Chow"
+ }
+}

@@ -1,0 +1,131 @@
+{
+ "id": "computer-power",
+ "title": "Computer Power and Human Reason",
+ "subtitle": "From Judgment to Calculation",
+ "authors": [
+  {
+   "name": "Joseph Weizenbaum",
+   "rid": ""
+  }
+ ],
+ "year": "1976",
+ "publisher": "W. H. Freeman",
+ "isbn": "",
+ "pages": "300",
+ "ol": "/works/OL5069877W",
+ "shelf": "skeptic",
+ "level": "Intermediate",
+ "pitch": "The creator of the ELIZA chatbot was shocked that people confided in it. Here he argues there are tasks computers should never be given, whether or not they can do them.",
+ "toc_src": "https://openlibrary.org/works/OL5069877W",
+ "chapters": [
+  {
+   "t": "The ELIZA shock",
+   "g": "Weizenbaum's simple program imitated a therapist, and people formed real emotional bonds with it, which alarmed him.",
+   "part": ""
+  },
+  {
+   "t": "How computers work",
+   "g": "A careful explanation for general readers of what computers and programs really are.",
+   "part": ""
+  },
+  {
+   "t": "The seduction of the machine",
+   "g": "Why programmers and society get drawn into treating computing as the model for everything.",
+   "part": ""
+  },
+  {
+   "t": "Calculation is not judgment",
+   "g": "Deciding is computing; choosing involves human values and wisdom that should not be handed over.",
+   "part": ""
+  },
+  {
+   "t": "What should not be done",
+   "g": "Some uses of computers are wrong even if possible, such as replacing human care with machines.",
+   "part": ""
+  },
+  {
+   "t": "Responsibility of scientists",
+   "g": "Researchers must ask whether their work should be done, not only whether it can be.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "People project understanding onto even simple chatbots.",
+  "Calculation and judgment are different.",
+  "Some tasks should never be given to computers.",
+  "Technologists carry moral responsibility."
+ ],
+ "args": [
+  {
+   "a": "Computers should not replace human judgment in areas like care, justice and therapy.",
+   "c": "Others argue that if machines do these tasks better and more fairly, refusing them has its own costs."
+  },
+  {
+   "a": "Treating everything as computation shrinks our idea of being human.",
+   "c": "Computational views of the mind have been very productive in science, defenders say."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Have you ever felt understood by a chatbot?",
+  "What task would you never give to an AI, even a perfect one?",
+  "Is the ELIZA effect stronger with today's models?"
+ ],
+ "quiz": [
+  {
+   "q": "What program did Weizenbaum create?",
+   "o": [
+    "Deep Blue",
+    "ELIZA",
+    "Siri",
+    "AlphaGo"
+   ],
+   "a": 1,
+   "w": "ELIZA was an early chatbot, built in the 1960s."
+  },
+  {
+   "q": "What shocked him?",
+   "o": [
+    "It crashed",
+    "People confided in it emotionally",
+    "It was slow",
+    "It was expensive"
+   ],
+   "a": 1,
+   "w": "Even his secretary asked for privacy with it."
+  },
+  {
+   "q": "What is his key distinction?",
+   "o": [
+    "Fast and slow",
+    "Calculation and judgment",
+    "Hardware and software",
+    "Old and new"
+   ],
+   "a": 1,
+   "w": "From judgment to calculation is the subtitle."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/computer-power.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL5069877W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=Computer%20Power%20and%20Human%20Reason%20Joseph%20Weizenbaum",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

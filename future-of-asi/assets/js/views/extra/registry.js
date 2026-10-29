@@ -1,0 +1,14 @@
+/* Round 3 routes. The shell (app.js) wires these into the router, menu, search, offline list and prerender.
+   Contract: {slug, title, group, icon, desc, load, cat?}. Each module exports render(el, params, query) and may return a cleanup. */
+export const EXTRA_ROUTES = [
+  { slug: "papers", title: "Papers", group: "learn", icon: "doc", cat: "sky", desc: "The 60 key AI safety papers, verified on arXiv, with reading paths and plain words summaries.", load: () => import("./papers.js") },
+  { slug: "concepts", title: "Concepts map", group: "learn", icon: "map", cat: "teal", desc: "An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.", load: () => import("./concepts.js") },
+  { slug: "agents", title: "Agents", group: "learn", icon: "bolt", cat: "orange", desc: "How AI agents plan, use tools and act, the autonomy ladder, real incidents and a guardrails playground.", load: () => import("./agents.js") },
+  { slug: "arena", title: "Arena", group: "learn", icon: "spark", cat: "lime", desc: "Timed quiz rounds built only from verified content, with a daily challenge and a local leaderboard.", load: () => import("./arena.js") },
+  { slug: "debates", title: "Debates", group: "people", icon: "scale", cat: "amber", desc: "Seven big disagreements about AI, both sides in exact sourced quotes, a vote and where you land.", load: () => import("./debates.js") },
+  { slug: "careers", title: "Careers", group: "act", icon: "cap", cat: "emerald", desc: "Real AI safety programmes, checked on their official pages, four paths in, a path finder and a 30 day plan.", load: () => import("./careers.js") },
+  { slug: "policy", title: "Policy tracker", group: "act", icon: "flag", cat: "blue", desc: "AI laws, orders, treaties and lab frameworks worldwide, with dates, status, countdowns, a binding or not quiz and official sources.", load: () => import("./policy.js") },
+  { slug: "numbers", title: "Numbers", group: "start", icon: "chart", cat: "cyan", desc: "A dashboard of key AI figures with dates and sources: compute, data centers, agent time horizons, money, lab automation, oversight and signatures.", load: () => import("./numbers.js") },
+  { slug: "kids", title: "Kids and families", group: "start", icon: "people", cat: "yellow", desc: "AI safety explained gently for children and families: four games, a short story, a word list, talk cards and family habits.", load: () => import("./kids.js") },
+  { slug: "bharat", title: "Indian languages", group: "start", icon: "globe", cat: "orange", desc: "AI safety in Bengali and Hindi: plain explainers, a three language glossary, flashcards, family talk cards, India's story and videos.", load: () => import("./bharat.js") },
+];

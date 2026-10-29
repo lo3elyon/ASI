@@ -1,0 +1,151 @@
+{
+ "id": "master-algorithm",
+ "title": "The Master Algorithm",
+ "subtitle": "How the Quest for the Ultimate Learning Machine Will Remake Our World",
+ "authors": [
+  {
+   "name": "Pedro Domingos",
+   "rid": ""
+  }
+ ],
+ "year": "2015",
+ "publisher": "Basic Books",
+ "isbn": "9780465065707",
+ "pages": "329",
+ "ol": "/works/OL19663805W",
+ "shelf": "history",
+ "level": "Beginner",
+ "pitch": "A tour of the five schools of machine learning and a bet that one universal learning algorithm could one day learn anything from data.",
+ "toc_src": "https://openlibrary.org/books/OL26883060M",
+ "chapters": [
+  {
+   "t": "The machine learning revolution",
+   "g": "Learning algorithms already shape what we buy, watch and read.",
+   "part": ""
+  },
+  {
+   "t": "The master algorithm",
+   "g": "The idea of one learner that could discover any knowledge from data, and why it might exist.",
+   "part": ""
+  },
+  {
+   "t": "Hume's problem of induction",
+   "g": "The symbolists: learning rules by logic, and the old puzzle of how we can generalise at all.",
+   "part": ""
+  },
+  {
+   "t": "How does your brain learn?",
+   "g": "The connectionists: neural networks and backpropagation, inspired by the brain.",
+   "part": ""
+  },
+  {
+   "t": "Evolution: nature's learning algorithm",
+   "g": "The evolutionaries: genetic algorithms and programs that evolve.",
+   "part": ""
+  },
+  {
+   "t": "In the church of the Reverend Bayes",
+   "g": "The Bayesians: learning as updating beliefs with probability.",
+   "part": ""
+  },
+  {
+   "t": "You are what you resemble",
+   "g": "The analogizers: learning by similarity, from nearest neighbours to support vector machines.",
+   "part": ""
+  },
+  {
+   "t": "Learning without a teacher",
+   "g": "Finding structure in data without labels, such as clustering.",
+   "part": ""
+  },
+  {
+   "t": "The pieces of the puzzle fall into place",
+   "g": "Domingos sketches how the five schools could be combined into one learner.",
+   "part": ""
+  },
+  {
+   "t": "This is the world on machine learning",
+   "g": "What a world run on learning machines could look like, for better and worse.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Machine learning has five main tribes: symbolists, connectionists, evolutionaries, Bayesians and analogizers.",
+  "Each tribe has a master method and a blind spot.",
+  "A unified learner might combine their strengths.",
+  "Learning machines will reshape science, business and daily life."
+ ],
+ "args": [
+  {
+   "a": "A single master algorithm is possible and worth seeking.",
+   "c": "Deep learning's later success came from scale and data more than from unifying the tribes, and some doubt one universal learner exists in a useful form."
+  },
+  {
+   "a": "The main risk is people misusing learning machines, not machines turning on us.",
+   "c": "Many alignment researchers argue powerful learners could pursue goals we did not intend, which is a risk in itself."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the five tribes does today's AI most resemble?",
+  "Is learning from data enough for general intelligence?",
+  "Who should control the data that learning machines use?"
+ ],
+ "quiz": [
+  {
+   "q": "Which tribe uses neural networks?",
+   "o": [
+    "Symbolists",
+    "Connectionists",
+    "Analogizers",
+    "Bayesians"
+   ],
+   "a": 1,
+   "w": "Connectionists model learning on the brain."
+  },
+  {
+   "q": "What is the master algorithm?",
+   "o": [
+    "A search engine",
+    "A hypothetical learner that can learn anything from data",
+    "A chess program",
+    "A sorting method"
+   ],
+   "a": 1,
+   "w": "It is the book's central idea."
+  },
+  {
+   "q": "What does the Bayesian school do?",
+   "o": [
+    "Evolve programs",
+    "Update probabilities with evidence",
+    "Copy brains",
+    "Ignore data"
+   ],
+   "a": 1,
+   "w": "Bayes' rule is the core tool."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/master-algorithm.jpg",
+ "videos": [],
+ "shelfLabel": "History",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL19663805W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780465065707",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

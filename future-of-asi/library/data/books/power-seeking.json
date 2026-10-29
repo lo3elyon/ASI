@@ -1,0 +1,175 @@
+{
+ "id": "power-seeking",
+ "title": "Is Power-Seeking AI an Existential Risk?",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Joe Carlsmith",
+   "rid": "joe-carlsmith"
+  }
+ ],
+ "year": "2022",
+ "publisher": "arXiv:2206.13353",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "risk",
+ "level": "Advanced",
+ "pitch": "A careful report that breaks the AI risk argument into six claims, gives each a probability, and ends with a rough estimate of the chance of catastrophe by 2070.",
+ "toc_src": "https://arxiv.org/abs/2206.13353",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "The question and how the report approaches it.",
+   "part": ""
+  },
+  {
+   "t": "Timelines",
+   "g": "Will it become possible and affordable to build advanced, planning, strategically aware AI by 2070?",
+   "part": ""
+  },
+  {
+   "t": "Incentives",
+   "g": "Will there be strong reasons to build and deploy such systems?",
+   "part": ""
+  },
+  {
+   "t": "Alignment",
+   "g": "Will it be much harder to build aligned systems than ones that seek power in ways we do not want?",
+   "part": ""
+  },
+  {
+   "t": "Deployment",
+   "g": "Will misaligned systems be deployed anyway, given pressure and uncertainty?",
+   "part": ""
+  },
+  {
+   "t": "Correction",
+   "g": "Will humans fail to notice and correct the problem in time?",
+   "part": ""
+  },
+  {
+   "t": "Catastrophe",
+   "g": "Would the result be the disempowerment of humanity?",
+   "part": ""
+  },
+  {
+   "t": "Probabilities",
+   "g": "Multiplying the steps gives a rough overall estimate, which Carlsmith first put at roughly 5 percent and later raised above 10 percent.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Break a big claim into steps you can each assess.",
+  "Power seeking is useful for many goals, which is the danger.",
+  "Misaligned systems might be deployed under pressure.",
+  "Assign rough probabilities to make disagreement concrete."
+ ],
+ "args": [
+  {
+   "a": "Advanced planning AI creates a real chance of existential catastrophe this century.",
+   "c": "Others put far lower odds on each step, and multiplying small numbers gives a small total."
+  },
+  {
+   "a": "Breaking the argument into steps clarifies the debate.",
+   "c": "Critics warn that multiplying steps can understate risk if the steps are not independent."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the six steps do you find weakest?",
+  "What is your own number for each step?",
+  "Why is power useful for almost any goal?"
+ ],
+ "quiz": [
+  {
+   "q": "What year does the report's main question use as a horizon?",
+   "o": [
+    "2030",
+    "2070",
+    "2100",
+    "2200"
+   ],
+   "a": 1,
+   "w": "Disempowerment by 2070."
+  },
+  {
+   "q": "What does APS stand for in the report?",
+   "o": [
+    "Advanced, Planning, Strategically aware",
+    "Automatic Power System",
+    "AI Policy Standard",
+    "None"
+   ],
+   "a": 0,
+   "w": "The kind of system it studies."
+  },
+  {
+   "q": "What method does Carlsmith use?",
+   "o": [
+    "A single guess",
+    "Breaking the argument into steps with probabilities",
+    "A survey",
+    "A poll"
+   ],
+   "a": 1,
+   "w": "Six premises, each estimated."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://arxiv.org/abs/2206.13353",
+  "label": "Read the report free (arXiv)",
+  "licence": "arXiv's standard non-exclusive licence, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "REVf0JnLK0U",
+   "title": "Writing AI Constitutions (Joe Carlsmith)",
+   "channel": "Joe Carlsmith",
+   "date": "2026-04-09",
+   "duration": "1:28:46",
+   "summary": "Joe Carlsmith on writing AI constitutions."
+  },
+  {
+   "id": "_d4TfhcGqgg",
+   "title": "How human-like do safe AI motivations need to be? (Joe Carlsmith)",
+   "channel": "Joe Carlsmith",
+   "date": "2025-12-17",
+   "duration": "0:58:46",
+   "summary": "Joe Carlsmith on how human like safe AI motivations need to be."
+  },
+  {
+   "id": "Bk8OLQVOehA",
+   "title": "Joe Carlsmith on Giving AIs Safe Motivations, at UT Austin's AHOI",
+   "channel": "AI+Human Objectives Institute at UT Austin",
+   "date": "2025-11-18",
+   "duration": "1:23:45",
+   "summary": "Joe Carlsmith on how to give AIs safe motivations."
+  },
+  {
+   "id": "bsTwkg6eYCs",
+   "title": "Joe Carlsmith - A Wiser, AI-Powered Civilization is the “Successor” (Worthy Successor, Episode 15)",
+   "channel": "The Trajectory with Dan Faggella",
+   "date": "2025-11-14",
+   "duration": "1:53:38",
+   "summary": "Joe Carlsmith on a wiser AI powered civilisation."
+  }
+ ],
+ "shelfLabel": "Risk and control",
+ "shelfColor": "#ef4444",
+ "where": [
+  {
+   "label": "Read the report free (arXiv)",
+   "url": "https://arxiv.org/abs/2206.13353",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

@@ -1,0 +1,428 @@
+{
+ "meta": {
+  "checked": "2026-10-29",
+  "note": "Dates are from official pages where possible. Status describes the position on 29 October 2026."
+ },
+ "items": [
+  {
+   "id": "china-genai",
+   "date": "2023-07-10",
+   "region": "China",
+   "kind": "Regulation",
+   "status": "In force",
+   "t": "Interim Measures for Generative AI Services",
+   "d": "China's first rules aimed at generative AI services offered to the public. Issued by the Cyberspace Administration of China and six other agencies, in force from 15 August 2023.",
+   "url": "https://www.cac.gov.cn/2023-07/13/c_1690898327029107.htm",
+   "milestones": [
+    [
+     "2023-08-15",
+     "In force"
+    ]
+   ]
+  },
+  {
+   "id": "rsp",
+   "date": "2023-09",
+   "region": "Industry",
+   "kind": "Company framework",
+   "status": "Updated",
+   "t": "Anthropic Responsible Scaling Policy",
+   "d": "The first frontier safety framework: capability thresholds that trigger stronger safeguards. Version 3.4 took effect on 8 July 2026.",
+   "url": "https://www.anthropic.com/responsible-scaling-policy",
+   "milestones": [
+    [
+     "2023-09",
+     "First version"
+    ],
+    [
+     "2026-07-08",
+     "Version 3.4"
+    ]
+   ]
+  },
+  {
+   "id": "eo14110",
+   "date": "2023-10-30",
+   "region": "United States",
+   "kind": "Executive order",
+   "status": "Revoked",
+   "t": "Executive Order 14110 on safe, secure and trustworthy AI",
+   "d": "Asked developers of the most powerful models to report safety test results to the government. Revoked on 20 January 2025 by Executive Order 14148.",
+   "url": "https://www.federalregister.gov/documents/2023/11/01/2023-24283/safe-secure-and-trustworthy-development-and-use-of-artificial-intelligence",
+   "milestones": [
+    [
+     "2025-01-20",
+     "Revoked"
+    ]
+   ]
+  },
+  {
+   "id": "bletchley",
+   "date": "2023-11-01",
+   "region": "International",
+   "kind": "Declaration",
+   "status": "Signed",
+   "t": "Bletchley Declaration",
+   "d": "Countries at the first AI Safety Summit agreed that frontier AI could cause serious, even catastrophic, harm.",
+   "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023"
+  },
+  {
+   "id": "openai-pf",
+   "date": "2023-12-18",
+   "region": "Industry",
+   "kind": "Company framework",
+   "status": "Updated",
+   "t": "OpenAI Preparedness Framework",
+   "d": "OpenAI's process to track and prepare for severe risks. Version 2 (15 April 2025) focuses on High and Critical thresholds and adds AI self improvement as a tracked category.",
+   "url": "https://openai.com/index/updating-our-preparedness-framework/",
+   "milestones": [
+    [
+     "2025-04-15",
+     "Version 2"
+    ]
+   ]
+  },
+  {
+   "id": "gdm-fsf",
+   "date": "2024-05",
+   "region": "Industry",
+   "kind": "Company framework",
+   "status": "Updated",
+   "t": "Google DeepMind Frontier Safety Framework",
+   "d": "Built around Critical Capability Levels. The third version came out on 22 September 2025 and was updated on 17 April 2026.",
+   "url": "https://deepmind.google/discover/blog/strengthening-our-frontier-safety-framework/",
+   "milestones": [
+    [
+     "2025-09-22",
+     "Version 3"
+    ]
+   ]
+  },
+  {
+   "id": "seoul",
+   "date": "2024-05-21",
+   "region": "International",
+   "kind": "Voluntary commitment",
+   "status": "Signed",
+   "t": "Frontier AI Safety Commitments (Seoul)",
+   "d": "Sixteen companies promised to publish safety frameworks with risk thresholds, and not to deploy if risks cannot be kept below them. Four more joined later. METR counted twelve published policies in December 2025.",
+   "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024",
+   "url2": "https://metr.org/common-elements"
+  },
+  {
+   "id": "eu-ai-act",
+   "date": "2024-08-01",
+   "region": "European Union",
+   "kind": "Law",
+   "status": "Partly applying",
+   "t": "EU AI Act",
+   "d": "The first broad AI law, built on risk levels. Bans and AI literacy rules apply from 2 February 2025, general purpose AI model rules from 2 August 2025, and most of the Act from 2 August 2026. The 2026 Digital Omnibus moved high risk rules to 2 December 2027 and 2 August 2028.",
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+   "milestones": [
+    [
+     "2025-02-02",
+     "Bans apply"
+    ],
+    [
+     "2025-08-02",
+     "GPAI rules apply"
+    ],
+    [
+     "2026-08-02",
+     "Most rules apply"
+    ],
+    [
+     "2027-12-02",
+     "Stand alone high risk rules"
+    ],
+    [
+     "2028-08-02",
+     "High risk rules in products"
+    ]
+   ]
+  },
+  {
+   "id": "coe",
+   "date": "2024-09-05",
+   "region": "International",
+   "kind": "Treaty",
+   "status": "Open for signature",
+   "t": "Council of Europe Framework Convention on AI",
+   "d": "The first legally binding international treaty on AI and human rights, democracy and the rule of law. Signed in Vilnius by ten parties including the UK, the US and the EU.",
+   "url": "https://www.coe.int/en/web/portal/-/council-of-europe-opens-first-ever-global-treaty-on-ai-for-signature"
+  },
+  {
+   "id": "korea",
+   "date": "2025-01-21",
+   "region": "South Korea",
+   "kind": "Law",
+   "status": "In force",
+   "t": "AI Basic Act",
+   "d": "A broad law that both promotes AI and sets rules for trust and safety, with a grace period of at least a year for businesses. Passed in December 2024, in force from 22 January 2026.",
+   "url": "https://www.msit.go.kr/eng/bbs/view.do?bbsSeqNo=42&mId=4&mPid=2&nttSeqNo=1214&sCode=eng",
+   "milestones": [
+    [
+     "2026-01-22",
+     "In force"
+    ]
+   ]
+  },
+  {
+   "id": "intl-report",
+   "date": "2025-01-29",
+   "region": "International",
+   "kind": "Scientific report",
+   "status": "Published",
+   "t": "International AI Safety Report",
+   "d": "100 experts, led by Yoshua Bengio and backed by 30 countries, the UN, OECD and EU, summarise the evidence on capabilities and risks. A second report followed in February 2026.",
+   "url": "https://arxiv.org/abs/2501.17805",
+   "url2": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+   "milestones": [
+    [
+     "2026-02",
+     "Second report"
+    ]
+   ]
+  },
+  {
+   "id": "paris",
+   "date": "2025-02-10",
+   "region": "International",
+   "kind": "Summit",
+   "status": "Held",
+   "t": "Paris AI Action Summit",
+   "d": "The third global summit, co-chaired by France and India on 10 and 11 February 2025. Participants from over 100 countries met, and a statement on inclusive and sustainable AI was adopted. The focus moved from safety toward action and access. The United States and the United Kingdom did not sign it.",
+   "url": "https://www.elysee.fr/en/emmanuel-macron/2025/02/11/statement-on-inclusive-and-sustainable-artificial-intelligence-for-people-and-the-planet",
+   "url2": "https://www.elysee.fr/en/emmanuel-macron/artificial-intelligence-action-summit",
+   "milestones": [
+    [
+     "2025-02-11",
+     "Statement adopted"
+    ]
+   ]
+  },
+  {
+   "id": "china-label",
+   "date": "2025-03-14",
+   "region": "China",
+   "kind": "Regulation",
+   "status": "In force",
+   "t": "Measures for Labelling AI Generated Content",
+   "d": "AI generated text, images, audio, video and virtual scenes must carry visible labels where needed and hidden labels in file metadata. In force from 1 September 2025.",
+   "url": "https://www.cac.gov.cn/2025-03/14/c_1743654684782215.htm",
+   "milestones": [
+    [
+     "2025-09-01",
+     "In force"
+    ]
+   ]
+  },
+  {
+   "id": "japan",
+   "date": "2025-05-28",
+   "region": "Japan",
+   "kind": "Law",
+   "status": "In force",
+   "t": "AI Promotion Act",
+   "d": "Japan's first AI law. It sets basic principles, an AI Strategic Headquarters led by the Prime Minister and an AI Basic Plan, without fines. Promulgated on 4 June 2025, fully in force from 1 September 2025.",
+   "url": "https://www8.cao.go.jp/cstp/ai/ai_act/ai_act.html",
+   "milestones": [
+    [
+     "2025-09-01",
+     "Fully in force"
+    ]
+   ]
+  },
+  {
+   "id": "gpai-code",
+   "date": "2025-07-10",
+   "region": "European Union",
+   "kind": "Code of practice",
+   "status": "Published",
+   "t": "General Purpose AI Code of Practice",
+   "d": "A voluntary code with chapters on transparency, copyright and safety and security that helps model providers show they comply with the AI Act.",
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+  },
+  {
+   "id": "us-plan",
+   "date": "2025-07-23",
+   "region": "United States",
+   "kind": "Policy plan",
+   "status": "Published",
+   "t": "America's AI Action Plan",
+   "d": "Over 90 federal actions across three pillars: accelerating innovation, building AI infrastructure, and leading in international diplomacy and security.",
+   "url": "https://www.whitehouse.gov/articles/2025/07/white-house-unveils-americas-ai-action-plan/"
+  },
+  {
+   "id": "un-panel",
+   "date": "2025-08-26",
+   "region": "International",
+   "kind": "UN resolution",
+   "status": "Set up",
+   "t": "UN Scientific Panel on AI and Global Dialogue",
+   "d": "The General Assembly created a 40 member Independent International Scientific Panel on AI and a Global Dialogue on AI Governance. Panel members serve from 12 February 2026.",
+   "url": "https://press.un.org/en/2025/sgsm22776.doc.htm",
+   "url2": "https://www.un.org/independent-international-scientific-panel-ai/en"
+  },
+  {
+   "id": "sb53",
+   "date": "2025-09-29",
+   "region": "California, US",
+   "kind": "Law",
+   "status": "In force",
+   "t": "SB 53, Transparency in Frontier AI Act",
+   "d": "Large frontier developers must publish a frontier AI framework, report critical safety incidents to the state and protect whistleblowers. In force from 1 January 2026.",
+   "url": "https://www.gov.ca.gov/2025/09/29/governor-newsom-signs-sb-53-advancing-californias-world-leading-artificial-intelligence-industry/",
+   "url2": "https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202520260SB53",
+   "milestones": [
+    [
+     "2026-01-01",
+     "In force"
+    ]
+   ]
+  },
+  {
+   "id": "statement-si",
+   "date": "2025-10",
+   "region": "Civil society",
+   "kind": "Public statement",
+   "status": "Open",
+   "t": "Statement on Superintelligence",
+   "d": "Calls for a prohibition on developing superintelligence until there is broad scientific consensus it can be done safely and strong public buy in. It showed 78,024 signatures when checked.",
+   "url": "https://superintelligence-statement.org/"
+  },
+  {
+   "id": "india",
+   "date": "2025-11-05",
+   "region": "India",
+   "kind": "Guidelines",
+   "status": "Published",
+   "t": "India AI Governance Guidelines",
+   "d": "MeitY's national framework under the IndiaAI Mission. It puts 'Do No Harm' at the core, favours innovation sandboxes and existing laws over a new AI law, and says high risk systems must not be deployed without safeguards.",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2186639",
+   "url2": "https://static.pib.gov.in/WriteReadData/specificdocs/documents/2025/nov/doc2025115685601.pdf"
+  },
+  {
+   "id": "eo14365",
+   "date": "2025-12-11",
+   "region": "United States",
+   "kind": "Executive order",
+   "status": "In force",
+   "t": "Executive Order 14365 on a national AI policy framework",
+   "d": "Aims for a 'minimally burdensome' national standard and directs agencies to challenge state AI laws seen as conflicting. The White House sent legislative recommendations to Congress on 20 March 2026.",
+   "url": "https://www.whitehouse.gov/presidential-actions/2025/12/eliminating-state-law-obstruction-of-national-artificial-intelligence-policy/",
+   "url2": "https://www.whitehouse.gov/wp-content/uploads/2026/03/03.20.26-National-Policy-Framework-for-Artificial-Intelligence-Legislative-Recommendations.pdf"
+  },
+  {
+   "id": "raise",
+   "date": "2025-12-19",
+   "region": "New York, US",
+   "kind": "Law",
+   "status": "Signed, starts 2027",
+   "t": "RAISE Act",
+   "d": "Large frontier developers must publish safety frameworks and report critical safety incidents within 72 hours to a new office in the Department of Financial Services. Amended to align with SB 53 on 27 March 2026. In force from 1 January 2027.",
+   "url": "https://www.governor.ny.gov/news/governor-hochul-signs-nation-leading-legislation-require-ai-frameworks-ai-frontier-models",
+   "url2": "https://www.wiley.law/alert-New-York-Finalizes-RAISE-Act-for-Frontier-AI-Models-Law-Takes-Effect-January-1-2027",
+   "milestones": [
+    [
+     "2026-03-27",
+     "Final amendment"
+    ],
+    [
+     "2027-01-01",
+     "In force"
+    ]
+   ]
+  },
+  {
+   "id": "india-summit",
+   "date": "2026-02-16",
+   "region": "India",
+   "kind": "Summit",
+   "status": "Held",
+   "t": "India AI Impact Summit, New Delhi",
+   "d": "The fourth global AI summit after Bletchley, Seoul and Paris, held in New Delhi from 16 to 21 February 2026.",
+   "url": "https://www.pib.gov.in/PressReleasePage.aspx?PRID=2291062&lang=1&reg=3"
+  },
+  {
+   "id": "illinois",
+   "date": "2026-07-06",
+   "region": "Illinois, US",
+   "kind": "Law",
+   "status": "Signed, starts 2027",
+   "t": "Artificial Intelligence Safety Measures Act (SB 315)",
+   "d": "Signed on 6 July 2026. Large frontier AI developers must publish safety frameworks, report critical safety incidents, protect whistleblowers and, a first for any US state, hire an independent auditor every year.",
+   "url": "https://gov-pritzker-newsroom.prezly.com/gov-pritzker-signs-nation-leading-artificial-intelligence-safety-law",
+   "url2": "https://www.skadden.com/insights/publications/2026/07/illinois-enacts-ai-safety-law-becoming-first-state",
+   "milestones": [
+    [
+     "2027-01-01",
+     "In force"
+    ],
+    [
+     "2028-01-01",
+     "Audit duties begin"
+    ]
+   ]
+  },
+  {
+   "id": "omnibus",
+   "date": "2026-07-08",
+   "region": "European Union",
+   "kind": "Law",
+   "status": "In force",
+   "t": "Digital Omnibus on AI (Regulation 2026/1744)",
+   "d": "Amends the AI Act: stand alone high risk rules move to 2 December 2027 and product embedded ones to 2 August 2028, and a new ban covers AI generating non consensual intimate content and child sexual abuse material.",
+   "url": "https://www.consilium.europa.eu/en/press/press-releases/2026/06/29/artificial-intelligence-council-gives-final-green-light-to-simplify-and-streamline-rules/",
+   "url2": "https://eur-lex.europa.eu/eli/reg/2026/1744/oj/eng"
+  },
+  {
+   "id": "ca-eo",
+   "date": "2026-09-18",
+   "region": "California, US",
+   "kind": "Executive order",
+   "status": "Issued",
+   "t": "California order on independent verification and a kill switch",
+   "d": "Requires safety frameworks and reports filed under state law to be verified by an independent organisation, and advances a verified 'kill switch' for frontier models.",
+   "url": "https://www.gov.ca.gov/2026/09/18/governor-newsom-issues-executive-order-to-accelerate-independent-oversight-and-advance-the-creation-of-an-ai-kill-switch/"
+  },
+  {
+   "id": "il-cabinet",
+   "date": "2026-09-22",
+   "region": "Illinois, US",
+   "kind": "Executive order",
+   "status": "Issued",
+   "t": "Illinois Executive Order 2026-07, AI Cabinet",
+   "d": "Sets up an Illinois AI Cabinet to advise the state on preparing for and responding to AI incidents and on protecting public infrastructure.",
+   "url": "https://www.illinois.gov/government/executive-orders/executive-order.executive-order-2026-07.2026.html"
+  },
+  {
+   "id": "ban-asi",
+   "date": "2026-09-23",
+   "region": "United States",
+   "kind": "Bill",
+   "status": "Introduced",
+   "t": "Ban Artificial Superintelligence Act",
+   "d": "Introduced by Senator Bernie Sanders on 23 September 2026 (S. 5493) and by Representative Greg Casar the next day (H.R. 10538). It would ban superintelligent AI, pause advanced AI work until a new federal Department of Artificial Intelligence sets safety rules, and seek international agreements. It has been referred to committee.",
+   "url": "https://www.congress.gov/bill/119th-congress/senate-bill/5493",
+   "url2": "https://www.congress.gov/bill/119th-congress/house-bill/10538"
+  }
+ ],
+ "kinds_help": {
+  "Law": "Passed by a parliament or legislature. Binding, with penalties.",
+  "Regulation": "Detailed binding rules made by a government agency under a law.",
+  "Executive order": "An order from a president or governor to their own government. It can be undone by the next one.",
+  "Treaty": "An agreement between countries. Binding on those that sign and ratify it.",
+  "Bill": "A proposed law. It only counts once it passes.",
+  "Code of practice": "A guide that shows how to comply with a law. Following it is voluntary but helps.",
+  "Guidelines": "Advice from a government on how to act, without a new law.",
+  "Policy plan": "A government's plan or strategy. It sets direction, not rules.",
+  "Declaration": "A shared statement of intent signed by countries. Not binding.",
+  "Voluntary commitment": "Promises companies or countries make on their own. No penalty if broken.",
+  "Company framework": "A lab's own rules for when to add safeguards. Voluntary, though some laws now require one.",
+  "Summit": "A meeting of governments and others. It can produce statements and new plans.",
+  "Scientific report": "Expert findings to inform decisions. Not a rule.",
+  "UN resolution": "A decision of the United Nations General Assembly. Usually not binding on countries.",
+  "Public statement": "A statement anyone can sign. It shows public opinion, not law."
+ }
+}

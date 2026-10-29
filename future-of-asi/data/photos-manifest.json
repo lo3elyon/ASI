@@ -820,5 +820,485 @@
   "source_url": "https://acritch.com/",
   "kind": "lab-page",
   "credit": "Mathematical AI Safety Institute team page (https://acritch.com/)"
+ },
+ "martin-wattenberg": {
+  "file": "photos/martin-wattenberg.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Wattenberg2014.jpg",
+  "kind": "wikimedia",
+  "credit": "The Frank-Ratchye STUDIO for Creative Inquiry, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Wattenberg2014.jpg)"
+ },
+ "zhang-ya-qin": {
+  "file": "photos/zhang-ya-qin.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:UN_AI_for_Good_Summit_2025_-_Ya-Qin_Zhang_01.jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:UN_AI_for_Good_Summit_2025_-_Ya-Qin_Zhang_01.jpg)"
+ },
+ "jess-whittlestone": {
+  "file": "photos/jess-whittlestone.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:AI_for_Good_Global_Summit_2018_(42110671342)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "ITU Pictures from Geneva, Switzerland, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AI_for_Good_Global_Summit_2018_(42110671342)_(cropped).jpg)"
+ },
+ "mark-nitzberg": {
+  "file": "photos/mark-nitzberg.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Headshot_EECS_Nov_2024.png",
+  "kind": "wikimedia",
+  "credit": "Nitzberg, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Headshot_EECS_Nov_2024.png)"
+ },
+ "scott-aaronson": {
+  "file": "photos/scott-aaronson.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Scott_Aaronson.jpg",
+  "kind": "wikimedia",
+  "credit": "Easy n, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Scott_Aaronson.jpg)"
+ },
+ "anthony-aguirre": {
+  "file": "photos/anthony-aguirre.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Anthony_Aguirre_at_FAS_2026.jpg",
+  "kind": "wikimedia",
+  "credit": "Spadeborks, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Anthony_Aguirre_at_FAS_2026.jpg)"
+ },
+ "aza-raskin": {
+  "file": "photos/aza-raskin.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:AzaRaskin2019.jpg",
+  "kind": "wikimedia",
+  "credit": "Techtorontorer55, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AzaRaskin2019.jpg)"
+ },
+ "robin-hanson": {
+  "file": "photos/robin-hanson.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Robin_Hanson_at_Manifest_2023.jpg",
+  "kind": "wikimedia",
+  "credit": "Nikita Sokolsky, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Robin_Hanson_at_Manifest_2023.jpg)"
+ },
+ "john-schulman": {
+  "file": "photos/john-schulman.jpg",
+  "source_url": "http://joschu.net/",
+  "kind": "homepage",
+  "credit": "John Schulman's homepage (joschu.net)"
+ },
+ "dean-ball": {
+  "file": "photos/dean-ball.jpg",
+  "source_url": "https://www.deanball.com/",
+  "kind": "homepage",
+  "credit": "Dean Ball's homepage (deanball.com)"
+ },
+ "kaiming-he": {
+  "file": "photos/kaiming-he.jpg",
+  "source_url": "https://people.csail.mit.edu/kaiming/",
+  "kind": "homepage",
+  "credit": "Kaiming He's MIT CSAIL homepage"
+ },
+ "nando-de-freitas": {
+  "file": "photos/nando-de-freitas.jpg",
+  "source_url": "https://www.cs.ox.ac.uk/people/nando.defreitas/",
+  "kind": "lab-page",
+  "credit": "University of Oxford Department of Computer Science people page"
+ },
+ "been-kim": {
+  "file": "photos/been-kim.jpg",
+  "source_url": "https://beenkim.github.io/",
+  "kind": "homepage",
+  "credit": "Been Kim's homepage (beenkim.github.io)"
+ },
+ "alex-turner": {
+  "file": "photos/alex-turner.jpg",
+  "source_url": "https://turntrout.com/about",
+  "kind": "homepage",
+  "credit": "Alex Turner's site (turntrout.com/about)"
+ },
+ "q-vera-liao": {
+  "file": "photos/q-vera-liao.jpg",
+  "source_url": "https://www.qveraliao.com/",
+  "kind": "homepage",
+  "credit": "Q. Vera Liao's homepage (qveraliao.com)"
+ },
+ "julian-schrittwieser": {
+  "file": "photos/julian-schrittwieser.jpg",
+  "source_url": "https://www.furidamu.org/",
+  "kind": "homepage",
+  "credit": "Julian Schrittwieser's homepage (furidamu.org)"
+ },
+ "malo-bourgon": {
+  "file": "photos/malo-bourgon.jpg",
+  "source_url": "https://intelligence.org/team/",
+  "kind": "lab-page",
+  "credit": "MIRI team page"
+ },
+ "sarah-schwettmann": {
+  "file": "photos/sarah-schwettmann.jpg",
+  "source_url": "https://transluce.org/about",
+  "kind": "lab-page",
+  "credit": "Transluce about page"
+ },
+ "robert-trager": {
+  "file": "photos/robert-trager.jpg",
+  "source_url": "https://aigi.ox.ac.uk/people/",
+  "kind": "lab-page",
+  "credit": "Oxford Martin AI Governance Initiative people page"
+ },
+ "romeo-dean": {
+  "file": "photos/romeo-dean.jpg",
+  "source_url": "https://ai-futures.org/about/",
+  "kind": "lab-page",
+  "credit": "AI Futures Project about page"
+ },
+ "sean-o-heigeartaigh": {
+  "file": "photos/sean-o-heigeartaigh.jpg",
+  "source_url": "https://www.lcfi.ac.uk/people/",
+  "kind": "lab-page",
+  "credit": "Leverhulme Centre for the Future of Intelligence people page"
+ },
+ "brian-tse": {
+  "file": "photos/brian-tse.jpg",
+  "source_url": "https://www.brian-tse.com/",
+  "kind": "homepage",
+  "credit": "Brian Tse's homepage (brian-tse.com)"
+ },
+ "todor-markov": {
+  "file": "photos/todor-markov.jpg",
+  "source_url": "https://github.com/todor-markov",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/todor-markov)"
+ },
+ "ethan-perez": {
+  "file": "photos/ethan-perez.jpg",
+  "source_url": "https://github.com/ethanjperez",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/ethanjperez)"
+ },
+ "jesse-hoogland": {
+  "file": "photos/jesse-hoogland.jpg",
+  "source_url": "https://github.com/jqhoogland",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/jqhoogland)"
+ },
+ "wojciech-zaremba": {
+  "file": "photos/wojciech-zaremba.jpg",
+  "source_url": "https://github.com/wojzaremba",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/wojzaremba)"
+ },
+ "catherine-olsson": {
+  "file": "photos/catherine-olsson.jpg",
+  "source_url": "https://github.com/catherio",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/catherio)"
+ },
+ "shengjia-zhao": {
+  "file": "photos/shengjia-zhao.jpg",
+  "source_url": "https://github.com/shengjiazhao",
+  "kind": "github",
+  "credit": "GitHub profile avatar (github.com/shengjiazhao)"
+ },
+ "arthur-conmy": {
+  "file": "photos/arthur-conmy.jpg",
+  "source_url": "https://arthurconmy.github.io/",
+  "kind": "homepage",
+  "credit": "Arthur Conmy's homepage (arthurconmy.github.io)"
+ },
+ "amanda-askell": {
+  "file": "photos/amanda-askell.jpg",
+  "source_url": "https://x.com/AmandaAskell",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@AmandaAskell)"
+ },
+ "ashish-vaswani": {
+  "file": "photos/ashish-vaswani.jpg",
+  "source_url": "https://x.com/ashVaswani",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@ashVaswani)"
+ },
+ "david-krueger": {
+  "file": "photos/david-krueger.jpg",
+  "source_url": "https://x.com/DavidSKrueger",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@DavidSKrueger)"
+ },
+ "meredith-ringel-morris": {
+  "file": "photos/meredith-ringel-morris.jpg",
+  "source_url": "https://x.com/merrierm",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@merrierm)"
+ },
+ "mark-chen": {
+  "file": "photos/mark-chen.jpg",
+  "source_url": "https://x.com/markchen90",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@markchen90)"
+ },
+ "summer-yue": {
+  "file": "photos/summer-yue.jpg",
+  "source_url": "https://x.com/summeryue0",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@summeryue0)"
+ },
+ "jack-lindsey": {
+  "file": "photos/jack-lindsey.jpg",
+  "source_url": "https://x.com/Jack_W_Lindsey",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@Jack_W_Lindsey)"
+ },
+ "samuel-marks": {
+  "file": "photos/samuel-marks.jpg",
+  "source_url": "https://x.com/saprmarks",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@saprmarks)"
+ },
+ "joshua-batson": {
+  "file": "photos/joshua-batson.jpg",
+  "source_url": "https://x.com/thebasepoint",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@thebasepoint)"
+ },
+ "stephanie-chan": {
+  "file": "photos/stephanie-chan.jpg",
+  "source_url": "https://x.com/scychan_brains",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@scychan_brains)"
+ },
+ "esben-kran": {
+  "file": "photos/esben-kran.jpg",
+  "source_url": "https://x.com/EsbenKC",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@EsbenKC)"
+ },
+ "chris-painter": {
+  "file": "photos/chris-painter.jpg",
+  "source_url": "https://x.com/ChrisPainterYup",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@ChrisPainterYup)"
+ },
+ "trenton-bricken": {
+  "file": "photos/trenton-bricken.jpg",
+  "source_url": "https://x.com/TrentonBricken",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@TrentonBricken)"
+ },
+ "anca-dragan": {
+  "file": "photos/anca-dragan.jpg",
+  "source_url": "https://x.com/ancadianadragan",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@ancadianadragan)"
+ },
+ "kim-stachenfeld": {
+  "file": "photos/kim-stachenfeld.jpg",
+  "source_url": "http://www.neurokim.com",
+  "kind": "homepage",
+  "credit": "Kim Stachenfeld's homepage (neurokim.com)"
+ },
+ "ross-girshick": {
+  "file": "photos/ross-girshick.jpg",
+  "source_url": "https://www.rossgirshick.info",
+  "kind": "homepage",
+  "credit": "Ross Girshick's homepage (rossgirshick.info)"
+ },
+ "jerry-tworek": {
+  "file": "photos/jerry-tworek.jpg",
+  "source_url": "http://millionintegrals.com",
+  "kind": "homepage",
+  "credit": "Jerry Tworek's homepage (millionintegrals.com)"
+ },
+ "michael-i-jordan": {
+  "file": "photos/michael-i-jordan.jpg",
+  "source_url": "https://people.eecs.berkeley.edu/~jordan/",
+  "kind": "homepage",
+  "credit": "Michael I. Jordan's UC Berkeley homepage"
+ },
+ "max-welling": {
+  "file": "photos/max-welling.jpg",
+  "source_url": "https://amlab.science.uva.nl/people/MaxWelling/",
+  "kind": "lab-page",
+  "credit": "University of Amsterdam AMLab people page"
+ },
+ "raja-chatila": {
+  "file": "photos/raja-chatila.jpg",
+  "source_url": "https://www.isir.upmc.fr/personnel/chatila/",
+  "kind": "lab-page",
+  "credit": "ISIR, Sorbonne Université staff page"
+ },
+ "jasjeet-sekhon": {
+  "file": "photos/jasjeet-sekhon.jpg",
+  "source_url": "https://www.jsekhon.com/",
+  "kind": "homepage",
+  "credit": "Jasjeet S. Sekhon's homepage (jsekhon.com)"
+ },
+ "roger-grosse": {
+  "file": "photos/roger-grosse.jpg",
+  "source_url": "https://vectorinstitute.ai/team/roger-grosse/",
+  "kind": "lab-page",
+  "credit": "Vector Institute team page"
+ },
+ "daniela-amodei": {
+  "file": "photos/daniela-amodei.jpg",
+  "source_url": "https://www.wired.com/story/big-interview-event-daniela-amodei-anthropic/",
+  "kind": "news",
+  "credit": "WIRED"
+ },
+ "benjamin-mann": {
+  "file": "photos/benjamin-mann.jpg",
+  "source_url": "https://sfstandard.com/2026/10/26/anthropic-cofounder-mystery-ben-mann/",
+  "kind": "news",
+  "credit": "The San Francisco Standard"
+ },
+ "ben-buchanan": {
+  "file": "photos/ben-buchanan.jpg",
+  "source_url": "https://hls.harvard.edu/events/a-conversation-with-ben-buchanan-on-national-security-and-ai-policy/",
+  "kind": "conference",
+  "credit": "Harvard Law School event page"
+ },
+ "amit-sheth": {
+  "file": "photos/amit-sheth.jpg",
+  "source_url": "https://sc.edu/study/colleges_schools/engineering_and_computing/faculty-staff/amitsheth.php",
+  "kind": "lab-page",
+  "credit": "University of South Carolina, Molinaroli College of Engineering and Computing faculty page"
+ },
+ "laura-weidinger": {
+  "file": "photos/laura-weidinger.jpg",
+  "source_url": "https://x.com/weidingerlaura",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@weidingerlaura)"
+ },
+ "balaraman-ravindran": {
+  "file": "photos/balaraman-ravindran.jpg",
+  "source_url": "https://x.com/ravi_iitm",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@ravi_iitm)"
+ },
+ "benjamin-rosman": {
+  "file": "photos/benjamin-rosman.jpg",
+  "source_url": "https://x.com/BenjaminRosman",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@BenjaminRosman)"
+ },
+ "abhishek-singh": {
+  "file": "photos/abhishek-singh.jpg",
+  "source_url": "https://x.com/abhish18",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@abhish18)"
+ },
+ "gretchen-krueger": {
+  "file": "photos/gretchen-krueger.jpg",
+  "source_url": "https://cyber.harvard.edu/people/gretchen-krueger",
+  "kind": "lab-page",
+  "credit": "Berkman Klein Center, Harvard University people page"
+ },
+ "saachi-jain": {
+  "file": "photos/saachi-jain.jpg",
+  "source_url": "https://saachij.com/",
+  "kind": "homepage",
+  "credit": "Saachi Jain's homepage (saachij.com)"
+ },
+ "jacob-coxon": {
+  "file": "photos/jacob-coxon.jpg",
+  "source_url": "https://www.wsj.com/tech/ai/jacob-coxon-quit-anthropic-ai-safety-3f4e877c",
+  "kind": "news",
+  "credit": "Jonah Reenders for The Wall Street Journal"
+ },
+ "akiko-murakami": {
+  "file": "photos/akiko-murakami.jpg",
+  "source_url": "https://tdgi.org/tech-diplomacy-global-50-2026/",
+  "kind": "conference",
+  "credit": "Tech Diplomacy Global Institute, Global 50 2026"
+ },
+ "gregory-wayne": {
+  "file": "photos/gregory-wayne.jpg",
+  "source_url": "https://www.innovatorsunder35.com/the-list/gregory-wayne/",
+  "kind": "news",
+  "credit": "MIT Technology Review Innovators Under 35"
+ },
+ "shahar-avin": {
+  "file": "photos/shahar-avin.jpg",
+  "source_url": "https://www.cser.ac.uk/team/shahar-avin/",
+  "kind": "lab-page",
+  "credit": "Centre for the Study of Existential Risk team page"
+ },
+ "kim-myuhng-joo": {
+  "file": "photos/kim-myuhng-joo.jpg",
+  "source_url": "https://biz.chosun.com/en/en-it/2025/12/07/3I7JA7ZEW5CALFVYQNRUN37VBM/",
+  "kind": "news",
+  "credit": "Chosunbiz (courtesy of Ahn Sang-hee)"
+ },
+ "ponnurangam-kumaraguru": {
+  "file": "photos/ponnurangam-kumaraguru.jpg",
+  "source_url": "https://precog.iiit.ac.in/bio/",
+  "kind": "lab-page",
+  "credit": "Precog Research Group, IIIT Hyderabad (PK bio page)"
+ },
+ "mausam": {
+  "file": "photos/mausam.jpg",
+  "source_url": "https://www.cse.iitd.ac.in/~mausam/",
+  "kind": "homepage",
+  "credit": "Mausam's IIT Delhi homepage"
+ },
+ "zeng-yi": {
+  "file": "photos/zeng-yi.jpg",
+  "source_url": "https://www.unesco.org/ethics-ai/en/ai-ethics-experts-without-borders/yi-zeng",
+  "kind": "other",
+  "credit": "UNESCO AI Ethics Experts Without Borders"
+ },
+ "robert-miles": {
+  "file": "photos/robert-miles.jpg",
+  "source_url": "https://www.youtube.com/watch?v=DyZye1GZtfk",
+  "kind": "youtube",
+  "credit": "The Inside View podcast, YouTube thumbnail"
+ },
+ "vanessa-kosoy": {
+  "file": "photos/vanessa-kosoy.jpg",
+  "source_url": "https://www.youtube.com/watch?v=1MCRQF0_5zY",
+  "kind": "youtube",
+  "credit": "YouTube video frame (Will Petillo channel)"
+ },
+ "mia-glaese": {
+  "file": "photos/mia-glaese.jpg",
+  "source_url": "https://www.fastcompany.com/91498841/openai-codex-growing-fast-agentic-engineering",
+  "kind": "news",
+  "credit": "Fast Company"
+ },
+ "josh-achiam": {
+  "file": "photos/josh-achiam.jpg",
+  "source_url": "https://www.wired.com/story/openai-chief-futurist-joshua-achiam-is-leaving-the-company/",
+  "kind": "news",
+  "credit": "WIRED (Getty Images)"
+ },
+ "mary-phuong": {
+  "file": "photos/mary-phuong.jpg",
+  "source_url": "https://www.youtube.com/watch?v=pO8IcIqhHuk",
+  "kind": "conference",
+  "credit": "FAR.AI Vienna Alignment Workshop 2024 talk thumbnail"
+ },
+ "adam-shai": {
+  "file": "photos/adam-shai.jpg",
+  "source_url": "https://manifund.org/projects/simplex---building-our-research-team",
+  "kind": "other",
+  "credit": "Manifund profile avatar"
+ },
+ "paul-riechers": {
+  "file": "photos/paul-riechers.jpg",
+  "source_url": "https://www.youtube.com/watch?v=nXgpi5-0GNA",
+  "kind": "conference",
+  "credit": "FAR Labs seminar thumbnail (YouTube)"
+ },
+ "carroll-wainwright": {
+  "file": "photos/carroll-wainwright.jpg",
+  "source_url": "https://x.com/clwainwright",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@clwainwright)"
+ },
+ "daniel-ziegler": {
+  "file": "photos/daniel-ziegler.jpg",
+  "source_url": "https://x.com/d_m_ziegler",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@d_m_ziegler)"
+ },
+ "adly-templeton": {
+  "file": "photos/adly-templeton.jpg",
+  "source_url": "https://x.com/TempletonAdly",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@TempletonAdly)"
+ },
+ "tejal-patwardhan": {
+  "file": "photos/tejal-patwardhan.jpg",
+  "source_url": "https://x.com/tejalpatwardhan",
+  "kind": "x",
+  "credit": "X/Twitter profile image (@tejalpatwardhan)"
  }
 }

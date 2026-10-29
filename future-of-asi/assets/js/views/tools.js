@@ -1,6 +1,8 @@
 import { $, $$, esc, load, arr, researchers, pageHero, store, ICON, clamp, toast } from "../util.js";
+import { NEW_TABS, compute, horizon, wrap as wrap3 } from "../views3/tools3.js";
+import { pic } from "../views3/kit.js";
 
-const TABS = [["pdoom", "p(doom) calculator"], ["timelines", "AGI timeline forecaster"], ["dial", "Risk dial"]];
+const TABS = [["pdoom", "p(doom) calculator"], ["timelines", "AGI timeline forecaster"], ["dial", "Risk dial"], ...NEW_TABS];
 const PREMISES = [
   ["build", "Possible to build", "By 2070 it is possible and affordable to build advanced, agentic, strategically aware AI.", 65],
   ["incent", "Strong incentives", "There are strong incentives to build and deploy such systems.", 80],
@@ -24,13 +26,15 @@ const logit = (p) => Math.log(p / (1 - p)), sig = (x) => 1 / (1 + Math.exp(-x));
 export async function render(el, params) {
   const [ppl, fc] = await Promise.all([researchers(), load("forecasts.json")]);
   const forecasts = arr(fc, "forecasts").slice().sort((a, b) => a.year - b.year);
-  el.innerHTML = `${pageHero({ img: "cover-tools", eyebrow: "Tools", title: "Think it through <span class='serif gt-ember'>yourself.</span>", lead: "Three small instruments for your own judgment. They do not predict anything. They make your assumptions visible, so you can argue with them." })}
-  <section class="section tight"><div class="wrap">${gauges(ppl, forecasts)}<div class="tool-tabs" role="tablist">${TABS.map(([id, n]) => `<a class="chip" role="tab" href="#/tools/${id}" data-t="${id}">${n}</a>`).join("")}</div><div id="tool"></div></div></section>`;
+  el.innerHTML = `${pageHero({ img: "cover-tools", eyebrow: "Tools", title: "Think it through <span class='serif gt-ember'>yourself.</span>", lead: "Five small instruments for your own judgment. They do not predict anything. They make your assumptions visible, so you can argue with them." })}
+  <section class="section tight"><div class="wrap">${gauges(ppl, forecasts)}<div class="tool-tabs" role="tablist">${TABS.map(([id, n]) => `<a class="chip" role="tab" href="#/tools/${id}" data-t="${id}">${n}</a>`).join("")}</div><div class="t3-art" id="toolArt" aria-hidden="true"></div><div id="tool"></div></div></section>`;
+  wrap3(el);
   const show = (p) => {
     const id = TABS.some((t) => t[0] === p[0]) ? p[0] : "pdoom";
     $$("[data-t]", el).forEach((a) => { a.classList.toggle("on", a.dataset.t === id); a.setAttribute("aria-selected", a.dataset.t === id); });
     const host = $("#tool", el);
-    ({ pdoom: () => pdoom(host, ppl), timelines: () => timelines(host, forecasts, ppl), dial: () => dial(host) })[id]();
+    ({ pdoom: () => pdoom(host, ppl), timelines: () => timelines(host, forecasts, ppl), dial: () => dial(host), compute: () => compute(host), horizon: () => horizon(host) })[id]();
+    const art = $("#toolArt", el); if (art) art.innerHTML = pic("tool-" + id, "", { sizes: "(max-width: 760px) 100vw, 1200px" });
   };
   el._onParams = show;
   show(params);

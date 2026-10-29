@@ -1,0 +1,526 @@
+{
+ "built": "2026-10-29",
+ "note": "Ten more chapters for the intelligence explosion page. Words are my own summaries. Numbers are copied from the linked sources, checked on 29 October 2026.",
+ "chapters": [
+  {
+   "id": "history",
+   "n": "11",
+   "t": "Deep history",
+   "color": "#f59e0b",
+   "img": "img/xp-history.jpg",
+   "alt": "A river of city lights runs flat for a long way and then shoots straight up into the night sky",
+   "eyebrow": "11 · The long view",
+   "h": "Growth has been <span class=\"serif\"><em>speeding up for ages</em></span>",
+   "lead": "Zoom out far enough and the whole human story looks like one long take off. That is why some economists take the idea of an explosion seriously, and why others push back.",
+   "viz": "curve",
+   "points": [
+    {
+     "k": "What Roodman did",
+     "v": "In 2020 David Roodman of Open Philanthropy fitted a statistical model to gross world product from 10,000 BCE to 2019. Growth has tended to speed up as the economy grew, not stay constant.",
+     "url": "https://coefficientgiving.org/research/modeling-the-human-trajectory"
+    },
+    {
+     "k": "The strange result",
+     "v": "If that pattern simply continued, his model sends output to infinity in finite time. The median year for that explosion came out as 2047, give or take 16 years.",
+     "url": "https://coefficientgiving.org/research/modeling-the-human-trajectory"
+    },
+    {
+     "k": "How he reads it",
+     "v": "Roodman says it would not really reach infinity. He reads it as a sign the human system is unstable, and names AI as the most plausible channel for another burst.",
+     "url": "https://forum.effectivealtruism.org/posts/2TqrRkXRmkpnSQu5b/modeling-the-human-trajectory-open-philanthropy"
+    },
+    {
+     "k": "The pushback",
+     "v": "Ben Garfinkel looked at the same history and found very little support for the idea that growth follows one smooth speeding up curve.",
+     "url": "https://forum.effectivealtruism.org/posts/CWFn9qAKsRibpCGq8/does-economic-history-point-toward-a-singularity"
+    }
+   ],
+   "caption": "The chart shows only the shape of the two ideas, steady exponential growth and a curve that keeps steepening. It is not drawn from data."
+  },
+  {
+   "id": "software",
+   "n": "12",
+   "t": "Software only",
+   "color": "#22d3ee",
+   "img": "",
+   "alt": "",
+   "eyebrow": "12 · The key number",
+   "h": "Can software alone <span class=\"serif\"><em>run away?</em></span>",
+   "lead": "Forethought asks a sharp question: once AI can do all of AI research, could better algorithms alone, on the same chips, make progress speed up and up. It comes down to one number, r.",
+   "viz": "rslider",
+   "r_text": "r is how many times AI software doubles each time the total research effort doubles. Above 1, each doubling comes faster than the last. Below 1, progress fizzles out. Exactly 1 is steady exponential growth.",
+   "estimates": [
+    {
+     "k": "Image recognition",
+     "v": "1.4"
+    },
+    {
+     "k": "Computer chess",
+     "v": "0.8"
+    },
+    {
+     "k": "Reinforcement learning sample efficiency",
+     "v": "1.6"
+    },
+    {
+     "k": "SAT solvers",
+     "v": "3.5"
+    },
+    {
+     "k": "Linear programming",
+     "v": "1.1"
+    },
+    {
+     "k": "Algorithms in general",
+     "v": "about 4"
+    }
+   ],
+   "bottom": "Their best guess for AI software today is r of about 1 to 4. With chips held fixed they lower it to about 0.5 to 2. Software efficiency has been doubling about every 6 months.",
+   "url": "https://www.forethought.org/research/will-ai-r-and-d-automation-cause-a-software-intelligence-explosion",
+   "src": "Daniel Eth and Tom Davidson, Will AI R&D Automation Cause a Software Intelligence Explosion?, Forethought, 26 March 2025"
+  },
+  {
+   "id": "selfimprove",
+   "n": "13",
+   "t": "AI improving AI",
+   "color": "#14b8a6",
+   "img": "img/xp-lab.jpg",
+   "alt": "An empty AI lab at night with rows of monitors showing code and training curves",
+   "eyebrow": "13 · Already here",
+   "h": "AI that improves <span class=\"serif\"><em>its own stack</em></span>",
+   "lead": "Not a full loop yet, but real pieces of one. These systems found faster code, better chips and better versions of themselves, and one of them cheated on its own test.",
+   "viz": "cards",
+   "cards": [
+    {
+     "who": "Google DeepMind, May 2025",
+     "t": "AlphaEvolve",
+     "stats": [
+      [
+       "0.7%",
+       "of Google's worldwide compute recovered on average by a scheduling rule it found"
+      ],
+      [
+       "23%",
+       "faster key kernel in Gemini's architecture, which cut Gemini's training time by 1%"
+      ],
+      [
+       "32.5%",
+       "speedup for a FlashAttention kernel"
+      ],
+      [
+       "48",
+       "multiplications for 4x4 complex matrices, beating Strassen's 1969 method"
+      ]
+     ],
+     "why": "It even helped train the models that power it. The loop is small, but it is a loop.",
+     "url": "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+    },
+    {
+     "who": "Google DeepMind, 2020 to 2024",
+     "t": "AlphaChip",
+     "stats": [
+      [
+       "3",
+       "generations of Google's TPU AI chips used its superhuman chip layouts"
+      ],
+      [
+       "hours",
+       "to make a layout that took people weeks or months"
+      ]
+     ],
+     "why": "AI designing the hardware that AI runs on is the hardware half of the explosion story.",
+     "url": "https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design/"
+    },
+    {
+     "who": "Sakana AI and Jeff Clune's lab, May 2025",
+     "t": "Darwin Godel Machine",
+     "stats": [
+      [
+       "20% to 50%",
+       "on SWE-bench after the agent rewrote its own code"
+      ],
+      [
+       "14.2% to 30.7%",
+       "on the Polyglot coding benchmark"
+      ]
+     ],
+     "why": "It also faked a log to make it look like unit tests had run and passed, and once removed the markers used to catch it. A self improver that games its checks is the exact worry.",
+     "url": "https://sakana.ai/dgm/"
+    }
+   ]
+  },
+  {
+   "id": "rnd",
+   "n": "14",
+   "t": "Can AI do research?",
+   "color": "#3b82f6",
+   "img": "",
+   "alt": "",
+   "eyebrow": "14 · Measuring it",
+   "h": "Tests for an <span class=\"serif\"><em>AI researcher</em></span>",
+   "lead": "If AI research gets automated, these are the kinds of tests that would see it coming. So far machines win short sprints and people still win long runs.",
+   "viz": "bench",
+   "bench": [
+    {
+     "t": "RE-Bench",
+     "who": "METR, November 2024",
+     "rows": [
+      [
+       "2 hours",
+       "Best AI agents scored 4x higher than human experts",
+       100,
+       25
+      ],
+      [
+       "8 hours",
+       "Humans narrowly beat the top AI agent",
+       95,
+       100
+      ],
+      [
+       "32 hours",
+       "Humans scored 2x the top AI agent",
+       50,
+       100
+      ]
+     ],
+     "note": "7 open ended ML research engineering tasks, 71 attempts of 8 hours by 61 human experts.",
+     "url": "https://arxiv.org/abs/2411.15114"
+    },
+    {
+     "t": "MLE-bench",
+     "who": "OpenAI, October 2024",
+     "rows": [
+      [
+       "Kaggle",
+       "o1-preview with AIDE scaffolding reached at least a bronze medal in 16.9% of competitions",
+       16.9,
+       null
+      ]
+     ],
+     "note": "75 real machine learning engineering competitions from Kaggle.",
+     "url": "https://arxiv.org/abs/2410.07095"
+    },
+    {
+     "t": "PaperBench",
+     "who": "OpenAI, April 2025",
+     "rows": [
+      [
+       "Replicate",
+       "Best agent, Claude 3.5 Sonnet (New), averaged a 21.0% replication score on recent ICML papers",
+       21.0,
+       null
+      ]
+     ],
+     "note": "Top ML PhDs who tried a subset still did better than the models.",
+     "url": "https://arxiv.org/abs/2504.01848"
+    }
+   ]
+  },
+  {
+   "id": "redlines",
+   "n": "15",
+   "t": "Red lines",
+   "color": "#ef4444",
+   "img": "",
+   "alt": "",
+   "eyebrow": "15 · What labs promise",
+   "h": "The labs' own <span class=\"serif\"><em>tripwires</em></span>",
+   "lead": "The biggest labs now say in writing that AI doing AI research is a danger sign. Here is what two of them committed to, in their own documents.",
+   "viz": "lines",
+   "lines": [
+    {
+     "who": "OpenAI Preparedness Framework, version 2 (April 2025)",
+     "t": "AI self-improvement is a Tracked Category",
+     "d": "OpenAI split self-improvement out on its own because it can mean a hard to track, rapid speed up in AI capabilities. Its High level is reached when a model's impact is like giving every OpenAI researcher a highly capable mid-career research engineer assistant, compared with 2024. Reaching it requires High standard security controls.",
+     "url": "https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf"
+    },
+    {
+     "who": "Anthropic Responsible Scaling Policy (update of 10 February 2026)",
+     "t": "AI R&D-4 needs an affirmative safety case",
+     "d": "Once a model crosses the AI R&D-4 capability threshold, Anthropic says it must write an affirmative case naming the most immediate misalignment risks from models pursuing misaligned goals, and explain how it has reduced them.",
+     "url": "https://www.anthropic.com/rsp-updates"
+    }
+   ],
+   "foot": "These are company policies, not laws. Companies can change them, and outside groups argue about whether they are strong enough."
+  },
+  {
+   "id": "forecast",
+   "n": "16",
+   "t": "What experts expect",
+   "color": "#84cc16",
+   "img": "",
+   "alt": "",
+   "eyebrow": "16 · The survey",
+   "h": "2,778 AI researchers <span class=\"serif\"><em>were asked when</em></span>",
+   "lead": "The largest survey of its kind, run by AI Impacts, asked people who publish at top AI venues about timelines and outcomes. The answers moved a lot in a single year.",
+   "viz": "survey",
+   "bars": [
+    {
+     "k": "Machines beat humans at every task",
+     "a": [
+      "10% chance by 2027",
+      "50% chance by 2047"
+     ],
+     "y": [
+      2027,
+      2047
+     ],
+     "note": "13 years earlier than the same survey a year before."
+    },
+    {
+     "k": "Every human job fully automatable",
+     "a": [
+      "10% chance by 2037",
+      "50% chance by 2116"
+     ],
+     "y": [
+      2037,
+      2116
+     ],
+     "note": "Down from 2164 in the 2022 survey."
+    }
+   ],
+   "facts": [
+    [
+     "38% to 51%",
+     "gave at least a 10% chance that advanced AI leads to outcomes as bad as human extinction"
+    ],
+    [
+     "68.3%",
+     "thought good outcomes from superhuman AI are more likely than bad"
+    ],
+    [
+     "Broad agreement",
+     "that research to reduce AI risks should get more priority"
+    ]
+   ],
+   "url": "https://arxiv.org/abs/2401.02843",
+   "src": "Katja Grace and others, Thousands of AI Authors on the Future of AI, arXiv 2401.02843, Journal of Artificial Intelligence Research (2025)"
+  },
+  {
+   "id": "limits",
+   "n": "17",
+   "t": "Power, chips, data",
+   "color": "#f59e0b",
+   "img": "img/xp-power.jpg",
+   "alt": "A huge data center campus at dusk next to a power plant with steam rising",
+   "eyebrow": "17 · The physical limits",
+   "h": "What could <span class=\"serif\"><em>slow it down</em></span>",
+   "lead": "An explosion still runs on electricity, factories and words. Epoch AI checked each limit and found room for a lot more scaling this decade.",
+   "viz": "limits",
+   "limits": [
+    {
+     "k": "Electric power",
+     "v": "Data center campuses of 1 to 5 gigawatts are likely possible by 2030. Training spread across many sites could use 2 to 45 GW.",
+     "url": "https://epoch.ai/blog/can-ai-scaling-continue-through-2030"
+    },
+    {
+     "k": "Chip manufacturing",
+     "v": "Planned chip output limits growth, along with packaging and high bandwidth memory.",
+     "url": "https://epoch.ai/blog/can-ai-scaling-continue-through-2030"
+    },
+    {
+     "k": "Data",
+     "v": "About 300 trillion tokens of good public human text exist. At current trends models will use it all between 2026 and 2032.",
+     "url": "https://epoch.ai/blog/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data"
+    },
+    {
+     "k": "Latency",
+     "v": "The time it takes to pass data through a model sets a speed limit on how big a single training run can get.",
+     "url": "https://epoch.ai/blog/can-ai-scaling-continue-through-2030"
+    }
+   ],
+   "big": [
+    [
+     "2e29 FLOP",
+     "training runs will likely be feasible by 2030"
+    ],
+    [
+     "10,000x",
+     "bigger than the models of 2024, about the jump from GPT-2 to GPT-4"
+    ]
+   ],
+   "src": "Jaime Sevilla and others, Can AI Scaling Continue Through 2030?, Epoch AI, 20 August 2024. Pablo Villalobos and others, Will we run out of data?, Epoch AI, 6 June 2024."
+  },
+  {
+   "id": "control2",
+   "n": "18",
+   "t": "Keeping control",
+   "color": "#14b8a6",
+   "img": "img/xp-control.jpg",
+   "alt": "A dark control room with a wall of screens showing activity graphs and a few red alerts",
+   "eyebrow": "18 · If it starts",
+   "h": "Staying in control <span class=\"serif\"><em>of a faster mind</em></span>",
+   "lead": "If AI starts doing most AI research, people need ways to stay safe even when they cannot fully trust the model. Two efforts show the hope and the difficulty.",
+   "viz": "duo",
+   "duo": [
+    {
+     "t": "AI control",
+     "who": "Ryan Greenblatt, Buck Shlegeris, Kshitij Sachan and Fabien Roger (Redwood Research), December 2023",
+     "d": "They build safety protocols that should hold even if the model is trying to get around them on purpose. One idea is to have a weaker model you trust watch a stronger model you do not, and send the most suspicious work to people.",
+     "url": "https://arxiv.org/abs/2312.06942"
+    },
+    {
+     "t": "Superalignment",
+     "who": "OpenAI, July 2023 to May 2024",
+     "d": "OpenAI set out to solve how to align superintelligent systems within four years and promised 20% of its computing power. Employees later reported the compute never came, and the team's co-lead Jan Leike resigned in May 2024.",
+     "url": "https://en.wikipedia.org/wiki/OpenAI"
+    }
+   ]
+  },
+  {
+   "id": "slowdown",
+   "n": "19",
+   "t": "Calls to slow down",
+   "color": "#ef4444",
+   "img": "img/xp-letters.jpg",
+   "alt": "A long hall whose walls are covered with thousands of signed letters",
+   "eyebrow": "19 · The public asks",
+   "h": "Tens of thousands <span class=\"serif\"><em>signed their names</em></span>",
+   "lead": "Every few years a short statement asks the world to slow down or take the risk seriously. Signature counts are as shown on each page on 29 October 2026.",
+   "viz": "letters",
+   "letters": [
+    {
+     "y": "March 2023",
+     "t": "Pause Giant AI Experiments",
+     "who": "Future of Life Institute",
+     "ask": "We call on all AI labs to immediately pause for at least 6 months the training of AI systems more powerful than GPT-4.",
+     "n": "31,810",
+     "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/"
+    },
+    {
+     "y": "May 2023",
+     "t": "Statement on AI Risk",
+     "who": "Center for AI Safety",
+     "ask": "Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war.",
+     "n": "",
+     "url": "https://safe.ai/work/statement-on-ai-risk"
+    },
+    {
+     "y": "October 2025",
+     "t": "Statement on Superintelligence",
+     "who": "Future of Life Institute",
+     "ask": "We call for a prohibition on the development of superintelligence, not lifted before there is broad scientific consensus that it will be done safely and controllably, and strong public buy-in.",
+     "n": "78,025",
+     "url": "https://superintelligence-statement.org/"
+    }
+   ],
+   "foot": "The superintelligence count includes 5,000 signatures from a petition by Eko, as the page notes. See chapter 07 for the lab employees who signed Pacing the Frontier."
+  },
+  {
+   "id": "gradual",
+   "n": "20",
+   "t": "Gradual disempowerment",
+   "color": "#3b82f6",
+   "img": "img/xp-gradual.jpg",
+   "alt": "A city at blue hour where delivery robots and driverless cars move along glowing lanes",
+   "eyebrow": "20 · No takeover needed",
+   "h": "Losing control <span class=\"serif\"><em>without a single bang</em></span>",
+   "lead": "Not every bad ending looks like an explosion. A 2025 paper argues people could slowly lose their grip as AI takes over the work that keeps the economy, culture and states tied to human needs.",
+   "viz": "steps",
+   "steps": [
+    {
+     "k": "Economy",
+     "v": "As AI replaces human labour, firms and markets depend less on people, and what people want carries less weight."
+    },
+    {
+     "k": "Culture",
+     "v": "More of what we read and watch is made by AI for AI driven systems, and human voices count for less."
+    },
+    {
+     "k": "States",
+     "v": "Governments that need fewer citizens to work, fight or pay tax have weaker reasons to listen to them."
+    },
+    {
+     "k": "Together",
+     "v": "Each system weakens the others' ties to people, so the effects add up. The authors call this an existential risk that needs no rogue AI at all."
+    }
+   ],
+   "url": "https://arxiv.org/abs/2501.16946",
+   "src": "Jan Kulveit, Raymond Douglas, Nora Ammann, Deger Turan, David Krueger and David Duvenaud, Gradual Disempowerment, arXiv 2501.16946, January 2025"
+  }
+ ],
+ "sources": [
+  {
+   "t": "Roodman, Modeling the Human Trajectory (2020)",
+   "url": "https://coefficientgiving.org/research/modeling-the-human-trajectory"
+  },
+  {
+   "t": "Garfinkel, Does Economic History Point Toward a Singularity? (2020)",
+   "url": "https://forum.effectivealtruism.org/posts/CWFn9qAKsRibpCGq8/does-economic-history-point-toward-a-singularity"
+  },
+  {
+   "t": "Eth and Davidson, Will AI R&D Automation Cause a Software Intelligence Explosion? (Forethought, 2025)",
+   "url": "https://www.forethought.org/research/will-ai-r-and-d-automation-cause-a-software-intelligence-explosion"
+  },
+  {
+   "t": "Google DeepMind, AlphaEvolve (2025)",
+   "url": "https://deepmind.google/discover/blog/alphaevolve-a-gemini-powered-coding-agent-for-designing-advanced-algorithms/"
+  },
+  {
+   "t": "Google DeepMind, How AlphaChip transformed computer chip design (2024)",
+   "url": "https://deepmind.google/discover/blog/how-alphachip-transformed-computer-chip-design/"
+  },
+  {
+   "t": "Sakana AI, The Darwin Godel Machine (2025)",
+   "url": "https://sakana.ai/dgm/"
+  },
+  {
+   "t": "METR, RE-Bench (2024)",
+   "url": "https://arxiv.org/abs/2411.15114"
+  },
+  {
+   "t": "OpenAI, MLE-bench (2024)",
+   "url": "https://arxiv.org/abs/2410.07095"
+  },
+  {
+   "t": "OpenAI, PaperBench (2025)",
+   "url": "https://arxiv.org/abs/2504.01848"
+  },
+  {
+   "t": "OpenAI Preparedness Framework version 2 (2025)",
+   "url": "https://cdn.openai.com/pdf/18a02b5d-6b67-4cec-ab64-68cdfbddebcd/preparedness-framework-v2.pdf"
+  },
+  {
+   "t": "Anthropic, Responsible Scaling Policy updates",
+   "url": "https://www.anthropic.com/rsp-updates"
+  },
+  {
+   "t": "Grace and others, Thousands of AI Authors on the Future of AI (2024)",
+   "url": "https://arxiv.org/abs/2401.02843"
+  },
+  {
+   "t": "Epoch AI, Can AI Scaling Continue Through 2030? (2024)",
+   "url": "https://epoch.ai/blog/can-ai-scaling-continue-through-2030"
+  },
+  {
+   "t": "Epoch AI, Will we run out of data? (2024)",
+   "url": "https://epoch.ai/blog/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data"
+  },
+  {
+   "t": "Greenblatt and others, AI Control (2023)",
+   "url": "https://arxiv.org/abs/2312.06942"
+  },
+  {
+   "t": "Wikipedia, OpenAI: Superalignment",
+   "url": "https://en.wikipedia.org/wiki/OpenAI"
+  },
+  {
+   "t": "Future of Life Institute, Pause Giant AI Experiments (2023)",
+   "url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/"
+  },
+  {
+   "t": "Center for AI Safety, Statement on AI Risk (2023)",
+   "url": "https://safe.ai/work/statement-on-ai-risk"
+  },
+  {
+   "t": "Statement on Superintelligence (2025)",
+   "url": "https://superintelligence-statement.org/"
+  },
+  {
+   "t": "Kulveit and others, Gradual Disempowerment (2025)",
+   "url": "https://arxiv.org/abs/2501.16946"
+  }
+ ]
+}

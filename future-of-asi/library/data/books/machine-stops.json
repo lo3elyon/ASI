@@ -1,0 +1,123 @@
+{
+ "id": "machine-stops",
+ "title": "The Machine Stops",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "E. M. Forster",
+   "rid": ""
+  }
+ ],
+ "year": "1909",
+ "publisher": "The Oxford and Cambridge Review (November 1909)",
+ "isbn": "",
+ "pages": "",
+ "ol": "/works/OL88800W",
+ "shelf": "fiction",
+ "level": "Beginner",
+ "pitch": "Written in 1909, a short story about people living alone underground, served by a global Machine that meets every need, until it starts to fail.",
+ "toc_src": "https://en.wikisource.org/wiki/The_Machine_Stops",
+ "chapters": [
+  {
+   "t": "I. The Air Ship",
+   "g": "Vashti lives in a cell, talks to thousands through screens, and reluctantly travels to see her son Kuno, who wants to visit the surface.",
+   "part": ""
+  },
+  {
+   "t": "II. The Mending Apparatus",
+   "g": "Kuno tells how he found a way to the surface and was dragged back by the Machine's repair system.",
+   "part": ""
+  },
+  {
+   "t": "III. The Homeless",
+   "g": "People come to worship the Machine. Then small faults grow, no one knows how to fix them, and the Machine stops.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Total dependence on a machine is fragile.",
+  "Comfort can replace direct experience.",
+  "A system can become an object of worship.",
+  "Knowledge of how things work can be lost."
+ ],
+ "args": [
+  {
+   "a": "Forster predicted video calls, online lectures and life lived through screens.",
+   "c": "It is a story, not a forecast, and it reflects worries of its own time."
+  },
+  {
+   "a": "Dependence on a system nobody understands is a serious risk.",
+   "c": "Modern systems have backups and engineers, though complexity still grows."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What in your life would stop if the internet stopped?",
+  "Who understands the systems you depend on?",
+  "Is the Machine aligned with its users?"
+ ],
+ "quiz": [
+  {
+   "q": "Where do people live in the story?",
+   "o": [
+    "On the surface",
+    "Underground in cells",
+    "On Mars",
+    "In ships"
+   ],
+   "a": 1,
+   "w": "Each alone in a room."
+  },
+  {
+   "q": "What does Kuno want to do?",
+   "o": [
+    "Fix the Machine",
+    "Visit the surface of the Earth",
+    "Become rich",
+    "Sleep"
+   ],
+   "a": 1,
+   "w": "A forbidden journey."
+  },
+  {
+   "q": "When was it published?",
+   "o": [
+    "1909",
+    "1949",
+    "1984",
+    "2001"
+   ],
+   "a": 0,
+   "w": "In The Oxford and Cambridge Review."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/machine-stops.json",
+  "url": "https://en.wikisource.org/wiki/The_Machine_Stops",
+  "label": "Read the full story here",
+  "licence": "Public domain in the United States (published 1909). Text from Wikisource.",
+  "licence_url": "https://en.wikisource.org/wiki/The_Machine_Stops"
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "covers/machine-stops.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Read the full story",
+   "url": "https://en.wikisource.org/wiki/The_Machine_Stops",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL88800W",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

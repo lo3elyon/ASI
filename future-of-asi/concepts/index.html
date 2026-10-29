@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="cyan">
+<head>
+  <meta charset="utf-8">
+  <base href="../">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Concepts map · Threshold</title>
+  <meta name="description" content="An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.">
+  <meta name="author" content="Aniruddha Adak">
+  <meta name="theme-color" content="#07111f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://lo3elyon.github.io/ASI/future-of-asi/concepts/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ASI by Aniruddha Adak">
+  <meta property="og:title" content="Concepts map · Threshold">
+  <meta property="og:description" content="An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.">
+  <meta property="og:url" content="https://lo3elyon.github.io/ASI/future-of-asi/concepts/">
+  <meta property="og:image" content="https://lo3elyon.github.io/ASI/future-of-asi/assets/brand/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Concepts map · Threshold">
+  <meta name="twitter:description" content="An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.">
+  <meta name="twitter:image" content="https://lo3elyon.github.io/ASI/future-of-asi/assets/brand/og.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="modulepreload" href="assets/js/util.js">
+  <link rel="modulepreload" href="assets/js/core/nav.js">
+  <link rel="modulepreload" href="assets/js/core/motion3.js">
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/v2.css">
+  <link rel="stylesheet" href="assets/css/v3-shell.css">
+  <link rel="stylesheet" href="assets/css/v3-pages.css">
+  <link rel="stylesheet" href="assets/css/v3-views.css">
+  <link rel="stylesheet" href="assets/css/v3-new.css">
+  <script>
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem("thr:prefs") || "{}");
+        var r = document.documentElement;
+        if (s.theme) r.dataset.theme = s.theme;
+        else if (window.matchMedia && matchMedia("(prefers-contrast: more)").matches) r.dataset.theme = "contrast";
+        if (s.accent) r.dataset.accent = s.accent;
+        if (s.motion === "off") r.classList.add("rm");
+        if (s.sound === "on") r.classList.add("snd");
+        var tc = { dark: "#07111f", light: "#f4f8fb", contrast: "#000000" }[s.theme];
+        if (tc) document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", tc); });
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://lo3elyon.github.io/ASI/future-of-asi/concepts/#page",
+   "url": "https://lo3elyon.github.io/ASI/future-of-asi/concepts/",
+   "name": "Concepts map · Threshold",
+   "description": "An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://lo3elyon.github.io/ASI/future-of-asi/#site",
+    "name": "Threshold: The Future of ASI",
+    "url": "https://lo3elyon.github.io/ASI/future-of-asi/"
+   },
+   "author": {
+    "@type": "Person",
+    "name": "Aniruddha Adak",
+    "url": "https://github.com/lo3elyon"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Threshold",
+     "item": "https://lo3elyon.github.io/ASI/future-of-asi/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Concepts map",
+     "item": "https://lo3elyon.github.io/ASI/future-of-asi/concepts/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="rays" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="topbar tb3" id="topbar" role="banner">
+    <a class="brand" href="#/" aria-label="Threshold home">
+      <img src="assets/brand/mark.svg" alt="" width="32" height="32">
+      <span>THRESHOLD<small>THE FUTURE OF ASI</small></span>
+    </a>
+    <noscript><nav class="nav" aria-label="Main"><a href="futures/">Futures</a><a href="researchers/">Researchers</a><a href="timeline/">Timeline</a><a href="watch/">Watch</a><a href="learn/">Learn</a><a href="explosion/">Explosion</a><a href="library/">Library</a></nav></noscript>
+  </header>
+  <div class="drawer-nav drawer3" id="drawer" aria-hidden="true"></div>
+
+  <main id="view" tabindex="-1" aria-live="polite"><div class="page prerendered"><section class="phero"><div class="wrap"><div class="eyebrow">Threshold</div><h1>Concepts map</h1><p class="lead">An interactive map of 84 ideas, linked to the glossary, lessons, papers and people.</p></div></section></div></main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <img src="assets/brand/logo.svg" alt="Threshold: The Future of ASI" width="240" height="55" style="margin-bottom:14px">
+          <p>An open, research backed guide to the future of superintelligence. Every quote has a source, every video is verified, and nothing here is a forecast you should trust blindly.</p>
+          <p class="motto">Start big, fix later, keep shipping.</p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <a href="#/futures">Futures</a><a href="#/researchers">Researchers</a><a href="#/pacing">Pacing the Frontier</a><a href="explosion/">Intelligence explosion</a><a href="library/">Library</a><a href="#/voices">Voices wall</a><a href="#/timeline">Timeline</a><a href="#/watch">Watch</a>
+        </div>
+        <div>
+          <h5>Learn and act</h5>
+          <a href="#/control">AI Control</a><a href="#/learn">Alignment 101</a><a href="#/prepare">Prepare</a><a href="#/tools">Tools</a><a href="#/orgs">Organisations</a>
+        </div>
+        <div>
+          <h5>More</h5>
+          <a href="#/blog">Blog</a><a href="#/docs">Docs</a><a href="#/docs/glossary">Glossary</a><a href="#/docs/faq">FAQ</a><a href="#/history">Your history</a><a href="https://github.com/lo3elyon/ASI/blob/main/future-of-asi/CHANGELOG.md" rel="noopener">Changelog</a><a href="../">ASI hub</a><a href="https://github.com/lo3elyon/ASI/tree/main/future-of-asi" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="legal">
+        <span>Made by Aniruddha Adak, built with Hark. Open source on GitHub.</span>
+        <span>Quotes belong to their speakers. Videos play from YouTube in privacy enhanced mode.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="palette" id="palette" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="box" role="dialog" aria-modal="true" aria-label="Search everything">
+      <div class="pal-top">
+        <label class="sr-only" for="palInput">Search</label>
+        <input id="palInput" type="search" placeholder="Search people, signers, quotes, videos, orgs, papers..." autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list">
+        <button class="icon-btn pal-x" type="button" data-close aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="pal-tabs" id="palTabs" role="tablist" aria-label="Result types"></div>
+      <div class="pal-facets" id="palFacets"></div>
+      <ul id="palList" role="listbox" aria-label="Results"></ul>
+      <div class="foot"><span><kbd>Enter</kbd> open</span><span><kbd>Up</kbd> <kbd>Down</kbd> move</span><span><kbd>Tab</kbd> next type</span><span><kbd>Esc</kbd> close</span><span class="pal-count" id="palCount"></span></div>
+    </div>
+  </div>
+  <nav class="tabbar" aria-label="Quick">
+    <a href="#/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11 12 4l9 7v9H3z"/></svg><span>Home</span></a>
+    <a href="#/researchers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg><span>People</span></a>
+    <button type="button" id="tabSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button>
+    <a href="#/watch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg><span>Watch</span></a>
+    <a href="#/learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><span>Learn</span></a>
+  </nav>
+  <div id="ovRoot"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>window.__PRE = {"route": "concepts"};</script>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

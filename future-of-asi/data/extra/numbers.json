@@ -1,0 +1,442 @@
+{
+ "meta": {
+  "checked": "2026-10-29",
+  "note": "Every figure was read on its source page on 29 October 2026. Company figures are self reported."
+ },
+ "compute": [
+  {
+   "v": "5x",
+   "l": "per year growth in training compute for frontier language models since 2020",
+   "src": "Epoch AI, Trends in AI (updated Feb 2026)",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "3.4x",
+   "l": "per year growth in the total computing power of the world's stock of AI chips",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "8 months",
+   "l": "for the compute needed to reach a given language model performance to halve, through better algorithms (95% CI 5 to 14 months)",
+   "src": "Epoch AI, Algorithmic progress in language models (2024)",
+   "url": "https://epoch.ai/blog/algorithmic-progress-in-language-models"
+  },
+  {
+   "v": "1.49x",
+   "l": "per year growth in AI chip performance per dollar since 2023",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  }
+ ],
+ "metr": {
+  "url_paper": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+  "url_page": "https://metr.org/time-horizons/",
+  "url_ant": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "points": [
+   {
+    "m": "Claude Opus 3",
+    "date": "2024-03",
+    "min": 4
+   },
+   {
+    "m": "Claude Sonnet 3.7",
+    "date": "2025-02",
+    "min": 90
+   },
+   {
+    "m": "Claude Opus 4.6",
+    "date": "2026-02",
+    "min": 720
+   },
+   {
+    "m": "Claude Mythos Preview",
+    "date": "2026-04",
+    "min": 960,
+    "floor": true
+   }
+  ],
+  "note": "Task lengths are the 50% time horizon: tasks a skilled human needs that long for, which the AI finishes about half the time. The first three points are the examples Anthropic quotes from METR. Mythos Preview is a lower bound: METR found it could work for at least 16 hours, at the upper end of what METR can measure without new tasks."
+ },
+ "anthropic": {
+  "url": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "url2": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+  "stats": [
+   {
+    "v": "80%+",
+    "l": "of the code merged into Anthropic's codebase was written by Claude, as of May 2026. Before February 2025 it was in the low single digits.",
+    "u": "url"
+   },
+   {
+    "v": "8x",
+    "l": "code merged per engineer per day in Q2 2026 compared with 2024. Anthropic says this overstates the true productivity gain.",
+    "u": "url"
+   },
+   {
+    "v": "~52x",
+    "l": "speedup Claude Mythos Preview found on a fixed training code optimisation test in April 2026, up from ~3x for Claude Opus 4 in May 2025. A skilled human reaches about 4x in four to eight hours.",
+    "u": "url"
+   },
+   {
+    "v": "97%",
+    "l": "of the weak to strong supervision gap recovered by Claude agents over 800 cumulative hours, against about 23% by two human researchers in a week.",
+    "u": "url"
+   },
+   {
+    "v": "26%",
+    "l": "of Anthropic's AI R&D work is now led by Claude (Automation Level 4), as of August 2026. No measured part is fully autonomous yet.",
+    "u": "url2"
+   },
+   {
+    "v": "~30,000",
+    "l": "agents doing research and engineering work at Anthropic at any one time on its most used internal platform, August 2026.",
+    "u": "url2"
+   }
+  ],
+  "ladder": [
+   {
+    "y": "2021 to 2023",
+    "t": "Building the first Claude",
+    "d": "People write code and docs on laptops, like any tech company."
+   },
+   {
+    "y": "2023 to 2025",
+    "t": "Chatbots",
+    "d": "People paste short code snippets from early chatbots into their editors."
+   },
+   {
+    "y": "2025 to 2026",
+    "t": "Coding agents",
+    "d": "Agents write and edit code on their own, sometimes whole files."
+   },
+   {
+    "y": "Today",
+    "t": "Autonomous agents",
+    "d": "Agents run code themselves and hand hours of work to other agents."
+   },
+   {
+    "y": "20XX?",
+    "t": "Closing the loop",
+    "d": "Agents might build and train models themselves. Then Claude could be improved by Claude."
+   }
+  ],
+  "levels": [
+   {
+    "k": "AL0",
+    "t": "No AI involvement"
+   },
+   {
+    "k": "AL1",
+    "t": "Minimal AI involvement"
+   },
+   {
+    "k": "AL2",
+    "t": "AI assists"
+   },
+   {
+    "k": "AL3",
+    "t": "AI collaborates"
+   },
+   {
+    "k": "AL4",
+    "t": "AI leads"
+   },
+   {
+    "k": "AL5",
+    "t": "AI is autonomous"
+   }
+  ],
+  "futures": [
+   {
+    "t": "The trend stalls",
+    "d": "The curves turn out to be S curves, or compute, chips and power become the limit. Today's AI still spreads through the economy. Anthropic thinks this is unlikely, and it gives the most time to adapt."
+   },
+   {
+    "t": "Compounding efficiency",
+    "d": "AI development becomes mostly automated, but humans still set directions and judge results. Anthropic says the evidence points here, with new bottlenecks such as human code review."
+   },
+   {
+    "t": "Full recursive self-improvement",
+    "d": "AI designs and refines its successors. Progress is set by compute. Small misalignments could compound as models build models, and this is the future Anthropic is least certain about."
+   }
+  ]
+ },
+ "invest": {
+  "source": "Stanford HAI, AI Index Report 2026, chapter 4 (data from Quid)",
+  "url": "https://hai.stanford.edu/assets/files/ai_index_report_2026_chapter_4_economy.pdf",
+  "total_2025": 581.69,
+  "private_2025": 344.66,
+  "private_2024": 151.48,
+  "genai_private_2025": 170.87,
+  "billion_rounds": [
+   15,
+   28
+  ],
+  "countries": [
+   [
+    "United States",
+    285.88
+   ],
+   [
+    "China",
+    12.41
+   ],
+   [
+    "United Kingdom",
+    5.9
+   ],
+   [
+    "France",
+    4.36
+   ],
+   [
+    "Canada",
+    4.28
+   ],
+   [
+    "India",
+    4.09
+   ],
+   [
+    "Germany",
+    3.89
+   ],
+   [
+    "Israel",
+    3.58
+   ],
+   [
+    "Australia",
+    2.52
+   ],
+   [
+    "Saudi Arabia",
+    2.03
+   ]
+  ],
+  "new_companies": [
+   [
+    "United States",
+    1953
+   ],
+   [
+    "United Kingdom",
+    172
+   ],
+   [
+    "China",
+    161
+   ],
+   [
+    "India",
+    108
+   ],
+   [
+    "Germany",
+    92
+   ]
+  ],
+  "adoption_orgs": 88,
+  "genai_3yr": 53
+ },
+ "invest_2024": {
+  "v": "109.1",
+  "l": "billion USD of US private AI investment in 2024",
+  "src": "Stanford HAI, AI Index 2025",
+  "url": "https://hai.stanford.edu/ai-index/2025-ai-index-report"
+ },
+ "signatures": [
+  {
+   "k": "Pacing the Frontier",
+   "v": 1386,
+   "named": 1094,
+   "anon": 292,
+   "asof": "2026-10-29",
+   "url": "https://www.pacingthefrontier.com/"
+  },
+  {
+   "k": "Statement on Superintelligence",
+   "v": 78024,
+   "note": "including 5,000 from a petition by Ekō",
+   "asof": "29 October 2026",
+   "url": "https://superintelligence-statement.org/"
+  },
+  {
+   "k": "Seoul Frontier AI Safety Commitments",
+   "v": 20,
+   "note": "companies (16 at the summit, 4 later)",
+   "asof": "7 February 2025",
+   "url": "https://www.gov.uk/government/publications/frontier-ai-safety-commitments-ai-seoul-summit-2024/frontier-ai-safety-commitments-ai-seoul-summit-2024"
+  },
+  {
+   "k": "Published frontier safety policies",
+   "v": 12,
+   "note": "companies, as counted by METR",
+   "asof": "December 2025",
+   "url": "https://metr.org/common-elements"
+  }
+ ],
+ "survey": {
+  "n": 2778,
+  "p10": "2027",
+  "p50": "2047",
+  "shift": 13,
+  "url": "https://arxiv.org/abs/2401.02843"
+ },
+ "infra": [
+  {
+   "v": "3.5x",
+   "l": "a year rise in the cost to train frontier language models since 2020",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "1.1 million",
+   "l": "NVIDIA H100 equivalents of computing capacity in the largest known AI data center, Colossus 2 in Memphis",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "$38 billion",
+   "l": "rough up front cost of a typical AI data center with 1 gigawatt of IT power",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "2.1 years",
+   "l": "to build a gigawatt scale data center (90% CI 1 to 3.6 years)",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "71%",
+   "l": "of global AI compute is owned by five hyperscalers",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "30x",
+   "l": "a year growth in language model context windows since 2023",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "$370 billion+",
+   "l": "raised by frontier AI labs",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  },
+  {
+   "v": "8 months",
+   "l": "for frontier AI performance to become available on consumer hardware",
+   "src": "Epoch AI, Trends in AI",
+   "url": "https://epoch.ai/trends"
+  }
+ ],
+ "doubling": {
+  "old_months": 7,
+  "new_months": 4,
+  "start_label": "Claude Opus 4.6, about 12 hours, early 2026",
+  "start_min": 720,
+  "url": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "quote_note": "Anthropic writes that if the trend holds, tasks that take a skilled person days could come into range this year, and in 2027 tasks that take weeks."
+ },
+ "automation": {
+  "asof": "August 2026",
+  "al4": 26,
+  "al3plus": 90,
+  "al4_feb": 1,
+  "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+  "levels_d": [
+   "People do all of it.",
+   "AI helps with small bits, like a quick answer.",
+   "AI helps, a person does most of the task.",
+   "AI does large chunks of work under close human direction.",
+   "AI does most of the task end to end from a short request, while a person supervises.",
+   "AI works fully on its own, no human in the loop. Not reached for any measured part."
+  ]
+ },
+ "oversight": {
+  "asof": "August 2026",
+  "agents": 30000,
+  "decisions": "over a billion",
+  "blocked_pct": "0.002%",
+  "blocked_ratio": "about 1 in 47,000",
+  "flagged_week": 100000,
+  "human_week": 50,
+  "coverage": "100%",
+  "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development"
+ },
+ "safety_compute": {
+  "window": "one week in July 2026",
+  "rd": 6,
+  "ai_rd": 12,
+  "url": "https://www.anthropic.com/institute/measuring-pace-of-ai-development",
+  "note": "Deliberately conservative: work that helps capability as much as safety was counted as AI R&D."
+ },
+ "tests": {
+  "url": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "speedup": [
+   [
+    "Claude Opus 4, May 2025",
+    3
+   ],
+   [
+    "Skilled human, 4 to 8 hours",
+    4
+   ],
+   [
+    "Claude Mythos Preview, April 2026",
+    52
+   ]
+  ],
+  "nextstep": [
+   [
+    "Claude Opus 4.5, Nov 2025",
+    51
+   ],
+   [
+    "Claude Mythos Preview, Apr 2026",
+    64
+   ]
+  ],
+  "openended": {
+   "may2026": 76,
+   "gain": 50,
+   "sep_from": 26,
+   "sep_to": 91
+  },
+  "poll": {
+   "n": 130,
+   "median": "4x",
+   "when": "March 2026"
+  },
+  "github": {
+   "y2025": "about 1 billion commits in all of 2025",
+   "mid2026": "275 million a week by mid 2026"
+  },
+  "glasswing": "more than ten thousand high and critical severity software vulnerabilities found by Mythos Preview in its first weeks in Project Glasswing"
+ },
+ "caveats": [
+  {
+   "t": "Who measured it",
+   "d": "Many of the lab figures come from Anthropic about itself. They are useful because nobody else can see inside, but no outside group has checked them yet. Anthropic says it plans to bring in independent evaluators."
+  },
+  {
+   "t": "Lines of code are not progress",
+   "d": "Anthropic says the 8x code per engineer figure is almost certainly an overstatement of the real productivity gain, because it counts quantity, not quality."
+  },
+  {
+   "t": "A model judging a model",
+   "d": "Some ratings were made by Claude judging Claude's work. Anthropic checked a sample against staff ratings: within one level 97% of the time."
+  },
+  {
+   "t": "Trends can bend",
+   "d": "A straight line on a log chart can turn into an S curve. Chips, power or a missing idea could slow things down. A trend is a guide, not a promise."
+  },
+  {
+   "t": "Surveys are opinions",
+   "d": "The expert survey asks people to guess. Guesses moved 13 years in one year, which tells you how uncertain everyone is."
+  }
+ ]
+}

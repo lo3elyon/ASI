@@ -1,0 +1,239 @@
+{
+ "id": "d2l",
+ "title": "Dive into Deep Learning",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Aston Zhang",
+   "rid": ""
+  },
+  {
+   "name": "Zachary C. Lipton",
+   "rid": ""
+  },
+  {
+   "name": "Mu Li",
+   "rid": ""
+  },
+  {
+   "name": "Alexander J. Smola",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "Cambridge University Press",
+ "isbn": "9781009389433",
+ "pages": "",
+ "ol": "/works/OL35722907W",
+ "shelf": "textbook",
+ "level": "Intermediate",
+ "pitch": "An open source, hands on textbook where every idea comes with runnable code. Used in hundreds of universities and free online.",
+ "toc_src": "https://d2l.ai/",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "What machine learning is and its key ingredients.",
+   "part": ""
+  },
+  {
+   "t": "Preliminaries",
+   "g": "Data handling, linear algebra, calculus and probability in code.",
+   "part": ""
+  },
+  {
+   "t": "Linear Neural Networks for Regression",
+   "g": "Linear regression as the simplest network.",
+   "part": ""
+  },
+  {
+   "t": "Linear Neural Networks for Classification",
+   "g": "Softmax and classification.",
+   "part": ""
+  },
+  {
+   "t": "Multilayer Perceptrons",
+   "g": "Hidden layers and activation functions.",
+   "part": ""
+  },
+  {
+   "t": "Builders' Guide",
+   "g": "How to build, save and run models in practice.",
+   "part": ""
+  },
+  {
+   "t": "Convolutional Neural Networks",
+   "g": "Learning from images.",
+   "part": ""
+  },
+  {
+   "t": "Modern Convolutional Neural Networks",
+   "g": "AlexNet, ResNet and other famous designs.",
+   "part": ""
+  },
+  {
+   "t": "Recurrent Neural Networks",
+   "g": "Learning from sequences.",
+   "part": ""
+  },
+  {
+   "t": "Modern Recurrent Neural Networks",
+   "g": "LSTMs, GRUs and encoder decoder models.",
+   "part": ""
+  },
+  {
+   "t": "Attention Mechanisms and Transformers",
+   "g": "The architecture behind today's language models.",
+   "part": ""
+  },
+  {
+   "t": "Optimization Algorithms",
+   "g": "How training really works.",
+   "part": ""
+  },
+  {
+   "t": "Computational Performance",
+   "g": "Hardware, parallelism and speed.",
+   "part": ""
+  },
+  {
+   "t": "Computer Vision",
+   "g": "Detection, segmentation and more.",
+   "part": ""
+  },
+  {
+   "t": "Natural Language Processing: Pretraining",
+   "g": "Word embeddings and BERT style pretraining.",
+   "part": ""
+  },
+  {
+   "t": "Natural Language Processing: Applications",
+   "g": "Sentiment and inference tasks.",
+   "part": ""
+  },
+  {
+   "t": "Reinforcement Learning",
+   "g": "Learning from rewards.",
+   "part": ""
+  },
+  {
+   "t": "Gaussian Processes",
+   "g": "A probabilistic view of functions.",
+   "part": ""
+  },
+  {
+   "t": "Hyperparameter Optimization",
+   "g": "Tuning models automatically.",
+   "part": ""
+  },
+  {
+   "t": "Generative Adversarial Networks",
+   "g": "Two networks in competition.",
+   "part": ""
+  },
+  {
+   "t": "Recommender Systems",
+   "g": "How suggestion engines work.",
+   "part": ""
+  },
+  {
+   "t": "Appendix: Mathematics for Deep Learning",
+   "g": "The maths in more depth.",
+   "part": ""
+  },
+  {
+   "t": "Appendix: Tools for Deep Learning",
+   "g": "Notebooks, cloud and other tools.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Learn deep learning by running code.",
+  "Transformers and attention are covered in depth.",
+  "Open source books can be kept up to date.",
+  "Theory and practice go together."
+ ],
+ "args": [
+  {
+   "a": "Hands on code is the best way to learn.",
+   "c": "Some learners need more theory first, which other books give."
+  },
+  {
+   "a": "Open textbooks are the future.",
+   "c": "Keeping them updated depends on volunteers and funding."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which chapter explains the core of ChatGPT style models?",
+  "Why does running code help learning?",
+  "What should an open AI textbook add about safety?"
+ ],
+ "quiz": [
+  {
+   "q": "What is special about this book?",
+   "o": [
+    "It has no code",
+    "Every idea comes with runnable code",
+    "It is only on paper",
+    "It is a novel"
+   ],
+   "a": 1,
+   "w": "Hands on by design."
+  },
+  {
+   "q": "Which chapter covers transformers?",
+   "o": [
+    "Attention Mechanisms and Transformers",
+    "Recommender Systems",
+    "Gaussian Processes",
+    "Preliminaries"
+   ],
+   "a": 0,
+   "w": "Chapter 11."
+  },
+  {
+   "q": "What licence covers the online text?",
+   "o": [
+    "All rights reserved",
+    "CC BY-SA 4.0",
+    "Public domain",
+    "GPL"
+   ],
+   "a": 1,
+   "w": "Stated in the project repository."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://d2l.ai/",
+  "label": "Read free online (d2l.ai)",
+  "licence": "The online book text is under CC BY-SA 4.0 (see github.com/d2l-ai/d2l-en). Threshold links to it and does not copy it.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/d2l.jpg",
+ "videos": [],
+ "shelfLabel": "Textbook",
+ "shelfColor": "#14b8a6",
+ "where": [
+  {
+   "label": "Read free online (d2l.ai)",
+   "url": "https://d2l.ai/",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL35722907W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9781009389433",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

@@ -1,4 +1,5 @@
 import { $, $$, esc, load, pageHero, store, ICON, toast } from "../util.js";
+import { mount as mount3 } from "../views3/prepare3.js";
 
 const GROUPC = { learn: ["Learn", "#22d3ee"], career: ["Career", "#3b82f6"], advocacy: ["Speak up", "#84cc16"], resilience: ["Resilience", "#f59e0b"], mindset: ["Mindset", "#14b8a6"] };
 const RISKC = { misuse: "#f59e0b", misalignment: "#ef4444", "loss-of-control": "#ef4444", "concentration-of-power": "#3b82f6", bio: "#84cc16", cyber: "#22d3ee", race: "#f59e0b" };
@@ -61,5 +62,6 @@ export async function render(el) {
   $$("#gf [data-g]", el).forEach((b) => b.onclick = () => { g = b.dataset.g; $$("#gf [data-g]", el).forEach((x) => x.classList.toggle("on", x === b)); paint(); });
   $("#reset", el).onclick = () => { if (confirm("Clear your checklist progress?")) { store.set("prep", {}); paint(); } };
   paint();
+  try { await mount3(el); } catch (e) { console.warn("prepare3", e); }
   return () => mq.removeEventListener("change", lay);
 }

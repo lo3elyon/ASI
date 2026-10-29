@@ -1,0 +1,164 @@
+{
+ "id": "nexus",
+ "title": "Nexus",
+ "subtitle": "A Brief History of Information Networks from the Stone Age to AI",
+ "authors": [
+  {
+   "name": "Yuval Noah Harari",
+   "rid": "yuval-noah-harari"
+  }
+ ],
+ "year": "2024",
+ "publisher": "Random House",
+ "isbn": "9780593734247",
+ "pages": "528",
+ "ol": "/works/OL37826293W",
+ "shelf": "history",
+ "level": "Beginner",
+ "pitch": "The historian behind Sapiens argues that information is about connection more than truth, and that AI is the first technology that can make decisions and create ideas by itself.",
+ "toc_src": "https://openlibrary.org/works/OL37826293W",
+ "chapters": [
+  {
+   "t": "Information is not truth",
+   "g": "Harari's starting claim: information networks connect people, and more information does not automatically mean more truth or wisdom.",
+   "part": ""
+  },
+  {
+   "t": "Stories, documents and bureaucracy",
+   "g": "How shared stories and written records let huge numbers of strangers cooperate, and the power that gave to those who kept the records.",
+   "part": ""
+  },
+  {
+   "t": "Self-correcting mechanisms",
+   "g": "Why science and democracy survive: they have ways to find and fix their own mistakes, unlike infallible holy books or dictators.",
+   "part": ""
+  },
+  {
+   "t": "Democracy and totalitarianism as networks",
+   "g": "Democracies spread information out, totalitarian states pull it to the centre. New technology changes which works better.",
+   "part": ""
+  },
+  {
+   "t": "AI as a new kind of member",
+   "g": "Computers are no longer just tools that carry messages. They can make decisions and create ideas, so they join the network as agents.",
+   "part": ""
+  },
+  {
+   "t": "A silicon curtain",
+   "g": "The risk that the world splits into rival digital spheres, and that AI erodes the conversation democracy needs.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Information connects people; it does not guarantee truth.",
+  "Strong institutions need ways to correct their own mistakes.",
+  "AI is an agent in our information networks, not just a tool.",
+  "AI could strengthen either democracy or totalitarian control."
+ ],
+ "args": [
+  {
+   "a": "AI is unlike earlier information technology because it can decide and create on its own.",
+   "c": "Some historians and technologists think this overstates today's systems, which still depend heavily on human direction."
+  },
+  {
+   "a": "We need institutions with strong self-correction to handle AI.",
+   "c": "Critics say this is easy to agree with but hard to turn into concrete policy."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What self-correcting mechanism do you trust most?",
+  "Should AI systems be allowed to pretend to be human?",
+  "Is more information making your world wiser or just louder?"
+ ],
+ "quiz": [
+  {
+   "q": "What is Harari's view of information?",
+   "o": [
+    "It always reveals truth",
+    "It mainly connects people, true or not",
+    "It is useless",
+    "It is the same as knowledge"
+   ],
+   "a": 1,
+   "w": "Connection, not truth, is its main role."
+  },
+  {
+   "q": "Why does he say AI is new?",
+   "o": [
+    "It is fast",
+    "It can make decisions and create ideas itself",
+    "It is cheap",
+    "It is digital"
+   ],
+   "a": 1,
+   "w": "It is an agent, not a tool."
+  },
+  {
+   "q": "What keeps science and democracy healthy, in his view?",
+   "o": [
+    "Secrecy",
+    "Self-correcting mechanisms",
+    "One strong leader",
+    "More data alone"
+   ],
+   "a": 1,
+   "w": "They can find and fix their own errors."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/nexus.jpg",
+ "videos": [
+  {
+   "id": "ARdnl2kjmRU",
+   "title": "Yuval Noah Harari on the dangers of an AI future | The Economist",
+   "channel": "The Economist",
+   "date": "2026-08-22",
+   "duration": "0:12:28",
+   "summary": "Yuval Noah Harari on the dangers of an AI future."
+  },
+  {
+   "id": "rGAA59JTBtg",
+   "title": "Harari and Tegmark on Humanity and AI",
+   "channel": "Bloomberg Live",
+   "date": "2026-01-22",
+   "duration": "0:31:48",
+   "summary": "Harari and Tegmark talk about humanity and AI."
+  },
+  {
+   "id": "3HQo1wLspsg",
+   "title": "Disruption, Democracy and the Global Order, Yuval Noah Harari at the University of Cambridge",
+   "channel": "CSER Cambridge",
+   "date": "2024-03-14",
+   "duration": "1:22:37",
+   "summary": "Yuval Noah Harari at Cambridge on disruption, democracy and the global order."
+  },
+  {
+   "id": "b2uEAgLeOzA",
+   "title": "AI and our future with Yuval Noah Harari and Mustafa Suleyman",
+   "channel": "The Economist",
+   "date": "2023-09-14",
+   "duration": "0:08:45",
+   "summary": "Yuval Noah Harari and Mustafa Suleyman on AI and our future."
+  }
+ ],
+ "shelfLabel": "History",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL37826293W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780593734247",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

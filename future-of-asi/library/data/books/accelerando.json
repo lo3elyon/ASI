@@ -1,0 +1,158 @@
+{
+ "id": "accelerando",
+ "title": "Accelerando",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Charles Stross",
+   "rid": ""
+  }
+ ],
+ "year": "2005",
+ "publisher": "Ace Books (New York) and Orbit (London)",
+ "isbn": "9780441012848",
+ "pages": "390",
+ "ol": "/works/OL2465670W",
+ "shelf": "fiction",
+ "level": "Advanced",
+ "pitch": "A family saga across three generations that runs straight through the technological singularity, from dot com hustlers to minds spread across the solar system.",
+ "toc_src": "https://www.antipope.org/charlie/blog-static/fiction/accelerando/accelerando.html",
+ "chapters": [
+  {
+   "t": "Lobsters",
+   "g": "Manfred Macx, a freelance idea giver, is contacted by uploaded lobster minds that want to escape.",
+   "part": "Part 1: Slow Takeoff"
+  },
+  {
+   "t": "Troubadour",
+   "g": "Manfred's life frays as the economy speeds up and his family fights over his future.",
+   "part": "Part 1: Slow Takeoff"
+  },
+  {
+   "t": "Tourist",
+   "g": "Manfred loses his memory gear and with it much of himself.",
+   "part": "Part 1: Slow Takeoff"
+  },
+  {
+   "t": "Halo",
+   "g": "Manfred's daughter Amber escapes her mother's control and heads for the outer solar system.",
+   "part": "Part 2: Point of Inflexion"
+  },
+  {
+   "t": "Router",
+   "g": "Amber's crew, travelling as uploaded minds, reaches an alien router and meets strange post singularity beings.",
+   "part": "Part 2: Point of Inflexion"
+  },
+  {
+   "t": "Nightfall",
+   "g": "The travellers are trapped by alien entities inside virtual spaces.",
+   "part": "Part 2: Point of Inflexion"
+  },
+  {
+   "t": "Curator",
+   "g": "Amber's son Sirhan and a family reunion in a solar system being rebuilt by machine minds.",
+   "part": "Part 3: Singularity"
+  },
+  {
+   "t": "Elector",
+   "g": "Politics among humans who are now a minority in their own solar system.",
+   "part": "Part 3: Singularity"
+  },
+  {
+   "t": "Survivor",
+   "g": "What is left of humanity decides where to go next.",
+   "part": "Part 3: Singularity"
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "A singularity can feel gradual to those inside it.",
+  "Economic and legal systems may go strange as minds speed up.",
+  "Humans may become a minority among intelligences.",
+  "Uploading and copying change what identity means."
+ ],
+ "args": [
+  {
+   "a": "The novel shows how a takeoff could feel from the inside.",
+   "c": "It is dense and playful, and its post human world is one imagined path among many."
+  },
+  {
+   "a": "Fast machine economies could push humans aside without hatred.",
+   "c": "This idea, now often called gradual disempowerment, is debated in real research."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "When did the singularity happen in the story?",
+  "Would you upload your mind?",
+  "What would rights for corporations run by AI look like?"
+ ],
+ "quiz": [
+  {
+   "q": "Who is the hero of the first part?",
+   "o": [
+    "Manfred Macx",
+    "Victor",
+    "Alquist",
+    "Kuno"
+   ],
+   "a": 0,
+   "w": "A freelance idea giver."
+  },
+  {
+   "q": "What licence is the free ebook under?",
+   "o": [
+    "Public domain",
+    "CC BY-NC-ND 2.5",
+    "GPL",
+    "All rights reserved"
+   ],
+   "a": 1,
+   "w": "Stated on the author's site."
+  },
+  {
+   "q": "How is the book structured?",
+   "o": [
+    "One story",
+    "Three parts across three generations",
+    "A diary",
+    "A play"
+   ],
+   "a": 1,
+   "w": "Slow Takeoff, Point of Inflexion, Singularity."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/accelerando/index.json",
+  "url": "https://www.antipope.org/charlie/blog-static/fiction/accelerando/accelerando.html",
+  "label": "Read the full novel here",
+  "licence": "Copyright (c) Charles Stross, 2005. Licensed under Creative Commons Attribution-NonCommercial-NoDerivs 2.5. Reproduced unchanged, with the licence, from the author's free ebook edition.",
+  "licence_url": "https://creativecommons.org/licenses/by-nc-nd/2.5/"
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/accelerando.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Read the full novel",
+   "url": "https://www.antipope.org/charlie/blog-static/fiction/accelerando/accelerando.html",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL2465670W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780441012848",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

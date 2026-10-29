@@ -1,0 +1,161 @@
+{
+ "id": "human-use",
+ "title": "The Human Use of Human Beings",
+ "subtitle": "Cybernetics and Society",
+ "authors": [
+  {
+   "name": "Norbert Wiener",
+   "rid": "norbert-wiener"
+  }
+ ],
+ "year": "1950",
+ "publisher": "Houghton Mifflin",
+ "isbn": "",
+ "pages": "199",
+ "ol": "/works/OL4307570W",
+ "shelf": "history",
+ "level": "Intermediate",
+ "pitch": "The founder of cybernetics explains feedback and communication for a general reader, and warns early that automatic machines could harm workers and society.",
+ "toc_src": "https://openlibrary.org/books/OL6151343M",
+ "chapters": [
+  {
+   "t": "Preface",
+   "g": "Wiener sets out the idea of the book: society can be understood through messages and feedback.",
+   "part": ""
+  },
+  {
+   "t": "Cybernetics in history",
+   "g": "Control and communication in animals and machines as one science.",
+   "part": ""
+  },
+  {
+   "t": "Progress and entropy",
+   "g": "Life and information as local pockets of order against the drift to disorder.",
+   "part": ""
+  },
+  {
+   "t": "Rigidity and learning: two patterns of communicative behavior",
+   "g": "Fixed behaviour versus learning, in insects, people and machines.",
+   "part": ""
+  },
+  {
+   "t": "The mechanism and history of language",
+   "g": "Language as a communication system with noise and meaning.",
+   "part": ""
+  },
+  {
+   "t": "Organizations as the message",
+   "g": "A living pattern is more like a message than a lump of matter.",
+   "part": ""
+  },
+  {
+   "t": "Law and communication",
+   "g": "Law as a system for sending clear and fair messages in society.",
+   "part": ""
+  },
+  {
+   "t": "Communication, secrecy, and social policy",
+   "g": "Why hoarding information through secrecy harms science and society.",
+   "part": ""
+  },
+  {
+   "t": "Role of the intellectual and the scientist",
+   "g": "The duties of scientists in a world changed by their work.",
+   "part": ""
+  },
+  {
+   "t": "The first and the second industrial revolution",
+   "g": "Machines that replace muscle, then machines that replace judgment, and the danger to workers.",
+   "part": ""
+  },
+  {
+   "t": "Some communication machines and their future",
+   "g": "Early automatic machines and where they might lead.",
+   "part": ""
+  },
+  {
+   "t": "Language, confusion, and jam",
+   "g": "Noise, confusion and the limits of communication.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Feedback and communication tie together animals, machines and societies.",
+  "Automatic machines could devalue human labour.",
+  "Information should flow freely, not be hoarded.",
+  "Scientists carry responsibility for how their work is used."
+ ],
+ "args": [
+  {
+   "a": "Automation could cause unemployment worse than the Great Depression.",
+   "c": "Mid century automation did not cause mass unemployment, though Wiener's warning was early and serious."
+  },
+  {
+   "a": "Machines that learn may act in ways we did not intend.",
+   "c": "This early alignment worry was widely ignored for decades, and many now see it as prophetic."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What is a feedback loop you rely on every day?",
+  "Was Wiener too early, or just right?",
+  "What would Wiener say about social media?"
+ ],
+ "quiz": [
+  {
+   "q": "What field did Wiener found?",
+   "o": [
+    "Genetics",
+    "Cybernetics",
+    "Quantum physics",
+    "Economics"
+   ],
+   "a": 1,
+   "w": "Cybernetics is the study of control and communication."
+  },
+  {
+   "q": "What is the second industrial revolution in Wiener's sense?",
+   "o": [
+    "Steam engines",
+    "Machines that replace human judgment",
+    "Electric light",
+    "Railways"
+   ],
+   "a": 1,
+   "w": "The first replaced muscle, the second judgment."
+  },
+  {
+   "q": "What does Wiener say about secrecy?",
+   "o": [
+    "It helps science",
+    "It harms science and society",
+    "It does not matter",
+    "It is required"
+   ],
+   "a": 1,
+   "w": "He argued for open communication."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/human-use.jpg",
+ "videos": [],
+ "shelfLabel": "History",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL4307570W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=The%20Human%20Use%20of%20Human%20Beings%20Norbert%20Wiener",
+   "free": true
+  }
+ ],
+ "toc_note": "Chapters follow the revised 1954 edition.",
+ "added": "2026-10-29"
+}

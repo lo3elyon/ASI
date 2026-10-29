@@ -10,18 +10,104 @@
   "background_color": "#07111f",
   "theme_color": "#07111f",
   "lang": "en",
-  "categories": ["education", "science", "news"],
+  "categories": [
+    "education",
+    "science",
+    "news"
+  ],
   "icons": [
-    { "src": "assets/brand/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "assets/brand/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "assets/brand/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
-    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+    {
+      "src": "assets/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "assets/brand/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
   ],
   "shortcuts": [
-    { "name": "Futures explorer", "url": "./#/futures" },
-    { "name": "Researchers", "url": "./#/researchers" },
-    { "name": "Watch", "url": "./#/watch" },
-    { "name": "Alignment 101", "url": "./#/learn" }
+    {
+      "name": "Researchers",
+      "url": "./#/researchers",
+      "icons": [
+        {
+          "src": "assets/brand/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Watch",
+      "url": "./#/watch",
+      "icons": [
+        {
+          "src": "assets/brand/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Alignment 101",
+      "url": "./#/learn",
+      "icons": [
+        {
+          "src": "assets/brand/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Library",
+      "url": "./library/",
+      "icons": [
+        {
+          "src": "assets/brand/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Intelligence explosion",
+      "url": "./explosion/",
+      "icons": [
+        {
+          "src": "assets/brand/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
   ],
-  "screenshots": [ { "src": "assets/brand/og.jpg", "sizes": "1200x630", "type": "image/jpeg", "form_factor": "wide", "label": "Threshold home" } ]
+  "screenshots": [
+    {
+      "src": "assets/brand/og.jpg",
+      "sizes": "1200x630",
+      "type": "image/jpeg",
+      "form_factor": "wide",
+      "label": "Threshold home"
+    }
+  ],
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  }
 }

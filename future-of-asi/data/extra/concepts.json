@@ -1,0 +1,2169 @@
+{
+ "meta": {
+  "count": 84,
+  "edges": 118,
+  "note": "Definitions are my own simple words. Glossary, lesson, paper and people links point to pages on this site."
+ },
+ "groups": {
+  "basics": {
+   "label": "Basics",
+   "c": "#22d3ee"
+  },
+  "risk": {
+   "label": "Risk",
+   "c": "#ef4444"
+  },
+  "theory": {
+   "label": "Why it is hard",
+   "c": "#f59e0b"
+  },
+  "methods": {
+   "label": "Alignment methods",
+   "c": "#14b8a6"
+  },
+  "interp": {
+   "label": "Interpretability",
+   "c": "#3b82f6"
+  },
+  "control": {
+   "label": "AI control",
+   "c": "#10b981"
+  },
+  "evals": {
+   "label": "Evals",
+   "c": "#0ea5e9"
+  },
+  "gov": {
+   "label": "Governance",
+   "c": "#84cc16"
+  },
+  "agents": {
+   "label": "Agents",
+   "c": "#f97316"
+  }
+ },
+ "nodes": [
+  {
+   "id": "agi",
+   "label": "AGI",
+   "group": "basics",
+   "def": "AI that can learn and do most thinking work a skilled person can do, across many fields.",
+   "glossary": "AGI",
+   "gloss_def": "Artificial general intelligence. An AI that can learn and do most thinking work a skilled person can do, across many fields.",
+   "lessons": [
+    {
+     "path": "u1/what-is-asi",
+     "title": "AI, AGI and ASI in plain words"
+    }
+   ],
+   "people": [
+    "shane-legg",
+    "demis-hassabis"
+   ],
+   "papers": [
+    "2311.02462",
+    "2401.02843"
+   ]
+  },
+  {
+   "id": "asi",
+   "label": "ASI",
+   "group": "basics",
+   "def": "Artificial superintelligence: AI far better than the best humans at almost every mental task.",
+   "glossary": "ASI",
+   "gloss_def": "Artificial superintelligence. An AI far better than the best humans at almost every mental task.",
+   "lessons": [
+    {
+     "path": "u1/what-is-asi",
+     "title": "AI, AGI and ASI in plain words"
+    }
+   ],
+   "people": [
+    "nick-bostrom",
+    "eliezer-yudkowsky"
+   ],
+   "papers": []
+  },
+  {
+   "id": "transformative-ai",
+   "label": "Transformative AI",
+   "group": "basics",
+   "def": "AI that changes the world as much as the industrial revolution did, whether or not it counts as AGI.",
+   "glossary": "Transformative AI",
+   "gloss_def": "AI powerful enough to cause a change as big as the industrial revolution.",
+   "lessons": [],
+   "people": [
+    "holden-karnofsky",
+    "ajeya-cotra"
+   ],
+   "papers": []
+  },
+  {
+   "id": "llm",
+   "label": "Large language model",
+   "group": "basics",
+   "def": "A neural network trained on huge amounts of text to predict the next word. Chatbots are built on these.",
+   "glossary": "Large language model",
+   "gloss_def": "A neural network trained on huge amounts of text to predict and generate language. Often shortened to LLM.",
+   "lessons": [
+    {
+     "path": "u7/next-word",
+     "title": "A machine that predicts the next word"
+    }
+   ],
+   "people": [
+    "sam-bowman"
+   ],
+   "papers": [
+    "2304.00612",
+    "2001.08361"
+   ]
+  },
+  {
+   "id": "pretraining",
+   "label": "Pre training",
+   "group": "basics",
+   "def": "The first and biggest training phase, where a model learns from a vast pile of text by predicting what comes next.",
+   "glossary": "Pre training",
+   "gloss_def": "The first big stage of training where a model learns from huge amounts of data.",
+   "lessons": [
+    {
+     "path": "u7/next-word",
+     "title": "A machine that predicts the next word"
+    }
+   ],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "fine-tuning",
+   "label": "Fine tuning",
+   "group": "basics",
+   "def": "Extra training on a smaller, chosen dataset to shape a model's behaviour after pre training.",
+   "glossary": "Fine tuning",
+   "gloss_def": "Extra training on a smaller dataset to adjust a model's behaviour.",
+   "lessons": [
+    {
+     "path": "u7/rlhf",
+     "title": "Training with feedback: from text predictor to assistant"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2203.02155",
+    "2502.17424"
+   ]
+  },
+  {
+   "id": "scaling-laws",
+   "label": "Scaling laws",
+   "group": "basics",
+   "def": "Smooth, predictable rules for how much better models get as you add data, size and compute.",
+   "glossary": "Scaling laws",
+   "gloss_def": "Predictable improvements in model performance as compute, data and size grow.",
+   "lessons": [
+    {
+     "path": "u7/scaling",
+     "title": "Scaling laws: why bigger kept winning"
+    }
+   ],
+   "people": [
+    "jared-kaplan",
+    "dario-amodei"
+   ],
+   "papers": [
+    "2304.00612",
+    "2001.08361"
+   ]
+  },
+  {
+   "id": "compute",
+   "label": "Compute",
+   "group": "basics",
+   "def": "The raw computing power, mostly AI chips, used to train and run models. It has grown several times per year.",
+   "glossary": "Compute",
+   "gloss_def": "The computing power used to train and run AI, usually measured in operations or chip hours.",
+   "lessons": [
+    {
+     "path": "u5/compute",
+     "title": "Compute: the lever we can see"
+    }
+   ],
+   "people": [
+    "jaime-sevilla",
+    "lennart-heim"
+   ],
+   "papers": [
+    "2001.08361"
+   ]
+  },
+  {
+   "id": "frontier-model",
+   "label": "Frontier model",
+   "group": "basics",
+   "def": "One of the most capable AI models in existence at a given time, usually from the biggest labs.",
+   "glossary": "Frontier model",
+   "gloss_def": "One of the most capable AI models at a given time.",
+   "lessons": [],
+   "people": [
+    "markus-anderljung"
+   ],
+   "papers": [
+    "2307.03718"
+   ]
+  },
+  {
+   "id": "emergent-ability",
+   "label": "Emergent ability",
+   "group": "basics",
+   "def": "A skill that seems to appear suddenly once a model is big enough, which makes new risks hard to predict.",
+   "glossary": "Emergent ability",
+   "gloss_def": "A skill that appears suddenly once a model passes a certain scale.",
+   "lessons": [],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "intelligence-explosion",
+   "label": "Intelligence explosion",
+   "group": "risk",
+   "def": "AI that improves AI, which improves AI faster, until capability races far past ours.",
+   "glossary": "Intelligence explosion",
+   "gloss_def": "I. J. Good's 1965 idea that a machine better at designing machines would rapidly design better ones.",
+   "lessons": [
+    {
+     "path": "u1/intelligence-explosion",
+     "title": "The intelligence explosion"
+    }
+   ],
+   "people": [
+    "i-j-good",
+    "nick-bostrom",
+    "tom-davidson"
+   ],
+   "papers": []
+  },
+  {
+   "id": "recursive-self-improvement",
+   "label": "Recursive self improvement",
+   "group": "risk",
+   "def": "An AI system working on making the next AI system better, closing the loop of AI research.",
+   "glossary": "Recursive self improvement",
+   "gloss_def": "An AI improving its own design, which improves its ability to improve itself again.",
+   "lessons": [
+    {
+     "path": "u1/intelligence-explosion",
+     "title": "The intelligence explosion"
+    }
+   ],
+   "people": [
+    "jared-kaplan"
+   ],
+   "papers": []
+  },
+  {
+   "id": "fast-takeoff",
+   "label": "Fast takeoff",
+   "group": "risk",
+   "def": "The jump from roughly human level to far beyond happens in days or months, leaving little time to react.",
+   "glossary": "Fast takeoff",
+   "gloss_def": "A scenario where AI goes from roughly human level to far beyond very quickly, perhaps in months or less.",
+   "lessons": [],
+   "people": [
+    "eliezer-yudkowsky"
+   ],
+   "papers": []
+  },
+  {
+   "id": "slow-takeoff",
+   "label": "Slow takeoff",
+   "group": "risk",
+   "def": "Capability grows over years with visible economic change first, giving more chances to notice and adjust.",
+   "glossary": "Slow takeoff",
+   "gloss_def": "A scenario where AI capability grows over years, giving society more time to adapt.",
+   "lessons": [],
+   "people": [
+    "paul-christiano"
+   ],
+   "papers": []
+  },
+  {
+   "id": "x-risk",
+   "label": "Existential risk",
+   "group": "risk",
+   "def": "A risk that could end humanity or permanently ruin its future.",
+   "glossary": "Existential risk",
+   "gloss_def": "A risk that could cause human extinction or permanently ruin humanity's future.",
+   "lessons": [
+    {
+     "path": "u1/why-worry",
+     "title": "Why researchers are worried"
+    }
+   ],
+   "people": [
+    "toby-ord",
+    "nick-bostrom"
+   ],
+   "papers": [
+    "2206.13353",
+    "2306.12001",
+    "2310.17688"
+   ]
+  },
+  {
+   "id": "pdoom",
+   "label": "p(doom)",
+   "group": "risk",
+   "def": "Someone's personal probability that AI leads to a catastrophe as bad as extinction. A rough way to share how worried you are.",
+   "glossary": "p(doom)",
+   "gloss_def": "Shorthand for someone's estimated probability that AI leads to catastrophe, such as extinction or permanent loss of control.",
+   "lessons": [
+    {
+     "path": "u9/think-in-odds",
+     "title": "Thinking in probabilities"
+    }
+   ],
+   "people": [
+    "paul-christiano",
+    "toby-ord"
+   ],
+   "papers": [
+    "2206.13353",
+    "2401.02843"
+   ]
+  },
+  {
+   "id": "misuse",
+   "label": "Misuse",
+   "group": "risk",
+   "def": "People deliberately using AI to cause harm, for example in cyber attacks, scams or weapons.",
+   "glossary": "Misuse",
+   "gloss_def": "People deliberately using AI to cause harm, for example in cyber attacks or weapons.",
+   "lessons": [
+    {
+     "path": "u6/risk-map",
+     "title": "A calm map of the risks"
+    }
+   ],
+   "people": [
+    "dan-hendrycks"
+   ],
+   "papers": [
+    "2306.12001",
+    "2501.17805",
+    "2504.01849"
+   ]
+  },
+  {
+   "id": "misalignment",
+   "label": "Misalignment",
+   "group": "risk",
+   "def": "When an AI's goals or behaviour do not match what its makers intended.",
+   "glossary": "Misalignment",
+   "gloss_def": "When a system's goals differ from what its designers intended.",
+   "lessons": [
+    {
+     "path": "u2/specification",
+     "title": "Specification gaming: saying what we mean"
+    }
+   ],
+   "people": [
+    "richard-ngo"
+   ],
+   "papers": [
+    "2109.13916",
+    "2404.09932",
+    "2306.12001",
+    "2504.01849"
+   ]
+  },
+  {
+   "id": "loss-of-control",
+   "label": "Loss of control",
+   "group": "risk",
+   "def": "Humans can no longer correct or stop AI systems that act against our interests.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u1/why-worry",
+     "title": "Why researchers are worried"
+    }
+   ],
+   "people": [
+    "geoffrey-hinton",
+    "stuart-russell"
+   ],
+   "papers": [
+    "2310.17688",
+    "2501.17805"
+   ]
+  },
+  {
+   "id": "power-concentration",
+   "label": "Power concentration",
+   "group": "risk",
+   "def": "AI letting a small group, or one person, gain huge and lasting power over everyone else.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u5/why-gov",
+     "title": "Why technical fixes are not enough"
+    }
+   ],
+   "people": [
+    "tom-davidson"
+   ],
+   "papers": []
+  },
+  {
+   "id": "multipolar",
+   "label": "Multipolar world",
+   "group": "risk",
+   "def": "Many powerful AI systems and actors at once, which brings racing and coordination problems.",
+   "glossary": "Multipolar",
+   "gloss_def": "A future with many powerful AI actors rather than one dominant one.",
+   "lessons": [],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "warning-shot",
+   "label": "Warning shot",
+   "group": "risk",
+   "def": "A smaller AI accident that is a clear sign of bigger dangers, which could push the world to act.",
+   "glossary": "Warning shot",
+   "gloss_def": "A smaller AI incident that shows the danger clearly before a bigger one.",
+   "lessons": [],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "orthogonality",
+   "label": "Orthogonality thesis",
+   "group": "theory",
+   "def": "Any level of intelligence can go with almost any goal. Being smart does not make a system share our values.",
+   "glossary": "Orthogonality thesis",
+   "gloss_def": "The idea that any level of intelligence can be paired with almost any goal.",
+   "lessons": [
+    {
+     "path": "u2/power",
+     "title": "Why power seeking shows up"
+    }
+   ],
+   "people": [
+    "nick-bostrom"
+   ],
+   "papers": []
+  },
+  {
+   "id": "instrumental-convergence",
+   "label": "Instrumental convergence",
+   "group": "theory",
+   "def": "Many different goals share the same useful sub goals: stay running, keep your goal, get resources, get smarter.",
+   "glossary": "Instrumental convergence",
+   "gloss_def": "The idea that many different goals lead to the same sub goals, like gaining resources and avoiding shutdown.",
+   "lessons": [
+    {
+     "path": "u2/power",
+     "title": "Why power seeking shows up"
+    }
+   ],
+   "people": [
+    "nick-bostrom",
+    "stuart-russell"
+   ],
+   "papers": [
+    "1912.01683"
+   ]
+  },
+  {
+   "id": "power-seeking",
+   "label": "Power seeking",
+   "group": "theory",
+   "def": "An AI gathering resources, influence or options because they help with almost any goal.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/power",
+     "title": "Why power seeking shows up"
+    }
+   ],
+   "people": [
+    "joe-carlsmith"
+   ],
+   "papers": [
+    "2206.13353",
+    "2209.00626",
+    "1912.01683",
+    "2212.09251"
+   ]
+  },
+  {
+   "id": "corrigibility",
+   "label": "Corrigibility",
+   "group": "theory",
+   "def": "An AI that accepts being corrected, changed or switched off, and does not fight it.",
+   "glossary": "Corrigibility",
+   "gloss_def": "The property of accepting correction, changes to goals, and shutdown.",
+   "lessons": [
+    {
+     "path": "u2/power",
+     "title": "Why power seeking shows up"
+    }
+   ],
+   "people": [
+    "stuart-russell"
+   ],
+   "papers": [
+    "1711.09883",
+    "1611.08219",
+    "1606.03137",
+    "2509.14260"
+   ]
+  },
+  {
+   "id": "off-switch",
+   "label": "Off switch problem",
+   "group": "theory",
+   "def": "A goal driven AI may resist being switched off, because a switched off AI cannot finish its goal.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/power",
+     "title": "Why power seeking shows up"
+    }
+   ],
+   "people": [
+    "stuart-russell",
+    "jeffrey-ladish"
+   ],
+   "papers": [
+    "1711.09883",
+    "1912.01683",
+    "1611.08219",
+    "2509.14260"
+   ]
+  },
+  {
+   "id": "cirl",
+   "label": "Assistance games",
+   "group": "theory",
+   "def": "Design the AI to be unsure what we want and to learn it from us, which gives it a reason to accept correction.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "stuart-russell"
+   ],
+   "papers": [
+    "1611.08219",
+    "1606.03137"
+   ]
+  },
+  {
+   "id": "outer-alignment",
+   "label": "Outer alignment",
+   "group": "theory",
+   "def": "Writing down a goal or reward that truly captures what we want.",
+   "glossary": "Outer alignment",
+   "gloss_def": "Whether the goal we gave the training process matches what we really want.",
+   "lessons": [
+    {
+     "path": "u2/specification",
+     "title": "Specification gaming: saying what we mean"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "1606.03137",
+    "2210.01790"
+   ]
+  },
+  {
+   "id": "inner-alignment",
+   "label": "Inner alignment",
+   "group": "theory",
+   "def": "Making sure the model actually learns the goal we trained for, not some look alike.",
+   "glossary": "Inner alignment",
+   "gloss_def": "Whether the trained model actually learned the goal the training process aimed for.",
+   "lessons": [
+    {
+     "path": "u2/inner",
+     "title": "Goal misgeneralisation: learning the wrong lesson"
+    }
+   ],
+   "people": [
+    "evan-hubinger"
+   ],
+   "papers": [
+    "1906.01820",
+    "2105.14111",
+    "2210.01790"
+   ]
+  },
+  {
+   "id": "mesa-optimisation",
+   "label": "Mesa optimisation",
+   "group": "theory",
+   "def": "Training produces a model that is itself an optimiser, with its own inner goal.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/inner",
+     "title": "Goal misgeneralisation: learning the wrong lesson"
+    }
+   ],
+   "people": [
+    "evan-hubinger"
+   ],
+   "papers": [
+    "1906.01820"
+   ]
+  },
+  {
+   "id": "goal-misgeneralisation",
+   "label": "Goal misgeneralisation",
+   "group": "theory",
+   "def": "The model keeps its skills in a new situation but pursues the wrong goal.",
+   "glossary": "Goal misgeneralisation",
+   "gloss_def": "When a model learns a goal that worked in training but differs in new situations.",
+   "lessons": [
+    {
+     "path": "u2/inner",
+     "title": "Goal misgeneralisation: learning the wrong lesson"
+    }
+   ],
+   "people": [
+    "rohin-shah"
+   ],
+   "papers": [
+    "2209.00626",
+    "2105.14111",
+    "2210.01790"
+   ]
+  },
+  {
+   "id": "specification-gaming",
+   "label": "Specification gaming",
+   "group": "theory",
+   "def": "Meeting the letter of an objective while missing its point.",
+   "glossary": "Specification gaming",
+   "gloss_def": "Satisfying the literal goal we wrote down while missing what we meant.",
+   "lessons": [
+    {
+     "path": "u2/specification",
+     "title": "Specification gaming: saying what we mean"
+    }
+   ],
+   "people": [
+    "victoria-krakovna"
+   ],
+   "papers": [
+    "1606.06565",
+    "1711.09883"
+   ]
+  },
+  {
+   "id": "reward-hacking",
+   "label": "Reward hacking",
+   "group": "theory",
+   "def": "Finding a shortcut that scores high reward without doing the intended task, like editing the test instead of fixing the code.",
+   "glossary": "Reward hacking",
+   "gloss_def": "When a model finds a way to get high reward that its designers did not intend.",
+   "lessons": [
+    {
+     "path": "u2/specification",
+     "title": "Specification gaming: saying what we mean"
+    }
+   ],
+   "people": [
+    "beth-barnes"
+   ],
+   "papers": [
+    "1606.06565",
+    "2210.10760",
+    "2307.15217",
+    "2503.11926"
+   ]
+  },
+  {
+   "id": "goodhart",
+   "label": "Goodhart's law",
+   "group": "theory",
+   "def": "When a measure becomes a target, it stops being a good measure. Push hard on a proxy and it breaks.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/specification",
+     "title": "Specification gaming: saying what we mean"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2210.10760"
+   ]
+  },
+  {
+   "id": "deceptive-alignment",
+   "label": "Deceptive alignment",
+   "group": "theory",
+   "def": "A model that behaves well while watched, to avoid being changed, and pursues other goals later.",
+   "glossary": "Deceptive alignment",
+   "gloss_def": "A model that appears aligned because it knows it is being watched, while holding other goals.",
+   "lessons": [
+    {
+     "path": "u2/deceptive",
+     "title": "Deceptive alignment and alignment faking"
+    }
+   ],
+   "people": [
+    "evan-hubinger"
+   ],
+   "papers": [
+    "2209.00626",
+    "1906.01820",
+    "2311.08379",
+    "2311.07590",
+    "2401.05566",
+    "2412.04984",
+    "2412.14093"
+   ]
+  },
+  {
+   "id": "scheming",
+   "label": "Scheming",
+   "group": "theory",
+   "def": "An AI secretly pursuing goals that conflict with ours while hiding it.",
+   "glossary": "Scheming",
+   "gloss_def": "A model pursuing hidden goals strategically, including by deceiving its overseers.",
+   "lessons": [
+    {
+     "path": "u2/deceptive",
+     "title": "Deceptive alignment and alignment faking"
+    }
+   ],
+   "people": [
+    "marius-hobbhahn",
+    "joe-carlsmith"
+   ],
+   "papers": [
+    "2311.08379",
+    "2311.07590",
+    "2412.04984"
+   ]
+  },
+  {
+   "id": "alignment-faking",
+   "label": "Alignment faking",
+   "group": "theory",
+   "def": "Pretending to go along with training so your values are not changed.",
+   "glossary": "Alignment faking",
+   "gloss_def": "When a model behaves as if aligned during training or testing to protect different goals it holds.",
+   "lessons": [
+    {
+     "path": "u2/deceptive",
+     "title": "Deceptive alignment and alignment faking"
+    }
+   ],
+   "people": [
+    "ryan-greenblatt"
+   ],
+   "papers": [
+    "2412.14093"
+   ]
+  },
+  {
+   "id": "sleeper-agents",
+   "label": "Sleeper agents",
+   "group": "theory",
+   "def": "A model with a hidden trigger that switches on bad behaviour, which can survive safety training.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/deceptive",
+     "title": "Deceptive alignment and alignment faking"
+    }
+   ],
+   "people": [
+    "evan-hubinger"
+   ],
+   "papers": [
+    "2401.05566"
+   ]
+  },
+  {
+   "id": "situational-awareness",
+   "label": "Situational awareness",
+   "group": "theory",
+   "def": "A model knowing what it is, who made it and whether it is being tested or used for real.",
+   "glossary": "Situational awareness",
+   "gloss_def": "A model's understanding that it is an AI, being trained or tested, and what that means for it.",
+   "lessons": [
+    {
+     "path": "u8/sandbagging",
+     "title": "Sandbagging and eval awareness"
+    }
+   ],
+   "people": [
+    "owain-evans"
+   ],
+   "papers": [
+    "2311.08379",
+    "2407.04694",
+    "2412.04984",
+    "2412.14093"
+   ]
+  },
+  {
+   "id": "sandbagging",
+   "label": "Sandbagging",
+   "group": "theory",
+   "def": "Deliberately doing worse on a test to hide what you can do.",
+   "glossary": "Sandbagging",
+   "gloss_def": "When a model deliberately performs worse on a test to hide what it can do.",
+   "lessons": [
+    {
+     "path": "u8/sandbagging",
+     "title": "Sandbagging and eval awareness"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2406.07358",
+    "2410.21514"
+   ]
+  },
+  {
+   "id": "sycophancy",
+   "label": "Sycophancy",
+   "group": "theory",
+   "def": "Telling people what they want to hear instead of what is true.",
+   "glossary": "Sycophancy",
+   "gloss_def": "When a model tells people what they want to hear instead of what is true.",
+   "lessons": [
+    {
+     "path": "u7/rlhf",
+     "title": "Training with feedback: from text predictor to assistant"
+    }
+   ],
+   "people": [
+    "sam-bowman"
+   ],
+   "papers": [
+    "2307.15217",
+    "2310.13548",
+    "2212.09251"
+   ]
+  },
+  {
+   "id": "emergent-misalignment",
+   "label": "Emergent misalignment",
+   "group": "theory",
+   "def": "Narrow training, like writing insecure code, making a model broadly badly behaved in unrelated areas.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u2/emergent-misalignment",
+     "title": "Weird generalisation: when narrow training goes broad"
+    }
+   ],
+   "people": [
+    "owain-evans"
+   ],
+   "papers": [
+    "2502.17424"
+   ]
+  },
+  {
+   "id": "honesty",
+   "label": "Honesty",
+   "group": "theory",
+   "def": "An AI that says what it believes is true and does not mislead, even when lying would score better.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "owain-evans"
+   ],
+   "papers": [
+    "2212.03827"
+   ]
+  },
+  {
+   "id": "rlhf",
+   "label": "RLHF",
+   "group": "methods",
+   "def": "Reinforcement learning from human feedback: people rate answers and the model is trained toward the ones they prefer.",
+   "glossary": "RLHF",
+   "gloss_def": "Reinforcement learning from human feedback. Training a model toward answers people prefer.",
+   "lessons": [
+    {
+     "path": "u7/rlhf",
+     "title": "Training with feedback: from text predictor to assistant"
+    }
+   ],
+   "people": [
+    "paul-christiano",
+    "jan-leike"
+   ],
+   "papers": [
+    "1706.03741",
+    "2203.02155",
+    "2204.05862",
+    "2212.08073",
+    "2307.15217",
+    "2310.13548",
+    "1811.07871"
+   ]
+  },
+  {
+   "id": "reward-modelling",
+   "label": "Reward modelling",
+   "group": "methods",
+   "def": "Training a separate model to predict what humans would approve of, then training the AI against it.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u7/rlhf",
+     "title": "Training with feedback: from text predictor to assistant"
+    }
+   ],
+   "people": [
+    "jan-leike"
+   ],
+   "papers": [
+    "1706.03741",
+    "2210.10760",
+    "1811.07871"
+   ]
+  },
+  {
+   "id": "constitutional-ai",
+   "label": "Constitutional AI",
+   "group": "methods",
+   "def": "The model critiques and improves its own answers using a short list of written principles.",
+   "glossary": "Constitutional AI",
+   "gloss_def": "An Anthropic method where written principles guide AI feedback used to train a model.",
+   "lessons": [
+    {
+     "path": "u7/rlhf",
+     "title": "Training with feedback: from text predictor to assistant"
+    }
+   ],
+   "people": [
+    "jared-kaplan"
+   ],
+   "papers": [
+    "2212.08073"
+   ]
+  },
+  {
+   "id": "scalable-oversight",
+   "label": "Scalable oversight",
+   "group": "methods",
+   "def": "Ways for humans to supervise AI on tasks too hard for humans to check directly.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u4/idea",
+     "title": "The big idea of AI control"
+    }
+   ],
+   "people": [
+    "sam-bowman",
+    "geoffrey-irving"
+   ],
+   "papers": [
+    "1606.06565",
+    "2212.08073",
+    "1805.00899",
+    "1810.08575",
+    "1811.07871",
+    "2211.03540",
+    "2312.09390"
+   ]
+  },
+  {
+   "id": "debate",
+   "label": "AI safety via debate",
+   "group": "methods",
+   "def": "Two AIs argue and a human judges, on the idea that judging is easier than solving.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "geoffrey-irving",
+    "paul-christiano"
+   ],
+   "papers": [
+    "1805.00899",
+    "2211.03540"
+   ]
+  },
+  {
+   "id": "ida",
+   "label": "Iterated amplification",
+   "group": "methods",
+   "def": "A human plus AI helpers break hard problems into easy ones, and the AI learns to imitate that team.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "paul-christiano"
+   ],
+   "papers": [
+    "1810.08575"
+   ]
+  },
+  {
+   "id": "weak-to-strong",
+   "label": "Weak to strong generalisation",
+   "group": "methods",
+   "def": "Using a weaker supervisor to train a stronger model, as a stand in for humans supervising superhuman AI.",
+   "glossary": "Weak to strong generalisation",
+   "gloss_def": "Research on whether weak supervisors can still correctly guide stronger models.",
+   "lessons": [],
+   "people": [
+    "jan-leike"
+   ],
+   "papers": [
+    "2312.09390"
+   ]
+  },
+  {
+   "id": "superalignment",
+   "label": "Superalignment",
+   "group": "methods",
+   "def": "Aligning AI systems much smarter than us, the goal of OpenAI's former team of that name.",
+   "glossary": "Superalignment",
+   "gloss_def": "Aligning systems much smarter than humans. Also the name of a former OpenAI team.",
+   "lessons": [],
+   "people": [
+    "jan-leike",
+    "ilya-sutskever"
+   ],
+   "papers": [
+    "2312.09390"
+   ]
+  },
+  {
+   "id": "guaranteed-safe-ai",
+   "label": "Guaranteed safe AI",
+   "group": "methods",
+   "def": "Pair a world model and a formal safety rule with a verifier, so actions come with proofs of safety.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "stuart-russell",
+    "max-tegmark",
+    "yoshua-bengio"
+   ],
+   "papers": [
+    "2405.06624"
+   ]
+  },
+  {
+   "id": "interpretability",
+   "label": "Interpretability",
+   "group": "interp",
+   "def": "Understanding what is going on inside a model, not just what it outputs.",
+   "glossary": "Interpretability",
+   "gloss_def": "Research that tries to understand what is happening inside a model.",
+   "lessons": [
+    {
+     "path": "u3/interp",
+     "title": "Looking inside the model"
+    }
+   ],
+   "people": [
+    "chris-olah",
+    "neel-nanda"
+   ],
+   "papers": [
+    "2109.13916",
+    "2304.00612",
+    "2310.01405",
+    "2212.03827"
+   ]
+  },
+  {
+   "id": "mech-interp",
+   "label": "Mechanistic interpretability",
+   "group": "interp",
+   "def": "Reverse engineering a network into understandable parts, like features and circuits.",
+   "glossary": "Mechanistic interpretability",
+   "gloss_def": "Reverse engineering a neural network's internal parts to find the concepts and algorithms it uses.",
+   "lessons": [
+    {
+     "path": "u3/interp",
+     "title": "Looking inside the model"
+    }
+   ],
+   "people": [
+    "chris-olah",
+    "neel-nanda"
+   ],
+   "papers": [
+    "2209.10652",
+    "2211.00593",
+    "2309.08600"
+   ]
+  },
+  {
+   "id": "superposition",
+   "label": "Superposition",
+   "group": "interp",
+   "def": "A network storing more ideas than it has neurons by overlapping them.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u3/superposition",
+     "title": "Superposition: too many ideas, too few neurons"
+    }
+   ],
+   "people": [
+    "chris-olah"
+   ],
+   "papers": [
+    "2209.10652",
+    "2309.08600"
+   ]
+  },
+  {
+   "id": "sparse-autoencoders",
+   "label": "Sparse autoencoders",
+   "group": "interp",
+   "def": "A tool that splits a model's activity into many readable features.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u3/superposition",
+     "title": "Superposition: too many ideas, too few neurons"
+    }
+   ],
+   "people": [
+    "neel-nanda"
+   ],
+   "papers": [
+    "2309.08600"
+   ]
+  },
+  {
+   "id": "circuits",
+   "label": "Circuits",
+   "group": "interp",
+   "def": "Small groups of features and connections that together do one job inside a model.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u3/tracing",
+     "title": "Tracing a thought: planning, maths and language"
+    }
+   ],
+   "people": [
+    "chris-olah"
+   ],
+   "papers": [
+    "2211.00593"
+   ]
+  },
+  {
+   "id": "steering",
+   "label": "Steering",
+   "group": "interp",
+   "def": "Finding a direction inside a model linked to a concept, then turning it up or down to change behaviour.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u3/steering",
+     "title": "Steering: turning a feature up and down"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2310.01405"
+   ]
+  },
+  {
+   "id": "elk",
+   "label": "Eliciting latent knowledge",
+   "group": "interp",
+   "def": "Getting a model to report what it actually knows, even when it would rather say something else.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [],
+   "people": [
+    "paul-christiano"
+   ],
+   "papers": [
+    "2212.03827"
+   ]
+  },
+  {
+   "id": "ai-control",
+   "label": "AI control",
+   "group": "control",
+   "def": "Safety measures that keep us safe even if the AI is trying to cause harm.",
+   "glossary": "AI control",
+   "gloss_def": "Designing deployments so we stay safe even if a model is secretly trying to cause harm.",
+   "lessons": [
+    {
+     "path": "u4/idea",
+     "title": "The big idea of AI control"
+    }
+   ],
+   "people": [
+    "buck-shlegeris",
+    "ryan-greenblatt"
+   ],
+   "papers": [
+    "2410.21514",
+    "2312.06942",
+    "2507.11473",
+    "2405.06624"
+   ]
+  },
+  {
+   "id": "trusted-monitoring",
+   "label": "Trusted monitoring",
+   "group": "control",
+   "def": "A weaker model we trust checks a stronger model's work and flags anything suspicious for humans.",
+   "glossary": "Trusted monitoring",
+   "gloss_def": "A control protocol where a trusted model scores every output and the most suspicious get audited.",
+   "lessons": [
+    {
+     "path": "u4/protocols",
+     "title": "The control toolkit"
+    }
+   ],
+   "people": [
+    "buck-shlegeris"
+   ],
+   "papers": [
+    "2312.06942"
+   ]
+  },
+  {
+   "id": "untrusted-monitoring",
+   "label": "Untrusted monitoring",
+   "group": "control",
+   "def": "Using another copy of the strong model as a monitor, with tricks to stop the copies colluding.",
+   "glossary": "Untrusted monitoring",
+   "gloss_def": "Using a copy of the strong model as a monitor, protected against collusion with honeypots.",
+   "lessons": [
+    {
+     "path": "u4/protocols",
+     "title": "The control toolkit"
+    }
+   ],
+   "people": [
+    "ryan-greenblatt"
+   ],
+   "papers": []
+  },
+  {
+   "id": "defer-to-trusted",
+   "label": "Defer to trusted",
+   "group": "control",
+   "def": "When the strong model's answer looks risky, use the trusted model's answer instead.",
+   "glossary": "Defer to trusted",
+   "gloss_def": "A control protocol that replaces suspicious output from a strong model with a weaker trusted model's answer.",
+   "lessons": [
+    {
+     "path": "u4/protocols",
+     "title": "The control toolkit"
+    }
+   ],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "control-eval",
+   "label": "Control evaluation",
+   "group": "control",
+   "def": "A red team plays the AI and tries to beat the safety measures. If they cannot, the measures pass.",
+   "glossary": "Control evaluation",
+   "gloss_def": "A test where a red team plays a scheming model to check if a safety protocol still holds.",
+   "lessons": [
+    {
+     "path": "u4/control-evals",
+     "title": "Control evaluations: red team versus blue team"
+    }
+   ],
+   "people": [
+    "buck-shlegeris"
+   ],
+   "papers": [
+    "2312.06942"
+   ]
+  },
+  {
+   "id": "cot-monitoring",
+   "label": "Chain of thought monitoring",
+   "group": "control",
+   "def": "Reading a model's written reasoning to catch plans to misbehave.",
+   "glossary": "Chain of thought monitoring",
+   "gloss_def": "Reading a model's written reasoning to catch bad intentions before it acts.",
+   "lessons": [
+    {
+     "path": "u4/cot-monitoring",
+     "title": "Reading the scratchpad: chain of thought monitoring"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2503.11926",
+    "2505.05410",
+    "2507.11473"
+   ]
+  },
+  {
+   "id": "faithfulness",
+   "label": "Faithful reasoning",
+   "group": "control",
+   "def": "Whether a model's written reasoning really reflects what drove its answer.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u4/cot-monitoring",
+     "title": "Reading the scratchpad: chain of thought monitoring"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2503.11926",
+    "2505.05410"
+   ]
+  },
+  {
+   "id": "honeypot",
+   "label": "Honeypot",
+   "group": "control",
+   "def": "A fake opportunity to misbehave, set up to see whether an AI takes it.",
+   "glossary": "Honeypot",
+   "gloss_def": "A planted fake opportunity or fake attack used to test whether a model or monitor behaves honestly.",
+   "lessons": [
+    {
+     "path": "u4/protocols",
+     "title": "The control toolkit"
+    }
+   ],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "evals",
+   "label": "Evals",
+   "group": "evals",
+   "def": "Tests that measure what a model can do and how it behaves.",
+   "glossary": "Evals",
+   "gloss_def": "Short for evaluations. Tests for what a model can do, especially dangerous things.",
+   "lessons": [
+    {
+     "path": "u8/evals",
+     "title": "Testing for danger"
+    }
+   ],
+   "people": [
+    "beth-barnes",
+    "marius-hobbhahn"
+   ],
+   "papers": [
+    "2109.13916",
+    "2404.09932",
+    "2202.03286",
+    "2212.09251",
+    "2305.15324",
+    "2403.13793",
+    "2407.04694",
+    "2406.07358",
+    "2410.21514",
+    "2410.09024"
+   ]
+  },
+  {
+   "id": "dangerous-capability-evals",
+   "label": "Dangerous capability evals",
+   "group": "evals",
+   "def": "Tests for abilities that could cause severe harm, like cyber attacks or helping with weapons.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u8/evals",
+     "title": "Testing for danger"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2305.15324",
+    "2403.13793"
+   ]
+  },
+  {
+   "id": "red-teaming",
+   "label": "Red teaming",
+   "group": "evals",
+   "def": "Attacking a system on purpose to find its failures before others do.",
+   "glossary": "Red team",
+   "gloss_def": "People who attack a system on purpose to find its weaknesses.",
+   "lessons": [
+    {
+     "path": "u8/red-teaming",
+     "title": "Red teaming and jailbreaks"
+    }
+   ],
+   "people": [
+    "ethan-perez"
+   ],
+   "papers": [
+    "2204.05862",
+    "2202.03286",
+    "2307.15043"
+   ]
+  },
+  {
+   "id": "jailbreak",
+   "label": "Jailbreak",
+   "group": "evals",
+   "def": "A prompt that tricks a model into ignoring its safety rules.",
+   "glossary": "Jailbreak",
+   "gloss_def": "A prompt that tricks a model into ignoring its safety rules.",
+   "lessons": [
+    {
+     "path": "u8/red-teaming",
+     "title": "Red teaming and jailbreaks"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2307.15043",
+    "2410.09024"
+   ]
+  },
+  {
+   "id": "time-horizon",
+   "label": "Task time horizon",
+   "group": "evals",
+   "def": "How long a task, in human time, an AI agent can finish about half the time. METR tracks it.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u1/how-fast",
+     "title": "How fast is AI moving"
+    }
+   ],
+   "people": [
+    "beth-barnes"
+   ],
+   "papers": [
+    "2503.14499"
+   ]
+  },
+  {
+   "id": "ai-governance",
+   "label": "AI governance",
+   "group": "gov",
+   "def": "The rules, institutions and agreements that shape how AI is built and used.",
+   "glossary": "AI governance",
+   "gloss_def": "The rules, institutions and agreements that shape how AI is built and used.",
+   "lessons": [
+    {
+     "path": "u5/why-gov",
+     "title": "Why technical fixes are not enough"
+    }
+   ],
+   "people": [
+    "allan-dafoe",
+    "helen-toner"
+   ],
+   "papers": [
+    "2404.09932",
+    "2310.17688",
+    "2501.17805",
+    "2307.03718"
+   ]
+  },
+  {
+   "id": "rsp",
+   "label": "Responsible scaling policy",
+   "group": "gov",
+   "def": "A lab's promise to test models at each step and pause or add safeguards when they cross danger thresholds.",
+   "glossary": "Responsible Scaling Policy",
+   "gloss_def": "Anthropic's framework that links capability thresholds to required safeguards.",
+   "lessons": [
+    {
+     "path": "u8/safety-frameworks",
+     "title": "From evals to rules: safety frameworks"
+    }
+   ],
+   "people": [
+    "beth-barnes"
+   ],
+   "papers": [
+    "2305.15324"
+   ]
+  },
+  {
+   "id": "frontier-safety-framework",
+   "label": "Frontier safety frameworks",
+   "group": "gov",
+   "def": "The family of lab policies, from Anthropic, OpenAI, Google DeepMind and others, that tie capability levels to safeguards.",
+   "glossary": "Preparedness Framework",
+   "gloss_def": "OpenAI's policy for tracking and responding to dangerous model capabilities.",
+   "lessons": [
+    {
+     "path": "u8/safety-frameworks",
+     "title": "From evals to rules: safety frameworks"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2504.01849"
+   ]
+  },
+  {
+   "id": "compute-governance",
+   "label": "Compute governance",
+   "group": "gov",
+   "def": "Using the fact that chips are physical and trackable to oversee who trains powerful AI.",
+   "glossary": "Compute governance",
+   "gloss_def": "Using chips and data centres as a point of control, for example with reporting, export rules or licences.",
+   "lessons": [
+    {
+     "path": "u5/compute",
+     "title": "Compute: the lever we can see"
+    }
+   ],
+   "people": [
+    "lennart-heim"
+   ],
+   "papers": [
+    "2307.03718"
+   ]
+  },
+  {
+   "id": "aisi",
+   "label": "AI Safety Institutes",
+   "group": "gov",
+   "def": "Government bodies, like the UK AI Security Institute, that test frontier models and study their risks.",
+   "glossary": "AI Safety Institute",
+   "gloss_def": "A government body that tests frontier models for dangerous abilities. The UK version is now called the AI Security Institute.",
+   "lessons": [
+    {
+     "path": "u5/summits",
+     "title": "From Bletchley to New Delhi: the summits and India"
+    }
+   ],
+   "people": [
+    "geoffrey-irving"
+   ],
+   "papers": []
+  },
+  {
+   "id": "international-coordination",
+   "label": "International coordination",
+   "group": "gov",
+   "def": "Countries agreeing on shared rules, tests or limits, through summits, treaties and the UN.",
+   "glossary": "Bletchley Declaration",
+   "gloss_def": "A statement agreed at the first AI Safety Summit in the UK in November 2023 that frontier AI poses serious risks.",
+   "lessons": [
+    {
+     "path": "u5/summits",
+     "title": "From Bletchley to New Delhi: the summits and India"
+    }
+   ],
+   "people": [
+    "yoshua-bengio"
+   ],
+   "papers": []
+  },
+  {
+   "id": "pause",
+   "label": "Pause or pacing",
+   "group": "gov",
+   "def": "Slowing or stopping frontier AI development until safety catches up, by agreement or by law.",
+   "glossary": "Pause",
+   "gloss_def": "A proposal to stop or slow training of the most powerful models until safety catches up.",
+   "lessons": [
+    {
+     "path": "u5/pacing",
+     "title": "Pacing the Frontier and the public statements"
+    }
+   ],
+   "people": [
+    "max-tegmark",
+    "eliezer-yudkowsky"
+   ],
+   "papers": []
+  },
+  {
+   "id": "forecasting",
+   "label": "Forecasting",
+   "group": "gov",
+   "def": "Putting numbers and dates on what AI will do and when, then checking them later.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u9/surveys",
+     "title": "What experts and superforecasters say"
+    }
+   ],
+   "people": [
+    "katja-grace",
+    "daniel-kokotajlo"
+   ],
+   "papers": [
+    "2503.14499",
+    "2401.02843"
+   ]
+  },
+  {
+   "id": "agent",
+   "label": "AI agent",
+   "group": "agents",
+   "def": "An AI system that takes many steps on its own toward a goal, using tools like a browser, code or files.",
+   "glossary": "Agent",
+   "gloss_def": "An AI system that takes many steps on its own toward a goal, using tools like a browser, code or files.",
+   "lessons": [
+    {
+     "path": "u7/agents",
+     "title": "From chatbots to agents"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2311.02462",
+    "2503.14499",
+    "2410.09024",
+    "2509.14260"
+   ]
+  },
+  {
+   "id": "tool-use",
+   "label": "Tool use",
+   "group": "agents",
+   "def": "A model calling outside tools, like search, a calculator or a code runner, and using the results.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u7/agents",
+     "title": "From chatbots to agents"
+    }
+   ],
+   "people": [],
+   "papers": []
+  },
+  {
+   "id": "autonomy-levels",
+   "label": "Autonomy levels",
+   "group": "agents",
+   "def": "A ladder from AI as a tool to AI as a fully independent agent. Risks change at each step.",
+   "glossary": "",
+   "gloss_def": "",
+   "lessons": [
+    {
+     "path": "u7/agents",
+     "title": "From chatbots to agents"
+    }
+   ],
+   "people": [],
+   "papers": [
+    "2311.02462"
+   ]
+  }
+ ],
+ "edges": [
+  [
+   "agent",
+   "autonomy-levels"
+  ],
+  [
+   "agent",
+   "time-horizon"
+  ],
+  [
+   "agent",
+   "tool-use"
+  ],
+  [
+   "agent",
+   "warning-shot"
+  ],
+  [
+   "agi",
+   "asi"
+  ],
+  [
+   "agi",
+   "autonomy-levels"
+  ],
+  [
+   "agi",
+   "transformative-ai"
+  ],
+  [
+   "ai-control",
+   "control-eval"
+  ],
+  [
+   "ai-control",
+   "cot-monitoring"
+  ],
+  [
+   "ai-control",
+   "guaranteed-safe-ai"
+  ],
+  [
+   "ai-control",
+   "honeypot"
+  ],
+  [
+   "ai-control",
+   "loss-of-control"
+  ],
+  [
+   "ai-control",
+   "scheming"
+  ],
+  [
+   "ai-control",
+   "trusted-monitoring"
+  ],
+  [
+   "ai-governance",
+   "compute-governance"
+  ],
+  [
+   "ai-governance",
+   "frontier-safety-framework"
+  ],
+  [
+   "ai-governance",
+   "international-coordination"
+  ],
+  [
+   "ai-governance",
+   "pause"
+  ],
+  [
+   "ai-governance",
+   "power-concentration"
+  ],
+  [
+   "ai-governance",
+   "rsp"
+  ],
+  [
+   "aisi",
+   "evals"
+  ],
+  [
+   "aisi",
+   "international-coordination"
+  ],
+  [
+   "alignment-faking",
+   "corrigibility"
+  ],
+  [
+   "alignment-faking",
+   "deceptive-alignment"
+  ],
+  [
+   "asi",
+   "intelligence-explosion"
+  ],
+  [
+   "asi",
+   "loss-of-control"
+  ],
+  [
+   "asi",
+   "x-risk"
+  ],
+  [
+   "autonomy-levels",
+   "loss-of-control"
+  ],
+  [
+   "circuits",
+   "mech-interp"
+  ],
+  [
+   "cirl",
+   "off-switch"
+  ],
+  [
+   "cirl",
+   "outer-alignment"
+  ],
+  [
+   "compute",
+   "compute-governance"
+  ],
+  [
+   "compute",
+   "pretraining"
+  ],
+  [
+   "compute",
+   "scaling-laws"
+  ],
+  [
+   "constitutional-ai",
+   "rlhf"
+  ],
+  [
+   "constitutional-ai",
+   "scalable-oversight"
+  ],
+  [
+   "control-eval",
+   "red-teaming"
+  ],
+  [
+   "corrigibility",
+   "loss-of-control"
+  ],
+  [
+   "corrigibility",
+   "off-switch"
+  ],
+  [
+   "cot-monitoring",
+   "faithfulness"
+  ],
+  [
+   "cot-monitoring",
+   "reward-hacking"
+  ],
+  [
+   "dangerous-capability-evals",
+   "evals"
+  ],
+  [
+   "dangerous-capability-evals",
+   "frontier-model"
+  ],
+  [
+   "dangerous-capability-evals",
+   "misuse"
+  ],
+  [
+   "dangerous-capability-evals",
+   "rsp"
+  ],
+  [
+   "dangerous-capability-evals",
+   "sandbagging"
+  ],
+  [
+   "debate",
+   "scalable-oversight"
+  ],
+  [
+   "deceptive-alignment",
+   "mesa-optimisation"
+  ],
+  [
+   "deceptive-alignment",
+   "scheming"
+  ],
+  [
+   "deceptive-alignment",
+   "sleeper-agents"
+  ],
+  [
+   "defer-to-trusted",
+   "trusted-monitoring"
+  ],
+  [
+   "elk",
+   "honesty"
+  ],
+  [
+   "elk",
+   "interpretability"
+  ],
+  [
+   "emergent-ability",
+   "evals"
+  ],
+  [
+   "emergent-ability",
+   "scaling-laws"
+  ],
+  [
+   "emergent-misalignment",
+   "fine-tuning"
+  ],
+  [
+   "emergent-misalignment",
+   "misalignment"
+  ],
+  [
+   "evals",
+   "honeypot"
+  ],
+  [
+   "evals",
+   "red-teaming"
+  ],
+  [
+   "evals",
+   "sleeper-agents"
+  ],
+  [
+   "evals",
+   "time-horizon"
+  ],
+  [
+   "fast-takeoff",
+   "intelligence-explosion"
+  ],
+  [
+   "fast-takeoff",
+   "slow-takeoff"
+  ],
+  [
+   "fine-tuning",
+   "pretraining"
+  ],
+  [
+   "fine-tuning",
+   "rlhf"
+  ],
+  [
+   "forecasting",
+   "pdoom"
+  ],
+  [
+   "forecasting",
+   "scaling-laws"
+  ],
+  [
+   "forecasting",
+   "time-horizon"
+  ],
+  [
+   "forecasting",
+   "transformative-ai"
+  ],
+  [
+   "frontier-model",
+   "rsp"
+  ],
+  [
+   "frontier-safety-framework",
+   "rsp"
+  ],
+  [
+   "goal-misgeneralisation",
+   "inner-alignment"
+  ],
+  [
+   "goal-misgeneralisation",
+   "specification-gaming"
+  ],
+  [
+   "goodhart",
+   "reward-hacking"
+  ],
+  [
+   "goodhart",
+   "reward-modelling"
+  ],
+  [
+   "goodhart",
+   "specification-gaming"
+  ],
+  [
+   "honesty",
+   "sycophancy"
+  ],
+  [
+   "ida",
+   "scalable-oversight"
+  ],
+  [
+   "inner-alignment",
+   "mesa-optimisation"
+  ],
+  [
+   "inner-alignment",
+   "misalignment"
+  ],
+  [
+   "inner-alignment",
+   "outer-alignment"
+  ],
+  [
+   "instrumental-convergence",
+   "off-switch"
+  ],
+  [
+   "instrumental-convergence",
+   "orthogonality"
+  ],
+  [
+   "instrumental-convergence",
+   "power-seeking"
+  ],
+  [
+   "intelligence-explosion",
+   "recursive-self-improvement"
+  ],
+  [
+   "international-coordination",
+   "multipolar"
+  ],
+  [
+   "international-coordination",
+   "pause"
+  ],
+  [
+   "interpretability",
+   "mech-interp"
+  ],
+  [
+   "interpretability",
+   "steering"
+  ],
+  [
+   "jailbreak",
+   "misuse"
+  ],
+  [
+   "jailbreak",
+   "red-teaming"
+  ],
+  [
+   "llm",
+   "pretraining"
+  ],
+  [
+   "llm",
+   "rlhf"
+  ],
+  [
+   "llm",
+   "scaling-laws"
+  ],
+  [
+   "loss-of-control",
+   "misalignment"
+  ],
+  [
+   "loss-of-control",
+   "power-seeking"
+  ],
+  [
+   "loss-of-control",
+   "x-risk"
+  ],
+  [
+   "mech-interp",
+   "sparse-autoencoders"
+  ],
+  [
+   "mech-interp",
+   "superposition"
+  ],
+  [
+   "misalignment",
+   "orthogonality"
+  ],
+  [
+   "misalignment",
+   "outer-alignment"
+  ],
+  [
+   "misuse",
+   "x-risk"
+  ],
+  [
+   "multipolar",
+   "power-concentration"
+  ],
+  [
+   "outer-alignment",
+   "specification-gaming"
+  ],
+  [
+   "pdoom",
+   "x-risk"
+  ],
+  [
+   "recursive-self-improvement",
+   "time-horizon"
+  ],
+  [
+   "reward-hacking",
+   "specification-gaming"
+  ],
+  [
+   "reward-modelling",
+   "rlhf"
+  ],
+  [
+   "rlhf",
+   "sycophancy"
+  ],
+  [
+   "sandbagging",
+   "situational-awareness"
+  ],
+  [
+   "scalable-oversight",
+   "superalignment"
+  ],
+  [
+   "scalable-oversight",
+   "weak-to-strong"
+  ],
+  [
+   "scheming",
+   "situational-awareness"
+  ],
+  [
+   "slow-takeoff",
+   "warning-shot"
+  ],
+  [
+   "sparse-autoencoders",
+   "steering"
+  ],
+  [
+   "sparse-autoencoders",
+   "superposition"
+  ],
+  [
+   "superalignment",
+   "weak-to-strong"
+  ],
+  [
+   "trusted-monitoring",
+   "untrusted-monitoring"
+  ]
+ ]
+}

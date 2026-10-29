@@ -1,4 +1,5 @@
 import { $, $$, esc, researchers, avatar, RM, GROUPS, ICON } from "../util.js";
+import { mount as mount3 } from "../views3/voices3.js";
 
 export async function render(el) {
   const ppl = await researchers();
@@ -54,6 +55,7 @@ export async function render(el) {
   }
   $$("[data-g]", el).forEach((b) => b.addEventListener("click", () => { $$("[data-g]", el).forEach((x) => x.classList.toggle("on", x === b)); wall(b.dataset.g); }));
   wall("all");
+  try { await mount3(el); } catch (e) { console.warn("voices3", e); }
   return () => { clearTimeout(timer); document.removeEventListener("keydown", onKey); };
 }
 

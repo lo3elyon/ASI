@@ -1,0 +1,126 @@
+{
+ "id": "possible-minds",
+ "title": "Possible Minds",
+ "subtitle": "Twenty-Five Ways of Looking at AI",
+ "authors": [
+  {
+   "name": "John Brockman",
+   "rid": ""
+  }
+ ],
+ "year": "2019",
+ "publisher": "Penguin Press",
+ "isbn": "9780525557999",
+ "pages": "320",
+ "ol": "/works/OL20161477W",
+ "shelf": "future",
+ "level": "Intermediate",
+ "pitch": "Brockman asked twenty five scientists and thinkers to respond to Norbert Wiener's 1950 warnings about machines. The answers range from deep worry to calm optimism.",
+ "toc_src": "https://openlibrary.org/works/OL20161477W",
+ "chapters": [
+  {
+   "t": "Wiener's warnings",
+   "g": "The starting point: The Human Use of Human Beings and its worries about automation and control.",
+   "part": ""
+  },
+  {
+   "t": "The control problem",
+   "g": "Essays on whether we can keep powerful AI aligned with human values, including Stuart Russell and Max Tegmark.",
+   "part": ""
+  },
+  {
+   "t": "Minds and machines",
+   "g": "What intelligence and consciousness mean, and whether machines can have them.",
+   "part": ""
+  },
+  {
+   "t": "Skeptics and optimists",
+   "g": "Contributors who think the risks are overblown or that AI will be a great tool.",
+   "part": ""
+  },
+  {
+   "t": "Society and power",
+   "g": "How AI could reshape politics, work and art.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Wiener's 1950 warnings still frame today's debate.",
+  "Experts disagree deeply about AI risk.",
+  "The control problem is taken seriously by leading scientists.",
+  "AI raises questions about mind, value and power."
+ ],
+ "args": [
+  {
+   "a": "Many leading thinkers see AI control as a serious problem.",
+   "c": "Others in the same book argue fears are overblown, showing there was no consensus."
+  },
+  {
+   "a": "Old ideas from cybernetics still guide us.",
+   "c": "Some say modern machine learning makes Wiener's frame dated."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which way of looking at AI is closest to yours?",
+  "What would Wiener make of the debate?",
+  "Which side has gained ground since 2019?"
+ ],
+ "quiz": [
+  {
+   "q": "Whose ideas does the book respond to?",
+   "o": [
+    "Turing",
+    "Norbert Wiener",
+    "Darwin",
+    "Newton"
+   ],
+   "a": 1,
+   "w": "His 1950 book on cybernetics and society."
+  },
+  {
+   "q": "How many ways of looking at AI does the subtitle promise?",
+   "o": [
+    "Five",
+    "Twenty five",
+    "Fifty",
+    "One hundred"
+   ],
+   "a": 1,
+   "w": "Twenty five contributors."
+  },
+  {
+   "q": "Who edited it?",
+   "o": [
+    "John Brockman",
+    "Martin Ford",
+    "Nick Bostrom",
+    "Kate Crawford"
+   ],
+   "a": 0,
+   "w": "Founder of Edge.org."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/possible-minds.jpg",
+ "videos": [],
+ "shelfLabel": "Futures",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL20161477W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780525557999",
+   "free": true
+  }
+ ],
+ "toc_note": "Edited collection of essays by different authors. No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

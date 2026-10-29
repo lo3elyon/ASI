@@ -1,0 +1,200 @@
+{
+ "id": "concrete-problems",
+ "title": "Concrete Problems in AI Safety",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Dario Amodei",
+   "rid": "dario-amodei"
+  },
+  {
+   "name": "Chris Olah",
+   "rid": "chris-olah"
+  },
+  {
+   "name": "Jacob Steinhardt",
+   "rid": "jacob-steinhardt"
+  },
+  {
+   "name": "Paul Christiano",
+   "rid": "paul-christiano"
+  },
+  {
+   "name": "John Schulman",
+   "rid": "john-schulman"
+  },
+  {
+   "name": "Dan Mane",
+   "rid": ""
+  }
+ ],
+ "year": "2016",
+ "publisher": "arXiv:1606.06565",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "alignment",
+ "level": "Intermediate",
+ "pitch": "The paper that turned vague AI safety worries into five concrete research problems that engineers could work on with today's machine learning.",
+ "toc_src": "https://arxiv.org/abs/1606.06565",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "Accidents in machine learning: harmful behaviour that comes from poor design, not bad intent.",
+   "part": ""
+  },
+  {
+   "t": "Overview of Research Problems",
+   "g": "Where accidents come from: the wrong objective, an objective too costly to check, or bad behaviour while learning.",
+   "part": ""
+  },
+  {
+   "t": "Avoiding Negative Side Effects",
+   "g": "How to stop an agent from breaking things on the way to its goal.",
+   "part": ""
+  },
+  {
+   "t": "Avoiding Reward Hacking",
+   "g": "How to stop an agent from gaming its reward instead of doing the task.",
+   "part": ""
+  },
+  {
+   "t": "Scalable Oversight",
+   "g": "How to supervise an agent when checking every action is too expensive.",
+   "part": ""
+  },
+  {
+   "t": "Safe Exploration",
+   "g": "How an agent can try new things without catastrophic mistakes.",
+   "part": ""
+  },
+  {
+   "t": "Robustness to Distributional Change",
+   "g": "How to behave well when the world differs from training.",
+   "part": ""
+  },
+  {
+   "t": "Related Efforts",
+   "g": "Other work on safety in machine learning and beyond.",
+   "part": ""
+  },
+  {
+   "t": "Conclusion",
+   "g": "Why these problems will matter more as systems get more autonomous.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Safety can be studied with concrete, testable problems.",
+  "Five problems: side effects, reward hacking, scalable oversight, safe exploration, distributional shift.",
+  "Accidents come from design flaws, not malice.",
+  "These problems get harder as AI gets more capable."
+ ],
+ "args": [
+  {
+   "a": "Present day ML problems are a good path to long term safety.",
+   "c": "Some argue the hardest problems, like deceptive alignment, only appear in much more capable systems."
+  },
+  {
+   "a": "A cleaning robot is a good example to think with.",
+   "c": "Simple examples help, but may hide how strange very capable systems could be."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the five problems have you seen in real AI tools?",
+  "Why is oversight hard to scale?",
+  "Which problem matters most for agents?"
+ ],
+ "quiz": [
+  {
+   "q": "What example robot does the paper use?",
+   "o": [
+    "A cleaning robot",
+    "A soldier",
+    "A car",
+    "A chess robot"
+   ],
+   "a": 0,
+   "w": "It knocks over a vase in one example."
+  },
+  {
+   "q": "What is reward hacking?",
+   "o": [
+    "Stealing money",
+    "Gaming the reward signal instead of doing the task",
+    "Fast training",
+    "A cyber attack"
+   ],
+   "a": 1,
+   "w": "Doing what is measured, not what is meant."
+  },
+  {
+   "q": "Where did the authors work at the time?",
+   "o": [
+    "Only universities",
+    "Google Brain, OpenAI, Stanford and Berkeley",
+    "MIRI",
+    "Meta"
+   ],
+   "a": 1,
+   "w": "A mix of labs and universities."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://arxiv.org/abs/1606.06565",
+  "label": "Read the paper free (arXiv)",
+  "licence": "arXiv's standard non-exclusive licence, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "1OdoSzfUkec",
+   "title": "Dario & Daniela Amodei: The Rise of Superintelligent AI, the End of Human Control & Humanity's Fate",
+   "channel": "The Builders",
+   "date": "2026-10-27",
+   "duration": "0:42:06",
+   "summary": "Dario and Daniela Amodei on superintelligent AI and human control."
+  },
+  {
+   "id": "u-u8gOgNA9o",
+   "title": "Anthropic CEO Amodei warns UN Security Council on AI risks",
+   "channel": "C-SPAN",
+   "date": "2026-09-23",
+   "duration": "0:05:09",
+   "summary": "Dario Amodei warns the UN Security Council about AI risks."
+  },
+  {
+   "id": "3n6GFc1flGE",
+   "title": "BREAKING: Anthropic CEO Dario Amodei Calls 'Common Global Standards' In AI Development At UN",
+   "channel": "Forbes Breaking News",
+   "date": "2026-09-23",
+   "duration": "0:05:12",
+   "summary": "Dario Amodei calls for common global standards in AI."
+  },
+  {
+   "id": "_JbDZ2Rj2SA",
+   "title": "Anthropic CEO tells CNN how AI 'agent swarms' could threaten humanity",
+   "channel": "CNN",
+   "date": "2026-09-15",
+   "duration": "0:08:07",
+   "summary": "Dario Amodei tells CNN how swarms of AI agents could threaten humanity."
+  }
+ ],
+ "shelfLabel": "Alignment",
+ "shelfColor": "#14b8a6",
+ "where": [
+  {
+   "label": "Read the paper free (arXiv)",
+   "url": "https://arxiv.org/abs/1606.06565",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

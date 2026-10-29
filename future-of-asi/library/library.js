@@ -6,6 +6,7 @@ footer("Covers from Open Library or the publisher. Chapter guides are summaries,
 const CAT = await getJSON("data/books.json", { books: [], shelves: {} });
 const BOOKS = CAT.books, BY = Object.fromEntries(BOOKS.map((b) => [b.id, b]));
 const cache = {};
+const PHOTOS = new Set(CAT.photos || []);
 const loadBook = async (id) => (cache[id] ||= await getJSON(`data/books/${encodeURIComponent(id)}.json`, null));
 
 /* ---------- storage ---------- */
@@ -32,18 +33,20 @@ function tilt(el, max = 16) {
 /* ---------- catalogue ---------- */
 $("#countBooks").textContent = BOOKS.filter((b) => b.kind === "book").length;
 $("#countEssays").textContent = BOOKS.filter((b) => b.kind === "essay").length;
+const BASE_TITLE = document.title;
 const S = { shelf: "all", q: "", sort: "year", free: false };
 const shelfCounts = BOOKS.reduce((m, b) => ((m[b.shelf] = (m[b.shelf] || 0) + 1), m), {});
 $("#shelves").innerHTML = [["all", "All", BOOKS.length], ...Object.entries(CAT.shelves).filter(([k]) => shelfCounts[k]).map(([k, [l]]) => [k, l, shelfCounts[k]])]
-  .map(([k, l, n]) => `<button class="chip" type="button" data-k="${k}" aria-pressed="${k === "all"}">${esc(l)} <span class="mono" style="opacity:.55">${n}</span></button>`).join("");
+  .map(([k, l, n]) => `<button class="chip" type="button" data-k="${k}" aria-pressed="${k === "all"}" style="--c:${k === "all" ? "var(--cyan)" : esc(CAT.shelves[k][1])}">${k === "all" ? "" : '<i class="sw"></i>'}${esc(l)} <span class="mono" style="opacity:.55">${n}</span></button>`).join("");
 function renderGrid() {
   const q = S.q.trim().toLowerCase();
   let list = BOOKS.filter((b) => (S.shelf === "all" || b.shelf === S.shelf) && (!S.free || b.free) && (!q || [b.title, b.subtitle, b.pitch, b.publisher, b.authors.map((a) => a.name).join(" ")].join(" ").toLowerCase().includes(q)));
   list = list.slice().sort((a, b) => S.sort === "title" ? a.title.localeCompare(b.title) : S.sort === "old" ? a.year.localeCompare(b.year) : b.year.localeCompare(a.year));
   $("#count").textContent = `${list.length} of ${BOOKS.length}`;
-  $("#grid").innerHTML = list.map((b) => { const p = pct(b); return `<button class="bk rv" type="button" data-id="${esc(b.id)}" aria-label="${esc(b.title)} by ${esc(b.authors.map((a) => a.name).join(", "))}">${coverHTML(b).replace('<div class="cv3">', `<div class="cv3">${p ? `<span class="done">${p}%</span>` : ""}`)}<div class="meta"><b>${esc(b.title)}</b><span>${esc(b.authors.map((a) => a.name).slice(0, 2).join(", "))}${b.authors.length > 2 ? " and others" : ""} · ${esc(b.year)}</span><div class="row"><span class="tag" style="--c:${esc(b.shelfColor)}">${esc(b.shelfLabel)}</span>${b.free === "full" ? '<span class="free">Full text</span>' : b.free === "link" ? '<span class="free link">Free online</span>' : ""}</div></div></button>`; }).join("") || `<div class="empty-state" style="grid-column:1/-1">Nothing matches that search.</div>`;
+  $("#grid").innerHTML = list.map((b, i) => { const p = pct(b); return `<button class="bk rv" type="button" data-id="${esc(b.id)}" style="--c:${esc(b.shelfColor)};transition-delay:${Math.min(12, i % 12) * 0.035}s" aria-label="${esc(b.title)} by ${esc(b.authors.map((a) => a.name).join(", "))}">${coverHTML(b).replace('<div class="cv3">', `<div class="cv3">${p ? `<span class="done">${p}%</span>` : ""}`)}<div class="meta"><b>${esc(b.title)}</b><span>${esc(b.authors.map((a) => a.name).slice(0, 2).join(", "))}${b.authors.length > 2 ? " and others" : ""} · ${esc(b.year)}</span><div class="row"><span class="tag" style="--c:${esc(b.shelfColor)}">${esc(b.shelfLabel)}</span>${b.free === "full" ? '<span class="free">Full text</span>' : b.free === "link" ? '<span class="free link">Free online</span>' : ""}</div></div></button>`; }).join("") || `<div class="empty-state" style="grid-column:1/-1">Nothing matches that search.</div>`;
   $$("#grid .bk").forEach((el) => tilt(el, 14));
   reveal($("#grid"));
+  LIST = list; if (shelf) shelf.setList(list);
 }
 function renderContinue() {
   const all = P.get(); const ids = Object.keys(all).filter((id) => BY[id] && all[id].t).sort((a, b) => all[b].t - all[a].t).slice(0, 8);
@@ -54,7 +57,23 @@ $("#q").addEventListener("input", (e) => { S.q = e.target.value; renderGrid(); }
 $("#sort").addEventListener("change", (e) => { S.sort = e.target.value; renderGrid(); });
 $("#freeOnly").addEventListener("click", (e) => { S.free = !S.free; e.currentTarget.setAttribute("aria-pressed", String(S.free)); renderGrid(); });
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-id]"); if (b && (b.closest("#grid") || b.closest("#continue"))) location.hash = `#/book/${b.dataset.id}`; });
+let LIST = [], shelf = null;
 renderGrid(); renderContinue();
+{ // stats in the hero
+  const full = BOOKS.filter((b) => b.free === "full").length, cov = BOOKS.filter((b) => b.cover).length, shelves = Object.keys(shelfCounts).length;
+  $("#lstats").innerHTML = `<span><b>${BOOKS.length}</b> titles</span><span><b>${shelves}</b> shelves</span><span><b>${full}</b> free full texts</span><span><b>${cov}</b> verified covers</span><span><b>${BOOKS.reduce((a, b) => a + (b.nch || 0), 0)}</b> chapter guides</span>`;
+}
+/* ---------- 3D shelf ---------- */
+const gl = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) { return false; } })();
+if (gl && !RM()) {
+  import("./shelf3d.js").then((m) => m.createShelf($("#shelfHost"), {
+    calm: RM,
+    onOpen: (id) => { const b = BY[id]; location.hash = `#/read/${id}/${b.free === "full" ? "full" : "guide"}`; },
+    onHover: (b, e) => { const t = $("#shTip"); if (!b || !e) { t.hidden = true; return; } const r = $("#shelfHost").getBoundingClientRect(); t.hidden = false; t.style.setProperty("--c", b.shelfColor); t.style.left = `${e.clientX - r.left}px`; t.style.top = `${e.clientY - r.top}px`; t.innerHTML = `<b>${esc(b.title)}</b><span>${esc(b.authors.map((a) => a.name).slice(0, 2).join(", "))} · ${esc(b.year)}</span><small>${esc(b.shelfLabel)}${b.free === "full" ? " · full text" : ""} · click to read</small>`; },
+    onScroll: (f, can) => { const bar = $("#shBar"); bar.style.transform = `translateX(${f * 355}%)`; $("#shPrev").disabled = !can; $("#shNext").disabled = !can; },
+    scrollY: () => { const r = $("#shelf3d").getBoundingClientRect(); return clamp((innerHeight / 2 - (r.top + r.height / 2)) / innerHeight, -0.6, 0.6); },
+  })).then((s) => { shelf = s; $("#shelf3d").hidden = false; s.setList(LIST); $("#shPrev").onclick = () => s.scrollBy(-1.6); $("#shNext").onclick = () => s.scrollBy(1.6); }).catch((e) => console.warn("3D shelf unavailable", e));
+}
 
 /* ---------- book view ---------- */
 const bv = $("#bookview");
@@ -65,6 +84,7 @@ async function openBook(id, tab = "guide") {
   curBook = b; lastFocus = lastFocus || document.activeElement;
   const c = BY[id];
   const authors = b.authors.map((a) => a.rid ? `<a href="../#/researchers/${esc(a.rid)}">${esc(a.name)}</a>` : esc(a.name)).join(", ");
+  const faces = b.authors.filter((a) => a.rid && PHOTOS.has(a.rid)).slice(0, 4).map((a) => `<a class="aface" href="../#/researchers/${esc(a.rid)}" title="${esc(a.name)}"><img src="../assets/people/${esc(a.rid)}.jpg" alt="${esc(a.name)}" loading="lazy" width="44" height="44"></a>`).join("");
   const meta = [["Year", b.year], ["Publisher", b.publisher], ["Pages", b.pages], ["ISBN", b.isbn], ["Level", b.level], ["Shelf", b.shelfLabel]].filter(([, v]) => v);
   const tabs = TABS.filter(([k]) => !(k === "quotes" && !b.quotes.length) && !(k === "watch" && !b.videos.length));
   $("#bvInner").innerHTML = `
@@ -74,7 +94,7 @@ async function openBook(id, tab = "guide") {
       <div>
         <span class="tag" style="--c:${esc(b.shelfColor)}">${esc(b.shelfLabel)}</span>
         <h2 id="bvTitle">${esc(b.title)}</h2>${b.subtitle ? `<div class="sub">${esc(b.subtitle)}</div>` : ""}
-        <div class="by">by ${authors}</div>
+        <div class="by">${faces ? `<span class="faces">${faces}</span>` : ""}<span>by ${authors}</span></div>
         <p class="pitch">${esc(b.pitch)}</p>
         <div class="metatbl">${meta.map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join("")}</div>
         <div class="row" style="gap:10px;align-items:center">
@@ -103,7 +123,7 @@ function showTab(k) {
   el.classList.remove("bv-panel"); void el.offsetWidth; el.classList.add("bv-panel");
   if (k === "guide") {
     const read = new Set(prog(b.id).read || []); let lastPart = null;
-    el.innerHTML = `<p class="guide-note">Chapter titles from the published contents (<a href="${esc(b.toc_src)}" target="_blank" rel="noopener">source</a>). The guide lines are my own short summaries, not the author's words.${b.toc_note ? " " + esc(b.toc_note) : ""} Tick a chapter when you have read it.</p><div class="chlist">${b.chapters.map((c, i) => { const part = c.part && c.part !== lastPart ? `<div class="part">${esc(c.part)}</div>` : ""; lastPart = c.part || lastPart; return `${part}<div class="chrow ${read.has(i) ? "read" : ""}" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span><div><h4>${esc(c.t)}</h4><p>${esc(c.g)}</p></div><button class="tick" type="button" aria-pressed="${read.has(i)}" aria-label="Mark chapter ${i + 1} as read">✓</button></div>`; }).join("")}</div>`;
+    el.innerHTML = `<p class="guide-note">${b.guide_kind === "themes" ? `${esc(b.toc_note || "")} The lines are my own short summaries, not the author's words.` : `Chapter titles from the published contents (<a href="${esc(b.toc_src)}" target="_blank" rel="noopener">source</a>). The guide lines are my own short summaries, not the author's words.${b.toc_note ? " " + esc(b.toc_note) : ""}`} Tick ${b.guide_kind === "themes" ? "a theme" : "a chapter"} when you have read it.</p><div class="chlist">${b.chapters.map((c, i) => { const part = c.part && c.part !== lastPart ? `<div class="part">${esc(c.part)}</div>` : ""; lastPart = c.part || lastPart; return `${part}<div class="chrow ${read.has(i) ? "read" : ""}" data-i="${i}"><span class="n">${String(i + 1).padStart(2, "0")}</span><div><h4>${esc(c.t)}</h4><p>${esc(c.g)}</p></div><button class="tick" type="button" aria-pressed="${read.has(i)}" aria-label="Mark chapter ${i + 1} as read">✓</button></div>`; }).join("")}</div>`;
   } else if (k === "ideas") {
     el.innerHTML = `<ol class="ideas">${b.ideas.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>`;
   } else if (k === "args") {
@@ -136,133 +156,30 @@ bv.addEventListener("click", async (e) => {
   const del = e.target.closest("[data-del]"); if (del) { const all = HL.get(); (all[curBook.id] || []).splice(+del.dataset.del, 1); HL.set(all); showTab("notes"); }
 });
 function closeBook() { location.hash = "#/"; }
-function hideBook() { bv.hidden = true; document.body.classList.remove("no-scroll"); document.title = "The Library: 30 books and 6 essays on superintelligence and AI risk | Threshold"; if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true }); lastFocus = null; }
+function hideBook() { bv.hidden = true; document.body.classList.remove("no-scroll"); document.title = BASE_TITLE; if (lastFocus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true }); lastFocus = null; }
 
-/* ---------- reader ---------- */
-const rd = $("#reader"), cols = $("#rdCols");
-const RS = Object.assign({ t: "dark", size: 19, f: "serif" }, store.get("lib:reader", {}));
-const applyRS = () => { rd.dataset.t = RS.t; rd.dataset.f = RS.f; rd.style.setProperty("--rsize", RS.size + "px"); $$(".rd-theme button").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.t === RS.t))); store.set("lib:reader", RS); };
-applyRS();
-const R = { book: null, mode: "guide", docs: [], di: 0, page: 0, pages: 1, busy: false };
-function blocksToHTML(blocks) {
-  return blocks.map((b) => b.t === "h1" ? `<h1>${esc(b.x)}</h1>` : b.t === "h2" ? `<h2>${esc(b.x)}</h2>` : b.t === "h3" ? `<h3>${esc(b.x)}</h3>` : b.t === "h4" ? `<h3>${esc(b.x)}</h3>` : b.t === "li" ? `<p>&bull; ${esc(b.x)}</p>` : b.t === "fig" ? `<div class="fig">${esc(b.x)} <br>[Not reproduced here. See the official PDF.]</div>` : b.t === "hint" ? `<div class="ghint">${esc(b.x)}</div>` : `<p>${esc(b.x)}</p>`).join("");
-}
-function guideDoc(b) {
-  const bl = [{ t: "h1", x: b.title }, { t: "hint", x: "Chapter guide by Threshold. Short summaries in my own words, not the book's text." }];
-  let lp = null;
-  b.chapters.forEach((c, i) => { if (c.part && c.part !== lp) { bl.push({ t: "h2", x: c.part }); lp = c.part; } bl.push({ t: "h3", x: `${i + 1}. ${c.t}`, a: i }); bl.push({ t: "p", x: c.g }); });
-  bl.push({ t: "h2", x: "Key ideas" }); b.ideas.forEach((x) => bl.push({ t: "li", x }));
-  bl.push({ t: "h2", x: "Questions to think about" }); b.questions.forEach((x) => bl.push({ t: "li", x }));
-  return { id: "guide", title: "Chapter guide", blocks: bl };
-}
-async function openReader(id, mode) {
+addEventListener("keydown", (e) => { if (e.key === "Escape" && !bv.hidden && !(RD && RD.isOpen())) closeBook(); });
+
+/* ---------- reader (3D book with a 2D fallback, in reader/) ---------- */
+let RD = null;
+const reader = async () => (RD ||= await import("./reader/reader.js"));
+async function openReader(id, mode, d, p) {
   const b = await loadBook(id); if (!b) return;
   if (!bv.hidden && curBook && curBook.id !== id) hideBook();
-  R.book = b; R.mode = mode === "full" && b.free && b.free.kind === "full" ? "full" : "guide";
-  $("#rdBook").textContent = b.title;
-  if (R.mode === "full") {
-    const src = b.free.text;
-    if (src.endsWith("index.json")) { const idx = await getJSON(src, []); const base = src.replace("index.json", ""); R.docs = idx.map((d) => ({ id: d.id, title: d.title, url: `${base}${d.id}.json` })); }
-    else { const d = await getJSON(src, null); R.docs = [{ id: "all", title: d ? d.title : b.title, blocks: d ? d.blocks : [] }]; }
-    $("#rdLic").textContent = b.free.licence;
-  } else { R.docs = [guideDoc(b)]; $("#rdLic").textContent = "Summary by Threshold. Not the book's text."; }
-  const saved = (prog(b.id).pos || {})[R.mode] || { d: 0, f: 0 };
-  rd.hidden = false; document.body.classList.add("no-scroll");
-  renderToc();
-  await loadDoc(clamp(saved.d || 0, 0, R.docs.length - 1), saved.f || 0);
-  cols.focus({ preventScroll: true });
-}
-async function loadDoc(di, frac = 0, atEnd = false) {
-  R.di = di; const d = R.docs[di];
-  if (!d.blocks) { cols.innerHTML = `<p class="gk">Loading...</p>`; const j = await getJSON(d.url, null); d.blocks = j ? j.blocks : [{ t: "p", x: "This chapter could not be loaded." }]; }
-  let pre = [];
-  if (R.mode === "full" && R.book.id === "aises" && di === 0) pre = [{ t: "hint", x: `Dan Hendrycks, Introduction to AI Safety, Ethics, and Society, arXiv:2411.01042v2. Licensed CC BY-NC-ND 4.0. Text reproduced without changes. Figures and tables are not reproduced. Official version: aisafetybook.com` }];
-  if (R.mode === "full" && R.book.id === "butler-1863") pre = [{ t: "hint", x: "Public domain. Text from Wikisource, from the 1917 reprint in The Note-Books of Samuel Butler." }];
-  cols.innerHTML = blocksToHTML(pre.concat(d.blocks));
-  applyHL();
-  $("#rdChap").textContent = R.mode === "full" && R.docs.length > 1 ? d.title : R.mode === "guide" ? "Chapter guide" : "Full text";
-  $$("#rdTocPanel [data-d]").forEach((b) => b.setAttribute("aria-current", String(+b.dataset.d === di)));
-  layout(); R.page = atEnd ? R.pages - 1 : clamp(Math.round(frac * (R.pages - 1)), 0, R.pages - 1); go(R.page, false);
-}
-function geom() { const w = cols.clientWidth; const two = rd.clientWidth > 980; const gap = parseFloat(getComputedStyle(cols).columnGap) || 40; cols.style.columnCount = two ? 2 : 1; cols.style.columnWidth = "auto"; return { w, gap }; }
-function layout() { const { w, gap } = geom(); cols.scrollLeft = 0; R.step = w + gap; R.pages = Math.max(1, Math.round((cols.scrollWidth + gap) / R.step)); }
-function go(p, anim = true, dir = 1) {
-  R.page = clamp(p, 0, R.pages - 1);
-  const apply = () => { cols.scrollLeft = R.page * R.step; foot(); savePos(); };
-  if (anim && !RM()) { const leaf = $("#rdLeaf"); leaf.className = "rd-leaf"; void leaf.offsetWidth; leaf.className = `rd-leaf ${dir > 0 ? "fwd" : "back"}`; setTimeout(apply, 180); setTimeout(() => (leaf.className = "rd-leaf"), 620); }
-  else apply();
-}
-function foot() {
-  const total = R.docs.length; const f = (R.di + (R.pages > 1 ? R.page / (R.pages - 1) : 1)) / total;
-  $("#rdPos").textContent = `${R.docs.length > 1 ? `Ch ${R.di + 1}/${total} · ` : ""}Page ${R.page + 1} of ${R.pages}`;
-  $("#rdProg").style.width = `${Math.round(f * 100)}%`;
-  $("#rdPrev").disabled = R.di === 0 && R.page === 0; $("#rdNext").disabled = R.di === total - 1 && R.page >= R.pages - 1;
-}
-function savePos() { const p = prog(R.book.id); const pos = { ...(p.pos || {}) }; pos[R.mode] = { d: R.di, f: R.pages > 1 ? R.page / (R.pages - 1) : 0 }; saveProg(R.book.id, { pos }); }
-async function next() { if (R.busy) return; if (R.page < R.pages - 1) go(R.page + 1, true, 1); else if (R.di < R.docs.length - 1) { R.busy = true; await loadDoc(R.di + 1, 0); R.busy = false; } }
-async function prev() { if (R.busy) return; if (R.page > 0) go(R.page - 1, true, -1); else if (R.di > 0) { R.busy = true; await loadDoc(R.di - 1, 0, true); R.busy = false; } }
-function renderToc() {
-  const t = $("#rdTocPanel"); const b = R.book;
-  const items = R.mode === "full" && R.docs.length > 1 ? R.docs.map((d, i) => `<button type="button" data-d="${i}">${esc(d.title)}</button>`).join("") : R.mode === "guide" ? b.chapters.map((c, i) => `<button type="button" data-a="${i}">${i + 1}. ${esc(c.t)}</button>`).join("") : `<p style="margin:6px 12px;font-size:13px">One continuous text.</p>`;
-  const hl = (HL.get()[b.id] || []).filter((h) => h.mode === R.mode);
-  t.innerHTML = `<h4>Contents</h4>${items}<div class="hlist"><h4>Your highlights</h4>${hl.length ? hl.map((h) => `<p>${esc(h.text)}</p>`).join("") : `<p style="border:0;color:var(--rmut)">Select text, then press Highlight.</p>`}</div>`;
-}
-function toggleToc(force) { const t = $("#rdTocPanel"); const o = force != null ? force : !t.classList.contains("open"); t.classList.toggle("open", o); $("#rdToc").setAttribute("aria-expanded", String(o)); }
-$("#rdTocPanel").addEventListener("click", async (e) => {
-  const d = e.target.closest("[data-d]"); if (d) { toggleToc(false); await loadDoc(+d.dataset.d, 0); return; }
-  const a = e.target.closest("[data-a]"); if (a) { toggleToc(false); const h = $$("h3", cols)[+a.dataset.a]; if (h) { const left = h.getBoundingClientRect().left - cols.getBoundingClientRect().left + cols.scrollLeft; go(Math.floor(left / R.step), true, 1); } }
-});
-function closeReader() { rd.hidden = true; toggleToc(false); $("#hlPop").hidden = true; document.body.classList.toggle("no-scroll", !bv.hidden); if (R.book) location.hash = `#/book/${R.book.id}`; }
-$("#rdClose").addEventListener("click", closeReader);
-$("#rdToc").addEventListener("click", () => toggleToc());
-$("#rdNext").addEventListener("click", next); $("#rdPrev").addEventListener("click", prev);
-$$(".rd-theme button").forEach((b) => b.addEventListener("click", () => { RS.t = b.dataset.t; applyRS(); }));
-const relayout = () => { const f = R.pages > 1 ? R.page / (R.pages - 1) : 0; layout(); go(Math.round(f * (R.pages - 1)), false); };
-$("#rdBigger").addEventListener("click", () => { RS.size = clamp(RS.size + 1, 14, 30); applyRS(); relayout(); });
-$("#rdSmaller").addEventListener("click", () => { RS.size = clamp(RS.size - 1, 14, 30); applyRS(); relayout(); });
-$("#rdFont").addEventListener("click", () => { RS.f = RS.f === "serif" ? "sans" : "serif"; applyRS(); relayout(); });
-addEventListener("resize", () => { if (!rd.hidden) relayout(); });
-addEventListener("keydown", (e) => {
-  if (rd.hidden) { if (e.key === "Escape" && !bv.hidden) closeBook(); return; }
-  if (e.target.closest && e.target.closest("textarea,input")) return;
-  if (["ArrowRight", "PageDown", " "].includes(e.key)) { e.preventDefault(); next(); }
-  else if (["ArrowLeft", "PageUp"].includes(e.key)) { e.preventDefault(); prev(); }
-  else if (e.key === "Escape") { if ($("#rdTocPanel").classList.contains("open")) toggleToc(false); else closeReader(); }
-});
-// swipe and tap zones
-let sx = null, sy = null;
-$("#rdStage").addEventListener("pointerdown", (e) => { sx = e.clientX; sy = e.clientY; });
-$("#rdStage").addEventListener("pointerup", (e) => {
-  if (sx == null) return; const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
-  const sel = getSelection(); if (sel && String(sel).trim()) return;
-  if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) { dx < 0 ? next() : prev(); return; }
-  if (e.pointerType !== "mouse" && Math.abs(dx) < 8 && Math.abs(dy) < 8 && !e.target.closest("button")) { const w = innerWidth; if (e.clientX > w * 0.7) next(); else if (e.clientX < w * 0.3) prev(); }
-});
-// highlights
-const pop = $("#hlPop");
-function selInCols() { const s = getSelection(); if (!s || s.isCollapsed || !s.rangeCount) return null; const r = s.getRangeAt(0); if (!cols.contains(r.commonAncestorContainer)) return null; const t = String(s).trim().replace(/\s+/g, " "); return t.length > 2 ? { r, t } : null; }
-document.addEventListener("selectionchange", () => { if (rd.hidden) return; const s = selInCols(); if (!s) { pop.hidden = true; return; } const b = s.r.getBoundingClientRect(); pop.hidden = false; pop.style.left = `${clamp(b.left + b.width / 2 - 45, 8, innerWidth - 110)}px`; pop.style.top = `${Math.max(66, b.top - 46)}px`; });
-pop.addEventListener("pointerdown", (e) => e.preventDefault());
-pop.addEventListener("click", () => {
-  const s = selInCols(); if (!s) return; const all = HL.get(); const list = all[R.book.id] || (all[R.book.id] = []);
-  list.push({ text: s.t.slice(0, 600), mode: R.mode, d: R.di, where: R.mode === "full" ? `Full text, ${R.docs[R.di].title}` : "Chapter guide", t: Date.now() }); HL.set(all);
-  try { const m = document.createElement("mark"); m.className = "hl"; s.r.surroundContents(m); } catch (er) { /* selection spans blocks: saved, shown after reload */ }
-  getSelection().removeAllRanges(); pop.hidden = true; renderToc(); saveProg(R.book.id, {}); toast("Highlight saved");
-});
-function applyHL() {
-  const list = (HL.get()[R.book.id] || []).filter((h) => h.mode === R.mode && h.d === R.di);
-  if (!list.length) return;
-  $$("p,li,h2,h3", cols).forEach((el) => { list.forEach((h) => { const i = el.textContent.indexOf(h.text); if (i < 0 || el.querySelector("mark")) return; const txt = el.textContent; el.innerHTML = esc(txt.slice(0, i)) + `<mark class="hl">${esc(h.text)}</mark>` + esc(txt.slice(i + h.text.length)); }); });
+  const m = await reader();
+  m.onClose((bid) => { renderGrid(); renderContinue(); if (shelf) shelf.refresh(); location.hash = bid ? `#/book/${bid}` : "#/"; });
+  await m.openReader(b, mode, { cat: BY[id], d, p });
 }
 
 /* ---------- router ---------- */
 async function route() {
   const h = location.hash.replace(/^#\/?/, "");
-  const m = h.match(/^(book|read)\/([a-z0-9-]+)(?:\/(\w+))?/);
-  if (!m) { if (!rd.hidden) { rd.hidden = true; toggleToc(false); } if (!bv.hidden) hideBook(); renderGrid(); renderContinue(); return; }
+  const m = h.match(/^(book|read)\/([a-z0-9-]+)(?:\/(\w+))?(?:\/(\d+))?(?:\/(\d+))?/);
+  const closeRd = async () => { if (RD && RD.isOpen()) { const cb = RD.onClose; RD.onClose(() => {}); RD.close(); RD.onClose((bid) => { renderGrid(); renderContinue(); if (shelf) shelf.refresh(); location.hash = bid ? `#/book/${bid}` : "#/"; }); } };
+  if (!m) { await closeRd(); if (!bv.hidden) hideBook(); renderGrid(); renderContinue(); return; }
   if (!BY[m[2]]) { location.hash = "#/"; return; }
-  if (m[1] === "book") { if (!rd.hidden) { rd.hidden = true; toggleToc(false); } if (bv.hidden || !curBook || curBook.id !== m[2]) await openBook(m[2], m[3] || "guide"); else if (m[3]) showTab(m[3]); }
-  else { if (bv.hidden || !curBook || curBook.id !== m[2]) await openBook(m[2]); await openReader(m[2], m[3] || "guide"); }
+  if (m[1] === "book") { await closeRd(); if (bv.hidden || !curBook || curBook.id !== m[2]) await openBook(m[2], m[3] || "guide"); else if (m[3]) showTab(m[3]); }
+  else { if (bv.hidden || !curBook || curBook.id !== m[2]) await openBook(m[2]); await openReader(m[2], m[3] || "guide", m[4] ? +m[4] - 1 : undefined, m[5] ? +m[5] - 1 : undefined); }
 }
 addEventListener("hashchange", route);
 route();

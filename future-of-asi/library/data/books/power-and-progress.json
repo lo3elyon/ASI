@@ -1,0 +1,135 @@
+{
+ "id": "power-and-progress",
+ "title": "Power and Progress",
+ "subtitle": "Our Thousand-Year Struggle over Technology and Prosperity",
+ "authors": [
+  {
+   "name": "Daron Acemoglu",
+   "rid": ""
+  },
+  {
+   "name": "Simon Johnson",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "PublicAffairs",
+ "isbn": "9781541702530",
+ "pages": "",
+ "ol": "/works/OL29200611W",
+ "shelf": "history",
+ "level": "Intermediate",
+ "pitch": "Two economists, later Nobel laureates, show that new technology only helps most people when power is shared, and argue AI is heading the wrong way.",
+ "toc_src": "https://openlibrary.org/works/OL29200611W",
+ "chapters": [
+  {
+   "t": "Progress is not automatic",
+   "g": "A thousand years of history show that technology often enriched a small elite while others gained little.",
+   "part": ""
+  },
+  {
+   "t": "The productivity bandwagon",
+   "g": "The common belief that gains from technology always trickle down to workers, and when it fails.",
+   "part": ""
+  },
+  {
+   "t": "When sharing happened",
+   "g": "Periods like the post war decades, when unions, democracy and policy spread the gains.",
+   "part": ""
+  },
+  {
+   "t": "Automation versus new tasks",
+   "g": "Technology helps workers when it creates new tasks for them, not only when it replaces them.",
+   "part": ""
+  },
+  {
+   "t": "AI and so-so automation",
+   "g": "Much AI replaces workers without big productivity gains, and boosts surveillance.",
+   "part": ""
+  },
+  {
+   "t": "Redirecting technology",
+   "g": "Policies to steer AI towards helping workers: tax reform, worker voice, breaking up big tech and more.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Technology's benefits depend on who holds power.",
+  "Trickle down from productivity is not guaranteed.",
+  "Machine usefulness, not machine intelligence, should be the goal.",
+  "AI's direction can and should be steered."
+ ],
+ "args": [
+  {
+   "a": "AI is mostly being used to automate and surveil, not to help workers.",
+   "c": "Others point to AI tools that raise the skills and output of less experienced workers."
+  },
+  {
+   "a": "Policy can redirect technology.",
+   "c": "Critics doubt governments can pick the right direction for innovation."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Who has gained most from the technology in your life?",
+  "What would worker friendly AI look like in your job?",
+  "Should AI development be steered by policy?"
+ ],
+ "quiz": [
+  {
+   "q": "What do the authors say decides who benefits from technology?",
+   "o": [
+    "Luck",
+    "Power and institutions",
+    "Weather",
+    "Nothing"
+   ],
+   "a": 1,
+   "w": "Shared power spreads gains."
+  },
+  {
+   "q": "What is so-so automation?",
+   "o": [
+    "Great robots",
+    "Automation that replaces workers with only small productivity gains",
+    "Slow computers",
+    "Old factories"
+   ],
+   "a": 1,
+   "w": "Costs jobs without much benefit."
+  },
+  {
+   "q": "What prize did both authors later win?",
+   "o": [
+    "Booker",
+    "Nobel in economics",
+    "Oscar",
+    "Turing"
+   ],
+   "a": 1,
+   "w": "In 2024, with James Robinson."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/power-and-progress.jpg",
+ "videos": [],
+ "shelfLabel": "History",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL29200611W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9781541702530",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

@@ -1,0 +1,406 @@
+{
+ "meta": {
+  "checked": "2026-10-29",
+  "note": "Each programme page was opened on 29 October 2026. Dates and money change, so always check the official page before you apply."
+ },
+ "programs": [
+  {
+   "id": "bluedot",
+   "name": "BlueDot Impact courses",
+   "kind": "course",
+   "where": "Online",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "policy",
+    "general"
+   ],
+   "what": "Online courses from a two hour introduction to multi week courses and project sprints on AI safety, AGI strategy and AI governance.",
+   "cost": "Free to start",
+   "url": "https://bluedot.org/courses"
+  },
+  {
+   "id": "arena",
+   "name": "ARENA",
+   "kind": "bootcamp",
+   "where": "London, in person",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical"
+   ],
+   "what": "The Alignment Research Engineer Accelerator gives people the skills, community and confidence to work directly on technical AI safety. ARENA 9.0 ran from 5 October to 6 November 2026 at LISA in London.",
+   "cost": "Travel, visa, accommodation and meals covered for participants. Its curriculum materials are open for self study.",
+   "url": "https://www.arena.education/"
+  },
+  {
+   "id": "spar",
+   "name": "SPAR",
+   "kind": "research",
+   "where": "Remote",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "policy"
+   ],
+   "what": "A part time, remote research programme that pairs aspiring researchers with professionals. 5 to 40 hours a week for three months, ending in a Demo Day. Over 250 mentors in Fall 2026.",
+   "cost": "Free",
+   "url": "https://sparai.org/",
+   "next": "Spring 2027 applications open around December 2026."
+  },
+  {
+   "id": "mats",
+   "name": "MATS",
+   "kind": "fellowship",
+   "where": "Berkeley and London",
+   "time": "full",
+   "level": "advanced",
+   "tracks": [
+    "technical"
+   ],
+   "what": "An independent research fellowship that connects researchers with top mentors in alignment, transparency and security. 12 weeks in Berkeley or London, with a chance to apply for a 6 to 12 month funded extension.",
+   "cost": "Funded",
+   "url": "https://www.matsprogram.org/",
+   "next": "Winter 2027 applications are closed."
+  },
+  {
+   "id": "lasr",
+   "name": "LASR Labs",
+   "kind": "research",
+   "where": "London, in person",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical"
+   ],
+   "what": "Teams of three or four, supervised by an experienced researcher, take a project on loss of control risks from proposal to publication over 13 weeks at LISA.",
+   "cost": "Check the site",
+   "url": "https://www.lasrlabs.org/",
+   "next": "Next cohort runs June to September 2027."
+  },
+  {
+   "id": "anthropic-fellows",
+   "name": "Anthropic Fellows Program",
+   "kind": "fellowship",
+   "where": "Berkeley or London",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical"
+   ],
+   "what": "Four months of full time empirical safety or security research with direct mentorship from Anthropic researchers, aiming for a public output such as a paper. More than 200 fellows since early 2025.",
+   "cost": "Weekly stipend of 3,850 USD, 2,310 GBP or 4,300 CAD, plus about 15,000 USD a month for compute",
+   "url": "https://alignment.anthropic.com/2025/anthropic-fellows-program-2026/",
+   "url2": "https://job-boards.greenhouse.io/anthropic/jobs/5183044008"
+  },
+  {
+   "id": "era",
+   "name": "ERA Fellowship (Cambridge)",
+   "kind": "fellowship",
+   "where": "Cambridge, UK",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical",
+    "policy"
+   ],
+   "what": "Research on understanding and reducing risks from frontier AI. 200+ alumni now work at places like the UK AI Security Institute, the European AI Office, GovAI and METR.",
+   "cost": "Check the site",
+   "url": "https://erafellowship.org/",
+   "next": "The Winter 2027 fellowship runs 18 January to 26 March; applications are closed."
+  },
+  {
+   "id": "astra",
+   "name": "Astra Fellowship (Constellation)",
+   "kind": "fellowship",
+   "where": "Berkeley, in person",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical",
+    "policy",
+    "general"
+   ],
+   "what": "A fully funded, in person programme that pairs senior advisors with emerging talent on five month technical, governance, strategy and field building projects.",
+   "cost": "Fully funded",
+   "url": "https://www.constellation.org/programs/astra-fellowship"
+  },
+  {
+   "id": "govai",
+   "name": "GovAI fellowships",
+   "kind": "fellowship",
+   "where": "UK and Washington DC",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "policy"
+   ],
+   "what": "Three month Summer or Winter Fellowships in the UK on a Research or Applied track, a DC Fellowship, and longer Research Scholar roles in AI governance. They accept applicants from anywhere.",
+   "cost": "Check the site",
+   "url": "https://www.governance.ai/opportunities"
+  },
+  {
+   "id": "iaps",
+   "name": "IAPS AI Policy Fellowship",
+   "kind": "fellowship",
+   "where": "DC, London or remote",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "policy"
+   ],
+   "what": "A fully funded three month programme to build practical AI policy skills. The Spring 2027 round runs 22 February to 14 May 2027.",
+   "cost": "Stipend of 18,000 USD for Fellows and 24,000 USD for Senior Fellows",
+   "url": "https://www.iaps.ai/fellowship",
+   "next": "Spring 2027 applications are closed."
+  },
+  {
+   "id": "pivotal",
+   "name": "Pivotal Research AI Safety Fellowship",
+   "kind": "fellowship",
+   "where": "London, in person",
+   "time": "full",
+   "level": "intermediate",
+   "tracks": [
+    "technical",
+    "policy"
+   ],
+   "what": "Fifteen weeks in London doing AI safety research with expert mentors.",
+   "cost": "Check the site",
+   "url": "https://www.pivotal-research.org/",
+   "next": "Applications were open when checked."
+  },
+  {
+   "id": "aisc",
+   "name": "AI Safety Camp",
+   "kind": "research",
+   "where": "Online",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "policy",
+    "general"
+   ],
+   "what": "Online team research projects. People with an idea can lead a project and others join their team. The 2027 edition is virtual.",
+   "cost": "Free",
+   "url": "https://www.aisafety.camp/"
+  },
+  {
+   "id": "apart",
+   "name": "Apart Research sprints",
+   "kind": "hackathon",
+   "where": "Online and local sites",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "general"
+   ],
+   "what": "Weekend research hackathons on one AI safety question, open to anyone. Strong entries can lead to the Apart Fellowship.",
+   "cost": "Free",
+   "url": "https://apartresearch.com/"
+  },
+  {
+   "id": "horizon",
+   "name": "Horizon Career Accelerator",
+   "kind": "course",
+   "where": "Remote (US policy focus)",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "policy"
+   ],
+   "what": "A part time, remote programme with mentorship, training and coaching to launch a career in AI policy, mainly in the US.",
+   "cost": "Check the site",
+   "url": "https://horizonpublicservice.org/"
+  },
+  {
+   "id": "aisi",
+   "name": "UK AI Security Institute careers",
+   "kind": "job",
+   "where": "London",
+   "time": "full",
+   "level": "advanced",
+   "tracks": [
+    "technical",
+    "policy"
+   ],
+   "what": "Researchers, engineers, policy analysts and operators working on frontier AI inside the UK government.",
+   "cost": "Paid roles",
+   "url": "https://www.aisi.gov.uk/careers"
+  },
+  {
+   "id": "80k",
+   "name": "80,000 Hours",
+   "kind": "advice",
+   "where": "Online",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "policy",
+    "general"
+   ],
+   "what": "Free career reviews of AI safety research, AI governance and more, a job board with roles picked for impact, and one to one advice.",
+   "cost": "Free",
+   "url": "https://80000hours.org/career-reviews/ai-safety-researcher/",
+   "url2": "https://jobs.80000hours.org/"
+  },
+  {
+   "id": "aisafetycom",
+   "name": "AISafety.com",
+   "kind": "advice",
+   "where": "Online",
+   "time": "part",
+   "level": "beginner",
+   "tracks": [
+    "technical",
+    "policy",
+    "general"
+   ],
+   "what": "Curated lists of training programmes, events, communities, self study material, jobs and funding, maintained by community builders.",
+   "cost": "Free",
+   "url": "https://www.aisafety.com/"
+  }
+ ],
+ "paths": [
+  {
+   "id": "technical",
+   "t": "Technical research",
+   "d": "Make AI systems safer directly: interpretability, evals, control, alignment training. Needs coding and some maths.",
+   "steps": [
+    "Learn Python and PyTorch basics",
+    "Do the ARENA materials or Neel Nanda's mech interp guide on your own",
+    "Reproduce one small paper from the Papers page",
+    "Apply to SPAR or an Apart sprint",
+    "Then MATS, LASR or the Anthropic Fellows Program"
+   ]
+  },
+  {
+   "id": "policy",
+   "t": "Governance and policy",
+   "d": "Shape the rules: laws, standards, international deals and lab policies. Needs clear writing and patience.",
+   "steps": [
+    "Take BlueDot's AI governance course",
+    "Read the Policy tracker and pick one law to know well",
+    "Write a short public explainer",
+    "Apply to GovAI, IAPS or a Horizon programme"
+   ]
+  },
+  {
+   "id": "builder",
+   "t": "Engineering and tools",
+   "d": "Build the infrastructure safety teams need: eval harnesses, monitors, sandboxes, datasets.",
+   "steps": [
+    "Ship a small open source eval or monitor",
+    "Join a hackathon and finish something",
+    "Contribute to an open safety repo",
+    "Look at engineering roles on the 80,000 Hours job board"
+   ]
+  },
+  {
+   "id": "comms",
+   "t": "Communication and field building",
+   "d": "Explain the risks clearly, run groups, write, make videos, organise events in your city or college.",
+   "steps": [
+    "Start a reading group with the Start here papers",
+    "Write in your own language",
+    "Run a local meetup or an Apart sprint site",
+    "Look at BlueDot and Astra for field building work"
+   ]
+  }
+ ],
+ "quiz": [
+  {
+   "q": "What do you enjoy most?",
+   "o": [
+    [
+     "Writing and running code",
+     {
+      "technical": 2,
+      "builder": 2
+     }
+    ],
+    [
+     "Reading, arguing and writing",
+     {
+      "policy": 2,
+      "comms": 1
+     }
+    ],
+    [
+     "Explaining things to people",
+     {
+      "comms": 2
+     }
+    ],
+    [
+     "Not sure yet",
+     {
+      "general": 2
+     }
+    ]
+   ]
+  },
+  {
+   "q": "How much time can you give right now?",
+   "o": [
+    [
+     "A few hours a week",
+     {
+      "part": 2
+     }
+    ],
+    [
+     "Full time for a few months",
+     {
+      "full": 2
+     }
+    ]
+   ]
+  },
+  {
+   "q": "Where are you?",
+   "o": [
+    [
+     "Anywhere, I need remote",
+     {
+      "remote": 2
+     }
+    ],
+    [
+     "I can travel to the UK or US",
+     {
+      "travel": 2
+     }
+    ]
+   ]
+  },
+  {
+   "q": "How far along are you?",
+   "o": [
+    [
+     "Just curious",
+     {
+      "beginner": 2
+     }
+    ],
+    [
+     "Some projects or study behind me",
+     {
+      "intermediate": 2
+     }
+    ],
+    [
+     "Already doing research or policy work",
+     {
+      "advanced": 2
+     }
+    ]
+   ]
+  }
+ ]
+}

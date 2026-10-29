@@ -1,0 +1,128 @@
+{
+ "id": "erewhon",
+ "title": "Erewhon",
+ "subtitle": "or, Over the Range",
+ "authors": [
+  {
+   "name": "Samuel Butler",
+   "rid": ""
+  }
+ ],
+ "year": "1872",
+ "publisher": "Trubner and Co. (London)",
+ "isbn": "",
+ "pages": "",
+ "ol": "/works/OL22364W",
+ "shelf": "fiction",
+ "level": "Intermediate",
+ "pitch": "A satirical utopia where people smashed their machines centuries ago, because a philosopher warned that machines were evolving towards consciousness faster than humans.",
+ "toc_src": "https://www.gutenberg.org/ebooks/1906",
+ "chapters": [
+  {
+   "t": "The Book of the Machines",
+   "g": "The narrator translates an Erewhonian treatise: consciousness appeared once from lifeless matter, so why not again, in machines.",
+   "part": ""
+  },
+  {
+   "t": "The Machines, continued",
+   "g": "The writer argues machines are already evolving, served by humans who feed and breed them, and that their pace far outstrips ours.",
+   "part": ""
+  },
+  {
+   "t": "The Machines, concluded",
+   "g": "Objections and replies, and the conclusion that drove the Erewhonians to destroy most of their machines.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Machines might evolve as living things did.",
+  "Humans could become servants of the machines they depend on.",
+  "Machine progress is far faster than biological evolution.",
+  "A society might choose to give up technology out of fear."
+ ],
+ "args": [
+  {
+   "a": "Machines could develop a kind of consciousness through evolution.",
+   "c": "Butler wrote partly as satire, poking at Darwinian ideas and Victorian faith in progress."
+  },
+  {
+   "a": "Destroying machines is a rational response to the risk.",
+   "c": "The Erewhonians are shown as odd, and the novel mocks their extremes as much as it supports them."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Is Butler joking, serious, or both?",
+  "Are we already servants of our machines?",
+  "What would a modern Book of the Machines say?"
+ ],
+ "quiz": [
+  {
+   "q": "What did the Erewhonians do with their machines?",
+   "o": [
+    "Worshipped them",
+    "Destroyed most of them",
+    "Sold them",
+    "Made more"
+   ],
+   "a": 1,
+   "w": "Out of fear of machine evolution."
+  },
+  {
+   "q": "What earlier piece did Butler write on the same theme?",
+   "o": [
+    "Darwin among the Machines",
+    "The Machine Stops",
+    "R.U.R.",
+    "Brave New World"
+   ],
+   "a": 0,
+   "w": "An 1863 letter, also in this library."
+  },
+  {
+   "q": "What is Erewhon almost an anagram of?",
+   "o": [
+    "Nowhere",
+    "Heaven",
+    "Wonder",
+    "Never"
+   ],
+   "a": 0,
+   "w": "A satirical nowhere land."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/erewhon-machines.json",
+  "url": "https://www.gutenberg.org/ebooks/1906",
+  "label": "Read The Book of the Machines here",
+  "licence": "Public domain. Samuel Butler died in 1902. Chapters XXIII to XXV, from the revised 1901 text in Project Gutenberg eBook #1906.",
+  "licence_url": "https://www.gutenberg.org/ebooks/1906"
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/erewhon.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Read The Book of the Machines",
+   "url": "https://www.gutenberg.org/ebooks/1906",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL22364W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=Erewhon%20Samuel%20Butler",
+   "free": true
+  }
+ ],
+ "toc_note": "Erewhon has 29 chapters. This guide and the full text here cover the three chapters known as The Book of the Machines, which matter most for AI.",
+ "added": "2026-10-29"
+}

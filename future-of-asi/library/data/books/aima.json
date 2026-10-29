@@ -1,0 +1,278 @@
+{
+ "id": "aima",
+ "title": "Artificial Intelligence: A Modern Approach",
+ "subtitle": "Fourth Edition",
+ "authors": [
+  {
+   "name": "Stuart Russell",
+   "rid": "stuart-russell"
+  },
+  {
+   "name": "Peter Norvig",
+   "rid": ""
+  }
+ ],
+ "year": "2020",
+ "publisher": "Pearson",
+ "isbn": "9780134610993",
+ "pages": "1136",
+ "ol": "/works/OL2896994W",
+ "shelf": "textbook",
+ "level": "Advanced",
+ "pitch": "The most used AI textbook in the world. The fourth edition adds deep learning and ends with chapters on ethics, safety and the future of AI.",
+ "toc_src": "https://aima.cs.berkeley.edu/contents.html",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "What AI is, its foundations and history, and its risks and benefits.",
+   "part": "Part I: Artificial Intelligence"
+  },
+  {
+   "t": "Intelligent Agents",
+   "g": "Agents, environments and rationality.",
+   "part": "Part I: Artificial Intelligence"
+  },
+  {
+   "t": "Solving Problems by Searching",
+   "g": "Search algorithms for planning a path to a goal.",
+   "part": "Part II: Problem-solving"
+  },
+  {
+   "t": "Search in Complex Environments",
+   "g": "Search with uncertainty and partial information.",
+   "part": "Part II: Problem-solving"
+  },
+  {
+   "t": "Adversarial Search and Games",
+   "g": "Game playing, from minimax to Monte Carlo tree search.",
+   "part": "Part II: Problem-solving"
+  },
+  {
+   "t": "Constraint Satisfaction Problems",
+   "g": "Solving puzzles defined by constraints.",
+   "part": "Part II: Problem-solving"
+  },
+  {
+   "t": "Logical Agents",
+   "g": "Agents that reason with logic.",
+   "part": "Part III: Knowledge, reasoning, and planning"
+  },
+  {
+   "t": "First-Order Logic",
+   "g": "A richer logic of objects and relations.",
+   "part": "Part III: Knowledge, reasoning, and planning"
+  },
+  {
+   "t": "Inference in First-Order Logic",
+   "g": "How to draw conclusions in that logic.",
+   "part": "Part III: Knowledge, reasoning, and planning"
+  },
+  {
+   "t": "Knowledge Representation",
+   "g": "Representing categories, events and beliefs.",
+   "part": "Part III: Knowledge, reasoning, and planning"
+  },
+  {
+   "t": "Automated Planning",
+   "g": "Planning sequences of actions.",
+   "part": "Part III: Knowledge, reasoning, and planning"
+  },
+  {
+   "t": "Quantifying Uncertainty",
+   "g": "Probability as the tool for uncertainty.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Probabilistic Reasoning",
+   "g": "Bayesian networks.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Probabilistic Reasoning over Time",
+   "g": "Tracking a changing world.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Probabilistic Programming",
+   "g": "Writing models as programs.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Making Simple Decisions",
+   "g": "Utility theory and decisions.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Making Complex Decisions",
+   "g": "Sequential decisions and Markov decision processes.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Multiagent Decision Making",
+   "g": "Game theory and many agents.",
+   "part": "Part IV: Uncertain knowledge and reasoning"
+  },
+  {
+   "t": "Learning from Examples",
+   "g": "Supervised learning basics.",
+   "part": "Part V: Machine Learning"
+  },
+  {
+   "t": "Learning Probabilistic Models",
+   "g": "Learning with probability.",
+   "part": "Part V: Machine Learning"
+  },
+  {
+   "t": "Deep Learning",
+   "g": "Neural networks in depth.",
+   "part": "Part V: Machine Learning"
+  },
+  {
+   "t": "Reinforcement Learning",
+   "g": "Learning from reward.",
+   "part": "Part V: Machine Learning"
+  },
+  {
+   "t": "Natural Language Processing",
+   "g": "Language models and grammar.",
+   "part": "Part VI: Communicating, perceiving, and acting"
+  },
+  {
+   "t": "Deep Learning for Natural Language Processing",
+   "g": "Word embeddings, recurrent networks and transformers.",
+   "part": "Part VI: Communicating, perceiving, and acting"
+  },
+  {
+   "t": "Computer Vision",
+   "g": "Seeing with machines.",
+   "part": "Part VI: Communicating, perceiving, and acting"
+  },
+  {
+   "t": "Robotics",
+   "g": "Robots that sense and act.",
+   "part": "Part VI: Communicating, perceiving, and acting"
+  },
+  {
+   "t": "Philosophy, Ethics, and Safety of AI",
+   "g": "Limits of AI, ethics, and the problem of making AI safe.",
+   "part": "Part VII: Conclusions"
+  },
+  {
+   "t": "The Future of AI",
+   "g": "Where the field might go.",
+   "part": "Part VII: Conclusions"
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI is the study of rational agents.",
+  "Search, logic, probability and learning are core tools.",
+  "The fourth edition puts beneficial machines into the very first chapter.",
+  "Safety and ethics are part of the subject, not an add-on."
+ ],
+ "args": [
+  {
+   "a": "A broad toolkit approach is the best way to learn AI.",
+   "c": "Some say the field is now dominated by deep learning, so the classic material matters less."
+  },
+  {
+   "a": "AI should be built to be provably beneficial.",
+   "c": "Most deployed systems do not yet follow this approach."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which part of the book is most relevant to AI safety?",
+  "Why does the book define AI as rational agents?",
+  "What would you add to the last chapter today?"
+ ],
+ "quiz": [
+  {
+   "q": "Who are the authors?",
+   "o": [
+    "Russell and Norvig",
+    "Goodfellow and Bengio",
+    "Sutton and Barto",
+    "Minsky and Papert"
+   ],
+   "a": 0,
+   "w": "Stuart Russell and Peter Norvig."
+  },
+  {
+   "q": "What is chapter 27 about?",
+   "o": [
+    "Robotics",
+    "Philosophy, ethics and safety of AI",
+    "Search",
+    "Vision"
+   ],
+   "a": 1,
+   "w": "Part VII: Conclusions."
+  },
+  {
+   "q": "What does the book see AI as?",
+   "o": [
+    "Fast calculators",
+    "The study of rational agents",
+    "Databases",
+    "Robots only"
+   ],
+   "a": 1,
+   "w": "Agents acting to achieve goals."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/aima.jpg",
+ "videos": [
+  {
+   "id": "hn7syNL012o",
+   "title": "Stuart Russell: \"We Cannot Retain Power Forever Over Intrinsically Unsafe Systems\"",
+   "channel": "ControlAI",
+   "date": "2026-10-16",
+   "duration": "0:06:53",
+   "summary": "Stuart Russell says we cannot keep power forever over systems that are unsafe by design."
+  },
+  {
+   "id": "9IwOFRyilfo",
+   "title": "Could AI Destroy the World? A Debate with Stuart Russell and Jürgen Schmidhuber | Counterpoint",
+   "channel": "Foreign Policy",
+   "date": "2026-10-14",
+   "duration": "0:45:35",
+   "summary": "Stuart Russell and Jurgen Schmidhuber debate whether AI could destroy the world."
+  },
+  {
+   "id": "XVZRfdXwyss",
+   "title": "Stuart Russell on Why We Must Ban Superintelligence",
+   "channel": "ControlAI",
+   "date": "2026-10-10",
+   "duration": "0:02:37",
+   "summary": "Stuart Russell on why we must ban superintelligence."
+  },
+  {
+   "id": "ot_xLPW13cM",
+   "title": "Stuart Russell: AI Safety Is Still Pre-Scientific",
+   "channel": "The Roman Forum with Roman Yampolskiy",
+   "date": "2026-10-08",
+   "duration": "1:42:30",
+   "summary": "Stuart Russell says AI safety is still pre scientific."
+  }
+ ],
+ "shelfLabel": "Textbook",
+ "shelfColor": "#14b8a6",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL2896994W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780134610993",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

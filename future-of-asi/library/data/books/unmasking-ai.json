@@ -1,0 +1,126 @@
+{
+ "id": "unmasking-ai",
+ "title": "Unmasking AI",
+ "subtitle": "My Mission to Protect What Is Human in a World of Machines",
+ "authors": [
+  {
+   "name": "Joy Buolamwini",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "Random House",
+ "isbn": "9780593241837",
+ "pages": "336",
+ "ol": "/works/OL35746887W",
+ "shelf": "skeptic",
+ "level": "Beginner",
+ "pitch": "A computer scientist found face recognition could not see her dark skinned face until she wore a white mask. Her memoir follows the research and activism that followed.",
+ "toc_src": "https://openlibrary.org/works/OL35746887W",
+ "chapters": [
+  {
+   "t": "The white mask",
+   "g": "As a graduate student at the MIT Media Lab, Buolamwini's face was not detected until she put on a white mask.",
+   "part": ""
+  },
+  {
+   "t": "Gender Shades",
+   "g": "Her research audit found commercial face analysis was far less accurate for darker skinned women.",
+   "part": ""
+  },
+  {
+   "t": "The coded gaze",
+   "g": "Her term for the priorities and prejudices of those who build technology, carried into the systems.",
+   "part": ""
+  },
+  {
+   "t": "Speaking up",
+   "g": "Testifying to lawmakers, poetry, and founding the Algorithmic Justice League.",
+   "part": ""
+  },
+  {
+   "t": "Excoded",
+   "g": "People harmed by AI systems, and the fight for consent and redress.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "AI systems can fail people unequally.",
+  "Audits can reveal and reduce bias.",
+  "The coded gaze reflects the builders' blind spots.",
+  "People deserve a say in how AI affects them."
+ ],
+ "args": [
+  {
+   "a": "Biased AI causes real harm and needs regulation.",
+   "c": "Companies improved accuracy after audits, and some argue industry can fix bias itself."
+  },
+  {
+   "a": "Some uses, like police face recognition, should be limited.",
+   "c": "Others argue face recognition helps solve crimes when used with care."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Who is left out of the data your favourite AI was trained on?",
+  "Should face recognition be used by police?",
+  "What is one audit you would run on an AI tool?"
+ ],
+ "quiz": [
+  {
+   "q": "What did Buolamwini wear to be detected?",
+   "o": [
+    "Glasses",
+    "A white mask",
+    "A hat",
+    "Nothing"
+   ],
+   "a": 1,
+   "w": "The moment that started her work."
+  },
+  {
+   "q": "What was Gender Shades?",
+   "o": [
+    "A fashion line",
+    "A study of bias in face analysis",
+    "A film",
+    "A law"
+   ],
+   "a": 1,
+   "w": "It audited commercial systems."
+  },
+  {
+   "q": "What organisation did she found?",
+   "o": [
+    "OpenAI",
+    "Algorithmic Justice League",
+    "MIRI",
+    "FLI"
+   ],
+   "a": 1,
+   "w": "It fights AI harms."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/unmasking-ai.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL35746887W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780593241837",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

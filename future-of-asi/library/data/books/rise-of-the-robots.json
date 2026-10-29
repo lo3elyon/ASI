@@ -1,0 +1,146 @@
+{
+ "id": "rise-of-the-robots",
+ "title": "Rise of the Robots",
+ "subtitle": "Technology and the Threat of a Jobless Future",
+ "authors": [
+  {
+   "name": "Martin Ford",
+   "rid": ""
+  }
+ ],
+ "year": "2015",
+ "publisher": "Basic Books",
+ "isbn": "9780465059997",
+ "pages": "334",
+ "ol": "/works/OL19668878W",
+ "shelf": "industry",
+ "level": "Beginner",
+ "pitch": "A software entrepreneur argues that this time automation is different: machines are starting to do mental work, and many jobs may not come back.",
+ "toc_src": "https://openlibrary.org/books/OL26887324M",
+ "chapters": [
+  {
+   "t": "The automation wave",
+   "g": "Robots and software are spreading from factories into warehouses, restaurants and offices.",
+   "part": ""
+  },
+  {
+   "t": "Is this time different?",
+   "g": "Wages stalled and job growth weakened even as productivity rose, which Ford reads as an early sign.",
+   "part": ""
+  },
+  {
+   "t": "Information technology: an unprecedented force for disruption",
+   "g": "Computing keeps getting better at an exponential rate, unlike most past technologies.",
+   "part": ""
+  },
+  {
+   "t": "White-collar jobs at risk",
+   "g": "Writing, analysis, law and other knowledge work are increasingly automatable.",
+   "part": ""
+  },
+  {
+   "t": "Transforming higher education",
+   "g": "Online courses and automated grading could shake up universities.",
+   "part": ""
+  },
+  {
+   "t": "The health care challenge",
+   "g": "Where AI might help or replace work in medicine, and why costs are hard to cut.",
+   "part": ""
+  },
+  {
+   "t": "Consumers, limits to growth ... and crisis?",
+   "g": "If incomes fall, who buys what the machines make.",
+   "part": ""
+  },
+  {
+   "t": "Super-intelligence and the singularity",
+   "g": "A look at the bigger AI risks and hopes, from Kurzweil to Bostrom.",
+   "part": ""
+  },
+  {
+   "t": "Toward a new economic paradigm",
+   "g": "Ford's case for a basic income and other ways to share the gains.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Automation is now reaching cognitive work, not only manual work.",
+  "Productivity can rise while wages and jobs fall behind.",
+  "Mass unemployment could hurt demand and the whole economy.",
+  "A guaranteed basic income may be needed."
+ ],
+ "args": [
+  {
+   "a": "Machines will take many jobs faster than new ones appear.",
+   "c": "Past waves of automation created more jobs than they destroyed, and employment stayed high after the book came out."
+  },
+  {
+   "a": "A basic income is the best response.",
+   "c": "Others prefer wage subsidies, retraining or job guarantees, and worry about cost and incentives."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which tasks in your own job could software do today?",
+  "Would a basic income change how people find meaning in work?",
+  "Is the jobs problem a stepping stone to bigger AI risks, or a separate issue?"
+ ],
+ "quiz": [
+  {
+   "q": "What kind of jobs does Ford say are newly at risk?",
+   "o": [
+    "Only farm work",
+    "White-collar knowledge work",
+    "Only factory work",
+    "None"
+   ],
+   "a": 1,
+   "w": "Software is starting to do mental work."
+  },
+  {
+   "q": "What policy does Ford support?",
+   "o": [
+    "Banning robots",
+    "A guaranteed basic income",
+    "Longer working hours",
+    "Lower taxes only"
+   ],
+   "a": 1,
+   "w": "He argues for sharing the gains broadly."
+  },
+  {
+   "q": "What worries Ford about consumers?",
+   "o": [
+    "They will buy too much",
+    "If incomes fall, demand for goods may collapse",
+    "They prefer robots",
+    "Nothing"
+   ],
+   "a": 1,
+   "w": "Machines do not buy products."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/rise-of-the-robots.jpg",
+ "videos": [],
+ "shelfLabel": "Inside the industry",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL19668878W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780465059997",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

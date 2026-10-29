@@ -1,0 +1,128 @@
+{
+ "id": "bletchley-declaration",
+ "title": "The Bletchley Declaration",
+ "subtitle": "by Countries Attending the AI Safety Summit, 1-2 November 2023",
+ "authors": [
+  {
+   "name": "Governments at the AI Safety Summit",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "UK Government (GOV.UK)",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "governance",
+ "level": "Beginner",
+ "pitch": "The first statement signed by the US, China, the EU and 26 others that frontier AI could cause serious, even catastrophic, harm and that the risks need international cooperation.",
+ "toc_src": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+ "chapters": [
+  {
+   "t": "Opportunities and risks",
+   "g": "AI's great potential, alongside risks in daily life and at the frontier.",
+   "part": ""
+  },
+  {
+   "t": "Frontier AI",
+   "g": "Particular safety risks from highly capable general-purpose models, including misuse and loss of control.",
+   "part": ""
+  },
+  {
+   "t": "International cooperation",
+   "g": "Why the risks are international and need shared work.",
+   "part": ""
+  },
+  {
+   "t": "Agenda",
+   "g": "Identifying shared risks and building risk-based policies in each country.",
+   "part": ""
+  },
+  {
+   "t": "Signatories",
+   "g": "The countries that signed, plus New Zealand which joined in October 2024.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Frontier AI risks are recognised by rival powers together.",
+  "Developers of frontier AI carry strong responsibility for safety.",
+  "Risks need international scientific research.",
+  "Summits started a series of meetings and safety institutes."
+ ],
+ "args": [
+  {
+   "a": "A shared statement by rivals is a real step forward.",
+   "c": "Critics note it has no binding commitments."
+  },
+  {
+   "a": "Focusing on frontier AI is right.",
+   "c": "Others wanted more on present harms and civil society voices."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Why does it matter that China and the US both signed?",
+  "What should a binding follow up include?",
+  "Which sentence of the declaration matters most to you?"
+ ],
+ "quiz": [
+  {
+   "q": "Where was the summit held?",
+   "o": [
+    "Paris",
+    "Bletchley Park",
+    "Geneva",
+    "Seoul"
+   ],
+   "a": 1,
+   "w": "Where codebreakers worked in the Second World War."
+  },
+  {
+   "q": "When was it signed?",
+   "o": [
+    "November 2023",
+    "May 2024",
+    "January 2025",
+    "June 2022"
+   ],
+   "a": 0,
+   "w": "1 to 2 November 2023."
+  },
+  {
+   "q": "Is it legally binding?",
+   "o": [
+    "Yes",
+    "No",
+    "Only in the UK",
+    "Only for companies"
+   ],
+   "a": 1,
+   "w": "It is a political declaration."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/bletchley.json",
+  "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+  "label": "Read the full declaration here",
+  "licence": "Crown copyright. Published on GOV.UK under the Open Government Licence v3.0. Reproduced in full without changes.",
+  "licence_url": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/"
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [],
+ "shelfLabel": "Governance and policy",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Read the full declaration",
+   "url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

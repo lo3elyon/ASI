@@ -79,7 +79,7 @@ const linkish = (l) => (typeof l === "string" ? { title: l, url: "" } : l && typ
 export async function signatories() {
   if (_sigs) return _sigs;
   const raw = await load("signatories.json", null);
-  const list = arr(raw, "signatories").filter((s) => s && s.name).map((s) => ({ name: s.name, title: s.title || s.role || "", employer: s.employer || s.org || s.affiliation || "", comment: s.comment || "", researcher_id: s.researcher_id || "", country: s.country || "", url: s.url || "" }));
+  const list = arr(raw, "signatories").filter((s) => s && s.name).map((s) => ({ name: s.name, title: s.title || s.role || "", employer: s.employer || s.org || s.affiliation || "", comment: s.comment || "", researcher_id: s.researcher_id || "", country: s.country || "", url: s.url || "", slug: s.slug || slug(s.name), photo: s.photo || "", photo_credit: s.photo_credit || "" }));
   const meta = (raw && !Array.isArray(raw) && (raw.meta || raw)) || {};
   _sigs = { list, meta: { count_named: meta.count_named || list.length, count_anon: meta.count_anon || 0, as_of: meta.as_of || "", source: meta.source || meta.url || "", title: meta.title || "Pacing the Frontier", text: meta.statement || meta.text || "" } };
   return _sigs;
@@ -96,9 +96,12 @@ let _manifest;
 export async function photoManifest() { if (!_manifest) _manifest = load("photos-manifest.json", {}); return _manifest; }
 export async function researchers() {
   if (_researchers) return _researchers;
-  const [rawR, sig] = await Promise.all([load("researchers.json"), signatories()]);
+  const [rawR, sig, man] = await Promise.all([load("researchers.json"), signatories(), photoManifest()]);
   const raw = arr(rawR, "researchers");
   const signed = new Set(sig.list.map((s) => s.researcher_id).filter(Boolean));
+  const sigPhoto = Object.fromEntries(sig.list.filter((s) => s.researcher_id && s.photo).map((s) => [s.researcher_id, s.photo]));
+  /* A person with any photo always shows it: local file first, then the manifest, then a signer photo, then the remote url */
+  const photoOf = (r, id) => { const m = man && man[id]; const mf = m && m.file ? "assets/people/" + String(m.file).split("/").pop() : ""; return r.photo_local || (String(r.photo || "").startsWith("assets/") ? r.photo : "") || mf || sigPhoto[id] || r.photo || ""; };
   _researchers = raw.filter((r) => r && r.name).map((r) => {
     const id = r.id || slug(r.name);
     const cats = new Set(A(r.categories));
@@ -110,7 +113,7 @@ export async function researchers() {
     const left = r.left_lab && typeof r.left_lab === "object" ? r.left_lab : r.left_lab ? { org: String(r.left_lab) } : null;
     return {
       id, name: r.name, role: r.role || "", org: r.org || "", group: r.group || "alignment",
-      photo: r.photo || "", photo_credit: r.photo_credit || "", pdoom: r.pdoom || "", pdoom_source: r.pdoom_source || "",
+      photo: photoOf(r, id), photo_credit: r.photo_credit || "", pdoom: r.pdoom || "", pdoom_source: r.pdoom_source || "",
       agi_year: r.agi_year || "", bio: r.bio || "", warning: r.warning || "",
       quotes: (r.quotes || []).filter((q) => q && q.text), links: r.links || [], video_ids: r.video_ids || [],
       pd: parsePdoom(r.pdoom), groups: [].concat(r.group || []),

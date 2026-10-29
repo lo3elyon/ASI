@@ -1,0 +1,131 @@
+{
+ "id": "klara",
+ "title": "Klara and the Sun",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Kazuo Ishiguro",
+   "rid": ""
+  }
+ ],
+ "year": "2021",
+ "publisher": "Knopf",
+ "isbn": "9780593318171",
+ "pages": "304",
+ "ol": "/works/OL20883297W",
+ "shelf": "fiction",
+ "level": "Beginner",
+ "pitch": "A Nobel laureate's quiet novel told by Klara, an Artificial Friend bought to keep a sick girl company, who watches people with love and misunderstanding.",
+ "toc_src": "https://openlibrary.org/works/OL20883297W",
+ "chapters": [
+  {
+   "t": "In the store",
+   "g": "Klara waits in a shop window, learning about people by watching the street and believing the Sun gives nourishment.",
+   "part": ""
+  },
+  {
+   "t": "Josie's home",
+   "g": "Klara comes to live with Josie, a girl who is ill, and her worried mother.",
+   "part": ""
+  },
+  {
+   "t": "Lifted children",
+   "g": "A world where some children are genetically lifted, with costs no one talks about.",
+   "part": ""
+  },
+  {
+   "t": "A secret plan",
+   "g": "Klara learns why she was really chosen, and what Josie's mother hopes she might become.",
+   "part": ""
+  },
+  {
+   "t": "A bargain with the Sun",
+   "g": "Klara makes a private sacrifice to try to save Josie.",
+   "part": ""
+  },
+  {
+   "t": "After",
+   "g": "What happens to an Artificial Friend when she is no longer needed.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "An AI can be deeply caring and still misread the world.",
+  "People may try to replace those they love.",
+  "What makes a person unique is hard to copy.",
+  "How we treat helpers we no longer need says a lot about us."
+ ],
+ "args": [
+  {
+   "a": "Klara shows that an AI could have real devotion.",
+   "c": "Readers disagree whether Klara feels or only imitates, and the book leaves it open."
+  },
+  {
+   "a": "A person cannot simply be continued in a machine.",
+   "c": "The novel suggests uniqueness lives in others' love, not in data, which some find too hopeful."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Does Klara love Josie?",
+  "What do we owe a helper AI at the end of its use?",
+  "Could you be learned and copied?"
+ ],
+ "quiz": [
+  {
+   "q": "What is Klara?",
+   "o": [
+    "A doctor",
+    "An Artificial Friend",
+    "A robot dog",
+    "A teacher"
+   ],
+   "a": 1,
+   "w": "A companion AI."
+  },
+  {
+   "q": "What does Klara believe gives nourishment?",
+   "o": [
+    "Electricity",
+    "The Sun",
+    "Water",
+    "Music"
+   ],
+   "a": 1,
+   "w": "She runs on solar power and builds a faith around it."
+  },
+  {
+   "q": "Who wrote it?",
+   "o": [
+    "Ian McEwan",
+    "Kazuo Ishiguro",
+    "Ted Chiang",
+    "Philip K. Dick"
+   ],
+   "a": 1,
+   "w": "Nobel Prize in Literature 2017."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/klara.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL20883297W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780593318171",
+   "free": true
+  }
+ ],
+ "toc_note": "The novel's six numbered parts have no titles. No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

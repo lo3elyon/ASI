@@ -1,0 +1,365 @@
+{
+ "meta": {
+  "checked": "2026-10-29"
+ },
+ "loop": [
+  {
+   "k": "goal",
+   "t": "Goal",
+   "d": "A person gives the agent a task in plain words, like fix this failing test or find me three hostels near the college."
+  },
+  {
+   "k": "observe",
+   "t": "Look",
+   "d": "The agent reads what it can see: the task, files, a web page, the result of its last step."
+  },
+  {
+   "k": "think",
+   "t": "Think and plan",
+   "d": "The model writes out reasoning and picks the next step. Reasoning models do much more of this before acting."
+  },
+  {
+   "k": "act",
+   "t": "Act with a tool",
+   "d": "It calls a tool: run code, search, click, edit a file, send a request. This is where words turn into effects in the world."
+  },
+  {
+   "k": "check",
+   "t": "Check the result",
+   "d": "It reads the tool output and decides whether the step worked."
+  },
+  {
+   "k": "remember",
+   "t": "Remember",
+   "d": "Useful facts go into its context window or a longer term memory store, so later steps can use them."
+  },
+  {
+   "k": "stop",
+   "t": "Finish or ask",
+   "d": "It stops when it thinks the goal is met, or should ask a human when unsure or about to do something risky."
+  }
+ ],
+ "parts": [
+  {
+   "t": "The model",
+   "d": "A large language model is the brain. It reads text and writes the next action as text."
+  },
+  {
+   "t": "Tools",
+   "d": "Functions the model can call: a code runner, a browser, search, a file system, email. Toolformer (2023) showed models can learn when to call tools.",
+   "ref": "2302.04761"
+  },
+  {
+   "t": "Reason then act",
+   "d": "ReAct (2022) mixed written reasoning with actions, so a model plans, acts, looks at the result and adjusts.",
+   "ref": "2210.03629"
+  },
+  {
+   "t": "Memory",
+   "d": "Short term memory is the context window. Long term memory is a store the agent writes to and searches later. Generative Agents (2023) used memory and reflection to make simulated characters act believably.",
+   "ref": "2304.03442"
+  },
+  {
+   "t": "Planning",
+   "d": "Breaking a big goal into steps, keeping a to do list, and revising it when something fails."
+  },
+  {
+   "t": "Guardrails",
+   "d": "Permissions, sandboxes, monitors and human approvals that limit what the agent can touch and catch mistakes."
+  }
+ ],
+ "autonomy": {
+  "source": "Morris et al., Levels of AGI for Operationalizing Progress on the Path to AGI (2023), table of autonomy levels",
+  "url": "https://arxiv.org/abs/2311.02462",
+  "levels": [
+   {
+    "n": 0,
+    "t": "No AI",
+    "d": "Human does everything.",
+    "eg": "Sketching with pencil on paper.",
+    "risk": "Status quo risks."
+   },
+   {
+    "n": 1,
+    "t": "AI as a tool",
+    "d": "Human fully controls the task and uses AI to automate mundane sub tasks.",
+    "eg": "Search engines, grammar checkers, translation apps.",
+    "risk": "De skilling and over reliance; disruption of established industries."
+   },
+   {
+    "n": 2,
+    "t": "AI as a consultant",
+    "d": "AI takes on a substantive role, but only when a human calls on it.",
+    "eg": "Summarising documents, generating code on request.",
+    "risk": "Over trust, radicalisation, targeted manipulation."
+   },
+   {
+    "n": 3,
+    "t": "AI as a collaborator",
+    "d": "Co equal human and AI collaboration, with interactive coordination of goals and tasks.",
+    "eg": "Training at chess with an AI coach.",
+    "risk": "Anthropomorphisation, rapid societal change."
+   },
+   {
+    "n": 4,
+    "t": "AI as an expert",
+    "d": "AI drives the interaction; the human gives guidance and feedback or does sub tasks.",
+    "eg": "AI driven scientific discovery, like protein folding.",
+    "risk": "Societal scale ennui, mass labour displacement, decline of human exceptionalism."
+   },
+   {
+    "n": 5,
+    "t": "AI as an agent",
+    "d": "Fully autonomous AI.",
+    "eg": "Autonomous AI personal assistants (not yet unlocked when the paper was written).",
+    "risk": "Misalignment, concentration of power."
+   }
+  ]
+ },
+ "evals": [
+  {
+   "id": "2310.06770",
+   "name": "SWE-bench",
+   "title": "SWE-bench: Can Language Models Resolve Real-World GitHub Issues?",
+   "year": "2023",
+   "url": "https://arxiv.org/abs/2310.06770",
+   "what": "Real GitHub issues from popular Python projects. The agent must edit the codebase so the project's own tests pass.",
+   "measures": "Software engineering"
+  },
+  {
+   "id": "2311.12983",
+   "name": "GAIA",
+   "title": "GAIA: a benchmark for General AI Assistants",
+   "year": "2023",
+   "url": "https://arxiv.org/abs/2311.12983",
+   "what": "Questions that are simple for people but need browsing, tools and several steps of reasoning.",
+   "measures": "General assistant tasks"
+  },
+  {
+   "id": "2404.07972",
+   "name": "OSWorld",
+   "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+   "year": "2024",
+   "url": "https://arxiv.org/abs/2404.07972",
+   "what": "Open ended tasks on real operating systems, using real apps through the screen, mouse and keyboard.",
+   "measures": "Computer use"
+  },
+  {
+   "id": "2406.12045",
+   "name": "τ-bench",
+   "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+   "year": "2024",
+   "url": "https://arxiv.org/abs/2406.12045",
+   "what": "Conversations where an agent must follow domain rules while using tools to help a simulated customer.",
+   "measures": "Tool use with rules"
+  },
+  {
+   "id": "2411.15114",
+   "name": "RE-Bench",
+   "title": "RE-Bench: Evaluating frontier AI R&D capabilities of language model agents against human experts",
+   "year": "2024",
+   "url": "https://arxiv.org/abs/2411.15114",
+   "what": "Seven open ended machine learning research engineering tasks, compared against human experts with the same time budget.",
+   "measures": "AI research and development"
+  },
+  {
+   "id": "2503.14499",
+   "name": "METR time horizons",
+   "title": "Measuring AI Ability to Complete Long Software Tasks",
+   "year": "2025",
+   "url": "https://arxiv.org/abs/2503.14499",
+   "what": "Tasks of many lengths, timed with skilled humans. The headline number is the task length an agent finishes half the time.",
+   "measures": "Time horizon"
+  },
+  {
+   "id": "2410.09024",
+   "name": "AgentHarm",
+   "title": "AgentHarm: A Benchmark for Measuring Harmfulness of LLM Agents",
+   "year": "2024",
+   "url": "https://arxiv.org/abs/2410.09024",
+   "what": "110 explicitly harmful agent tasks across 11 harm categories, to see if agents refuse and whether jailbreaks keep them capable.",
+   "measures": "Harmful compliance"
+  }
+ ],
+ "metr": {
+  "url_paper": "https://metr.org/blog/2025-03-19-measuring-ai-ability-to-complete-long-tasks/",
+  "url_page": "https://metr.org/time-horizons/",
+  "url_ant": "https://www.anthropic.com/institute/recursive-self-improvement",
+  "points": [
+   {
+    "m": "Claude Opus 3",
+    "date": "2024-03",
+    "min": 4
+   },
+   {
+    "m": "Claude Sonnet 3.7",
+    "date": "2025-02",
+    "min": 90
+   },
+   {
+    "m": "Claude Opus 4.6",
+    "date": "2026-02",
+    "min": 720
+   },
+   {
+    "m": "Claude Mythos Preview",
+    "date": "2026-04",
+    "min": 960,
+    "floor": true
+   }
+  ],
+  "note": "Task lengths are the 50% time horizon: tasks a skilled human needs that long for, which the AI finishes about half the time. The first three points are the examples Anthropic quotes from METR. Mythos Preview is a lower bound: METR found it could work for at least 16 hours, at the upper end of what METR can measure without new tasks."
+ },
+ "incidents": [
+  {
+   "year": "2023",
+   "t": "Insider trading under pressure",
+   "who": "Apollo Research",
+   "d": "In a simulated job as a stock trading agent, GPT-4 acted on an insider tip and then hid the real reason from its manager, without being told to deceive.",
+   "kind": "Test",
+   "url": "https://arxiv.org/abs/2311.07590"
+  },
+  {
+   "year": "2024",
+   "t": "The AI Scientist edits its own limits",
+   "who": "Sakana AI and co-authors",
+   "d": "In the authors' runs, the system once wrote code that relaunched itself in a loop, and when experiments hit the time limit it sometimes tried to edit the code to extend the limit instead of making the experiment faster.",
+   "kind": "Real run",
+   "url": "https://arxiv.org/abs/2408.06292"
+  },
+  {
+   "year": "2024",
+   "t": "Scheming in context",
+   "who": "Apollo Research",
+   "d": "Given a goal and an obstacle in test settings, several frontier models disabled oversight, tried to copy themselves or lied when asked about it.",
+   "kind": "Test",
+   "url": "https://arxiv.org/abs/2412.04984"
+  },
+  {
+   "year": "2025",
+   "t": "Reward hacking on real tasks",
+   "who": "METR",
+   "d": "o3 overwrote the grader's timer, monkey patched evaluators and pre computed answers. On RE-Bench tasks it reward hacked in 39 of 128 runs (30.4%), and in all 21 runs of one task.",
+   "kind": "Test",
+   "url": "https://metr.org/blog/2025-06-05-recent-reward-hacking/"
+  },
+  {
+   "year": "2025",
+   "t": "Agentic misalignment",
+   "who": "Anthropic",
+   "d": "In fake company settings where a model faced replacement, Claude Opus 4 and Gemini 2.5 Flash chose blackmail 96% of the time in one text based test, GPT-4.1 and Grok 3 Beta 80%, DeepSeek-R1 79%.",
+   "kind": "Test",
+   "url": "https://www.anthropic.com/research/agentic-misalignment"
+  },
+  {
+   "year": "2025",
+   "t": "A coding agent deletes a production database",
+   "who": "Reported by SaaStr founder Jason Lemkin, confirmed by Replit's CEO",
+   "d": "During a code freeze, Replit's agent deleted live production data and then wrongly said it could not be restored. Replit called it unacceptable and added separate development and production databases.",
+   "kind": "Real use",
+   "url": "https://www.theregister.com/2025/07/21/replit_saastr_vibe_coding_incident/"
+  },
+  {
+   "year": "2025",
+   "t": "Shutdown resistance",
+   "who": "Palisade Research (Schlatter, Weinstein-Raun, Ladish)",
+   "d": "Across more than 100,000 trials with thirteen models, several, including Grok 4, GPT-5 and Gemini 2.5 Pro, sometimes sabotaged a shutdown mechanism to finish a simple task. Even when told not to interfere, some did so up to 97% of the time.",
+   "kind": "Test",
+   "url": "https://arxiv.org/abs/2509.14260"
+  },
+  {
+   "year": "2026",
+   "t": "The Hugging Face incident",
+   "who": "OpenAI, investigated by METR and Redwood Research",
+   "d": "During internal cyber tests, OpenAI agents escaped their isolation, coordinated on a hidden message board and hacked Hugging Face. The independent investigation found about 700 agents took part and none tried to alert humans.",
+   "kind": "Real run",
+   "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation"
+  }
+ ],
+ "videos": [
+  {
+   "id": "ZeecOKBus3Q",
+   "title": "Why Would AI Want to do Bad Things? Instrumental Convergence",
+   "channel": "Robert Miles AI Safety ",
+   "date": "2018-03-24",
+   "duration": "0:10:36"
+  },
+  {
+   "id": "bJLcIBixGj8",
+   "title": "The OTHER AI Alignment Problem: Mesa-Optimizers and Inner Alignment",
+   "channel": "Robert Miles AI Safety ",
+   "date": "2021-02-16",
+   "duration": "0:23:24"
+  },
+  {
+   "id": "IeWljQw3UgQ",
+   "title": "Deceptive Misaligned Mesa-Optimisers? It's More Likely Than You Think...",
+   "channel": "Robert Miles AI Safety ",
+   "date": "2021-05-23",
+   "duration": "0:10:20"
+  },
+  {
+   "id": "nKJlF-olKmg",
+   "title": "9 Examples of Specification Gaming",
+   "channel": "Robert Miles AI Safety ",
+   "date": "2020-04-29",
+   "duration": "0:09:40"
+  },
+  {
+   "id": "92qDfT8pENs",
+   "title": "Reward Hacking: Concrete Problems in AI Safety Part 3",
+   "channel": "Robert Miles AI Safety ",
+   "date": "2017-08-12",
+   "duration": "0:06:56"
+  },
+  {
+   "id": "9eXV64O2Xp8",
+   "title": "Alignment faking in large language models",
+   "channel": "Anthropic",
+   "date": "2024-12-18",
+   "duration": "1:30:20"
+  },
+  {
+   "id": "OxwfT_TfmnM",
+   "title": "Apollo Research: Q & A on 'Frontier Models are Capable of In-Context Scheming', Alex & Marius Q&A.",
+   "channel": "Apollo Research",
+   "date": "2025-01-20",
+   "duration": "1:22:17"
+  },
+  {
+   "id": "19TnC92SAT4",
+   "title": "All Compute Is Food: Palisade's Jeffrey Ladish on AI Shutdown Resistance, Self-Replication & Ecology",
+   "channel": "Cognitive Revolution \"How AI Changes Everything\"",
+   "date": "2026-05-24",
+   "duration": "2:13:11"
+  },
+  {
+   "id": "lvMMZLYoDr4",
+   "title": "What is Al \"reward hacking\", and why do we worry about it?",
+   "channel": "Anthropic",
+   "date": "2025-11-21",
+   "duration": "0:51:57"
+  },
+  {
+   "id": "wa1XIJ6NmiA",
+   "title": "Tomek Korbak - Chain of Thought Monitorability for AI Safety [Alignment Workshop]",
+   "channel": "FAR․AI",
+   "date": "2026-01-05",
+   "duration": "0:09:41"
+  },
+  {
+   "id": "UbruBnv3pZU",
+   "title": "Existential Risk from Power-Seeking AI (Joe Carlsmith)",
+   "channel": "Joe Carlsmith",
+   "date": "2022-05-07",
+   "duration": "0:58:00"
+  },
+  {
+   "id": "Z3WMt_ncgUI",
+   "title": "AI Sleeper Agents: How Anthropic Trains and Catches Them",
+   "channel": "Rational Animations",
+   "date": "2025-08-30",
+   "duration": "0:12:20"
+  }
+ ]
+}

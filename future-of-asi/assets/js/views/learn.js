@@ -3,6 +3,8 @@ import { P, save, commit, xpOf, levelOf, badgeList, badgeHtml, lessonDone, bossP
 import { block, question, bindQuestion, INTERACTIVE } from "../learn/blocks.js";
 import { logView } from "../core/history.js";
 import { jumpTo } from "../core/motion.js";
+import { mount as mount3, mountUnit } from "../views3/learn3.js";
+import { auto as m3auto } from "../core/motion3.js";
 
 export function normResource(r) {
   return { title: r.title || r.name || "", url: r.url || r.link || "", type: String(r.type || r.category || r.kind || "other").toLowerCase(), by: r.org || r.author || r.authors || r.provider || r.by || "", text: r.line || r.description || r.summary || r.why || r.note || "", free: r.free, level: r.level || "" };
@@ -80,6 +82,7 @@ export async function render(el, params, query) {
       <div class="callout" style="margin-top:30px"><div><div class="eyebrow">Completion card</div><h3 style="margin:8px 0">Finish every lesson and beat every boss quiz.</h3><p class="muted" style="margin:0">Then put your name on a card you can download and share. ${st.done}/${all.length} lessons and ${st.bosses}/${units.length} bosses so far.</p></div><a class="btn ${st.complete ? "primary" : ""}" href="#/learn/certificate">${st.complete ? "Make my card" : "Preview the card"} ${ICON.arrow}</a></div>`;
     if (ds) daily();
     import("../util.js").then((m) => m.reveal(el));
+    if (tab !== "resources") { try { await mount3(el); m3auto(el); } catch (e) { console.warn("learn3", e); } }
   }
   function daily() {
     const pr = P(); const ds = dailyState(course, pr); const box = $("#dq", el); if (!box || !ds) return;
@@ -127,6 +130,7 @@ export async function render(el, params, query) {
       <div style="display:grid;gap:12px;margin-top:22px">${u.lessons.map((l, i) => { const ok = lessonOpen(pr, u, l, units); const d = lessonDone(pr, l); return `<a class="card hov spot" href="#/learn/${u.id}/${l.id}" style="--c:${u.c};display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;color:var(--text)"><span class="tag" style="--c:${d ? "#84cc16" : u.c};justify-content:center">${d ? "\u2713" : i + 1}</span><span><b style="font-family:var(--f-display);font-size:17px">${esc(l.title)}</b><br><span class="muted" style="font-size:14px">${esc(l.key || "")}</span></span><span class="count">${ok ? `${l.mins || 3} min · ${l.xp || 40} XP` : "locked"}</span></a>`; }).join("")}
         <a class="card hov spot" href="#/learn/${u.id}/quiz" style="--c:#ef4444;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;color:var(--text)"><span class="tag" style="--c:#ef4444;justify-content:center">B</span><span><b style="font-family:var(--f-display);font-size:17px">${esc((u.boss || {}).title || "Boss quiz")}</b><br><span class="muted" style="font-size:14px">${u.quiz.length} questions, pass with ${bossNeed(u)}. Unlocks the badge ${esc((u.badge || {}).name || "")}.</span></span><span class="count">${bossPassed(pr, u) ? "beaten" : `${(u.boss || {}).xp || 100} XP`}</span></a></div>
       </div></div></section>`;
+    mountUnit(el, u);
   }
 
   function lesson(u, l) {

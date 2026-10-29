@@ -1,0 +1,138 @@
+{
+ "id": "frankenstein",
+ "title": "Frankenstein",
+ "subtitle": "or, The Modern Prometheus",
+ "authors": [
+  {
+   "name": "Mary Shelley",
+   "rid": ""
+  }
+ ],
+ "year": "1818",
+ "publisher": "Lackington, Hughes, Harding, Mavor and Jones (London)",
+ "isbn": "",
+ "pages": "",
+ "ol": "/works/OL450063W",
+ "shelf": "fiction",
+ "level": "Beginner",
+ "pitch": "The first great story about making a mind. A young scientist creates a living being, abandons it, and learns that creators owe something to what they create.",
+ "toc_src": "https://www.gutenberg.org/ebooks/84",
+ "chapters": [
+  {
+   "t": "Letters 1 to 4",
+   "g": "Captain Walton, sailing towards the North Pole, writes to his sister and rescues a dying stranger from the ice.",
+   "part": ""
+  },
+  {
+   "t": "Chapters 1 to 5",
+   "g": "Victor Frankenstein's childhood, his obsession with the secret of life, and the night his creature opens its eyes.",
+   "part": ""
+  },
+  {
+   "t": "Chapters 6 to 10",
+   "g": "Victor falls ill, a child is murdered, an innocent woman is blamed, and Victor meets his creation in the mountains.",
+   "part": ""
+  },
+  {
+   "t": "Chapters 11 to 16",
+   "g": "The creature's own story: learning language and feeling by watching a family, and being rejected by everyone.",
+   "part": ""
+  },
+  {
+   "t": "Chapters 17 to 24",
+   "g": "The creature asks for a companion. Victor agrees, then breaks his promise, and both are destroyed by the pursuit that follows.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Creators are responsible for what they create.",
+  "A new mind learns from how it is treated.",
+  "Ambition without foresight can be catastrophic.",
+  "Rejection can turn a hopeful being into an enemy."
+ ],
+ "args": [
+  {
+   "a": "Frankenstein is a warning about creating minds we cannot care for or control.",
+   "c": "Some readers say the real lesson is about Victor's cruelty, not about science being dangerous."
+  },
+  {
+   "a": "The creature is a victim more than a monster.",
+   "c": "It also commits murders, and the novel leaves that tension open."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What did Victor owe his creature?",
+  "Is the creature a better model for AI fear or for AI rights?",
+  "Where in the novel could things have gone differently?"
+ ],
+ "quiz": [
+  {
+   "q": "Who narrates the opening letters?",
+   "o": [
+    "Victor",
+    "Robert Walton",
+    "The creature",
+    "Elizabeth"
+   ],
+   "a": 1,
+   "w": "An explorer writing to his sister."
+  },
+  {
+   "q": "What does the creature ask Victor to make?",
+   "o": [
+    "A house",
+    "A companion",
+    "A weapon",
+    "A ship"
+   ],
+   "a": 1,
+   "w": "A partner like himself."
+  },
+  {
+   "q": "What is the subtitle?",
+   "o": [
+    "The Modern Prometheus",
+    "The Last Man",
+    "The Monster",
+    "The Creation"
+   ],
+   "a": 0,
+   "w": "Prometheus stole fire for humans."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/frankenstein/index.json",
+  "url": "https://www.gutenberg.org/ebooks/84",
+  "label": "Read the full novel here",
+  "licence": "Public domain. Mary Shelley died in 1851 and the novel was first published in 1818. Text from Project Gutenberg eBook #84.",
+  "licence_url": "https://www.gutenberg.org/ebooks/84"
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/frankenstein.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Read the full novel",
+   "url": "https://www.gutenberg.org/ebooks/84",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL450063W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=Frankenstein%20Mary%20Shelley",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

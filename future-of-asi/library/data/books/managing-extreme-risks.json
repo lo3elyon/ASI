@@ -1,0 +1,185 @@
+{
+ "id": "managing-extreme-risks",
+ "title": "Managing extreme AI risks amid rapid progress",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Yoshua Bengio",
+   "rid": "yoshua-bengio"
+  },
+  {
+   "name": "Geoffrey Hinton",
+   "rid": "geoffrey-hinton"
+  },
+  {
+   "name": "Andrew Yao",
+   "rid": "andrew-yao"
+  },
+  {
+   "name": "Dawn Song",
+   "rid": "dawn-song"
+  },
+  {
+   "name": "Stuart Russell",
+   "rid": "stuart-russell"
+  },
+  {
+   "name": "Daniel Kahneman",
+   "rid": ""
+  },
+  {
+   "name": "and 19 others",
+   "rid": ""
+  }
+ ],
+ "year": "2024",
+ "publisher": "Science (May 2024); arXiv:2310.17688",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "governance",
+ "level": "Beginner",
+ "pitch": "Twenty five leading scientists, including three Turing Award winners, warn that AI may soon outpace our ability to control it, and set out what research and governance must do now.",
+ "toc_src": "https://arxiv.org/abs/2310.17688",
+ "chapters": [
+  {
+   "t": "Abstract",
+   "g": "The case in brief: rapid progress, serious risks, and a plan.",
+   "part": ""
+  },
+  {
+   "t": "Rapid progress",
+   "g": "Why AI could soon match or exceed humans in many areas, and why it need not stop at human level.",
+   "part": ""
+  },
+  {
+   "t": "Societal-scale risks",
+   "g": "Harms from misuse, social injustice and loss of human control over autonomous systems.",
+   "part": ""
+  },
+  {
+   "t": "Reorient Technical R&D",
+   "g": "Research priorities: oversight, robustness, interpretability, evaluations and resilience, with a third of AI research budgets for safety and ethics.",
+   "part": ""
+  },
+  {
+   "t": "Governance measures",
+   "g": "Institutions, government insight, safety cases and mitigation rules scaled to risk.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI progress could soon outpace safety.",
+  "Loss of human control is a real risk.",
+  "At least a third of AI R&D should go to safety and ethics.",
+  "Governments need oversight institutions with real power."
+ ],
+ "args": [
+  {
+   "a": "Leading scientists see extreme risks as near enough to act now.",
+   "c": "Others, including some top researchers, think such risks are far off or overstated."
+  },
+  {
+   "a": "Developers should prove their systems safe with safety cases.",
+   "c": "Industry worries about cost and slowing innovation."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Why might AI not stop at human level?",
+  "Is a third of research budgets for safety the right share?",
+  "Which governance measure would help most?"
+ ],
+ "quiz": [
+  {
+   "q": "Where was the final version published?",
+   "o": [
+    "Nature",
+    "Science",
+    "A blog",
+    "A newspaper"
+   ],
+   "a": 1,
+   "w": "Science, May 2024."
+  },
+  {
+   "q": "What share of AI R&D do the authors want for safety and ethics?",
+   "o": [
+    "One tenth",
+    "At least one third",
+    "Half",
+    "All"
+   ],
+   "a": 1,
+   "w": "Comparable to their funding for capabilities."
+  },
+  {
+   "q": "What is a safety case?",
+   "o": [
+    "A box",
+    "Evidence from developers that their system is safe",
+    "An insurance policy",
+    "A lawsuit"
+   ],
+   "a": 1,
+   "w": "Used in aviation and nuclear power."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/managing-extreme-risks.json",
+  "url": "https://arxiv.org/abs/2310.17688",
+  "label": "Read the full paper here",
+  "licence": "CC BY 4.0, from arXiv:2310.17688v3. Text shown without figures, citation numbers or reference list. Authors: Bengio, Hinton, Yao, Song, Abbeel, Darrell, Harari, Zhang, Xue, Shalev-Shwartz, Hadfield, Clune, Maharaj, Hutter, Baydin, McIlraith, Gao, Acharya, Krueger, Dragan, Torr, Russell, Kahneman, Brauner and Mindermann.",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "tUMm5rP4SwU",
+   "title": "Geoffrey Hinton on the AI That’s Already Upgrading Its Own Code",
+   "channel": "StarTalk Plus",
+   "date": "2026-10-27",
+   "duration": "0:11:18",
+   "summary": "Geoffrey Hinton on StarTalk about AI that already improves its own code."
+  },
+  {
+   "id": "TNffIt8eRb0",
+   "title": "Vienna Gödel Lecture 2026: Geoffrey Hinton",
+   "channel": "TU Wien Informatics",
+   "date": "2026-10-24",
+   "duration": "1:20:05",
+   "summary": "Geoffrey Hinton gives the 2026 Vienna Godel Lecture."
+  },
+  {
+   "id": "hn7syNL012o",
+   "title": "Stuart Russell: \"We Cannot Retain Power Forever Over Intrinsically Unsafe Systems\"",
+   "channel": "ControlAI",
+   "date": "2026-10-16",
+   "duration": "0:06:53",
+   "summary": "Stuart Russell says we cannot keep power forever over systems that are unsafe by design."
+  },
+  {
+   "id": "9IwOFRyilfo",
+   "title": "Could AI Destroy the World? A Debate with Stuart Russell and Jürgen Schmidhuber | Counterpoint",
+   "channel": "Foreign Policy",
+   "date": "2026-10-14",
+   "duration": "0:45:35",
+   "summary": "Stuart Russell and Jurgen Schmidhuber debate whether AI could destroy the world."
+  }
+ ],
+ "shelfLabel": "Governance and policy",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Read the full paper",
+   "url": "https://arxiv.org/abs/2310.17688",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

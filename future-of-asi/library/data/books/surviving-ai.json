@@ -1,0 +1,146 @@
+{
+ "id": "surviving-ai",
+ "title": "Surviving AI",
+ "subtitle": "The Promise and Peril of Artificial Intelligence",
+ "authors": [
+  {
+   "name": "Calum Chace",
+   "rid": ""
+  }
+ ],
+ "year": "2015",
+ "publisher": "Three Cs",
+ "isbn": "9780993211621",
+ "pages": "186",
+ "ol": "/works/OL29318072W",
+ "shelf": "risk",
+ "level": "Beginner",
+ "pitch": "A short, clear walk from today's narrow AI to general AI and superintelligence, and why making it friendly is the key problem of the century.",
+ "toc_src": "https://openlibrary.org/books/OL40297613M",
+ "chapters": [
+  {
+   "t": "AI in the past and present",
+   "g": "A quick history of AI and what it can do now.",
+   "part": "ANI: Artificial Narrow Intelligence"
+  },
+  {
+   "t": "Tomorrow's AI",
+   "g": "Near term advances, such as self driving cars and smart assistants.",
+   "part": "ANI: Artificial Narrow Intelligence"
+  },
+  {
+   "t": "From digital disruption to economic singularity",
+   "g": "What happens if machines can do most jobs.",
+   "part": "ANI: Artificial Narrow Intelligence"
+  },
+  {
+   "t": "Can we make an AGI?",
+   "g": "Arguments for and against general AI being possible.",
+   "part": "AGI: Artificial General Intelligence"
+  },
+  {
+   "t": "When might the first AGI arrive?",
+   "g": "Expert surveys and the difficulty of timing.",
+   "part": "AGI: Artificial General Intelligence"
+  },
+  {
+   "t": "Will AGI lead to superintelligence?",
+   "g": "How a general AI might improve itself quickly.",
+   "part": "ASI: Artificial Superintelligence"
+  },
+  {
+   "t": "Will superintelligence be beneficial?",
+   "g": "Why a superintelligence could be very good or very bad.",
+   "part": "ASI: Artificial Superintelligence"
+  },
+  {
+   "t": "Can we ensure that superintelligence is \"friendly\"?",
+   "g": "Approaches to friendly AI, from control to value loading.",
+   "part": "FAI: Friendly Artificial Intelligence"
+  },
+  {
+   "t": "Conclusion: Surviving AI",
+   "g": "Why we should act now, while there is time.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI goes from narrow to general to super.",
+  "General AI could improve itself fast.",
+  "Friendly AI is the central challenge.",
+  "An economic singularity could arrive before a technological one."
+ ],
+ "args": [
+  {
+   "a": "Superintelligence could arrive this century and must be made friendly.",
+   "c": "Skeptics argue the jump from narrow to general AI is much harder than it looks."
+  },
+  {
+   "a": "We should start working on friendliness now.",
+   "c": "Some say we cannot solve safety for systems we have not built yet."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which step, narrow to general or general to super, worries you more?",
+  "What would a friendly superintelligence do on its first day?",
+  "Is an economic singularity already starting?"
+ ],
+ "quiz": [
+  {
+   "q": "What do ANI, AGI and ASI stand for?",
+   "o": [
+    "Three companies",
+    "Narrow, general and super AI",
+    "Three languages",
+    "Three chips"
+   ],
+   "a": 1,
+   "w": "The book is built on these stages."
+  },
+  {
+   "q": "What is FAI?",
+   "o": [
+    "Fast AI",
+    "Friendly AI",
+    "Fake AI",
+    "Free AI"
+   ],
+   "a": 1,
+   "w": "AI that is good for humans."
+  },
+  {
+   "q": "What is the economic singularity?",
+   "o": [
+    "A stock crash",
+    "When machines can do most jobs",
+    "A tax",
+    "A new currency"
+   ],
+   "a": 1,
+   "w": "Chace coined the phrase for mass automation."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/surviving-ai.jpg",
+ "videos": [],
+ "shelfLabel": "Risk and control",
+ "shelfColor": "#ef4444",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL29318072W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780993211621",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

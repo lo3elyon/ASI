@@ -1,0 +1,11 @@
+/* Library font pairing: EB Garamond (headings, titles, quotes) and Mulish (body). Both SIL Open Font License 1.1, Latin subset woff2 from Fontsource. Licences sit next to the files. */
+@font-face { font-family: "EB Garamond"; src: url("eb-garamond-wght.woff2") format("woff2"); font-weight: 400 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "EB Garamond"; src: url("eb-garamond-wght-italic.woff2") format("woff2"); font-weight: 400 800; font-style: italic; font-display: swap; }
+@font-face { font-family: "Mulish"; src: url("mulish-wght.woff2") format("woff2"); font-weight: 200 1000; font-style: normal; font-display: swap; }
+/* Scoped to the page content so the shared site header and footer keep the site wide fonts. */
+#main, #reader {
+  --f-display: "EB Garamond", "Instrument Serif", Georgia, serif;
+  --f-serif: "EB Garamond", "Instrument Serif", Georgia, serif;
+  --f-body: "Mulish", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family: var(--f-body);
+}

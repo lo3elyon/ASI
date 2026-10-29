@@ -1,0 +1,183 @@
+{
+ "id": "catastrophic-overview",
+ "title": "An Overview of Catastrophic AI Risks",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Dan Hendrycks",
+   "rid": "dan-hendrycks"
+  },
+  {
+   "name": "Mantas Mazeika",
+   "rid": ""
+  },
+  {
+   "name": "Thomas Woodside",
+   "rid": ""
+  }
+ ],
+ "year": "2023",
+ "publisher": "arXiv:2306.12001 (Center for AI Safety)",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "risk",
+ "level": "Beginner",
+ "pitch": "A clear map of how AI could lead to catastrophe, sorted into four sources: malicious use, racing, organisational failures and rogue AIs.",
+ "toc_src": "https://arxiv.org/abs/2306.12001",
+ "chapters": [
+  {
+   "t": "Executive Summary",
+   "g": "The four sources of catastrophic risk in brief.",
+   "part": ""
+  },
+  {
+   "t": "Introduction",
+   "g": "Why AI risk deserves serious attention now.",
+   "part": ""
+  },
+  {
+   "t": "Malicious Use",
+   "g": "Bioterrorism, propaganda, surveillance and AI agents released to cause harm.",
+   "part": ""
+  },
+  {
+   "t": "AI Race",
+   "g": "Competition between companies and countries that pushes speed over safety.",
+   "part": ""
+  },
+  {
+   "t": "Organizational Risks",
+   "g": "Accidents caused by weak safety culture, as in other industries.",
+   "part": ""
+  },
+  {
+   "t": "Rogue AIs",
+   "g": "Systems that pursue goals against our interests, through proxy gaming, goal drift, power seeking or deception.",
+   "part": ""
+  },
+  {
+   "t": "Discussion of Connections Between Risks",
+   "g": "How the four sources make each other worse.",
+   "part": ""
+  },
+  {
+   "t": "Conclusion",
+   "g": "What can be done, from regulation to research.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Four sources: malicious use, AI race, organisational risks, rogue AIs.",
+  "Competition can erode safety.",
+  "Safety culture matters as much as technical fixes.",
+  "The risks interact and amplify each other."
+ ],
+ "args": [
+  {
+   "a": "AI could cause catastrophe through several routes at once.",
+   "c": "Some say these scenarios are speculative and distract from present harms."
+  },
+  {
+   "a": "Racing dynamics are a major driver of risk.",
+   "c": "Others think competition also speeds up safety work and spreads benefits."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the four sources is most likely in the next ten years?",
+  "How do the risks connect?",
+  "What would a strong safety culture look like in an AI lab?"
+ ],
+ "quiz": [
+  {
+   "q": "How many sources of catastrophic risk does the paper describe?",
+   "o": [
+    "Two",
+    "Four",
+    "Seven",
+    "Ten"
+   ],
+   "a": 1,
+   "w": "Malicious use, race, organisational, rogue."
+  },
+  {
+   "q": "Which organisation are the authors from?",
+   "o": [
+    "MIRI",
+    "Center for AI Safety",
+    "OpenAI",
+    "DeepMind"
+   ],
+   "a": 1,
+   "w": "CAIS, led by Dan Hendrycks."
+  },
+  {
+   "q": "Which of these is a rogue AI risk?",
+   "o": [
+    "Power seeking",
+    "Server costs",
+    "Slow chips",
+    "Bad UI"
+   ],
+   "a": 0,
+   "w": "Along with deception and goal drift."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://arxiv.org/abs/2306.12001",
+  "label": "Read the paper free (arXiv)",
+  "licence": "arXiv's standard non-exclusive licence, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "ajjWrYn6-bM",
+   "title": "Superintelligence and human security, with Dan Hendrycks",
+   "channel": "ASPICanberra",
+   "date": "2025-11-02",
+   "duration": "0:55:46",
+   "summary": "Dan Hendrycks on superintelligence and human security."
+  },
+  {
+   "id": "PM1waDBNDhw",
+   "title": "Mutually Assured AI Malfunction [Dan Hendrycks]",
+   "channel": "Machine Learning Street Talk",
+   "date": "2025-08-13",
+   "duration": "1:45:39",
+   "summary": "Dan Hendrycks on Mutually Assured AI Malfunction."
+  },
+  {
+   "id": "j13ySJLvdOc",
+   "title": "Explosive AI Timeline Predictions [Gary Marcus, Daniel Kokotajlo, Dan Hendrycks]",
+   "channel": "Machine Learning Street Talk",
+   "date": "2025-06-23",
+   "duration": "2:07:08",
+   "summary": "Marcus, Kokotajlo and Hendrycks argue about AI timelines."
+  },
+  {
+   "id": "WcOlCtgreyQ",
+   "title": "AI's Rising Risks: Hacking, Virology, Loss of Control, With Dan Hendrycks",
+   "channel": "Alex Kantrowitz",
+   "date": "2025-03-28",
+   "duration": "1:15:54",
+   "summary": "Dan Hendrycks on rising AI risks from hacking, virology and loss of control."
+  }
+ ],
+ "shelfLabel": "Risk and control",
+ "shelfColor": "#ef4444",
+ "where": [
+  {
+   "label": "Read the paper free (arXiv)",
+   "url": "https://arxiv.org/abs/2306.12001",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

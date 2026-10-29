@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>The Library: 30 books and 6 essays on superintelligence and AI risk | Threshold</title>
-  <meta name="description" content="A reading room for the future of AI: 30 books and 6 key essays on superintelligence, alignment, the intelligence explosion and AI risk. Chapter guides, key ideas, arguments and counter arguments, quizzes, talks, and full free texts where the licence allows.">
+  <title>The Library: 62 books and 17 essays and reports on AI, AGI and superintelligence | Threshold</title>
+  <meta name="description" content="A reading room for the future of AI: 62 books and 17 essays and reports on AGI, superintelligence, alignment, governance, history, sceptics and fiction about AI. Chapter guides in plain words, quizzes, talks, a 3D book reader, and 11 free full texts where the licence allows.">
   <meta name="author" content="Aniruddha Adak">
   <meta name="theme-color" content="#07111f">
   <meta name="color-scheme" content="dark light">
@@ -12,16 +12,20 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Threshold: The Future of ASI">
   <meta property="og:title" content="The Library | Threshold">
-  <meta property="og:description" content="30 books and 6 essays on superintelligence, with chapter guides, quizzes, talks and free full texts where the licence allows.">
+  <meta property="og:description" content="79 books, essays and reports on AI and superintelligence, with chapter guides, quizzes, talks, a 3D reader and 11 free full texts where the licence allows.">
   <meta property="og:url" content="https://lo3elyon.github.io/ASI/future-of-asi/library/">
   <meta property="og:image" content="https://lo3elyon.github.io/ASI/future-of-asi/shared/img/library-hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="../shared/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../shared/brand/icon-192.png">
-  <link rel="preload" href="../shared/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/eb-garamond-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/mulish-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../shared/fonts.css">
   <link rel="stylesheet" href="../shared/threshold.css">
+  <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="library.css">
+  <link rel="stylesheet" href="reader.css">
+  <link rel="modulepreload" href="library.js">
   <script>
     (function () {
       try {
@@ -40,7 +44,8 @@
       <div class="wrap inner">
         <span class="eyebrow">Threshold library</span>
         <h1>The <span class="serif"><em>reading room</em></span> for the future of AI</h1>
-        <p class="lead"><span id="countBooks">30</span> books and <span id="countEssays">6</span> essays on superintelligence, alignment and the intelligence explosion. Chapter guides in plain words, the best arguments on both sides, quizzes and talks. Free full texts where the licence allows.</p>
+        <p class="lead"><span id="countBooks">62</span> books and <span id="countEssays">17</span> essays and reports on AGI, superintelligence, alignment, governance and the intelligence explosion, plus the sceptics, the history and the fiction. Chapter guides in plain words, the best arguments on both sides, quizzes and talks. Free full texts where the licence allows, in a 3D book you can turn by hand.</p>
+        <div class="lstats" id="lstats"></div>
         <div class="lsearch">
           <label class="search-box" for="q"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search titles, authors, ideas" autocomplete="off" aria-label="Search the library"></label>
         </div>
@@ -49,6 +54,11 @@
 
     <section class="wrap section" style="padding-top:34px">
       <div id="continue"></div>
+      <section class="shelf3d" id="shelf3d" hidden aria-label="3D bookshelf">
+        <div class="sh-head"><div><span class="eyebrow">Walk the shelves</span><h2>Pull a book off the shelf</h2><p>Point at a book to lean it out. Click to open it in the 3D reader. Drag sideways to browse. The shelf follows your filters.</p></div><div class="row" style="gap:6px"><button class="icon-btn" type="button" id="shPrev" aria-label="Scroll the shelf left"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button><button class="icon-btn" type="button" id="shNext" aria-label="Scroll the shelf right"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div></div>
+        <div class="sh-host" id="shelfHost"><div class="sh-tip" id="shTip" hidden></div></div>
+        <div class="sh-bar" aria-hidden="true"><i id="shBar"></i></div>
+      </section>
       <div class="toolbar ltool">
         <div class="chips" id="shelves" role="group" aria-label="Shelves"></div>
         <div class="row" style="gap:8px">
@@ -71,31 +81,8 @@
     <div class="bv-scroll" id="bvScroll"><div class="bv-inner" id="bvInner"></div></div>
   </div>
 
-  <!-- Reader -->
-  <div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Reader" hidden>
-    <div class="rd-bar">
-      <button class="icon-btn" type="button" id="rdClose" aria-label="Close reader"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-      <button class="icon-btn" type="button" id="rdToc" aria-label="Contents" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h16"/></svg></button>
-      <div class="rd-title"><b id="rdBook"></b><span id="rdChap"></span></div>
-      <div class="rd-tools">
-        <div class="seg rd-theme" role="group" aria-label="Reading theme"><button type="button" data-t="dark" aria-label="Dark">Aa</button><button type="button" data-t="sepia" aria-label="Sepia">Aa</button><button type="button" data-t="light" aria-label="Light">Aa</button></div>
-        <button class="icon-btn" type="button" id="rdSmaller" aria-label="Smaller text">A-</button>
-        <button class="icon-btn" type="button" id="rdBigger" aria-label="Bigger text">A+</button>
-        <button class="icon-btn" type="button" id="rdFont" aria-label="Switch between serif and sans">Ff</button>
-      </div>
-    </div>
-    <aside class="rd-toc" id="rdTocPanel" aria-label="Contents"></aside>
-    <div class="rd-stage" id="rdStage">
-      <button class="rd-nav prev" type="button" id="rdPrev" aria-label="Previous page"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
-      <div class="rd-book" id="rdBookEl">
-        <div class="rd-page" id="rdPage"><div class="rd-cols" id="rdCols" tabindex="0"></div></div>
-        <div class="rd-leaf" id="rdLeaf" aria-hidden="true"></div>
-      </div>
-      <button class="rd-nav next" type="button" id="rdNext" aria-label="Next page"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button>
-    </div>
-    <div class="rd-foot"><span id="rdPos"></span><div class="rd-prog"><i id="rdProg"></i></div><span id="rdLic"></span></div>
-    <button class="hl-pop" id="hlPop" type="button" hidden>Highlight</button>
-  </div>
+  <!-- Reader: built by reader/reader.js -->
+  <div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Reader" hidden></div>
 
   <noscript><div class="wrap section"><p class="lead">The library needs JavaScript. The catalogue is in <a href="data/books.json">data/books.json</a>.</p></div></noscript>
   <script type="module" src="library.js"></script>

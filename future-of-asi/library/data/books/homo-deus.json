@@ -1,0 +1,164 @@
+{
+ "id": "homo-deus",
+ "title": "Homo Deus",
+ "subtitle": "A Brief History of Tomorrow",
+ "authors": [
+  {
+   "name": "Yuval Noah Harari",
+   "rid": "yuval-noah-harari"
+  }
+ ],
+ "year": "2016",
+ "publisher": "Harvill Secker (2016); Harper (US edition, 2017)",
+ "isbn": "9780062464316",
+ "pages": "449",
+ "ol": "/works/OL17641518W",
+ "shelf": "future",
+ "level": "Beginner",
+ "pitch": "Having beaten much of famine, plague and war, humans may aim for immortality, happiness and godlike powers, while algorithms come to know us better than we know ourselves.",
+ "toc_src": "https://openlibrary.org/works/OL17641518W",
+ "chapters": [
+  {
+   "t": "A new human agenda",
+   "g": "With famine, plague and war much reduced, Harari asks what humanity will aim for next: longer life, happiness and new powers.",
+   "part": ""
+  },
+  {
+   "t": "How humans came to rule",
+   "g": "Shared stories and flexible cooperation, not just brains, let humans dominate the planet.",
+   "part": ""
+  },
+  {
+   "t": "The humanist age",
+   "g": "Modern societies put human feelings and choices at the centre of meaning and authority.",
+   "part": ""
+  },
+  {
+   "t": "Dataism",
+   "g": "A new creed treats the universe as data flows and values whatever processes data best.",
+   "part": ""
+  },
+  {
+   "t": "When algorithms know us better",
+   "g": "If algorithms understand our wants better than we do, authority could shift from people to machines.",
+   "part": ""
+  },
+  {
+   "t": "A useless class?",
+   "g": "The risk that many people lose economic and military value as AI takes over work.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Humanity's agenda may shift to immortality, bliss and godlike power.",
+  "Humanism gave authority to human feelings.",
+  "Dataism could move authority to algorithms.",
+  "Many people could lose economic relevance."
+ ],
+ "args": [
+  {
+   "a": "Algorithms will soon know us better than we know ourselves.",
+   "c": "Recommender systems are powerful but still crude, and critics say the claim treats people as more predictable than they are."
+  },
+  {
+   "a": "A useless class could emerge.",
+   "c": "Many economists expect new kinds of work to appear, and dislike the phrase as unhelpful."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Would you let an algorithm choose your partner if it was better at it?",
+  "What gives your life meaning that data cannot measure?",
+  "Is dataism already a religion?"
+ ],
+ "quiz": [
+  {
+   "q": "What is dataism?",
+   "o": [
+    "A database",
+    "A creed that values data processing above all",
+    "A programming language",
+    "A law"
+   ],
+   "a": 1,
+   "w": "Harari's name for an emerging worldview."
+  },
+  {
+   "q": "What three old problems does Harari say were largely tamed?",
+   "o": [
+    "Heat, cold, rain",
+    "Famine, plague and war",
+    "Taxes, debt, inflation",
+    "None"
+   ],
+   "a": 1,
+   "w": "That frees humanity to chase new goals."
+  },
+  {
+   "q": "What does the subtitle promise?",
+   "o": [
+    "A history of yesterday",
+    "A brief history of tomorrow",
+    "A cookbook",
+    "A biography"
+   ],
+   "a": 1,
+   "w": "It is about the future."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/homo-deus.jpg",
+ "videos": [
+  {
+   "id": "ARdnl2kjmRU",
+   "title": "Yuval Noah Harari on the dangers of an AI future | The Economist",
+   "channel": "The Economist",
+   "date": "2026-08-22",
+   "duration": "0:12:28",
+   "summary": "Yuval Noah Harari on the dangers of an AI future."
+  },
+  {
+   "id": "rGAA59JTBtg",
+   "title": "Harari and Tegmark on Humanity and AI",
+   "channel": "Bloomberg Live",
+   "date": "2026-01-22",
+   "duration": "0:31:48",
+   "summary": "Harari and Tegmark talk about humanity and AI."
+  },
+  {
+   "id": "3HQo1wLspsg",
+   "title": "Disruption, Democracy and the Global Order, Yuval Noah Harari at the University of Cambridge",
+   "channel": "CSER Cambridge",
+   "date": "2024-03-14",
+   "duration": "1:22:37",
+   "summary": "Yuval Noah Harari at Cambridge on disruption, democracy and the global order."
+  },
+  {
+   "id": "b2uEAgLeOzA",
+   "title": "AI and our future with Yuval Noah Harari and Mustafa Suleyman",
+   "channel": "The Economist",
+   "date": "2023-09-14",
+   "duration": "0:08:45",
+   "summary": "Yuval Noah Harari and Mustafa Suleyman on AI and our future."
+  }
+ ],
+ "shelfLabel": "Futures",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL17641518W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780062464316",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

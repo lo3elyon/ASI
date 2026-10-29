@@ -1,5 +1,6 @@
 import { $, $$, esc, load, arr, researchers, videos, countUp, splitWords, avatar, ICON, clamp, RM } from "../util.js";
 import { neuralHorizon, morphField } from "../fx.js";
+import { mount as mount3 } from "../views3/home3.js";
 
 const SECTIONS = [
   ["futures", "Futures", "Push the sliders and watch six possible futures from 2026 to 2040 grow or shrink.", "cover-futures", "#14b8a6"],
@@ -142,6 +143,7 @@ export async function render(el) {
 
   // gap chart
   const stopGap = gapChart(el);
+  try { await mount3(el); } catch (e) { console.warn("home3", e); }
 
   return () => { stopHero(); stopMorph(); stopGap(); removeEventListener("scroll", onScroll); };
 }

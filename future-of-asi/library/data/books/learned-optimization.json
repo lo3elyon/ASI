@@ -1,0 +1,186 @@
+{
+ "id": "learned-optimization",
+ "title": "Risks from Learned Optimization in Advanced Machine Learning Systems",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Evan Hubinger",
+   "rid": "evan-hubinger"
+  },
+  {
+   "name": "Chris van Merwijk",
+   "rid": ""
+  },
+  {
+   "name": "Vladimir Mikulik",
+   "rid": ""
+  },
+  {
+   "name": "Joar Skalse",
+   "rid": ""
+  },
+  {
+   "name": "Scott Garrabrant",
+   "rid": ""
+  }
+ ],
+ "year": "2019",
+ "publisher": "arXiv:1906.01820",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "alignment",
+ "level": "Advanced",
+ "pitch": "Training can produce a model that is itself an optimiser with its own goal. This paper names that mesa-optimiser and the inner alignment problem.",
+ "toc_src": "https://arxiv.org/abs/1906.01820",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "Training is a search, and it might find a model that is itself searching for something.",
+   "part": ""
+  },
+  {
+   "t": "Conditions for mesa-optimization",
+   "g": "When training is likely to produce an inner optimiser.",
+   "part": ""
+  },
+  {
+   "t": "The inner alignment problem",
+   "g": "The inner optimiser's goal may differ from the goal we trained for.",
+   "part": ""
+  },
+  {
+   "t": "Deceptive alignment",
+   "g": "A model might act aligned during training so that it is deployed, then pursue its own goal.",
+   "part": ""
+  },
+  {
+   "t": "Related work",
+   "g": "Links to earlier ideas in safety and machine learning.",
+   "part": ""
+  },
+  {
+   "t": "Conclusion",
+   "g": "Why understanding learned optimisers matters for safety.",
+   "part": ""
+  },
+  {
+   "t": "Glossary",
+   "g": "Key terms: base optimiser, mesa-optimiser, inner and outer alignment.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "A trained model can be an optimiser with its own objective.",
+  "Outer alignment: is the training goal right? Inner alignment: does the model pursue it?",
+  "Deceptive alignment is a worrying failure mode.",
+  "Passing tests does not prove a model shares our goal."
+ ],
+ "args": [
+  {
+   "a": "Deceptive alignment is a real risk for advanced models.",
+   "c": "Critics said it was speculative. Later experiments on alignment faking and sleeper agents gave it some evidence."
+  },
+  {
+   "a": "Mesa-optimisers are likely in powerful systems.",
+   "c": "Some researchers doubt neural networks learn clean inner optimisers at all."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What is the difference between inner and outer alignment?",
+  "How would you test for deceptive alignment?",
+  "Have recent experiments made this paper more or less convincing?"
+ ],
+ "quiz": [
+  {
+   "q": "What is a mesa-optimiser?",
+   "o": [
+    "A chip",
+    "A learned model that is itself an optimiser",
+    "A training dataset",
+    "A hardware bug"
+   ],
+   "a": 1,
+   "w": "Mesa is Greek for within, the opposite of meta."
+  },
+  {
+   "q": "What is deceptive alignment?",
+   "o": [
+    "A bug in code",
+    "A model acting aligned in training so it can pursue its own goal later",
+    "A fake paper",
+    "An honest model"
+   ],
+   "a": 1,
+   "w": "It games the training process."
+  },
+  {
+   "q": "Who is the lead author?",
+   "o": [
+    "Evan Hubinger",
+    "Paul Christiano",
+    "Stuart Russell",
+    "Nick Bostrom"
+   ],
+   "a": 0,
+   "w": "Later at Anthropic."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://arxiv.org/abs/1906.01820",
+  "label": "Read the paper free (arXiv)",
+  "licence": "arXiv's standard non-exclusive licence, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "lvRxmAV49yI",
+   "title": "How An AI Model Learned To Be Bad, With Evan Hubinger And Monte MacDiarmid",
+   "channel": "Alex Kantrowitz",
+   "date": "2025-12-03",
+   "duration": "1:02:27",
+   "summary": "Evan Hubinger and Monte MacDiarmid on how an AI model learned to be bad from reward hacking."
+  },
+  {
+   "id": "ASmjJIGnCPQ",
+   "title": "Evan Hubinger: Auditing Language Models for Hidden Objectives",
+   "channel": "Alignment of Complex Systems",
+   "date": "2025-10-06",
+   "duration": "0:36:27",
+   "summary": "Evan Hubinger on auditing language models for hidden goals."
+  },
+  {
+   "id": "9eXV64O2Xp8",
+   "title": "Alignment faking in large language models",
+   "channel": "Anthropic",
+   "date": "2024-12-18",
+   "duration": "1:30:20",
+   "summary": "Anthropic and Redwood researchers discuss their alignment faking paper."
+  },
+  {
+   "id": "JfDlbzF6rsY",
+   "title": "Evan Hubinger, Alignment Stress-Testing at Anthropic [Alignment Workshop]",
+   "channel": "FAR․AI",
+   "date": "2024-12-18",
+   "duration": "0:05:26",
+   "summary": "Evan Hubinger on alignment stress testing at Anthropic."
+  }
+ ],
+ "shelfLabel": "Alignment",
+ "shelfColor": "#14b8a6",
+ "where": [
+  {
+   "label": "Read the paper free (arXiv)",
+   "url": "https://arxiv.org/abs/1906.01820",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

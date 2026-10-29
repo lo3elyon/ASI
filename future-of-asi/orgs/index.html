@@ -7,7 +7,8 @@
   <title>AI safety organisations around the world · Threshold</title>
   <meta name="description" content="80 labs, institutes, nonprofits and programs working on AI safety, alignment, evaluations and governance, on an interactive globe.">
   <meta name="author" content="Aniruddha Adak">
-  <meta name="theme-color" content="#07111f">
+  <meta name="theme-color" content="#07111f" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f8fb" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="dark light">
   <link rel="canonical" href="https://lo3elyon.github.io/ASI/future-of-asi/orgs/">
   <meta property="og:type" content="website">
@@ -25,12 +26,17 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/brand/icon-192.png">
   <link rel="manifest" href="manifest.webmanifest">
-  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="modulepreload" href="assets/js/util.js">
+  <link rel="modulepreload" href="assets/js/core/nav.js">
+  <link rel="modulepreload" href="assets/js/core/motion3.js">
   <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/fonts/fraunces-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/app.css">
   <link rel="stylesheet" href="assets/css/v2.css">
+  <link rel="stylesheet" href="assets/css/v3-shell.css">
+  <link rel="stylesheet" href="assets/css/v3-pages.css">
+  <link rel="stylesheet" href="assets/css/v3-views.css">
+  <link rel="stylesheet" href="assets/css/v3-new.css">
   <script>
     (function () {
       try {
@@ -41,6 +47,8 @@
         if (s.accent) r.dataset.accent = s.accent;
         if (s.motion === "off") r.classList.add("rm");
         if (s.sound === "on") r.classList.add("snd");
+        var tc = { dark: "#07111f", light: "#f4f8fb", contrast: "#000000" }[s.theme];
+        if (tc) document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) { m.setAttribute("content", tc); });
       } catch (e) {}
     })();
   </script>
@@ -94,107 +102,14 @@
   <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="rays" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
-  <div class="boot" id="boot" aria-hidden="true">
-    <div class="boot-in">
-      <svg class="boot-mark" viewBox="0 0 120 120" width="120" height="120"><defs><linearGradient id="bootg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".6" stop-color="#14b8a6"/><stop offset="1" stop-color="#f59e0b"/></linearGradient><radialGradient id="boots"><stop offset="0" stop-color="#fef3c7"/><stop offset=".45" stop-color="#f59e0b" stop-opacity=".8"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient></defs>
-        <path class="door" d="M34 96 V52 A26 26 0 0 1 86 52 V96" fill="none" stroke="url(#bootg)" stroke-width="6" stroke-linecap="round"/>
-        <line class="hz" x1="8" y1="96" x2="112" y2="96" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/>
-        <circle class="sun" cx="60" cy="88" r="16" fill="url(#boots)"/></svg>
-      <div class="boot-word"><span>T</span><span>H</span><span>R</span><span>E</span><span>S</span><span>H</span><span>O</span><span>L</span><span>D</span></div>
-      <div class="boot-bar"><i id="bootBar"></i></div>
-      <div class="boot-sub">THE FUTURE OF ASI</div>
-    </div>
-  </div>
-
-  <header class="topbar" role="banner">
+  <header class="topbar tb3" id="topbar" role="banner">
     <a class="brand" href="#/" aria-label="Threshold home">
       <img src="assets/brand/mark.svg" alt="" width="32" height="32">
       <span>THRESHOLD<small>THE FUTURE OF ASI</small></span>
     </a>
-    <nav class="nav" aria-label="Main">
-      <a href="#/futures">Futures</a>
-      <a href="#/researchers">Researchers</a>
-      <a href="#/timeline">Timeline</a>
-      <a href="#/watch">Watch</a>
-      <a href="#/control">AI Control</a>
-      <a href="#/learn">Learn</a>
-      <a href="#/prepare" class="opt">Prepare</a>
-      <a href="#/tools" class="opt">Tools</a>
-      <div class="more-wrap">
-        <button class="more" type="button" aria-haspopup="true" aria-expanded="false" id="moreBtn">More</button>
-        <div class="more-menu" id="moreMenu" role="menu">
-          <a href="#/voices" role="menuitem">Voices wall</a>
-          <a href="#/pacing" role="menuitem">Pacing the Frontier signers</a>
-          <a href="#/prepare" role="menuitem">Prepare</a>
-          <a href="#/orgs" role="menuitem">Organisations</a>
-          <a href="#/tools" role="menuitem">Tools</a>
-          <a href="#/blog" role="menuitem">Blog</a>
-          <a href="#/docs" role="menuitem">Docs</a>
-          <a href="#/history" role="menuitem">Your history</a>
-          <a href="../" role="menuitem">Back to the ASI hub</a>
-        </div>
-      </div>
-    </nav>
-    <div class="tb-actions">
-      <button class="search-btn" type="button" id="openPalette" aria-label="Search everything">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <span>Search everything</span><kbd>Ctrl K</kbd>
-      </button>
-      <button class="icon-btn snd-btn" type="button" id="soundBtn" aria-pressed="false" aria-label="Sound off. Turn on soft sounds and ambient music">
-        <svg class="s-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
-        <svg class="s-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
-      </button>
-      <div style="position:relative">
-        <button class="icon-btn" type="button" id="themeBtn" aria-label="Theme and motion settings" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        </button>
-        <div class="theme-pop" id="themePop" role="dialog" aria-label="Display settings">
-          <h4>Theme</h4>
-          <div class="seg" data-k="theme">
-            <button type="button" data-v="dark">Dark</button>
-            <button type="button" data-v="light">Light</button>
-            <button type="button" data-v="contrast">Contrast</button>
-          </div>
-          <h4>Accent</h4>
-          <div class="swatches" data-k="accent">
-            <button type="button" data-v="cyan" style="--c:#22d3ee" aria-label="Cyan"></button>
-            <button type="button" data-v="teal" style="--c:#14b8a6" aria-label="Teal"></button>
-            <button type="button" data-v="amber" style="--c:#f59e0b" aria-label="Amber"></button>
-            <button type="button" data-v="red" style="--c:#ef4444" aria-label="Red"></button>
-            <button type="button" data-v="blue" style="--c:#3b82f6" aria-label="Blue"></button>
-            <button type="button" data-v="lime" style="--c:#84cc16" aria-label="Lime"></button>
-          </div>
-          <div class="toggle"><span>Motion</span><button type="button" class="switch" role="switch" id="motionSw" aria-checked="true" aria-label="Animations on or off"></button></div>
-          <div class="toggle" style="margin-top:12px"><span>Soft sounds and music</span><button type="button" class="switch" role="switch" id="soundSw" aria-checked="false" aria-label="Sounds on or off"></button></div>
-        </div>
-      </div>
-      <button class="icon-btn menu-btn" type="button" id="menuBtn" aria-label="Open menu" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
+    <noscript><nav class="nav" aria-label="Main"><a href="futures/">Futures</a><a href="researchers/">Researchers</a><a href="timeline/">Timeline</a><a href="watch/">Watch</a><a href="learn/">Learn</a><a href="explosion/">Explosion</a><a href="library/">Library</a></nav></noscript>
   </header>
-
-  <div class="drawer-nav" id="drawer" aria-hidden="true">
-    <div class="scrim" data-close></div>
-    <div class="panel" role="dialog" aria-label="Menu">
-      <a href="#/" style="--c:#22d3ee"><i></i>Home</a>
-      <a href="#/futures" style="--c:#14b8a6"><i></i>Futures</a>
-      <a href="#/researchers" style="--c:#22d3ee"><i></i>Researchers</a>
-      <a href="#/voices" style="--c:#f59e0b"><i></i>Voices wall</a>
-      <a href="#/pacing" style="--c:#14b8a6"><i></i>Pacing the Frontier signers</a>
-      <a href="#/timeline" style="--c:#ef4444"><i></i>Warnings timeline</a>
-      <a href="#/watch" style="--c:#3b82f6"><i></i>Watch</a>
-      <a href="#/control" style="--c:#14b8a6"><i></i>AI Control</a>
-      <a href="#/learn" style="--c:#84cc16"><i></i>Alignment 101</a>
-      <a href="#/prepare" style="--c:#f59e0b"><i></i>Prepare</a>
-      <a href="#/orgs" style="--c:#22d3ee"><i></i>Organisations</a>
-      <a href="#/tools" style="--c:#ef4444"><i></i>Tools</a>
-      <a href="#/blog" style="--c:#f59e0b"><i></i>Blog</a>
-      <a href="#/docs" style="--c:#3b82f6"><i></i>Docs</a>
-      <a href="#/history" style="--c:#84cc16"><i></i>Your history</a>
-      <a href="../" style="--c:#14b8a6"><i></i>Back to the ASI hub</a>
-    </div>
-  </div>
+  <div class="drawer-nav drawer3" id="drawer" aria-hidden="true"></div>
 
   <main id="view" tabindex="-1" aria-live="polite"><div class="page prerendered"><section class="phero"><div class="wrap"><div class="eyebrow">Organisations</div><h1>Who is keeping watch.</h1><p class="lead"></p></div></section><section class="section tight"><div class="wrap"><ul><li><a href="https://www.anthropic.com/" rel="noopener">Anthropic</a>, frontier lab, USA: An AI company that builds the Claude models and does a lot of public safety research, like interpretability and alignment stress tests.</li><li><a href="https://openai.com/safety/" rel="noopener">OpenAI (safety work)</a>, frontier lab, USA: The company behind ChatGPT. Its safety teams work on preparedness, red teaming and alignment, and several safety leaders have left publicly.</li><li><a href="https://deepmind.google/about/responsibility-safety/" rel="noopener">Google DeepMind (AGI safety)</a>, frontier lab, UK: Google&#x27;s AI lab. Its AGI safety teams study misuse and misalignment, interpretability and its Frontier Safety Framework.</li><li><a href="https://www.redwoodresearch.org/" rel="noopener">Redwood Research</a>, research nonprofit, USA: A research group that started the field of AI control: staying safe even if a powerful AI is secretly trying to cause harm.</li><li><a href="https://metr.org/" rel="noopener">METR (Model Evaluation and Threat Research)</a>, evaluations nonprofit, USA: Tests frontier AI models for dangerous abilities, like doing long tasks alone, and tracks how fast that ability grows.</li><li><a href="https://www.apolloresearch.ai/" rel="noopener">Apollo Research</a>, evaluations nonprofit, UK: Tests whether AI models can scheme, meaning hide their real goals or deceive the people checking them.</li><li><a href="https://intelligence.org/" rel="noopener">Machine Intelligence Research Institute (MIRI)</a>, research and advocacy nonprofit, USA: One of the oldest AI risk groups. It now works mainly on public communication and policy to stop the race to superintelligence.</li><li><a href="https://www.alignment.org/" rel="noopener">Alignment Research Center (ARC)</a>, research nonprofit, USA: Works on theory for explaining why neural networks behave the way they do, so we can catch bad behavior before it happens.</li><li><a href="https://www.aisi.gov.uk/" rel="noopener">UK AI Security Institute</a>, government institute, UK: The UK government&#x27;s team that tests frontier AI models for serious risks and funds safety research. It was the first institute of its kind.</li><li><a href="https://www.nist.gov/caisi" rel="noopener">US Center for AI Standards and Innovation (CAISI)</a>, government institute, USA: The US government center inside NIST that tests and measures AI systems. It began as the US AI Safety Institute and was renamed in 2025.</li><li><a href="https://safe.ai/" rel="noopener">Center for AI Safety (CAIS)</a>, research and field-building nonprofit, USA: Does safety research, runs compute for researchers, and organized the 2023 Statement on AI Risk.</li><li><a href="https://futureoflife.org/" rel="noopener">Future of Life Institute (FLI)</a>, advocacy nonprofit, USA: Works to steer powerful technology away from large scale risks. It organized the 2023 pause letter and the 2025 Statement on Superintelligence.</li><li><a href="https://www.governance.ai/" rel="noopener">Centre for the Governance of AI (GovAI)</a>, research nonprofit, UK: Researches how governments and companies should govern advanced AI, and trains new policy researchers.</li><li><a href="https://epoch.ai/" rel="noopener">Epoch AI</a>, research nonprofit: Collects data on AI progress, like how much compute and data models use, and makes clear charts about trends.</li><li><a href="https://ai-futures.org/" rel="noopener">AI Futures Project</a>, forecasting nonprofit, USA: Writes detailed forecasts and scenarios about advanced AI. Best known for the AI 2027 scenario.</li><li><a href="https://far.ai/" rel="noopener">FAR.AI</a>, research nonprofit, USA: Runs research on robustness and alignment and hosts events that connect safety researchers.</li><li><a href="https://palisaderesearch.org/" rel="noopener">Palisade Research</a>, research nonprofit, USA: Studies what today&#x27;s AI agents can do, such as resisting shutdown or hacking, to show the risk of losing control.</li><li><a href="https://www.conjecture.dev/" rel="noopener">Conjecture</a>, AI safety company, UK: A London AI safety company focused on building AI that stays bounded and controllable.</li><li><a href="https://humancompatible.ai/" rel="noopener">Center for Human-Compatible AI (CHAI)</a>, university research center, USA: A Berkeley research center working on AI that is provably beneficial and stays uncertain about what humans want.</li><li><a href="https://bluedot.org/about" rel="noopener">BlueDot Impact</a>, education nonprofit, UK: Runs free online courses on AI safety, AI governance and biosecurity, and helps graduates start careers in the field.</li><li><a href="https://www.matsprogram.org/" rel="noopener">MATS (ML Alignment and Theory Scholars)</a>, fellowship program, USA: A mentorship program that pairs new researchers with senior AI safety mentors for focused research projects.</li><li><a href="https://www.constellation.org/" rel="noopener">Constellation</a>, research center, USA: A shared research space in Berkeley that hosts AI safety researchers and runs fellowship programs.</li><li><a href="https://lawzero.org/en" rel="noopener">LawZero</a>, research nonprofit, Canada: A nonprofit started by Yoshua Bengio to build safe-by-design AI that puts safety ahead of commercial pressure.</li><li><a href="https://ssi.inc/" rel="noopener">Safe Superintelligence Inc. (SSI)</a>, frontier lab, USA: A lab that says it works only on building safe superintelligence, with no other products.</li><li><a href="https://controlai.com/" rel="noopener">ControlAI</a>, advocacy nonprofit, UK: Campaigns for an international ban on developing superintelligence and briefs lawmakers about extinction risk.</li><li><a href="https://www.forethought.org/" rel="noopener">Forethought</a>, research nonprofit, UK: Researches how society can get ready for an intelligence explosion, including risks like AI-enabled coups.</li><li><a href="https://aiimpacts.org/" rel="noopener">AI Impacts</a>, research project, USA: Runs the largest surveys of AI researchers about when AI will get very capable and what the risks are.</li><li><a href="https://www.cser.ac.uk/" rel="noopener">Centre for the Study of Existential Risk (CSER)</a>, university research center, UK: A Cambridge University center that studies risks that could threaten humanity, including AI.</li><li><a href="https://www.humanetech.com/" rel="noopener">Center for Humane Technology</a>, advocacy nonprofit, USA: Works to make technology serve people, and warns about racing to deploy AI without safeguards.</li><li><a href="https://cset.georgetown.edu/" rel="noopener">Center for Security and Emerging Technology (CSET)</a>, university think tank, USA: A Georgetown University think tank that studies how AI and other new technologies affect security.</li><li><a href="https://truthful.ai/" rel="noopener">Truthful AI</a>, research nonprofit, USA: A Berkeley research group studying honesty, deception and surprising emergent behavior in language models.</li><li><a href="https://www.arena.education/" rel="noopener">ARENA (Alignment Research Engineer Accelerator)</a>, training program, UK: A hands-on program that teaches the machine learning engineering skills needed for alignment research.</li><li><a href="https://80000hours.org/" rel="noopener">80,000 Hours</a>, careers nonprofit, UK: Gives free career advice for people who want to work on the world&#x27;s most pressing problems, with AI safety as a top priority.</li><li><a href="https://pauseai.info/" rel="noopener">PauseAI</a>, grassroots movement, Netherlands: A volunteer movement that campaigns for a global pause on building more powerful AI until it can be made safe.</li><li><a href="https://indiaai.gov.in/article/india-takes-the-lead-establishing-the-indiaai-safety-institute-for-responsible-ai-innovation" rel="noopener">IndiaAI Safety Institute</a>, government institute, India: India&#x27;s AI safety institute under the IndiaAI Mission. It uses a hub and spoke model with universities, startups and industry to test AI for risks in India&#x27;s languages and social context.</li><li><a href="https://www.cooperativeai.com/" rel="noopener">Cooperative AI Foundation</a>, charity, UK: Funds research on how AI systems can cooperate well with each other and with humans.</li><li><a href="https://www.safer-ai.org/" rel="noopener">SaferAI</a>, research nonprofit, France: Rates and compares how well AI companies manage risk, and works on risk management standards.</li><li><a href="https://coefficientgiving.org/" rel="noopener">Coefficient Giving (formerly Open Philanthropy)</a>, funder, USA: One of the largest funders of AI safety and governance work in the world.</li><li><a href="https://digital-strategy.ec.europa.eu/en/policies/ai-office" rel="noopener">European AI Office</a>, government, Belgium: The European Commission&#x27;s office for AI. It oversees general-purpose AI models under the EU AI Act.</li><li><a href="https://www.canada.ca/en/innovation-science-economic-development/news/2024/11/canada-launches-canadian-artificial-intelligence-safety-institute.html" rel="noopener">Canadian AI Safety Institute</a>, government, Canada: Canada&#x27;s national AI safety institute, launched in November 2024. Its research program is run with CIFAR.</li><li><a href="https://aisi.go.jp/" rel="noopener">Japan AI Safety Institute (J-AISI)</a>, government, Japan: Japan&#x27;s AI safety institute, set up in February 2024 inside the Information-technology Promotion Agency. It works on safety evaluation methods, red teaming and standards.</li><li><a href="https://www.aisi.re.kr/eng/contents/23" rel="noopener">Korea AI Safety Institute</a>, government, South Korea: South Korea&#x27;s AI safety institute, opened in November 2024 under ETRI. It evaluates AI risks and works with other safety institutes.</li><li><a href="https://www.ntu.edu.sg/dtc" rel="noopener">Digital Trust Centre (Singapore AI Safety Institute)</a>, government, Singapore: The Digital Trust Centre at NTU Singapore, designated as Singapore&#x27;s AI Safety Institute.</li><li><a href="https://www.entreprises.gouv.fr/espace-presse/le-gouvernement-annonce-la-creation-de-linstitut-national-pour-levaluation-et-la" rel="noopener">INESIA (France)</a>, government, France: France&#x27;s national institute for AI evaluation and security, created in January 2025. It links ANSSI, Inria, LNE and PEReN under the SGDSN and the DGE.</li><li><a href="https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence/ai-safety-institute" rel="noopener">Australian AI Safety Institute</a>, government, Australia: Australia&#x27;s AI safety institute, announced in November 2025 inside the Department of Industry, Science and Resources. It analyses emerging AI capabilities, risks and harms.</li><li><a href="https://concordia-ai.com/" rel="noopener">Concordia AI</a>, nonprofit, China: A Beijing-based social enterprise on AI safety and governance. It does research, convenings, consulting and frontier risk monitoring.</li><li><a href="https://www.shlab.org.cn/" rel="noopener">Shanghai AI Laboratory</a>, lab, China: A major Chinese AI research lab. It builds the InternLM models and runs safety and open evaluation platforms.</li><li><a href="https://aiig.tsinghua.edu.cn/en/" rel="noopener">Institute for AI International Governance, Tsinghua University</a>, academic, China: Tsinghua University&#x27;s institute for international AI governance, led by Xue Lan.</li><li><a href="https://mila.quebec/en" rel="noopener">Mila - Quebec AI Institute</a>, academic, Canada: A large deep learning research institute in Montreal founded by Yoshua Bengio.</li><li><a href="https://vectorinstitute.ai/" rel="noopener">Vector Institute</a>, academic, Canada: A Toronto AI research institute that links universities and industry.</li><li><a href="https://aigi.ox.ac.uk/" rel="noopener">Oxford Martin AI Governance Initiative</a>, academic, United Kingdom: An Oxford University centre for frontier, international and technical AI governance.</li><li><a href="https://www.lcfi.ac.uk/" rel="noopener">Leverhulme Centre for the Future of Intelligence</a>, academic, United Kingdom: A Cambridge University centre that studies the future of AI, including its risks, ethics and governance.</li><li><a href="https://ai.ethz.ch/" rel="noopener">ETH AI Center</a>, academic, Switzerland: ETH Zurich&#x27;s hub for AI research across departments.</li><li><a href="https://tuebingen.ai/" rel="noopener">Tubingen AI Center and ELLIS Institute Tubingen</a>, academic, Germany: A European AI research hub in Tubingen, linked with the Max Planck Institute for Intelligent Systems and the ELLIS Institute.</li><li><a href="https://www.goodfire.ai/" rel="noopener">Goodfire</a>, lab, United States: An AI interpretability research lab and public benefit corporation. It builds tools to understand, monitor and align AI models.</li><li><a href="https://transluce.org/" rel="noopener">Transluce</a>, nonprofit, United States: An independent nonprofit lab for public oversight of AI. It builds open tools to understand AI systems.</li><li><a href="https://www.eleuther.ai/" rel="noopener">EleutherAI</a>, nonprofit: A nonprofit research group that builds open models, datasets and evaluation tools, with work on open-weight safety.</li><li><a href="https://www.simplexaisafety.com/" rel="noopener">Simplex</a>, nonprofit, United States: An AI safety research group building a theory of how neural networks organize their internal representations. It hires in the Bay Area and London.</li><li><a href="https://timaeus.co/" rel="noopener">Timaeus (now Resolution)</a>, nonprofit: An AI safety research group that uses singular learning theory to study how training data shapes AI behavior. It now goes by Resolution.</li><li><a href="https://apartresearch.com/" rel="noopener">Apart Research</a>, nonprofit: A nonprofit AI safety organization that runs research sprints and fellowships, with a research focus on harmful manipulation by AI.</li><li><a href="https://www.securite-ia.fr/en" rel="noopener">CeSIA (French Center for AI Safety)</a>, nonprofit, France: An independent French think tank on preventing major AI risks. It runs the Global Call for AI Red Lines and the AI Safety Atlas.</li><li><a href="https://erafellowship.org/" rel="noopener">ERA Fellowship</a>, training, United Kingdom: A Cambridge research fellowship on risks from AI.</li><li><a href="https://www.safeai.org.uk/" rel="noopener">London Initiative for Safe AI (LISA)</a>, nonprofit, United Kingdom: An AI safety centre and ecosystem in London that hosts research organizations and individuals.</li><li><a href="https://www.longtermresilience.org/" rel="noopener">Centre for Long-Term Resilience</a>, nonprofit, United Kingdom: An independent UK think tank on resilience to extreme risks, including AI and biosecurity.</li><li><a href="https://www.meridiancambridge.org/" rel="noopener">Meridian Cambridge</a>, nonprofit, United Kingdom: A Cambridge research hub and launch platform for AI safety research programmes.</li><li><a href="https://www.iaps.ai/" rel="noopener">Institute for AI Policy and Strategy (IAPS)</a>, nonprofit: A nonpartisan think tank that writes policy research on risks from powerful AI.</li><li><a href="https://thefuturesociety.org/" rel="noopener">The Future Society</a>, nonprofit: An independent nonprofit based in the US and Europe that works to align AI through better governance.</li><li><a href="https://www.frontiermodelforum.org/" rel="noopener">Frontier Model Forum</a>, industry: An industry body of frontier AI companies that shares safety and security practice, including on AI and bio, cyber and nuclear risks.</li><li><a href="https://partnershiponai.org/" rel="noopener">Partnership on AI</a>, nonprofit: A nonprofit coalition of companies, academics and civil society on responsible AI, including AI safety.</li><li><a href="https://internationalaisafetyreport.org/" rel="noopener">International AI Safety Report</a>, government: A yearly report on the risks of general-purpose AI, chaired by Yoshua Bengio and written by experts from many countries.</li><li><a href="https://www.ilinaprogram.org/" rel="noopener">ILINA Program</a>, nonprofit, Kenya: An African-led organization that works on AI safety through research, policy work and talent development.</li><li><a href="https://www.globalcenter.ai/" rel="noopener">Global Center on AI Governance</a>, nonprofit, South Africa: An African-led center on AI policy and governance that works to reduce global inequalities made worse by AI. It runs the African Observatory.</li><li><a href="https://cerai.iitm.ac.in/" rel="noopener">Centre for Responsible AI (CeRAI), IIT Madras</a>, academic, India: IIT Madras&#x27;s Centre for Responsible AI, which works on responsible and safe AI research and AI governance.</li><li><a href="https://www.digitalfutureslab.in/" rel="noopener">Digital Futures Lab</a>, nonprofit, India: An independent research studio in India on technology and society in the Majority World, working toward safe digital futures.</li><li><a href="https://www.aisafety.asia/" rel="noopener">AI Safety Asia</a>, nonprofit: A network that works to give Asian countries a stronger voice in steering frontier AI.</li><li><a href="https://saif.org/" rel="noopener">Safe AI Forum</a>, nonprofit: A nonprofit that drives global coordination to reduce extreme AI risks. It runs the International Dialogues on AI Safety (IDAIS).</li><li><a href="https://eleosai.org/" rel="noopener">Eleos AI Research</a>, nonprofit: A nonprofit that studies the possible wellbeing and moral status of AI systems.</li><li><a href="https://maisi.org/" rel="noopener">Mathematical AI Safety Institute</a>, nonprofit: An independent nonprofit building mathematical foundations for the safety of powerful AI.</li><li><a href="https://aisafety.tokyo/" rel="noopener">AI Safety Tokyo</a>, community, Japan: A Tokyo community that runs AI safety study groups.</li><li><a href="https://alter.org.il/" rel="noopener">ALTER</a>, nonprofit, Israel: An Israeli nonprofit for research and advocacy on the long-term future, including AI alignment research.</li></ul></div></section></div></main>
 
@@ -208,7 +123,7 @@
         </div>
         <div>
           <h5>Explore</h5>
-          <a href="#/futures">Futures</a><a href="#/researchers">Researchers</a><a href="#/pacing">Pacing the Frontier</a><a href="#/voices">Voices wall</a><a href="#/timeline">Timeline</a><a href="#/watch">Watch</a>
+          <a href="#/futures">Futures</a><a href="#/researchers">Researchers</a><a href="#/pacing">Pacing the Frontier</a><a href="explosion/">Intelligence explosion</a><a href="library/">Library</a><a href="#/voices">Voices wall</a><a href="#/timeline">Timeline</a><a href="#/watch">Watch</a>
         </div>
         <div>
           <h5>Learn and act</h5>
@@ -216,7 +131,7 @@
         </div>
         <div>
           <h5>More</h5>
-          <a href="#/blog">Blog</a><a href="#/docs">Docs</a><a href="#/docs/glossary">Glossary</a><a href="#/docs/faq">FAQ</a><a href="#/history">Your history</a><a href="../">ASI hub</a><a href="https://github.com/lo3elyon/ASI" rel="noopener">GitHub</a>
+          <a href="#/blog">Blog</a><a href="#/docs">Docs</a><a href="#/docs/glossary">Glossary</a><a href="#/docs/faq">FAQ</a><a href="#/history">Your history</a><a href="https://github.com/lo3elyon/ASI/blob/main/future-of-asi/CHANGELOG.md" rel="noopener">Changelog</a><a href="../">ASI hub</a><a href="https://github.com/lo3elyon/ASI/tree/main/future-of-asi" rel="noopener">GitHub</a>
         </div>
       </div>
       <div class="legal">

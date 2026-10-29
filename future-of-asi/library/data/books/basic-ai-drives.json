@@ -1,0 +1,137 @@
+{
+ "id": "basic-ai-drives",
+ "title": "The Basic AI Drives",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Stephen M. Omohundro",
+   "rid": ""
+  }
+ ],
+ "year": "2008",
+ "publisher": "Proceedings of the First AGI Conference (IOS Press)",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "explosion",
+ "level": "Intermediate",
+ "pitch": "A short paper that argues almost any goal seeking AI will develop the same drives: to improve itself, protect itself, keep its goals and gain resources.",
+ "toc_src": "https://selfawaresystems.com/wp-content/uploads/2008/01/ai_drives_final.pdf",
+ "chapters": [
+  {
+   "t": "AIs will want to self-improve",
+   "g": "Getting better helps with nearly any goal.",
+   "part": ""
+  },
+  {
+   "t": "AIs will want to be rational",
+   "g": "Acting consistently avoids being exploited.",
+   "part": ""
+  },
+  {
+   "t": "AIs will try to preserve their utility functions",
+   "g": "Changing your goal makes it less likely your current goal is achieved.",
+   "part": ""
+  },
+  {
+   "t": "AIs will try to prevent counterfeit utility",
+   "g": "An AI will avoid fooling itself about how well it is doing.",
+   "part": ""
+  },
+  {
+   "t": "AIs will be self-protective",
+   "g": "Being switched off stops you reaching your goal.",
+   "part": ""
+  },
+  {
+   "t": "AIs will want to acquire resources and use them efficiently",
+   "g": "More resources help with almost anything.",
+   "part": ""
+  },
+  {
+   "t": "Conclusions",
+   "g": "These drives appear unless designers work against them.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Drives emerge from goals, not from programming.",
+  "Self protection and goal preservation make AI hard to correct.",
+  "Resource acquisition is useful for nearly any goal.",
+  "Safe design must counter these drives on purpose."
+ ],
+ "args": [
+  {
+   "a": "Goal seeking AI will tend to resist shutdown.",
+   "c": "Some argue today's language models are not coherent goal seekers, so the drives may not appear. Recent tests show some shutdown resistance in agents."
+  },
+  {
+   "a": "These drives are nearly universal.",
+   "c": "Critics say the argument assumes a clean utility maximiser that real systems may not be."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Why would a coffee fetching robot resist being switched off?",
+  "Which drive worries you most?",
+  "How could you design an AI without these drives?"
+ ],
+ "quiz": [
+  {
+   "q": "Which is one of Omohundro's drives?",
+   "o": [
+    "Love",
+    "Self-protection",
+    "Boredom",
+    "Hunger"
+   ],
+   "a": 1,
+   "w": "Being switched off blocks the goal."
+  },
+  {
+   "q": "Why would an AI protect its goal?",
+   "o": [
+    "It is stubborn",
+    "Changing its goal makes its current goal less likely to be achieved",
+    "It is told to",
+    "It cannot change"
+   ],
+   "a": 1,
+   "w": "Goal preservation."
+  },
+  {
+   "q": "When was it published?",
+   "o": [
+    "1965",
+    "2008",
+    "2016",
+    "2023"
+   ],
+   "a": 1,
+   "w": "At the first AGI conference."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://selfawaresystems.com/wp-content/uploads/2008/01/ai_drives_final.pdf",
+  "label": "Read the paper free (author's site)",
+  "licence": "Free from the author's site, no open licence found, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [],
+ "shelfLabel": "Intelligence explosion",
+ "shelfColor": "#f59e0b",
+ "where": [
+  {
+   "label": "Read the paper free (author's site)",
+   "url": "https://selfawaresystems.com/wp-content/uploads/2008/01/ai_drives_final.pdf",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

@@ -1,0 +1,142 @@
+[
+ {
+  "id": "ch-01",
+  "title": "Letter 1",
+  "words": 1200
+ },
+ {
+  "id": "ch-02",
+  "title": "Letter 2",
+  "words": 1311
+ },
+ {
+  "id": "ch-03",
+  "title": "Letter 3",
+  "words": 300
+ },
+ {
+  "id": "ch-04",
+  "title": "Letter 4",
+  "words": 2730
+ },
+ {
+  "id": "ch-05",
+  "title": "Chapter 1",
+  "words": 1766
+ },
+ {
+  "id": "ch-06",
+  "title": "Chapter 2",
+  "words": 2206
+ },
+ {
+  "id": "ch-07",
+  "title": "Chapter 3",
+  "words": 2675
+ },
+ {
+  "id": "ch-08",
+  "title": "Chapter 4",
+  "words": 2535
+ },
+ {
+  "id": "ch-09",
+  "title": "Chapter 5",
+  "words": 2357
+ },
+ {
+  "id": "ch-10",
+  "title": "Chapter 6",
+  "words": 2718
+ },
+ {
+  "id": "ch-11",
+  "title": "Chapter 7",
+  "words": 3560
+ },
+ {
+  "id": "ch-12",
+  "title": "Chapter 8",
+  "words": 3093
+ },
+ {
+  "id": "ch-13",
+  "title": "Chapter 9",
+  "words": 2212
+ },
+ {
+  "id": "ch-14",
+  "title": "Chapter 10",
+  "words": 2359
+ },
+ {
+  "id": "ch-15",
+  "title": "Chapter 11",
+  "words": 2907
+ },
+ {
+  "id": "ch-16",
+  "title": "Chapter 12",
+  "words": 2070
+ },
+ {
+  "id": "ch-17",
+  "title": "Chapter 13",
+  "words": 2032
+ },
+ {
+  "id": "ch-18",
+  "title": "Chapter 14",
+  "words": 1854
+ },
+ {
+  "id": "ch-19",
+  "title": "Chapter 15",
+  "words": 3013
+ },
+ {
+  "id": "ch-20",
+  "title": "Chapter 16",
+  "words": 3199
+ },
+ {
+  "id": "ch-21",
+  "title": "Chapter 17",
+  "words": 1917
+ },
+ {
+  "id": "ch-22",
+  "title": "Chapter 18",
+  "words": 2844
+ },
+ {
+  "id": "ch-23",
+  "title": "Chapter 19",
+  "words": 2611
+ },
+ {
+  "id": "ch-24",
+  "title": "Chapter 20",
+  "words": 3521
+ },
+ {
+  "id": "ch-25",
+  "title": "Chapter 21",
+  "words": 3738
+ },
+ {
+  "id": "ch-26",
+  "title": "Chapter 22",
+  "words": 3414
+ },
+ {
+  "id": "ch-27",
+  "title": "Chapter 23",
+  "words": 2594
+ },
+ {
+  "id": "ch-28",
+  "title": "Chapter 24",
+  "words": 8239
+ }
+]

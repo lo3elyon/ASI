@@ -1,0 +1,164 @@
+{
+ "id": "ai-normal-technology",
+ "title": "AI as Normal Technology",
+ "subtitle": "An alternative to the vision of AI as a potential superintelligence",
+ "authors": [
+  {
+   "name": "Arvind Narayanan",
+   "rid": "arvind-narayanan"
+  },
+  {
+   "name": "Sayash Kapoor",
+   "rid": "sayash-kapoor"
+  }
+ ],
+ "year": "2025",
+ "publisher": "Knight First Amendment Institute at Columbia University",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "skeptic",
+ "level": "Intermediate",
+ "pitch": "The authors of AI Snake Oil argue AI will be transformative but normal, like electricity: adoption takes decades, and humans stay in control through ordinary institutions.",
+ "toc_src": "https://knightcolumbia.org/content/ai-as-normal-technology",
+ "chapters": [
+  {
+   "t": "Part I: The Speed of Progress",
+   "g": "Invention is fast but diffusion into society is slow, held back by safety, regulation and the need to change how work is done.",
+   "part": ""
+  },
+  {
+   "t": "Part II: What a World With Advanced AI Might Look Like",
+   "g": "Humans will mostly do the work of controlling and specifying AI, not be replaced.",
+   "part": ""
+  },
+  {
+   "t": "Part III: Risks",
+   "g": "Accidents, arms races, misuse and misalignment look different through the normal technology lens.",
+   "part": ""
+  },
+  {
+   "t": "Part IV: Policy",
+   "g": "Favouring resilience over non-proliferation, and reducing uncertainty instead of acting on speculation.",
+   "part": ""
+  },
+  {
+   "t": "Final Thoughts",
+   "g": "Why the worldview you start with shapes every conclusion about AI.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI's impact will unfold over decades, not months.",
+  "Diffusion, not invention, sets the pace.",
+  "Control stays with humans through institutions.",
+  "Resilience beats trying to stop AI from spreading."
+ ],
+ "args": [
+  {
+   "a": "AI will be a normal, slow moving transformative technology.",
+   "c": "Those worried about an intelligence explosion say AI improving AI could break the pattern of slow diffusion."
+  },
+  {
+   "a": "Non-proliferation policies do more harm than good.",
+   "c": "Others argue some capabilities, like bioweapon help, must be restricted."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Is AI more like electricity or more like nuclear weapons?",
+  "What slows AI adoption where you live?",
+  "Which worldview do you start from, and why?"
+ ],
+ "quiz": [
+  {
+   "q": "What do the authors compare AI to?",
+   "o": [
+    "Nuclear weapons",
+    "Other general purpose technologies like electricity",
+    "Aliens",
+    "Gods"
+   ],
+   "a": 1,
+   "w": "Normal technology."
+  },
+  {
+   "q": "What sets the pace of impact, in their view?",
+   "o": [
+    "Invention",
+    "Diffusion and adoption",
+    "Chip speed alone",
+    "Luck"
+   ],
+   "a": 1,
+   "w": "Adoption is slow."
+  },
+  {
+   "q": "What earlier book did they write?",
+   "o": [
+    "AI Snake Oil",
+    "Superintelligence",
+    "Nexus",
+    "Life 3.0"
+   ],
+   "a": 0,
+   "w": "In 2024."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+  "label": "Read the essay free",
+  "licence": "Free online, no open licence found, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "6Nd40xSudYA",
+   "title": "Debunking AI’s “Existential Risk” with Arvind Narayanan and Sayash Kapoor",
+   "channel": "Adam Conover",
+   "date": "2026-03-18",
+   "duration": "1:19:32",
+   "summary": "Adam Conover talks with Narayanan and Kapoor about why they doubt AI existential risk."
+  },
+  {
+   "id": "XdB4dAqMLnk",
+   "title": "AI As Normal Technology",
+   "channel": "Internet Archive",
+   "date": "2026-02-25",
+   "duration": "0:50:40",
+   "summary": "The case that AI is a normal technology and not a coming superintelligence."
+  },
+  {
+   "id": "Sz9OGUYXHzc",
+   "title": "What is AI? AI as Normal Technology | Arvind Narayanan | Public AI Summit 2025",
+   "channel": "AI Pedagogy Project",
+   "date": "2025-09-18",
+   "duration": "0:52:11",
+   "summary": "Arvind Narayanan's full talk on AI as normal technology."
+  },
+  {
+   "id": "Q9OHYw7Lyko",
+   "title": "Is AI a Singularity or \"Normal Technology\"? Why It Matters, Arvind Narayanan Live with Tim O'Reilly",
+   "channel": "O'Reilly",
+   "date": "2025-08-19",
+   "duration": "0:04:44",
+   "summary": "Arvind Narayanan on why it matters if AI is a singularity or a normal technology."
+  }
+ ],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Read the essay free",
+   "url": "https://knightcolumbia.org/content/ai-as-normal-technology",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

@@ -1,0 +1,126 @@
+{
+ "id": "what-computers-still-cant-do",
+ "title": "What Computers Still Can't Do",
+ "subtitle": "A Critique of Artificial Reason",
+ "authors": [
+  {
+   "name": "Hubert L. Dreyfus",
+   "rid": ""
+  }
+ ],
+ "year": "1992",
+ "publisher": "MIT Press",
+ "isbn": "9780262540674",
+ "pages": "354",
+ "ol": "/works/OL4299940W",
+ "shelf": "skeptic",
+ "level": "Advanced",
+ "pitch": "A philosopher's famous attack on early AI: human intelligence rests on bodies, skills and context that rule based programs cannot capture.",
+ "toc_src": "https://openlibrary.org/works/OL4299940W",
+ "chapters": [
+  {
+   "t": "The promises of early AI",
+   "g": "Dreyfus reviews the bold predictions of 1950s and 1960s AI and why they kept failing.",
+   "part": ""
+  },
+  {
+   "t": "Four hidden assumptions",
+   "g": "Early AI assumed the brain works like a computer, the mind follows rules, all knowledge can be formalised, and the world is made of separate facts.",
+   "part": ""
+  },
+  {
+   "t": "Knowing how, not knowing that",
+   "g": "Much expertise is skill and intuition, not explicit rules.",
+   "part": ""
+  },
+  {
+   "t": "The body and the situation",
+   "g": "Human understanding depends on having a body and being in a situation.",
+   "part": ""
+  },
+  {
+   "t": "The 1992 introduction",
+   "g": "Looking back on twenty years, Dreyfus discusses why expert systems hit limits and what neural networks might change.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Symbolic AI rested on doubtful assumptions.",
+  "Expertise is often intuitive skill, not rules.",
+  "Context and the body matter for intelligence.",
+  "Neural networks might avoid some limits of rule based AI."
+ ],
+ "args": [
+  {
+   "a": "Rule based AI cannot reach human intelligence.",
+   "c": "This held up well for symbolic AI. Deep learning learns from data rather than rules, which partly sidesteps his critique."
+  },
+  {
+   "a": "Intelligence needs a body.",
+   "c": "Large language models show surprising ability without bodies, though critics say they still lack real understanding."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the four assumptions do today's models still make?",
+  "Can intuition be learned from data?",
+  "Does an AI need a body to understand the world?"
+ ],
+ "quiz": [
+  {
+   "q": "What kind of AI did Dreyfus criticise most?",
+   "o": [
+    "Neural networks",
+    "Symbolic, rule based AI",
+    "Robots",
+    "Search engines"
+   ],
+   "a": 1,
+   "w": "Good old fashioned AI."
+  },
+  {
+   "q": "What does he say expertise often is?",
+   "o": [
+    "A list of rules",
+    "Intuitive skill",
+    "Memorised facts",
+    "Luck"
+   ],
+   "a": 1,
+   "w": "Knowing how, not knowing that."
+  },
+  {
+   "q": "When was the original edition published?",
+   "o": [
+    "1950",
+    "1972",
+    "2001",
+    "2015"
+   ],
+   "a": 1,
+   "w": "The revised edition followed in 1992."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/what-computers-still-cant-do.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL4299940W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780262540674",
+   "free": true
+  }
+ ],
+ "toc_note": "Revised edition of What Computers Can't Do (Harper and Row, 1972). No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

@@ -1,0 +1,146 @@
+{
+ "id": "atlas-of-ai",
+ "title": "Atlas of AI",
+ "subtitle": "Power, Politics, and the Planetary Costs of Artificial Intelligence",
+ "authors": [
+  {
+   "name": "Kate Crawford",
+   "rid": "kate-crawford"
+  }
+ ],
+ "year": "2021",
+ "publisher": "Yale University Press",
+ "isbn": "9780300209570",
+ "pages": "288",
+ "ol": "/works/OL21659515W",
+ "shelf": "skeptic",
+ "level": "Intermediate",
+ "pitch": "AI is not weightless or magic. Crawford follows it to the mines, warehouses, datasets and state agencies it depends on, and asks who it serves.",
+ "toc_src": "https://openlibrary.org/books/OL43871921M",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "AI as a material and political system, not just clever code.",
+   "part": ""
+  },
+  {
+   "t": "Earth",
+   "g": "The minerals, energy and water that computing needs, and the places that pay for it.",
+   "part": ""
+  },
+  {
+   "t": "Labor",
+   "g": "The hidden human work behind AI, from warehouse workers to data labelers.",
+   "part": ""
+  },
+  {
+   "t": "Data",
+   "g": "How training data is gathered, often without consent, and treated as a free resource.",
+   "part": ""
+  },
+  {
+   "t": "Classification",
+   "g": "How labelling people into categories bakes in old assumptions and harms.",
+   "part": ""
+  },
+  {
+   "t": "Affect",
+   "g": "The weak science behind systems that claim to read emotions from faces.",
+   "part": ""
+  },
+  {
+   "t": "State",
+   "g": "How AI tools grew out of and feed back into military and police power.",
+   "part": ""
+  },
+  {
+   "t": "Conclusion: Power",
+   "g": "AI mostly concentrates power in those who already have it.",
+   "part": ""
+  },
+  {
+   "t": "Coda: Space",
+   "g": "Tech billionaires' space dreams as an escape from the planet AI helps to use up.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI depends on extraction: of minerals, labour and data.",
+  "Classification systems carry politics inside them.",
+  "Emotion recognition rests on contested science.",
+  "The key question about AI is power: who gains and who pays."
+ ],
+ "args": [
+  {
+   "a": "AI is best understood as an extractive industry that concentrates power.",
+   "c": "Supporters point to real benefits in science, medicine and access to knowledge that this framing can underplay."
+  },
+  {
+   "a": "Focusing on present harms matters more than speculative future risks.",
+   "c": "Others argue both matter, and that the same concentration of power makes catastrophic risks more likely, not less."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What physical resources did the last AI tool you used depend on?",
+  "Should people be able to refuse having their data used for training?",
+  "Can AI be built in a way that spreads power instead of concentrating it?"
+ ],
+ "quiz": [
+  {
+   "q": "Which chapter looks at mining and energy?",
+   "o": [
+    "Data",
+    "Earth",
+    "Affect",
+    "State"
+   ],
+   "a": 1,
+   "w": "Earth covers the planetary costs."
+  },
+  {
+   "q": "What does the Affect chapter question?",
+   "o": [
+    "Weather models",
+    "Systems that claim to read emotions from faces",
+    "Stock trading",
+    "Chess engines"
+   ],
+   "a": 1,
+   "w": "The science behind emotion detection is weak."
+  },
+  {
+   "q": "What is Crawford's main lens on AI?",
+   "o": [
+    "Speed",
+    "Power",
+    "Beauty",
+    "Cost only"
+   ],
+   "a": 1,
+   "w": "Who gains and who pays."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/atlas-of-ai.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL21659515W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780300209570",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

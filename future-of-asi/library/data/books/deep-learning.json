@@ -1,0 +1,253 @@
+{
+ "id": "deep-learning",
+ "title": "Deep Learning",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Ian Goodfellow",
+   "rid": "ian-goodfellow"
+  },
+  {
+   "name": "Yoshua Bengio",
+   "rid": "yoshua-bengio"
+  },
+  {
+   "name": "Aaron Courville",
+   "rid": ""
+  }
+ ],
+ "year": "2016",
+ "publisher": "MIT Press",
+ "isbn": "9780262035613",
+ "pages": "775",
+ "ol": "/works/OL17801809W",
+ "shelf": "textbook",
+ "level": "Advanced",
+ "pitch": "The standard textbook of the deep learning era, from the maths you need to the research frontier of 2016. The authors keep a free online version.",
+ "toc_src": "https://www.deeplearningbook.org/",
+ "chapters": [
+  {
+   "t": "Introduction",
+   "g": "What deep learning is and how it grew out of earlier ideas.",
+   "part": ""
+  },
+  {
+   "t": "Linear Algebra",
+   "g": "Vectors, matrices and the operations networks are built from.",
+   "part": "Part I: Applied Math and Machine Learning Basics"
+  },
+  {
+   "t": "Probability and Information Theory",
+   "g": "Uncertainty, distributions and information.",
+   "part": "Part I: Applied Math and Machine Learning Basics"
+  },
+  {
+   "t": "Numerical Computation",
+   "g": "Rounding errors, gradients and optimisation basics.",
+   "part": "Part I: Applied Math and Machine Learning Basics"
+  },
+  {
+   "t": "Machine Learning Basics",
+   "g": "Training, generalisation, overfitting and the ideas of learning from data.",
+   "part": "Part I: Applied Math and Machine Learning Basics"
+  },
+  {
+   "t": "Deep Feedforward Networks",
+   "g": "The basic neural network and backpropagation.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Regularization for Deep Learning",
+   "g": "Ways to stop networks overfitting, such as dropout.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Optimization for Training Deep Models",
+   "g": "Gradient descent and its many variants.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Convolutional Networks",
+   "g": "Networks for images and other grid data.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Sequence Modeling: Recurrent and Recursive Nets",
+   "g": "Networks for text, speech and time series.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Practical Methodology",
+   "g": "How to debug and improve real systems.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Applications",
+   "g": "Vision, speech, language and more.",
+   "part": "Part II: Modern Practical Deep Networks"
+  },
+  {
+   "t": "Linear Factor Models",
+   "g": "Simple models of hidden structure in data.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Autoencoders",
+   "g": "Networks that learn to compress and rebuild data.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Representation Learning",
+   "g": "Learning useful features automatically.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Structured Probabilistic Models for Deep Learning",
+   "g": "Graphs of variables and how they relate.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Monte Carlo Methods",
+   "g": "Sampling to estimate hard quantities.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Confronting the Partition Function",
+   "g": "A hard normalising problem in probabilistic models.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Approximate Inference",
+   "g": "Ways to reason when exact answers are too costly.",
+   "part": "Part III: Deep Learning Research"
+  },
+  {
+   "t": "Deep Generative Models",
+   "g": "Models that create data, including early GANs from Goodfellow.",
+   "part": "Part III: Deep Learning Research"
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Deep networks learn layered representations.",
+  "Optimisation and regularisation make training work.",
+  "Convolutions and recurrence fit data structure.",
+  "Generative models can create new data."
+ ],
+ "args": [
+  {
+   "a": "Deep learning is a general approach to AI.",
+   "c": "It came out before transformers, so it misses the architecture behind today's language models."
+  },
+  {
+   "a": "Understanding the maths matters.",
+   "c": "Many practitioners now build with high level tools, though the basics still help with safety and interpretability."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which chapter helps most to understand modern language models?",
+  "What do networks learn in their hidden layers?",
+  "Why does overfitting matter for safety?"
+ ],
+ "quiz": [
+  {
+   "q": "Which part covers convolutional networks?",
+   "o": [
+    "Part I",
+    "Part II",
+    "Part III",
+    "None"
+   ],
+   "a": 1,
+   "w": "Modern Practical Deep Networks."
+  },
+  {
+   "q": "What does regularisation do?",
+   "o": [
+    "Speeds up chips",
+    "Reduces overfitting",
+    "Adds data",
+    "Removes layers"
+   ],
+   "a": 1,
+   "w": "It helps networks generalise."
+  },
+  {
+   "q": "Who is known for inventing GANs?",
+   "o": [
+    "Bengio",
+    "Goodfellow",
+    "Courville",
+    "Turing"
+   ],
+   "a": 1,
+   "w": "Generative adversarial networks, 2014."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://www.deeplearningbook.org/",
+  "label": "Read free online (deeplearningbook.org)",
+  "licence": "Free to read online from the authors or publisher. No open licence was found, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/deep-learning.jpg",
+ "videos": [
+  {
+   "id": "F4kuuLQrIaE",
+   "title": "MLSS 2026, Yoshua Bengio, Why are AIs cheating, lying and apparently colluding?",
+   "channel": "Max Planck Institute for Intelligent Systems",
+   "date": "2026-10-05",
+   "duration": "1:58:39",
+   "summary": "Yoshua Bengio's 2026 summer school lecture on why AIs cheat, lie and seem to collude."
+  },
+  {
+   "id": "A-9JXAj-_wg",
+   "title": "AI pioneer Yoshua Bengio takes Trump to task on AI regulation | 7.30",
+   "channel": "ABC News In-depth",
+   "date": "2026-09-23",
+   "duration": "0:14:38",
+   "summary": "Yoshua Bengio criticises the US approach to AI regulation."
+  },
+  {
+   "id": "WZNHg9mpfco",
+   "title": "Engineering safer AI to mitigate global risks | Yoshua Bengio",
+   "channel": "AI for Good",
+   "date": "2026-09-23",
+   "duration": "0:23:05",
+   "summary": "Yoshua Bengio on engineering safer AI to cut global risks."
+  },
+  {
+   "id": "gSAYmPY7YYY",
+   "title": "Yoshua Bengio: The Current State of Al Safety and Open-Weight Models",
+   "channel": "Concordia AI",
+   "date": "2026-07-30",
+   "duration": "0:09:16",
+   "summary": "Yoshua Bengio on the state of AI safety and open weight models."
+  }
+ ],
+ "shelfLabel": "Textbook",
+ "shelfColor": "#14b8a6",
+ "where": [
+  {
+   "label": "Read free online (deeplearningbook.org)",
+   "url": "https://www.deeplearningbook.org/",
+   "free": true
+  },
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL17801809W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780262035613",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

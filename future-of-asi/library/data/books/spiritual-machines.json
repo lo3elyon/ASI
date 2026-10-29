@@ -1,0 +1,171 @@
+{
+ "id": "spiritual-machines",
+ "title": "The Age of Spiritual Machines",
+ "subtitle": "When Computers Exceed Human Intelligence",
+ "authors": [
+  {
+   "name": "Ray Kurzweil",
+   "rid": ""
+  }
+ ],
+ "year": "1999",
+ "publisher": "Viking",
+ "isbn": "9780140282023",
+ "pages": "388",
+ "ol": "/works/OL1958851W",
+ "shelf": "explosion",
+ "level": "Beginner",
+ "pitch": "Kurzweil's early case that computing power grows exponentially and that machines will match human intelligence around 2029, with dated predictions you can check.",
+ "toc_src": "https://openlibrary.org/books/OL25672499M",
+ "chapters": [
+  {
+   "t": "Prologue: An inexorable emergence",
+   "g": "Why intelligence on Earth keeps speeding up.",
+   "part": ""
+  },
+  {
+   "t": "The law of time and chaos",
+   "g": "His idea that the pace of change speeds up as order grows.",
+   "part": "Probing the past"
+  },
+  {
+   "t": "The intelligence of evolution",
+   "g": "Evolution as a slow process that produced fast minds.",
+   "part": "Probing the past"
+  },
+  {
+   "t": "Of mind and machines",
+   "g": "What thinking and consciousness might mean for machines.",
+   "part": "Probing the past"
+  },
+  {
+   "t": "A new form of intelligence on earth",
+   "g": "Computers as a new kind of intelligence that can grow without limit.",
+   "part": "Probing the past"
+  },
+  {
+   "t": "Context and knowledge",
+   "g": "Why knowledge and context matter for intelligence.",
+   "part": "Probing the past"
+  },
+  {
+   "t": "Building new brains",
+   "g": "Ways to build brain level machines, including reverse engineering the brain.",
+   "part": "Preparing the present"
+  },
+  {
+   "t": "And bodies",
+   "g": "Robots, nanotechnology and virtual bodies.",
+   "part": "Preparing the present"
+  },
+  {
+   "t": "1999",
+   "g": "The state of technology as he saw it at the time.",
+   "part": "Preparing the present"
+  },
+  {
+   "t": "2009",
+   "g": "Predictions for 2009: portable computers everywhere, speech input and more.",
+   "part": "To face the future"
+  },
+  {
+   "t": "2019",
+   "g": "Predictions for 2019, including computers with human level processing power.",
+   "part": "To face the future"
+  },
+  {
+   "t": "2029",
+   "g": "Machines that pass for human and claim to be conscious.",
+   "part": "To face the future"
+  },
+  {
+   "t": "2099",
+   "g": "A merger of humans and machines.",
+   "part": "To face the future"
+  },
+  {
+   "t": "Epilogue: The rest of the universe revisited",
+   "g": "Intelligence spreading out into the universe.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "The law of accelerating returns: progress speeds up exponentially.",
+  "Machines will match human intelligence around 2029.",
+  "Humans will merge with their technology.",
+  "Dated predictions let readers check the forecast."
+ ],
+ "args": [
+  {
+   "a": "Exponential trends make human level AI by 2029 likely.",
+   "c": "Some predictions came true, many came late or differently. Critics say trend lines cannot tell you about missing breakthroughs."
+  },
+  {
+   "a": "Merging with machines is the natural next step.",
+   "c": "Others see risks to identity, equality and control in such a merger."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Pick one of his 2019 predictions. Did it come true?",
+  "Does progress really speed up, or does it come in bursts?",
+  "Would you want to merge with a machine?"
+ ],
+ "quiz": [
+  {
+   "q": "Around what year did Kurzweil predict human level machine intelligence?",
+   "o": [
+    "2000",
+    "2029",
+    "2099",
+    "2200"
+   ],
+   "a": 1,
+   "w": "He has kept that date for decades."
+  },
+  {
+   "q": "What is the law of accelerating returns?",
+   "o": [
+    "Returns on stocks",
+    "The idea that technological progress speeds up exponentially",
+    "A tax rule",
+    "A law of physics"
+   ],
+   "a": 1,
+   "w": "It is his central idea."
+  },
+  {
+   "q": "How is the future part organised?",
+   "o": [
+    "By country",
+    "By dated chapters: 2009, 2019, 2029, 2099",
+    "By technology",
+    "By person"
+   ],
+   "a": 1,
+   "w": "Each chapter is a year."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/spiritual-machines.jpg",
+ "videos": [],
+ "shelfLabel": "Intelligence explosion",
+ "shelfColor": "#f59e0b",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL1958851W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780140282023",
+   "free": true
+  }
+ ],
+ "toc_note": "Contents from the Penguin paperback (2000).",
+ "added": "2026-10-29"
+}

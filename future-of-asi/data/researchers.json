@@ -6368,8 +6368,8 @@
   "role": "Chief Scientist",
   "org": "Thinking Machines Lab",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/john-schulman.jpg",
+  "photo_credit": "John Schulman's homepage (joschu.net)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -6453,7 +6453,8 @@
   ],
   "courses": [],
   "homepage": "http://joschu.net/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jakub-pachocki",
@@ -6544,8 +6545,8 @@
   "role": "Chief Strategy Officer",
   "org": "Google DeepMind",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jasjeet-sekhon.jpg",
+  "photo_credit": "Jasjeet S. Sekhon's homepage (jsekhon.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -6602,7 +6603,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "wojciech-zaremba",
@@ -6610,8 +6612,8 @@
   "role": "Head of AI Resilience",
   "org": "OpenAI Foundation",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/wojciech-zaremba.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/wojzaremba)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -6678,7 +6680,8 @@
     "label": "GitHub",
     "url": "https://github.com/wojzaremba"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "dawn-song",
@@ -6844,8 +6847,8 @@
   "role": "Head of Personality Alignment",
   "org": "Anthropic",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/amanda-askell.jpg",
+  "photo_credit": "X/Twitter profile image (@AmandaAskell)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -6917,7 +6920,8 @@
     "label": "GitHub",
     "url": "https://github.com/aaskell"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "nicholas-carlini",
@@ -7004,8 +7008,8 @@
   "role": "Head of Strategic Futures",
   "org": "OpenAI",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/dean-ball.jpg",
+  "photo_credit": "Dean Ball's homepage (deanball.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -7060,7 +7064,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.deanball.com/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "timnit-gebru",
@@ -7308,8 +7313,8 @@
   "role": "Assistant Professor",
   "org": "University of Montreal and Mila",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/david-krueger.jpg",
+  "photo_credit": "X/Twitter profile image (@DavidSKrueger)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -7367,7 +7372,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "brian-christian",
@@ -7775,8 +7781,8 @@
   "role": "Associate Professor",
   "org": "MIT",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/kaiming-he.jpg",
+  "photo_credit": "Kaiming He's MIT CSAIL homepage",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -7855,7 +7861,8 @@
     "label": "GitHub",
     "url": "https://github.com/KaimingHe"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "fei-fei-li",
@@ -8230,8 +8237,8 @@
   "role": "Pehong Chen Distinguished Professor",
   "org": "UC Berkeley",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/michael-i-jordan.jpg",
+  "photo_credit": "Michael I. Jordan's UC Berkeley homepage",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -8282,7 +8289,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "ashish-vaswani",
@@ -8290,8 +8298,8 @@
   "role": "Researcher",
   "org": "Nvidia",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/ashish-vaswani.jpg",
+  "photo_credit": "X/Twitter profile image (@ashVaswani)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -8360,7 +8368,8 @@
     "label": "X",
     "url": "https://x.com/ashVaswani"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "pieter-abbeel",
@@ -8591,8 +8600,8 @@
   "role": "Principal Scientist and Director",
   "org": "Google DeepMind",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/meredith-ringel-morris.jpg",
+  "photo_credit": "X/Twitter profile image (@merrierm)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -8646,7 +8655,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "ben-shneiderman",
@@ -8794,8 +8804,8 @@
   "role": "Gordon McKay Professor of Computer Science",
   "org": "Harvard University",
   "group": "hci",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/martin-wattenberg.jpg",
+  "photo_credit": "The Frank-Ratchye STUDIO for Creative Inquiry, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Wattenberg2014.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -8859,7 +8869,8 @@
     "label": "X",
     "url": "https://x.com/wattenberg"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "jade-leung",
@@ -9497,8 +9508,8 @@
   "role": "Professor",
   "org": "University of Amsterdam",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/max-welling.jpg",
+  "photo_credit": "University of Amsterdam AMLab people page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -9572,7 +9583,8 @@
     "label": "X",
     "url": "https://x.com/wellingmax"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "raja-chatila",
@@ -9580,8 +9592,8 @@
   "role": "Professor of Robotics, AI and Ethics",
   "org": "Sorbonne University",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/raja-chatila.jpg",
+  "photo_credit": "ISIR, Sorbonne Université staff page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -9630,7 +9642,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "holger-hoos",
@@ -9945,8 +9958,8 @@
   "role": "Founding Dean, Institute for AI Industry Research",
   "org": "Tsinghua University",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/zhang-ya-qin.jpg",
+  "photo_credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:UN_AI_for_Good_Summit_2025_-_Ya-Qin_Zhang_01.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -10014,7 +10027,8 @@
     "label": "X",
     "url": "https://x.com/yaqinzhang"
    }
-  ]
+  ],
+  "photo_remote": ""
  },
  {
   "id": "xue-lan",
@@ -10152,8 +10166,8 @@
   "role": "Founding Director, AI Institute of South Carolina",
   "org": "University of South Carolina",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/amit-sheth.jpg",
+  "photo_credit": "University of South Carolina, Molinaroli College of Engineering and Computing faculty page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -10203,7 +10217,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "http://knoesis.org/amit",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "abeba-birhane",
@@ -10398,8 +10413,8 @@
   "role": "VP of AI",
   "org": "Microsoft AI",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/nando-de-freitas.jpg",
+  "photo_credit": "University of Oxford Department of Computer Science people page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -10461,7 +10476,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.cs.ox.ac.uk/people/nando.defreitas/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "emmett-shear",
@@ -10540,8 +10556,8 @@
   "role": "President and Co-founder",
   "org": "Anthropic",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/daniela-amodei.jpg",
+  "photo_credit": "WIRED",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -10602,7 +10618,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mira-murati",
@@ -11205,8 +11222,8 @@
   "role": "Former researcher",
   "org": "Anthropic and OpenAI",
   "group": "doomer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jacob-coxon.jpg",
+  "photo_credit": "Jonah Reenders for The Wall Street Journal",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11290,7 +11307,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "gretchen-krueger",
@@ -11298,8 +11316,8 @@
   "role": "Affiliate",
   "org": "Berkman Klein Center, Harvard",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/gretchen-krueger.jpg",
+  "photo_credit": "Berkman Klein Center, Harvard University people page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11364,7 +11382,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "carroll-wainwright",
@@ -11372,8 +11391,8 @@
   "role": "Former Member of Technical Staff",
   "org": "OpenAI",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/carroll-wainwright.jpg",
+  "photo_credit": "X/Twitter profile image (@clwainwright)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11432,7 +11451,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "daniel-ziegler",
@@ -11440,8 +11460,8 @@
   "role": "Former Member of Technical Staff",
   "org": "OpenAI",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/daniel-ziegler.jpg",
+  "photo_credit": "X/Twitter profile image (@d_m_ziegler)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11503,7 +11523,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "todor-markov",
@@ -11511,8 +11532,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/todor-markov.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/todor-markov)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11577,7 +11598,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://todor-markov.github.io/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "leo-gao",
@@ -11709,8 +11731,8 @@
   "role": "Member of Technical Staff",
   "org": "Anthropic",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/trenton-bricken.jpg",
+  "photo_credit": "X/Twitter profile image (@TrentonBricken)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -11763,7 +11785,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.trentonbricken.com/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "adam-gleave",
@@ -12042,8 +12065,8 @@
   "role": "Director and Principal Scientist",
   "org": "Google DeepMind",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/been-kim.jpg",
+  "photo_credit": "Been Kim's homepage (beenkim.github.io)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12096,7 +12119,8 @@
   ],
   "courses": [],
   "homepage": "https://beenkim.github.io/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "alex-turner",
@@ -12104,8 +12128,8 @@
   "role": "Alignment researcher",
   "org": "",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/alex-turner.jpg",
+  "photo_credit": "Alex Turner's site (turntrout.com/about)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12149,7 +12173,8 @@
   ],
   "courses": [],
   "homepage": "https://turntrout.com/about",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jonas-geiping",
@@ -12281,8 +12306,8 @@
   "role": "Associate Professor",
   "org": "University of Toronto",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/roger-grosse.jpg",
+  "photo_credit": "Vector Institute team page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12334,7 +12359,8 @@
   ],
   "courses": [],
   "homepage": "https://www.cs.toronto.edu/~rgrosse/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "nicolas-papernot",
@@ -12403,8 +12429,8 @@
   "role": "Head of AI Safety and Alignment",
   "org": "Google DeepMind",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/anca-dragan.jpg",
+  "photo_credit": "X/Twitter profile image (@ancadianadragan)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12458,7 +12484,8 @@
   ],
   "courses": [],
   "homepage": "https://people.eecs.berkeley.edu/~anca/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "arthur-conmy",
@@ -12466,8 +12493,8 @@
   "role": "Member of Technical Staff",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/arthur-conmy.jpg",
+  "photo_credit": "Arthur Conmy's homepage (arthurconmy.github.io)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12521,7 +12548,8 @@
   ],
   "courses": [],
   "homepage": "https://arthurconmy.github.io/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jascha-sohl-dickstein",
@@ -12843,8 +12871,8 @@
   "role": "Associate Professor",
   "org": "University of Michigan",
   "group": "hci",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/q-vera-liao.jpg",
+  "photo_credit": "Q. Vera Liao's homepage (qveraliao.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12897,7 +12925,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.qveraliao.com/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "shengjia-zhao",
@@ -12905,8 +12934,8 @@
   "role": "Chief Scientist",
   "org": "Meta AI",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/shengjia-zhao.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/shengjiazhao)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -12955,7 +12984,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mark-chen",
@@ -12963,8 +12993,8 @@
   "role": "Chief Research Officer",
   "org": "OpenAI",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/mark-chen.jpg",
+  "photo_credit": "X/Twitter profile image (@markchen90)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13004,7 +13034,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "benjamin-mann",
@@ -13012,8 +13043,8 @@
   "role": "Co-founder",
   "org": "Anthropic",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/benjamin-mann.jpg",
+  "photo_credit": "The San Francisco Standard",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13055,7 +13086,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "summer-yue",
@@ -13063,8 +13095,8 @@
   "role": "Director of Alignment and Risk",
   "org": "Meta",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/summer-yue.jpg",
+  "photo_credit": "X/Twitter profile image (@summeryue0)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13099,7 +13131,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "josh-achiam",
@@ -13107,8 +13140,8 @@
   "role": "Researcher",
   "org": "OpenAI",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/josh-achiam.jpg",
+  "photo_credit": "WIRED (Getty Images)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13156,7 +13189,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "laura-weidinger",
@@ -13164,8 +13198,8 @@
   "role": "Staff Research Scientist",
   "org": "Google DeepMind",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/laura-weidinger.jpg",
+  "photo_credit": "X/Twitter profile image (@weidingerlaura)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13214,7 +13248,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "thomas-wolf",
@@ -13279,8 +13314,8 @@
   "role": "Alignment Team Lead",
   "org": "Anthropic",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/ethan-perez.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/ethanjperez)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13346,7 +13381,8 @@
   ],
   "courses": [],
   "homepage": "https://ethanperez.net/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jack-lindsey",
@@ -13354,8 +13390,8 @@
   "role": "Research Lead, Model Psychology",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jack-lindsey.jpg",
+  "photo_credit": "X/Twitter profile image (@Jack_W_Lindsey)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13396,7 +13432,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "samuel-marks",
@@ -13404,8 +13441,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/samuel-marks.jpg",
+  "photo_credit": "X/Twitter profile image (@saprmarks)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13452,7 +13489,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "adly-templeton",
@@ -13460,8 +13498,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/adly-templeton.jpg",
+  "photo_credit": "X/Twitter profile image (@TempletonAdly)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13502,7 +13540,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "saachi-jain",
@@ -13510,8 +13549,8 @@
   "role": "Head of Safety",
   "org": "OpenAI",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/saachi-jain.jpg",
+  "photo_credit": "Saachi Jain's homepage (saachij.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13545,7 +13584,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "catherine-olsson",
@@ -13553,8 +13593,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/catherine-olsson.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/catherio)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13596,7 +13636,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mia-glaese",
@@ -13604,8 +13645,8 @@
   "role": "Researcher",
   "org": "OpenAI",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/mia-glaese.jpg",
+  "photo_credit": "Fast Company",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13648,7 +13689,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "julian-schrittwieser",
@@ -13656,8 +13698,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/julian-schrittwieser.jpg",
+  "photo_credit": "Julian Schrittwieser's homepage (furidamu.org)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13704,7 +13746,8 @@
   ],
   "courses": [],
   "homepage": "https://www.furidamu.org/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mike-krieger",
@@ -13755,8 +13798,8 @@
   "role": "CEO",
   "org": "Core Automation",
   "group": "lab-leader",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jerry-tworek.jpg",
+  "photo_credit": "Jerry Tworek's homepage (millionintegrals.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13798,7 +13841,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "ben-buchanan",
@@ -13806,8 +13850,8 @@
   "role": "Consultant",
   "org": "Anthropic",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/ben-buchanan.jpg",
+  "photo_credit": "Harvard Law School event page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13840,7 +13884,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mary-phuong",
@@ -13848,8 +13893,8 @@
   "role": "Senior Research Scientist",
   "org": "Google DeepMind",
   "group": "evals",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/mary-phuong.jpg",
+  "photo_credit": "FAR.AI Vienna Alignment Workshop 2024 talk thumbnail",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13891,7 +13936,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "joshua-batson",
@@ -13899,8 +13945,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/joshua-batson.jpg",
+  "photo_credit": "X/Twitter profile image (@thebasepoint)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13946,7 +13992,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "kim-stachenfeld",
@@ -13954,8 +14001,8 @@
   "role": "Staff Research Scientist",
   "org": "Google DeepMind",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/kim-stachenfeld.jpg",
+  "photo_credit": "Kim Stachenfeld's homepage (neurokim.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -13994,7 +14041,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "stephanie-chan",
@@ -14002,8 +14050,8 @@
   "role": "Staff Research Scientist",
   "org": "Google DeepMind",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/stephanie-chan.jpg",
+  "photo_credit": "X/Twitter profile image (@scychan_brains)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14044,7 +14092,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "ross-girshick",
@@ -14052,8 +14101,8 @@
   "role": "Researcher",
   "org": "Anthropic",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/ross-girshick.jpg",
+  "photo_credit": "Ross Girshick's homepage (rossgirshick.info)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14100,7 +14149,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "tejal-patwardhan",
@@ -14108,8 +14158,8 @@
   "role": "Researcher",
   "org": "OpenAI",
   "group": "evals",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/tejal-patwardhan.jpg",
+  "photo_credit": "X/Twitter profile image (@tejalpatwardhan)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14144,7 +14194,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "gregory-wayne",
@@ -14152,8 +14203,8 @@
   "role": "Distinguished Scientist",
   "org": "Google DeepMind",
   "group": "pioneer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/gregory-wayne.jpg",
+  "photo_credit": "MIT Technology Review Innovators Under 35",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14194,7 +14245,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "malo-bourgon",
@@ -14202,8 +14254,8 @@
   "role": "Chief Executive Officer",
   "org": "MIRI",
   "group": "doomer",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/malo-bourgon.jpg",
+  "photo_credit": "MIRI team page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14244,7 +14296,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "sarah-schwettmann",
@@ -14252,8 +14305,8 @@
   "role": "Co-founder and Chief Scientist",
   "org": "Transluce",
   "group": "interpretability",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/sarah-schwettmann.jpg",
+  "photo_credit": "Transluce about page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14295,7 +14348,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jesse-hoogland",
@@ -14303,8 +14357,8 @@
   "role": "Co-founder and Executive Director",
   "org": "Timaeus",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jesse-hoogland.jpg",
+  "photo_credit": "GitHub profile avatar (github.com/jqhoogland)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14355,7 +14409,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.jessehoogland.com/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "paul-riechers",
@@ -14363,8 +14418,8 @@
   "role": "Researcher",
   "org": "Simplex",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/paul-riechers.jpg",
+  "photo_credit": "FAR Labs seminar thumbnail (YouTube)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14405,7 +14460,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "adam-shai",
@@ -14413,8 +14469,8 @@
   "role": "Researcher",
   "org": "Simplex",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/adam-shai.jpg",
+  "photo_credit": "Manifund profile avatar",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14455,7 +14511,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "esben-kran",
@@ -14463,8 +14520,8 @@
   "role": "Board Member",
   "org": "Apart Research",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/esben-kran.jpg",
+  "photo_credit": "X/Twitter profile image (@EsbenKC)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14504,7 +14561,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "chris-painter",
@@ -14512,8 +14570,8 @@
   "role": "President",
   "org": "METR",
   "group": "evals",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/chris-painter.jpg",
+  "photo_credit": "X/Twitter profile image (@ChrisPainterYup)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14555,7 +14613,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "andrew-critch",
@@ -14646,8 +14705,8 @@
   "role": "Associate Director (Research Strategy)",
   "org": "Leverhulme Centre for the Future of Intelligence, Cambridge",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/sean-o-heigeartaigh.jpg",
+  "photo_credit": "Leverhulme Centre for the Future of Intelligence people page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14687,7 +14746,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "shahar-avin",
@@ -14695,8 +14755,8 @@
   "role": "Senior Research Associate",
   "org": "Leverhulme Centre for the Future of Intelligence, Cambridge",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/shahar-avin.jpg",
+  "photo_credit": "Centre for the Study of Existential Risk team page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14741,7 +14801,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "jess-whittlestone",
@@ -14749,8 +14810,8 @@
   "role": "Senior Advisor, AI Policy",
   "org": "Centre for Long-Term Resilience",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/jess-whittlestone.jpg",
+  "photo_credit": "ITU Pictures from Geneva, Switzerland, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AI_for_Good_Global_Summit_2018_(42110671342)_(cropped).jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14789,7 +14850,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "robert-trager",
@@ -14797,8 +14859,8 @@
   "role": "Co-Director",
   "org": "Oxford Martin AI Governance Initiative",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/robert-trager.jpg",
+  "photo_credit": "Oxford Martin AI Governance Initiative people page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14843,7 +14905,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "romeo-dean",
@@ -14851,8 +14914,8 @@
   "role": "Researcher",
   "org": "AI Futures Project",
   "group": "forecasting",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/romeo-dean.jpg",
+  "photo_credit": "AI Futures Project about page",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14892,7 +14955,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mark-nitzberg",
@@ -14900,8 +14964,8 @@
   "role": "Executive Director",
   "org": "Center for Human-Compatible AI",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/mark-nitzberg.jpg",
+  "photo_credit": "Nitzberg, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Headshot_EECS_Nov_2024.png)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14945,7 +15009,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "vanessa-kosoy",
@@ -14953,8 +15018,8 @@
   "role": "Research Lead",
   "org": "CORAL and ALTER",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/vanessa-kosoy.jpg",
+  "photo_credit": "YouTube video frame (Will Petillo channel)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -14999,7 +15064,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.lesswrong.com/users/vanessa-kosoy",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "brian-tse",
@@ -15007,8 +15073,8 @@
   "role": "Founder and CEO",
   "org": "Concordia AI",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/brian-tse.jpg",
+  "photo_credit": "Brian Tse's homepage (brian-tse.com)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15071,7 +15137,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.brian-tse.com/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "akiko-murakami",
@@ -15079,8 +15146,8 @@
   "role": "Executive Director",
   "org": "Japan AI Safety Institute",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/akiko-murakami.jpg",
+  "photo_credit": "Tech Diplomacy Global Institute, Global 50 2026",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15143,7 +15210,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "kim-myuhng-joo",
@@ -15151,8 +15219,8 @@
   "role": "Director",
   "org": "Korea AI Safety Institute",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/kim-myuhng-joo.jpg",
+  "photo_credit": "Chosunbiz (courtesy of Ahn Sang-hee)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15223,7 +15291,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "abhishek-singh",
@@ -15231,8 +15300,8 @@
   "role": "CEO, IndiaAI and Additional Secretary",
   "org": "Ministry of Electronics and IT, India",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/abhishek-singh.jpg",
+  "photo_credit": "X/Twitter profile image (@abhish18)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15276,7 +15345,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "balaraman-ravindran",
@@ -15284,8 +15354,8 @@
   "role": "Professor of Data Science and AI",
   "org": "Wadhwani School of Data Science and AI, IIT Madras",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/balaraman-ravindran.jpg",
+  "photo_credit": "X/Twitter profile image (@ravi_iitm)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15342,7 +15412,8 @@
   ],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "ponnurangam-kumaraguru",
@@ -15350,8 +15421,8 @@
   "role": "Professor",
   "org": "IIIT Hyderabad",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/ponnurangam-kumaraguru.jpg",
+  "photo_credit": "Precog Research Group, IIIT Hyderabad (PK bio page)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15392,7 +15463,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://precog.iiit.ac.in/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "mausam",
@@ -15400,8 +15472,8 @@
   "role": "Professor of Computer Science and Engineering",
   "org": "IIT Delhi",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/mausam.jpg",
+  "photo_credit": "Mausam's IIT Delhi homepage",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15440,7 +15512,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "https://www.cse.iitd.ac.in/~mausam/",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "benjamin-rosman",
@@ -15448,8 +15521,8 @@
   "role": "Professor",
   "org": "University of the Witwatersrand",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/benjamin-rosman.jpg",
+  "photo_credit": "X/Twitter profile image (@BenjaminRosman)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15484,7 +15557,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "zeng-yi",
@@ -15492,8 +15566,8 @@
   "role": "WU Yuzhang Chair Professor",
   "org": "Renmin University of China",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/zeng-yi.jpg",
+  "photo_credit": "UNESCO AI Ethics Experts Without Borders",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15533,7 +15607,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "robert-miles",
@@ -15541,8 +15616,8 @@
   "role": "AI safety educator",
   "org": "Robert Miles AI Safety (YouTube)",
   "group": "alignment",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/robert-miles.jpg",
+  "photo_credit": "The Inside View podcast, YouTube thumbnail",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15614,7 +15689,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "scott-aaronson",
@@ -15622,8 +15698,8 @@
   "role": "Schlumberger Centennial Chair of Computer Science",
   "org": "University of Texas at Austin",
   "group": "theory",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/scott-aaronson.jpg",
+  "photo_credit": "Easy n, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Scott_Aaronson.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15674,7 +15750,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "anthony-aguirre",
@@ -15682,8 +15759,8 @@
   "role": "Co-founder and CEO",
   "org": "Future of Life Institute",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/anthony-aguirre.jpg",
+  "photo_credit": "Spadeborks, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Anthony_Aguirre_at_FAS_2026.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15742,7 +15819,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "aza-raskin",
@@ -15750,8 +15828,8 @@
   "role": "Co-founder",
   "org": "Center for Humane Technology",
   "group": "governance",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/aza-raskin.jpg",
+  "photo_credit": "Techtorontorer55, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AzaRaskin2019.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15800,7 +15878,8 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  },
  {
   "id": "robin-hanson",
@@ -15808,8 +15887,8 @@
   "role": "Associate Professor of Economics",
   "org": "George Mason University",
   "group": "forecasting",
-  "photo": "",
-  "photo_credit": "",
+  "photo": "assets/people/robin-hanson.jpg",
+  "photo_credit": "Nikita Sokolsky, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Robin_Hanson_at_Manifest_2023.jpg)",
   "pdoom": "",
   "pdoom_source": "",
   "agi_year": "",
@@ -15857,6 +15936,7 @@
   "key_papers": [],
   "courses": [],
   "homepage": "",
-  "socials": []
+  "socials": [],
+  "photo_remote": ""
  }
 ]

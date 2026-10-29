@@ -1,0 +1,170 @@
+{
+ "id": "machines-loving-grace",
+ "title": "Machines of Loving Grace",
+ "subtitle": "How AI Could Transform the World for the Better",
+ "authors": [
+  {
+   "name": "Dario Amodei",
+   "rid": "dario-amodei"
+  }
+ ],
+ "year": "2024",
+ "publisher": "Essay on darioamodei.com",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "future",
+ "level": "Beginner",
+ "pitch": "Anthropic's CEO sketches what could go right if powerful AI arrives and goes well: a compressed century of progress in biology, the mind, the economy and governance.",
+ "toc_src": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+ "chapters": [
+  {
+   "t": "Basic assumptions and framework",
+   "g": "What he means by powerful AI, a country of geniuses in a datacenter, and the limits that still slow it down.",
+   "part": ""
+  },
+  {
+   "t": "1. Biology and health",
+   "g": "Compressing decades of biology into years, from curing diseases to doubling lifespan.",
+   "part": ""
+  },
+  {
+   "t": "2. Neuroscience and mind",
+   "g": "Progress on mental illness and understanding the brain.",
+   "part": ""
+  },
+  {
+   "t": "3. Economic development and poverty",
+   "g": "Whether AI can lift the developing world, and what could stand in the way.",
+   "part": ""
+  },
+  {
+   "t": "4. Peace and governance",
+   "g": "AI and democracy, and the risk of AI empowering authoritarians.",
+   "part": ""
+  },
+  {
+   "t": "5. Work and meaning",
+   "g": "What people will do and value when AI can do most work.",
+   "part": ""
+  },
+  {
+   "t": "Taking stock",
+   "g": "Why the upside is worth fighting for, and why it depends on managing the risks.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Powerful AI could compress a century of science into a decade.",
+  "Physical limits and human institutions still slow progress.",
+  "Benefits are not automatic; they need choices.",
+  "Optimism and risk work go together."
+ ],
+ "args": [
+  {
+   "a": "AI could cure most diseases and lift billions out of poverty.",
+   "c": "Critics say this underplays risks and the slowness of real world adoption."
+  },
+  {
+   "a": "A company building AI can also be honest about its risks.",
+   "c": "Others see a conflict of interest in labs promoting their own technology."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which of the five areas do you most hope changes?",
+  "What is the biggest bottleneck to these benefits?",
+  "Can you hold optimism and fear about AI at the same time?"
+ ],
+ "quiz": [
+  {
+   "q": "What does Amodei call powerful AI?",
+   "o": [
+    "A digital god",
+    "A country of geniuses in a datacenter",
+    "A robot army",
+    "A search engine"
+   ],
+   "a": 1,
+   "w": "Many expert level minds at once."
+  },
+  {
+   "q": "Which area comes first in the essay?",
+   "o": [
+    "Work",
+    "Biology and health",
+    "War",
+    "Art"
+   ],
+   "a": 1,
+   "w": "He is a former biologist."
+  },
+  {
+   "q": "Where does Amodei work?",
+   "o": [
+    "OpenAI",
+    "Anthropic",
+    "Google",
+    "Meta"
+   ],
+   "a": 1,
+   "w": "He is its CEO."
+  }
+ ],
+ "free": {
+  "kind": "link",
+  "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+  "label": "Read the essay free",
+  "licence": "Free online, no open licence found, so the text is linked, not copied.",
+  "licence_url": ""
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "1OdoSzfUkec",
+   "title": "Dario & Daniela Amodei: The Rise of Superintelligent AI, the End of Human Control & Humanity's Fate",
+   "channel": "The Builders",
+   "date": "2026-10-27",
+   "duration": "0:42:06",
+   "summary": "Dario and Daniela Amodei on superintelligent AI and human control."
+  },
+  {
+   "id": "u-u8gOgNA9o",
+   "title": "Anthropic CEO Amodei warns UN Security Council on AI risks",
+   "channel": "C-SPAN",
+   "date": "2026-09-23",
+   "duration": "0:05:09",
+   "summary": "Dario Amodei warns the UN Security Council about AI risks."
+  },
+  {
+   "id": "3n6GFc1flGE",
+   "title": "BREAKING: Anthropic CEO Dario Amodei Calls 'Common Global Standards' In AI Development At UN",
+   "channel": "Forbes Breaking News",
+   "date": "2026-09-23",
+   "duration": "0:05:12",
+   "summary": "Dario Amodei calls for common global standards in AI."
+  },
+  {
+   "id": "_JbDZ2Rj2SA",
+   "title": "Anthropic CEO tells CNN how AI 'agent swarms' could threaten humanity",
+   "channel": "CNN",
+   "date": "2026-09-15",
+   "duration": "0:08:07",
+   "summary": "Dario Amodei tells CNN how swarms of AI agents could threaten humanity."
+  }
+ ],
+ "shelfLabel": "Futures",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Read the essay free",
+   "url": "https://www.darioamodei.com/essay/machines-of-loving-grace",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

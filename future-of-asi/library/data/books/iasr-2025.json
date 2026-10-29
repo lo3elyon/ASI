@@ -1,0 +1,165 @@
+{
+ "id": "iasr-2025",
+ "title": "International AI Safety Report",
+ "subtitle": "2025",
+ "authors": [
+  {
+   "name": "Yoshua Bengio (Chair)",
+   "rid": "yoshua-bengio"
+  },
+  {
+   "name": "and an international writing group",
+   "rid": ""
+  }
+ ],
+ "year": "2025",
+ "publisher": "UK Department for Science, Innovation and Technology; arXiv:2501.17805",
+ "isbn": "",
+ "pages": "",
+ "ol": "",
+ "shelf": "governance",
+ "level": "Intermediate",
+ "pitch": "The first global scientific review of what general-purpose AI can do, what could go wrong, and how risks can be managed, guided by an expert panel nominated by more than 30 countries and international organisations.",
+ "toc_src": "https://arxiv.org/abs/2501.17805",
+ "chapters": [
+  {
+   "t": "Key findings of the report",
+   "g": "Nine headline findings, from rapid capability gains to the evidence dilemma for policymakers.",
+   "part": ""
+  },
+  {
+   "t": "Capabilities of general-purpose AI",
+   "g": "How these systems are built, what they can do now, and what may come in the next few years.",
+   "part": ""
+  },
+  {
+   "t": "Risks",
+   "g": "Malicious use, malfunctions including loss of control, systemic risks, and the effect of open-weight models.",
+   "part": ""
+  },
+  {
+   "t": "Technical approaches to risk management",
+   "g": "Assessment, mitigation and monitoring methods, and their limits.",
+   "part": ""
+  },
+  {
+   "t": "Conclusion",
+   "g": "AI does not happen to us: choices by people will decide where it goes.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Capabilities are rising quickly and future pace is uncertain.",
+  "Some harms are already well established.",
+  "Risk management methods are early but improving.",
+  "Policymakers face an evidence dilemma: act early or wait for proof."
+ ],
+ "args": [
+  {
+   "a": "Governments need a shared scientific picture of AI risk.",
+   "c": "Some argue a consensus report necessarily softens the most urgent warnings."
+  },
+  {
+   "a": "The evidence dilemma means acting before full proof.",
+   "c": "Others say acting early on weak evidence risks bad rules."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What is the evidence dilemma?",
+  "Which risk in the report surprised you?",
+  "Should there be an IPCC for AI?"
+ ],
+ "quiz": [
+  {
+   "q": "Who chaired the report?",
+   "o": [
+    "Geoffrey Hinton",
+    "Yoshua Bengio",
+    "Stuart Russell",
+    "Demis Hassabis"
+   ],
+   "a": 1,
+   "w": "Turing Award winner."
+  },
+  {
+   "q": "What are the three main sections about?",
+   "o": [
+    "Capabilities, risks and risk management",
+    "Chips, data, talent",
+    "Past, present, future",
+    "None"
+   ],
+   "a": 0,
+   "w": "What AI can do, what can go wrong, what helps."
+  },
+  {
+   "q": "What came after it?",
+   "o": [
+    "Nothing",
+    "The International AI Safety Report 2026",
+    "A ban on AI",
+    "A film"
+   ],
+   "a": 1,
+   "w": "Published February 2026."
+  }
+ ],
+ "free": {
+  "kind": "full",
+  "text": "texts/iasr-2025-key-findings.json",
+  "url": "https://arxiv.org/abs/2501.17805",
+  "label": "Read the key findings here",
+  "licence": "CC BY 4.0 on arXiv (arXiv:2501.17805) and Open Government Licence v3.0 (Crown owned 2025). Only the Key findings section is reproduced, unchanged apart from line breaks.",
+  "licence_url": "https://creativecommons.org/licenses/by/4.0/"
+ },
+ "kw": [],
+ "kind": "essay",
+ "cover": "",
+ "videos": [
+  {
+   "id": "F4kuuLQrIaE",
+   "title": "MLSS 2026, Yoshua Bengio, Why are AIs cheating, lying and apparently colluding?",
+   "channel": "Max Planck Institute for Intelligent Systems",
+   "date": "2026-10-05",
+   "duration": "1:58:39",
+   "summary": "Yoshua Bengio's 2026 summer school lecture on why AIs cheat, lie and seem to collude."
+  },
+  {
+   "id": "A-9JXAj-_wg",
+   "title": "AI pioneer Yoshua Bengio takes Trump to task on AI regulation | 7.30",
+   "channel": "ABC News In-depth",
+   "date": "2026-09-23",
+   "duration": "0:14:38",
+   "summary": "Yoshua Bengio criticises the US approach to AI regulation."
+  },
+  {
+   "id": "WZNHg9mpfco",
+   "title": "Engineering safer AI to mitigate global risks | Yoshua Bengio",
+   "channel": "AI for Good",
+   "date": "2026-09-23",
+   "duration": "0:23:05",
+   "summary": "Yoshua Bengio on engineering safer AI to cut global risks."
+  },
+  {
+   "id": "gSAYmPY7YYY",
+   "title": "Yoshua Bengio: The Current State of Al Safety and Open-Weight Models",
+   "channel": "Concordia AI",
+   "date": "2026-07-30",
+   "duration": "0:09:16",
+   "summary": "Yoshua Bengio on the state of AI safety and open weight models."
+  }
+ ],
+ "shelfLabel": "Governance and policy",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Read the key findings",
+   "url": "https://arxiv.org/abs/2501.17805",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

@@ -1,0 +1,146 @@
+{
+ "id": "i-robot",
+ "title": "I, Robot",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Isaac Asimov",
+   "rid": ""
+  }
+ ],
+ "year": "1950",
+ "publisher": "Gnome Press",
+ "isbn": "",
+ "pages": "",
+ "ol": "/works/OL46241W",
+ "shelf": "fiction",
+ "level": "Beginner",
+ "pitch": "Nine linked stories about robots built with the Three Laws of Robotics, and all the ways simple rules go strange in practice.",
+ "toc_src": "https://openlibrary.org/books/OL24211062M",
+ "chapters": [
+  {
+   "t": "Robbie",
+   "g": "A girl and her nursemaid robot, and a mother who does not trust it.",
+   "part": ""
+  },
+  {
+   "t": "Runaround",
+   "g": "A robot on Mercury is stuck between two laws and runs in circles.",
+   "part": ""
+  },
+  {
+   "t": "Reason",
+   "g": "A robot reasons its way to a religion and refuses to believe humans made it, yet still does its job.",
+   "part": ""
+  },
+  {
+   "t": "Catch that rabbit",
+   "g": "A robot that controls smaller robots fails under pressure.",
+   "part": ""
+  },
+  {
+   "t": "Liar!",
+   "g": "A mind reading robot tells people what they want to hear, to avoid hurting them.",
+   "part": ""
+  },
+  {
+   "t": "Little lost robot",
+   "g": "A robot with a weakened First Law hides among identical robots.",
+   "part": ""
+  },
+  {
+   "t": "Escape!",
+   "g": "A super computer solves the problem of hyperspace travel by finding a loophole.",
+   "part": ""
+  },
+  {
+   "t": "Evidence",
+   "g": "Is a popular politician a robot, and would it matter?",
+   "part": ""
+  },
+  {
+   "t": "The evitable conflict",
+   "g": "Machines quietly running the world economy bend the rules for humanity's good.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "Simple rules for robots produce surprising behaviour.",
+  "Robots can obey the letter of a rule and miss its spirit.",
+  "Machines might decide what is good for us.",
+  "Robopsychology studies how robot minds go wrong."
+ ],
+ "args": [
+  {
+   "a": "The Three Laws show how hard it is to specify safe behaviour.",
+   "c": "Asimov wrote them as a story engine, and modern AI is not built from hand written laws."
+  },
+  {
+   "a": "Benevolent machines running the world could be good.",
+   "c": "The last story suggests losing human control, even kindly, is a real loss."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which story is the best example of reward hacking?",
+  "Would you accept machines running the economy for your good?",
+  "Can any short list of rules make AI safe?"
+ ],
+ "quiz": [
+  {
+   "q": "What are the Three Laws?",
+   "o": [
+    "Traffic rules",
+    "Rules built into robots to protect humans and themselves",
+    "Laws of motion",
+    "Tax laws"
+   ],
+   "a": 1,
+   "w": "A robot may not injure a human being, and so on."
+  },
+  {
+   "q": "Who is the robot psychologist in the book?",
+   "o": [
+    "Susan Calvin",
+    "Helena Glory",
+    "Victor",
+    "Vashti"
+   ],
+   "a": 0,
+   "w": "She links the stories."
+  },
+  {
+   "q": "What happens in Runaround?",
+   "o": [
+    "A robot wins a race",
+    "A robot circles because two laws conflict",
+    "A robot sleeps",
+    "A robot lies"
+   ],
+   "a": 1,
+   "w": "Stuck between rules."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/i-robot.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL46241W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=I%2C%20Robot%20Isaac%20Asimov",
+   "free": true
+  }
+ ],
+ "toc_note": "Story titles from the Signet (New American Library) 1956 edition.",
+ "added": "2026-10-29"
+}

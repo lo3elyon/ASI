@@ -1,4 +1,5 @@
 import { $, $$, esc, load, arr, researchers, signatories, categories, orgIndex, logoHtml, pageHero, GROUPS, REGIONS, initials, RM, ICON, store } from "../util.js";
+import { mount as mount3 } from "../views3/researchers3.js";
 
 const VIEWS = [["grid", "Grid"], ["stars", "Constellation"], ["table", "Table"]];
 const REGION_POS = { "North America": [22, 38], "Latin America": [31, 70], UK: [46.2, 27], Europe: [52, 32], "Middle East": [59, 45], Africa: [53, 62], India: [69, 48], China: [77, 38], "Asia Pacific": [86, 64] };
@@ -135,6 +136,7 @@ export async function render(el, params, query) {
   $$("#pickS button", el).forEach((b) => b.addEventListener("click", () => { const k = +b.dataset.s; picked.s.has(k) ? picked.s.delete(k) : picked.s.add(k); b.setAttribute("aria-pressed", picked.s.has(k)); relate(); }));
 
   el._onParams = (p, q) => { const c = q.get("cat") || "all"; const v = q.get("view") || S.view; if (c !== S.cat || v !== S.view) { S.cat = tabs.some((t) => t.id === c) ? c : "all"; S.view = v; paint(); } };
+  try { await mount3(el); } catch (e) { console.warn("researchers3", e); }
   return () => { if (stopStars) stopStars(); };
 }
 

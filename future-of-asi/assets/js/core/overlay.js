@@ -119,8 +119,12 @@ async function renderPerson(id) {
   const pane = $("#ovP .pane");
   const p = ppl.find((x) => x.id === id);
   if (!p) {
-    const s = sig.list.find((x) => x.researcher_id === id);
-    pane.innerHTML = `<button class="icon-btn close" type="button" data-ovclose="p" aria-label="Close">${ICON.close}</button><div class="pf-body" style="padding-top:60px"><h2 id="pfName">${s ? esc(s.name) : "Profile not found"}</h2><p class="muted">${s ? esc([s.title, s.employer].filter(Boolean).join(", ")) : "This person is not in the dataset yet."}</p></div>`;
+    const s = sig.list.find((x) => x.researcher_id === id) || sig.list.find((x) => x.slug === id);
+    const ph = s && s.photo ? `<img src="${esc(s.photo)}" alt="Portrait of ${esc(s.name)}" width="420" height="525" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'pf-ini',textContent:'${esc(initials(s.name))}'}))">` : `<div class="pf-ini" aria-hidden="true">${esc(initials(s ? s.name : "?"))}</div>`;
+    pane.innerHTML = s ? `<button class="icon-btn close" type="button" data-ovclose="p" aria-label="Close">${ICON.close}</button>
+      <div class="pf-hero" style="--c:#10b981"><div class="pf-ph">${ph}</div><div style="min-width:0"><div class="pf-cats"><span class="tag" style="--c:#10b981">Pacing the Frontier signer</span></div><h2 id="pfName">${esc(s.name)}</h2><p class="muted" style="margin:0">${esc([s.title, s.employer].filter(Boolean).join(", "))}</p></div></div>
+      <div class="pf-body">${s.comment ? `<div class="sigbox"><div class="eyebrow" style="color:var(--teal)">Why they signed</div><p style="margin:8px 0 0;font-family:var(--f-serif);font-style:italic;font-size:18px">&ldquo;${esc(s.comment)}&rdquo;</p></div>` : ""}${s.photo_credit ? `<p class="muted" style="font-size:12px">Photo: ${esc(s.photo_credit)}</p>` : ""}<p><a href="#/pacing?q=${encodeURIComponent(s.name)}">See every signer ${ICON.arrow}</a></p></div>`
+      : `<button class="icon-btn close" type="button" data-ovclose="p" aria-label="Close">${ICON.close}</button><div class="pf-body" style="padding-top:60px"><h2 id="pfName">Profile not found</h2><p class="muted">This person is not in the dataset yet.</p></div>`;
     show("p"); return;
   }
   const catById = Object.fromEntries(cats.map((c) => [c.id, c]));

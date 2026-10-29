@@ -1,0 +1,168 @@
+{
+ "id": "global-catastrophic-risks",
+ "title": "Global Catastrophic Risks",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Nick Bostrom",
+   "rid": "nick-bostrom"
+  },
+  {
+   "name": "Milan M. Cirkovic",
+   "rid": ""
+  }
+ ],
+ "year": "2008",
+ "publisher": "Oxford University Press",
+ "isbn": "9780198570509",
+ "pages": "554",
+ "ol": "/works/OL16937673W",
+ "shelf": "risk",
+ "level": "Advanced",
+ "pitch": "An early scholarly survey of risks that could cripple human civilisation, from asteroids and pandemics to nuclear war, nanotechnology and AI.",
+ "toc_src": "https://openlibrary.org/works/OL16937673W",
+ "chapters": [
+  {
+   "t": "Thinking about catastrophe",
+   "g": "Why such risks are neglected and how cognitive biases distort our judgment about them.",
+   "part": ""
+  },
+  {
+   "t": "Risks from nature",
+   "g": "Super volcanoes, asteroids and other natural threats, and how often they happen.",
+   "part": ""
+  },
+  {
+   "t": "Risks from unintended consequences",
+   "g": "Climate change, pandemics and other side effects of human activity.",
+   "part": ""
+  },
+  {
+   "t": "Risks from hostile acts",
+   "g": "Nuclear war, nuclear and biological terrorism, and totalitarian states.",
+   "part": ""
+  },
+  {
+   "t": "Artificial intelligence",
+   "g": "Yudkowsky argues AI could be a positive or negative factor and that friendliness must be designed in.",
+   "part": ""
+  },
+  {
+   "t": "Nanotechnology and physics experiments",
+   "g": "Speculative risks from new technology and big experiments.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Global catastrophic risks deserve far more study than they get.",
+  "Our biases make us bad at judging rare disasters.",
+  "Human made risks may outweigh natural ones.",
+  "AI could be among the biggest factors, for good or ill."
+ ],
+ "args": [
+  {
+   "a": "Catastrophic risks are neglected compared with their stakes.",
+   "c": "Others argue resources should go to known present problems."
+  },
+  {
+   "a": "AI deserves a place on the list.",
+   "c": "In 2008 this was rare. Since then AI risk has moved into mainstream statements and summits."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Which risk on the list do you think is most neglected?",
+  "How do biases distort how you think about rare events?",
+  "Has the case for AI risk got stronger since 2008?"
+ ],
+ "quiz": [
+  {
+   "q": "Who edited the book with Bostrom?",
+   "o": [
+    "Toby Ord",
+    "Milan M. Cirkovic",
+    "Max Tegmark",
+    "Stuart Russell"
+   ],
+   "a": 1,
+   "w": "An astrophysicist from Serbia."
+  },
+  {
+   "q": "Who wrote the AI chapter?",
+   "o": [
+    "Ray Kurzweil",
+    "Eliezer Yudkowsky",
+    "Alan Turing",
+    "Elon Musk"
+   ],
+   "a": 1,
+   "w": "AI as a positive and negative factor in global risk."
+  },
+  {
+   "q": "What kind of book is it?",
+   "o": [
+    "A novel",
+    "An edited scholarly volume",
+    "A memoir",
+    "A textbook on coding"
+   ],
+   "a": 1,
+   "w": "Many authors, many risks."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "",
+ "videos": [
+  {
+   "id": "m880aJt5sNM",
+   "title": "Superintelligence Author: We May Already Have AGI | Nick Bostrom",
+   "channel": "The Roman Forum with Roman Yampolskiy",
+   "date": "2026-10-16",
+   "duration": "1:25:19",
+   "summary": "Nick Bostrom says we may already have AGI."
+  },
+  {
+   "id": "nAbIqt_w0g8",
+   "title": "Why Speeding Up AI Could Save Lives | Nick Bostrom",
+   "channel": "MTS ",
+   "date": "2026-10-08",
+   "duration": "0:54:47",
+   "summary": "Nick Bostrom on why speeding up AI could save lives."
+  },
+  {
+   "id": "J9WBZ8BTLLg",
+   "title": "Nick Bostrom Says We Are Clueless About What's Coming",
+   "channel": "Interesting Times",
+   "date": "2026-10-01",
+   "duration": "0:50:44",
+   "summary": "Nick Bostrom says we are clueless about what is coming."
+  },
+  {
+   "id": "CBq394Ffbi4",
+   "title": "Superintelligence, the Singularity, and the Singleton | Robert Wright & Nick Bostrom",
+   "channel": "Nonzero",
+   "date": "2026-09-22",
+   "duration": "1:20:12",
+   "summary": "Robert Wright and Nick Bostrom on superintelligence, the singularity and the singleton."
+  }
+ ],
+ "shelfLabel": "Risk and control",
+ "shelfColor": "#ef4444",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL16937673W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780198570509",
+   "free": true
+  }
+ ],
+ "toc_note": "Edited volume with chapters by many authors, including Eliezer Yudkowsky's chapter on AI as a positive and negative factor in global risk. No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

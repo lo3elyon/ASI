@@ -1,4 +1,5 @@
 import { $, $$, esc, load, pageHero, toast, ICON } from "../util.js";
+import { mount as mount3 } from "../views3/futures3.js";
 
 const PRESETS = [
   ["Today, roughly", null],
@@ -117,4 +118,5 @@ export async function render(el, params, query) {
   });
   el._onParams = (p) => { if (byId[p[0]] && p[0] !== selected) { selected = p[0]; lastShown = ""; update(); } };
   update();
+  try { await mount3(el); } catch (e) { console.warn("futures3", e); }
 }

@@ -1,0 +1,151 @@
+{
+ "id": "weapons-math",
+ "title": "Weapons of Math Destruction",
+ "subtitle": "How Big Data Increases Inequality and Threatens Democracy",
+ "authors": [
+  {
+   "name": "Cathy O'Neil",
+   "rid": ""
+  }
+ ],
+ "year": "2016",
+ "publisher": "Crown",
+ "isbn": "9780553418811",
+ "pages": "272",
+ "ol": "/works/OL17840708W",
+ "shelf": "skeptic",
+ "level": "Beginner",
+ "pitch": "A mathematician who worked in finance shows how opaque scoring models punish the poor, and how they spread from schools to jobs, loans and courts.",
+ "toc_src": "https://openlibrary.org/books/OL39216364M",
+ "chapters": [
+  {
+   "t": "Bomb parts: what is a model?",
+   "g": "What makes a model a weapon of math destruction: it is opaque, it scales and it does damage.",
+   "part": ""
+  },
+  {
+   "t": "Shell shocked: my journey of disillusionment",
+   "g": "O'Neil's path from academia to a hedge fund during the 2008 crash.",
+   "part": ""
+  },
+  {
+   "t": "Arms race: going to college",
+   "g": "How college rankings pushed universities to game a formula.",
+   "part": ""
+  },
+  {
+   "t": "Propaganda machine: online advertising",
+   "g": "Targeted ads that find vulnerable people, such as for-profit colleges.",
+   "part": ""
+  },
+  {
+   "t": "Civilian casualties: justice in the age of big data",
+   "g": "Predictive policing and risk scores in criminal justice.",
+   "part": ""
+  },
+  {
+   "t": "Ineligible to serve: getting a job",
+   "g": "Automated hiring filters and personality tests.",
+   "part": ""
+  },
+  {
+   "t": "Sweating bullets: on the job",
+   "g": "Scheduling software and worker scoring.",
+   "part": ""
+  },
+  {
+   "t": "Collateral damage: landing credit",
+   "g": "Credit scores and the hidden e-scores that replaced them.",
+   "part": ""
+  },
+  {
+   "t": "No safe zone: getting insurance",
+   "g": "Pricing insurance with data that tracks class and race.",
+   "part": ""
+  },
+  {
+   "t": "The targeted citizen: civic life",
+   "g": "Micro targeting in politics and what it does to democracy.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "A harmful model is opaque, works at scale and causes damage.",
+  "Models can create feedback loops that confirm their own biases.",
+  "The poor are scored by machines while the rich get human judgment.",
+  "Models need audits and accountability."
+ ],
+ "args": [
+  {
+   "a": "Many scoring algorithms increase inequality.",
+   "c": "Defenders say human decisions are also biased and that well built models can be fairer and more consistent."
+  },
+  {
+   "a": "We need audits and regulation of algorithms.",
+   "c": "Critics worry about cost and slowing useful tools, though audit laws have since spread."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Have you ever been judged by a score you could not see?",
+  "How would you audit a hiring algorithm?",
+  "Are opaque models a small version of the alignment problem?"
+ ],
+ "quiz": [
+  {
+   "q": "What are the three marks of a weapon of math destruction?",
+   "o": [
+    "Fast, cheap, new",
+    "Opaque, scaled and damaging",
+    "Open, small, fair",
+    "Secret, slow, rare"
+   ],
+   "a": 1,
+   "w": "Opacity, scale and damage."
+  },
+  {
+   "q": "What is a feedback loop in predictive policing?",
+   "o": [
+    "Police get more training",
+    "More patrols in an area find more crime there, which sends more patrols",
+    "Crime goes away",
+    "Courts close"
+   ],
+   "a": 1,
+   "w": "The model confirms itself."
+  },
+  {
+   "q": "Where did O'Neil work during the 2008 crisis?",
+   "o": [
+    "A newspaper",
+    "A hedge fund",
+    "A school",
+    "A hospital"
+   ],
+   "a": 1,
+   "w": "She worked at D. E. Shaw."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/weapons-math.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL17840708W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780553418811",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

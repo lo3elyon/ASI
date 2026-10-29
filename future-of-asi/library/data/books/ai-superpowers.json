@@ -1,0 +1,146 @@
+{
+ "id": "ai-superpowers",
+ "title": "AI Superpowers",
+ "subtitle": "China, Silicon Valley, and the New World Order",
+ "authors": [
+  {
+   "name": "Kai-Fu Lee",
+   "rid": "kai-fu-lee"
+  }
+ ],
+ "year": "2018",
+ "publisher": "Houghton Mifflin Harcourt",
+ "isbn": "9781328546395",
+ "pages": "253",
+ "ol": "/works/OL17994504W",
+ "shelf": "industry",
+ "level": "Beginner",
+ "pitch": "A veteran of Apple, Microsoft and Google China argues that AI is now about execution and data, which favours China, and that the real crisis will be jobs.",
+ "toc_src": "https://openlibrary.org/books/OL26575450M",
+ "chapters": [
+  {
+   "t": "China's Sputnik moment",
+   "g": "AlphaGo's 2016 and 2017 wins over top Go players woke China up to AI.",
+   "part": ""
+  },
+  {
+   "t": "Copycats in the Coliseum",
+   "g": "How brutal competition among Chinese startups built tough entrepreneurs.",
+   "part": ""
+  },
+  {
+   "t": "China's alternate Internet universe",
+   "g": "Mobile payments and super apps give Chinese firms rich real world data.",
+   "part": ""
+  },
+  {
+   "t": "A tale of two countries",
+   "g": "Comparing the US and China on research, data, talent and government support.",
+   "part": ""
+  },
+  {
+   "t": "The four waves of AI",
+   "g": "Internet AI, business AI, perception AI and autonomous AI.",
+   "part": ""
+  },
+  {
+   "t": "Utopia, dystopia, and the real AI crisis",
+   "g": "Lee sets aside superintelligence fears and focuses on job losses and inequality.",
+   "part": ""
+  },
+  {
+   "t": "The wisdom of cancer",
+   "g": "His cancer diagnosis changed how he thinks about work and love.",
+   "part": ""
+  },
+  {
+   "t": "A blueprint for human co-existence with AI",
+   "g": "A future where people do caring and creative work machines cannot.",
+   "part": ""
+  },
+  {
+   "t": "Our global AI story",
+   "g": "How countries might share the gains and handle the disruption together.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "We moved from the age of discovery to the age of implementation.",
+  "Data and execution matter more than breakthroughs.",
+  "AI will hit jobs and widen inequality.",
+  "Human care and love are where people will stay valuable."
+ ],
+ "args": [
+  {
+   "a": "China has the edge in deploying AI.",
+   "c": "The later large language model race was led by US labs, with chips and compute proving decisive."
+  },
+  {
+   "a": "Superintelligence worries are a distraction from jobs.",
+   "c": "Many researchers, including some who signed later warnings, think both are real and that the risks are not either or."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What jobs in your area need human care most?",
+  "Is AI a race between countries or a shared project?",
+  "Does Lee's view still hold after ChatGPT?"
+ ],
+ "quiz": [
+  {
+   "q": "What event does Lee call China's Sputnik moment?",
+   "o": [
+    "A rocket launch",
+    "AlphaGo beating top Go players",
+    "A new phone",
+    "A trade deal"
+   ],
+   "a": 1,
+   "w": "Go is hugely popular in China."
+  },
+  {
+   "q": "How many waves of AI does he describe?",
+   "o": [
+    "Two",
+    "Four",
+    "Seven",
+    "Ten"
+   ],
+   "a": 1,
+   "w": "Internet, business, perception, autonomous."
+  },
+  {
+   "q": "What does Lee see as the real crisis?",
+   "o": [
+    "Robots rebelling",
+    "Job losses and inequality",
+    "Slow computers",
+    "Too much data"
+   ],
+   "a": 1,
+   "w": "He focuses on economic disruption."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/ai-superpowers.jpg",
+ "videos": [],
+ "shelfLabel": "Inside the industry",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL17994504W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9781328546395",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

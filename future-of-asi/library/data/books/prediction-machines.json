@@ -1,0 +1,194 @@
+{
+ "id": "prediction-machines",
+ "title": "Prediction Machines",
+ "subtitle": "The Simple Economics of Artificial Intelligence",
+ "authors": [
+  {
+   "name": "Ajay Agrawal",
+   "rid": ""
+  },
+  {
+   "name": "Joshua Gans",
+   "rid": ""
+  },
+  {
+   "name": "Avi Goldfarb",
+   "rid": ""
+  }
+ ],
+ "year": "2018",
+ "publisher": "Harvard Business Review Press",
+ "isbn": "9781633695672",
+ "pages": "250",
+ "ol": "/works/OL19747345W",
+ "shelf": "industry",
+ "level": "Beginner",
+ "pitch": "Three economists boil AI down to one thing: it makes prediction cheap. Then they show what that does to decisions, jobs and strategy.",
+ "toc_src": "https://openlibrary.org/books/OL26960401M",
+ "chapters": [
+  {
+   "t": "Cheap changes everything",
+   "g": "When something gets cheaper we use more of it, and its complements rise in value.",
+   "part": ""
+  },
+  {
+   "t": "The magic of prediction",
+   "g": "Prediction means filling in missing information, which covers far more than forecasting.",
+   "part": ""
+  },
+  {
+   "t": "Why it's called intelligence",
+   "g": "Why prediction feels like intelligence to us.",
+   "part": ""
+  },
+  {
+   "t": "Data is the new oil",
+   "g": "Training, input and feedback data, and when data is worth the cost.",
+   "part": ""
+  },
+  {
+   "t": "The new division of labor",
+   "g": "What humans and machines are each good at predicting.",
+   "part": ""
+  },
+  {
+   "t": "Unpacking decisions",
+   "g": "A decision has parts: prediction, judgment, action and outcome.",
+   "part": ""
+  },
+  {
+   "t": "The value of judgment",
+   "g": "As prediction gets cheap, deciding what you value becomes more important.",
+   "part": ""
+  },
+  {
+   "t": "Taming complexity",
+   "g": "Better prediction lets firms handle more situations instead of simple rules.",
+   "part": ""
+  },
+  {
+   "t": "What machines can learn",
+   "g": "Limits of learning from data, such as cause and effect.",
+   "part": ""
+  },
+  {
+   "t": "Fully automated decision-making",
+   "g": "When it makes sense to take the human out of the loop.",
+   "part": ""
+  },
+  {
+   "t": "Deconstructing workflows",
+   "g": "Breaking jobs into tasks to see where prediction fits.",
+   "part": ""
+  },
+  {
+   "t": "Decomposing decisions",
+   "g": "A canvas for mapping each decision a business makes.",
+   "part": ""
+  },
+  {
+   "t": "Job redesign",
+   "g": "How roles change when parts of them are automated.",
+   "part": ""
+  },
+  {
+   "t": "AI in the C-suite",
+   "g": "AI as a question for strategy, not just IT.",
+   "part": ""
+  },
+  {
+   "t": "When AI transforms your business",
+   "g": "Cases where cheap prediction changes the whole business model.",
+   "part": ""
+  },
+  {
+   "t": "Managing AI risk",
+   "g": "Bias, quality and security risks for firms using AI.",
+   "part": ""
+  },
+  {
+   "t": "Beyond business",
+   "g": "Wider questions about jobs, inequality and power.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "AI makes prediction cheap.",
+  "Cheap prediction raises the value of judgment, data and action.",
+  "Decisions can be broken into parts to see where AI fits.",
+  "Big wins come when cheap prediction changes the whole strategy."
+ ],
+ "args": [
+  {
+   "a": "Seeing AI as cheap prediction makes it easy to understand and plan for.",
+   "c": "Newer generative and agentic systems act and plan, which this frame may undersell."
+  },
+  {
+   "a": "Human judgment will stay valuable.",
+   "c": "If AI also learns judgment from human feedback, that complement may shrink too."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "What prediction in your daily life has become cheaper?",
+  "Which part of a decision would you never hand to a machine?",
+  "Is a language model just a prediction machine?"
+ ],
+ "quiz": [
+  {
+   "q": "What does AI make cheap, according to the authors?",
+   "o": [
+    "Electricity",
+    "Prediction",
+    "Labour",
+    "Land"
+   ],
+   "a": 1,
+   "w": "Their whole frame is economic."
+  },
+  {
+   "q": "What becomes more valuable as prediction gets cheap?",
+   "o": [
+    "Guesswork",
+    "Judgment",
+    "Paper",
+    "Nothing"
+   ],
+   "a": 1,
+   "w": "Judgment is a complement."
+  },
+  {
+   "q": "Which is not one of the parts of a decision they describe?",
+   "o": [
+    "Prediction",
+    "Judgment",
+    "Action",
+    "Luck"
+   ],
+   "a": 3,
+   "w": "Prediction, judgment, action, outcome."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/prediction-machines.jpg",
+ "videos": [],
+ "shelfLabel": "Inside the industry",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL19747345W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9781633695672",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

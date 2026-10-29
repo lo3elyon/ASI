@@ -1,0 +1,126 @@
+{
+ "id": "co-intelligence",
+ "title": "Co-Intelligence",
+ "subtitle": "Living and Working with AI",
+ "authors": [
+  {
+   "name": "Ethan Mollick",
+   "rid": ""
+  }
+ ],
+ "year": "2024",
+ "publisher": "Portfolio (Penguin)",
+ "isbn": "9780593716717",
+ "pages": "",
+ "ol": "/works/OL37565105W",
+ "shelf": "industry",
+ "level": "Beginner",
+ "pitch": "A Wharton professor's practical guide to working with today's AI as a strange new kind of colleague, with simple rules for using it well.",
+ "toc_src": "https://openlibrary.org/works/OL37565105W",
+ "chapters": [
+  {
+   "t": "An alien mind",
+   "g": "Large language models are odd: brilliant at some things, weak at others, and hard to predict.",
+   "part": ""
+  },
+  {
+   "t": "Four rules",
+   "g": "Always invite AI to the table, be the human in the loop, treat AI like a person but tell it what kind, and assume this is the worst AI you will ever use.",
+   "part": ""
+  },
+  {
+   "t": "AI as many roles",
+   "g": "Using AI as a creative partner, coworker, tutor and coach, with examples from teaching and business.",
+   "part": ""
+  },
+  {
+   "t": "The jagged frontier",
+   "g": "AI is uneven: inside its frontier it boosts performance, outside it can mislead.",
+   "part": ""
+  },
+  {
+   "t": "Futures",
+   "g": "Four scenarios, from AI stalling to fast growth, and what each means for people.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Use AI for everything you can to learn its strengths.",
+  "Keep a human in the loop.",
+  "AI's abilities form a jagged frontier.",
+  "Today's AI is the worst you will use."
+ ],
+ "args": [
+  {
+   "a": "Everyone should start using AI now to learn it.",
+   "c": "Critics worry about overreliance, errors and losing skills."
+  },
+  {
+   "a": "AI mostly boosts workers.",
+   "c": "Studies show both gains and harms, depending on the task and whether it sits inside the frontier."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Where is the jagged frontier in your work?",
+  "Which of the four rules is hardest to follow?",
+  "What skill would you protect from AI?"
+ ],
+ "quiz": [
+  {
+   "q": "What does the jagged frontier describe?",
+   "o": [
+    "A border",
+    "AI's uneven abilities across tasks",
+    "A video game",
+    "Chip shapes"
+   ],
+   "a": 1,
+   "w": "Good at some tasks, bad at nearby ones."
+  },
+  {
+   "q": "What is one of Mollick's rules?",
+   "o": [
+    "Never use AI",
+    "Be the human in the loop",
+    "Trust AI fully",
+    "Use only one tool"
+   ],
+   "a": 1,
+   "w": "Keep human oversight."
+  },
+  {
+   "q": "Where does Mollick teach?",
+   "o": [
+    "MIT",
+    "Wharton",
+    "Oxford",
+    "Stanford"
+   ],
+   "a": 1,
+   "w": "University of Pennsylvania's Wharton School."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/co-intelligence.jpg",
+ "videos": [],
+ "shelfLabel": "Inside the industry",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL37565105W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780593716717",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

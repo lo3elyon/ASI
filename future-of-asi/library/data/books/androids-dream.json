@@ -1,0 +1,126 @@
+{
+ "id": "androids-dream",
+ "title": "Do Androids Dream of Electric Sheep?",
+ "subtitle": "",
+ "authors": [
+  {
+   "name": "Philip K. Dick",
+   "rid": ""
+  }
+ ],
+ "year": "1968",
+ "publisher": "Doubleday",
+ "isbn": "",
+ "pages": "210",
+ "ol": "/works/OL2172356W",
+ "shelf": "fiction",
+ "level": "Intermediate",
+ "pitch": "A bounty hunter retires escaped androids in a ruined San Francisco, and starts to doubt what separates them from humans. The basis for Blade Runner.",
+ "toc_src": "https://openlibrary.org/works/OL2172356W",
+ "chapters": [
+  {
+   "t": "A dying Earth",
+   "g": "After a world war most animals are gone, and owning a real animal is a mark of status and care.",
+   "part": ""
+  },
+  {
+   "t": "The Voigt-Kampff test",
+   "g": "Androids are detected with an empathy test, the only sure difference from humans.",
+   "part": ""
+  },
+  {
+   "t": "Rick Deckard's hunt",
+   "g": "Deckard must retire six escaped Nexus-6 androids in a single long day.",
+   "part": ""
+  },
+  {
+   "t": "Doubt",
+   "g": "Androids that seem human, and humans who seem cold, blur the line.",
+   "part": ""
+  },
+  {
+   "t": "Mercer",
+   "g": "A shared empathy religion that may be fake, and still matters.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Empathy may be what makes us human.",
+  "Tests for being human can fail.",
+  "Machines that seem human raise moral questions.",
+  "Real and fake may matter less than how we treat others."
+ ],
+ "args": [
+  {
+   "a": "The novel shows a test for machine minds can never be complete.",
+   "c": "Some read the androids as simply lacking empathy, so the line holds."
+  },
+  {
+   "a": "We may owe moral care to beings that seem human.",
+   "c": "Others argue appearance is not enough to deserve rights."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Would you pass the Voigt-Kampff test?",
+  "What test would you use to tell an AI from a person?",
+  "Does it matter if the empathy you feel is for something fake?"
+ ],
+ "quiz": [
+  {
+   "q": "How are androids detected?",
+   "o": [
+    "X-rays",
+    "An empathy test",
+    "DNA",
+    "Blood tests"
+   ],
+   "a": 1,
+   "w": "The Voigt-Kampff test."
+  },
+  {
+   "q": "What film is based on the novel?",
+   "o": [
+    "The Matrix",
+    "Blade Runner",
+    "Ex Machina",
+    "Her"
+   ],
+   "a": 1,
+   "w": "Ridley Scott, 1982."
+  },
+  {
+   "q": "What is a status symbol on this Earth?",
+   "o": [
+    "Cars",
+    "Owning a real animal",
+    "Gold",
+    "Phones"
+   ],
+   "a": 1,
+   "w": "Most animals are gone."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/androids-dream.jpg",
+ "videos": [],
+ "shelfLabel": "Fiction about AI",
+ "shelfColor": "#22d3ee",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL2172356W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=Do%20Androids%20Dream%20of%20Electric%20Sheep%3F%20Philip%20K.%20Dick",
+   "free": true
+  }
+ ],
+ "toc_note": "The novel's chapters are numbered without titles. No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

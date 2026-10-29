@@ -1,0 +1,126 @@
+{
+ "id": "myth-of-ai",
+ "title": "The Myth of Artificial Intelligence",
+ "subtitle": "Why Computers Can't Think the Way We Do",
+ "authors": [
+  {
+   "name": "Erik J. Larson",
+   "rid": ""
+  }
+ ],
+ "year": "2021",
+ "publisher": "Belknap Press of Harvard University Press",
+ "isbn": "9780674278660",
+ "pages": "320",
+ "ol": "/works/OL27275324W",
+ "shelf": "skeptic",
+ "level": "Intermediate",
+ "pitch": "A computer scientist argues that today's AI cannot do abduction, the everyday leap to the best explanation, and that hype about general AI is a myth that hurts science.",
+ "toc_src": "https://openlibrary.org/works/OL27275324W",
+ "chapters": [
+  {
+   "t": "The myth",
+   "g": "The belief that general AI is coming soon, and how it shapes funding and culture.",
+   "part": ""
+  },
+  {
+   "t": "Three kinds of inference",
+   "g": "Deduction and induction are what machines do well; abduction, guessing the best explanation, is what they lack.",
+   "part": ""
+  },
+  {
+   "t": "Why data is not enough",
+   "g": "Learning from big data finds patterns, but common sense needs more than patterns.",
+   "part": ""
+  },
+  {
+   "t": "Language and understanding",
+   "g": "Why understanding language needs world knowledge machines do not have.",
+   "part": ""
+  },
+  {
+   "t": "The cost of the myth",
+   "g": "Hype pushes out real science and invites us to undervalue human minds.",
+   "part": ""
+  }
+ ],
+ "guide_kind": "themes",
+ "ideas": [
+  "Abductive inference is the missing piece of AI.",
+  "Induction from data cannot give common sense.",
+  "No one knows how to build general AI.",
+  "The myth of inevitable AI harms science."
+ ],
+ "args": [
+  {
+   "a": "Current methods cannot produce general intelligence.",
+   "c": "Since the book, large language models showed abilities many thought needed common sense, though debate continues."
+  },
+  {
+   "a": "AI hype damages research culture.",
+   "c": "Others think ambitious goals have driven real progress."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Give an example of abduction from your own day.",
+  "Did ChatGPT prove Larson wrong, or right?",
+  "What would convince you AI has common sense?"
+ ],
+ "quiz": [
+  {
+   "q": "What kind of inference does Larson say AI lacks?",
+   "o": [
+    "Deduction",
+    "Induction",
+    "Abduction",
+    "Addition"
+   ],
+   "a": 2,
+   "w": "The leap to the best explanation."
+  },
+  {
+   "q": "What is the myth?",
+   "o": [
+    "That computers exist",
+    "That general AI is inevitable and near",
+    "That math works",
+    "That data is useful"
+   ],
+   "a": 1,
+   "w": "He argues it is not inevitable."
+  },
+  {
+   "q": "Which press published it?",
+   "o": [
+    "Penguin",
+    "Belknap Press of Harvard University Press",
+    "MIT Press",
+    "Oxford"
+   ],
+   "a": 1,
+   "w": "Harvard's Belknap imprint."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "covers/myth-of-ai.jpg",
+ "videos": [],
+ "shelfLabel": "Skeptics",
+ "shelfColor": "#84cc16",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL27275324W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780674278660",
+   "free": true
+  }
+ ],
+ "toc_note": "No published chapter list could be verified, so this guide follows the book's main themes instead of its chapters.",
+ "added": "2026-10-29"
+}

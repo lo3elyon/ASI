@@ -1,0 +1,110 @@
+{
+  "_note": "Fonts to preload per route: the heading and body font that route shows above the fold (at most 3 files). Paths are relative to the route root. Every @font-face uses font-display: swap. The shell (assets/js/core/fonts.js) preloads only the current route's list when it starts, or when a menu link to it is hovered. Shell fonts (Inter, Space Grotesk) are preloaded by index.html. Fonts for other text load only when used.",
+  "home": [
+    "assets/fonts/views3/bricolage.woff2",
+    "assets/fonts/views3/manrope.woff2"
+  ],
+  "futures": [
+    "assets/fonts/views3/syne.woff2",
+    "assets/fonts/views3/outfit.woff2"
+  ],
+  "researchers": [
+    "assets/fonts/views3/dmserif.woff2",
+    "assets/fonts/views3/plexsans.woff2"
+  ],
+  "voices": [
+    "assets/fonts/views3/playfair-italic.woff2",
+    "assets/fonts/views3/worksans.woff2"
+  ],
+  "pacing": [
+    "assets/fonts/views3/archivo.woff2",
+    "assets/fonts/views3/literata.woff2"
+  ],
+  "orgs": [
+    "assets/fonts/pages3/bodoni-moda-wght.woff2",
+    "assets/fonts/pages3/schibsted-grotesk-wght.woff2"
+  ],
+  "timeline": [
+    "assets/fonts/pages3/gloock-400.woff2",
+    "assets/fonts/pages3/newsreader-wght.woff2"
+  ],
+  "watch": [
+    "assets/fonts/pages3/bebas-neue-400.woff2",
+    "assets/fonts/pages3/figtree-wght.woff2"
+  ],
+  "blog": [
+    "assets/fonts/fraunces-latin-wght-normal.woff2",
+    "assets/fonts/views3/literata.woff2"
+  ],
+  "learn": [
+    "assets/fonts/views3/lexend.woff2",
+    "assets/fonts/views3/nunitosans.woff2"
+  ],
+  "control": [
+    "assets/fonts/pages3/chakra-petch-700.woff2",
+    "assets/fonts/pages3/red-hat-text-wght.woff2"
+  ],
+  "docs": [
+    "assets/fonts/views3/plexsans.woff2",
+    "assets/fonts/views3/plexmono-400.woff2"
+  ],
+  "tools": [
+    "assets/fonts/views3/sora.woff2",
+    "assets/fonts/views3/plexmono-400.woff2"
+  ],
+  "prepare": [
+    "assets/fonts/views3/literata.woff2",
+    "assets/fonts/views3/atkinson-400.woff2"
+  ],
+  "history": [
+    "assets/fonts/unbounded-latin-wght-normal.woff2"
+  ],
+  "explosion": [
+    "explosion/fonts/anybody-wght.woff2",
+    "explosion/fonts/onest-wght.woff2"
+  ],
+  "library": [
+    "library/fonts/eb-garamond-wght.woff2",
+    "library/fonts/mulish-wght.woff2"
+  ],
+  "papers": [
+    "assets/fonts/extra/source-serif-4.woff2",
+    "assets/fonts/extra/source-sans-3.woff2"
+  ],
+  "concepts": [
+    "assets/fonts/extra/familjen-grotesk.woff2",
+    "assets/fonts/extra/instrument-sans.woff2"
+  ],
+  "agents": [
+    "assets/fonts/extra/oxanium.woff2",
+    "assets/fonts/extra/barlow-400.woff2"
+  ],
+  "arena": [
+    "assets/fonts/extra/big-shoulders-display.woff2",
+    "assets/fonts/extra/rubik.woff2"
+  ],
+  "debates": [
+    "assets/fonts/extra/cormorant-garamond-600.woff2",
+    "assets/fonts/extra/karla.woff2"
+  ],
+  "careers": [
+    "assets/fonts/extra/plus-jakarta-sans.woff2",
+    "assets/fonts/extra/hanken-grotesk.woff2"
+  ],
+  "policy": [
+    "assets/fonts/extra/ibm-plex-serif-500.woff2",
+    "assets/fonts/extra/public-sans.woff2"
+  ],
+  "numbers": [
+    "assets/fonts/extra/azeret-mono.woff2",
+    "assets/fonts/extra/albert-sans.woff2"
+  ],
+  "kids": [
+    "assets/fonts/extra/fredoka.woff2",
+    "assets/fonts/extra/andika-400.woff2"
+  ],
+  "bharat": [
+    "assets/fonts/extra/mukta-400.woff2",
+    "assets/fonts/extra/noto-serif-bengali.woff2"
+  ]
+}

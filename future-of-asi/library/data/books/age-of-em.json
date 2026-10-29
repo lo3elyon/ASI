@@ -1,0 +1,276 @@
+{
+ "id": "age-of-em",
+ "title": "The Age of Em",
+ "subtitle": "Work, Love, and Life when Robots Rule the Earth",
+ "authors": [
+  {
+   "name": "Robin Hanson",
+   "rid": "robin-hanson"
+  }
+ ],
+ "year": "2016",
+ "publisher": "Oxford University Press",
+ "isbn": "9780198754626",
+ "pages": "426",
+ "ol": "/works/OL20030934W",
+ "shelf": "future",
+ "level": "Advanced",
+ "pitch": "An economist takes one path to advanced AI, copying human brains into software, and works out in detail what the world of those copies might look like.",
+ "toc_src": "https://openlibrary.org/books/OL27210980M",
+ "chapters": [
+  {
+   "t": "Start",
+   "g": "Why try to describe a future in detail at all, and why brain emulations are a useful case to study.",
+   "part": "Basics"
+  },
+  {
+   "t": "Modes",
+   "g": "How eras of history differ in their modes of life: foragers, farmers, industry, and a possible em era.",
+   "part": "Basics"
+  },
+  {
+   "t": "Framing",
+   "g": "The ground rules Hanson uses: standard social science applied to a strange new setting.",
+   "part": "Basics"
+  },
+  {
+   "t": "Assumptions",
+   "g": "What he takes as given: emulations are possible, they can be copied, and they are cheap to run.",
+   "part": "Basics"
+  },
+  {
+   "t": "Implementation",
+   "g": "How scanning a brain and running it on hardware might work, and what that implies.",
+   "part": "Basics"
+  },
+  {
+   "t": "Scales",
+   "g": "Ems can run faster or slower than humans, which changes everything about time and size.",
+   "part": "Physics"
+  },
+  {
+   "t": "Infrastructure",
+   "g": "Cooling, energy and hardware for huge dense cities of computers.",
+   "part": "Physics"
+  },
+  {
+   "t": "Appearances",
+   "g": "Ems mostly live in virtual reality, so how things look becomes a choice.",
+   "part": "Physics"
+  },
+  {
+   "t": "Information",
+   "g": "Copying, storage and security of minds and their data.",
+   "part": "Physics"
+  },
+  {
+   "t": "Existence",
+   "g": "What it means for a mind to be copied, paused, sped up or ended.",
+   "part": "Physics"
+  },
+  {
+   "t": "Farewells",
+   "g": "How ems might think about ending a copy, and what retirement looks like for them.",
+   "part": "Physics"
+  },
+  {
+   "t": "Labor",
+   "g": "With unlimited copies, wages fall towards the cost of running a mind.",
+   "part": "Economics"
+  },
+  {
+   "t": "Efficiency",
+   "g": "Competition selects the most productive minds and the most efficient ways to live.",
+   "part": "Economics"
+  },
+  {
+   "t": "Work",
+   "g": "What em jobs and workdays might be like, including short lived copies for single tasks.",
+   "part": "Economics"
+  },
+  {
+   "t": "Business",
+   "g": "Firms, finance and markets in a world of copyable workers.",
+   "part": "Economics"
+  },
+  {
+   "t": "Growth",
+   "g": "Why the em economy could double very fast compared with ours.",
+   "part": "Economics"
+  },
+  {
+   "t": "Lifecycle",
+   "g": "Training, peak years and old age for minds that can be copied at their best moment.",
+   "part": "Economics"
+  },
+  {
+   "t": "Clumping",
+   "g": "Why ems would cluster in a few very dense cities.",
+   "part": "Organization"
+  },
+  {
+   "t": "Groups",
+   "g": "Clans of copies of the same person and how they cooperate.",
+   "part": "Organization"
+  },
+  {
+   "t": "Conflict",
+   "g": "Sources of conflict and how it might be kept in check.",
+   "part": "Organization"
+  },
+  {
+   "t": "Politics",
+   "g": "How ems might govern themselves, from firms to cities.",
+   "part": "Organization"
+  },
+  {
+   "t": "Rules",
+   "g": "Law, contracts and norms when copies share one past.",
+   "part": "Organization"
+  },
+  {
+   "t": "Mating",
+   "g": "Romance and relationships among ems.",
+   "part": "Sociology"
+  },
+  {
+   "t": "Signals",
+   "g": "What ems might do to show status and loyalty.",
+   "part": "Sociology"
+  },
+  {
+   "t": "Collaboration",
+   "g": "How teams of copies work together.",
+   "part": "Sociology"
+  },
+  {
+   "t": "Society",
+   "g": "Culture, religion and values in the em world.",
+   "part": "Sociology"
+  },
+  {
+   "t": "Minds",
+   "g": "How em minds might change over time, including small tweaks to brains.",
+   "part": "Sociology"
+  },
+  {
+   "t": "Variations",
+   "g": "Other ways the story could go if his assumptions are wrong.",
+   "part": "Implications"
+  },
+  {
+   "t": "Choices",
+   "g": "What humans today could do, given this possible future.",
+   "part": "Implications"
+  },
+  {
+   "t": "Finale",
+   "g": "Hanson's closing view: strange, but not necessarily bad, for those who live it.",
+   "part": "Implications"
+  }
+ ],
+ "guide_kind": "chapters",
+ "ideas": [
+  "If minds can be copied, the economics of labour change completely.",
+  "Competition would push ems towards subsistence wages and high productivity.",
+  "An em economy could grow far faster than ours.",
+  "Detailed forecasting with standard social science is possible, even if uncertain."
+ ],
+ "args": [
+  {
+   "a": "Brain emulation is a plausible early path to human level AI, so it is worth studying in detail.",
+   "c": "Most researchers now expect large learned models, not scanned brains, to reach human level first, which makes the em scenario less likely."
+  },
+  {
+   "a": "Ems living at subsistence could still have lives worth living.",
+   "c": "Critics say a world where most minds are short lived copies at bare cost sounds like a catastrophe for those minds."
+  }
+ ],
+ "quotes": [],
+ "questions": [
+  "Would you agree to be copied if your copies did most of the world's work?",
+  "Does it matter morally if a copy of you is switched off after one task?",
+  "Which parts of Hanson's method still help if AI does not come from brain scans?"
+ ],
+ "quiz": [
+  {
+   "q": "What is an em in this book?",
+   "o": [
+    "A robot body",
+    "A software emulation of a scanned human brain",
+    "An emergency AI shutdown",
+    "A type of chip"
+   ],
+   "a": 1,
+   "w": "Em is short for emulation."
+  },
+  {
+   "q": "Why would em wages fall?",
+   "o": [
+    "Laws would ban high pay",
+    "Ems can be copied, so labour supply becomes nearly unlimited",
+    "Ems do not like money",
+    "Humans would refuse to pay"
+   ],
+   "a": 1,
+   "w": "Cheap copies push the price of labour down."
+  },
+  {
+   "q": "How can ems change the speed of their lives?",
+   "o": [
+    "By running on faster or slower hardware",
+    "By sleeping less",
+    "By moving to space",
+    "They cannot"
+   ],
+   "a": 0,
+   "w": "Speed is a choice of hardware and cost."
+  }
+ ],
+ "free": null,
+ "kw": [],
+ "kind": "book",
+ "cover": "",
+ "videos": [
+  {
+   "id": "1u5qMZvd6ps",
+   "title": "Will AI Destroy Humanity? | Robin Hanson vs. David Krueger",
+   "channel": "Hermetiq",
+   "date": "2026-10-02",
+   "duration": "0:54:34",
+   "summary": "Robin Hanson and David Krueger debate if AI will destroy humanity."
+  },
+  {
+   "id": "dTQb6N3_zu8",
+   "title": "Robin Hanson vs. Liron Shapira: Is Near-Term Extinction From AGI Plausible?",
+   "channel": "Doom Debates",
+   "date": "2024-07-08",
+   "duration": "2:08:36",
+   "summary": "Robin Hanson and Liron Shapira debate if near term extinction from AGI is plausible."
+  },
+  {
+   "id": "28Y0v5epLE4",
+   "title": "Why Eliezer Yudkowsky is Wrong with Robin Hanson",
+   "channel": "Bankless",
+   "date": "2023-04-17",
+   "duration": "1:45:13",
+   "summary": "Robin Hanson explains why he thinks Yudkowsky is wrong."
+  }
+ ],
+ "shelfLabel": "Futures",
+ "shelfColor": "#3b82f6",
+ "where": [
+  {
+   "label": "Borrow or find in a library (Open Library)",
+   "url": "https://openlibrary.org/works/OL20030934W",
+   "free": true
+  },
+  {
+   "label": "Find in a library near you (WorldCat)",
+   "url": "https://search.worldcat.org/search?q=bn%3A9780198754626",
+   "free": true
+  }
+ ],
+ "toc_note": null,
+ "added": "2026-10-29"
+}

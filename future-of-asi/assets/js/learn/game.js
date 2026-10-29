@@ -2,6 +2,7 @@
    Old progress (course.done[lessonId], course.quiz[unitId] as a number) keeps counting. */
 import { store, RM, esc } from "../util.js";
 import { ui } from "../core/sound.js";
+import { emblem, badgeColor } from "../core/badges.js";
 
 export const P = () => { const p = store.get("course", {}); p.done = p.done || {}; p.quiz = p.quiz || {}; p.acts = p.acts || {}; p.ch = p.ch || {}; p.boss = p.boss || {}; p.badges = p.badges || {}; p.daily = p.daily || { days: [], answers: {} }; return p; };
 export const save = (p) => store.set("course", p);
@@ -57,8 +58,8 @@ export function badgeList(course) {
   if (fe && fe.badge) B.push({ id: fe.badge.id, name: fe.badge.name, desc: fe.badge.desc, c: "#84cc16", test: (p) => p.final && p.final.best >= (fe.pass_count || 20) });
   return B;
 }
-const mono = (n) => n.split(/\s+/).map((w) => w[0]).join("").slice(0, 2).toUpperCase();
-export const badgeHtml = (b, got) => `<div class="badge ${got ? "got" : ""}" style="--c:${b.c}"><div class="md">${esc(mono(b.name))}</div><b>${esc(b.name)}</b><span>${esc(got ? b.desc : "Locked. " + b.desc)}</span></div>`;
+const LOCK = '<svg class="lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>';
+export const badgeHtml = (b, got) => `<div class="badge b3 ${got ? "got" : ""}" tabindex="0" style="--c:${badgeColor(b.id, b.c)}" aria-label="${esc(b.name)}, ${got ? "earned" : "locked"}. ${esc(b.desc)}">${got ? "" : LOCK}<span class="em">${emblem(b.id, b.name)}</span><b>${esc(b.name)}</b><span class="d">${esc(got ? b.desc : "Locked. " + b.desc)}</span></div>`;
 
 /* Call after any progress change: saves, then celebrates newly earned badges and level ups */
 export function commit(course, p, { celebrate = true } = {}) {
@@ -76,7 +77,7 @@ export function commit(course, p, { celebrate = true } = {}) {
 export function unlockShow(b, more = 0) {
   ui("success");
   const w = document.createElement("div"); w.className = "unlock"; w.setAttribute("role", "status");
-  w.innerHTML = `<div class="card" style="--c:${b.c}"><div class="md">${esc(mono(b.name))}</div><div class="eyebrow" style="color:var(--amber)">Badge unlocked</div><h3 style="margin:8px 0 6px">${esc(b.name)}</h3><p>${esc(b.desc)}${more ? ` Plus ${more} more.` : ""}</p><button class="btn sm" type="button" style="margin-top:14px">Nice</button></div>`;
+  w.innerHTML = `<div class="card" style="--c:${badgeColor(b.id, b.c)}"><div class="md em3">${emblem(b.id, b.name)}</div><div class="eyebrow" style="color:var(--amber)">Badge unlocked</div><h3 style="margin:8px 0 6px">${esc(b.name)}</h3><p>${esc(b.desc)}${more ? ` Plus ${more} more.` : ""}</p><button class="btn sm" type="button" style="margin-top:14px">Nice</button></div>`;
   document.body.appendChild(w);
   const done = () => w.remove();
   w.querySelector("button").onclick = done;
