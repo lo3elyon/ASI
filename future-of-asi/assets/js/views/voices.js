@@ -19,6 +19,7 @@ export async function render(el) {
       <p class="count" id="vcount" style="margin-top:14px"></p></div>
     </div>
   </section>
+  <section class="kinetic" aria-hidden="true">${kinetic(all)}</section>
   <section class="section tight"><div class="wrap">
     <div class="sec-head"><div><h2>Every quote, <span class="serif">with its source.</span></h2><p class="muted" style="margin:0">${all.length} quotes from ${ppl.filter((p) => p.quotes.length).length} people. Tap a name to see their full profile.</p></div>
     <div class="chips" role="group" aria-label="Filter quotes"><button class="chip on" data-g="all" type="button">All</button>${Object.keys(GROUPS).filter((g) => all.some((q) => q.p.group === g)).map((g) => `<button class="chip" data-g="${g}" type="button">${GROUPS[g].label}</button>`).join("")}</div></div>
@@ -54,4 +55,13 @@ export async function render(el) {
   $$("[data-g]", el).forEach((b) => b.addEventListener("click", () => { $$("[data-g]", el).forEach((x) => x.classList.toggle("on", x === b)); wall(b.dataset.g); }));
   wall("all");
   return () => { clearTimeout(timer); document.removeEventListener("keydown", onKey); };
+}
+
+function kinetic(all) {
+  const W = ["control", "extinction", "risk", "warning", "smarter", "power", "careful", "future", "humanity", "danger", "alignment", "safety", "intelligence", "survive"];
+  const cnt = W.map((w) => [w, all.filter((q) => new RegExp(`\\b${w}`, "i").test(q.text)).length]).filter((x) => x[1]).sort((a, b) => b[1] - a[1]);
+  const words = cnt.length ? cnt.map((x) => x[0]) : W;
+  const cls = ["gt-ember", "gt", "gt-sea", "gt-mint"];
+  const line = (k) => { const ws = words.slice(k).concat(words.slice(0, k)); return `<div class="ln">${[...ws, ...ws].map((w, i) => `<span class="${i % 2 ? "" : "hot " + cls[(i / 2 + k) % cls.length]}">${esc(w)}</span>`).join("")}</div>`; };
+  return line(0) + line(3) + line(6);
 }

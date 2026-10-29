@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="cyan">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>The Intelligence Explosion: recursive self-improvement, takeoff speeds and what agents want | Threshold</title>
+  <meta name="description" content="An interactive, sourced guide to the intelligence explosion: I. J. Good 1965, Vinge's singularity, Bostrom's takeoff kinetics, Christiano vs Yudkowsky on takeoff speed, Epoch AI compute trends, METR task length doubling, AI 2027, Anthropic's 2026 recursive self-improvement data, Pacing the Frontier, and the evidence on power seeking, scheming, alignment faking, reward hacking and shutdown resistance.">
+  <meta name="author" content="Aniruddha Adak">
+  <meta name="theme-color" content="#07111f">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://lo3elyon.github.io/ASI/future-of-asi/explosion/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Threshold: The Future of ASI">
+  <meta property="og:title" content="The Intelligence Explosion | Threshold">
+  <meta property="og:description" content="When AI starts making better AI. The idea, the evidence, the people warning us, and what agents seem to want. Interactive and sourced.">
+  <meta property="og:url" content="https://lo3elyon.github.io/ASI/future-of-asi/explosion/">
+  <meta property="og:image" content="https://lo3elyon.github.io/ASI/future-of-asi/shared/img/explosion-hero.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../shared/brand/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../shared/brand/icon-192.png">
+  <link rel="preload" href="../shared/fonts/Inter.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../shared/fonts/SpaceGrotesk.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../shared/fonts.css">
+  <link rel="stylesheet" href="../shared/threshold.css">
+  <link rel="stylesheet" href="explosion.css">
+  <script>
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem("thr:prefs") || "{}"), r = document.documentElement;
+        if (s.theme) r.dataset.theme = s.theme; else if (window.matchMedia && matchMedia("(prefers-contrast: more)").matches) r.dataset.theme = "contrast";
+        if (s.accent) r.dataset.accent = s.accent;
+        if (s.motion === "off") r.classList.add("rm");
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Article","headline":"The Intelligence Explosion","author":{"@type":"Person","name":"Aniruddha Adak","url":"https://github.com/lo3elyon"},"datePublished":"2026-10-29","isPartOf":{"@type":"WebSite","name":"Threshold: The Future of ASI","url":"https://lo3elyon.github.io/ASI/future-of-asi/"},"image":"https://lo3elyon.github.io/ASI/future-of-asi/shared/img/explosion-hero.jpg"}
+  </script>
+</head>
+<body class="xp">
+  <nav class="rail" id="rail" aria-label="Chapters"></nav>
+  <div class="xprog" aria-hidden="true"><i id="xprog"></i></div>
+
+  <main id="main" tabindex="-1">
+    <section class="xhero" id="top">
+      <div class="bg" style="background-image:url(../shared/img/explosion-hero.jpg)" role="img" aria-label="A glowing spiral of light that loops inside itself and then shoots straight up"></div>
+      <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+      <div class="wrap inner">
+        <span class="eyebrow">Threshold deep dive</span>
+        <h1>The Intelligence <span class="serif"><em>Explosion</em></span></h1>
+        <p class="lead">What happens when AI starts doing the work of making better AI. The old idea, the new evidence, the people who keep warning us, and what agents seem to want. Everything here links to its source.</p>
+        <div class="row" style="margin-top:26px">
+          <a class="btn primary" href="#loop">Run the loop<span class="shine"></span></a>
+          <a class="btn ghost" href="#mind">Look inside an agent</a>
+        </div>
+        <div class="stat-strip" id="heroStats">
+          <div><b>80%+</b><span>of Anthropic's merged code written by Claude, May 2026</span></div>
+          <div><b>26%</b><span>of Anthropic's AI R&amp;D led by Claude, August 2026</span></div>
+          <div><b>~4 mo</b><span>recent doubling time of AI task length, down from ~7</span></div>
+          <div><b>1,386</b><span>lab employees asking for a way to pace the frontier</span></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#idea" aria-label="Scroll to the first chapter"><i></i></a>
+    </section>
+
+    <!-- 01 The idea -->
+    <section class="chap" id="idea" data-n="01" data-t="The idea">
+      <div class="wrap chead rv">
+        <span class="eyebrow">01 · The idea</span>
+        <h2>The last invention <span class="serif"><em>we need make</em></span></h2>
+        <p class="lead">In 1965 the statistician I. J. Good wrote down a simple loop. A machine smart enough to design machines could design a smarter one, which could design a smarter one again. He called it an intelligence explosion. Scroll through how the idea grew.</p>
+      </div>
+      <div class="story xstory" id="story">
+        <div class="sticky"><canvas id="spiral" aria-hidden="true"></canvas><div class="story-yr" id="storyYr" aria-hidden="true">1863</div></div>
+        <div class="steps" id="storySteps"></div>
+      </div>
+      <div class="wrap">
+        <figure class="bigq rv" id="goodQuote"></figure>
+      </div>
+    </section>
+
+    <!-- 02 The loop -->
+    <section class="chap" id="loop" data-n="02" data-t="The loop">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">02 · The loop</span>
+          <h2>Run the <span class="serif"><em>recursive loop</em></span></h2>
+          <p class="lead">Better AI does more AI research. More research makes better AI. Whether this loop fizzles or explodes depends on a few numbers nobody knows yet. Move the sliders and watch the curve.</p>
+        </div>
+        <div class="sim card rv" id="sim">
+          <div class="sim-ctl">
+            <div class="presets chips" id="simPresets" role="group" aria-label="Presets"></div>
+            <div class="slider"><label for="sK">AI research speedup <output id="oK"></output></label><p>How much research one unit of AI capability adds, compared with today's human researchers.</p><input type="range" id="sK" min="0" max="100" value="40"></div>
+            <div class="slider"><label for="sG">Compute growth <output id="oG"></output></label><p>How fast the compute for running AI researchers grows each year. Epoch AI measures about 3.4x a year for the world's AI chip stock.</p><input type="range" id="sG" min="0" max="100" value="45"></div>
+            <div class="slider"><label for="sR">Feedback strength <output id="oR"></output></label><p>Returns to research. Above 1, each improvement makes the next one easier, so the loop runs away. Below 1, ideas get harder to find faster than AI helps.</p><input type="range" id="sR" min="0" max="100" value="50"></div>
+            <div class="slider"><label for="sB">Bottlenecks <output id="oB"></output></label><p>Things AI cannot speed up: experiments that need real time, chips, power, human review. Amdahl's law in action.</p><input type="range" id="sB" min="0" max="100" value="30"></div>
+          </div>
+          <div class="sim-view">
+            <div class="sim-top">
+              <canvas id="loopCv" class="loopcv" aria-label="Animated loop: AI does research, research makes better AI" role="img"></canvas>
+              <div class="sim-read" aria-live="polite">
+                <div><small>Regime</small><b id="rRegime">Steady</b></div>
+                <div><small>AI research multiplier, year 10</small><b id="rMult">1x</b></div>
+                <div><small>Fastest doubling</small><b id="rDbl">-</b></div>
+                <div><small>1,000x better by</small><b id="rK">-</b></div>
+              </div>
+            </div>
+            <canvas id="curveCv" class="curvecv" role="img" aria-label="Capability over ten years compared with a humans only baseline"></canvas>
+            <p class="note">A toy model, not a forecast. It follows the shape of semi endogenous growth models used by Tom Davidson, Daniel Eth and others: progress = (research effort)<sup>λ</sup> with diminishing returns, and AI adds to research effort as it improves. The dashed line is humans only.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 03 Fast or slow -->
+    <section class="chap" id="speed" data-n="03" data-t="Fast or slow">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">03 · Takeoff speed</span>
+          <h2>Fast or slow, <span class="serif"><em>and why it matters</em></span></h2>
+          <p class="lead">Nearly everyone in this debate expects AI to speed up AI. The fight is about how sudden it is. A slow takeoff gives us years of warning signs. A fast one gives us days.</p>
+        </div>
+        <div class="kin card rv" id="kin"></div>
+        <div class="cmp card rv" id="cmp">
+          <div class="cmp-head">
+            <div class="chips" role="group" aria-label="Pick a view" id="cmpViews"></div>
+            <div class="slider" style="min-width:min(100%,340px)"><label for="sWarn">Time from human level to far beyond <output id="oWarn"></output></label><input type="range" id="sWarn" min="0" max="100" value="55"></div>
+          </div>
+          <canvas id="cmpCv" class="cmpcv" role="img" aria-label="Two takeoff curves compared, with the warning time shaded"></canvas>
+          <div class="cmp-cards" id="cmpCards"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 The fuel -->
+    <section class="chap" id="fuel" data-n="04" data-t="The fuel">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">04 · The fuel</span>
+          <h2>Compute, algorithms, <span class="serif"><em>and longer tasks</em></span></h2>
+          <p class="lead">Two engines drive AI progress. More compute, and better algorithms that get more out of the same compute. Epoch AI tracks both. METR tracks what comes out: how long a task an AI agent can finish on its own.</p>
+        </div>
+        <div class="grid g4 fuelgrid" id="fuelGrid"></div>
+        <div class="metr card rv" id="metr">
+          <div class="metr-ctl">
+            <h3>Task length an AI can finish</h3>
+            <p class="muted">Points are real measurements. The dotted line is an extrapolation you control. It is not a prediction.</p>
+            <div class="chips" role="group" aria-label="Doubling time" id="dblBtns">
+              <button class="chip" type="button" data-d="7" aria-pressed="false">Doubling every 7 months (2019 to 2025 trend)</button>
+              <button class="chip" type="button" data-d="4" aria-pressed="true">Doubling every 4 months (recent trend)</button>
+            </div>
+            <div class="metr-out" id="metrOut" aria-live="polite"></div>
+          </div>
+          <canvas id="metrCv" class="metrcv" role="img" aria-label="Log scale chart of AI task time horizon by date"></canvas>
+          <p class="note" id="metrNote"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 Now -->
+    <section class="chap" id="now" data-n="05" data-t="It has started">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">05 · It has started</span>
+          <h2>When AI <span class="serif"><em>builds itself</em></span></h2>
+          <p class="lead">In June 2026 Anthropic published data from inside its own lab. AI is already doing a large part of the work of building the next AI. The missing piece is judgment: choosing which problems matter.</p>
+        </div>
+        <div class="ladder rv" id="ladder"></div>
+        <div class="grid g3 antstats" id="antStats"></div>
+        <div class="al card rv" id="alScale"></div>
+        <h3 class="rv" style="margin-top:46px">Three futures Anthropic lays out</h3>
+        <div class="grid g3 futures" id="futures"></div>
+      </div>
+    </section>
+
+    <!-- 06 Chain -->
+    <section class="chap" id="chain" data-n="06" data-t="The chain">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">06 · The chain</span>
+          <h2>From superhuman coder <span class="serif"><em>to superintelligence</em></span></h2>
+          <p class="lead">The AI 2027 team broke the explosion into four milestones. At each one, AI speeds up AI research by a bigger factor. Their median gap from the first to the last is about a year.</p>
+        </div>
+        <div class="chainbox card rv" id="chainBox"></div>
+      </div>
+    </section>
+
+    <!-- 07 Voices -->
+    <section class="chap" id="voices" data-n="07" data-t="What they say">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">07 · What they keep saying</span>
+          <h2>Sixty years <span class="serif"><em>of the same warning</em></span></h2>
+          <p class="lead">Exact words, each with its source. Pioneers, lab leaders, safety researchers and one skeptic, so you can weigh them yourself.</p>
+        </div>
+        <div class="qwall" id="qwall"></div>
+        <div class="pacing card rv" id="pacing"></div>
+      </div>
+    </section>
+
+    <!-- 08 Mind -->
+    <section class="chap" id="mind" data-n="08" data-t="Inside an agent">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">08 · Agent thinking, agent wanting</span>
+          <h2>Inside an <span class="serif"><em>agent's mind</em></span></h2>
+          <p class="lead">Give an agent almost any goal and the same helper goals grow out of it: stay running, keep the goal, get resources, get smarter. Researchers call this instrumental convergence. Pick a goal and watch the tree grow.</p>
+        </div>
+        <div class="mindbox card rv" id="mindBox">
+          <div class="mind-ctl">
+            <div class="chips" id="mindGoals" role="group" aria-label="Pick a final goal"></div>
+            <div class="chips" id="mindFix" role="group" aria-label="Add a safety idea"></div>
+          </div>
+          <svg id="mindSvg" class="mindsvg" viewBox="0 0 1000 560" role="img" aria-label="Goal tree: final goal, task subgoals and instrumental goals"></svg>
+          <div class="mind-info" id="mindInfo" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 Seen -->
+    <section class="chap" id="seen" data-n="09" data-t="What we have seen">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">09 · Agent behaviour</span>
+          <h2>What we have <span class="serif"><em>already seen</em></span></h2>
+          <p class="lead">These used to be thought experiments. Since 2024 many have shown up in real tests on real models. Each card says what was found, why it matters, and links the paper.</p>
+        </div>
+        <div class="toolbar" style="position:static;background:none;padding:0 0 18px">
+          <div class="chips" id="eviFilter" role="group" aria-label="Filter evidence"></div>
+          <span class="count" id="eviCount"></span>
+        </div>
+        <div class="evi" id="evi"></div>
+      </div>
+    </section>
+
+    <!-- 10 Game -->
+    <section class="chap" id="game" data-n="10" data-t="Reward hacking">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">10 · Play</span>
+          <h2>Can you write a reward <span class="serif"><em>it cannot hack?</em></span></h2>
+          <p class="lead">You are training a cleaning robot. Pick a reward rule, press train, and watch what the robot actually learns. Real AI systems have found every one of these tricks.</p>
+        </div>
+        <div class="rgame card rv" id="rgame">
+          <div class="rg-rules" id="rgRules" role="radiogroup" aria-label="Reward rules"></div>
+          <div class="rg-stage">
+            <canvas id="rgCv" class="rgcv" role="img" aria-label="A grid room with a cleaning robot"></canvas>
+            <div class="row" style="margin-top:12px"><button class="btn primary sm" id="rgTrain" type="button">Train the robot</button><button class="btn sm ghost" id="rgReset" type="button">Reset room</button><span class="count" id="rgScore"></span></div>
+            <div class="rg-out" id="rgOut" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11 Watch -->
+    <section class="chap" id="watch" data-n="11" data-t="Watch">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">11 · Watch</span>
+          <h2>Talks and <span class="serif"><em>explainers</em></span></h2>
+          <p class="lead">Every video is verified and plays only when you press play.</p>
+        </div>
+        <div class="chips" id="vTabs" role="tablist" aria-label="Video groups" style="margin-bottom:20px"></div>
+        <div class="vgrid" id="vgrid"></div>
+      </div>
+    </section>
+
+    <!-- Sources -->
+    <section class="chap" id="sources" data-n="12" data-t="Sources">
+      <div class="wrap">
+        <div class="chead rv">
+          <span class="eyebrow">12 · Sources</span>
+          <h2>Everything <span class="serif"><em>this page stands on</em></span></h2>
+          <p class="lead">Read the originals. Numbers were checked against these pages on 29 October 2026.</p>
+        </div>
+        <ol class="srcs" id="srcs"></ol>
+        <div class="callout rv" style="margin-top:40px">
+          <div><h3 style="margin:0 0 6px">Keep going</h3><p class="muted" style="margin:0">Read the books behind these ideas, or see who is working on the problem.</p></div>
+          <div class="row"><a class="btn primary" href="../library/">Open the library</a><a class="btn" href="../#/researchers">Meet the researchers</a></div>
+        </div>
+      </div>
+    </section>
+
+    <noscript><div class="wrap section"><p class="lead">The interactive parts of this page need JavaScript. All data is in <a href="data/explosion.json">data/explosion.json</a>.</p></div></noscript>
+  </main>
+
+  <script type="module" src="explosion.js"></script>
+</body>
+</html>

@@ -11,7 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
-<a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/New-Threshold%3A%20The%20Future%20of%20ASI-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
+<a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/New-Threshold%20Round%202%3A%20explosion%2C%20library%2C%201%2C375%20videos-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
 <a href="#05-watch"><img src="https://img.shields.io/badge/Videos-861%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="861 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
@@ -78,7 +78,7 @@ flowchart LR
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
     L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>325 eps, cinema player, Today's picks, Explore"]
-    L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>73 researchers, 495 videos, control game, course"]
+    L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>218 researchers, 1,375 videos, explosion, library, course"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
@@ -207,7 +207,7 @@ flowchart LR
 </tr>
 <tr>
 <td><a href="future-of-asi/"><code>/future-of-asi/</code></a></td>
-<td><a href="https://lo3elyon.github.io/ASI/future-of-asi/"><b>Threshold: The Future of ASI</b></a><br><sub>The future of ASI in 13 pages: futures explorer, 73 researchers and their warnings, voices wall, timeline, 495 videos, AI control game, course, tools, prepare, orgs, blog, docs</sub></td>
+<td><a href="https://lo3elyon.github.io/ASI/future-of-asi/"><b>Threshold: The Future of ASI</b></a><br><sub>The future of ASI in 15 pages plus two deep dives: futures explorer, 218 researchers with photos and overlays, 1,094 Pacing the Frontier signers, voices, timeline, 1,375 click to play videos, AI control game, 10 unit course with exam, 80 orgs with logos on a globe, intelligence explosion, a 36 title library, history, tools, blog, docs</sub></td>
 <td><sub>Canvas horizon hero, capability vs control gap chart, years to AGI ribbon, branch map with 6 sliders and 5 presets, log scale p(doom) chart, person drawers, word by word quote reveal, 19 video collections and theater player, playable blue team control game, 6 units and 18 lessons with quizzes and a PNG certificate, Carlsmith p(doom) calculator, AGI forecaster, risk dial, 27 step prep checklist, dotted world map of 38 orgs, 11 blog posts, 8 docs pages, 70 term glossary, Ctrl K search, 3 themes and 6 accents, offline mode, 40 second launch film</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-29</sub></td>
@@ -627,8 +627,8 @@ stateDiagram-v2
 <tr>
 <td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="assets/future-of-asi.jpg" width="100%" alt="Threshold cover"></a></td>
 <td width="55%" valign="top">
-<img src="https://img.shields.io/badge/type-13%20page%20route-22d3ee?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Oct%2029%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/researchers-73-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/quotes-123%20sourced-84cc16?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/videos-495%20verified-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/orgs-38-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
-The people who built modern AI are warning that machines smarter than us may arrive within years. Threshold is a calm, sourced guide to what they see coming, the futures we could get, and what we can still do about it. I built it in the spirit of BlueDot Impact and the research labs: learn it, play with it, then act. Every quote was checked word for word against its source, every video ID was checked as public and embeddable, and nothing was made up. Its own <a href="future-of-asi/README.md">README</a> has the full architecture, data schemas and screenshots.
+<img src="https://img.shields.io/badge/type-15%20pages%20%2B%202%20deep%20dives-22d3ee?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Oct%2029%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/researchers-218-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/quotes-152%20sourced-84cc16?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/videos-1%2C375%20verified-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/orgs-80%20with%20logos-3b82f6?style=flat-square&labelColor=07111f" alt=""><br><br>
+The people who built modern AI are warning that machines smarter than us may arrive within years. Threshold is a calm, sourced guide to what they see coming, the futures we could get, and what we can still do about it. I built it in the spirit of BlueDot Impact and the research labs: learn it, play with it, then act. Every quote was checked word for word against its source, every video ID was checked as public and embeddable, and nothing was made up. Round 2 added overlays that keep your place, 1,094 Pacing the Frontier signers, real photos and logos, a 10 unit course with an exam, an <a href="future-of-asi/explosion/">intelligence explosion</a> deep dive and a <a href="future-of-asi/library/">library</a> of 36 titles with a reader that shows full text only where the licence allows. Its own <a href="future-of-asi/README.md">README</a> has the full architecture, data schemas and screenshots.
 </td>
 </tr>
 </table>
@@ -638,13 +638,15 @@ flowchart LR
     D[("data/*.json<br/>researchers, videos, orgs,<br/>timeline, resources, prep")] --> R["Hash router<br/>#/page/id"]
     R --> H["Home<br/>horizon hero, gap chart"]
     R --> F["Futures<br/>6 sliders, branch map"]
-    R --> P["Researchers<br/>p(doom) chart, drawers"]
-    R --> V["Voices and Timeline<br/>123 quotes, 59 events"]
-    R --> W["Watch<br/>495 videos, 19 collections"]
+    R --> P["Researchers<br/>218 people, overlays, constellation"]
+    R --> V["Voices, Timeline, Pacing<br/>152 quotes, 59 events, 1,094 signers"]
+    R --> W["Watch<br/>1,375 videos, 31 collections, click to play"]
     R --> C["AI Control<br/>blue team game"]
-    R --> L["Learn<br/>18 lessons, certificate"]
+    R --> L["Learn<br/>10 units, 43 lessons, boss quizzes, exam"]
     R --> T["Tools<br/>p(doom), forecaster, dial"]
-    R --> X["Prepare, Orgs,<br/>Blog, Docs"]
+    R --> X["Prepare, Orgs globe,<br/>Blog, Docs, History"]
+    R --> E["explosion/<br/>takeoff sim, agent mind"]
+    R --> B["library/<br/>36 titles, reader"]
     W --> S[("localStorage<br/>history, progress, checklist")]
     L --> S
     X --> S
@@ -655,7 +657,7 @@ flowchart LR
     class D,S d
     class H,F,P,V p
     class W,C r
-    class L,T,X,R w
+    class L,T,X,R,E,B w
 ```
 
 <table>
@@ -667,12 +669,22 @@ flowchart LR
 <tr>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/voices"><img src="future-of-asi/docs-shots/voices.jpg" width="100%" alt="Voices"></a><br><sub>Voices wall of exact quotes</sub></td>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/control"><img src="future-of-asi/docs-shots/control-game.jpg" width="100%" alt="Control game"></a><br><sub>Blue team shift: catch the schemer</sub></td>
-<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/watch"><img src="future-of-asi/docs-shots/watch.jpg" width="100%" alt="Watch"></a><br><sub>Watch room: 495 verified videos</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/watch"><img src="future-of-asi/docs-shots/watch.jpg" width="100%" alt="Watch"></a><br><sub>Watch room: 1,375 verified videos</sub></td>
 </tr>
 <tr>
-<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/learn"><img src="future-of-asi/docs-shots/learn.jpg" width="100%" alt="Learn"></a><br><sub>Free course with quizzes</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/learn"><img src="future-of-asi/docs-shots/learn.jpg" width="100%" alt="Learn"></a><br><sub>10 units, boss quizzes, XP and an exam</sub></td>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/prepare"><img src="future-of-asi/docs-shots/prepare.jpg" width="100%" alt="Prepare"></a><br><sub>Prepare: risks, safeguards, checklist</sub></td>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/timeline"><img src="future-of-asi/docs-shots/timeline.jpg" width="100%" alt="Timeline"></a><br><sub>75 years of warnings</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/explosion/"><img src="future-of-asi/docs-shots/explosion.jpg" width="100%" alt="Explosion"></a><br><sub>The intelligence explosion</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/library/"><img src="future-of-asi/docs-shots/library.jpg" width="100%" alt="Library"></a><br><sub>36 title library and reader</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/orgs"><img src="future-of-asi/docs-shots/orgs.jpg" width="100%" alt="Orgs"></a><br><sub>80 orgs with logos on a globe</sub></td>
+</tr>
+<tr>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/pacing"><img src="future-of-asi/docs-shots/pacing.jpg" width="100%" alt="Pacing"></a><br><sub>1,094 named Pacing the Frontier signers</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/researchers"><img src="future-of-asi/docs-shots/researcher-overlay.jpg" width="100%" alt="Overlay"></a><br><sub>Person overlay that keeps your place</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/history"><img src="future-of-asi/docs-shots/history.jpg" width="100%" alt="History"></a><br><sub>Your watch and reading history</sub></td>
 </tr>
 </table>
 
@@ -899,7 +911,7 @@ ASI/
 │   ├── index.html
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
-├── future-of-asi/             Threshold: 13 page route on the future of ASI, 73 researchers, 495 videos, control game, course, tools, blog, docs
+├── future-of-asi/             Threshold: route on the future of ASI, 218 researchers, 1,375 videos, explosion/, library/, shared/, 10 unit course, tools, blog, docs
 ├── ai-safety-full-episodes/   web app route: 325 full AI safety episodes Jul–Oct 2026, Just added row, cinema player, Today's picks, Explore, 31 themes, speaker hub with 287 face photos, heatmaps
 │   ├── index.html             pre-rendered, SEO tags, JSON-LD, CSP
 │   ├── manifest.webmanifest  favicon.svg  favicon.ico  apple-touch-icon.png  robots.txt  sitemap.xml  sw.js
@@ -1095,6 +1107,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-29</sub></td><td>Threshold Round 2 at <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><code>/future-of-asi/</code></a>: person and video overlays that keep your page and scroll, 218 researchers with 137 verified photos, 1,094 Pacing the Frontier signers, 80 orgs with 93 official logos on a 3D globe, 1,375 click to play videos in 31 collections, a history page, search across everything, a 10 unit course with 185 activities, boss quizzes, XP, badges and a final exam, a new <a href="future-of-asi/explosion/">intelligence explosion</a> deep dive, a <a href="future-of-asi/library/">36 title library</a> with a flip book reader (full text only where the licence allows), page motion, and 242 SEO snapshot pages.</td></tr>
 <tr><td><sub>2026-10-29</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><code>/future-of-asi/</code></a>, <b>Threshold: The Future of ASI</b>: 13 pages with a futures explorer, 73 researchers and 123 sourced quotes, a 59 event warnings timeline, 495 verified videos in 19 collections, an AI control explainer with a blue team game, a 6 unit course with a certificate, p(doom) and timeline tools, a prep checklist, 38 orgs on a world map, 11 blog posts, docs, glossary and a 40 second launch film. Hub entry and cover added.</td></tr>
 <tr><td><sub>2026-10-29</sub></td><td><b>AI Safety Full Episodes: a readable reading panel at any width, smarter search and a faster History</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: panel tabs adapt to the divider (text, icons, section picker; 260 px minimum); multi-word search ANDs words across title, speakers, show, tags and month; History pages its timeline (50 rows + Show more) so a long history opens instantly; merged tags, theme and contrast fixes.</td></tr>
 <tr><td><sub>2026-10-28</sub></td><td><b>AI Safety Full Episodes: a clean paused picture and one chapters panel</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: no more black band over the top of a paused video (mini and every mode; a soft frosted fade instead, controls on hover); Chapters opens one docked, resizable split beside the video (or switches the open reading panel to Chapters) instead of a second floating list; full screen keeps its side panel with a collapse handle.</td></tr>

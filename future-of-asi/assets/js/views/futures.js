@@ -21,7 +21,7 @@ export async function render(el, params, query) {
   if (fromQ.length === sliders.length && fromQ.every((n) => n >= 0 && n <= 100)) sliders.forEach((s, i) => (vals[s.id] = fromQ[i]));
   let selected = byId[params[0]] ? params[0] : null;
 
-  el.innerHTML = `${pageHero({ img: "cover-futures", eyebrow: "Futures explorer", title: "Six futures. <span class='serif'>One fork.</span>", lead: "Move the levers on the left. Watch which futures grow and which fade, then open any branch to walk its timeline from 2026 to 2040." })}
+  el.innerHTML = `${pageHero({ img: "cover-futures", eyebrow: "Futures explorer", title: "Six futures. <span class='serif gt'>One fork.</span>", lead: "Move the levers on the left. Watch which futures grow and which fade, then open any branch to walk its timeline from 2026 to 2040." })}
   <section class="section tight"><div class="wrap">
     <p class="disclaimer" style="margin-bottom:24px">${esc(data.note || "")}</p>
     <div class="fut-layout">

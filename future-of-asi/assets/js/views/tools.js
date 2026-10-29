@@ -24,8 +24,8 @@ const logit = (p) => Math.log(p / (1 - p)), sig = (x) => 1 / (1 + Math.exp(-x));
 export async function render(el, params) {
   const [ppl, fc] = await Promise.all([researchers(), load("forecasts.json")]);
   const forecasts = arr(fc, "forecasts").slice().sort((a, b) => a.year - b.year);
-  el.innerHTML = `${pageHero({ img: "cover-tools", eyebrow: "Tools", title: "Think it through <span class='serif'>yourself.</span>", lead: "Three small instruments for your own judgment. They do not predict anything. They make your assumptions visible, so you can argue with them." })}
-  <section class="section tight"><div class="wrap"><div class="tool-tabs" role="tablist">${TABS.map(([id, n]) => `<a class="chip" role="tab" href="#/tools/${id}" data-t="${id}">${n}</a>`).join("")}</div><div id="tool"></div></div></section>`;
+  el.innerHTML = `${pageHero({ img: "cover-tools", eyebrow: "Tools", title: "Think it through <span class='serif gt-ember'>yourself.</span>", lead: "Three small instruments for your own judgment. They do not predict anything. They make your assumptions visible, so you can argue with them." })}
+  <section class="section tight"><div class="wrap">${gauges(ppl, forecasts)}<div class="tool-tabs" role="tablist">${TABS.map(([id, n]) => `<a class="chip" role="tab" href="#/tools/${id}" data-t="${id}">${n}</a>`).join("")}</div><div id="tool"></div></div></section>`;
   const show = (p) => {
     const id = TABS.some((t) => t[0] === p[0]) ? p[0] : "pdoom";
     $$("[data-t]", el).forEach((a) => { a.classList.toggle("on", a.dataset.t === id); a.setAttribute("aria-selected", a.dataset.t === id); });
@@ -127,4 +127,19 @@ function dial(host) {
   }
   $$("input[type=range]", host).forEach((r) => r.addEventListener("input", upd));
   upd();
+}
+
+function gauges(ppl, forecasts) {
+  const pd = ppl.map((p) => p.pd).filter((x) => x != null).sort((a, b) => a - b);
+  const med = pd.length ? pd[Math.floor(pd.length / 2)] : 0;
+  const hi = pd.filter((x) => x >= 10).length;
+  const yrs = forecasts.map((f) => +String(f.year || f.median || f.agi_year || "").match(/\d{4}/)?.[0]).filter(Boolean);
+  const by30 = yrs.filter((y) => y <= 2030).length;
+  const G = [
+    [med / 100, `${med < 1 ? med.toFixed(2) : Math.round(med)}%`, "Median stated p(doom)", "#ef4444"],
+    [pd.length ? hi / pd.length : 0, `${hi} of ${pd.length}`, "Put the risk at 10% or more", "#f59e0b"],
+    [ppl.length ? pd.length / ppl.length : 0, `${pd.length} of ${ppl.length}`, "Researchers who gave a number", "#22d3ee"],
+    [yrs.length ? by30 / yrs.length : 0, `${by30} of ${yrs.length}`, "Forecasts with AGI by 2030", "#84cc16"],
+  ];
+  return `<div class="gauges">${G.map(([v, b, s, c]) => `<div class="card gauge" data-v="${Math.max(0, Math.min(1, v)).toFixed(3)}"><svg viewBox="0 0 200 116" aria-hidden="true"><path d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="var(--surface-3)" stroke-width="12" stroke-linecap="round"/><path class="arc" d="M20 100 A80 80 0 0 1 180 100" fill="none" stroke="${c}" stroke-width="12" stroke-linecap="round" stroke-dasharray="251.3" stroke-dashoffset="${(251.3 * (1 - v)).toFixed(1)}"/><g class="ndl" style="transform:rotate(${-90 + 180 * v}deg)"><line x1="100" y1="100" x2="100" y2="34" stroke="var(--text)" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="100" r="7" fill="var(--text)"/></g></svg><b>${esc(b)}</b><span>${esc(s)}</span></div>`).join("")}</div>`;
 }

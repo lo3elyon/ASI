@@ -1,4 +1,5 @@
 import { $, esc, load, arr, md, frontmatter, pageHero, fmtDate, ICON, readMins } from "../util.js";
+import { logView } from "../core/history.js";
 
 export async function render(el, params) {
   const idx = await load("blog/index.json", {});
@@ -6,7 +7,7 @@ export async function render(el, params) {
   async function show(p) {
     window.scrollTo(0, 0);
     if (p[0]) return post(p[0]);
-    el.innerHTML = `${pageHero({ img: "cover-blog", eyebrow: "Blog", title: "Notes from <span class='serif'>the threshold.</span>", lead: `${posts.length} essays by Aniruddha Adak on the future of ASI, why researchers are warning us, AI control and what a student can do. Plain words, my own voice.` })}
+    el.innerHTML = `${pageHero({ img: "cover-blog", eyebrow: "Blog", title: "Notes from <span class='serif gt'>the threshold.</span>", lead: `${posts.length} essays by Aniruddha Adak on the future of ASI, why researchers are warning us, AI control and what a student can do. Plain words, my own voice.` })}
     <section class="section tight"><div class="wrap"><div class="posts">${posts.map((b, i) => i === 0 ? `<a class="card hov spot post-card feature rv" href="#/blog/${b.slug}"><div class="cov" style="background-image:url('assets/img/${b.cover}.jpg')"></div><div class="body"><div class="eyebrow">Latest</div><h3>${esc(b.title)}</h3><p class="lead" style="font-size:17px">${esc(b.excerpt)}</p><div class="foot"><span>${esc(fmtDate(b.date))}</span><span>${b.mins} min read</span></div></div></a>`
       : `<a class="card hov spot post-card rv d${i % 3}" href="#/blog/${b.slug}"><div class="chips">${(b.tags || []).slice(0, 2).map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div><h3>${esc(b.title)}</h3><p>${esc(b.excerpt)}</p><div class="foot"><span>${esc(fmtDate(b.date))}</span><span>${b.mins} min read</span></div></a>`).join("")}</div></div></section>`;
     import("../util.js").then((m) => m.reveal(el));
@@ -25,6 +26,7 @@ export async function render(el, params) {
     const onS = () => { const a = $("article", el); const b = $("#rb", el); if (!a || !b) return removeEventListener("scroll", onS); const r = a.getBoundingClientRect(); const span = r.height - innerHeight; b.style.width = `${span > 0 ? Math.min(100, Math.max(0, (-r.top / span) * 100)) : 100}%`; };
     addEventListener("scroll", onS, { passive: true });
     document.title = `${meta.title} · Threshold`;
+    logView("post", slug, meta.title, { sub: fmtDate(meta.date) });
   }
   el._onParams = show;
   await show(params);

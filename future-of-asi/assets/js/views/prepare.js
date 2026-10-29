@@ -10,7 +10,7 @@ export async function render(el) {
   const items = acts.flatMap((a) => (a.steps || []).map((s, i) => ({ id: `${a.id}:${i}`, a, s })));
   const done = () => store.get("prep", {});
 
-  el.innerHTML = `${pageHero({ img: "cover-prepare", eyebrow: "Prepare", title: "Calm hands. <span class='serif'>Open eyes.</span>", lead: esc(d.intro || "Most experts do not think disaster is certain. Preparing is how we make it less likely, and how we stay steady if things get hard.") + (d.intro_source ? ` <a href="${esc(d.intro_source)}" target="_blank" rel="noopener">Source ${ICON.ext}</a>` : "") })}
+  el.innerHTML = `${pageHero({ img: "cover-prepare", eyebrow: "Prepare", title: "Calm hands. <span class='serif gt-ember'>Open eyes.</span>", lead: esc(d.intro || "Most experts do not think disaster is certain. Preparing is how we make it less likely, and how we stay steady if things get hard.") + (d.intro_source ? ` <a href="${esc(d.intro_source)}" target="_blank" rel="noopener">Source ${ICON.ext}</a>` : "") })}
   <section class="section tight"><div class="wrap">
     <div class="grid" style="grid-template-columns:1fr 260px;align-items:center;gap:28px" id="intro">
       <div><div class="eyebrow">Before anything else</div><h2 style="margin-top:10px">Take one slow breath.</h2><p class="lead">This page is about real risks, written without panic. Fear is a signal that you care. Here we turn it into understanding, then into a few small actions you can actually take this week.</p></div>

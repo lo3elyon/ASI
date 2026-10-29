@@ -1,0 +1,914 @@
+{
+ "80000-hours": {
+  "file": "logos/80000-hours.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:80,000_Hours_logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "80,000 Hours"
+ },
+ "ai-futures-project": {
+  "file": "logos/ai-futures-project.svg",
+  "source_url": "https://www.aifutures.org/aif-logo.svg?dpl=dpl_7hCvHxhKJae4ShecM1hfcdbExnAK",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "AI Futures Project"
+ },
+ "ai-safety-asia": {
+  "file": "logos/ai-safety-asia.png",
+  "source_url": "https://www.aisafety.asia/_next/image?url=%2Flogo-white.png&w=256&q=75&dpl=dpl_8MjFvrDJ37SUjGoXQf52hKyCqeaD",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "AI Safety Asia"
+ },
+ "ai-safety-tokyo": {
+  "file": "logos/ai-safety-tokyo.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/63d759621ec3d51b882e956f/fe751952-8a32-4f84-9ad2-3abf3473760b/favicon.ico",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "AI Safety Tokyo"
+ },
+ "aisafety-com": {
+  "file": "logos/aisafety-com.svg",
+  "source_url": "https://aisafety.com/images/logo.svg?dpl=dpl_Guy7hJsbTnpxg3Lg2P8U4pN8RTtV",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "AISafety.com"
+ },
+ "aisafety-info": {
+  "file": "logos/aisafety-info.svg",
+  "source_url": "https://aisafety.info/",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "AISafety.info"
+ },
+ "aisi-canada": {
+  "file": "logos/aisi-canada.svg",
+  "source_url": "https://ised-isde.canada.ca/site/ised/themes/custom/epic_theme/images/sig-blk-en.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Canadian AI Safety Institute",
+  "note": "Government of Canada signature from the ISED site; the Canadian AI Safety Institute has no separate logo."
+ },
+ "alter": {
+  "file": "logos/alter.svg",
+  "source_url": "https://alter.org.il/assets/images/alter-logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "ALTER",
+  "note": "Mark includes pink and purple bars; kept as the official mark, not recoloured."
+ },
+ "amazon": {
+  "file": "logos/amazon.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Amazon_2024.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Amazon",
+  "note": "Pacing the Frontier signatory employer. Wikidata Q3884 logo (P154)."
+ },
+ "anthropic": {
+  "file": "logos/anthropic.svg",
+  "source_url": "https://www.anthropic.com/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Anthropic",
+  "note": "Wordmark from the site header (inline SVG)."
+ },
+ "apart-research": {
+  "file": "logos/apart-research.svg",
+  "source_url": "https://apartresearch.com/icon.svg?icon.1559caroykp0-.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Apart Research"
+ },
+ "apollo-research": {
+  "file": "logos/apollo-research.svg",
+  "source_url": "https://www.apolloresearch.ai/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/apollo-research-dark.svg",
+  "source_url_dark": "https://www.apolloresearch.ai/",
+  "name": "Apollo Research",
+  "note": "Inline header SVG uses currentColor; main file filled black, dark file filled white."
+ },
+ "arc": {
+  "file": "logos/arc.png",
+  "source_url": "https://storage.ghost.io/c/28/54/2854d6f9-e89b-45f1-9aa3-f33676f42daf/content/images/size/w256h256/2023/03/icons8-robot-208--1--1.png",
+  "kind": "favicon",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Alignment Research Center (ARC)",
+  "note": "ARC publishes no logo; the site favicon is a stock robot-arm icon (icons8). Shown only as a placeholder mark. upscaled from 208px to 256px"
+ },
+ "arena": {
+  "file": "logos/arena.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/67e146e032bcbc72c7a584bf/1742817006443-SUY6P0K9RCRPU638TUL6/ARENA+Logo+014C82.png?format=1500w",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "ARENA (Alignment Research Engineer Accelerator)"
+ },
+ "bluedot-impact": {
+  "file": "logos/bluedot-impact.svg",
+  "source_url": "https://bluedot.org/images/logo/BlueDot_Impact_Logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/bluedot-impact-dark.svg",
+  "source_url_dark": "https://bluedot.org/images/logo/BlueDot_Impact_Logo_White.svg",
+  "name": "BlueDot Impact"
+ },
+ "cair-iit-madras": {
+  "file": "logos/cair-iit-madras.png",
+  "source_url": "https://cerai.iitm.ac.in/images/logo-cerai-v2.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Centre for Responsible AI (CeRAI), IIT Madras"
+ },
+ "cais": {
+  "file": "logos/cais.svg",
+  "source_url": "https://cdn.prod.website-files.com/63fe96aeda6bea77ac7d3000/679014651ddaa7a4b0cfd6d2_5673b2227b907b7a162cfad671ab7b10_CAIS%20Logotype%3DColor%2BDark.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Center for AI Safety (CAIS)"
+ },
+ "cesia": {
+  "file": "logos/cesia.svg",
+  "source_url": "https://cesia.org/en/",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "CeSIA (French Center for AI Safety)"
+ },
+ "cfi-cambridge": {
+  "file": "logos/cfi-cambridge.svg",
+  "source_url": "https://www.lcfi.ac.uk/wp-content/themes/lcfitheme/static/min/img/logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Leverhulme Centre for the Future of Intelligence",
+  "note": "White wordmark for dark backgrounds."
+ },
+ "chai": {
+  "file": "logos/chai.png",
+  "source_url": "https://humancompatible.ai/app/uploads/2024/07/chai-gradient.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Center for Human-Compatible AI (CHAI)"
+ },
+ "cht": {
+  "file": "logos/cht.svg",
+  "source_url": "https://www.humanetech.com/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Center for Humane Technology",
+  "note": "Navbar wordmark inline SVG, single colour #0B1023."
+ },
+ "cltr": {
+  "file": "logos/cltr.svg",
+  "source_url": "https://www.longtermresilience.org/wp-content/uploads/2024/07/the-centre-for-long-term-resilience.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Centre for Long-Term Resilience",
+  "note": "White wordmark for dark backgrounds."
+ },
+ "coefficient-giving": {
+  "file": "logos/coefficient-giving.png",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Coefficient_Logo_Green.png",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Coefficient Giving (formerly Open Philanthropy)",
+  "note": "Wikidata P154 logo; coefficientgiving.org only serves a 180px round icon."
+ },
+ "cognition": {
+  "file": "logos/cognition.svg",
+  "source_url": "https://cognition.com/icon.svg?icon.1s218o1m64t65.svg",
+  "kind": "favicon",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Cognition",
+  "note": "Pacing the Frontier signatory employer. Site icon (600px)."
+ },
+ "cohere": {
+  "file": "logos/cohere.svg",
+  "source_url": "https://cohere.com/logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Cohere",
+  "note": "Pacing the Frontier signatory employer."
+ },
+ "concordia-ai": {
+  "file": "logos/concordia-ai.png",
+  "source_url": "https://concordia-ai.com/wp-content/themes/concordia-ai/assets/images/concordia-logo.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Concordia AI",
+  "note": "White wordmark for dark backgrounds."
+ },
+ "conjecture": {
+  "file": "logos/conjecture.png",
+  "source_url": "https://framerusercontent.com/images/RDan5Tny3G53wPuZTfMoG1CfU.png",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Conjecture",
+  "note": "Site icon (900px); the site shows no other logo file."
+ },
+ "constellation": {
+  "file": "logos/constellation.svg",
+  "source_url": "https://constellation.org/hubfs/assets-for-2025-website/Constellation%20Logo%20Final-cropped.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/constellation-dark.svg",
+  "source_url_dark": "https://constellation.org/hubfs/assets-for-2025-website/Constellation-Logo-Final-cropped-white.svg",
+  "name": "Constellation"
+ },
+ "controlai": {
+  "file": "logos/controlai.png",
+  "source_url": "https://framerusercontent.com/images/2jAgmh0i5BlQqB153OminGQoQI.png?width=8440&height=2924",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/controlai-dark.png",
+  "source_url_dark": "https://framerusercontent.com/images/CqHNfe8wbeMWxdkj2PGsGGpQgUY.png",
+  "name": "ControlAI",
+  "note": "Dark file is the official C/AI icon (site favicon, 800px) since no white wordmark is published. downscaled to 1200px"
+ },
+ "cooperative-ai-foundation": {
+  "file": "logos/cooperative-ai-foundation.png",
+  "source_url": "https://cdn.prod.website-files.com/61fe446e584616a902bcb4f0/61ffbc18747a64eed0941e64_CoopAI_Primary_Deep_Green_Web_Small.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Cooperative AI Foundation"
+ },
+ "core-automation": {
+  "file": "logos/core-automation.svg",
+  "source_url": "https://www.coreauto.com/assets/ca_logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Core Automation",
+  "note": "Pacing the Frontier signatory employer. Header logo block."
+ },
+ "cser": {
+  "file": "logos/cser.svg",
+  "source_url": "https://www.cser.ac.uk/wp-content/themes/cser/static/min/img/logo-dark.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/cser-dark.svg",
+  "source_url_dark": "https://www.cser.ac.uk/wp-content/themes/cser/static/min/img/logo.svg",
+  "name": "Centre for the Study of Existential Risk (CSER)"
+ },
+ "cset": {
+  "file": "logos/cset.svg",
+  "source_url": "https://cset.georgetown.edu/wp-content/themes/cset/assets/images/site-logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Center for Security and Emerging Technology (CSET)",
+  "note": "White wordmark from the site header; invert on light backgrounds."
+ },
+ "digital-futures-lab": {
+  "file": "logos/digital-futures-lab.svg",
+  "source_url": "https://www.digitalfutureslab.in/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Digital Futures Lab"
+ },
+ "eleos-ai": {
+  "file": "logos/eleos-ai.svg",
+  "source_url": "https://eleosai.org/favicon.svg",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Eleos AI Research",
+  "note": "Site icon (600px)."
+ },
+ "eleutherai": {
+  "file": "logos/eleutherai.svg",
+  "source_url": "https://eleuther.ai/assets/eleutherai-logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "EleutherAI"
+ },
+ "epoch-ai": {
+  "file": "logos/epoch-ai.svg",
+  "source_url": "https://epoch.ai/assets/logo/logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/epoch-ai-dark.svg",
+  "source_url_dark": "https://epoch.ai/assets/logo/logo-white.svg",
+  "name": "Epoch AI"
+ },
+ "era-fellowship": {
+  "file": "logos/era-fellowship.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/6391cc282a4d75785884a7d1/e3ed8888-9b7e-4b82-ab1a-09c6b677d993/Red+w+black+text%404x.jpg?format=1500w",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "white",
+  "on_dark": "as-is",
+  "name": "ERA Fellowship"
+ },
+ "ethz-ai-center": {
+  "file": "logos/ethz-ai-center.svg",
+  "source_url": "https://ai.ethz.ch/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "ETH AI Center",
+  "note": "ETH AI Center uses the ETH Zurich wordmark (inline SVG in its site header)."
+ },
+ "eu-ai-office": {
+  "file": "logos/eu-ai-office.svg",
+  "source_url": "https://digital-strategy.ec.europa.eu/themes/contrib/oe_theme/dist/ec/images/logo/negative/logo-ec--en.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "European AI Office",
+  "note": "European Commission logo (the AI Office sits inside the Commission); white version from the site header."
+ },
+ "far-ai": {
+  "file": "logos/far-ai.svg",
+  "source_url": "https://www.far.ai/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/far-ai-dark.svg",
+  "source_url_dark": "https://www.far.ai/",
+  "name": "FAR.AI",
+  "note": "Header wordmark inline SVG (currentColor)."
+ },
+ "fli": {
+  "file": "logos/fli.png",
+  "source_url": "https://futureoflife.org/wp-content/uploads/2015/10/fli_logo_white.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Future of Life Institute (FLI)",
+  "note": "Full-size original of the header logo (file name says white = for white backgrounds)."
+ },
+ "forethought": {
+  "file": "logos/forethought.svg",
+  "source_url": "https://www.forethought.org/logo/Forethought-Logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Forethought"
+ },
+ "frontier-model-forum": {
+  "file": "logos/frontier-model-forum.svg",
+  "source_url": "https://www.frontiermodelforum.org/uploads/2023/12/FMF-Logo-Dark.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Frontier Model Forum"
+ },
+ "global-center-ai-governance": {
+  "file": "logos/global-center-ai-governance.svg",
+  "source_url": "https://www.globalcenter.ai/",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Global Center on AI Governance"
+ },
+ "goodfire": {
+  "file": "logos/goodfire.svg",
+  "source_url": "https://www.goodfire.com/_astro/logo.B6ErOjAg.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Goodfire"
+ },
+ "google": {
+  "file": "logos/google.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Google_2026_logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Google",
+  "note": "Pacing the Frontier signatory employer. Wikidata Q95 logo (P154)."
+ },
+ "google-deepmind": {
+  "file": "logos/google-deepmind.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Google_DeepMind_logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Google DeepMind",
+  "note": "Pacing the Frontier signatory employer. Wikidata P154 logo; grey wordmark is low contrast on navy."
+ },
+ "google-deepmind-safety": {
+  "file": "logos/google-deepmind-safety.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Google_DeepMind_logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Google DeepMind (AGI safety)",
+  "note": "Wikidata P154 logo; grey wordmark is low contrast on navy."
+ },
+ "govai": {
+  "file": "logos/govai.png",
+  "source_url": "https://cdn.prod.website-files.com/614b70a71b9f715e7e40c791/615f13eb2bf2170836649177_logo.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Centre for the Governance of AI (GovAI)",
+  "note": "Light grey wordmark made for the dark site header."
+ },
+ "hugging-face": {
+  "file": "logos/hugging-face.svg",
+  "source_url": "https://huggingface.co/front/assets/huggingface_logo-noborder.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Hugging Face",
+  "note": "Pacing the Frontier signatory employer. Site header emoji logo."
+ },
+ "iaps": {
+  "file": "logos/iaps.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/64edf8e7f2b10d716b5ba0e1/0d3305ef-c139-4d27-9cd4-9ce0eca3b647/IAPS+Full+Colour+Black+V2.png?format=1500w",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Institute for AI Policy and Strategy (IAPS)"
+ },
+ "ilina": {
+  "file": "logos/ilina.png",
+  "source_url": "https://framerusercontent.com/images/Q5ATqvM0R9sNps9Vda9xq4I58bw.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "ILINA Program"
+ },
+ "indiaai-safety-institute": {
+  "file": "logos/indiaai-safety-institute.png",
+  "source_url": "https://bioai.startupmission.in/india-ai.png",
+  "kind": "other",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "IndiaAI Safety Institute",
+  "note": "INDIAai (IndiaAI Mission) logo; the Safety Institute has no separate mark. indiaai.gov.in was unreachable from the build sandbox, so this copy comes from the Kerala Startup Mission partner page (https://bioai.startupmission.in/), not the official site. downscaled to 1200px"
+ },
+ "inherent": {
+  "file": "logos/inherent.svg",
+  "source_url": "https://inherentlabs.ai/favicon.svg",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Inherent",
+  "note": "Pacing the Frontier signatory employer. Site icon (600px)."
+ },
+ "japan-aisi": {
+  "file": "logos/japan-aisi.png",
+  "source_url": "https://aisi.go.jp/assets/img/logo.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Japan AI Safety Institute (J-AISI)"
+ },
+ "lawzero": {
+  "file": "logos/lawzero.png",
+  "source_url": "https://lawzero.org/sites/default/themes/lawzero_v1/images/logos/logo-part1-en-green.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/lawzero-dark.png",
+  "source_url_dark": "https://lawzero.org/sites/default/themes/lawzero_v1/images/logos/logo-part1-en.png",
+  "name": "LawZero"
+ },
+ "lesswrong": {
+  "file": "logos/lesswrong.svg",
+  "source_url": "https://res.cloudinary.com/lesswrong-2-0/image/upload/v1498011194/LessWrong_Logo_skglnw.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "LessWrong",
+  "note": "Official LessWrong wordmark served by lesswrong.com."
+ },
+ "lisa": {
+  "file": "logos/lisa.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/699d971cb60b1445a9928806/1771935527719-3TV7A9WL6DFF47RDXNQ3/LISA+%281%29.png?format=1500w",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "London Initiative for Safe AI (LISA)"
+ },
+ "maisi": {
+  "file": "logos/maisi.svg",
+  "source_url": "https://maisi.org/favicon.svg",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Mathematical AI Safety Institute",
+  "note": "Site icon (600px)."
+ },
+ "mats": {
+  "file": "logos/mats.svg",
+  "source_url": "https://cdn.prod.website-files.com/6909901117f6b8d83783ca29/690fa017d221ed2fd31e3735_05eb9a096d484f219928543ee6cdae64_MATS%20Logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "MATS (ML Alignment and Theory Scholars)"
+ },
+ "meridian": {
+  "file": "logos/meridian.png",
+  "source_url": "https://images.squarespace-cdn.com/content/v1/6739fe700ad3b0143d6695fe/1e09a91d-ce69-4e1c-b3f4-9b3f2a36cdf9/Meridian+Logo.png?format=1500w",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "Meridian Cambridge"
+ },
+ "meta": {
+  "file": "logos/meta.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Meta_Platforms_Inc._logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Meta",
+  "note": "Pacing the Frontier signatory employer. Wikidata Q380 logo (P154)."
+ },
+ "metr": {
+  "file": "logos/metr.svg",
+  "source_url": "https://metr.org/assets/images/logo/logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "METR (Model Evaluation and Threat Research)"
+ },
+ "microsoft": {
+  "file": "logos/microsoft.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Microsoft_logo_(2012).svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Microsoft",
+  "note": "Pacing the Frontier signatory employer. Wikidata Q2283 logo (P154)."
+ },
+ "mila": {
+  "file": "logos/mila.svg",
+  "source_url": "https://mila.quebec/sites/default/themes/mila_v1/logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Mila - Quebec AI Institute",
+  "note": "Mila brand colour is purple; kept as the official mark, not recoloured. Consider showing it monochrome if the no-purple rule must hold."
+ },
+ "miri": {
+  "file": "logos/miri.svg",
+  "source_url": "https://intelligence.org/wp-content/uploads/2024/10/Group-47.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Machine Intelligence Research Institute (MIRI)",
+  "note": "White wordmark from the site header; invert it on light backgrounds."
+ },
+ "openai": {
+  "file": "logos/openai.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:OpenAI_Blossom_and_wordmark_combination_2025.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "OpenAI",
+  "note": "Pacing the Frontier signatory employer. Wikidata P154 logo. OpenAI site header only carries the Blossom mark."
+ },
+ "openai-safety": {
+  "file": "logos/openai-safety.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:OpenAI_Blossom_and_wordmark_combination_2025.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "OpenAI (safety work)",
+  "note": "Wikidata P154 logo. OpenAI site header only carries the Blossom mark."
+ },
+ "oxford-aigi": {
+  "file": "logos/oxford-aigi.png",
+  "source_url": "https://aigi.ox.ac.uk/wp-content/themes/oxford-martin-aigi/assets/img/logo.jpg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "white",
+  "on_dark": "as-is",
+  "name": "Oxford Martin AI Governance Initiative",
+  "note": "Lockup with Oxford Martin School and University of Oxford, 330px."
+ },
+ "palisade-research": {
+  "file": "logos/palisade-research.svg",
+  "source_url": "https://palisaderesearch.org/assets/images/logos/palisade-mark-dark.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/palisade-research-dark.svg",
+  "source_url_dark": "https://palisaderesearch.org/assets/images/logos/palisade-mark-white.svg",
+  "name": "Palisade Research"
+ },
+ "partnership-on-ai": {
+  "file": "logos/partnership-on-ai.svg",
+  "source_url": "https://partnershiponai.org/wp-content/themes/fr-starter-theme/resources/assets/images/logo_black_blue_new.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Partnership on AI"
+ },
+ "pauseai": {
+  "file": "logos/pauseai.svg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:PauseAI_Logo.svg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "PauseAI"
+ },
+ "prime-intellect": {
+  "file": "logos/prime-intellect.svg",
+  "source_url": "https://www.primeintellect.ai/icons/primeintellect-logo.svg?dpl=dpl_7smfXZdupiGGjRGgZsGFxSmcLMau",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Prime Intellect",
+  "note": "Pacing the Frontier signatory employer. White wordmark from the site header, made for dark backgrounds."
+ },
+ "redwood-research": {
+  "file": "logos/redwood-research.svg",
+  "source_url": "https://www.redwoodresearch.org/redwood_logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Redwood Research"
+ },
+ "saferai": {
+  "file": "logos/saferai.svg",
+  "source_url": "https://www.safer-ai.org/t/assets/img/main-logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": true,
+  "bg": "transparent",
+  "on_dark": "invert",
+  "name": "SaferAI"
+ },
+ "saif": {
+  "file": "logos/saif.svg",
+  "source_url": "https://saif.org/wp-content/uploads/2024/09/header_logo.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Safe AI Forum"
+ },
+ "shanghai-ai-lab": {
+  "file": "logos/shanghai-ai-lab.png",
+  "source_url": "https://www.shlab.org.cn/static/asset/2025/imgs/logo.webp",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Shanghai AI Laboratory",
+  "note": "White logo for dark backgrounds. downscaled to 1200px"
+ },
+ "simplex": {
+  "file": "logos/simplex.png",
+  "source_url": "https://simplexaisafety.com/assets/og-image.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "white",
+  "on_dark": "as-is",
+  "name": "Simplex",
+  "note": "Logo card from the site og:image; the mark is small inside the card. The site icon is only 180px."
+ },
+ "singapore-aisi": {
+  "file": "logos/singapore-aisi.png",
+  "source_url": "https://www.ntu.edu.sg/ResourcePackages/NTU/assets/images/NTU_Logo.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Digital Trust Centre (Singapore AI Safety Institute)",
+  "note": "Digital Trust Centre sits in NTU Singapore; this is the NTU logo from its page. downscaled to 1200px"
+ },
+ "spar": {
+  "file": "logos/spar.png",
+  "source_url": "https://sparai.org/_astro/spar_isotype_white_bg.CJMsVudC.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "SPAR (Supervised Program for Alignment Research)",
+  "note": "upscaled from 254px to 256px"
+ },
+ "ssi": {
+  "file": "logos/ssi.png",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Safe_Superintelligence_Inc._logo.jpg",
+  "kind": "wikimedia",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Safe Superintelligence Inc. (SSI)",
+  "note": "Dark square mark; ssi.inc is a plain text page with no logo file."
+ },
+ "standard-intelligence": {
+  "file": "logos/standard-intelligence.png",
+  "source_url": "https://si.inc/icon.png",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Standard Intelligence",
+  "note": "Pacing the Frontier signatory employer. Site apple-touch icon (807px); si.inc shows no other logo."
+ },
+ "the-future-society": {
+  "file": "logos/the-future-society.png",
+  "source_url": "https://thefuturesociety.org/wp-content/uploads/2022/12/tfs_logoPNG.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "The Future Society"
+ },
+ "thinking-machines": {
+  "file": "logos/thinking-machines.png",
+  "source_url": "https://thinkingmachines.ai/images/home.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "white",
+  "on_dark": "as-is",
+  "name": "Thinking Machines Lab",
+  "note": "Pacing the Frontier signatory employer. Wordmark card from the site og:image (1665px); the site icon is a plain dark square. downscaled to 1200px"
+ },
+ "timaeus": {
+  "file": "logos/timaeus.png",
+  "source_url": "https://timaeus.co/_astro/logo-footer.C-BJnOwp_Z1R452C.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Timaeus (now Resolution)",
+  "note": "White wordmark for dark backgrounds."
+ },
+ "transformer-news": {
+  "file": "logos/transformer-news.png",
+  "source_url": "https://substackcdn.com/image/fetch/$s_!tvTY!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F98dad859-957b-4449-a7ce-cc4bd2d59d41%2Fapple-touch-icon-1024x1024.png",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "white",
+  "on_dark": "as-is",
+  "name": "Transformer",
+  "note": "Substack publication icon (1024px)."
+ },
+ "truthful-ai": {
+  "file": "logos/truthful-ai.svg",
+  "source_url": "https://truthful.ai/favicon.svg",
+  "kind": "favicon",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "Truthful AI"
+ },
+ "tsinghua-iaiig": {
+  "file": "logos/tsinghua-iaiig.png",
+  "source_url": "https://aiig.tsinghua.edu.cn/en/images/footer_logo.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "as-is",
+  "name": "Institute for AI International Governance, Tsinghua University",
+  "note": "White logo for dark backgrounds."
+ },
+ "tuebingen-ai": {
+  "file": "logos/tuebingen-ai.svg",
+  "source_url": "https://tuebingen.ai/_assets/d2cf05beb3897ea77a4437c0626fbdca/Images/logo-tueai.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/tuebingen-ai-dark.svg",
+  "source_url_dark": "https://tuebingen.ai/_assets/d2cf05beb3897ea77a4437c0626fbdca/Images/logo-tueai-white.svg",
+  "name": "Tubingen AI Center and ELLIS Institute Tubingen"
+ },
+ "uk-aisi": {
+  "file": "logos/uk-aisi.svg",
+  "source_url": "https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/663bd707cb0214d8b72951b5_5a103bfcb506b52b4e099f3dc675c649_AISI%20Logo%20Colour%20Dark.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/uk-aisi-dark.svg",
+  "source_url_dark": "https://cdn.prod.website-files.com/663bd486c5e4c81588db7a1d/663bd707a74f2d5ce76ec1df_722beecd083374105961f1fbce0641c4_AISI%20Logo%20Colour%20White.svg",
+  "name": "UK AI Security Institute"
+ },
+ "us-caisi": {
+  "file": "logos/us-caisi.svg",
+  "source_url": "https://www.nist.gov/libraries/nist-component-library/dist/img/logo/nist_logo_sidestack.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "use-dark-file",
+  "file_dark": "logos/us-caisi-dark.svg",
+  "source_url_dark": "https://www.nist.gov/libraries/nist-component-library/dist/img/logo/NIST-Logo-Brand-White.svg",
+  "name": "US Center for AI Standards and Innovation (CAISI)",
+  "note": "CAISI sits inside NIST and has no separate logo; this is the NIST logo from nist.gov."
+ },
+ "vector-institute": {
+  "file": "logos/vector-institute.png",
+  "source_url": "https://vectorinstitute.ai/wp-content/uploads/2024/05/Vector-Logo-FullColour_Horizontal.png",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "name": "Vector Institute",
+  "note": "downscaled to 1200px"
+ }
+}

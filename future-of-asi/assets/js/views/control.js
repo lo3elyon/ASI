@@ -26,7 +26,7 @@ const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v)
 
 export async function render(el, params, query) {
   const vids = (await videos()).filter((v) => v.category === "control").slice(0, 6);
-  el.innerHTML = `${pageHero({ img: "cover-control", eyebrow: "AI Control", title: "Safe even if <span class='serif'>the AI is not.</span>", lead: "Alignment tries to make AI want the right things. AI control asks a harder, more practical question: if a model were secretly trying to cause harm, would our setup still catch it?" })}
+  el.innerHTML = `${pageHero({ img: "cover-control", eyebrow: "AI Control", title: "Safe even if <span class='serif gt-mint'>the AI is not.</span>", lead: "Alignment tries to make AI want the right things. AI control asks a harder, more practical question: if a model were secretly trying to cause harm, would our setup still catch it?" })}
   <section class="section"><div class="wrap">
     <div class="grid g3">
       <div class="card rv"><div class="eyebrow">The worry</div><h3 style="margin-top:10px">We cannot read minds</h3><p>A powerful model might act helpful in every test and still have goals we never chose. Today we have no reliable way to check.</p></div>

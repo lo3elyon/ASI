@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en" data-theme="dark" data-accent="cyan">
+<head>
+  <meta charset="utf-8">
+  <base href="../">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Docs: how Threshold works, data schemas and glossary · Threshold</title>
+  <meta name="description" content="Documentation, data schemas, accessibility notes, a glossary and FAQ for Threshold.">
+  <meta name="author" content="Aniruddha Adak">
+  <meta name="theme-color" content="#07111f">
+  <meta name="color-scheme" content="dark light">
+  <link rel="canonical" href="https://lo3elyon.github.io/ASI/future-of-asi/docs/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="ASI by Aniruddha Adak">
+  <meta property="og:title" content="Docs: how Threshold works, data schemas and glossary · Threshold">
+  <meta property="og:description" content="Documentation, data schemas, accessibility notes, a glossary and FAQ for Threshold.">
+  <meta property="og:url" content="https://lo3elyon.github.io/ASI/future-of-asi/docs/">
+  <meta property="og:image" content="https://lo3elyon.github.io/ASI/future-of-asi/assets/brand/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Docs: how Threshold works, data schemas and glossary · Threshold">
+  <meta name="twitter:description" content="Documentation, data schemas, accessibility notes, a glossary and FAQ for Threshold.">
+  <meta name="twitter:image" content="https://lo3elyon.github.io/ASI/future-of-asi/assets/brand/og.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/brand/icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="preload" href="assets/fonts/unbounded-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/space-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/css/app.css">
+  <link rel="stylesheet" href="assets/css/v2.css">
+  <script>
+    (function () {
+      try {
+        var s = JSON.parse(localStorage.getItem("thr:prefs") || "{}");
+        var r = document.documentElement;
+        if (s.theme) r.dataset.theme = s.theme;
+        else if (window.matchMedia && matchMedia("(prefers-contrast: more)").matches) r.dataset.theme = "contrast";
+        if (s.accent) r.dataset.accent = s.accent;
+        if (s.motion === "off") r.classList.add("rm");
+        if (s.sound === "on") r.classList.add("snd");
+      } catch (e) {}
+    })();
+  </script>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "WebPage",
+   "@id": "https://lo3elyon.github.io/ASI/future-of-asi/docs/#page",
+   "url": "https://lo3elyon.github.io/ASI/future-of-asi/docs/",
+   "name": "Docs: how Threshold works, data schemas and glossary · Threshold",
+   "description": "Documentation, data schemas, accessibility notes, a glossary and FAQ for Threshold.",
+   "inLanguage": "en",
+   "isPartOf": {
+    "@type": "WebSite",
+    "@id": "https://lo3elyon.github.io/ASI/future-of-asi/#site",
+    "name": "Threshold: The Future of ASI",
+    "url": "https://lo3elyon.github.io/ASI/future-of-asi/"
+   },
+   "author": {
+    "@type": "Person",
+    "name": "Aniruddha Adak",
+    "url": "https://github.com/lo3elyon"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Threshold",
+     "item": "https://lo3elyon.github.io/ASI/future-of-asi/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Docs: how Threshold works, data schemas and glossary",
+     "item": "https://lo3elyon.github.io/ASI/future-of-asi/docs/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
+</head>
+<body>
+  <a class="skip" href="#view">Skip to content</a>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+  <div class="rays" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="boot" id="boot" aria-hidden="true">
+    <div class="boot-in">
+      <svg class="boot-mark" viewBox="0 0 120 120" width="120" height="120"><defs><linearGradient id="bootg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset=".6" stop-color="#14b8a6"/><stop offset="1" stop-color="#f59e0b"/></linearGradient><radialGradient id="boots"><stop offset="0" stop-color="#fef3c7"/><stop offset=".45" stop-color="#f59e0b" stop-opacity=".8"/><stop offset="1" stop-color="#f59e0b" stop-opacity="0"/></radialGradient></defs>
+        <path class="door" d="M34 96 V52 A26 26 0 0 1 86 52 V96" fill="none" stroke="url(#bootg)" stroke-width="6" stroke-linecap="round"/>
+        <line class="hz" x1="8" y1="96" x2="112" y2="96" stroke="#22d3ee" stroke-width="2" stroke-linecap="round"/>
+        <circle class="sun" cx="60" cy="88" r="16" fill="url(#boots)"/></svg>
+      <div class="boot-word"><span>T</span><span>H</span><span>R</span><span>E</span><span>S</span><span>H</span><span>O</span><span>L</span><span>D</span></div>
+      <div class="boot-bar"><i id="bootBar"></i></div>
+      <div class="boot-sub">THE FUTURE OF ASI</div>
+    </div>
+  </div>
+
+  <header class="topbar" role="banner">
+    <a class="brand" href="#/" aria-label="Threshold home">
+      <img src="assets/brand/mark.svg" alt="" width="32" height="32">
+      <span>THRESHOLD<small>THE FUTURE OF ASI</small></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#/futures">Futures</a>
+      <a href="#/researchers">Researchers</a>
+      <a href="#/timeline">Timeline</a>
+      <a href="#/watch">Watch</a>
+      <a href="#/control">AI Control</a>
+      <a href="#/learn">Learn</a>
+      <a href="#/prepare" class="opt">Prepare</a>
+      <a href="#/tools" class="opt">Tools</a>
+      <div class="more-wrap">
+        <button class="more" type="button" aria-haspopup="true" aria-expanded="false" id="moreBtn">More</button>
+        <div class="more-menu" id="moreMenu" role="menu">
+          <a href="#/voices" role="menuitem">Voices wall</a>
+          <a href="#/pacing" role="menuitem">Pacing the Frontier signers</a>
+          <a href="#/prepare" role="menuitem">Prepare</a>
+          <a href="#/orgs" role="menuitem">Organisations</a>
+          <a href="#/tools" role="menuitem">Tools</a>
+          <a href="#/blog" role="menuitem">Blog</a>
+          <a href="#/docs" role="menuitem">Docs</a>
+          <a href="#/history" role="menuitem">Your history</a>
+          <a href="../" role="menuitem">Back to the ASI hub</a>
+        </div>
+      </div>
+    </nav>
+    <div class="tb-actions">
+      <button class="search-btn" type="button" id="openPalette" aria-label="Search everything">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span>Search everything</span><kbd>Ctrl K</kbd>
+      </button>
+      <button class="icon-btn snd-btn" type="button" id="soundBtn" aria-pressed="false" aria-label="Sound off. Turn on soft sounds and ambient music">
+        <svg class="s-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="m16 9 5 6M21 9l-5 6"/></svg>
+        <svg class="s-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 5 6 9H3v6h3l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+      <div style="position:relative">
+        <button class="icon-btn" type="button" id="themeBtn" aria-label="Theme and motion settings" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+        <div class="theme-pop" id="themePop" role="dialog" aria-label="Display settings">
+          <h4>Theme</h4>
+          <div class="seg" data-k="theme">
+            <button type="button" data-v="dark">Dark</button>
+            <button type="button" data-v="light">Light</button>
+            <button type="button" data-v="contrast">Contrast</button>
+          </div>
+          <h4>Accent</h4>
+          <div class="swatches" data-k="accent">
+            <button type="button" data-v="cyan" style="--c:#22d3ee" aria-label="Cyan"></button>
+            <button type="button" data-v="teal" style="--c:#14b8a6" aria-label="Teal"></button>
+            <button type="button" data-v="amber" style="--c:#f59e0b" aria-label="Amber"></button>
+            <button type="button" data-v="red" style="--c:#ef4444" aria-label="Red"></button>
+            <button type="button" data-v="blue" style="--c:#3b82f6" aria-label="Blue"></button>
+            <button type="button" data-v="lime" style="--c:#84cc16" aria-label="Lime"></button>
+          </div>
+          <div class="toggle"><span>Motion</span><button type="button" class="switch" role="switch" id="motionSw" aria-checked="true" aria-label="Animations on or off"></button></div>
+          <div class="toggle" style="margin-top:12px"><span>Soft sounds and music</span><button type="button" class="switch" role="switch" id="soundSw" aria-checked="false" aria-label="Sounds on or off"></button></div>
+        </div>
+      </div>
+      <button class="icon-btn menu-btn" type="button" id="menuBtn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="drawer-nav" id="drawer" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="panel" role="dialog" aria-label="Menu">
+      <a href="#/" style="--c:#22d3ee"><i></i>Home</a>
+      <a href="#/futures" style="--c:#14b8a6"><i></i>Futures</a>
+      <a href="#/researchers" style="--c:#22d3ee"><i></i>Researchers</a>
+      <a href="#/voices" style="--c:#f59e0b"><i></i>Voices wall</a>
+      <a href="#/pacing" style="--c:#14b8a6"><i></i>Pacing the Frontier signers</a>
+      <a href="#/timeline" style="--c:#ef4444"><i></i>Warnings timeline</a>
+      <a href="#/watch" style="--c:#3b82f6"><i></i>Watch</a>
+      <a href="#/control" style="--c:#14b8a6"><i></i>AI Control</a>
+      <a href="#/learn" style="--c:#84cc16"><i></i>Alignment 101</a>
+      <a href="#/prepare" style="--c:#f59e0b"><i></i>Prepare</a>
+      <a href="#/orgs" style="--c:#22d3ee"><i></i>Organisations</a>
+      <a href="#/tools" style="--c:#ef4444"><i></i>Tools</a>
+      <a href="#/blog" style="--c:#f59e0b"><i></i>Blog</a>
+      <a href="#/docs" style="--c:#3b82f6"><i></i>Docs</a>
+      <a href="#/history" style="--c:#84cc16"><i></i>Your history</a>
+      <a href="../" style="--c:#14b8a6"><i></i>Back to the ASI hub</a>
+    </div>
+  </div>
+
+  <main id="view" tabindex="-1" aria-live="polite"><div class="page prerendered"><section class="phero"><div class="wrap"><div class="eyebrow">Docs</div><h1>How it works.</h1><p class="lead"></p></div></section><section class="section tight"><div class="wrap"><ul><li>Overview: What Threshold is, who it is for and how it is organised.</li><li>How it works: Hash router, views, data loading, service worker and folder layout.</li><li>Data schemas: Every JSON file and every field.</li><li>How to contribute: Rules, style, checks and pull requests.</li><li>Add a researcher: Step by step, with a template.</li><li>Add a video: How to verify a YouTube ID and add it to the library.</li><li>Design system: Colours, fonts, motion and components.</li><li>Accessibility and privacy: Keyboard, motion, contrast, storage and offline.</li><li>Glossary: 70 AI safety terms in plain words.</li><li>FAQ: Short honest answers.</li></ul><h2>Glossary</h2><dl><dt>Agent</dt><dd>An AI system that takes many steps on its own toward a goal, using tools like a browser, code or files.</dd><dt>AGI</dt><dd>Artificial general intelligence. An AI that can learn and do most thinking work a skilled person can do, across many fields.</dd><dt>AI control</dt><dd>Designing deployments so we stay safe even if a model is secretly trying to cause harm.</dd><dt>AI governance</dt><dd>The rules, institutions and agreements that shape how AI is built and used.</dd><dt>AI Safety Institute</dt><dd>A government body that tests frontier models for dangerous abilities. The UK version is now called the AI Security Institute.</dd><dt>Alignment</dt><dd>Making an AI system reliably want and do what its designers and users actually intend.</dd><dt>Alignment faking</dt><dd>When a model behaves as if aligned during training or testing to protect different goals it holds.</dd><dt>ASI</dt><dd>Artificial superintelligence. An AI far better than the best humans at almost every mental task.</dd><dt>Audit budget</dt><dd>In AI control, the small share of outputs that can get careful human review.</dd><dt>Benchmark</dt><dd>A fixed set of tasks used to measure and compare AI systems.</dd><dt>Bletchley Declaration</dt><dd>A statement agreed at the first AI Safety Summit in the UK in November 2023 that frontier AI poses serious risks.</dd><dt>Blue team</dt><dd>People who defend a system and design its safety measures.</dd><dt>Capabilities</dt><dd>What a model can do, such as coding, reasoning, persuasion or planning.</dd><dt>Chain of thought</dt><dd>The step by step reasoning some models write before giving an answer.</dd><dt>Chain of thought monitoring</dt><dd>Reading a model&#x27;s written reasoning to catch bad intentions before it acts.</dd><dt>Collusion</dt><dd>When two AI systems, such as a model and its monitor, secretly coordinate to fool overseers.</dd><dt>Compute</dt><dd>The computing power used to train and run AI, usually measured in operations or chip hours.</dd><dt>Compute governance</dt><dd>Using chips and data centres as a point of control, for example with reporting, export rules or licences.</dd><dt>Constitutional AI</dt><dd>An Anthropic method where written principles guide AI feedback used to train a model.</dd><dt>Control evaluation</dt><dd>A test where a red team plays a scheming model to check if a safety protocol still holds.</dd><dt>Corrigibility</dt><dd>The property of accepting correction, changes to goals, and shutdown.</dd><dt>Crux</dt><dd>A fact or belief that, if it changed, would change your overall view.</dd><dt>Deceptive alignment</dt><dd>A model that appears aligned because it knows it is being watched, while holding other goals.</dd><dt>Defer to trusted</dt><dd>A control protocol that replaces suspicious output from a strong model with a weaker trusted model&#x27;s answer.</dd><dt>Dual use</dt><dd>A capability that can help or harm, like biology knowledge or hacking skills.</dd><dt>Emergent ability</dt><dd>A skill that appears suddenly once a model passes a certain scale.</dd><dt>Evals</dt><dd>Short for evaluations. Tests for what a model can do, especially dangerous things.</dd><dt>Existential risk</dt><dd>A risk that could cause human extinction or permanently ruin humanity&#x27;s future.</dd><dt>Fast takeoff</dt><dd>A scenario where AI goes from roughly human level to far beyond very quickly, perhaps in months or less.</dd><dt>Fine tuning</dt><dd>Extra training on a smaller dataset to adjust a model&#x27;s behaviour.</dd><dt>Frontier model</dt><dd>One of the most capable AI models at a given time.</dd><dt>Goal misgeneralisation</dt><dd>When a model learns a goal that worked in training but differs in new situations.</dd><dt>Honeypot</dt><dd>A planted fake opportunity or fake attack used to test whether a model or monitor behaves honestly.</dd><dt>Inner alignment</dt><dd>Whether the trained model actually learned the goal the training process aimed for.</dd><dt>Instrumental convergence</dt><dd>The idea that many different goals lead to the same sub goals, like gaining resources and avoiding shutdown.</dd><dt>Intelligence explosion</dt><dd>I. J. Good&#x27;s 1965 idea that a machine better at designing machines would rapidly design better ones.</dd><dt>Interpretability</dt><dd>Research that tries to understand what is happening inside a model.</dd><dt>Jailbreak</dt><dd>A prompt that tricks a model into ignoring its safety rules.</dd><dt>Large language model</dt><dd>A neural network trained on huge amounts of text to predict and generate language. Often shortened to LLM.</dd><dt>Mechanistic interpretability</dt><dd>Reverse engineering a neural network&#x27;s internal parts to find the concepts and algorithms it uses.</dd><dt>Misalignment</dt><dd>When a system&#x27;s goals differ from what its designers intended.</dd><dt>Misuse</dt><dd>People deliberately using AI to cause harm, for example in cyber attacks or weapons.</dd><dt>Model weights</dt><dd>The learned numbers that make up a trained model. Whoever has them can run the model.</dd><dt>Multipolar</dt><dd>A future with many powerful AI actors rather than one dominant one.</dd><dt>Orthogonality thesis</dt><dd>The idea that any level of intelligence can be paired with almost any goal.</dd><dt>Outer alignment</dt><dd>Whether the goal we gave the training process matches what we really want.</dd><dt>p(doom)</dt><dd>Shorthand for someone&#x27;s estimated probability that AI leads to catastrophe, such as extinction or permanent loss of control.</dd><dt>Pause</dt><dd>A proposal to stop or slow training of the most powerful models until safety catches up.</dd><dt>Pre training</dt><dd>The first big stage of training where a model learns from huge amounts of data.</dd><dt>Preparedness Framework</dt><dd>OpenAI&#x27;s policy for tracking and responding to dangerous model capabilities.</dd><dt>Recursive self improvement</dt><dd>An AI improving its own design, which improves its ability to improve itself again.</dd><dt>Red team</dt><dd>People who attack a system on purpose to find its weaknesses.</dd><dt>Responsible Scaling Policy</dt><dd>Anthropic&#x27;s framework that links capability thresholds to required safeguards.</dd><dt>Reward hacking</dt><dd>When a model finds a way to get high reward that its designers did not intend.</dd><dt>RLHF</dt><dd>Reinforcement learning from human feedback. Training a model toward answers people prefer.</dd><dt>Sandbagging</dt><dd>When a model deliberately performs worse on a test to hide what it can do.</dd><dt>Scaling laws</dt><dd>Predictable improvements in model performance as compute, data and size grow.</dd><dt>Scheming</dt><dd>A model pursuing hidden goals strategically, including by deceiving its overseers.</dd><dt>Situational awareness</dt><dd>A model&#x27;s understanding that it is an AI, being trained or tested, and what that means for it.</dd><dt>Slow takeoff</dt><dd>A scenario where AI capability grows over years, giving society more time to adapt.</dd><dt>Specification gaming</dt><dd>Satisfying the literal goal we wrote down while missing what we meant.</dd><dt>Superalignment</dt><dd>Aligning systems much smarter than humans. Also the name of a former OpenAI team.</dd><dt>Sycophancy</dt><dd>When a model tells people what they want to hear instead of what is true.</dd><dt>Transformative AI</dt><dd>AI powerful enough to cause a change as big as the industrial revolution.</dd><dt>Trusted model</dt><dd>In AI control, a weaker model we are confident is not scheming, used to watch stronger ones.</dd><dt>Trusted monitoring</dt><dd>A control protocol where a trusted model scores every output and the most suspicious get audited.</dd><dt>Untrusted model</dt><dd>In AI control, the powerful model we want to use but cannot verify is safe.</dd><dt>Untrusted monitoring</dt><dd>Using a copy of the strong model as a monitor, protected against collusion with honeypots.</dd><dt>Warning shot</dt><dd>A smaller AI incident that shows the danger clearly before a bigger one.</dd><dt>Weak to strong generalisation</dt><dd>Research on whether weak supervisors can still correctly guide stronger models.</dd></dl></div></section></div></main>
+
+  <footer class="foot" role="contentinfo">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <img src="assets/brand/logo.svg" alt="Threshold: The Future of ASI" width="240" height="55" style="margin-bottom:14px">
+          <p>An open, research backed guide to the future of superintelligence. Every quote has a source, every video is verified, and nothing here is a forecast you should trust blindly.</p>
+          <p class="motto">Start big, fix later, keep shipping.</p>
+        </div>
+        <div>
+          <h5>Explore</h5>
+          <a href="#/futures">Futures</a><a href="#/researchers">Researchers</a><a href="#/pacing">Pacing the Frontier</a><a href="#/voices">Voices wall</a><a href="#/timeline">Timeline</a><a href="#/watch">Watch</a>
+        </div>
+        <div>
+          <h5>Learn and act</h5>
+          <a href="#/control">AI Control</a><a href="#/learn">Alignment 101</a><a href="#/prepare">Prepare</a><a href="#/tools">Tools</a><a href="#/orgs">Organisations</a>
+        </div>
+        <div>
+          <h5>More</h5>
+          <a href="#/blog">Blog</a><a href="#/docs">Docs</a><a href="#/docs/glossary">Glossary</a><a href="#/docs/faq">FAQ</a><a href="#/history">Your history</a><a href="../">ASI hub</a><a href="https://github.com/lo3elyon/ASI" rel="noopener">GitHub</a>
+        </div>
+      </div>
+      <div class="legal">
+        <span>Made by Aniruddha Adak, built with Hark. Open source on GitHub.</span>
+        <span>Quotes belong to their speakers. Videos play from YouTube in privacy enhanced mode.</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="palette" id="palette" aria-hidden="true">
+    <div class="scrim" data-close></div>
+    <div class="box" role="dialog" aria-modal="true" aria-label="Search everything">
+      <div class="pal-top">
+        <label class="sr-only" for="palInput">Search</label>
+        <input id="palInput" type="search" placeholder="Search people, signers, quotes, videos, orgs, papers..." autocomplete="off" spellcheck="false" role="combobox" aria-expanded="true" aria-controls="palList" aria-autocomplete="list">
+        <button class="icon-btn pal-x" type="button" data-close aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+      </div>
+      <div class="pal-tabs" id="palTabs" role="tablist" aria-label="Result types"></div>
+      <div class="pal-facets" id="palFacets"></div>
+      <ul id="palList" role="listbox" aria-label="Results"></ul>
+      <div class="foot"><span><kbd>Enter</kbd> open</span><span><kbd>Up</kbd> <kbd>Down</kbd> move</span><span><kbd>Tab</kbd> next type</span><span><kbd>Esc</kbd> close</span><span class="pal-count" id="palCount"></span></div>
+    </div>
+  </div>
+  <nav class="tabbar" aria-label="Quick">
+    <a href="#/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11 12 4l9 7v9H3z"/></svg><span>Home</span></a>
+    <a href="#/researchers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17.5" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 6 4.8"/></svg><span>People</span></a>
+    <button type="button" id="tabSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span>Search</span></button>
+    <a href="#/watch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m10 9 5 3-5 3z"/></svg><span>Watch</span></a>
+    <a href="#/learn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg><span>Learn</span></a>
+  </nav>
+  <div id="ovRoot"></div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>window.__PRE = {"route": "docs"};</script>
+  <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

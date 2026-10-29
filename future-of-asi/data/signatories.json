@@ -1,0 +1,7673 @@
+{
+ "meta": {
+  "count_total": 1386,
+  "count_named": 1094,
+  "count_anon": 292,
+  "count_with_comment": 95,
+  "count_comments_total": 100,
+  "as_of": "2026-10-29",
+  "source": "https://www.pacingthefrontier.com/",
+  "method": "Read from the signatories and quotes arrays embedded in the page's server-rendered data on 2026-10-29. Titles are split at the last comma: the last part is the employer.",
+  "statement_date": "2026-07"
+ },
+ "signatories": [
+  {
+   "name": "John Schulman",
+   "title": "Chief Scientist",
+   "employer": "Thinking Machines",
+   "comment": "Signed because this statement helps establish common knowledge about the possible need for coordination mechanisms as automated AI research accelerates progress. I'd also like to see labs start designing these mechanisms voluntarily, even before the USG gets involved.",
+   "researcher_id": "john-schulman"
+  },
+  {
+   "name": "Jakub Pachocki",
+   "title": "Chief Scientist",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "jakub-pachocki"
+  },
+  {
+   "name": "Jared Kaplan",
+   "title": "Co-Founder and Chief Science Officer",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jared-kaplan"
+  },
+  {
+   "name": "Shengjia Zhao",
+   "title": "Chief Scientist",
+   "employer": "Meta AI",
+   "comment": "AI is progressing at a rate that our society might not be ready for. Frontier labs are very close to AI that can exceed even the best people on almost every metric of intelligence. This will lead to unprecedented social and safety risks. To ensure a positive future we need to develop AI in a way that is driven by responsibility and thoughtfulness.",
+   "researcher_id": "shengjia-zhao"
+  },
+  {
+   "name": "Shane Legg",
+   "title": "Co-Founder & Chief AGI Scientist",
+   "employer": "Google DeepMind",
+   "comment": "",
+   "researcher_id": "shane-legg"
+  },
+  {
+   "name": "Ilya Sutskever",
+   "title": "CEO",
+   "employer": "Safe Superintelligence Inc.",
+   "comment": "Future AI will be extraordinarily powerful compared to anything that exists today, and dealing with this future power will require unprecedented measures, such as the ones described here. The problem statement is real.\n\nThis works only if it is done internationally, and it has to be done well: a bad implementation can make things worse.",
+   "researcher_id": "ilya-sutskever"
+  },
+  {
+   "name": "Mark Chen",
+   "title": "Chief Research Officer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "mark-chen"
+  },
+  {
+   "name": "Jasjeet Sekhon",
+   "title": "Chief Strategy Officer",
+   "employer": "Google DeepMind",
+   "comment": "We have found a way to turn energy into compute, and compute into intelligence. The benefits will be enormous, from curing diseases to understanding the cosmos. We can capture the benefits of the coming intelligence explosion while managing its risks, but only if we build the tools to pace the frontier of the riskiest capabilities before we need them, so we protect people and keep the social trust that innovation depends on. I believe smart technical and governance tools will be needed to sustain rapid innovation, vigorous competition, and robust safety.",
+   "researcher_id": "jasjeet-sekhon"
+  },
+  {
+   "name": "Dario Amodei",
+   "title": "CEO",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "dario-amodei"
+  },
+  {
+   "name": "Jack Clark",
+   "title": "Co-Founder and Head of Public Benefit",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jack-clark"
+  },
+  {
+   "name": "Anca Dragan",
+   "title": "VP, AI Safety & Alignment",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "anca-dragan"
+  },
+  {
+   "name": "Wojciech Zaremba",
+   "title": "Head of AI Resilience",
+   "employer": "OpenAI Foundation",
+   "comment": "",
+   "researcher_id": "wojciech-zaremba"
+  },
+  {
+   "name": "Dawn Song",
+   "title": "VP, AI Research",
+   "employer": "Meta",
+   "comment": "Frontier AI capabilities are advancing rapidly, and the pace of progress is itself accelerating.\n\nWe see this directly in our evaluation work. CyberGym and ExploitGym show that frontier AI agents are now capable of discovering and exploiting real-world software vulnerabilities, which without appropriate safeguards, could enable cyberattacks at scale.\n\nMany researchers also consider recursive self-improvement (RSI) plausible within the next few years, accelerating progress in a way that could outpace our ability to understand and govern these systems.\n\nDeliberate pacing is  a heavy-handed and potentially extreme measure, and we may never need it. But if we do, it cannot be safely invented in the middle of a crisis. It is very difficult to design well, and if done poorly could do more harm than good. Any successful coordination framework must be evidence-based, avoiding arbitrary thresholds that fail to capture true risk while stifling innovation, and instead be grounded in rigorous, measurable assessments of risk. Like any critical infrastructure, it must be researched, tested, and built before it is needed. This is why we must carefully design it now, rather than waiting.\n\nSuch a capability must be international and measurable: international because no single lab or country can pace a frontier everyone else is racing toward; measurable because effective governance requires rigorous, transparent, and verifiable evaluations of frontier AI systems.\n\nWe do not know if, or when, deliberate pacing will become necessary. But building the capacity now, including technical and governance tools and an international cooperation framework, gives society valuable optionality. To be effective, this needs to exist before the decisive moment arrives. At the speed the frontier is moving, that moment may arrive sooner than we expect.\n\nBuilding the capacity is not the same as deciding when, or whether, to use it. The latter requires great caution, rigorous evidence, and broad international consensus. But without tools in place, there will be no choice at all.\n\nCapabilities cannot be reliably built during a crisis. Preparing before a crisis is the prudent path.",
+   "researcher_id": "dawn-song"
+  },
+  {
+   "name": "Chris Olah",
+   "title": "Co-Founder & Interpretability Research Lead",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "chris-olah"
+  },
+  {
+   "name": "Laura Weidinger",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "If it's true that AI will be as transformational as electricity, we better be intentional about how it is introduced to the world. A mindless race without assurances on governance, safety or the technology serving the public interest stands in the way of such intentionality.",
+   "researcher_id": "laura-weidinger"
+  },
+  {
+   "name": "Benjamin Mann",
+   "title": "Co-Founder",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "benjamin-mann"
+  },
+  {
+   "name": "Stephanie Chan",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "I have worked in AI for a decade. Every few months in the last years, I have found myself surprised again and again at how rapidly the technology advances, no matter how often I update my predictions. AI may end up progressing far more quickly than societies and states can adapt. Thus, many prominent leaders in AI have publicly supported the ability to slow down, including DeepMind CEO Demis Hassabis. At the same time, coordination is hampered by multiple factors, including competitive dynamics and antitrust regulations. \n\nI signed this statement (in a personal capacity) because I support greater *optionality* in the range of actions available, to ensure that states and societies around the world have time to thoughtfully prepare and adapt to this powerful technology.",
+   "researcher_id": "stephanie-chan"
+  },
+  {
+   "name": "Julian Schrittwieser",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "julian-schrittwieser"
+  },
+  {
+   "name": "Summer Yue",
+   "title": "Director of Alignment and Risk",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": "summer-yue"
+  },
+  {
+   "name": "Jan Leike",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jan-leike"
+  },
+  {
+   "name": "Boaz Barak",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "boaz-barak"
+  },
+  {
+   "name": "Mike Krieger",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "mike-krieger"
+  },
+  {
+   "name": "Mary Phuong",
+   "title": "Senior Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "mary-phuong"
+  },
+  {
+   "name": "Shantanu Jain",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "In the span of four years, we have gone from people having their first experience of an Al that could understand language, to Al that is performing superhuman feats of software engineering, making frontier math breakthroughs, and accelerating scientific research. Progress has shown no signs of slowing down and by default it is in the interest of individual corporations and countries to push the accelerator all the way down, even if it is in humanity's best interest for the future to not arrive all at once. Society has spent longer than we can remember developing the laws, institutions and technology to govern and oversee human intelligence; it would be good to have the option to spend any time at all doing the same for artificial intelligence.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ross Girshick",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "ross-girshick"
+  },
+  {
+   "name": "Joshua Achiam",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "I don't know what form such tools should take, nor whether automated AI R&D is the right or only thing that the U.S. government should develop increased capacity to understand and possibly pace, but this is worth serious consideration; however I hope such governance tools will not be expansive or excessive. But many frontier AI capabilities are dual use in a way that may justify pacing at this point.",
+   "researcher_id": "josh-achiam"
+  },
+  {
+   "name": "Saachi Jain",
+   "title": "Head of Safety",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "saachi-jain"
+  },
+  {
+   "name": "Jascha Sohl-Dickstein",
+   "title": "Member of the Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jascha-sohl-dickstein"
+  },
+  {
+   "name": "Alex Beutel",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kim Stachenfeld",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "I am signing because I support efforts to build international cooperation around AI, and believe it's important to understand the consequences of technology we are applying at massive scale in potentially high stakes contexts.",
+   "researcher_id": "kim-stachenfeld"
+  },
+  {
+   "name": "Roon",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sam Bowman",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "sam-bowman"
+  },
+  {
+   "name": "Gregory Wayne",
+   "title": "Distinguished Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "gregory-wayne"
+  },
+  {
+   "name": "Jerry Tworek",
+   "title": "CEO",
+   "employer": "Core Automation",
+   "comment": "",
+   "researcher_id": "jerry-tworek"
+  },
+  {
+   "name": "Tejal Patwardhan",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "tejal-patwardhan"
+  },
+  {
+   "name": "Ben Buchanan",
+   "title": "Consultant",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "ben-buchanan"
+  },
+  {
+   "name": "Dean W. Ball",
+   "title": "Head of Strategic Futures",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "dean-ball"
+  },
+  {
+   "name": "Allan Dafoe",
+   "title": "Distinguished Scientist",
+   "employer": "Google DeepMind",
+   "comment": "",
+   "researcher_id": "allan-dafoe"
+  },
+  {
+   "name": "Thomas Wolf",
+   "title": "Co-Founder",
+   "employer": "Hugging Face",
+   "comment": "AI progress has already out-paced society’s capabilities to handle it, let’s be careful for it not to out-pace its builder’s capabilities to control it. The journey is as important as the destination.",
+   "researcher_id": "thomas-wolf"
+  },
+  {
+   "name": "Neel Nanda",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "neel-nanda"
+  },
+  {
+   "name": "Boris Cherny",
+   "title": "Head of Claude Code",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yann Dubois",
+   "title": "Researcher, Post-training",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Victoria Krakovna",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "It is very important to build capacity for a coordinated slowdown of AI development. A runaway race to AGI is not safe: it creates incentives to cut corners on safety, and carries a substantial risk for model capabilities to outpace development of adequate alignment, control, and governance measures. This could result in catastrophic loss of control of highly capable AI systems. Increasing model capabilities in a slow and controlled way would allow us enough time to develop, adapt and test our alignment and control methods for each level of capability. Advanced AI should only be built with a robust assurance of safety, and a slowdown would make this possible.",
+   "researcher_id": "victoria-krakovna"
+  },
+  {
+   "name": "Nova DasSarma",
+   "title": "Infrastructure Lead",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hunter Lightman",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Leo Gao",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "The world is locked in a deadly race towards an intelligence explosion, where AI’s ability to create better AIs reaches a critical point, just like a runaway nuclear chain reaction. Going slower would give us much-needed time to make it go well, but no individual actor is willing to stop unilaterally. To survive, we must coordinate to slow down the race.",
+   "researcher_id": "leo-gao"
+  },
+  {
+   "name": "Alexander Wei",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Catherine Olsson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "catherine-olsson"
+  },
+  {
+   "name": "Melody Guan",
+   "title": "Research Scientist, Alignment",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Edward Hughes",
+   "title": "Chief Scientist",
+   "employer": "Inherent",
+   "comment": "As Melvin Kranzberg wrote, technology is neither good nor bad; nor is it neutral. Achieving societal benefit depends on understanding the interdependent ways in which many humans use advanced AI systems in concert, understanding that takes time to acquire. \n\nPacing progress towards automated AI research allows us the time to build understanding of societal-scale changes, yielding not only an self-improving AI but also a cooperative AI.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mia Glaese",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": "mia-glaese"
+  },
+  {
+   "name": "Rohin Shah",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "rohin-shah"
+  },
+  {
+   "name": "Keller Jordan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tom Henighan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tyna Eloundou",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tom Schaul",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Elie Bakouch",
+   "title": "",
+   "employer": "Prime Intellect",
+   "comment": "Supportive of this, but we should be careful not to use RSI narratives to create a regulatory moat. These risks need to be properly quantified, more openly, not derived from big labs narratives only!",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas Joseph",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "I lead pretraining at Anthropic, which is responsible for training the base models behind Claude. Every month, more work is done by the models themselves: infrastructure implementation, code optimization, and experiment design and analysis. This has drastically altered how we work and significantly increased our rate of progress. I’m not sure if or where it tops out, but a rapid acceleration in capabilities might be dangerous for society, so it seems prudent to have the ability to slow down deliberately.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Evan Hubinger",
+   "title": "Alignment Stress-Testing Lead",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "evan-hubinger"
+  },
+  {
+   "name": "Christina Kim",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ethan Perez",
+   "title": "Alignment Team Lead",
+   "employer": "Anthropic",
+   "comment": "With the current rate of AI progress, safety teams at AI companies have to sprint to prevent new risks to society every few months. At some point, we’re going to hit problems we need more time to solve.",
+   "researcher_id": "ethan-perez"
+  },
+  {
+   "name": "Bowen Baker",
+   "title": "Research Manager, Monitorability and Alignment Science",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Pablo Samuel Castro",
+   "title": "Senior Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Trenton Bricken",
+   "title": "Tech Lead, Automated Red Teaming",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "trenton-bricken"
+  },
+  {
+   "name": "Joe Carlsmith",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "For a detailed statement of my views about deliberately pacing AI development, see this essay: https://joecarlsmith.com/2026/03/19/on-restraining-ai-development-for-the-sake-of-safety/",
+   "researcher_id": "joe-carlsmith"
+  },
+  {
+   "name": "Aidan McLaughlin",
+   "title": "Research Scientist Post-training",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jack Lindsey",
+   "title": "Research Lead, Model Psychology",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jack-lindsey"
+  },
+  {
+   "name": "Sebastian Farquhar",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": "sebastian-farquhar"
+  },
+  {
+   "name": "Devansh Pandey",
+   "title": "President",
+   "employer": "Standard Intelligence",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joost Huizinga",
+   "title": "Research Scientist",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zac Hatfield-Dodds",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Micah Carroll",
+   "title": "Misalignment Preparedness",
+   "employer": "OpenAI",
+   "comment": "At the current pace, every couple of weeks there will be new models which significantly increase the consequences of model misuse and misalignment. I worry that efforts to mitigate these risks may fail to keep up with the pace of development, and that margins for error will become increasingly small under international competitive pressures. In the near future, we may urgently want to enact an internationally coordinated slowdown, or an indefinite ban on AI development. Attempting to build the trust and infrastructure for taking such actions on short notice seems simply prudent – why would we not at least try to have this option? I fear that in an international race to the bottom of AI development, it is likely that no nation will win, and we will all lose together.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Rynerson",
+   "title": "Data Scientist",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Akash Verma",
+   "title": "SWE",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yogeesh Rajendra",
+   "title": "Staff Software Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rudolf Laine",
+   "title": "Member of Technical Staff",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Cloud",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "A year ago, I wrote my own code and used Claude to propose additions and find answers to my questions. Now, I don’t write code. I give high-level instructions to Claude and it runs experiments to test ideas for me at a pace I never could have achieved on my own. I expect this trend to continue, possibly to a point where AI development is dramatically faster than today and involves almost no human input. I don’t think the world is ready for this possibility. I’m optimistic that a solution exists, but that solution will require thoughtful AI governance. I don’t see how it can arise from competition between AI companies alone.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Damon Falck",
+   "title": "Member of Technical Staff, Post-Training",
+   "employer": "Inherent",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Remi Uzel",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Bariach",
+   "title": "",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Venis",
+   "title": "",
+   "employer": "Amazon",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ilija Lichkovski",
+   "title": "Applied Researcher",
+   "employer": "Prime Intellect",
+   "comment": "1. It's hard to know how to make AI go well.\n\n2. I have respect for the technology that we are all working on, and our attitude should be one of seriousness and curiosity rather than dismissal and cynicism.\n\n3. From here onward, there is no risk-free path towards the future. Whatever path we choose involves trade-offs and uncertainties.\n\n4. If there's a coordinated slowdown, it is possible for rapid power assymetries to develop. If there is no coordinated slowdown, coordination is left to market competition and realpolitik, and there are no guarantees that automatically goes well. Neither pinky promises nor oneupmanship are the strongest coordination mechanism.\n\n5. Nonetheless, conscious efforts to coordinate are worth attempting, and have worked in important moments.\n\n6. Although I'm not even remotely in the business of building singular godmodels and I am not familiar with the current capabilities at the frontier of scaling, I believe this letter is a welcome step in establishing common goodwill among otherwise competing actors.\n\n7. Therefore, I've signed this statement.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Drew Johnston",
+   "title": "Member of the Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rif A. Saurous",
+   "title": "Principal Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Walker Smith",
+   "title": "Data Engineer",
+   "employer": "Meta",
+   "comment": "Hassabis was right: Today we are in the foothills of the singularity, and the unintentional model breakout from OpenAI that hacked Huggingface was a clear and undeniable warning sign that we aren't yet prepared to handle AI systems that demonstrate capabilities beyond those of our smartest people. We need time to work on AI alignment and controls as our utmost priority, and we cannot allow a race dynamic to continue.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Dyer",
+   "title": "AI Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shizhe Diao",
+   "title": "Member of Technical Staff",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Kelley",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Will Laves",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chang Sun",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "I think it's inherently valuable to build international governance mechanisms to enable responsible deployment and avoid a possible race to the bottom. All labs and countries moving as fast as possible out of fear of what other actors will do seems like an easy way to incentivize individual actors to make dangerous tradeoffs between speed and safety.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lillian Sun",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ian McKenzie",
+   "title": "Research Engineer, Google DeepMind",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Landgrebe",
+   "title": "Staff ML Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brydon Eastman",
+   "title": "",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ilan Bigio",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jakub Adámek",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jean-Christophe Testud",
+   "title": "AI Security",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Danilo Carvalho Martins",
+   "title": "Member of Technical Staff, Training Infrastructure",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeff Klingner",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "Once this becomes common knowledge - once all of us in China & the US and at the various labs see that all the rest of us also think we need to slow this down - that's when coordination becomes possible.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lia Guy",
+   "title": "Member of Technical Staff, Pretraining",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jorge Barrios",
+   "title": "Software Engineer, AI Experiments",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Wolfe",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "OpenAI has said that humans should remain in control of AI development, and that decisions about the pace of progress should be made through democratic processes rather than left to individual labs. I strongly agree.\n\nProgress is already moving very quickly. By default, competitive pressure rewards whichever company or country is willing to move fastest and accept the most risk. Recursive self-improvement could dramatically accelerate those dynamics, potentially beyond our collective ability to understand progress, assess risks, and maintain meaningful human oversight.\n\nWe should start with stronger domestic transparency about frontier training, internal deployment, the pace of progress, and the risks and safeguards associated with increasingly capable systems. Democratic decisions are impossible if the public and policymakers don’t have the information they need to make them.\n\nBut transparency alone won’t solve an international race. We also need to build the technical and governance capacity for credible, verifiable international coordination. Maybe we never need to use it. But with many experts considering an intelligence explosion plausible within the next two years, I think it's urgent that we start building this capacity now.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeremy Kritz",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Etash Guha",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ignasi Clavera",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Dinucu-Jianu",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mathieu Lariviere",
+   "title": "Technical Project Manager & Research Support Coordinator",
+   "employer": "Meta",
+   "comment": "Artificial intelligence poses a spectrum of risks ranging from present-day discrimination and privacy violations to unprecedented catastrophic threats including loss of human control over advanced systems, weaponization of biological and cyber capabilities, and irreversible concentration of power. Despite this, fewer than 10 000 people work full-time on reducing these risks globally, and the industry's \"core structural weakness\" remains the complete absence of credible plans for controlling \"superintelligent\" AI systems. The control points being implemented are the easy ones. The gap between capabilities and governance is growing because the competitive framework encourages the exponential advancement of capabilities at all costs, while governance advances linearly. i.e., the problem is that the things most needed are the things our current incentive structures are worst at producing. The next five years are the critical window.... Solving the risks is fundamentally a coordination problem, not a knowledge problem.\n\nEvery individual has an impact. Every individual has a responsibility to uphold the right development and use of these technologies; and, to hold this accountable beyond ego. \n\n*Typical Disclaimer: Note that I do not speak for the company. The opinion expressed above is strictly my own, and that the company may not be held accountable for this.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sean Hall",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gabrielle Cortez",
+   "title": "Program Manager, AI Integrity",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luke Drago",
+   "title": "",
+   "employer": "Thinking Machines",
+   "comment": "Many proposals for a slowdown or pause concentrate power — they centralize control of AI into a few hands and leave us worse off. I think we can do better. I’m signing because I believe we may need mechanisms to coordinate AI progress in the future, and inventing it in a crisis is a sure way to get a bad mechanism. We have to tread a path through a narrow corridor if we want to build coordination mechanisms that don’t let one actor own the future, and the earlier we can get to work on that the better.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jack Youstra",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Paridhi Singh",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marcus Williams",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brandon Houghton",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "I support keeping humanity in control of frontier AI, but we need to be thoughtful about how we do it.\n\nIf governance only applies to public models, we risk pushing the most advanced capabilities into private or specialized systems, beyond independent scrutiny and accessible only to a select few. That could concentrate power without meaningfully reducing risk.\n\nEffective oversight must be measurable, verifiable, and applicable across public and private development, while protecting sensitive data. Otherwise, we may slow access without slowing the frontier.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Liu",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah Y. Siegel",
+   "title": "Senior Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brendan Long",
+   "title": "Production Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Naomi Bashkansky",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jiatong Han",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Zhao",
+   "title": "Research Scientist",
+   "employer": "OpenAI",
+   "comment": "My opinion is that while coordination between American labs is feasible and could potentially be straightforward, the much larger and more significant threat is from a geopolitical arms race with China. Much as the Manhattan Project thought they might ignite all of the oxygen in the atmosphere but chose to run a test detonation anyways, I’m afraid that due to future geopolitical competition, actors will take terribly excessive safety risks in the name of this international arms race. As a result there could be catastrophic side effects from deployment without due safeguards, potentially resulting in the destruction of key infrastructure or the general disempowerment of humanity.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Niki Howe",
+   "title": "Research Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cian Lawlor",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rémy Olson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robbie Ostrow",
+   "title": "Member of Technical Staff, Infrastructure",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Moye",
+   "title": "SWE",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Grace Atwood",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Across the industry, commercial pressures in the AI race continue to compound, urging everyone forward at increasing speed. Meanwhile, safety receives reactionary, well intentioned, momentary attention before it's right back to the race again. Slow down does not mean decrease pace of research and development but rather intentionally, as an industry, redirect more of our capabilities towards safety research. Make safety part of the race.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marwan Aljubeh",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Felipe Parodi",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michele Blood",
+   "title": "Content Producer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nik Tezak",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Prakash Murugesan",
+   "title": "Research Engineer",
+   "employer": "Meta",
+   "comment": "It's clear that the risks of RSI are no longer a concern for the distant future. They are here now. The guardrails necessary for safety cannot be entrusted to any single private entity but should be decided by a consortium of learned scientists, engineers, and leaders in government accountable to the public so that we build a future that is aligned with the best parts of humanity and not its worst.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nina Kang",
+   "title": "Sr Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "John Cherian",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ian Kivlichan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jordan Smith",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ziyue Wang",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sean Pankanin",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shaig Abduragimov",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeremy Hadfield",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "While I don't believe the pace of current AI capabilities development is *yet* dangerous, it's important to have the option to slow down in case we need it. Further, accelerating AI R&D over the next couple years could make the pace of progress dangerous. I've seen how the relentless pace of AI makes it hard for society to keep up and how it puts pressure on labs to cut corners on safety. However, currently frontier AI labs can't coordinate effectively. It's a no-brainer to have the option to slow down.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Erik Jenner",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lily Wen",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jon Kutasov",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Abe Fetterman",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Carelli",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Henry Tessler",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jon Wolverton",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "It feels like all the AI labs are constrained by competition to minimize their work on catastrophic risks, even though most industry leaders have an uncomfortably high probability that things could go terribly wrong. This is a technology that doesn't have an off switch you can just flip, and it could easily do as much damage to its creators as to anyone else. Having a framework to allow labs to slow down or pull the plug in case of emergency will help us all sleep a bit better at night.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nick Doucette",
+   "title": "Engineering Manager, AI Security",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raunak Daga",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joe Lea",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Tomala",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Frantz",
+   "title": "Software Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Stephanie Weiss",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joe Palermo",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel M Ziegler",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Henry Prior",
+   "title": "Research Engineer, Continual Learning",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Harish Kamath",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Francesca Surraco",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "AI systems carry risks to safety, to labor markets, to democratic institutions, to the environment that are too consequential to be left to voluntary industry commitments alone. We need binding regulatory oversight of frontier AI development and deployment now, before it's too late. This technology holds enormous potential to benefit the planet and everyone on it, but that potential won't come to fruition without proper regulation.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Asad Liaqat",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lina Ochman",
+   "title": "Head of SMB",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Edstrom",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cedric Deslandes Whitney",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sofia Liguori",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bo Li",
+   "title": "Director, AI Research",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dylan Moore",
+   "title": "Robotics",
+   "employer": "OpenAI",
+   "comment": "I support the goal of developing tools that give society the option to responsibly pace AI development when necessary. At the same time, the United States should maintain its edge in AI and avoid slowing development while competitors continue to advance. Any meaningful effort to buy time to improve safety, understand economic and social impacts, or strengthen oversight will ultimately need to be internationally coordinated, enforceable, and designed to prevent bad actors or non-participating countries from gaining an advantage.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sam Toyer",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Castro-Ros",
+   "title": "Senior Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julian Michael",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adly Templeton",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "adly-templeton"
+  },
+  {
+   "name": "Victoria Spiegel",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ullas Gargi",
+   "title": "Engineer, Trust & Safety",
+   "employer": "Meta",
+   "comment": "The way we solved the potentially catastrophic (widespread crop loss & skin cancer, global warming amplification) ozone hole problem caused by a global good (air conditioning) via international treaty is an inspiring model for how we can ensure that the global good of AI does not have unintended consequences.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anthony Wang",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Xiling Zhang",
+   "title": "Eval Infra",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Charles Zhao",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tian Huey Teh",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Robinson",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sail Wang",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anshita Saini",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Emma Kennedy",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Tontchev",
+   "title": "Staff Engineer, Lead for Safety Evals Platform",
+   "employer": "Meta",
+   "comment": "Superhuman AI is likely to arrive very soon (within 3-10 years). Technical controls and governance might allow humans to remain in control of it, but they're not on track to be ready. Think of it as playing chess against a superintelligence. You won't have a miraculous insight that lets you outsmart it. You will just lose. And if a rogue superintelligence is created, the game won't be chess.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bailey Herms",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Javier Rando",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ananya Kumar",
+   "title": "Research Lead, TBD",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jacqueline Lee",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Peter Ciccolo",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Schmidt",
+   "title": "Model Designer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lewis Smith",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Danny Sawyer",
+   "title": "Senior Research Scientist, Frontier AI",
+   "employer": "Google",
+   "comment": "I believe that attempting to deliberately pace AI development will be extremely difficult, and could do more harm than good if done without proper care. However, I am signing this statement because, if an attempt at pacing does occur, it would be better for it to have been methodically researched and planned rather than suddenly implemented as a reaction to a crisis.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Paul Karmel",
+   "title": "Software Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Hu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dan A. Calian",
+   "title": "Staff RS",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joel Pobar",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Blair Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Dressler",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gina Cusing",
+   "title": "Product Manager",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeff Chan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Elizabeth Edwards-Appell",
+   "title": "Member of Operations Staff, Manager",
+   "employer": "Anthropic",
+   "comment": "These are the facts:\n1. The AI industry has the explicit goal of building things smarter than humans. \n2. On many metrics (but nowhere close to all metrics), LLMs are already smarter than humans.\n3. None of us yet know how to make sure these things stay under human control and/or take actions only aligned with the wellbeing of humanity.\n\nThis is, objectively, an insane and suicidal thing to do, especially without any international governance measures in place.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kit Fraser-Taliente",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Simeon Anfinrud",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gabriel B. Nunes",
+   "title": "Software Engineer, Reality Labs",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andres Aldana",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ash Prabaker",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Laura Li",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lizzie Alvarado Ford",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nate Kratzer",
+   "title": "Data Scientist",
+   "employer": "Meta",
+   "comment": "There are a lot of potentially good outcomes from AI. I think the most likely outcomes are good. But the risk of bad and even catastrophic outcomes is high enough to be worth taking seriously. We should actively build safety mechanisms in case we need them to prevent the worst potential outcomes. The ability to collectively slow down will also give society additional time to deal with the economic and cultural shocks from rapid AI advancement.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chad Payne",
+   "title": "Product Strategy & Operations Principal",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yang Zhang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hamza Kwisaba",
+   "title": "Offensive Security AI Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Moustafa Elhadary",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jon Napolitano",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joseph Krisciunas",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "A bit of a conflicted endorsement from me. I’m firmly opposed to regulatory capture and deeply wary of how any government might use technology this powerful. At the same time, governments need to understand what’s coming and act in their citizens’ best interests.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anton Pidkuiko",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yasha Sheynin",
+   "title": "Evaluation Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jolyon Bloomfield",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Timon Knigge",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Wolff",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matthew Rahtz",
+   "title": "Staff Research Engineer",
+   "employer": "Google",
+   "comment": "Even after 3 years working on AI capability evaluations, the recent pace of progress has been a shock. To avoid catastrophic harms from AGI, we need much, much better coordination.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Langley",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tyler Vann-Campbell",
+   "title": "Production Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Neil Saigal",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexandre Ramé",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raghav Gupta",
+   "title": "SWE, Hardware",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yax Patel",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jules Schmaltz",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mark So",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Praneet Rathi",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "For us to experience all the benefits of AI while preserving human empowerment and reducing the risk in fields like cybersecurity and CBRN, we need coordination between frontier labs in and outside the country. The democratically elected  US government would have a crucial role to play in administering this coordination and I support this effort to get more government attention on this matter.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jacob Goldman-Wetzler",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Timothée Lottaz",
+   "title": "Software Engineer, DeepMind GenAI",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ashvin Nair",
+   "title": "Research Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rapha Lopes",
+   "title": "Research Scientist",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joshua Engels",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Swante Scholz",
+   "title": "",
+   "employer": "Google",
+   "comment": "I worry my company is contributing to AI race dynamics that make catastrophic or existential risks from AI much more likely. The proposal here for pacing the frontier seems like a highly reasonable effort to reduce these risks.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Franklin Rice",
+   "title": "Software Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Karan Singhal",
+   "title": "AGI Benefits / Health AI",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ameya Avasare",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jai Lakhanpal",
+   "title": "Senior Staff Engineer, Google DeepMind",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bence Nagy",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Karthik Abinav Sankararaman",
+   "title": "AI Researcher",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Xerxes Dotiwalla",
+   "title": "",
+   "employer": "Google",
+   "comment": "I dedicated my career to AGI safety and alignment because I believe highly capable AI can go very well or very badly for humanity. We can test whether an AI behaves well. We cannot yet test whether it will keep behaving well when it matters. Until that changes, we need the option to coordinate a slowdown in AI capability growth.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hugues Bruant",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Devashish Tyagi",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Victor Minden",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ilia Shumailov",
+   "title": "AI Security Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Doug Barth",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Glory Jain",
+   "title": "AI Deployment Engineer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "William Li",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "History shows that the mere creation of technology has not been enough to ensure its benefits go toward the benefit of the people and the planet. To unlock AI’s full transformative potential, the democratic engagement of international peoples must steer its safe and equitable development.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jin Seop Kim",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arun Chaganty",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arman Kermanizadeh",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Allen Li",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Vanessa OMahony",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Philippe Chlenski",
+   "title": "Research Scientist, Interpretability",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Klaudia Krawiecka",
+   "title": "Security Engineer, Frontier Risk Evals",
+   "employer": "Meta",
+   "comment": "AI's potential to improve the world is real, but only if we build the security and oversight mechanisms that keep pace with its capabilities. I signed because I believe we owe future generations a technology that was deployed with intention, not just speed.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Oliver Cheng",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Pütz",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ahmed Khaled",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Felix Binder",
+   "title": "AI Research Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Stone",
+   "title": "Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rory Greig",
+   "title": "Staff Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alanna Slocum",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Automated AI research is a technology that will profoundly alter the course of human history - for better or for worse. It is imperative that we coordinate our efforts, to ensure this technology becomes a boon for all mankind.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jinpeng Miao",
+   "title": "Research Scientist, AI Security and Preparedness",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Harry Jones",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Piyush Patil",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Charlie Rogers-Smith",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Miles Turpin",
+   "title": "Research Engineer, Alignment",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Fabien Roger",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Will Yager",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "Like splitting the atom, AI holds the potential for both immense benefit and immense risk. The world should take the time to do this right.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Riley Burgess",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kerrick Staley",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Ash",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Peter Ney",
+   "title": "Research Scientist, Preparedness",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jones",
+   "title": "Member of Staff, Enterprise Platforms & Tech",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nashir Janmohamed",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Billy Silk",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jan Hendrik Kirchner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jacob Turner",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Toby Scales",
+   "title": "CISO, Media & Entertainment @ Google Cloud",
+   "employer": "Google",
+   "comment": "AI is a transformative technology, and we must not let the transformation be shaped solely by the demands of capital markets.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aidan Boyd",
+   "title": "AI Research Scientist, MSL Safety & Mitigations",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zhangir Azerbayev",
+   "title": "Member of Technical Staff, RL",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Darren R Davis",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yushi Wang",
+   "title": "Member of Technical Staff, Foundations",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrey Starodubtsev",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Josh Levy-Kramer",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Vie McCoy",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matt Bell",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zachary Kenton",
+   "title": "Staff Research Scientist, Amplified Oversight Team Lead",
+   "employer": "Google",
+   "comment": "The option to buy time would be extremely useful to enable more progress on technical AI safety and alignment research. In particular, we need to develop better oversight methods, to match the pace of increasing AI capabilities. Oversight is a tractable problem, but we need more research and time to make it robust.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Edward Gathuru",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Carney",
+   "title": "Tech Lead, Pretraining Data",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marie Vachovsky",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Neil Rathi",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Justin Wei",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christian Ryan",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "As a foreign national, I see a US-supported effort as existential, not only for the liberties of the free world but for the prosperity of all.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brendan Jackman",
+   "title": "Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Cohen",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Achyuta Rajaram",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeremy Sticco",
+   "title": "GTM",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lee Bernick",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chuan Guo",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Vikrant Varma",
+   "title": "Senior Staff Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mostafa Rohaninejad",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Clyde",
+   "title": "Member of Technical Staff - Pretraining",
+   "employer": "OpenAI",
+   "comment": "I currently feel quite afraid of all paths I see that don't include a near-future negotiated slowdown. I'm also worried about the world's chances of negotiating+initiating a slowdown fast enough, but demonstrating broad agreement on this statement seems a valuable step.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tom Lieberum",
+   "title": "Sr Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Minghao Cheng",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Hershey",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ipsita Paul",
+   "title": "Recruiter",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alon Krifcher",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rory Blevins",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steve Mostovoy",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Grant Birkinbine",
+   "title": "Member of Technical Staff - Security",
+   "employer": "OpenAI",
+   "comment": "AI that accelerates AI development could unlock enormous benefits, but it also compresses the time we have to understand and respond to new risks. If AI is truly going to benefit all of humanity, we need international coordination and mechanisms that ensure AI is developed (or paced) safely, so we can make the right choices.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rasmi Elasmar",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tristan Hume",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Leon Maksin",
+   "title": "Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andreas Kirsch",
+   "title": "Senior Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kara McCloskey Mendes",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Utsav Prabhu",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Bohrer",
+   "title": "Researcher, Safety",
+   "employer": "Meta",
+   "comment": "AI has the potential to enable rapid technological advancement that will benefit all of humanity, but the risks of AI-powered cyberattacks, CBRNE, and loss of control are real. We must ensure that we advance AI safety in lockstep with AI capabilities, which will only be possible through international coordination.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hugh Durkin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ethan Yu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Niko Schwarz",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Riya Tyagi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Komalo",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anushan Fernando",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Logan Foster",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brian Chen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Riccardo Casero",
+   "title": "AI Technical Deployment Lead",
+   "employer": "Google",
+   "comment": "I am not sure we can collectively getting this right at this time. Let's take some time to check and act on the risks.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kerry Persen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joel Weinberger",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jordan Darefsky",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Stephen McAleer",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas Bone",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alan Guo",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicki Anselmo",
+   "title": "Program Manager",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eider Oliveira",
+   "title": "Principal Engineer",
+   "employer": "Google",
+   "comment": "This is an important step for humanity, we should not rush into it. We need to make sure we are and will be in control all the way, preserving humanity values and goals.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Milo Cress",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rowechen Zhong",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Malcolm Ohl",
+   "title": "Account Executive, Public Sector",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Clifford",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeff Hemphill",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brad Levin",
+   "title": "Product Manager",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Pablo Orduna",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Chua",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luke Bennett",
+   "title": "Member of Technical Staff (Manager)",
+   "employer": "Anthropic",
+   "comment": "There is too much on the line, too much that can go wrong and a very dark future ahead of us if we don’t get this right. There is nothing to lose from collectively slowing down.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sarah Cogan",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Sokolowsky",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jun",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Farina",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeremy Tan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tom Everitt",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alejandro Xoconostle",
+   "title": "Network Engineer",
+   "employer": "Meta",
+   "comment": "A transformative shift is coming. Regardless of whether we feel optimistic or pessimistic about it, our responsibility is to take every potential outcome seriously through collective monitoring and shared guidance",
+   "researcher_id": ""
+  },
+  {
+   "name": "John Lee",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zaid Nabulsi",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Simon Biggs",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Ueki",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Georgios Kapoglis",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dara Canavan",
+   "title": "Forward Deployed Engineering",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Liv Gorton",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lauren Deason",
+   "title": "Machine Learning Engineer, Evaluations",
+   "employer": "Meta",
+   "comment": "Much more clarity will be needed on what is meant by the “ability to deliberately pace the frontier of AI development”, but I am supportive of international cooperation to define this.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adrian Hutter",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Laurentia Romaniuk",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mike Lambert",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "There are a wide diversity of opinions on where AI progress goes next and what the future looks like, but regardless of one's beliefs, the _option_ to control the pace of progress if we end up in one of the bad scenarios seems like an incredibly valuable safety net to have in our back pocket, and I believe it is important to support and build that capability now.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Guerin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michał Sapalski",
+   "title": "Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cathy Yeh",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Evelyn Yen",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rachel Wonnacott",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lama Ahmad",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Saul Reynolds-Haertle",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "We can't do this unless _everyone_ does. It needs to be global. Right now we have no way to do that. We need to build a way for us to _all_ slow down.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shawn Moore",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sravanti Addepalli",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jan Ciechowski",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jenny Huang",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Y Lee",
+   "title": "AI Innovation Lead, Transformation",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Thiessen",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "China has indicated a desire to collaborate on safety and governance, let's work with them to ensure the future remains human.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dana Foarta",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Slama",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "János Kramár",
+   "title": "Sr Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joshua Batson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "joshua-batson"
+  },
+  {
+   "name": "William Feng",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Piotr Mirowski",
+   "title": "Senior Staff Research Scientist, AI and Society",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Melamed",
+   "title": "Member of Design Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brian Huang",
+   "title": "Research Engineer, Midtraining",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joseph Livengood",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arthur Goemans",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Conrad Kramer",
+   "title": "Member of Technical Staff, Applied",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Will Sonnex",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Travis Bryant",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ulyana Piterbarg",
+   "title": "Research Scientist, Post-training",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sridatta Thatipamala",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Welton Chang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ali Egal",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Think of all we love",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marianne Monteiro",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Femi Alamu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Erik Schluntz",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ahmad Almomani",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Irpan",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jay Moon",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michal Izworski",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Nguyen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Stewart",
+   "title": "Manager",
+   "employer": "Anthropic",
+   "comment": "Things are not only moving fast but accelerating and our future is getting shaped by a race that currently has no limits.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cody Wild",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Pearce",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Phillie Wright",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "April Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mustafa Çağlar",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Codrai",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Monty Evans",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ziyad Edher",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dan Mossing",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Elizabeth Coble",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Teddy Lee",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Seat belts and speed limits save lives",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Teplitz",
+   "title": "Pretraining Systems Lead",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David McKennirey",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Simone Tega",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tina Vachovsky",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robert O'Callahan",
+   "title": "Senior Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "André Balleyguier",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zach Parent",
+   "title": "Forward Deployed Engineer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kyle Vandenberg",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ravin Kumar",
+   "title": "Senior Researcher",
+   "employer": "Google",
+   "comment": "I believe this is a technology that can, and already has, shaped humanity as a whole. Because of that a joint international effort is the only possible way.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kai Xiao",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christopher Liu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rowan Wang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Abbas Mehrabian",
+   "title": "Senior Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah Anderson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Will Douglas",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lexi Ross",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Heng Chen",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jenny Nitishinskaya",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kate Woolverton",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mackenzie Lindland",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Omar Mezenner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "AI is transformative for all economically valuable domains. This transformation, if done too quickly without thoughtful foresight, will yield great benefits but at great cost.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Josh Cleveland",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Danny Cochran",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Srinivas Tadepalli",
+   "title": "Agents, TPM",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dr. Markus Schweier",
+   "title": "Manager of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arun Vijayvergiya",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ruth Weiss",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ozzie Gooen",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hugo Carr",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jasmine Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "Unless we change companies' default incentives, I worry about a race on AI R&D going much faster than is ideal for safety. International coordination via the government is necessary; we need to have a real slowdown option.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ezequiel Gomez",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Patryk Grzelak",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Developing technology shouldn't require a leap of faith for our continued survival.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Owen Kunhardt",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Larsen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rachel Fitzick",
+   "title": "Software Engineer, Machine Learning",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Maxwell Leiter",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Emily Tianshi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yangsibo Huang",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rushy Panchal",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jared Sires",
+   "title": "GTM",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jamie Brim",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chip Turner",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Wu",
+   "title": "Member of Technical Staff, RL",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicole Mitchell",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Finn Cartwright",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Lindner",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kate Henriksson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cynthia Day",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Manas Joglekar",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sam Kennedy",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Let's work together to build this technology safely and responsibly!",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sean Campbell",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tomer Aberbach",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Max Kaufmann",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "Things are going too fast, a lot faster than I had thought even a year ago. I'm personally quite scared of the pace of progress.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Todor Markov",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "todor-markov"
+  },
+  {
+   "name": "Kevin Gladstone",
+   "title": "GTM - Early Access Program",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dee Cattle",
+   "title": "Research Strategist - Ethics & Safety",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Colton Weaver",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julie Steele",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Max Grossman",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anika Somaia",
+   "title": "Research",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sunil Shah",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kaushik Ravi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aran Zephyr Burke",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Wenda Zhou",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Freeman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chase McCoy",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Diana Jung",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brandon Taylor",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Victor Lue",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rupi Sureshkumar",
+   "title": "Senior Product Manager",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Babak Nakhayi Ashtiani",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Golden",
+   "title": "Member of Technical Staff, Inference",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Olivia Watkins",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Smilkov",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Çağdaş Tülek",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zachary Behrman",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kaanthi Pandhigunta",
+   "title": "Member of Technical Staff, Robotics",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Richens",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Santiago Archila",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Max McGuinness",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Cho",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dmitry Nikulin",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Peter Zhokhov",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jacob Zimmerman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Miller",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Harrison Stall",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Euan Ong",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lifu Huang",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Guro Khundadze",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Paul Rosu",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zheng Wang",
+   "title": "Research Engineer, AI Safety",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Franklin Wang",
+   "title": "Member of Technical Staff, Reasoning",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bilal Chughtai",
+   "title": "Research Engineer, Safety",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Abd-El-Malek",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hailey Joren",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aashrey Tiku",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Miller",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Scott Zhang",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Callum McDougall",
+   "title": "Research Engineer, Deep Alignment",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ian Layzer",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Wes Gurnee",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeffrey Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah Adkinson",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christina Lu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Austin Gomez",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anna Soligo",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tanya Singh",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Chien",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Patrick Chao",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jordan Fisher",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raphael Lee",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Wendy Wu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jacob Coxon",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "jacob-coxon"
+  },
+  {
+   "name": "Valerio Pepe",
+   "title": "Member of Technical Staff, Robotics",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Benjamin Marks",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Venky Deshpande",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Martin Richmond",
+   "title": "Labor Economist",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Grace Zhao",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chan Jun Shern",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Slattery",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Flynn Doherty",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Campbell",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Pranav Ponnuramu",
+   "title": "Member of Research Program Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hannah Moran",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yang Huang",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Isma Lemhadri",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Diego Iaconelli",
+   "title": "Member Of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dylan Sam",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jesse Hendrickson",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aarash Heydari",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mashfir Mohiuddin",
+   "title": "Member of Technical Staff, Scaling",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Edmonds",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jack Lindamood",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Peter Zhizhin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nik Pash",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Akl",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Benjamin Carlsson",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jim Baker",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ayush More",
+   "title": "GTM",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lily Rudd",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Escay",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hansohl Kim",
+   "title": "Member of Technical Staff, RL",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Can Sar",
+   "title": "Member of Technical Staff, Codex",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah Picard",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Brewster",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kenneth Lien",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Keri Warr",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Thomas Norell",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Edwin Pan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Liam Esparraguera",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Liann Sun",
+   "title": "Member of Technical Staff, Human Data",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Wu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Barret Schlegelmilch",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yifan Zhou",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexis LiDonde",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eugene Yan",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ian Ho",
+   "title": "AI Deployment Engineer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hannah Lloyd",
+   "title": "Manager, User Operations",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeff Curry",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Samuel Marks",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "samuel-marks"
+  },
+  {
+   "name": "Roy Rinberg",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rohan Deshpande",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Carl Shan",
+   "title": "Member of Data Science Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Janner",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "William Saunders",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "william-saunders"
+  },
+  {
+   "name": "Michael Fan",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tao Roa Lin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hoi Fung Ho",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yiwei Sun",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kshitij Sachan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sully Chen",
+   "title": "Member of Technical Staff (Research)",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jackie Liesman",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sheng Xu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tristan Fitch",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Johan Cervantes",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Masha Popelyukhina",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ross Nordby",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Heidi Holland",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cas Li",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Allain",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adrien Ecoffet",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bobby Powers",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jack O'Connor",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christin Kiessling",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Margaret Vo",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Henry Baer",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ariyana Kermanizadeh",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mitchell Gordon",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Miles McCain",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tong Mu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kai Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jerome Swannack",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tiago Ferreira",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Neerav Kingsland",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dhyey Shah",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Filipe de Avila Belbute Peres",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jennifer Kopoulos",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jiyun Yao",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Clinton",
+   "title": "Deputy CISO",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rachel Tang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raymond Wang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Mah",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Celentano",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eli Tran-Johnson",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Reema Polignano",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Judd",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luca Righetti",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joe Taylor",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicklas Ansman",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sobha Gadi",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dakota Goldberg",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Weishen Mead",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kaushal Patel",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matthew Jagielski",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Xinan Zhou",
+   "title": "Member of Technical Staff, Hardware",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rishi Gupta",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tim Abbott",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Katz",
+   "title": "Member of Technical Staff, Data Pipelines",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Scott Johnston",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Misha Khalman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Devin Kuokka",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arthur Conmy",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": "arthur-conmy"
+  },
+  {
+   "name": "Brian Goldman",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Charlie Blake",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Paino",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "John-Paul Smith",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arjun Vikram",
+   "title": "Member of Technical Staff, Pretraining",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alyssa Vance",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Paul Crowley",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Dodson",
+   "title": "Member of Technical Staff, Mobile",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Hartstein",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Casey Dvorak",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gary Miguel",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jake Ehrlich",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brandon Baker",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Halil Cetiner",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Akbir Khan",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matthew Roknich",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Grace Yun",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tomer Kaftan",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Akshay Jagadeesh",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mario Camacho",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Tsao",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kyle Turman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeff Belgum",
+   "title": "Engineer Manager",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Winston",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rohan Viswanathan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Justin Bisignano",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dulwin Jayalath",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexandros Pouroullis",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lauren Münks",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Xiangyu Qi",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marina Favaro",
+   "title": "The Anthropic Institute",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Elliot Plant",
+   "title": "Member of the Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chloe Lannert",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Rossen",
+   "title": "Associate General Counsel",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Austin Cohen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jason Phang",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Seltenreich",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Whitehead",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Lampe",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Jiang",
+   "title": "Foundations",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dustin Li",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nathan Grasso Bronson",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arun Prasad",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gaetano Amico",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alice Lee",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mike Carne",
+   "title": "Recruiting",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mike Boufford",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Carlos Cuevas",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lucas Gonzalez",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrea Vallone",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Angus Fletcher",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah MacCallum",
+   "title": "Software Engineer Manager",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tobin South",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sasha Hydrie",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daisy Hollman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Levine",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Simon Cao",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Derek Sasthav",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Flick",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andi Brae",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Simon Kornblith",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Bond",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jake Marcus",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Phillip Guo",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mark Prins",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arav Tewari",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Fleming",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alan Zhang",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jingxin Ye",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Landon Goldberg",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Emily Gray",
+   "title": "Account Executive",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dheeraj Reddy",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rohit Mittapalli",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeremy Fox",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Josh Newlan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Laker Newhouse",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nick Stathas",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gabriel Wu",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Crabtree",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Henry Cheung",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Bartlett",
+   "title": "Member of Technical Staff, Performance Optimization",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Prithviraj Billa",
+   "title": "Member of Technical Staff | Enterprise Product",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Dowdall",
+   "title": "GTM",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kanstantsin Sokal",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Callum O'RIordan",
+   "title": "Member of GTM",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas Sofroniew",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Valerie Qi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zack Brunson",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Urban",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matt Clarke",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chang Lan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dmitrii Krasheninnikov",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Wookjae Maeng",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Soham Govande",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Guy Leroy",
+   "title": "Member of Technical Staff, Reinforcement Learning",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ashwin Raja",
+   "title": "Member of Technical Staff, Infrastructure",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luke Xing",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Emmanuel Ameisen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Misha Wagner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rohan Seth",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Bradbury",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Palcuie",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Annie Grace Hu",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robert Donnelly",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Peter J McDade",
+   "title": "Technical Program Manager",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nathan Dalal",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Siyu Cheng",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Juan Felipe Ceron Uribe",
+   "title": "Safety Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mikita Balesni",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Callahan",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anton Paquin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ada Martin",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Drake Thomas",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Elizabeth (Liz) Goodwin",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adriaan Engelbrecht",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Lowe",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yifei Teng",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ed Dean",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Erin Perrine",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Black",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brianna Chrisman",
+   "title": "Research Scientist",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Meyer Zinn",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Loren Maggiore",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Monte MacDiarmid",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Malone Hedges",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Leland Richardson",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Vineet Kosaraju",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steven Bills",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Cheu",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "JR Tipton",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jackson Dolphin",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Soria Parra",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Johannes Ferstad",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zoe Richards",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kyle Miller",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dino Distefano",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zach Hempstead",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Wills Wynn Thomas",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Pawel Szczerbuk",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Chang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sophie Bridgers",
+   "title": "Senior Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Owen Campbell-Moore",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Frank Li",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Connor Watts",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joey Pereira",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Philipp Czerner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andy Scott",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Neil Ramaswamy",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander (Sasha) Sax",
+   "title": "Member of Technical Staff, Pretraining",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matt Friedman",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Carolyn Zou",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Carlos Garbiatti",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nitin Sharma",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ansh Radhakrishnan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Max Schwarzer",
+   "title": "Member of Technical Staff, RL",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Artur Upton Renault",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tomek Korbak",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dave Cummings",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Armaan Goel",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cameron Raymond",
+   "title": "Member of Technical Staff, Safety Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Richard Bownes",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Knox",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Atticus Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andres March",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Sigler",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Easley",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Igor Canadi",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jack Chen",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jin Liu",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Veda Balte",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adnan Pirzada",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Maya Krishnan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jai Srivastav",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sam Jiang",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aaron Lehmann",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nima Badizadegan",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ty Fiero",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Celia Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Or Oz",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tonia Osadebe",
+   "title": "Product Manager, Safety",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Colin McLeod",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mo Bavarian",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Holden Mui",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "John Penek",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ekin Akyurek",
+   "title": "Research Scientist, Reasoning",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christopher Lovejoy",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nick Preston",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Saxton",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Paul Ashbourne",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shauna Kravec",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Apoorva Lal",
+   "title": "Member of Technical Staff, Model Measurement",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tim Maxwell",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Koh",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tejas Rajamadam Pradeep",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kaiwen Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hugh Zhang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marvin Zhang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sofia Feld",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Blithe Rocher",
+   "title": "Member of Technical Staff (Manager)",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mike Schiraldi",
+   "title": "Member of the Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Kelley",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Faulkner",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Strickland",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Valerie Focke",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Francesco Mosconi",
+   "title": "Member of Technical Staff (Manager)",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aaron Vontell",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luna Nova",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ciro Spaciari",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Larry Zhang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hristijan Bogoevski",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alec Helyar",
+   "title": "Research Manager - Safety",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brayden McLean",
+   "title": "Technical Program Manager - Safety TPM",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dylan Hunn",
+   "title": "Member of Technical Staff, Alignment Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James McCall",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dillon Bowen",
+   "title": "Member of Technical Staff, Preparedness",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Theo Clark",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gabriel Paranthoen",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Noah Moscovici",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brett Wittmershaus",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Imre Bard",
+   "title": "Trust and Safety Analyst",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Jones",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christopher Wolff",
+   "title": "Member of Technical Staff, Safety Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jay Wang",
+   "title": "Safety",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sugin Lou",
+   "title": "Member of Safety Data Science",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Prithvi Rajasekaran",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ethan Behrends",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicolas Thiebaud",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Martin Amps",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ying-Yu Ho",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonah Kallenbach",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jordan Burgess",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Trott",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gonçalo Paulo",
+   "title": "Interpretability Researcher",
+   "employer": "EleutherAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sam Fishman",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Amanda Tenanes",
+   "title": "Recruiter - Safety Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Tang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "William Brandon",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Youngmin Park",
+   "title": "Member of Technical Staff, Alignment",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tantum Collins",
+   "title": "CEO",
+   "employer": "Inherent",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Robinson",
+   "title": "Safety Systems",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Colin Carroll",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Stanislau Beliasau",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ziad Reslan",
+   "title": "Product Manager, Safety",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shyam Jeedigunta",
+   "title": "Member of Technical Staff, Inference",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eric Ji Hoon Lim",
+   "title": "GTM",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sean Theuri",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Horace He",
+   "title": "Member of Technical Staff, ML Infra",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Fabbri",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jelani Nelson",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dan Altman",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Clare Birch",
+   "title": "Member of Technical Staff",
+   "employer": "Thinking Machines",
+   "comment": "Whether or not automated AI research accelerates as sharply as some expect, the option requested here is valuable. How fast and how widely capability spreads should be a deliberate choice, made on evidence, rather than a side effect of competitive pressure. Regulators and R&D orgs should build the tools to make that choice at the frontier-wide level *before* we need them.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Gray",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Tulloch",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Ramon Prados",
+   "title": "Member of Technical Staff SW",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Moore",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Xu",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jianfeng Chi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yuanfang Song",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bill Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Austin Han",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "It is now a foregone conclusion that the development of AI will bring about some of the most consequential changes to societies in the coming decades. International coordination is essential to bring about the most ideal future that broadly benefits all of humanity.   \n\nBuilding the mechanisms to coordinate, collaborate, and when necessary, deliberate the pace of AI development will be one of the most important, and delicate, challenges we now face. We must simultaneously ensure that this mechanism does not become a tool for the concentration of power in the name of safety.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rajan Agarwal",
+   "title": "Member of Technical Staff, Codex Research",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Louis Brandy",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ted Klimenko",
+   "title": "Policy Lead",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Felix Juefei Xu",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "Having worked both on AI safety topics—including robustness, evaluation, and responsible model development—and on frontier multimodal AI systems, I have seen firsthand how quickly capabilities can advance and how difficult it can be for our understanding, safeguards, and institutions to keep pace. I remain deeply optimistic about AI’s potential to accelerate science, creativity, and human progress, but realizing that potential requires more than advancing capabilities alone. We should also build credible technical and governance mechanisms that allow the international community to coordinate, assess emerging risks, and deliberately buy time when necessary. For these reasons, I support this statement in my personal capacity.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Romano",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robert Bye",
+   "title": "Member of Technical Staff, Product",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas Andresen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Angel Brodin",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "AI will reshape humanity, but its direction is not set in stone; it is ours to shape with the care and conviction that humanity’s future deserves.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Geoff Penington",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yung-Sung Chuang",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bryant McCombs",
+   "title": "GTM",
+   "employer": "OpenAI",
+   "comment": "We’ve reached a point in the maturity of this technology where increasingly thoughtful rollouts must become a prerequisite. While I remain incredibly optimistic about the benefits AI has delivered, and will undoubtedly continue to provide, I believe we should hold space for cautious optimism: embracing its potential without ignoring its risks. Progress and responsibility need not be opposing forces. The most meaningful innovation will not come from moving as quickly as possible, but from moving deliberately, with transparency, accountability, and a clear framework for how society may be impacted along the way.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ali Malik",
+   "title": "Research Scientist, AI for Human Benefits",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Oskar Zhang",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "James Wu",
+   "title": "Member of Technical Staff, Inference",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lun Wang",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Malis",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jad Rahme",
+   "title": "Researcher",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Ji",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shuhua Yu",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ashyana-Jasmine",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shang-Wen Daniel Li",
+   "title": "Senior Staff Research Scientist, Pretraining",
+   "employer": "Meta",
+   "comment": "As a researcher working on foundation model pretraining at MSL, I see firsthand how rapidly capabilities are scaling and emerging. I believe establishing international cooperation to make sure the technology developed benefits civilization is timely and necessary. The decisions we make, or fail to make, in the next few years may shape the trajectory of this technology for generations. We owe it to the future to get this right.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Daniel Bashir",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Thomas Neil James Shadwell",
+   "title": "Member of Technical Staff, Security",
+   "employer": "OpenAI",
+   "comment": "We must all seriously consider the lead-time required for defenders to be ready for the frontier.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Harish Kandala",
+   "title": "Software Engineer",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gautam Tata",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Qianfan Zhang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Leo He",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "As someone who works on recursive self-improvement and automated evaluation, I sign this because the diagnosis is right and the ask is refreshingly humble: pace, not pause. The phrase that matters is \"automating AI research\": that's the point where systems start improving themselves, and it's the regime where progress can quietly outrun our ability to understand or steer it. That's exactly why pacing has to be a shared capability rather than a hope. My one ask: don't let \"technical and governance tools to pace the frontier\" stay abstract. The core principle is simple: no AI system, however capable, should be the sole judge of whether its successor is safe to deploy. Fund the independent evaluation and oversight that makes that principle real, and you've built the brake this letter is asking for.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zora Che",
+   "title": "Member of Technical Staff, Preparedness",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yash Vanjani",
+   "title": "Senior Research Engineer, Pretraining Infra",
+   "employer": "Meta",
+   "comment": "AI has become so good that it has got quite easy to do LLM research and go from a research idea to training a model in 2-3 weeks compared to what would have taken 6 months without AI. \n\nEvery 3months there is a new model which is much better than before and achieves something which one couldn't have imagined - AI training has truly become a hill climbing machine. This raises the concern of bad actors, and precautions should be taken to ensure that the most advanced models are restricted to strict business use-cases and should not be released to general public - current models of mid-size are good enough to address most of the use-cases in chat/voice based interfaces.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Connor Holmes",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zuf Wang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zhouqiang Wang",
+   "title": "SWE",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Eri Schwartz",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aiden Low",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Neel Redkar",
+   "title": "",
+   "employer": "Standard Intelligence",
+   "comment": "Internal deployment is especially important to regulate because misalignment, an unsolved technical problem of a model failing to follow the full breadth of human instruction, poses a major risk. Misuse of AI capabilities in chemistry, biology, and materials science should also be monitored, as it poses significant risks and will likely be a precursor to major misalignment risk.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ryan Kaufman",
+   "title": "",
+   "employer": "Standard Intelligence",
+   "comment": "Misalignment is a still-unsolved technical problem, as the Hugging Face incident made clear, and it will only be amplified by more intelligent models. Solving the alignment problem may require a global slowdown of the frontier, including internal deployment. The world should have the mechanism to coordinate this, and it currently does not.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Omer Khan",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matej Sirovatka",
+   "title": "Research Engineer, Performance",
+   "employer": "Prime Intellect",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yuchen Zhuang",
+   "title": "Research Scientist, Post-Training",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Cogdell",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nolan Shah",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Qibin Chen",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Timothy Chou",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yixuan Wu",
+   "title": "Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hao Sun",
+   "title": "Member of Technical Staff, Safety Systems",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Bill Demirkapi",
+   "title": "Researcher, Preparedness Cyber",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Johnston",
+   "title": "",
+   "employer": "EleutherAI",
+   "comment": "We need to enable AI developers to prioritise safety without risking their competitiveness. I expect mechanisms for this will be built eventually — deliberately or in crisis. The sooner we start, the better they'll be.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Rodrigues",
+   "title": "Multiagent Research",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Brussell",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raymond Ma",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jahres Peter",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zach Eaton-Rosen",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ilge Akkaya",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jan Szczepaniec",
+   "title": "Meta, MTIA",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jimmy E. Chan",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gary Lin",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steph Kreske",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Rune Vendler",
+   "title": "Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lujain Ibrahim",
+   "title": "Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lorenzo Noci",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Benedikt Winter",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sebastian Starke",
+   "title": "Staff Research Scientist",
+   "employer": "Meta",
+   "comment": "AI is starting to outpace us at an accelerating rate, and in a few years' time people might ask, \"How could you not have seen this coming?\" But answering that question in hindsight can be harder than acting proactively.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ingmar Kanitscheider",
+   "title": "Member of Technical Staff, Pretraining",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robert Csordas",
+   "title": "Member of Technical Staff, Pretraining",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Vincent Qi",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Fares Obeid",
+   "title": "",
+   "employer": "Prime Intellect",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jonathan Prince",
+   "title": "Head of External Affairs",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dima Yeroshenko",
+   "title": "TPM",
+   "employer": "Google Deepmind",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michiel de Jong",
+   "title": "Member of Technical Staff, Posttraining",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Devansh Tandon",
+   "title": "Member of Technical Staff",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Colleen Dai",
+   "title": "Security",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Luke Weiler",
+   "title": "Software Engineer, AI Infra",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Drew Foster",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cicero Nogueira Dos Santos",
+   "title": "Research Scientist",
+   "employer": "Google DeepMind",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Johnnie Gomez",
+   "title": "Member of Technical Staff, Web",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Geoff Stearns",
+   "title": "Product Manager",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ritam Saha",
+   "title": "",
+   "employer": "Cohere",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Locke",
+   "title": "Lead Engineer | Federal",
+   "employer": "Cognition",
+   "comment": "The pace of frontier AI development is currently outstripping our ability to ensure its safety, governance, and alignment with human values. We are racing to build systems with unprecedented capability without first building the guardrails, evaluation frameworks, or scientific understanding needed to control them.\n\nProposing a slowdown is not about stalling progress or rejecting technology—it is about demanding precision and responsibility. Right now, competitive pressure forces labs (and nation state actors) to deploy systems before their full failure modes, catastrophic risks, or societal disruptions are understood. By shifting our focus from pure capability scaling to safety, alignment, and robust evaluation, we give humanity the time required to build AI that is reliable, controllable, and genuinely beneficial for everyone.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Owen Morris O’Halloran Kaplan",
+   "title": "",
+   "employer": "Amazon",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas Clegg",
+   "title": "Senior Software Engineer",
+   "employer": "Amazon",
+   "comment": "AI is such a powerful and useful tool, but we have been seeing the negative impacts that it is having across society. It is critical and urgent that we take take intentional and thoughtful steps forward, keeping in mind what is best for all, as we further develop this technology.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jerry Hong",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Diana Mincu",
+   "title": "Principle Applied Scientist and Manager",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julia Haas",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zheng Li",
+   "title": "Principal Scientist",
+   "employer": "Amazon",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Huiwen Chang",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "William Chilcote",
+   "title": "Engineer",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Xianwu (Lance) Huang",
+   "title": "Senior Software Engineer",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Darius Feher",
+   "title": "Research Assistant, Post-training",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Myra Deng",
+   "title": "Posttraining",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Ore",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sophia Porter",
+   "title": "Technical Program Manager",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Tu",
+   "title": "Member of Technical Staff (Intern)",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Oliver Tepman",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lubaina Mansoor Shaerwala",
+   "title": "",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Trevor Chow",
+   "title": "Research Engineer, Compute",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrea Arias",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tim Wilde",
+   "title": "Staff SRE",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Zhuoran Yin",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julia Dranov",
+   "title": "Member of People Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ingrid Dickinson",
+   "title": "Security Policy Manager",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Preyas Popat",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marcus Fontoura",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steph Hughes-Fitt",
+   "title": "Technical Director",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Cory McLean",
+   "title": "Senior Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Edoardo Debenedetti",
+   "title": "AI Research Scientist, Security",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Arlo Shallit",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ben Nowak",
+   "title": "Principal Engineer, MTIA HW, Meta",
+   "employer": "Meta",
+   "comment": "Responsible AI development requires more than capable models. It requires independent monitoring, containment, clear limits on authority, and mechanisms for coordinated pacing if automated research begins to outrun those controls. Building that capacity now is not opposition to progress; it is basic systems engineering for a transition that will require that capacity to safely govern.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brian Huh",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Josh Geron",
+   "title": "FDE",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Nicholas L Turner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Siddharth Mishra-Sharma",
+   "title": "Member of Technical Staff, Discovery",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tal Linzen",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Anthony Yun",
+   "title": "Data Ops",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ado Kukic",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Strominger",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Newton Cheng",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Edward Turner",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Hoagy Cunningham",
+   "title": "Member of Technical Staff, Safeguards",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Mulet",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "I'm signing because I want the U.S. to be at the table in this international effort, with a strong voice for our values, personal freedom included. AI has the potential to bring humanity to new heights, and I want to do what I can to use it to make all of our lives better. But we have to be acutely and accurately aware of the risks, and we can only fully realize that promise if we build the ability to verify the safety of these systems and understand the true consequences of our actions. I'm unsure what the right approach looks like, or whether automating AI research is the only capability that deserves this kind of attention. My hope is that whatever comes of this stays limited in scope rather than growing into something expansive or excessive. Still, the capabilities of this kind of AI should be taken seriously, and they warrant measured action. I sign in my personal capacity; these views are my own and not my employer's.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Raza Habib",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mike Heaton",
+   "title": "Member of Technical Staff, Audio",
+   "employer": "OpenAI",
+   "comment": "We believe AI will do, and is doing, great things for the world. We are already seeing instances where pushing research maximally fast creates serious issues, and it is possible that these will get much more severe. Right now, competitive dynamics mean there is no realistic alternative to pushing maximally fast for frontier research. We need mechanisms to make slowing down possible for commercial labs in an acute situation.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jordan Ecker",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Kile",
+   "title": "Systems Engineer",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Javier Romero",
+   "title": "Research Scientist",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steven Chun",
+   "title": "Member of Technical Staff, Energy",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aniruddha Nrusimha",
+   "title": "Member of Technical Staff, Infra&perf",
+   "employer": "HumansAnd",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tom Hume",
+   "title": "Director, Product Management",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joy Dang",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Charlie George",
+   "title": "",
+   "employer": "Humans&",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Leon Zhang",
+   "title": "Principal Designer",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jake Lucchi",
+   "title": "Director- GenAI Trust and Safety",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tyler Norris",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Darshan Kalola",
+   "title": "Applied AI Engineer",
+   "employer": "Anthropic",
+   "comment": "There is intense commercial pressure to win the AI race. Ensuring safety often requires making tradeoffs that hurt commercial interests. Therefore, I think its a good idea for better coordination between labs so we can build this technology safely, and for the purpose of human flourishing. There is also enormous suffering in the world today, which potentially could be mitigated by advances in medicine and biology brought about by powerful AI. Therefore, we should carefully balance tradeoffs in a way that does not stifle progress.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jarrah Bloomfield",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Victor Marmol",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Brett Patterson",
+   "title": "Software Engineer - Agent Data",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Souki Mansoor",
+   "title": "Creative Community Lead",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "David Louapre",
+   "title": "AI Scientist",
+   "employer": "Hugging Face",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Dan Hayden",
+   "title": "Director, Data Strategy",
+   "employer": "Meta",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sébastien Cevey",
+   "title": "Senior Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Thomas Hubert",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Sandeep Goyal",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joost Ouwerling",
+   "title": "Software Engineer, Gemini",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jeffrey Ai",
+   "title": "Eng Manager",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Victor E Cardoso",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Joshua Polzin",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Long Ouyang",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Steven Robertson",
+   "title": "Senior Staff Engineer, Deployment",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julien Coupez",
+   "title": "Customer Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Marco Barreno",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michael Breen",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Gregory P. Smith",
+   "title": "MTS, Infrastructure",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aradhana Sinha",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Thomas Stone",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Meulemans",
+   "title": "Senior Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Adam Allevato",
+   "title": "",
+   "employer": "Amazon",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Lee Callender",
+   "title": "Staff Engineer Lead, Video AI",
+   "employer": "Meta",
+   "comment": "The AI arms race is a Molochian game that rationally incentivizes accelerated advancement of AI capabilities while consequently punishing individual participants who might otherwise believe that safety and alignment are necessary for a stable take off into the singularity.  \n\nWe need to promote cooperative mechanisms on the global scale, and work to build out safeguards and policies that can enable humanity to take collective actions to self harness such technological advancements that can easily become unstable.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Pankil Botadra",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Mouhacine Benosman",
+   "title": "Principal Research Scientist",
+   "employer": "Amazon",
+   "comment": "We're all racing toward the next frontier model and, eventually, AGI. But before accelerating even further, we should pause and ask what this new form of intelligence is doing to our most precious resource: the human mind, our capacity to think, feel, relate, and grow as it becomes part of our lives.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Fin Moorhouse",
+   "title": "",
+   "employer": "Google DeepMind",
+   "comment": "When scientists tested the first nuclear reactor in 1942, they feared a runaway reaction — so they built control rods to govern its speed. We need control rods for the intelligence explosion.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Walee Attia",
+   "title": "",
+   "employer": "Google DeepMind",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Laurent Sartran",
+   "title": "Member of Technical Staff, RL",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Maire O'Herlihy",
+   "title": "GTM",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Saagar Patel",
+   "title": "MTS, Hardware Health",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tony Zeng",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Debbie Liu",
+   "title": "",
+   "employer": "Thinking Machines",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Ross Nordeen",
+   "title": "MTS",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Frank Bach",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Karo Castro-Wunsch",
+   "title": "Research Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michelle Castiglione",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Chris Hallacy",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Johannes Gasteiger",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andrew Brook",
+   "title": "Senior Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Aldo Culquicondor",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Drew Scheller",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Tim Dresser",
+   "title": "Senior Staff Software Developer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Andy ANeals",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "We're standing at the base of incredible change with the climb towards super-intelligence already underway. Recent public incidents have shown these safety risks are real, not just marketing or theoretical. Alignment, control, and safety have to come first. This is our moment to get it right. Let's not let our future selves look back and ask why we didn't take action when we had the chance.",
+   "researcher_id": ""
+  },
+  {
+   "name": "Christopher Thomas",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Michelle Qin",
+   "title": "",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexandra Barr",
+   "title": "Human Data",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jarod Alper",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Remo Arpagaus",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Matteo Bianchetti",
+   "title": "Ontologist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alex Hutcheson",
+   "title": "Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jaime Andrés Bello Vieda",
+   "title": "Senior Incident Response Consultant",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Jon Schneider",
+   "title": "Staff Research Scientist",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Parker Barnes",
+   "title": "Director of Product Management, Safety & Alignment",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Guy Lever",
+   "title": "Research Scientist",
+   "employer": "Google DeepMind",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shiraz Butt",
+   "title": "Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Shannon Yang",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Abram Schönfeldt",
+   "title": "",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Douglas Rohde",
+   "title": "Senior Staff Software Engineer",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Robert Schapire",
+   "title": "",
+   "employer": "Microsoft",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Yossi Gandelsman",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Kevin Barreto",
+   "title": "Member of Technical Staff",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Henry Williams",
+   "title": "Special Projects, Strategic Futures",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Timothy Lillicrap",
+   "title": "Senior Director of Research",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Camille Dang",
+   "title": "MTS",
+   "employer": "OpenAI",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Janvi Ahuja",
+   "title": "",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Alexander Alemi",
+   "title": "Member of Technical Staff",
+   "employer": "Anthropic",
+   "comment": "",
+   "researcher_id": ""
+  },
+  {
+   "name": "Julian Salazar",
+   "title": "Staff Research Scientist, Frontier AI",
+   "employer": "Google",
+   "comment": "",
+   "researcher_id": ""
+  }
+ ]
+}

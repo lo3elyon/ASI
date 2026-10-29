@@ -1,0 +1,824 @@
+{
+ "alan-turing": {
+  "file": "photos/alan-turing.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Alan_turing_header.jpg",
+  "kind": "wikimedia",
+  "credit": "Elliott &amp; Fry, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Alan_turing_header.jpg)"
+ },
+ "i-j-good": {
+  "file": "photos/i-j-good.jpg",
+  "source_url": "https://mathshistory.st-andrews.ac.uk/Biographies/Good/",
+  "kind": "other",
+  "credit": "MacTutor History of Mathematics, University of St Andrews"
+ },
+ "norbert-wiener": {
+  "file": "photos/norbert-wiener.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Norbert_Wiener.png",
+  "kind": "wikimedia",
+  "credit": "Garry Olsh, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Norbert_Wiener.png)"
+ },
+ "stephen-hawking": {
+  "file": "photos/stephen-hawking.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Stephen_Hawking.StarChild.jpg",
+  "kind": "wikimedia",
+  "credit": "NASA, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stephen_Hawking.StarChild.jpg)"
+ },
+ "geoffrey-hinton": {
+  "file": "photos/geoffrey-hinton.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg",
+  "kind": "wikimedia",
+  "credit": "Cmichel67, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Geoffrey_Hinton_in_2026.jpg)"
+ },
+ "yoshua-bengio": {
+  "file": "photos/yoshua-bengio.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Yoshua_Bengio_02.jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Yoshua_Bengio_02.jpg)"
+ },
+ "stuart-russell": {
+  "file": "photos/stuart-russell.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Stuart_Russell_01.jpg",
+  "kind": "wikimedia",
+  "credit": "Bengt Oberger, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stuart_Russell_01.jpg)"
+ },
+ "eliezer-yudkowsky": {
+  "file": "photos/eliezer-yudkowsky.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Eliezer_Yudkowsky,_Stanford_2006_(square_crop).jpg",
+  "kind": "wikimedia",
+  "credit": "\"null0\", CC BY-SA 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Eliezer_Yudkowsky,_Stanford_2006_(square_crop).jpg)"
+ },
+ "nate-soares": {
+  "file": "photos/nate-soares.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Nate_Soares_headshot,_2025.png",
+  "kind": "wikimedia",
+  "credit": "CC0 (published with If Anyone Builds It, Everyone Dies), via Wikimedia Commons"
+ },
+ "paul-christiano": {
+  "file": "photos/paul-christiano.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Paul_Christiano_-_Mechanistic_Estimation_-_IPAM_at_UCLA_-_0-34-09_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Institute for Pure &amp; Applied Mathematics (IPAM), CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Paul_Christiano_-_Mechanistic_Estimation_-_IPAM_at_UCLA_-_0-34-09_(cropped).jpg)"
+ },
+ "jan-leike": {
+  "file": "photos/jan-leike.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/jan-leike-ml-alignment/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "chris-olah": {
+  "file": "photos/chris-olah.jpg",
+  "source_url": "https://betakit.com/the-expats/",
+  "kind": "news",
+  "credit": "BetaKit"
+ },
+ "evan-hubinger": {
+  "file": "photos/evan-hubinger.jpg",
+  "source_url": "https://www.youtube.com/watch?v=S7o2Rb37dV8",
+  "kind": "youtube-frame",
+  "credit": "FAR.AI Alignment Workshop talk \"Alignment Stress-Testing at Anthropic\" on YouTube (video thumbnail, cropped)"
+ },
+ "sam-bowman": {
+  "file": "photos/sam-bowman.jpg",
+  "source_url": "https://github.com/sleepinyourhat",
+  "kind": "other",
+  "credit": "GitHub profile"
+ },
+ "victoria-krakovna": {
+  "file": "photos/victoria-krakovna.jpg",
+  "source_url": "https://futureoflife.org/person/victoria-krakovna/",
+  "kind": "lab-page",
+  "credit": "Future of Life Institute people page"
+ },
+ "rohin-shah": {
+  "file": "photos/rohin-shah.jpg",
+  "source_url": "https://rohinshah.com/",
+  "kind": "personal-site",
+  "credit": "Rohin Shah's homepage"
+ },
+ "neel-nanda": {
+  "file": "photos/neel-nanda.jpg",
+  "source_url": "https://www.neelnanda.io/about",
+  "kind": "personal-site",
+  "credit": "Neel Nanda's homepage"
+ },
+ "jacob-hilton": {
+  "file": "photos/jacob-hilton.jpg",
+  "source_url": "https://www.youtube.com/watch?v=1tcGaKUtV3M",
+  "kind": "youtube-frame",
+  "credit": "FAR.AI Alignment Workshop 2024 talk \"Backdoors as an Analogy for Deceptive Alignment\" on YouTube (video thumbnail with his name on the title slide, cropped)"
+ },
+ "beth-barnes": {
+  "file": "photos/beth-barnes.jpg",
+  "source_url": "https://metr.org/team/beth-barnes/",
+  "kind": "lab-page",
+  "credit": "METR team page"
+ },
+ "marius-hobbhahn": {
+  "file": "photos/marius-hobbhahn.jpg",
+  "source_url": "https://www.far.ai/author/marius-hobbhahn",
+  "kind": "lab-page",
+  "credit": "FAR.AI author page"
+ },
+ "jeffrey-ladish": {
+  "file": "photos/jeffrey-ladish.jpg",
+  "source_url": "https://biopolis.stanford.edu/people/bio-policy-practices-lab",
+  "kind": "other",
+  "credit": "Stanford Bio.Polis, Bio Policy and Practices Lab people page"
+ },
+ "connor-leahy": {
+  "file": "photos/connor-leahy.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Connor_Leahy_at_Web_Summit_Rio_2026.jpg",
+  "kind": "wikimedia",
+  "credit": "Felipe.bzra, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Connor_Leahy_at_Web_Summit_Rio_2026.jpg)"
+ },
+ "roman-yampolskiy": {
+  "file": "photos/roman-yampolskiy.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:SCH1473_(52734656870)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "uoflphoto3, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:SCH1473_(52734656870)_(cropped).jpg)"
+ },
+ "daniel-filan": {
+  "file": "photos/daniel-filan.jpg",
+  "source_url": "https://danielfilan.com/",
+  "kind": "personal-site",
+  "credit": "Daniel Filan's homepage"
+ },
+ "buck-shlegeris": {
+  "file": "photos/buck-shlegeris.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/buck-shlegeris-ai-control-scheming/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "ryan-greenblatt": {
+  "file": "photos/ryan-greenblatt.jpg",
+  "source_url": "https://www.youtube.com/watch?v=SK9ITBK5osA",
+  "kind": "youtube-frame",
+  "credit": "YouTube video thumbnail, \"AI Could Take Over in 2029. Is It Already Too Late? Ryan Greenblatt\""
+ },
+ "dan-hendrycks": {
+  "file": "photos/dan-hendrycks.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Dan_Hendrycks_2025_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dan_Hendrycks_2025_(cropped).jpg)"
+ },
+ "max-tegmark": {
+  "file": "photos/max-tegmark.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Max_Tegmark_2024_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Web Summit, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Max_Tegmark_2024_(cropped).jpg)"
+ },
+ "jaan-tallinn": {
+  "file": "photos/jaan-tallinn.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jaan_Tallinn.jpg",
+  "kind": "wikimedia",
+  "credit": "Stimqdrmtmob, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jaan_Tallinn.jpg)"
+ },
+ "dario-amodei": {
+  "file": "photos/dario-amodei.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Dario_Amodei_at_TechCrunch_Disrupt_2023_01_(cropped).jpg)"
+ },
+ "jack-clark": {
+  "file": "photos/jack-clark.jpg",
+  "source_url": "https://jack-clark.net/about/",
+  "kind": "personal-site",
+  "credit": "Import AI / jack-clark.net about page"
+ },
+ "sam-altman": {
+  "file": "photos/sam-altman.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Sam_Altman_CropEdit_James_Tamim.jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons"
+ },
+ "demis-hassabis": {
+  "file": "photos/demis-hassabis.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_7_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "John Sears, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Demis_Hassabis,_2024_Nobel_Prize_Laureate_in_Chemistry_7_(cropped).jpg)"
+ },
+ "shane-legg": {
+  "file": "photos/shane-legg.jpg",
+  "source_url": "https://www.dwarkesh.com/p/shane-legg",
+  "kind": "other",
+  "credit": "Dwarkesh Podcast episode image (cropped). Same scene as the low resolution Commons file File:Shane Legg.jpg"
+ },
+ "ilya-sutskever": {
+  "file": "photos/ilya-sutskever.jpg",
+  "source_url": "https://time.com/collections/time100-ai/6309011/ilya-sutskever/",
+  "kind": "news",
+  "credit": "TIME100 AI 2023 portrait"
+ },
+ "mustafa-suleyman": {
+  "file": "photos/mustafa-suleyman.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Mustafa_Suleyman_photo_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Christopher Wilson, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mustafa_Suleyman_photo_(cropped).jpg)"
+ },
+ "elon-musk": {
+  "file": "photos/elon-musk.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Elon_Musk_-_54820081119_(3x4_cropped,_Rule_of_thirds).jpg",
+  "kind": "wikimedia",
+  "credit": "Gage Skidmore, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Elon_Musk_-_54820081119_(3x4_cropped,_Rule_of_thirds).jpg)"
+ },
+ "jared-kaplan": {
+  "file": "photos/jared-kaplan.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jared_Kaplan_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jared_Kaplan_(cropped).jpg)"
+ },
+ "helen-toner": {
+  "file": "photos/helen-toner.jpg",
+  "source_url": "https://cset.georgetown.edu/staff/helen-toner/",
+  "kind": "lab-page",
+  "credit": "CSET Georgetown staff page"
+ },
+ "allan-dafoe": {
+  "file": "photos/allan-dafoe.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/allan-dafoe-unstoppable-technology-human-agency-agi/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "markus-anderljung": {
+  "file": "photos/markus-anderljung.jpg",
+  "source_url": "https://www.governance.ai/team/markus-anderljung",
+  "kind": "lab-page",
+  "credit": "GovAI team page"
+ },
+ "toby-ord": {
+  "file": "photos/toby-ord.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Toby_Ord.jpg",
+  "kind": "wikimedia",
+  "credit": "David Fisher, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Toby_Ord.jpg)"
+ },
+ "nick-bostrom": {
+  "file": "photos/nick-bostrom.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Prof_Nick_Bostrom_324-1.jpg",
+  "kind": "wikimedia",
+  "credit": "Future of Humanity Institute, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Prof_Nick_Bostrom_324-1.jpg)"
+ },
+ "holden-karnofsky": {
+  "file": "photos/holden-karnofsky.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Holden_Karnofsky_0.jpg",
+  "kind": "wikimedia",
+  "credit": "Noah Berger/Open Philanthropy, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Holden_Karnofsky_0.jpg)"
+ },
+ "ajeya-cotra": {
+  "file": "photos/ajeya-cotra.jpg",
+  "source_url": "https://metr.org/team/ajeya-cotra/",
+  "kind": "lab-page",
+  "credit": "METR team page"
+ },
+ "tristan-harris": {
+  "file": "photos/tristan-harris.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Tristan_Harris_crop.jpg",
+  "kind": "wikimedia",
+  "credit": "Photo by Stephen McCarthy/Collision via Sportsfile, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Tristan_Harris_crop.jpg)"
+ },
+ "ian-hogarth": {
+  "file": "photos/ian-hogarth.jpg",
+  "source_url": "https://time.com/collections/time100-ai/6309473/ian-hogarth/",
+  "kind": "news",
+  "credit": "TIME100 AI 2023"
+ },
+ "geoffrey-irving": {
+  "file": "photos/geoffrey-irving.jpg",
+  "source_url": "https://lawzero.org/en/team/geoffrey-irving",
+  "kind": "lab-page",
+  "credit": "LawZero team page"
+ },
+ "miles-brundage": {
+  "file": "photos/miles-brundage.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:MilesBrundage2017.jpg",
+  "kind": "wikimedia",
+  "credit": "FisherStudios54, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MilesBrundage2017.jpg)"
+ },
+ "daniel-kokotajlo": {
+  "file": "photos/daniel-kokotajlo.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/daniel-kokotajlo-ai-2040-plan-a/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "eli-lifland": {
+  "file": "photos/eli-lifland.jpg",
+  "source_url": "https://www.elilifland.com/",
+  "kind": "personal-site",
+  "credit": "Eli Lifland's homepage"
+ },
+ "scott-alexander": {
+  "file": "photos/scott-alexander.jpg",
+  "source_url": "https://www.youtube.com/watch?v=htOvH12T7mU",
+  "kind": "youtube-frame",
+  "credit": "Dwarkesh Podcast on YouTube, AI 2027 episode with Daniel Kokotajlo (video thumbnail, cropped to Scott Alexander)"
+ },
+ "tom-davidson": {
+  "file": "photos/tom-davidson.jpg",
+  "source_url": "https://www.forethought.org/people/tom-davidson",
+  "kind": "lab-page",
+  "credit": "Forethought people page"
+ },
+ "katja-grace": {
+  "file": "photos/katja-grace.jpg",
+  "source_url": "https://katjagrace.com/",
+  "kind": "personal-site",
+  "credit": "Katja Grace's homepage"
+ },
+ "leopold-aschenbrenner": {
+  "file": "photos/leopold-aschenbrenner.jpg",
+  "source_url": "https://www.forourposterity.com/",
+  "kind": "personal-site",
+  "credit": "For Our Posterity, Leopold Aschenbrenner's blog"
+ },
+ "jaime-sevilla": {
+  "file": "photos/jaime-sevilla.jpg",
+  "source_url": "https://epoch.ai/about/team/jaime-sevilla",
+  "kind": "lab-page",
+  "credit": "Epoch AI team page"
+ },
+ "joe-carlsmith": {
+  "file": "photos/joe-carlsmith.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/joe-carlsmith-navigating-serious-philosophical-confusion/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "richard-ngo": {
+  "file": "photos/richard-ngo.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/richard-ngo-large-language-models/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "owain-evans": {
+  "file": "photos/owain-evans.jpg",
+  "source_url": "https://www.quantamagazine.org/the-ai-was-fed-sloppy-code-it-turned-into-something-evil-20250813/",
+  "kind": "news",
+  "credit": "Quanta Magazine (photo: Rachel Shu)"
+ },
+ "will-macaskill": {
+  "file": "photos/will-macaskill.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:William_MacAskill_Portrait_2015_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Sam Deere, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:William_MacAskill_Portrait_2015_(cropped).jpg)"
+ },
+ "vitalik-buterin": {
+  "file": "photos/vitalik-buterin.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Vitalik_Buterin_TechCrunch_London_2015_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "John Phillips, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Vitalik_Buterin_TechCrunch_London_2015_(cropped).jpg)"
+ },
+ "yann-lecun": {
+  "file": "photos/yann-lecun.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Laura_Chaubard_&_Yann_Le_Cun_-_2024_(53814052697)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Jérémy Barande, CC BY-SA 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Laura_Chaubard_%26_Yann_Le_Cun_-_2024_(53814052697)_(cropped).jpg)"
+ },
+ "andrew-ng": {
+  "file": "photos/andrew-ng.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Andrew_Ng_at_TechCrunch_Disrupt_SF_2017.jpg)"
+ },
+ "gary-marcus": {
+  "file": "photos/gary-marcus.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg",
+  "kind": "wikimedia",
+  "credit": "Web Summit, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg)"
+ },
+ "marc-andreessen": {
+  "file": "photos/marc-andreessen.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Marc_Andreessen-9_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "JD Lasica, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Marc_Andreessen-9_(cropped).jpg)"
+ },
+ "melanie-mitchell": {
+  "file": "photos/melanie-mitchell.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Melanie_Mitchell_01_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:SD_2025_-_Melanie_Mitchell_01_(cropped).jpg)"
+ },
+ "arvind-narayanan": {
+  "file": "photos/arvind-narayanan.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Stanford's_privacy_guy_-_Arvind_Narayana.jpg",
+  "kind": "wikimedia",
+  "credit": "Robert Scoble, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Stanford%27s_privacy_guy_-_Arvind_Narayana.jpg)"
+ },
+ "dewi-erwan": {
+  "file": "photos/dewi-erwan.jpg",
+  "source_url": "https://blog.bluedot.org/p/dewi-erwan-on-his-journey-to-altruism",
+  "kind": "lab-page",
+  "credit": "BlueDot Impact blog interview with Dewi Erwan"
+ },
+ "li-lian-ang": {
+  "file": "photos/li-lian-ang.jpg",
+  "source_url": "https://anglilian.com/",
+  "kind": "personal-site",
+  "credit": "Li-Lian Ang's homepage"
+ },
+ "sayash-kapoor": {
+  "file": "photos/sayash-kapoor.jpg",
+  "source_url": "https://datagovhub.elliott.gwu.edu/calendar_event/ai-snake-oil-with-sayash-kapoor/",
+  "kind": "other",
+  "credit": "GWU Digital Trade and Data Governance Hub event page"
+ },
+ "william-saunders": {
+  "file": "photos/william-saunders.jpg",
+  "source_url": "https://lessig.medium.com/william-saunders-why-i-support-sb1047-5f93a462fa5e",
+  "kind": "news",
+  "credit": "C-SPAN frame of his September 2024 US Senate Judiciary subcommittee testimony, via Lawrence Lessig on Medium"
+ },
+ "thomas-larsen": {
+  "file": "photos/thomas-larsen.jpg",
+  "source_url": "https://www.matsprogram.org/mentor/larsen",
+  "kind": "other",
+  "credit": "MATS mentor page"
+ },
+ "lennart-heim": {
+  "file": "photos/lennart-heim.jpg",
+  "source_url": "https://80000hours.org/podcast/episodes/lennart-heim-compute-governance/",
+  "kind": "other",
+  "credit": "80,000 Hours podcast guest page"
+ },
+ "jakub-pachocki": {
+  "file": "photos/jakub-pachocki.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jakub_Pachocki_in_2012_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "ICPCNews, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jakub_Pachocki_in_2012_(cropped).jpg)"
+ },
+ "dawn-song": {
+  "file": "photos/dawn-song.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Dawn_Song_01.jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:ICLR_2025_-_Dawn_Song_01.jpg)"
+ },
+ "boaz-barak": {
+  "file": "photos/boaz-barak.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Boaz_Barak_at_the_DIMACS_Workshop_on_Cryptography.jpg",
+  "kind": "wikimedia",
+  "credit": "BöhmMartin, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Boaz_Barak_at_the_DIMACS_Workshop_on_Cryptography.jpg)"
+ },
+ "nicholas-carlini": {
+  "file": "photos/nicholas-carlini.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Nicholas_Carlini_AIME_presentation.jpg",
+  "kind": "wikimedia",
+  "credit": "National Institute of Standards and Technology, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Nicholas_Carlini_AIME_presentation.jpg)"
+ },
+ "timnit-gebru": {
+  "file": "photos/timnit-gebru.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Timnit_Gebru_crop.jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Timnit_Gebru_crop.jpg)"
+ },
+ "margaret-mitchell": {
+  "file": "photos/margaret-mitchell.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:MargaretMitchell2022.jpg",
+  "kind": "wikimedia",
+  "credit": "AI4LAM, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MargaretMitchell2022.jpg)"
+ },
+ "lawrence-lessig": {
+  "file": "photos/lawrence-lessig.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Lessig_in_2024.png",
+  "kind": "wikimedia",
+  "credit": "lessig, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lessig_in_2024.png)"
+ },
+ "brian-christian": {
+  "file": "photos/brian-christian.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Brian_Christian_in_2019,_Photograph_by_Eileen_Meny_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Eileen Meny (Photographer), CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Brian_Christian_in_2019,_Photograph_by_Eileen_Meny_(cropped).jpg)"
+ },
+ "kai-fu-lee": {
+  "file": "photos/kai-fu-lee.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Kai-Fu_Lee_in_September_2026_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Press Service of the President of the Republic of Azerbaijan, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Kai-Fu_Lee_in_September_2026_(cropped).jpg)"
+ },
+ "kate-crawford": {
+  "file": "photos/kate-crawford.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Kate_Crawford_in_2025_05.jpg",
+  "kind": "wikimedia",
+  "credit": "Cmichel67, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Kate_Crawford_in_2025_05.jpg)"
+ },
+ "toby-walsh": {
+  "file": "photos/toby-walsh.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Toby_Walsh,_portrait.jpg",
+  "kind": "wikimedia",
+  "credit": "Avobronte, CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Toby_Walsh,_portrait.jpg)"
+ },
+ "yuval-noah-harari": {
+  "file": "photos/yuval-noah-harari.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:MKr364751_Yuval_Noah_Harari_(Frankfurter_Buchmesse_2024).jpg",
+  "kind": "wikimedia",
+  "credit": "Martin Kraft, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:MKr364751_Yuval_Noah_Harari_(Frankfurter_Buchmesse_2024).jpg)"
+ },
+ "fei-fei-li": {
+  "file": "photos/fei-fei-li.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg",
+  "kind": "wikimedia",
+  "credit": "ITU Pictures, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Fei-Fei_Li_at_AI_for_Good_2017.jpg)"
+ },
+ "jurgen-schmidhuber": {
+  "file": "photos/jurgen-schmidhuber.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:J%C3%BCrgen_Schmidhuber,_2017_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "ITU/R.Farrell, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:J%C3%BCrgen_Schmidhuber,_2017_(cropped).jpg)"
+ },
+ "ian-goodfellow": {
+  "file": "photos/ian-goodfellow.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Ian_Goodfellow.jpg",
+  "kind": "wikimedia",
+  "credit": "Ian Goodfellow, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ian_Goodfellow.jpg)"
+ },
+ "jeff-dean": {
+  "file": "photos/jeff-dean.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jeff_Dean_in_2025_x.jpg",
+  "kind": "wikimedia",
+  "credit": "Cmichel67, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jeff_Dean_in_2025_x.jpg)"
+ },
+ "pieter-abbeel": {
+  "file": "photos/pieter-abbeel.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Pieter_Abbeel_pictured_at_CovariantHQ_in_November_2017.jpg",
+  "kind": "wikimedia",
+  "credit": "Pieterabbeel, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Pieter_Abbeel_pictured_at_CovariantHQ_in_November_2017.jpg)"
+ },
+ "richard-sutton": {
+  "file": "photos/richard-sutton.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:SD_2025_-_Richard_Sutton_01_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:SD_2025_-_Richard_Sutton_01_(cropped).jpg)"
+ },
+ "andrej-karpathy": {
+  "file": "photos/andrej-karpathy.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Andrej_Karpathy,_OpenAI.png",
+  "kind": "wikimedia",
+  "credit": "Gladwin Analytics, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Andrej_Karpathy,_OpenAI.png)"
+ },
+ "ben-shneiderman": {
+  "file": "photos/ben-shneiderman.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Ben_Shneiderman_at_UNCC_(3x4_cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Robert Kosara, CC0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ben_Shneiderman_at_UNCC_(3x4_cropped).jpg)"
+ },
+ "fernanda-viegas": {
+  "file": "photos/fernanda-viegas.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:FernandaViegasJI1.jpg",
+  "kind": "wikimedia",
+  "credit": "Joi Ito, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:FernandaViegasJI1.jpg)"
+ },
+ "jade-leung": {
+  "file": "photos/jade-leung.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Jade_Leung_2015_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "New Zealand Government, Office of the Governor-General, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Jade_Leung_2015_(cropped).jpg)"
+ },
+ "gillian-hadfield": {
+  "file": "photos/gillian-hadfield.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Gillian_K._Hadfield_in_2024_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Sdkb, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Gillian_K._Hadfield_in_2024_(cropped).jpg)"
+ },
+ "marietje-schaake": {
+  "file": "photos/marietje-schaake.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:A_New_Agenda_for_Europe_(46795487492)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Foundations World Economic Forum, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:A_New_Agenda_for_Europe_(46795487492)_(cropped).jpg)"
+ },
+ "rumman-chowdhury": {
+  "file": "photos/rumman-chowdhury.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Rumman_Chowdhury_at_the_AI_for_Good_Global_Summit_2018_(42110666692).jpg",
+  "kind": "wikimedia",
+  "credit": "ITU Pictures from Geneva, Switzerland, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Rumman_Chowdhury_at_the_AI_for_Good_Global_Summit_2018_(42110666692).jpg)"
+ },
+ "michael-wooldridge": {
+  "file": "photos/michael-wooldridge.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Michael_Wooldridge_at_Royal_Society_in_2026.jpg",
+  "kind": "wikimedia",
+  "credit": "Mateusz Malta, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Michael_Wooldridge_at_Royal_Society_in_2026.jpg)"
+ },
+ "alondra-nelson": {
+  "file": "photos/alondra-nelson.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Alondra_Nelson,_OSTP_Deputy_Director.jpg",
+  "kind": "wikimedia",
+  "credit": "Executive Office of the President of the United States, Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Alondra_Nelson,_OSTP_Deputy_Director.jpg)"
+ },
+ "seth-lazar": {
+  "file": "photos/seth-lazar.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Mala_and_Solomon_Kamm_Lecture_in_Ethics_with_Seth_Lazar_(52004134291)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Edmond &amp; Lily Safra Center for Ethics, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mala_and_Solomon_Kamm_Lecture_in_Ethics_with_Seth_Lazar_(52004134291)_(cropped).jpg)"
+ },
+ "bernhard-scholkopf": {
+  "file": "photos/bernhard-scholkopf.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Bernhard_Sch%C3%B6lkopf.png",
+  "kind": "wikimedia",
+  "credit": "Latest Thinking, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Bernhard_Sch%C3%B6lkopf.png)"
+ },
+ "virginia-dignum": {
+  "file": "photos/virginia-dignum.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Virginia_Dignum_at_Smart_ABC_-_AI_Expert_Round_Table_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "ITU Pictures, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Virginia_Dignum_at_Smart_ABC_-_AI_Expert_Round_Table_(cropped).jpg)"
+ },
+ "holger-hoos": {
+  "file": "photos/holger-hoos.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Holger_Hoos_in_Aachen,_Comiciade_2025.jpg",
+  "kind": "wikimedia",
+  "credit": "Qwertzu111111, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Holger_Hoos_in_Aachen,_Comiciade_2025.jpg)"
+ },
+ "david-duvenaud": {
+  "file": "photos/david-duvenaud.jpg",
+  "source_url": "https://www.cs.toronto.edu/~duvenaud/",
+  "kind": "personal-site",
+  "credit": "David Duvenaud personal website (https://www.cs.toronto.edu/~duvenaud/)"
+ },
+ "sheila-mcilraith": {
+  "file": "photos/sheila-mcilraith.jpg",
+  "source_url": "https://www.cs.toronto.edu/~sheila/",
+  "kind": "personal-site",
+  "credit": "Sheila Mcilraith personal website (https://www.cs.toronto.edu/~sheila/)"
+ },
+ "andrew-yao": {
+  "file": "photos/andrew-yao.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Andrew_Yao_P1130016_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "David.Monniaux, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Andrew_Yao_P1130016_(cropped).jpg)"
+ },
+ "xue-lan": {
+  "file": "photos/xue-lan.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Lan_Xue.jpg",
+  "kind": "wikimedia",
+  "credit": "Huskyinharborpoint, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Lan_Xue.jpg)"
+ },
+ "zhou-bowen": {
+  "file": "photos/zhou-bowen.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:AAAI_2026_-_Bowen_Zhou_04_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AAAI_2026_-_Bowen_Zhou_04_(cropped).jpg)"
+ },
+ "abeba-birhane": {
+  "file": "photos/abeba-birhane.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:UN_AI_for_Good_Summit_2025_-_Abeba_Birhane_02_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Xuthoria, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:UN_AI_for_Good_Summit_2025_-_Abeba_Birhane_02_(cropped).jpg)"
+ },
+ "vukosi-marivate": {
+  "file": "photos/vukosi-marivate.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Wikimania25-Day_2-AI_panel-Vukosi_Marivate_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Yerpo, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Wikimania25-Day_2-AI_panel-Vukosi_Marivate_(cropped).jpg)"
+ },
+ "ricardo-baeza-yates": {
+  "file": "photos/ricardo-baeza-yates.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Ricardo_Baeza-Yates_portrait.jpg",
+  "kind": "wikimedia",
+  "credit": "LilyOfTheWest, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Ricardo_Baeza-Yates_portrait.jpg)"
+ },
+ "emmett-shear": {
+  "file": "photos/emmett-shear.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Web_Summit_2018_-_Contentmakers_-_Day_2,_November_7_SM7_9280_(45715722382)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Web Summit, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Web_Summit_2018_-_Contentmakers_-_Day_2,_November_7_SM7_9280_(45715722382)_(cropped).jpg)"
+ },
+ "mira-murati": {
+  "file": "photos/mira-murati.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg",
+  "kind": "wikimedia",
+  "credit": "SWinxy, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Guests_at_the_2026_Met_Gala_274_(Mira_Murati).jpg)"
+ },
+ "greg-brockman": {
+  "file": "photos/greg-brockman.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "TechCrunch, CC BY 2.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Disrupt_SF_TechCrunch_Disrupt_San_Francisco_2019_-_Day_2_(48838200316)_(cropped).jpg)"
+ },
+ "pushmeet-kohli": {
+  "file": "photos/pushmeet-kohli.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Pushmeet_Kohli_at_SXSW_London_2026_(cropped).jpg",
+  "kind": "wikimedia",
+  "credit": "Photographer.JuliaMustard, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Pushmeet_Kohli_at_SXSW_London_2026_(cropped).jpg)"
+ },
+ "yutaka-matsuo": {
+  "file": "photos/yutaka-matsuo.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Yutaka_Matsuo_cropped_2_Sanae_Takaichi_Fumio_Kishida_and_Yutaka_Matsuo_20231221.jpg",
+  "kind": "wikimedia",
+  "credit": "内閣官房内閣広報室, CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Yutaka_Matsuo_cropped_2_Sanae_Takaichi_Fumio_Kishida_and_Yutaka_Matsuo_20231221.jpg)"
+ },
+ "hiroaki-kitano": {
+  "file": "photos/hiroaki-kitano.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Hiroaki_Kitano_cropped_2_Professor_Hiroaki_Kitano_20210419.jpg",
+  "kind": "wikimedia",
+  "credit": "Copyright OIST (Okinawa Institute of Science and Technology Graduate University, 沖縄科学技術大学院大学), CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Hiroaki_Kitano_cropped_2_Professor_Hiroaki_Kitano_20210419.jpg)"
+ },
+ "simon-chesterman": {
+  "file": "photos/simon-chesterman.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Simon_Chesterman_-_20091002.jpg",
+  "kind": "wikimedia",
+  "credit": "Tempwikisc (Isabelle Delcourt)., CC BY-SA 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Simon_Chesterman_-_20091002.jpg)"
+ },
+ "rosie-campbell": {
+  "file": "photos/rosie-campbell.jpg",
+  "source_url": "https://www.rosiecampbell.xyz/about",
+  "kind": "personal-site",
+  "credit": "Rosie Campbell personal website (https://www.rosiecampbell.xyz/about)"
+ },
+ "steven-adler": {
+  "file": "photos/steven-adler.jpg",
+  "source_url": "https://stevenadler.substack.com/about",
+  "kind": "personal-site",
+  "credit": "Steven Adler personal website (https://stevenadler.substack.com/about)"
+ },
+ "sebastian-farquhar": {
+  "file": "photos/sebastian-farquhar.jpg",
+  "source_url": "https://sebastianfarquhar.com/",
+  "kind": "personal-site",
+  "credit": "Sebastian Farquhar personal website (https://sebastianfarquhar.com/)"
+ },
+ "adam-gleave": {
+  "file": "photos/adam-gleave.jpg",
+  "source_url": "https://www.gleave.me/",
+  "kind": "personal-site",
+  "credit": "Adam Gleave personal website (https://www.gleave.me/)"
+ },
+ "jacob-steinhardt": {
+  "file": "photos/jacob-steinhardt.jpg",
+  "source_url": "https://jsteinhardt.stat.berkeley.edu/",
+  "kind": "personal-site",
+  "credit": "Jacob Steinhardt personal website (https://jsteinhardt.stat.berkeley.edu/)"
+ },
+ "dylan-hadfield-menell": {
+  "file": "photos/dylan-hadfield-menell.jpg",
+  "source_url": "https://people.csail.mit.edu/dhm/",
+  "kind": "personal-site",
+  "credit": "Dylan Hadfield Menell personal website (https://people.csail.mit.edu/dhm/)"
+ },
+ "david-bau": {
+  "file": "photos/david-bau.jpg",
+  "source_url": "https://baulab.info/",
+  "kind": "personal-site",
+  "credit": "David Bau personal website (https://baulab.info/)"
+ },
+ "jonas-geiping": {
+  "file": "photos/jonas-geiping.jpg",
+  "source_url": "https://jonasgeiping.github.io/",
+  "kind": "personal-site",
+  "credit": "Jonas Geiping personal website (https://jonasgeiping.github.io/)"
+ },
+ "florian-tramer": {
+  "file": "photos/florian-tramer.jpg",
+  "source_url": "https://floriantramer.com/",
+  "kind": "personal-site",
+  "credit": "Florian Tramer personal website (https://floriantramer.com/)"
+ },
+ "nicolas-papernot": {
+  "file": "photos/nicolas-papernot.jpg",
+  "source_url": "https://www.papernot.fr/",
+  "kind": "personal-site",
+  "credit": "Nicolas Papernot personal website (https://www.papernot.fr/)"
+ },
+ "jascha-sohl-dickstein": {
+  "file": "photos/jascha-sohl-dickstein.jpg",
+  "source_url": "https://sohldickstein.com/",
+  "kind": "personal-site",
+  "credit": "Jascha Sohl Dickstein personal website (https://sohldickstein.com/)"
+ },
+ "shakir-mohamed": {
+  "file": "photos/shakir-mohamed.jpg",
+  "source_url": "https://shakirm.com/",
+  "kind": "personal-site",
+  "credit": "Shakir Mohamed personal website (https://shakirm.com/)"
+ },
+ "stella-biderman": {
+  "file": "photos/stella-biderman.jpg",
+  "source_url": "https://stellabiderman.ai/",
+  "kind": "personal-site",
+  "credit": "Stella Biderman personal website (https://stellabiderman.ai/)"
+ },
+ "collin-burns": {
+  "file": "photos/collin-burns.jpg",
+  "source_url": "https://collinpburns.com/",
+  "kind": "personal-site",
+  "credit": "Collin Burns personal website (https://collinpburns.com/)"
+ },
+ "lawrence-chan": {
+  "file": "photos/lawrence-chan.jpg",
+  "source_url": "https://chanlawrence.me/",
+  "kind": "personal-site",
+  "credit": "Lawrence Chan personal website (https://chanlawrence.me/)"
+ },
+ "thomas-wolf": {
+  "file": "photos/thomas-wolf.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Thomas_Wolf_at_Slush_2024.jpg",
+  "kind": "wikimedia",
+  "credit": "Slush, CC BY 3.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Thomas_Wolf_at_Slush_2024.jpg)"
+ },
+ "mike-krieger": {
+  "file": "photos/mike-krieger.jpg",
+  "source_url": "https://commons.wikimedia.org/wiki/File:Mike_Krieger_in_2018.jpg",
+  "kind": "wikimedia",
+  "credit": "Christopher Michel, CC BY-SA 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Mike_Krieger_in_2018.jpg)"
+ },
+ "andrew-critch": {
+  "file": "photos/andrew-critch.jpg",
+  "source_url": "https://acritch.com/",
+  "kind": "lab-page",
+  "credit": "Mathematical AI Safety Institute team page (https://acritch.com/)"
+ }
+}

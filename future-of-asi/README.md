@@ -6,22 +6,22 @@
 
 # Threshold: The Future of ASI
 
-**An interactive, research backed guide to the future of artificial superintelligence: six futures you can steer from 2026 to 2040, 73 researchers with 123 sourced quotes and their own p(doom) numbers, a warnings timeline from Alan Turing in 1951 to October 2026, 495 verified videos in a theater player, AI control explained with a playable blue team game, a free Alignment 101 course with a downloadable completion card, a calm catastrophe preparation checklist, 38 organisations on a map, three thinking tools, 11 essays and full docs.**
+**An interactive, research backed guide to the future of artificial superintelligence: six futures you can steer from 2026 to 2040, 218 researchers with 152 sourced quotes and their own p(doom) numbers, a warnings timeline from Alan Turing in 1951 to October 2026, 1,375 verified videos that play only when you press play, AI control explained with a playable blue team game, a free 10 unit course with 43 lessons, 185 activities, boss quizzes, XP, badges and a final exam, a calm catastrophe preparation checklist, 80 organisations on a 3D globe with their real logos, every named Pacing the Frontier signer, an Intelligence Explosion deep dive, a 36 title library with an e-book reader, three thinking tools, 11 essays and full docs.**
 
 <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/Open%20Threshold-lo3elyon.github.io%2FASI%2Ffuture--of--asi-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open Threshold"></a>
 <a href="../"><img src="https://img.shields.io/badge/Back%20to-the%20ASI%20hub-14b8a6?style=for-the-badge&labelColor=07111f" alt="Back to the ASI hub"></a>
 <br>
 <img src="https://img.shields.io/badge/updated-2026--10--29-f59e0b?style=flat-square&labelColor=07111f" alt="updated 2026-10-29">
-<img src="https://img.shields.io/badge/researchers-73-22d3ee?style=flat-square&labelColor=07111f" alt="73 researchers">
-<img src="https://img.shields.io/badge/sourced%20quotes-123-14b8a6?style=flat-square&labelColor=07111f" alt="123 sourced quotes">
+<img src="https://img.shields.io/badge/researchers-218-22d3ee?style=flat-square&labelColor=07111f" alt="218 researchers">
+<img src="https://img.shields.io/badge/sourced%20quotes-152-14b8a6?style=flat-square&labelColor=07111f" alt="152 sourced quotes">
 <img src="https://img.shields.io/badge/p(doom)%20estimates-22-ef4444?style=flat-square&labelColor=07111f" alt="22 p(doom) estimates">
-<img src="https://img.shields.io/badge/verified%20videos-495%20(~508%20h)-3b82f6?style=flat-square&labelColor=07111f" alt="495 verified videos">
-<img src="https://img.shields.io/badge/collections-19-3b82f6?style=flat-square&labelColor=07111f" alt="19 collections">
+<img src="https://img.shields.io/badge/verified%20videos-1%2C375%20(~1%2C226%20h)-3b82f6?style=flat-square&labelColor=07111f" alt="1,375 verified videos">
+<img src="https://img.shields.io/badge/collections-31-3b82f6?style=flat-square&labelColor=07111f" alt="31 collections">
 <img src="https://img.shields.io/badge/timeline-1951%20to%202026-ef4444?style=flat-square&labelColor=07111f" alt="Timeline 1951 to 2026">
-<img src="https://img.shields.io/badge/organisations-38-14b8a6?style=flat-square&labelColor=07111f" alt="38 organisations">
+<img src="https://img.shields.io/badge/organisations-80-14b8a6?style=flat-square&labelColor=07111f" alt="80 organisations">
 <img src="https://img.shields.io/badge/resources-73-84cc16?style=flat-square&labelColor=07111f" alt="73 resources">
 <br>
-<img src="https://img.shields.io/badge/course-6%20units%20%C2%B7%2018%20lessons%20%C2%B7%2024%20quiz%20questions-84cc16?style=flat-square&labelColor=07111f" alt="Course">
+<img src="https://img.shields.io/badge/course-10%20units%20%C2%B7%2043%20lessons%20%C2%B7%20185%20activities-84cc16?style=flat-square&labelColor=07111f" alt="Course">
 <img src="https://img.shields.io/badge/glossary-70%20terms-f59e0b?style=flat-square&labelColor=07111f" alt="70 glossary terms">
 <img src="https://img.shields.io/badge/blog-11%20posts-f59e0b?style=flat-square&labelColor=07111f" alt="11 posts">
 <img src="https://img.shields.io/badge/launch%20film-40%20s-22d3ee?style=flat-square&labelColor=07111f" alt="40 second launch film">
@@ -69,9 +69,9 @@ A threshold is a doorway. You stand on it for a moment, and then you are in a di
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/13-pages-22d3ee?style=for-the-badge&labelColor=07111f" alt=""><br><sub>home, futures, researchers, voices, timeline, watch, control, learn, prepare, orgs, tools, blog, docs</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/18-pages%20%2B%202%20deep%20dives-22d3ee?style=for-the-badge&labelColor=07111f" alt=""><br><sub>plus pacing, history, explosion and library</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/128-deep%20links-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>every person, lesson, post, doc and tool has its own address</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/495-videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>each ID checked with YouTube oEmbed</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/1%2C375-videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>each ID checked with YouTube oEmbed</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-made%20up%20quotes-84cc16?style=for-the-badge&labelColor=07111f" alt=""><br><sub>every quote was matched against its source page</sub></td>
 </tr>
 </table>
@@ -94,9 +94,58 @@ flowchart LR
   I --> L[Careers, courses, orgs]
 ```
 
+## Round 2: what is new (29 October 2026)
+
+| Area | What changed |
+| --- | --- |
+| People overlay | Opening a person or a video from any page now opens a drawer on top of that page. The route, the page state and your scroll position stay exactly where they were. Close it with the X, Escape, the backdrop or the browser Back button. Deep links use `?p=<id>` and `?v=<id>`, and old `#/researchers/<id>` links still work. |
+| Researchers | 218 profiles, up from 73, with career, background, former labs, key papers checked against arXiv, books, courses, homepages and socials. 16 categories (left a lab and warned, independent lab, book author, most cited, interpretability, theory, HCI, governance, evals and more), 10 regions, and three views: grid, constellation and table. A relate to me matcher suggests people, papers and courses. |
+| Photos | 137 real photos, each checked by eye against a second source. All 73 original people now have one. Credits and sources are in `data/photos-manifest.json`. |
+| Pacing the Frontier | A new page, `#/pacing`, with all 1,094 named signers (and 292 anonymous, 1,386 in total as of 29 October 2026), filterable by employer, with their exact comments. |
+| Organisations | 80 orgs in 20 countries on a three.js globe, each with its official logo (93 logos in `data/logos/`, with a light version or chip on dark backgrounds). |
+| Watch | 1,375 videos (about 1,226 hours) in 17 categories and 31 collections, including intelligence explosion, agent behaviour, interpretability, evals, HCI, the sceptics, authors on their books and talks in Hindi, Bengali and Urdu. Every ID was checked with oEmbed. Nothing autoplays: you see a poster and a play button, and YouTube (nocookie) loads only after the click. |
+| History | A new page, `#/history`, keeps the videos you played, the people you opened, the lessons you finished and the posts you read, in your browser only, with export and clear. |
+| Search | Ctrl or Cmd K now searches researchers, signers, quotes, videos, orgs, timeline, glossary, blog, docs, papers, books and lessons, with fuzzy matching, highlights, tabs and recent searches. |
+| Learn | 10 units, 43 lessons and 185 activities of 17 types: quiz, true or false, sort by drag, order, match, slider predictions, branching scenarios, spot the flaw, flashcards, reflection, simulations, key terms, diagrams, videos, quotes and researcher cards. Each unit ends in a boss quiz with a health bar and a badge. There is a 30 question daily streak, XP levels and a 25 question final exam. Old progress carries over. |
+| Motion and look | A branded loader and skeletons, one scroll effect per page with GSAP, ScrollTrigger and Lenis (all vendored), new type, grain, aurora and light rays, optional UI sounds and an ambient pad (off by default), and a motion switch that respects reduced motion. |
+| Intelligence explosion | A new deep dive at `explosion/`: twelve scroll chapters on recursive self improvement, takeoff speed, compute and METR task length, AI building AI in 2026, the AI 2027 chain, what researchers keep saying, an inside an agent's mind goal tree, 16 cards of real agent behaviour evidence, a reward hacking game and 26 videos. Its own README is in `explosion/README.md`. |
+| Library | A new reading room at `library/`: 30 books and 6 essays with verified covers, chapter guides in my own words, key ideas, arguments both ways, quizzes, talks and where to read or buy. A flip book reader with themes, font control, highlights and notes. Full text only where the licence allows it (Hendrycks's AI Safety, Ethics and Society under CC BY-NC-ND 4.0, Vinge 1993 under its own copying notice, Butler 1863 in the public domain). Copyrighted books are never reproduced. Its own README is in `library/README.md`. |
+| SEO | 242 prerendered snapshot pages (sections, every researcher at `r/<id>/`, every post) with their own titles, descriptions, canonical links, Open Graph tags and JSON-LD, a 245 URL sitemap and robots.txt. |
+
+```mermaid
+flowchart TD
+  P[Any page: timeline, voices, watch, orgs, search] -->|tap a person| O[Overlay drawer ?p=id]
+  P -->|tap a video| T[Theater ?v=id]
+  O -->|X, Esc, backdrop, Back| P
+  T -->|press play| Y[youtube-nocookie iframe]
+  T -->|close| P
+  Y --> H[History page]
+  O --> H
+```
+
 <a id="02-visual-tour"></a>
 
 ## 02 Visual tour
+
+<div align="center">
+<table>
+<tr>
+<td align="center" width="33%"><img src="docs-shots/researcher-overlay.jpg" width="100%" alt="Researcher overlay"><br><sub>Person overlay over the page you were on</sub></td>
+<td align="center" width="33%"><img src="docs-shots/pacing.jpg" width="100%" alt="Pacing the Frontier"><br><sub>Pacing the Frontier signers</sub></td>
+<td align="center" width="33%"><img src="docs-shots/orgs.jpg" width="100%" alt="Orgs globe"><br><sub>80 orgs on a globe with logos</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="docs-shots/explosion.jpg" width="100%" alt="Intelligence explosion"><br><sub>The intelligence explosion deep dive</sub></td>
+<td align="center"><img src="docs-shots/library.jpg" width="100%" alt="Library"><br><sub>The library and reader</sub></td>
+<td align="center"><img src="docs-shots/boss.jpg" width="100%" alt="Boss quiz"><br><sub>Boss quiz at the end of a unit</sub></td>
+</tr>
+<tr>
+<td align="center"><img src="docs-shots/researchers-stars.jpg" width="100%" alt="Constellation"><br><sub>Researchers as a constellation</sub></td>
+<td align="center"><img src="docs-shots/video-theater.jpg" width="100%" alt="Theater"><br><sub>Click to play theater</sub></td>
+<td align="center"><img src="docs-shots/history.jpg" width="100%" alt="History"><br><sub>Your history, kept in your browser</sub></td>
+</tr>
+</table>
+</div>
 
 <table>
 <tr>
@@ -399,15 +448,15 @@ There is no build step. Edit a JSON file or a markdown post and reload. The rule
 
 ## 10 Quality checks
 
-| Check | Result on 2026-10-29 |
+| Check (Round 2, 29 October 2026, headless Chromium) | Result |
 | --- | --- |
-| Every route renders in headless Chromium at 1440 and 390 wide | 25 routes, 0 console errors, 0 page errors, 0 failed local requests |
-| Internal deep links found on rendered pages | 142 unique links visited, 0 broken |
-| External links found on rendered pages | 227 checked, 215 return 200, 12 are bot blocked pages (LessWrong, Alignment Forum, TIME, OpenAI) that open in a browser |
-| Horizontal overflow on a 390 wide phone | none on 14 tested pages |
-| Interactions | palette search, futures presets, game turns, quiz pass, certificate PNG download, checklist, video filters, themes and reduced motion all exercised |
-| Copy rules | no em dashes, en dashes or exclamation marks in text written for this route. Four exact quotes keep the speaker's own dash, and a few channel names keep their own punctuation |
-| Colours | no purple, pink, violet, magenta, fuchsia or indigo values anywhere |
+| Overlay suite on 18 routes: open and close a person with Esc and Back, open a video, route and scroll unchanged, zero YouTube requests before play | pass at 1440 and 390 |
+| Responsive suite, 32 routes at 360, 390, 768, 1024, 1440 and 1920 | no horizontal overflow, no console errors |
+| Learn suite: every activity type, drag sort, boss pass, badge, streak, XP | pass at 390 touch and 1440 |
+| Explosion and library at 360, 768, 1440 and 1920 | no overflow, no console errors, reader paging, highlights and quizzes work |
+| Data | 1,375 video IDs return 200 from oEmbed, every quote matched to its source, every arXiv paper lists the person as an author |
+| Copy rules | no em dashes, en dashes or exclamation marks in text written for this route. Exact quotes and signer comments keep the speaker's own punctuation |
+| Colours | no purple or pink values in the code. A few official org logos and original photo backgrounds keep their own colours |
 
 <a id="11-questions"></a>
 
@@ -429,6 +478,7 @@ There is no build step. Edit a JSON file or a markdown post and reload. The rule
 
 | Date | Change |
 | --- | --- |
+| 2026-10-29 | Round 2: overlay drawers that keep your place, 218 researchers, 137 photos, 1,094 Pacing the Frontier signers, 80 orgs with logos on a globe, 1,375 videos in 31 collections with click to play, history page, advanced search, 10 unit course with 185 activities and a final exam, intelligence explosion deep dive, 36 title library and reader, page motion, 242 SEO snapshots |
 | 2026-10-29 | First release of Threshold: 13 pages, 73 researchers, 123 quotes, 495 videos, 19 collections, 59 timeline events, 38 organisations, 73 resources, 6 unit course, AI control game, three tools, 11 posts, docs, PWA and launch film |
 
 <a id="12-sources"></a>

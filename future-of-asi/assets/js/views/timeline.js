@@ -22,7 +22,8 @@ export async function render(el, params, query) {
   const decades = [...new Set(ev.map((e) => Math.floor(e.year / 10) * 10))];
   let filter = "all";
 
-  el.innerHTML = `${pageHero({ img: "cover-timeline", eyebrow: "Warnings timeline", title: `${ev.length ? ev[0].year : 1951} to ${ev.length ? ev[ev.length - 1].year : 2026}. <span class='serif'>They told us.</span>`, lead: "Every major warning, breakthrough, statement and policy moment on the road to superintelligence, in order. Scroll slowly. Notice how the gaps between events shrink." })}
+  el.innerHTML = `${pageHero({ img: "cover-timeline", eyebrow: "Warnings timeline", title: `${ev.length ? ev[0].year : 1951} to ${ev.length ? ev[ev.length - 1].year : 2026}. <span class='serif gt-ember'>They told us.</span>`, lead: "Every major warning, breakthrough, statement and policy moment on the road to superintelligence, in order. Scroll slowly. Notice how the gaps between events shrink." })}
+  ${decadeStrip(ev)}
   <section class="section tight"><div class="wrap">
     <div class="toolbar"><div class="chips" role="group" aria-label="Filter by kind"><button class="chip on" data-t="all" type="button">All ${ev.length}</button>${types.map((t) => `<button class="chip" data-t="${t}" type="button">${t}</button>`).join("")}</div>
     <div class="chips" style="margin-left:auto" role="group" aria-label="Jump to decade">${decades.map((d) => `<button class="chip" data-d="${d}" type="button">${d}s</button>`).join("")}</div></div>
@@ -35,7 +36,7 @@ export async function render(el, params, query) {
     $("#tl", el).innerHTML = `<div class="prog" id="prog"></div>` + list.map((e) => {
       const [label, c] = TYPES[e.type] || ["Event", "#14b8a6"];
       const people = e.people.map((id) => byId[id]).filter(Boolean);
-      return `<article class="item" style="--c:${c}" data-year="${e.year}" id="y-${e.year}"><div class="card hov spot" style="--c:${c}">
+      return `<article class="item" style="--c:${c}" data-year="${e.year}" data-key="${esc(e.year + "-" + e.title.slice(0, 24))}" id="y-${e.year}"><div class="card hov spot" style="--c:${c}">
         <div class="row" style="justify-content:space-between"><span class="yr">${e.year}</span><span class="tag" style="--c:${c}">${label}</span></div>
         <h3>${esc(e.title)}</h3>${e.text ? `<p>${esc(e.text)}</p>` : ""}${e.quote ? `<p class="q">&ldquo;${esc(e.quote)}&rdquo;</p>` : ""}
         <div class="meta">${e.date && e.date.length > 4 ? `<span class="count">${esc(fmtDate(e.date))}</span>` : ""}${people.map((p) => `<a class="chip" href="#/researchers/${p.id}">${esc(p.name)}</a>`).join("")}${e.url ? `<a href="${esc(e.url)}" target="_blank" rel="noopener" style="font-size:13px">${esc(e.source || "Source")} ${ICON.ext}</a>` : ""}</div>
@@ -61,5 +62,16 @@ export async function render(el, params, query) {
   else paint();
   const y = query.get("y");
   if (y) setTimeout(() => { const it = $$(".item", el).find((x) => x.dataset.year === y); if (it) { it.classList.add("in"); it.scrollIntoView({ block: "center" }); } }, 200);
+  el.addEventListener("click", (e) => { const b = e.target.closest("[data-jump]"); if (!b) return; filter = "all"; $$("[data-t]", el).forEach((x) => x.classList.toggle("on", x.dataset.t === "all")); paint(); const it = $$(".item", el).find((x) => x.dataset.key === b.dataset.jump); if (it) { it.classList.add("in"); it.scrollIntoView({ block: "center", behavior: "smooth" }); } });
   return () => removeEventListener("scroll", onScroll);
+}
+
+function decadeStrip(ev) {
+  if (!ev.length) return "";
+  const dec = {}; ev.forEach((e) => { const d = Math.floor(e.year / 10) * 10; (dec[d] = dec[d] || []).push(e); });
+  const cols = ["#14b8a6", "#22d3ee", "#3b82f6", "#84cc16", "#f59e0b", "#ef4444"];
+  const keys = Object.keys(dec).sort();
+  const pick = (l) => l.slice().sort((a, b) => (b.type === "warning") - (a.type === "warning") || b.text.length - a.text.length).slice(0, 3).sort((a, b) => a.year - b.year);
+  return `<section class="hscroll" aria-label="Decades at a glance"><div class="track">${keys.map((d, i) => { const l = dec[d]; const c = cols[Math.min(cols.length - 1, Math.floor((i / Math.max(1, keys.length - 1)) * (cols.length - 1)))];
+    return `<div class="hpanel" style="--c:${c}"><div class="bigyr" aria-hidden="true">${d}s</div><div class="cnt">${l.length} moment${l.length === 1 ? "" : "s"}</div><h3>The ${d}s</h3><p>${esc(l.map((e) => e.title).slice(0, 2).join(". "))}.</p><div class="hl">${pick(l).map((e) => `<button type="button" data-jump="${esc(e.year + "-" + e.title.slice(0, 24))}"><span>${e.year}</span>${esc(e.title)}</button>`).join("")}</div></div>`; }).join("")}</div></section>`;
 }
