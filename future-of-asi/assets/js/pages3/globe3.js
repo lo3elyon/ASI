@@ -7,8 +7,11 @@ export async function mountGlobe3(host, pins, arcs, { onHover, onPick } = {}) {
   const T = await import("../../vendor/three-globe.min.mjs");
   const land = await fetch("assets/geo/land-2deg.json").then((r) => r.json()).catch(() => []);
   let renderer;
+  /* Check for WebGL first, so browsers without it get the flat map with no console noise */
+  try { const c = document.createElement("canvas"); if (!(c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl"))) return null; } catch (e) { return null; }
   try { renderer = new T.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "low-power" }); }
-  catch (e) { host.insertAdjacentHTML("beforeend", `<div class="fallback">This browser has no WebGL, so the globe is off. The directory below has everything.</div>`); return null; }
+  catch (e) { return null; }
+  if (!renderer || !renderer.getContext || !renderer.getContext()) return null;
   renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
   host.appendChild(renderer.domElement); renderer.domElement.setAttribute("aria-hidden", "true");
   const scene = new T.Scene(), cam = new T.PerspectiveCamera(36, 1, 0.1, 100); cam.position.set(0, 0, 4.1);

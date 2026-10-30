@@ -120,8 +120,8 @@ export async function render(el, params) {
     if (ok) { R.ok++; R.streak++; R.best = Math.max(R.best, R.streak); R.per[q.cat].ok++; const pts = Math.round((100 + left * 5) * (1 + Math.min(R.streak - 1, 5) * 0.1)); R.score += pts; $("#qs", game).textContent = R.score.toLocaleString("en-US"); }
     else R.streak = 0;
     const url = q.url || ""; const internal = url.startsWith("#");
-    $("#fb", game).innerHTML = `<p><b class="${ok ? "good" : "bad"}">${ok ? "Correct." : i === -1 ? "Time is up." : "Not this time."}</b> ${ok ? "" : `The answer is <b>${esc(q.opts[q.a])}</b>. `}${esc(q.why || "")}</p>${url ? `<a class="x-src" href="${esc(url)}" ${internal ? "" : 'target="_blank" rel="noopener"'}>${esc(q.label || "Source")} ${internal ? ICON.arrow : ICON.ext}</a>` : ""}`;
-    const nx = $("#anext", game); nx.hidden = false; nx.textContent = (G.mode === "sudden" && !ok) || qi === qs.length - 1 ? "See results" : "Next"; nx.focus({ preventScroll: true });
+    $("#fb", game).innerHTML = `<p><b class="${ok ? "good" : "bad"}">${ok ? "Correct." : i === -1 ? "Time is up." : "Not this time."}</b> ${ok ? "" : `The answer is <b>${esc(q.opts[q.a])}</b>. `}${esc(String(q.why || "").replace(/^\s*(correct|right|yes|true)\s*[.,:]\s*/i, ""))}</p>${url ? `<a class="x-src" href="${esc(url)}" ${internal ? "" : 'target="_blank" rel="noopener"'}>${esc(q.label || "Source")} ${internal ? ICON.arrow : ICON.ext}</a>` : ""}`;
+    const nx = $("#anext", game); nx.hidden = false; nx.textContent = (G.mode === "sudden" && !ok) || qi === qs.length - 1 ? "See results" : "Next"; nx.focus({ preventScroll: true }); requestAnimationFrame(() => { const r = nx.getBoundingClientRect(); if (r.bottom > innerHeight - 16 || r.top < 70) nx.scrollIntoView({ behavior: RM() ? "auto" : "smooth", block: "center" }); });
     if (G.mode === "sudden" && !ok) qi = qs.length - 1;
   }
   function finish() {

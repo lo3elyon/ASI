@@ -781,3 +781,8 @@ a.v3-barrow:hover { background: var(--surface-2); }
 .t3-el b { font: 700 20px var(--f-display); } .t3-el p { margin: 0; font-size: 14.5px; color: var(--text-2); }
 @media (max-width: 900px) { .t3-nums { grid-template-columns: repeat(2, minmax(0, 1fr)); } .t3-else { grid-template-columns: 1fr; } }
 @media (max-width: 420px) { .t3-nums { grid-template-columns: 1fr; } }
+
+/* QA fixes, Oct 30: year labels under the voices histogram never collide on a phone */
+@media (max-width: 900px) { .v3-hist .b em:not(.k) { display: none; } }
+.v3-hist .b:first-child em { left: 0; transform: none; }
+.v3-hist .b:last-child em { left: auto; right: 0; transform: none; }

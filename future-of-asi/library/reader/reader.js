@@ -5,7 +5,7 @@ import { $, $$, esc, clamp, RM, getJSON, store, toast } from "../../shared/sub.j
 import { PW, PH, THEMES, FONTS, HL as HLC, paginate, paintPage, hitBlock, fontsReady } from "./paginate.js";
 import { webglOK } from "./book3d.js";
 
-const RS = Object.assign({ theme: "paper", font: "serif", size: 25, lh: 1.55, sound: false, engine: "auto", particles: true, rate: 1, justify: true }, store.get("lib:reader2", {}));
+const RS = Object.assign({ theme: "paper", font: "serif", size: 25, lh: 1.55, sound: false, engine: "auto", particles: true, rate: 1, justify: true, zoom: 1 }, store.get("lib:reader2", {}));
 const saveRS = () => store.set("lib:reader2", RS);
 const SK = { hl: "lib:hl", bm: "lib:bm", time: "lib:time", prog: "lib:prog" };
 const getS = (k) => store.get(k, {}), setS = (k, v) => store.set(k, v);
@@ -46,7 +46,6 @@ function build() {
     <div class="rd-host" id="rdHost"></div>
     <button class="rd-side prev" type="button" data-a="prev" aria-label="Previous page">${ic("prev", 22)}</button>
     <button class="rd-side next" type="button" data-a="next" aria-label="Next page">${ic("next", 22)}</button>
-    <div class="rd-zoom" role="group" aria-label="Zoom"><button class="rb sm" type="button" data-a="zoomout" aria-label="Zoom out">${ic("minus", 16)}</button><button class="rb sm" type="button" data-a="zoomfit" aria-label="Reset zoom">${ic("fit", 16)}</button><button class="rb sm" type="button" data-a="zoomin" aria-label="Zoom in">${ic("plus", 16)}</button></div>
     <div class="rd-loader" id="rdLoader" aria-hidden="true"><div class="bk-build"><i class="b-back"></i><i class="b-pg p1"></i><i class="b-pg p2"></i><i class="b-pg p3"></i><i class="b-pg p4"></i><i class="b-spine"></i><i class="b-cover"></i></div><p>Opening the book</p></div>
     <div class="rd-pop" id="rdPop" hidden role="dialog" aria-label="Paragraph actions"></div>
     <div class="rd-tts" id="rdTts" hidden><button class="rb sm" type="button" data-a="ttspause" aria-label="Pause reading">${ic("pause", 16)}</button><button class="rb sm" type="button" data-a="ttsstop" aria-label="Stop reading">${ic("stop", 16)}</button><label>Speed <input type="range" id="rdRate" min="0.6" max="1.8" step="0.1"></label></div>
@@ -56,6 +55,7 @@ function build() {
     <button class="rb sm" type="button" data-a="prev" aria-label="Previous page">${ic("prev", 16)}</button>
     <div class="rd-scrub"><input type="range" id="rdScrub" min="1" max="1" value="1" aria-label="Go to page"><output id="rdScrubTip"></output></div>
     <button class="rb sm" type="button" data-a="next" aria-label="Next page">${ic("next", 16)}</button>
+    <div class="rd-zoom" role="group" aria-label="Text zoom"><button class="rb sm" type="button" data-a="zoomout" aria-label="Zoom out">${ic("minus", 16)}</button><button class="rd-zlev" type="button" data-a="zoomfit" id="rdZoom" aria-label="Text zoom 100%. Press to reset" title="Reset zoom">100%</button><button class="rb sm" type="button" data-a="zoomin" aria-label="Zoom in">${ic("plus", 16)}</button></div>
     <span class="rd-pos" id="rdPos" aria-live="polite"></span>
     <span class="rd-ring" id="rdRing"></span>
     <span class="rd-time" id="rdTime" title="Reading time"></span>
@@ -65,6 +65,7 @@ function build() {
   root.addEventListener("click", onAction);
   $("#rdScrub").addEventListener("input", (e) => { rangeFill(e.target); const p = +e.target.value - 1; $("#rdScrubTip").textContent = `Page ${p + 1}`; positionTip(); });
   $("#rdScrub").addEventListener("change", (e) => goPage(+e.target.value - 1, false));
+  zoomLabel();
   $("#rdRate").value = RS.rate; rangeFill($("#rdRate")); $("#rdRate").addEventListener("input", (e) => { rangeFill(e.target); RS.rate = +e.target.value; saveRS(); if (tts.on) { tts.restart(); } });
   addEventListener("keydown", onKey);
   addEventListener("resize", () => { if (!root.hidden) checkMode(); });
@@ -104,8 +105,23 @@ async function ensureBlocks(d) { if (!d.blocks) { const j = await getJSON(d.url,
 function layoutDoc() {
   const d = R.docs[R.di];
   R.blocks = (R.di === 0 ? [titleBlock(R.book)] : []).concat(d.blocks.map((x) => (x.t === "h4" ? { ...x, t: "h3" } : x)));
-  R.lay = paginate(R.blocks, { size: Math.round(RS.size * (R.single ? 1.22 : 1)), lh: RS.lh, font: RS.font, justify: RS.justify });
+  R.lay = paginate(R.blocks, { size: Math.round(RS.size * (R.single ? 1.22 : 1) * zoomLevel()), lh: RS.lh, font: RS.font, justify: RS.justify });
   R.canv.clear();
+}
+
+/* ---------- text zoom: larger text re-paginates, so nothing is ever clipped ---------- */
+const ZOOMS = [0.8, 0.9, 1, 1.15, 1.3, 1.5, 1.75, 2];
+function zoomLevel() { const z = +RS.zoom; return ZOOMS.includes(z) ? z : 1; }
+function zoomLabel() {
+  const z = zoomLevel(), b = $("#rdZoom"); if (!b) return; const pc = `${Math.round(z * 100)}%`;
+  b.textContent = pc; b.setAttribute("aria-label", `Text zoom ${pc}. Press to reset`);
+  const i = ZOOMS.indexOf(z); const o = $('[data-a="zoomout"]', root), n = $('[data-a="zoomin"]', root);
+  if (o) o.disabled = i <= 0; if (n) n.disabled = i >= ZOOMS.length - 1;
+}
+async function zoomStep(d) {
+  if (!R.lay || R.busy || (R.engine && R.engine.busy())) return;
+  const i = ZOOMS.indexOf(zoomLevel()), j = d === 0 ? ZOOMS.indexOf(1) : clamp(i + d, 0, ZOOMS.length - 1);
+  if (j === i) return; RS.zoom = ZOOMS[j]; zoomLabel(); await relayout();
 }
 
 /* ---------- pages and views ---------- */
@@ -139,6 +155,7 @@ async function makeEngine() {
     tap: (i, side, x, y, cx, cy) => tapBlock(i, side, x, y, cx, cy),
     sound: () => RS.sound && rustle(),
     zoomed: () => {},
+    zoomStep: (d) => zoomStep(d),
   };
   try {
     if (want === "3d") { const { createBook3D } = await import("./book3d.js"); R.engine = await createBook3D(ui.host, hooks); R.engine.theme(RS.theme); R.engine.particles(RS.particles && !RM()); }
@@ -377,7 +394,7 @@ async function onAction(e) {
   if (k === "ttsstop") return stopTts();
   if (k === "share") return share();
   if (k === "focus") { const on = !root.classList.contains("focus"); root.classList.toggle("focus", on); $$('[data-a="focus"].rb', root).forEach((b) => b.setAttribute("aria-pressed", String(on))); if (on) toast("Focus mode. Press F or Esc to leave."); return; }
-  if (k === "zoomin") return R.engine.zoom(1.15); if (k === "zoomout") return R.engine.zoom(1 / 1.15); if (k === "zoomfit") return R.engine.zoom(0);
+  if (k === "zoomin") return zoomStep(1); if (k === "zoomout") return zoomStep(-1); if (k === "zoomfit") return zoomStep(0);
   if (k === "doc") { await switchDoc(+a.dataset.d, 0); return; }
   if (k === "blk") { goBlock(+a.dataset.b, true); if (innerWidth < 900) openPanel(""); return; }
   if (k === "jump") { await jump(+a.dataset.d, +a.dataset.b); if (innerWidth < 900) openPanel(""); return; }
@@ -413,7 +430,7 @@ function onKey(e) {
   else if (k === "b" || k === "B") toggleBookmark();
   else if (k === "/") { e.preventDefault(); if (panel !== "search") openPanel("search"); }
   else if (k === "t" || k === "T") openPanel("toc");
-  else if (k === "+" || k === "=") R.engine.zoom(1.15); else if (k === "-") R.engine.zoom(1 / 1.15);
+  else if (k === "+" || k === "=") zoomStep(1); else if (k === "-") zoomStep(-1); else if (k === "0") zoomStep(0);
   else if (k === "Escape") { if (!$("#rdPop").hidden) closePop(); else if (root.classList.contains("focus")) $('[data-a="focus"].rb', root).click(); else if (panel) openPanel(""); else close(); }
 }
 function loader(on) { const l = $("#rdLoader"); if (l) l.classList.toggle("on", !!on); }

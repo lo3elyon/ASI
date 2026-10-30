@@ -3,6 +3,7 @@
 import { $, $$, esc, ICON, RM, clamp, store, videos, researchers, load, arr, ytThumb, fmtDur, fmtDate, avatar } from "../util.js";
 import { hero, banner, head, headH, sources, run, m3init, m3auto, dragScroll, pic, photoMap, face } from "../pages3/kit.js";
 import { scrollToEl } from "../pages3/kit.js";
+import { trackActive } from "../core/toc-row.js";
 import { PAPERS, TABLE7, PROTOCOLS, PALETTE, estimate, LEVELS, TASKS, CASES, DEVS, GLOSS_KEEP, GLOSS_EXTRA, QUIZ } from "../pages3/control-data.js";
 
 const P = (k) => PAPERS[k];
@@ -281,6 +282,7 @@ export async function render(el, params, query) {
   offs.push(run(el));
   offs.push(m3init(el));
   if (query.get("play")) setTimeout(() => { const g = document.getElementById("p3game"); if (g) scrollToEl(g, { block: "start" }); }, 300);
+  { const row = $(".p3-toc-in", el); if (row) offs.push(trackActive(row, $$("a[data-jump]", row).map((a) => ({ el: a, target: el.querySelector("#" + a.dataset.jump) })))); }
   return () => offs.forEach((f) => { try { f(); } catch (e) {} });
 }
 

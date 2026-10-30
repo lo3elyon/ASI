@@ -45,7 +45,7 @@ export async function mount(el) {
   </div></section>
 
   ${sec({ id: "v3yr", eyebrow: "When they said it", title: "The warnings got louder.", cat: "amber", lead: "Number of quotes in this guide by the year they were said. Most of the field's public words are very recent.", body: `
-    <div class="v3-hist" data-v3 role="img" aria-label="Quotes per year from ${yrs[0]} to ${yrs[yrs.length - 1]}">${yrs.map((y, i) => `<div class="b" style="--h:${((yr[y] / ymax) * 100).toFixed(1)}%;--i:${i}" title="${y}: ${yr[y]} quotes"><i></i><span>${yr[y]}</span><em>${/0$|5$/.test(y) || i === yrs.length - 1 || i === 0 ? y : ""}</em></div>`).join("")}</div>` })}
+    <div class="v3-hist" data-v3 role="img" aria-label="Quotes per year from ${yrs[0]} to ${yrs[yrs.length - 1]}">${(() => { const gap = Math.max(2, Math.ceil(yrs.length / 6)); let last = -99; const key = yrs.map((y, i) => { const k = i === 0 || i === yrs.length - 1 ? true : i - last >= gap && yrs.length - 1 - i >= gap && /0$|5$/.test(y); if (k) last = i; return k; }); return yrs.map((y, i) => `<div class="b" style="--h:${((yr[y] / ymax) * 100).toFixed(1)}%;--i:${i}" title="${y}: ${yr[y]} quotes"><i></i><span>${yr[y]}</span><em class="${key[i] ? "k" : ""}">${/0$|5$/.test(y) || i === yrs.length - 1 || i === 0 ? y : ""}</em></div>`).join(""); })()}</div>` })}
 
   ${sec({ id: "v3most", eyebrow: "Most quoted", title: "The ten voices with the most lines here.", cat: "amber", body: `
     <div class="v3-most" data-m3-stagger="50">${most.map((p, i) => `<a class="v3-mostc card-glow" href="#/researchers/${p.id}" data-person="${p.id}" data-m3-tilt="6"><span class="rk">${i + 1}</span>${face(p, "avatar lg")}<b>${esc(p.name)}</b><span class="muted">${p.quotes.length} quotes</span></a>`).join("")}</div>` })}

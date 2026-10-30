@@ -110,8 +110,22 @@ export async function render(el, params, query) {
   import("../pages3/globe3.js").then((g) => g.mountGlobe3($("#globe", el), pins, arcs, {
     onHover(p, x, y) { if (!p) { tip.style.display = "none"; return; } tip.style.display = "block"; tip.style.left = x + "px"; tip.style.top = y + "px"; tip.innerHTML = `<div class="row" style="gap:6px;flex-wrap:nowrap">${p.list.slice(0, 4).map((o) => logoHtml(o.id, o.name, "ologo sm")).join("")}<b>${esc(p.list.length === 1 ? p.list[0].name : `${p.list.length} organisations`)}</b></div>`; $("#gcoord", el).textContent = fmtLL([p.lat, p.lng]); },
     onPick: (p) => pick(p),
-  })).then((api) => { if (!api) return; G = api; if (!el.isConnected) { api.stop(); return; } offs.push(() => api.stop()); applyRegion(); })
-    .catch((e) => { console.warn("globe", e); $("#globe", el).innerHTML = `<div class="fallback">The globe could not start here. Everything is in the directory below.</div>`; });
+  })).catch((e) => { console.warn("globe", e); return null; })
+    .then(async (api) => {
+      if (!el.isConnected) { if (api) api.stop(); return; }
+      if (!api) {
+        /* No WebGL: a flat map with the same pins, links and controls, and a styled notice */
+        const host = $("#globe", el), ctl = $(".p3-gside", el);
+        const { mountFlat } = await import("../pages3/flatmap.js");
+        $$("canvas", host).forEach((c) => c.remove());
+        api = mountFlat(host, pins, arcs, { onHover: (p, x, y) => { if (!p) { tip.style.display = "none"; return; } tip.style.display = "block"; tip.style.left = x + "px"; tip.style.top = y + "px"; tip.textContent = p.list.length === 1 ? p.list[0].name : `${p.list.length} organisations`; }, onPick: (p) => pick(p) });
+        $(".p3-atlas", el).classList.add("is-flat");
+        host.setAttribute("aria-label", `Flat map with ${pins.length} locations`); host.removeAttribute("role");
+        const hint = $(".p3-gside > p.muted", el); if (hint) hint.textContent = "Tap a light to open it. Gold lines join organisations with three or more people in common.";
+        ctl.insertAdjacentHTML("afterbegin", `<div class="p3-nogl" role="note"><b>Flat map view</b><span>This browser cannot draw the 3D globe, so here is the same atlas on a flat map. The directory below has everything too.</span></div>`);
+      }
+      G = api; offs.push(() => api.stop()); applyRegion();
+    });
   const tourList = pins.slice().sort((a, b) => b.n - a.n);
   let tourI = 0;
   function tour(on) {
@@ -199,7 +213,7 @@ export async function render(el, params, query) {
         <h4>People here${m.length ? ` <span class="count">${m.length}</span>` : ""}</h4>${m.length ? `<div class="p3-shp">${m.map((pid) => `<button type="button" class="p3-pchip" data-person="${esc(pid)}">${face(pById[pid], phm, "p3-face sm")}<span>${esc(pById[pid].name)}<small>${esc(pById[pid].role || "")}</small></span></button>`).join("")}</div>` : `<p class="muted">No profiled researchers list this as their current home yet.</p>`}
         ${f.length ? `<h4>Worked here before <span class="count">${f.length}</span></h4><div class="p3-shp">${f.map((pid) => `<button type="button" class="p3-pchip" data-person="${esc(pid)}">${face(pById[pid], phm, "p3-face sm")}<span>${esc(pById[pid].name)}<small>${esc(pById[pid].org || "")}</small></span></button>`).join("")}</div>` : ""}
         ${rel.length ? `<h4>Shares people with</h4><div class="chips">${rel.map((r) => `<button type="button" class="chip" data-open="${esc(r.o.id)}">${logoHtml(r.o.id, r.o.name, "ologo sm")}${esc(r.o.name)} <span class="count">${r.ps.length}</span></button>`).join("")}</div>` : ""}
-        <div class="row p3-sh-links">${o.url ? `<a class="btn sm primary" href="${esc(o.url)}" target="_blank" rel="noopener">Website ${ICON.ext}</a>` : ""}${o.wikipedia ? `<a class="btn sm" href="${esc(o.wikipedia)}" target="_blank" rel="noopener">Wikipedia ${ICON.ext}</a>` : ""}<button class="btn sm ghost" type="button" data-addcmp="${esc(o.id)}">${S.cmp.includes(o.id) ? "In comparison" : "Add to compare"}</button>${o.ll ? `<button class="btn sm ghost" type="button" data-onglobe="${esc(o.id)}">Show on globe</button>` : ""}</div>
+        <div class="row p3-sh-links">${o.url ? `<a class="btn sm primary" href="${esc(o.url)}" target="_blank" rel="noopener">Website ${ICON.ext}</a>` : ""}${o.wikipedia ? `<a class="btn sm" href="${esc(o.wikipedia)}" target="_blank" rel="noopener">Wikipedia ${ICON.ext}</a>` : ""}<button class="btn sm ghost" type="button" data-addcmp="${esc(o.id)}">${S.cmp.includes(o.id) ? "In comparison" : "Add to compare"}</button>${o.ll ? `<button class="btn sm ghost" type="button" data-onglobe="${esc(o.id)}">${G && G.flat ? "Show on map" : "Show on globe"}</button>` : ""}</div>
         ${o.logo_credit ? `<p class="muted p3-credit">Logo: ${esc(o.logo_credit)}</p>` : ""}
       </div>`;
     sheet.hidden = false; requestAnimationFrame(() => sheet.classList.add("on"));

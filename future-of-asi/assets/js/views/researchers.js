@@ -106,9 +106,11 @@ export async function render(el, params, query) {
   }
   const setQ = () => { const q = new URLSearchParams(); if (S.cat !== "all") q.set("cat", S.cat); if (S.view !== "grid") q.set("view", S.view); if (S.region) q.set("region", S.region); const h = "#/researchers" + (q.toString() ? "?" + q : ""); history.replaceState(history.state, "", location.pathname + location.search + h); };
   el.addEventListener("click", (e) => {
-    const t = e.target.closest("[data-cat]"); if (t) { S.cat = t.dataset.cat; if (S.cat !== "region") S.region = ""; setQ(); paint(); return; }
-    const v = e.target.closest("[data-view]"); if (v) { S.view = v.dataset.view; store.set("rview", S.view); setQ(); paint(); return; }
-    const rg = e.target.closest("[data-region]"); if (rg) { S.region = S.region === rg.dataset.region ? "" : rg.dataset.region; setQ(); paint(); }
+    /* Scope every lookup to this page: body carries data-cat (the route colour), so an unscoped closest() matched it */
+    const within = (sel) => { const n = e.target.closest(sel); return n && el.contains(n) && n !== el ? n : null; };
+    const t = within(".cat-tabs [data-cat]"); if (t) { S.cat = t.dataset.cat; if (S.cat !== "region") S.region = ""; setQ(); paint(); return; }
+    const v = within("[data-view]"); if (v) { S.view = v.dataset.view; store.set("rview", S.view); setQ(); paint(); return; }
+    const rg = within("[data-region]"); if (rg) { S.region = S.region === rg.dataset.region ? "" : rg.dataset.region; setQ(); paint(); }
   });
   $("#rq", el).addEventListener("input", (e) => { S.q = e.target.value; paint(); });
   $("#rs", el).addEventListener("change", (e) => { S.sort = e.target.value; paint(); });

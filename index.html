@@ -125,7 +125,7 @@
       .x-open { margin-top: auto; display: inline-flex; align-items: center; min-height: 44px; font: 600 15px var(--x-body); color: var(--accent); text-decoration: none; }
       .x-open::before { content: ""; position: absolute; inset: 0; z-index: 1; }
       .x-open:hover { text-decoration: underline; text-underline-offset: 4px; }
-      .x-new { position: absolute; top: 14px; left: 14px; z-index: 2; padding: 4px 10px; border-radius: 999px; background: var(--x-gold); color: #1a1003; font: 700 12px/1.4 var(--x-display); letter-spacing: 0.06em; box-shadow: 0 0 18px rgba(250, 204, 21, 0.6); animation: x-glow 2s ease-in-out infinite; }
+      .x-new { align-self: flex-start; padding: 4px 10px; border-radius: 999px; background: var(--x-gold); color: #1a1003; font: 700 12px/1.4 var(--x-display); letter-spacing: 0.06em; box-shadow: 0 0 18px rgba(250, 204, 21, 0.6); animation: x-glow 2s ease-in-out infinite; }
       .x-card--soon { opacity: 0.72; border-style: dashed; }
       .x-card--soon:hover { opacity: 0.95; }
       .x-card__art { aspect-ratio: 16 / 9; display: grid; place-items: center; font-size: 64px; background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--accent) 70%, transparent), transparent 65%), linear-gradient(135deg, color-mix(in srgb, var(--accent) 45%, var(--x-bg)), var(--x-bg)); }
@@ -139,7 +139,13 @@
       .x-featured h3 { font-size: clamp(26px, 3.4vw, 36px); }
       .x-featured p { font-size: 17px; }
       .x-flag { font: 600 12px/1 var(--x-body); letter-spacing: 0.12em; text-transform: uppercase; color: var(--x-lime); }
-      @media (max-width: 760px) { .x-featured .x-card { grid-template-columns: 1fr; } .x-featured .x-card__media { min-height: 0; aspect-ratio: 16 / 9; } }
+      /* the banner has text near its left edge, so the featured image is never cropped: it is shown whole and the space around it matches its night sky */
+      .x-featured .x-card__media { display: grid; place-items: center; background: linear-gradient(180deg, #0b1830, #070b12); }
+      .x-featured .x-card__media::before { content: ""; position: absolute; inset: -40px; background: var(--x-cover, none) center / cover no-repeat; filter: blur(28px) brightness(0.55); }
+      .x-featured .x-card__media img { position: relative; }
+      .x-featured .x-card__media img, .x-featured .x-card:hover .x-card__media img { height: auto; max-height: 100%; aspect-ratio: 16 / 9; object-fit: contain; transform: none; }
+      .x-badges { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+      @media (max-width: 1024px) { .x-featured .x-card { grid-template-columns: 1fr; } .x-featured .x-card__media { min-height: 0; aspect-ratio: 16 / 9; } }
       .x-empty { padding: 40px 20px; text-align: center; border-radius: 22px; border: 1px dashed var(--x-line); color: var(--x-muted); }
       .x-empty b { display: block; margin-bottom: 6px; font: 600 20px var(--x-display); color: var(--x-text); }
 
@@ -565,13 +571,12 @@
           const meta = soon ? "" : `<div class="x-meta"><span>📅 ${fmt(p.date)}</span><span>▶ ${p.videos || 0} videos</span><span>⏱ ~${p.readMins || 0} min</span></div>`;
           el.innerHTML =
             (soon ? `<div class="x-card__art" aria-hidden="true">${p.icon || "✨"}</div>` : `<div class="x-card__media"></div>`) +
-            (isNew(p) ? `<span class="x-new">NEW</span>` : "") +
             `<div class="x-card__body">` +
-            (featured ? `<p class="x-flag">★ Featured · newest</p>` : "") +
+            (featured && isNew(p) ? `<div class="x-badges"><span class="x-new">NEW</span><p class="x-flag">★ Featured · newest</p></div>` : featured ? `<p class="x-flag">★ Featured · newest</p>` : isNew(p) ? `<span class="x-new">NEW</span>` : "") +
             `<h3>${esc(p.title)}</h3><p>${esc(p.tagline)}</p><ul class="x-chips" aria-label="Tags">${chips}</ul>${meta}` +
             (soon ? `<span class="x-soon">Coming soon</span>` : `<a class="x-open" href="${esc(p.slug)}">Open explainer →</a>`) +
             `</div>`;
-          if (!soon && p.cover) $(".x-card__media", el).appendChild(coverImg(p));
+          if (!soon && p.cover) { const m = $(".x-card__media", el), im = coverImg(p); m.appendChild(im); if (featured) m.style.setProperty("--x-cover", `url("${im.src}")`); }
           if (!RM && window.matchMedia("(hover: hover)").matches) tilt(el, featured ? 4 : 8);
           return el;
         }

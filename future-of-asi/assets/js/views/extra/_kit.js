@@ -2,6 +2,7 @@
    Everything respects reduced motion through motion3 and the CSS in assets/css/v3-new.css. */
 import { $, $$, esc, load, RM, ICON, store, researchers, avatar, clamp } from "../../util.js";
 import * as m3 from "../../core/motion3.js";
+import { tocRow } from "../../core/toc-row.js";
 export { m3, $, $$, esc, RM, ICON, store, clamp };
 
 export const X = (n) => load(`extra/${n.endsWith(".json") ? n : n + ".json"}`, {});
@@ -36,10 +37,11 @@ export function tocBar(el) {
   nav.innerHTML = `<div class="wrap" data-lenis-prevent><span class="x-toc-l">On this page</span>${secs.map((s) => `<button type="button" data-go="${s.id}">${esc(s.dataset.toc)}</button>`).join("")}</div>`;
   const hero = $(".x-hero", el);
   (hero ? hero.after(nav) : el.prepend(nav));
-  nav.addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const t = $("#" + b.dataset.go, el); if (t) { const y = t.getBoundingClientRect().top + window.scrollY - 110; window.scrollTo({ top: y, behavior: RM() ? "auto" : "smooth" }); } });
-  const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { $$("button", nav).forEach((b) => b.classList.toggle("on", b.dataset.go === en.target.id)); const on = $(`button[data-go="${en.target.id}"]`, nav); if (on && on.scrollIntoView && nav.scrollWidth > nav.clientWidth) on.parentNode.scrollLeft = on.offsetLeft - 60; } }), { rootMargin: "-40% 0px -55% 0px" });
+  nav.addEventListener("click", (e) => { const b = e.target.closest("[data-go]"); if (!b) return; const t = $("#" + b.dataset.go, el); if (t) { const top = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 64; const y = t.getBoundingClientRect().top + window.scrollY - (top + nav.getBoundingClientRect().height + 14); window.scrollTo({ top: y, behavior: RM() ? "auto" : "smooth" }); } });
+  const row = $(".wrap", nav), tr = tocRow(row);
+  const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) { $$("button", nav).forEach((b) => { const on = b.dataset.go === en.target.id; b.classList.toggle("on", on); if (on) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); }); tr.show($(`button[data-go="${en.target.id}"]`, nav)); } }), { rootMargin: "-40% 0px -55% 0px" });
   secs.forEach((s) => io.observe(s));
-  return () => io.disconnect();
+  return () => { io.disconnect(); tr.stop(); };
 }
 export const ext = (url, label = "Source") => url ? `<a class="x-src" href="${esc(url)}" target="_blank" rel="noopener">${esc(label)} ${ICON.ext}</a>` : "";
 export function pchip(p, extra = "") {
@@ -62,14 +64,47 @@ export function anim(node) { try { return m3.auto(node); } catch (e) { return ()
 export function bag() { const fns = []; return { add: (f) => { if (typeof f === "function") fns.push(f); return f; }, run: () => fns.splice(0).forEach((f) => { try { f(); } catch (e) {} }) }; }
 export function onKey(fn) { document.addEventListener("keydown", fn); return () => document.removeEventListener("keydown", fn); }
 /* Small sheet (side panel) used for deep linked details */
+/* Detail drawer. It lives on <body> (not inside the page) so no page stacking context can put the sticky header
+   on top of it. Escape and the scrim close it, Tab stays inside it, and focus goes back to what opened it. */
 export function sheet(el, html, onClose) {
-  let sh = $(".x-sheet", el);
-  if (!sh) { sh = document.createElement("div"); sh.className = "x-sheet"; sh.innerHTML = `<div class="x-sheet-bg" data-xclose></div><aside class="x-sheet-p" role="dialog" aria-modal="true" tabindex="-1" data-lenis-prevent><button class="icon-btn x-sheet-x" type="button" data-xclose aria-label="Close">${ICON.close}</button><div class="x-sheet-b"></div></aside>`; el.appendChild(sh); sh.addEventListener("click", (e) => { if (e.target.closest("[data-xclose]")) onClose && onClose(); }); }
+  let sh = el._xsheet;
+  if (!sh || !document.body.contains(sh)) {
+    sh = document.createElement("div"); sh.className = "x-sheet";
+    sh.innerHTML = `<div class="x-sheet-bg" data-xclose></div><aside class="x-sheet-p" role="dialog" aria-modal="true" aria-label="Details" tabindex="-1" data-lenis-prevent><div class="x-sheet-hd"><button class="icon-btn x-sheet-x" type="button" data-xclose aria-label="Close details">${ICON.close}</button></div><div class="x-sheet-b"></div></aside>`;
+    document.body.appendChild(sh); el._xsheet = sh;
+    sh.addEventListener("click", (e) => { if (e.target.closest("[data-xclose]")) { e.preventDefault(); sh._onClose && sh._onClose(); } });
+    sh.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") { e.preventDefault(); e.stopPropagation(); sh._onClose && sh._onClose(); return; }
+      if (e.key !== "Tab") return;
+      const f = $$('a[href],button:not([disabled]),input,select,textarea,[tabindex]:not([tabindex="-1"])', sh).filter((x) => x.offsetParent !== null);
+      if (!f.length) return;
+      const a = document.activeElement;
+      if (e.shiftKey && (a === f[0] || a === $(".x-sheet-p", sh))) { f[f.length - 1].focus(); e.preventDefault(); }
+      else if (!e.shiftKey && a === f[f.length - 1]) { f[0].focus(); e.preventDefault(); }
+    });
+    /* Escape from anywhere while it is open (focus may sit on the page behind after a click) */
+    const esc = (e) => { if (e.key === "Escape" && sh.classList.contains("open") && !sh.contains(e.target) && !document.querySelector("#palette.open")) { e.preventDefault(); sh._onClose && sh._onClose(); } };
+    document.addEventListener("keydown", esc);
+    const mo = new MutationObserver(() => { if (!document.body.contains(el)) { sh.remove(); document.removeEventListener("keydown", esc); document.documentElement.classList.remove("x-sheet-on"); mo.disconnect(); } });
+    mo.observe(document.getElementById("view") || document.body, { childList: true });
+  }
+  sh._onClose = onClose;
+  if (!sh.classList.contains("open")) sh._ret = document.activeElement;
   $(".x-sheet-b", sh).innerHTML = html;
-  requestAnimationFrame(() => { sh.classList.add("open"); $(".x-sheet-p", sh).focus({ preventScroll: true }); });
+  const t = $(".x-sheet-t, h2, h3", $(".x-sheet-b", sh));
+  if (t) { t.id = t.id || "xSheetT"; $(".x-sheet-p", sh).setAttribute("aria-labelledby", t.id); $(".x-sheet-p", sh).removeAttribute("aria-label"); }
+  $(".x-sheet-p", sh).scrollTop = 0;
+  requestAnimationFrame(() => { sh.classList.add("open"); $(".x-sheet-x", sh).focus({ preventScroll: true }); });
   document.documentElement.classList.add("x-sheet-on");
 }
-export function closeSheet(el) { const sh = $(".x-sheet", el); if (sh) sh.classList.remove("open"); document.documentElement.classList.remove("x-sheet-on"); }
+export function closeSheet(el) {
+  const sh = el && el._xsheet;
+  document.documentElement.classList.remove("x-sheet-on");
+  if (!sh || !sh.classList.contains("open")) return;
+  sh.classList.remove("open");
+  const r = sh._ret; sh._ret = null;
+  if (r && r.focus && document.contains(r)) r.focus({ preventScroll: true });
+}
 export function setRoute(hash) { if (location.hash !== hash) history.pushState(history.state, "", location.pathname + location.search + hash); }
 export function replaceRoute(hash) { history.replaceState(history.state, "", location.pathname + location.search + hash); }
 export const BASE = "https://lo3elyon.github.io/ASI/future-of-asi/";

@@ -72,7 +72,7 @@ export async function render(el, params, query) {
   ${sec("summits", 7, "Summits", "From Bletchley to <span class='serif'>New Delhi.</span>", "Four global summits in three years. Watch the focus drift from safety to action and impact.",
     `<ol class="x-road" data-m3-stagger="140">${SUMMITS.map((id) => byId[id]).filter(Boolean).map((i, k) => `<li data-m3="up" style="--c:${RC[i.region] || "#84cc16"}"><span class="x-road-n">${k + 1}</span><div><span class="mono">${esc(fmtD(i.date))}</span><h3>${esc(i.t)}</h3><p>${esc(i.d)}</p>${ext(i.url, "Official source")}</div></li>`).join("")}</ol>`)}
   ${sec("tracker", 8, "Tracker", "Every item, <span class='serif'>filtered.</span>", "",
-    `<div class="toolbar x-tools"><label class="sr-only" for="polq">Search</label><input class="input search" id="polq" type="search" placeholder="Search, like frontier or incident"><select class="input x-sel" id="polk" aria-label="Kind"><option value="">All kinds</option>${kinds.map((k) => `<option>${esc(k)}</option>`).join("")}</select><span class="count" id="polc"></span></div>
+    `<div class="toolbar x-tools"><label class="sr-only" for="polq">Search</label><span class="x-qwrap"><input class="input search" id="polq" type="search" autocomplete="off" placeholder="Search, like frontier or incident"><button class="x-qclear" type="button" id="polx" aria-label="Clear search" hidden>${ICON.close}</button></span><select class="input x-sel" id="polk" aria-label="Kind"><option value="">All kinds</option>${kinds.map((k) => `<option>${esc(k)}</option>`).join("")}</select><span class="count" id="polc"></span></div>
      <div class="chips" style="margin-bottom:18px"><button class="chip" type="button" data-reg="" aria-pressed="true">All places</button>${regions.map((r) => `<button class="chip" type="button" data-reg="${esc(r)}" aria-pressed="false" style="--c:${RC[r]}">${esc(r)} <span class="mono">${items.filter((i) => i.region === r).length}</span></button>`).join("")}</div>
      <div class="grid g2" id="pollist"></div>`)}
   ${band("policy-world", "Rules are written in many capitals, and they only work if they connect.")}
@@ -122,15 +122,19 @@ export async function render(el, params, query) {
   };
   paintQ();
 
-  let t; $("#polq", el).addEventListener("input", (e) => { clearTimeout(t); t = setTimeout(() => { F.q = e.target.value; paint(); }, 90); });
+  const pqIn = $("#polq", el), qx = $("#polx", el);
+  const syncX = () => { qx.hidden = !pqIn.value; };
+  let t; pqIn.addEventListener("input", (e) => { syncX(); clearTimeout(t); t = setTimeout(() => { F.q = e.target.value; paint(); }, 90); });
+  pqIn.addEventListener("keydown", (e) => { if (e.key === "Escape" && pqIn.value) { e.preventDefault(); e.stopPropagation(); pqIn.value = ""; syncX(); F.q = ""; paint(); } });
+  qx.addEventListener("click", () => { clearTimeout(t); pqIn.value = ""; syncX(); F.q = ""; paint(); pqIn.focus(); });
   $("#polk", el).addEventListener("change", (e) => { F.kind = e.target.value; paint(); });
   el.addEventListener("click", (e) => {
     const o = e.target.closest("[data-pq]"); if (o && !pick) { pick = o.dataset.pq; if (pick === BIND(quizSet[qi].kind)) score++; paintQ(); return; }
     if (e.target.closest("#pqn")) { qi++; pick = null; paintQ(); return; }
     if (e.target.closest("#pqre")) { qi = 0; score = 0; pick = null; quizSet.splice(0, quizSet.length, ...shuffle(items.filter((i) => i.kind !== "Summit")).slice(0, 8)); paintQ(); return; }
     const kd = e.target.closest("[data-kind]"); if (kd) { F.kind = kd.dataset.kind; F.region = ""; paint(); toTracker(); return; }
-    const rg = e.target.closest("[data-reg]"); if (rg) { F.region = rg.dataset.reg; if (rg.classList.contains("x-region")) { F.kind = ""; F.q = ""; $("#polq", el).value = ""; } paint(); if (rg.classList.contains("x-region")) toTracker(); return; }
-    const g = e.target.closest("[data-goto]"); if (g) { F.region = ""; F.kind = ""; F.q = ""; $("#polq", el).value = ""; paint(); const c = $("#p-" + g.dataset.goto, list); if (c) { c.scrollIntoView({ behavior: RM() ? "auto" : "smooth", block: "center" }); c.classList.add("x-flash"); setTimeout(() => c.classList.remove("x-flash"), 1600); } }
+    const rg = e.target.closest("[data-reg]"); if (rg) { F.region = rg.dataset.reg; if (rg.classList.contains("x-region")) { F.kind = ""; F.q = ""; $("#polq", el).value = ""; $("#polx", el).hidden = true; } paint(); if (rg.classList.contains("x-region")) toTracker(); return; }
+    const g = e.target.closest("[data-goto]"); if (g) { F.region = ""; F.kind = ""; F.q = ""; $("#polq", el).value = ""; $("#polx", el).hidden = true; paint(); const c = $("#p-" + g.dataset.goto, list); if (c) { c.scrollIntoView({ behavior: RM() ? "auto" : "smooth", block: "center" }); c.classList.add("x-flash"); setTimeout(() => c.classList.remove("x-flash"), 1600); } }
   });
   return () => B.run();
 }

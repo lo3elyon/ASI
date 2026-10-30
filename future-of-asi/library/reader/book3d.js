@@ -183,7 +183,7 @@ export async function createBook3D(host, hooks) {
   });
   cvs.addEventListener("pointermove", (e) => {
     if (pointers.has(e.pointerId)) pointers.set(e.pointerId, e);
-    if (pointers.size === 2) { const [a, b] = [...pointers.values()]; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); if (pinch0) setZoom(zoom0 * d / pinch0); return; }
+    if (pointers.size === 2) { const [a, b] = [...pointers.values()]; const d = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY); if (pinch0) { const k = d / pinch0; if (k > 1.25 || k < 0.8) { hooks.zoomStep && hooks.zoomStep(k > 1 ? 1 : -1); pinch0 = d; } } return; }
     if (!down) { hover(e); return; }
     const p = onPlane(e); if (!p) return;
     if (!S.drag && !S.anim && Math.abs(e.clientX - down.x) > 10) {
@@ -229,7 +229,8 @@ export async function createBook3D(host, hooks) {
     const h = hits[0], right = h.object === pageR, u = h.uv.x;
     cvs.style.cursor = (right ? u > 0.86 : u < 0.14) ? (right ? "e-resize" : "w-resize") : "grab";
   }
-  cvs.addEventListener("wheel", (e) => { if (!e.ctrlKey && Math.abs(e.deltaY) < 2) return; e.preventDefault(); setZoom(S.zoom * (e.deltaY > 0 ? 0.92 : 1.08)); }, { passive: false });
+  let wheelT = 0; // ctrl or pinch wheel asks the reader for a text zoom step; the camera stays framed
+  cvs.addEventListener("wheel", (e) => { if (!e.ctrlKey) return; e.preventDefault(); const now = performance.now(); if (now - wheelT < 300) return; wheelT = now; hooks.zoomStep && hooks.zoomStep(e.deltaY > 0 ? -1 : 1); }, { passive: false });
   function setZoom(z) { S.zoom = Math.max(0.8, Math.min(2.6, z)); if (S.zoom <= 1.02) S.panX = 0; frame(); hooks.zoomed && hooks.zoomed(S.zoom); }
 
   /* ---------- loop ---------- */
@@ -278,7 +279,7 @@ export async function createBook3D(host, hooks) {
     flip, openBook, skipOpen,
     theme(t) { applyTheme(t); },
     invalidate() { texVer++; for (const t of texCache.values()) t.dispose(); texCache.clear(); for (const k in blankTex) { blankTex[k].dispose(); delete blankTex[k]; } showView(S.view); },
-    zoom(f) { setZoom(f === 0 ? 1 : S.zoom * f); },
+    zoom() { setZoom(1); }, // text zoom lives in the reader and re-paginates
     pan(dx) { if (S.zoom > 1.05) { S.panX = Math.max(-0.8, Math.min(0.8, S.panX + dx)); frame(); } },
     particles(on) { dust.visible = !!on && !slow; S.dirty = true; },
     busy() { return !!(S.anim || S.drag || S.openAnim); },

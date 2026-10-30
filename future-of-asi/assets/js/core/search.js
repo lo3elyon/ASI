@@ -4,6 +4,7 @@ import { $, $$, esc, store, load, arr, researchers, videos, signatories, categor
 import { openPerson, openVideo } from "./overlay.js";
 import { getHistory } from "./history.js";
 import { ui } from "./sound.js";
+import { allItems, ICONS } from "./nav.js";
 
 const TYPES = [
   ["all", "All"], ["person", "People"], ["signer", "Signers"], ["quote", "Quotes"], ["video", "Videos"], ["org", "Orgs"], ["paper", "Papers"],
@@ -26,8 +27,11 @@ async function build(routes) {
     ]);
     const catL = Object.fromEntries(cats.map((c) => [c.id, c.label]));
     const D = [];
-    Object.entries(routes).forEach(([k, v]) => k && k !== "home" && D.push({ type: "page", title: v[1], sub: "Page", href: `#/${k}` }));
-    [["p(doom) calculator", "#/tools/pdoom"], ["AGI timeline forecaster", "#/tools/timelines"], ["Risk dial", "#/tools/dial"], ["Blue team game: catch a scheming model", "#/control?play=1"], ["Completion card", "#/learn/certificate"], ["Final exam", "#/learn/final"], ["Your history", "#/history"], ["ASI hub, all explainers", "../"]].forEach(([t, h]) => D.push({ type: "page", title: t, sub: "Tool or page", href: h }));
+    /* Pages show their type once (the tag on the right); the subtitle is the page description and the badge is the menu icon */
+    const NI = Object.fromEntries(allItems().map((i) => [i.slug, i]));
+    Object.entries(routes).forEach(([k, v]) => k && k !== "home" && D.push({ type: "page", title: v[1], sub: (NI[k] && NI[k].desc) || "", icon: NI[k] && NI[k].icon, href: `#/${k}` }));
+    allItems().filter((i) => i.page).forEach((i) => D.push({ type: "page", title: i.title, sub: i.desc || "", icon: i.icon, href: `${i.slug}/` }));
+    [["p(doom) calculator", "#/tools/pdoom", "Put your own numbers on each step of the risk argument.", "wrench"], ["AGI timeline forecaster", "#/tools/timelines", "Pick your assumptions and see when AGI might arrive.", "wrench"], ["Risk dial", "#/tools/dial", "One dial for how worried you are, and why.", "wrench"], ["Blue team game: catch a scheming model", "#/control?play=1", "Audit, accept or defer as an AI tries to slip past you.", "shield"], ["Completion card", "#/learn/certificate", "Your Alignment 101 card, once you finish the course.", "cap"], ["Final exam", "#/learn/final", "One last quiz across every unit.", "cap"], ["ASI hub, all explainers", "../", "Every explainer in the ASI collection.", "home"]].forEach(([t, h, sub, icon]) => D.push({ type: "page", title: t, sub, icon, href: h }));
     ppl.forEach((p) => {
       D.push({ type: "person", title: p.name, sub: [p.role, p.org].filter(Boolean).join(", "), text: `${p.warning} ${p.bio} ${p.focus.join(" ")} ${p.former_orgs.join(" ")}`, tags: p.categories.map((c) => catL[c] || c).join(" "), img: p.photo, id: p.id, f: { region: p.region || "", cat: p.categories.map((c) => catL[c] || c) } });
       p.quotes.forEach((q) => D.push({ type: "quote", title: q.text, sub: `${p.name}${q.source ? ", " + q.source : ""}${q.date ? ", " + q.date : ""}`, img: p.photo, id: p.id, text: p.name }));
@@ -89,6 +93,7 @@ function iconFor(d) {
   if ((d.type === "person" || d.type === "quote" || d.type === "signer") && d.img) return `<span class="ic"><img src="${esc(d.img)}" alt="" loading="lazy" width="46" height="46" referrerpolicy="no-referrer"></span>`;
   if (d.type === "person" || d.type === "signer") return `<span class="ic" style="--c:${TC[d.type]};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`;
   if (d.type === "org") { const L = logoSrc(d.oid) || logoSrc(d.title); if (L && L.src) return `<span class="ic ologo${L.mode === "invert" ? " inv" : L.mode === "as-is" ? " asis" : ""}" style="width:46px;height:46px"><img src="${esc(L.src)}" alt="" loading="lazy" width="40" height="40"></span>`; return `<span class="ic" style="--c:${TC.org};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`; }
+  if (d.type === "page") return `<span class="ic ic-svg" style="--c:${TC.page}" aria-hidden="true">${ICONS[d.icon] || ICONS.spark || ""}</span>`;
   return `<span class="ic" style="--c:${TC[d.type]}">${esc(TL[d.type].slice(0, 4))}</span>`;
 }
 function paint(q) {

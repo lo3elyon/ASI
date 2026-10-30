@@ -66,7 +66,7 @@ The reader is built on three.js. It draws every page as a canvas texture and ben
 | Next page | Drag the right page corner to the left, click the right edge, or press Right arrow, Page Down or Space | Swipe left or tap the right edge |
 | Previous page | Drag the left corner, click the left edge, or press Left arrow or Page Up | Swipe right or tap the left edge |
 | First or last page | Home or End | Go to page in the footer |
-| Zoom | + and -, Ctrl and the mouse wheel, or the zoom buttons | Pinch |
+| Zoom | + and -, 0 to reset, Ctrl and the mouse wheel, or the zoom buttons in the bottom bar. The level shows as a percent (80% to 200%) and the pages re-flow at the new text size, so nothing is cut off | Pinch |
 | Contents | T | Contents button |
 | Search inside | / | Search button |
 | Bookmark this page | B | Ribbon button |
@@ -274,7 +274,7 @@ Grouped by shelf. "Free link" means the author or publisher offers it free onlin
 | `index.html`, `library.js`, `library.css` | The page, the grid, the book pages and the filters |
 | `shelf3d.js` | The WebGL bookshelf |
 | `reader/reader.js` | Reader shell: panels, settings, highlights, notes, read aloud, keys |
-| `reader/book3d.js` | The three.js book: page curl, lamp, desk, zoom and pinch |
+| `reader/book3d.js` | The three.js book: page curl, lamp, desk, pinch and Ctrl wheel ask the reader for a text zoom step |
 | `reader/flat2d.js` | Flat page fallback for no WebGL or reduced motion |
 | `reader/paginate.js` | Lays text out into pages, themes and fonts |
 | `reader.css` | Reader, shelf and loader styles |

@@ -24,6 +24,62 @@ function layout(nodes, edges, groups) {
   return E;
 }
 
+/* Labels: after the force layout, nudge nodes so their labels do not collide, keep every label inside the map,
+   then give each label the free side (above, below, right, left) that overlaps least. */
+const rad = (n) => 7 + Math.min(n.deg, 10) * 0.9;
+const LH = 15, PAD = 8;
+function boxFor(n, w, side) {
+  const r = rad(n);
+  if (side === "b") return [n.x - w / 2, n.y + r + 3, w, LH];
+  if (side === "r") return [n.x + r + 5, n.y - LH / 2, w, LH];
+  if (side === "l") return [n.x - r - 5 - w, n.y - LH / 2, w, LH];
+  return [n.x - w / 2, n.y - r - 4 - LH, w, LH];
+}
+const ov = (a, b, m = 3) => { const x = Math.min(a[0] + a[2], b[0] + b[2]) - Math.max(a[0], b[0]) + m, y = Math.min(a[1] + a[3], b[1] + b[3]) - Math.max(a[1], b[1]) + m; return x > 0 && y > 0 ? [x, y] : null; };
+function declutter(nodes, wid) {
+  const clamp = (n) => { const w = wid[n.id], r = rad(n); n.x = Math.max(PAD + w / 2, Math.min(W - PAD - w / 2, n.x)); n.y = Math.max(PAD + r + 4 + LH, Math.min(H - PAD - r, n.y)); };
+  nodes.forEach(clamp);
+  for (let it = 0; it < 260; it++) {
+    let moved = 0;
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      const a = nodes[i], b = nodes[j];
+      const A = boxFor(a, wid[a.id], "t"), Bb = boxFor(b, wid[b.id], "t");
+      /* footprint: label box plus the circle under it */
+      const fa = [A[0], A[1], A[2], A[3] + rad(a) * 2 + 6], fb = [Bb[0], Bb[1], Bb[2], Bb[3] + rad(b) * 2 + 6];
+      const o = ov(fa, fb, 4); if (!o) continue;
+      moved++;
+      if (o[0] < o[1] * 1.6) { const d = (o[0] / 2 + 0.5) * (a.x < b.x ? -1 : 1); a.x += d * 0.5; b.x -= d * 0.5; }
+      else { const d = (o[1] / 2 + 0.5) * (a.y < b.y ? -1 : 1); a.y += d * 0.5; b.y -= d * 0.5; }
+    }
+    nodes.forEach(clamp);
+    if (!moved) break;
+  }
+  /* Greedy side choice for anything still crowded, biggest hubs first */
+  const placed = [], circles = nodes.map((n) => { const r = rad(n); return [n.x - r, n.y - r, r * 2, r * 2]; });
+  const inside = (b) => b[0] >= 4 && b[1] >= 4 && b[0] + b[2] <= W - 4 && b[1] + b[3] <= H - 4;
+  nodes.slice().sort((a, b) => b.deg - a.deg).forEach((n) => {
+    let best = "t", bestS = Infinity;
+    for (const side of ["t", "b", "r", "l"]) {
+      const bx = boxFor(n, wid[n.id], side);
+      if (!inside(bx)) continue;
+      let sc = side === "t" ? 0 : 0.5;
+      placed.forEach((p) => { const o = ov(bx, p, 2); if (o) sc += o[0] * o[1]; });
+      circles.forEach((c, k) => { if (nodes[k] === n) return; const o = ov(bx, c, 1); if (o) sc += o[0] * o[1] * 0.6; });
+      if (sc < bestS) { bestS = sc; best = side; }
+      if (sc === 0) break;
+    }
+    n.side = best; placed.push(boxFor(n, wid[n.id], best));
+  });
+}
+function labelAttrs(t, n) {
+  const r = rad(n), s = n.side || "t";
+  t.removeAttribute("dy");
+  if (s === "t") { t.setAttribute("x", 0); t.setAttribute("y", -r - 7); t.style.textAnchor = "middle"; }
+  else if (s === "b") { t.setAttribute("x", 0); t.setAttribute("y", r + 14); t.style.textAnchor = "middle"; }
+  else if (s === "r") { t.setAttribute("x", r + 5); t.setAttribute("y", 4); t.style.textAnchor = "start"; }
+  else { t.setAttribute("x", -r - 5); t.setAttribute("y", 4); t.style.textAnchor = "end"; }
+}
+
 export async function render(el, params) {
   const B = bag();
   const [D, P, PA] = await Promise.all([X("concepts.json"), people(), X("papers.json")]);
@@ -55,6 +111,11 @@ export async function render(el, params) {
   const svg = $("#csvg", el), view = $("#cview", el), side = $("#cside", el);
   const nEls = Object.fromEntries($$(".x-node", svg).map((g) => [g.dataset.n, g]));
   const lines = $$(".x-edges line", svg);
+  /* Measure each label, resolve collisions, and keep the result as the resting layout */
+  const wid = {};
+  nodes.forEach((n) => { const t = $("text", nEls[n.id]); let w = 0; try { w = t.getComputedTextLength(); } catch (e) {} wid[n.id] = (w > 4 ? w : n.label.length * (t.classList.contains("hub") ? 7.4 : 6.6)) + 4; });
+  declutter(nodes, wid);
+  nodes.forEach((n, i) => { final[i] = [n.x, n.y]; labelAttrs($("text", nEls[n.id]), n); });
   function place() {
     nodes.forEach((n) => nEls[n.id].setAttribute("transform", `translate(${n.x.toFixed(1)} ${n.y.toFixed(1)})`));
     lines.forEach((l) => { const a = byId[l.dataset.a], b = byId[l.dataset.b]; l.setAttribute("x1", a.x.toFixed(1)); l.setAttribute("y1", a.y.toFixed(1)); l.setAttribute("x2", b.x.toFixed(1)); l.setAttribute("y2", b.y.toFixed(1)); });

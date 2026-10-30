@@ -696,3 +696,52 @@
 .x-spot-o.ok-r { border-color: #10b981; background: color-mix(in srgb, #10b981 16%, var(--surface)); }
 @media (prefers-reduced-motion: reduce) { .x-btk-bn, .x-btk-hi { transition: none !important; } }
 :root.rm .x-btk-bn, :root.rm .x-btk-hi { transition: none !important; }
+
+/* QA fixes, Oct 30: detail drawer sits above the sticky header, with its close button always in view */
+.x-sheet { z-index: 100; }
+.x-sheet-p { padding-top: 0; }
+.x-sheet-hd { position: sticky; top: 0; z-index: 3; display: flex; justify-content: flex-end; margin: 0 calc(-1 * clamp(18px, 4vw, 34px)); padding: 12px clamp(12px, 3vw, 22px) 8px; background: linear-gradient(var(--bg-2, var(--surface)) 70%, transparent); }
+.x-sheet-hd .x-sheet-x { position: static; float: none; margin: 0; }
+.x-sheet-b > :first-child { margin-top: 0; }
+@media (prefers-reduced-motion: reduce) { .x-sheet-p, .x-sheet-bg { transition: none !important; } }
+
+/* QA fixes, Oct 30: hero headlines never leave one short word alone; stat strips size to their item count */
+.x-h1, .x-h1 > span, .phero h1 { text-wrap: balance; }
+.x-stats:has(> div:nth-child(3):last-child) { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 720px; }
+.x-stats:has(> div:nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 520px; }
+.x-stats:has(> div:nth-child(5):last-child) { grid-template-columns: repeat(5, minmax(0, 1fr)); max-width: 1080px; }
+@media (max-width: 760px) {
+  .x-stats:has(> div:nth-child(3):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .x-stats:has(> div:nth-child(3):last-child) > div:nth-child(3) { grid-column: 1 / -1; border-right: 0; }
+  .x-stats:has(> div:nth-child(5):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .x-stats:has(> div:nth-child(5):last-child) > div:nth-child(5) { grid-column: 1 / -1; }
+  .x-stats > div:nth-child(n + 3) { border-bottom: 0; }
+  .x-stats:has(> div:nth-child(5)) > div:nth-child(-n + 4) { border-bottom: 1px solid var(--line); }
+}
+
+/* QA fixes, Oct 30: "On this page" rows. Desktop wraps onto more lines, so no pill is ever off screen.
+   Phone keeps one swipeable row with snap and a fade on the side that has more pills. */
+.x-toc .wrap.toc-row, .p3-toc .p3-toc-in.toc-row { scroll-padding-inline: 16px; }
+@media (min-width: 761px) {
+  .x-toc .wrap, .p3-toc .p3-toc-in { flex-wrap: wrap; overflow: visible; row-gap: 4px; }
+  .x-toc .wrap { padding: 8px 0; }
+  .x-toc-l { flex: none; }
+}
+@media (max-width: 760px) {
+  .x-toc .wrap, .p3-toc .p3-toc-in { overflow-x: auto; flex-wrap: nowrap; scroll-snap-type: x proximity; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+  .x-toc button, .p3-toc a { scroll-snap-align: center; flex: none; }
+  .toc-row.can-r { -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(90deg, #000 calc(100% - 44px), transparent); }
+  .toc-row.can-l { -webkit-mask-image: linear-gradient(90deg, transparent, #000 44px); mask-image: linear-gradient(90deg, transparent, #000 44px); }
+  .toc-row.can-l.can-r { -webkit-mask-image: linear-gradient(90deg, transparent, #000 44px, #000 calc(100% - 44px), transparent); mask-image: linear-gradient(90deg, transparent, #000 44px, #000 calc(100% - 44px), transparent); }
+  .x-toc-l { display: none; }
+}
+.p3-toc a[aria-current="true"] { background: color-mix(in srgb, var(--p3a, var(--accent)) 18%, transparent); color: var(--text); }
+
+/* QA fixes, Oct 30: search box with a visible clear button */
+.x-qwrap { position: relative; display: flex; align-items: center; flex: 1 1 240px; min-width: 0; }
+.x-qwrap .input { flex: 1; width: 100%; padding-right: 42px; }
+.x-qwrap input[type="search"]::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; display: none; }
+.x-qclear { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; display: grid; place-items: center; border: 0; border-radius: 999px; background: color-mix(in srgb, var(--text) 10%, transparent); color: var(--text); cursor: pointer; }
+.x-qclear:hover, .x-qclear:focus-visible { background: color-mix(in srgb, var(--text) 18%, transparent); }
+.x-qclear[hidden] { display: none; }
+.x-qclear svg { width: 15px; height: 15px; }

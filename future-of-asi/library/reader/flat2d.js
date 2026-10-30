@@ -53,7 +53,7 @@ export function createBook2D(host, hooks, opts = {}) {
     show(view) { show(view); },
     flip, openBook() { el.classList.add("opening"); setTimeout(() => el.classList.remove("opening"), 700); return Promise.resolve(); }, skipOpen() {},
     theme() {}, invalidate() { show(S.view); }, particles() {}, pause() {}, pan() {},
-    zoom(f) { S.zoom = f === 0 ? 1 : Math.max(0.7, Math.min(1.8, S.zoom * f)); size(); hooks.zoomed && hooks.zoomed(S.zoom); },
+    zoom() { S.zoom = 1; size(); }, // text zoom lives in the reader and re-paginates
     busy() { return S.busy; },
     destroy() { ro.disconnect(); el.remove(); },
   };

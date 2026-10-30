@@ -62,8 +62,10 @@ export async function render(el) {
     const tags = {}; ans.forEach((a, k) => Object.entries(quiz[k].o[a][1]).forEach(([t, v]) => (tags[t] = (tags[t] || 0) + v)));
     const track = (tags.technical || 0) + (tags.builder || 0) > (tags.policy || 0) + (tags.comms || 0) ? "technical" : (tags.policy || 0) >= (tags.comms || 0) && tags.policy ? "policy" : "general";
     const path = paths.find((p) => p.id === (tags.builder > tags.technical ? "builder" : track === "technical" ? "technical" : track === "policy" ? "policy" : tags.comms ? "comms" : "technical")) || paths[0];
+    /* Only programmes mapped to this path (data: programs[].paths) can be recommended for it */
+    const fits = (p) => (Array.isArray(p.paths) ? p.paths : p.tracks).includes(path.id);
     const score = (p) => (p.tracks.includes(track) ? 3 : 0) + (p.tracks.includes("general") ? 1 : 0) + (tags[p.time] || 0) + (tags.remote && /online|remote/i.test(p.where) ? 3 : 0) + (tags.remote && !/online|remote/i.test(p.where) ? -4 : 0) + (tags[p.level] || 0);
-    const rec = progs.slice().sort((a, b) => score(b) - score(a)).slice(0, 4);
+    const rec = progs.filter(fits).sort((a, b) => score(b) - score(a)).slice(0, 4);
     fin.innerHTML = `<div class="eyebrow">Your fit</div><h3>${esc(path.t)}</h3><p>${esc(path.d)}</p><h4>Start with</h4><div class="grid g2 x-fin-rec">${rec.map((p) => `<a class="card card-glow" href="${esc(p.url)}" target="_blank" rel="noopener"><b>${esc(p.name)}</b><span class="muted">${esc(p.where)}, ${p.time === "part" ? "part time" : "full time"}</span></a>`).join("")}</div><div class="row" style="margin-top:16px"><button class="btn ghost" type="button" id="fagain">Take it again</button></div>`;
     B.add(anim(fin));
   }

@@ -284,3 +284,28 @@ img, video, canvas, svg { max-width: 100%; }
 .tb3 .brand span { line-height: 1.15; gap: 4px; }
 .tb3 .brand small { display: block; margin-top: 0; line-height: 1.2; font-family: var(--f-mono, ui-monospace, monospace); }
 .dr-top .brand span { line-height: 1.15; }
+
+/* ---------- QA fixes, Oct 30: search palette ---------- */
+/* The tab row sat in a column flex box with a max height, so it shrank and clipped its labels. Keep it at full height. */
+.palette .pal-top, .palette .pal-tabs, .palette .pal-facets, .palette .foot { flex: none; }
+.pal-tabs { padding: 8px 10px 0; overflow-y: hidden; align-items: stretch; border-bottom: 1px solid var(--line); scroll-snap-type: x proximity; }
+.pal-tabs button { line-height: 1.25; padding: 9px 11px 10px; scroll-snap-align: start; }
+.palette .res .ic.ic-svg { color: var(--c, var(--accent)); background: color-mix(in srgb, var(--c, var(--accent)) 12%, var(--surface-2)); }
+.palette .res .ic.ic-svg svg { width: 22px; height: 22px; }
+
+/* ---------- QA fixes, Oct 30: marquees with reduced motion ---------- */
+/* With motion off, a marquee becomes one row you can swipe. The loop copies are hidden, so nothing shows twice
+   and the page does not grow into a very long list. */
+@media (prefers-reduced-motion: reduce) {
+  .ribbon, .qmarquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
+  .ribbon .track, .qmarquee .track { animation: none !important; flex-wrap: nowrap; width: max-content; padding-inline: 16px; transform: none !important; }
+  .ribbon .track > [aria-hidden="true"], .qmarquee .track > [aria-hidden="true"] { display: none; }
+  .ribbon .track > *, .qmarquee .track > * { scroll-snap-align: start; }
+}
+:root.rm .ribbon, :root.rm .qmarquee { overflow-x: auto; -webkit-mask-image: none; mask-image: none; scroll-snap-type: x proximity; overscroll-behavior-x: contain; }
+:root.rm .ribbon .track, :root.rm .qmarquee .track { animation: none !important; flex-wrap: nowrap; width: max-content; padding-inline: 16px; transform: none !important; }
+:root.rm .ribbon .track > [aria-hidden="true"], :root.rm .qmarquee .track > [aria-hidden="true"] { display: none; }
+:root.rm .ribbon .track > *, :root.rm .qmarquee .track > * { scroll-snap-align: start; }
+.m3-marquee.m3-static:not(.p3-ribbon) { overflow-x: auto; -webkit-mask: none; mask: none; scroll-snap-type: x proximity; }
+.m3-marquee.m3-static:not(.p3-ribbon) .m3-mq-track { flex-wrap: nowrap; width: max-content; }
+.m3-marquee.m3-static:not(.p3-ribbon) .m3-mq-track > * { scroll-snap-align: start; }

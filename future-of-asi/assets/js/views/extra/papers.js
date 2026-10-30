@@ -80,6 +80,7 @@ export async function render(el, params, query) {
       <h4>All ${p.n_authors} authors</h4><p class="x-allauth">${esc(p.authors.join(", "))}</p>
       ${inPaths.length ? `<h4>On these reading paths</h4><div class="chips">${inPaths.map((pt) => `<span class="chip">${esc(pt.title)}</span>`).join("")}</div>` : ""}
       <div class="row" style="margin-top:20px"><a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Read on arXiv ${ICON.ext}</a><a class="btn" href="${esc(p.pdf)}" target="_blank" rel="noopener">PDF ${ICON.dl}</a><button class="btn ghost" type="button" data-read="${p.id}">${read.has(p.id) ? "Marked as read" : "Mark as read"}</button></div>`, close);
+    if (el._xsheet && !el._xsheet._wired) { el._xsheet._wired = true; el._xsheet.addEventListener("click", onClick); }
     document.title = `${p.title} · Papers · Threshold`;
   }
   let pushed = false;
@@ -90,18 +91,19 @@ export async function render(el, params, query) {
   $("#plv", el).addEventListener("change", (e) => { S.lvl = e.target.value; paint(); });
   $("#psort", el).addEventListener("change", (e) => { S.sort = e.target.value; paint(); });
   $("#punread", el).addEventListener("click", (e) => { S.unread = !S.unread; e.currentTarget.setAttribute("aria-pressed", S.unread); paint(); });
-  el.addEventListener("click", (e) => {
+  const onClick = (e) => {
     const tp = e.target.closest("[data-topic]"); if (tp) { S.topic = tp.dataset.topic; S.path = ""; paint(); return; }
     const pa = e.target.closest("[data-path]"); if (pa) { S.path = pa.dataset.path; S.topic = ""; S.year = ""; paint(); $("#shelf", el).scrollIntoView({ behavior: "smooth", block: "start" }); return; }
     const yr = e.target.closest("[data-year]"); if (yr) { S.year = S.year === yr.dataset.year ? "" : yr.dataset.year; S.path = ""; paint(); $("#shelf", el).scrollIntoView({ behavior: "smooth", block: "start" }); return; }
     if (e.target.closest("#clearf")) { S.path = ""; S.year = ""; paint(); return; }
     const op = e.target.closest("[data-open]"); if (op) { open(op.dataset.open); return; }
     const rd = e.target.closest("[data-read]");
-    if (rd) { const id = rd.dataset.read; read.has(id) ? read.delete(id) : read.add(id); store.set("x:papers:read", [...read]); paint(); $$(`[data-read="${id}"]`, el).forEach((b) => { b.textContent = read.has(id) ? (b.closest(".x-sheet") ? "Marked as read" : "Read") : (b.closest(".x-sheet") ? "Mark as read" : "Mark read"); b.setAttribute("aria-pressed", read.has(id)); }); $$(".x-path", el).forEach((b) => { const pt = paths.find((x) => x.id === b.dataset.path); const d = pt.papers.filter((x) => read.has(x)).length; $(".mono", b).textContent = `${d}/${pt.papers.length}`; $(".x-prog i", b).style.setProperty("--w", (d / pt.papers.length) * 100 + "%"); }); }
-  });
+    if (rd) { const id = rd.dataset.read; read.has(id) ? read.delete(id) : read.add(id); store.set("x:papers:read", [...read]); paint(); [...$$(`[data-read="${id}"]`, el), ...(el._xsheet ? $$(`[data-read="${id}"]`, el._xsheet) : [])].forEach((b) => { b.textContent = read.has(id) ? (b.closest(".x-sheet") ? "Marked as read" : "Read") : (b.closest(".x-sheet") ? "Mark as read" : "Mark read"); b.setAttribute("aria-pressed", read.has(id)); }); $$(".x-path", el).forEach((b) => { const pt = paths.find((x) => x.id === b.dataset.path); const d = pt.papers.filter((x) => read.has(x)).length; $(".mono", b).textContent = `${d}/${pt.papers.length}`; $(".x-prog i", b).style.setProperty("--w", (d / pt.papers.length) * 100 + "%"); }); }
+  };
+  el.addEventListener("click", onClick);
   B.add(((fn) => { document.addEventListener("keydown", fn); return () => document.removeEventListener("keydown", fn); })((e) => { if (e.key === "Escape" && $(".x-sheet.open", el)) close(); }));
   paint();
   if (params[0] && byId[params[0]]) detail(params[0]);
   el._onParams = (p) => { if (p[0] && byId[p[0]]) detail(p[0]); else { closeSheet(el); pushed = false; } };
-  return () => { B.run(); document.documentElement.classList.remove("x-sheet-on"); };
+  return () => { B.run(); if (el._xsheet) el._xsheet.remove(); document.documentElement.classList.remove("x-sheet-on"); };
 }

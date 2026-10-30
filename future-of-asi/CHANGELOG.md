@@ -4,9 +4,25 @@ All notable changes to Threshold: The Future of ASI (`future-of-asi/` in [lo3ely
 
 Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
+## Round 3.1 (2026-10-30): QA fixes and SEO
+
+- Header: THRESHOLD title and its tagline no longer overlap.
+- Researchers: closing a profile no longer blanks the grid; Constellation toggle works again.
+- Search: each page row shows its type once; category tabs no longer clipped.
+- Papers: the detail drawer closes with Escape and a visible close button.
+- Concepts: map labels no longer overlap or clip at the edge.
+- Arena: no repeated "Correct.", balanced headline, even stat strips.
+- On this page rows wrap on desktop and swipe on phones, so every pill is reachable.
+- Policy search has a clear button. Careers only suggests policy fellowships for policy paths.
+- Orgs: a styled flat map when WebGL is missing.
+- Library reader: zoom reflows the text with a level readout, nothing clipped.
+- Voices histogram labels fit on phones; marquees no longer double up with reduced motion.
+- SEO: every page title under 65 characters and description under about 160; JSON-LD on the library.
+- Hub: featured banner shows in full; NEW badges no longer cover card text.
+
 ## [v3] - 2026-10-29
 
-Round 3. Commit: 5eb5bb8, photo update after.
+Round 3. Commit: filled in when this round is pushed.
 
 ### Added
 
