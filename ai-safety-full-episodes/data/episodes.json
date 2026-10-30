@@ -1,5 +1,382 @@
 [
  {
+  "id": "KV2OBcYSs9E",
+  "title": "Clarifying exhaustive interpretability - Jacob Hilton",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": false,
+  "duration": "55:48",
+  "speakers": [
+   {
+    "name": "Jacob Hilton",
+    "affiliation": "Alignment Research Center (ARC)"
+   }
+  ],
+  "names": [
+   "Jacob Hilton"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Jacob Hilton of the Alignment Research Center argues that even a 432-parameter RNN from ARC's AlgZoo model zoo is still far from fully understood: after rescaling and permuting weights the group could explain only a few neurons, which he rates at 10% understanding at best. He proposes a concrete goal for exhaustive interpretability, mechanistic (sample-free) estimates of a model's loss that match sampling at equal compute, and explains the matching-sampling conjecture and the random-weights MLP result. The long audience Q&A covers detecting deceptive alignment, why proofs are the wrong standard and how to define 'mechanistic'.",
+  "topics": [
+   "0:00:04 Intro: what exhaustive interpretability might mean",
+   "0:00:46 Pragmatic vs ambitious interpretability",
+   "0:02:22 The case for exhaustive interpretability",
+   "0:03:59 How are we doing? A 50-neuron circuit in a frontier model",
+   "0:07:06 AlgZoo and the second-argmax RNN",
+   "0:09:09 A 432-parameter model at 95% accuracy",
+   "0:09:53 Rescaling and permuting the hidden neurons",
+   "0:12:22 Isolating neurons that track the running maximum",
+   "0:18:03 How much did we understand? 10 to 30%",
+   "0:20:22 The goal: a mechanistic estimate of accuracy",
+   "0:22:16 Matching sampling at equal compute",
+   "0:29:06 The general matching-sampling conjecture",
+   "0:33:42 Result: random-weight wide MLPs",
+   "0:37:00 Concluding thoughts: less than 0.01% of frontier models",
+   "0:39:11 Q&A: catching a deceptive model on rare inputs"
+  ],
+  "evidence": "[0:06:42] Jacob Hilton: \"I think we're certainly a long way from exhaustive interpretability\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=KV2OBcYSs9E",
+  "thumb": "https://i.ytimg.com/vi/KV2OBcYSs9E/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "An ARC researcher candidly says how little we understand even tiny networks and shows the algorithmic route ARC is betting on for catching rare deceptive behaviour.",
+  "tags": [
+   "interpretability",
+   "ARC",
+   "mechanistic estimates",
+   "AlgZoo",
+   "deceptive alignment",
+   "ambitious interpretability",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Neel Nanda",
+   "Leo Gao"
+  ],
+  "orgs_mentioned": [
+   "Alignment Research Center",
+   "Google DeepMind",
+   "OpenAI",
+   "Anthropic"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:04",
+    "seconds": 4,
+    "title": "Intro: what exhaustive interpretability might mean"
+   },
+   {
+    "t": "0:00:46",
+    "seconds": 46,
+    "title": "Pragmatic vs ambitious interpretability"
+   },
+   {
+    "t": "0:02:22",
+    "seconds": 142,
+    "title": "The case for exhaustive interpretability"
+   },
+   {
+    "t": "0:03:59",
+    "seconds": 239,
+    "title": "How are we doing? A 50-neuron circuit in a frontier model"
+   },
+   {
+    "t": "0:07:06",
+    "seconds": 426,
+    "title": "AlgZoo and the second-argmax RNN"
+   },
+   {
+    "t": "0:09:09",
+    "seconds": 549,
+    "title": "A 432-parameter model at 95% accuracy"
+   },
+   {
+    "t": "0:09:53",
+    "seconds": 593,
+    "title": "Rescaling and permuting the hidden neurons"
+   },
+   {
+    "t": "0:12:22",
+    "seconds": 742,
+    "title": "Isolating neurons that track the running maximum"
+   },
+   {
+    "t": "0:18:03",
+    "seconds": 1083,
+    "title": "How much did we understand? 10 to 30%"
+   },
+   {
+    "t": "0:20:22",
+    "seconds": 1222,
+    "title": "The goal: a mechanistic estimate of accuracy"
+   },
+   {
+    "t": "0:22:16",
+    "seconds": 1336,
+    "title": "Matching sampling at equal compute"
+   },
+   {
+    "t": "0:29:06",
+    "seconds": 1746,
+    "title": "The general matching-sampling conjecture"
+   },
+   {
+    "t": "0:33:42",
+    "seconds": 2022,
+    "title": "Result: random-weight wide MLPs"
+   },
+   {
+    "t": "0:37:00",
+    "seconds": 2220,
+    "title": "Concluding thoughts: less than 0.01% of frontier models"
+   },
+   {
+    "t": "0:39:11",
+    "seconds": 2351,
+    "title": "Q&A: catching a deceptive model on rare inputs"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:06:42",
+    "seconds": 402,
+    "speaker": "Jacob Hilton",
+    "quote": "I think we're certainly a long way from exhaustive interpretability",
+    "quote_located": true
+   },
+   {
+    "t": "0:17:50",
+    "seconds": 1070,
+    "speaker": "Jacob Hilton",
+    "quote": "if we're being generous, I would say 10% maybe",
+    "quote_located": true
+   },
+   {
+    "t": "0:29:01",
+    "seconds": 1741,
+    "speaker": "Jacob Hilton",
+    "quote": "the general conjecture is that it's always possible to mechanistically match sampling",
+    "quote_located": true
+   },
+   {
+    "t": "0:39:25",
+    "seconds": 2365,
+    "speaker": "Jacob Hilton",
+    "quote": "a mechanistic estimate now has a better chance because you're literally looking at the model weights",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Jacob Hilton",
+    "value": "Second-argmax RNN studied: 432 parameters, 95% accuracy",
+    "t": "0:09:09",
+    "seconds": 549
+   },
+   {
+    "speaker": "Jacob Hilton",
+    "value": "Share of that tiny model understood: about 10% (30% if generous)",
+    "t": "0:18:04",
+    "seconds": 1084
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-30",
+   "source": "https://api.piped.private.coffee/streams/KV2OBcYSs9E",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "VWUJ5V80ICY",
+  "title": "Eliezer Yudkowsky & Geoffrey Irving Debate",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": false,
+  "duration": "1:27:49",
+  "speakers": [
+   {
+    "name": "Eliezer Yudkowsky",
+    "affiliation": "MIRI"
+   },
+   {
+    "name": "Geoffrey Irving",
+    "affiliation": "Resolution (chief scientist)"
+   }
+  ],
+  "names": [
+   "Eliezer Yudkowsky",
+   "Geoffrey Irving"
+  ],
+  "format": "live debate + audience Q&A",
+  "summary": "Eliezer Yudkowsky and Geoffrey Irving, now chief scientist at Resolution, spend almost 90 minutes surveying their disagreements about AI alignment. They trade views on whether a few training modifications could suffice, imperfect verifiers and the train-versus-deploy gap, singular learning theory, how alien learned concepts are, and what a broken verifier does to scalable oversight and debate. The session closes with audience questions on pausing for the good future and on whether formal-proof automation unblocks alignment work.",
+  "topics": [
+   "0:00:04 Format: trading beliefs the other disagrees with",
+   "0:01:10 Is alignment beyond human institutions?",
+   "0:05:39 Imperfect verifiers and the train-versus-deploy gap",
+   "0:09:27 Singular learning theory and understanding generalization",
+   "0:15:10 Alchemy, capabilities and human institutions",
+   "0:20:21 Alien compression of the universe",
+   "0:25:10 Theories of impact",
+   "0:30:06 Training dynamics and equilibria",
+   "0:35:09 The broken-verifier problem in scalable oversight",
+   "0:40:03 Debate, persuasion and convergence on wrong answers",
+   "0:45:17 The chalk-mark anecdote and tacit expertise",
+   "0:55:18 Human verifiers: COVID and AGI timelines",
+   "1:00:30 Would a coin, GPT-2 or Opus 3 work as the verifier?",
+   "1:10:33 Switching between alignment and governance work",
+   "1:15:41 Audience Q&A: delay, the current world and extinction"
+  ],
+  "evidence": "[0:05:57] Eliezer Yudkowsky: \"the current ML techniques are just screwed and will blow up on you and that does seem pretty fundamental\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=VWUJ5V80ICY",
+  "thumb": "https://i.ytimg.com/vi/VWUJ5V80ICY/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "Two long-time alignment thinkers who disagree about the hard parts, scalable oversight, verifiers and generalization, go point by point.",
+  "tags": [
+   "debate",
+   "scalable oversight",
+   "imperfect verifiers",
+   "singular learning theory",
+   "alignment difficulty",
+   "train vs deploy gap",
+   "MIRI",
+   "ILIAD"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "MIRI",
+   "Resolution",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:04",
+    "seconds": 4,
+    "title": "Format: trading beliefs the other disagrees with"
+   },
+   {
+    "t": "0:01:10",
+    "seconds": 70,
+    "title": "Is alignment beyond human institutions?"
+   },
+   {
+    "t": "0:05:39",
+    "seconds": 339,
+    "title": "Imperfect verifiers and the train-versus-deploy gap"
+   },
+   {
+    "t": "0:09:27",
+    "seconds": 567,
+    "title": "Singular learning theory and understanding generalization"
+   },
+   {
+    "t": "0:15:10",
+    "seconds": 910,
+    "title": "Alchemy, capabilities and human institutions"
+   },
+   {
+    "t": "0:20:21",
+    "seconds": 1221,
+    "title": "Alien compression of the universe"
+   },
+   {
+    "t": "0:25:10",
+    "seconds": 1510,
+    "title": "Theories of impact"
+   },
+   {
+    "t": "0:30:06",
+    "seconds": 1806,
+    "title": "Training dynamics and equilibria"
+   },
+   {
+    "t": "0:35:09",
+    "seconds": 2109,
+    "title": "The broken-verifier problem in scalable oversight"
+   },
+   {
+    "t": "0:40:03",
+    "seconds": 2403,
+    "title": "Debate, persuasion and convergence on wrong answers"
+   },
+   {
+    "t": "0:45:17",
+    "seconds": 2717,
+    "title": "The chalk-mark anecdote and tacit expertise"
+   },
+   {
+    "t": "0:55:18",
+    "seconds": 3318,
+    "title": "Human verifiers: COVID and AGI timelines"
+   },
+   {
+    "t": "1:00:30",
+    "seconds": 3630,
+    "title": "Would a coin, GPT-2 or Opus 3 work as the verifier?"
+   },
+   {
+    "t": "1:10:33",
+    "seconds": 4233,
+    "title": "Switching between alignment and governance work"
+   },
+   {
+    "t": "1:15:41",
+    "seconds": 4541,
+    "title": "Audience Q&A: delay, the current world and extinction"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:05:57",
+    "seconds": 357,
+    "speaker": "Eliezer Yudkowsky",
+    "quote": "the current ML techniques are just screwed and will blow up on you and that does seem pretty fundamental",
+    "quote_located": true
+   },
+   {
+    "t": "0:45:28",
+    "seconds": 2728,
+    "speaker": "Eliezer Yudkowsky",
+    "quote": "Knowing where to make one chalk mark, $999.",
+    "quote_located": true
+   },
+   {
+    "t": "1:05:09",
+    "seconds": 3909,
+    "speaker": "Geoffrey Irving",
+    "quote": "you have to assume that the structure of all of the reasoning is sufficiently coupled",
+    "quote_located": true
+   },
+   {
+    "t": "1:15:45",
+    "seconds": 4545,
+    "speaker": "Eliezer Yudkowsky",
+    "quote": "I am against the extermination of humanity by ASI and the conversion of many nearby galaxies into states of relatively low worth.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-10-28T16:40:00+05:30",
+  "added_ms": 1793185800000,
+  "verification": {
+   "checked_at": "2026-10-30",
+   "source": "https://api.piped.private.coffee/streams/VWUJ5V80ICY",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "251IBF_6bzs",
   "title": "Game Theory for AI Agents: What's Different About AI",
   "channel": "CoRe Safe AI",
