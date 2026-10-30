@@ -280,3 +280,7 @@ img, video, canvas, svg { max-width: 100%; }
 :root.rm .mg-p, :root.rm .drawer3 .panel { transition: none !important; animation: none !important; }
 :root.rm .badge.b3:hover { transform: none !important; }
 @media print { .tb3, .drawer3, .route-bar, .m3-read { display: none !important; } }
+/* brand lockup: keep title and tagline apart in every route font */
+.tb3 .brand span { line-height: 1.15; gap: 4px; }
+.tb3 .brand small { display: block; margin-top: 0; line-height: 1.2; font-family: var(--f-mono, ui-monospace, monospace); }
+.dr-top .brand span { line-height: 1.15; }
