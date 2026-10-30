@@ -91,7 +91,7 @@ export function horizon(host) {
     <div class="eyebrow">Illustrative calculator</div>
     <p style="margin:10px 0">METR measured how long a task (timed on skilled humans) AI agents can finish with 50% reliability. In March 2025 it found this length had doubled about <b>every 7 months</b> for six years, with Claude 3.7 Sonnet at about <b>one hour</b>. METR says the trend is roughly 1 to 4 doublings a year, and a later update exists. ${src(METR, "metr.org")}</p>
     <div class="slider"><label for="t3d">Doubling time <output id="t3do"></output></label><p>METR's headline was about 7 months. Its SWE-bench check showed under 3 months.</p><input type="range" id="t3d" min="3" max="14" step="1" value="${S.dbl}"></div>
-    <div class="slider"><label for="t3s">Starting horizon in minutes <output id="t3so"></output></label><p>One hour matches the March 2025 example. Change it if you trust a newer number.</p><input type="range" id="t3s" min="5" max="480" step="5" value="${S.start}"></div>
+    <div class="slider"><label for="t3s">Starting horizon <output id="t3so"></output></label><p>One hour matches the March 2025 example. Change it if you trust a newer number.</p><input type="range" id="t3s" min="5" max="480" step="5" value="${S.start}"></div>
     <div class="slider"><label for="t3n">Years after March 2025 <output id="t3no"></output></label><input type="range" id="t3n" min="1" max="8" step="0.5" value="${S.years}"></div>
     <div class="t3-steps" id="t3hs" aria-live="polite"></div>
   </div>

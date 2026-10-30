@@ -205,7 +205,12 @@ function goPage(p, anim = true) {
   if (anim && !RM() && Math.abs(firstOf(to) - firstOf(cur)) <= 2) { R.engine.flip(firstOf(to) > firstOf(cur) ? 1 : -1, to); return; }
   R.cur = firstOf(to); R.engine.show(to, progressFrac()); after();
 }
-function goBlock(b, anim) { const p = R.lay.blockPage[b]; if (p >= 0) goPage(p, anim); }
+function goBlock(b, anim) {
+  const p = R.lay.blockPage[b]; if (p < 0) return;
+  const to = viewFor(p), cur = viewFor(R.cur);
+  if (to.l === cur.l && to.r === cur.r) { const vis = visiblePages(to); toast(`That part starts on page ${p + 1}, ${vis.length > 1 && vis[1] === p ? "the right page" : vis.length > 1 ? "the left page" : "this page"}, already open.`); return; }
+  goPage(p, anim);
+}
 
 /* ---------- after every move ---------- */
 function after(force) {
@@ -456,7 +461,7 @@ export async function openReader(b, mode, opts = {}) {
   if (!root) build();
   const same = R.book && R.book.id === b.id && R.mode === (mode === "full" && b.free && b.free.kind === "full" ? "full" : "guide") && !root.hidden;
   if (same) { if (opts.d != null || opts.p != null) { if (opts.d != null && opts.d !== R.di) await switchDoc(opts.d, opts.p || 0); else if (opts.p != null) goPage(opts.p, false); } return; }
-  root.hidden = false; document.body.classList.add("no-scroll"); root.dataset.t = RS.theme; loader(true);
+  root.hidden = false; root.inert = false; document.body.classList.add("no-scroll"); root.dataset.t = RS.theme; loader(true);
   stopTts(true); closePop();
   R.book = b; R.cat = opts.cat; R.mode = mode === "full" && b.free && b.free.kind === "full" ? "full" : "guide"; R.timer = { t0: Date.now(), acc: 0 };
   $("#rdBook").textContent = b.title;
@@ -479,7 +484,7 @@ export async function openReader(b, mode, opts = {}) {
 function checkModeQuiet() { R.single = stage.clientWidth < 760 || stage.clientWidth < stage.clientHeight * 0.95; root.classList.toggle("single", R.single); }
 export function close() {
   timerTick(); stopTts(true); closePop(); if (panel) openPanel("");
-  root.hidden = true; root.classList.remove("focus"); if (R.engine) R.engine.pause(true);
+  root.hidden = true; root.inert = true; root.classList.remove("focus"); if (R.engine) R.engine.pause(true);
   document.body.classList.remove("no-scroll");
   const id = R.book && R.book.id; if (R.onClose) R.onClose(id);
 }

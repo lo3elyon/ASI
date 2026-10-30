@@ -46,7 +46,7 @@ function pdoom(host, ppl) {
   host.innerHTML = `<div class="calc"><div>
     <div class="card" style="margin-bottom:16px"><div class="eyebrow">Method</div><p style="margin:10px 0 0">Joe Carlsmith broke AI existential risk into a chain of six claims. Each slider is how likely you think that step is, given the steps before it. Multiply them and you get a rough number. His own numbers gave about 5% by 2070, and he later wrote that his estimate had risen above 10%. <a href="https://arxiv.org/abs/2206.13353" target="_blank" rel="noopener">Read the report ${ICON.ext}</a></p>
     <div class="row" style="margin-top:12px"><button class="btn sm" type="button" id="carl">Load Carlsmith 2021 numbers</button><button class="btn sm ghost" type="button" id="mid">Set all to 50%</button></div></div>
-    ${PREMISES.map(([k, n, d], i) => `<div class="card premise"><div class="slider"><label for="pr-${k}"><span>${i + 1}. ${n}</span><output id="po-${k}"></output></label><p>${d}</p><input type="range" id="pr-${k}" data-k="${k}" min="1" max="99" value="${st.v[k]}"></div></div>`).join("")}
+    ${PREMISES.map(([k, n, d], i) => `<div class="card premise"><div class="slider"><label for="pr-${k}"><span>${i + 1}. ${n}</span><span class="sr-only">, </span><output id="po-${k}"></output></label><p>${d}</p><input type="range" id="pr-${k}" data-k="${k}" min="1" max="99" value="${st.v[k]}"></div></div>`).join("")}
     <div class="card" style="margin-top:16px"><div class="eyebrow">Arguments that move you</div><p class="muted" style="margin:8px 0 12px;font-size:14px">Tick the ones you find convincing. Each one nudges your final number up or down. The size of each nudge is a simple choice made for this tool.</p>
       <div class="check">${ARGS.map(([n, w, d], i) => `<label class="${st.a[i] ? "done" : ""}"><input type="checkbox" data-a="${i}" ${st.a[i] ? "checked" : ""}><span><b>${n} <span class="tag" style="--c:${w > 0 ? "#ef4444" : "#84cc16"};margin-left:6px">${w > 0 ? "raises" : "lowers"}</span></b><small>${d}</small></span></label>`).join("")}</div></div>
   </div>
@@ -78,12 +78,15 @@ function pdoom(host, ppl) {
 }
 
 function timelines(host, fc, ppl) {
+  const RH = 56;
+  /* Wrap a subtitle into at most two lines on word breaks, with an ellipsis only when words are left over */
+  const wrap2 = (t, n = 34) => { const w = String(t || "").split(/\s+/); const out = ["", ""]; let k = 0, cut = false; for (const x of w) { if ((out[k] + " " + x).trim().length > n) { if (k === 1) { cut = true; break; } k = 1; } out[k] = (out[k] + " " + x).trim(); } if (cut) out[1] = out[1].replace(/[,.;:]?$/, "...") ; return out.filter(Boolean); };
   const yNow = new Date().getFullYear() + new Date().getMonth() / 12;
   const my = store.get("agiYear", 2032);
   const Y0 = 2024, Y1 = 2060, X = (y) => 230 + ((y - Y0) / (Y1 - Y0)) * 740;
   const textTimes = ppl.filter((p) => p.agi_year);
   host.innerHTML = `<div class="card fchart"><div class="sec-head" style="margin-bottom:10px"><div><div class="eyebrow">Compare forecasts</div><h3 style="margin:6px 0 0">When do people expect AGI or superintelligence?</h3><p class="muted" style="margin:6px 0 0;font-size:14px">Dots are the headline year. Bars show the range the source gives or implies. Each row links to its source. Definitions differ, so read them before comparing.</p></div></div>
-    <svg id="fsvg" viewBox="0 0 1000 ${80 + fc.length * 46}" role="img" aria-label="Forecast comparison chart"></svg></div>
+    <svg id="fsvg" viewBox="0 0 1000 ${80 + fc.length * RH}" role="img" aria-label="Forecast comparison chart"></svg></div>
     <div class="grid g2" style="margin-top:18px">
       <div class="card"><div class="slider"><label for="my">Your guess <output id="myo">${my}</output></label><p>Drag to set the year you think AGI arrives. It is saved in your browser.</p><input type="range" id="my" min="2026" max="2070" value="${my}"></div>
         <div class="big-num" id="left" style="margin-top:16px">0</div><p class="muted" id="leftw" style="margin:6px 0 0"></p><div class="mono" id="tick" style="font-size:14px;color:var(--accent);margin-top:10px"></div></div>
@@ -91,11 +94,11 @@ function timelines(host, fc, ppl) {
     </div>`;
   function draw() {
     const m = +$("#my", host).value;
-    const rows = fc.map((f, i) => { const y = 50 + i * 46; return `<a href="${f.url.startsWith("#") ? f.url : f.url}" ${f.url.startsWith("#") ? "" : 'target="_blank" rel="noopener"'}><g><text x="10" y="${y + 4}" font-size="14" font-weight="600" fill="var(--text)" font-family="Inter, sans-serif">${esc(f.who)}</text><text x="10" y="${y + 21}" font-size="11.5" fill="var(--muted)" font-family="Inter, sans-serif">${esc(f.what).slice(0, 38)}</text>
+    const rows = fc.map((f, i) => { const y = 50 + i * RH; return `<a href="${f.url}" aria-label="${esc(`${f.who}: ${f.what}. Headline year ${f.year}. Open the source`)}" ${f.url.startsWith("#") ? "" : 'target="_blank" rel="noopener"'}><g><text x="10" y="${y + 4}" font-size="14" font-weight="600" fill="var(--text)" font-family="Inter, sans-serif">${esc(f.who)}</text>${wrap2(f.what).map((ln, k) => `<text x="10" y="${y + 20 + k * 14}" font-size="11.5" fill="var(--muted)" font-family="Inter, sans-serif">${esc(ln)}</text>`).join("")}
       <rect x="${X(f.low)}" y="${y - 5}" width="${Math.max(6, X(f.high) - X(f.low))}" height="10" rx="5" fill="${f.c}" opacity=".28"/><circle cx="${X(f.year)}" cy="${y}" r="8" fill="${f.c}" stroke="var(--bg)" stroke-width="3"/><text x="${X(f.year) + 14}" y="${y + 4}" font-size="12" font-family="JetBrains Mono, monospace" fill="${f.c}">${f.year}</text><title>${esc(f.text)} Source: ${esc(f.source)}</title></g></a>`; }).join("");
-    const ticks = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060].map((t) => `<line x1="${X(t)}" x2="${X(t)}" y1="24" y2="${50 + fc.length * 46}" stroke="var(--line)"/><text x="${X(t)}" y="16" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="JetBrains Mono, monospace">${t}</text>`).join("");
-    const now = `<line x1="${X(yNow)}" x2="${X(yNow)}" y1="24" y2="${50 + fc.length * 46}" stroke="var(--accent)" stroke-dasharray="3 5"/><text x="${X(yNow)}" y="${66 + fc.length * 46}" text-anchor="middle" font-size="11" fill="var(--accent)" font-family="JetBrains Mono, monospace">NOW</text>`;
-    const you = `<line x1="${X(m)}" x2="${X(m)}" y1="24" y2="${50 + fc.length * 46}" stroke="var(--amber)" stroke-width="2"/><text x="${X(m)}" y="${66 + fc.length * 46}" text-anchor="middle" font-size="11" fill="var(--amber)" font-family="JetBrains Mono, monospace">YOU ${m}</text>`;
+    const ticks = [2025, 2030, 2035, 2040, 2045, 2050, 2055, 2060].map((t) => `<line x1="${X(t)}" x2="${X(t)}" y1="24" y2="${50 + fc.length * RH}" stroke="var(--line)"/><text x="${X(t)}" y="16" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="JetBrains Mono, monospace">${t}</text>`).join("");
+    const now = `<line x1="${X(yNow)}" x2="${X(yNow)}" y1="24" y2="${50 + fc.length * RH}" stroke="var(--accent)" stroke-dasharray="3 5"/><text x="${X(yNow)}" y="${66 + fc.length * RH}" text-anchor="middle" font-size="11" fill="var(--accent)" font-family="JetBrains Mono, monospace">NOW</text>`;
+    const you = `<line x1="${X(m)}" x2="${X(m)}" y1="24" y2="${50 + fc.length * RH}" stroke="var(--amber)" stroke-width="2"/><text x="${X(m)}" y="${66 + fc.length * RH}" text-anchor="middle" font-size="11" fill="var(--amber)" font-family="JetBrains Mono, monospace">YOU ${m}</text>`;
     $("#fsvg", host).innerHTML = ticks + now + rows + you;
     $("#myo", host).textContent = m; $("#my", host).style.setProperty("--p", `${((m - 2026) / 44) * 100}%`);
     const yrs = m - yNow; $("#left", host).textContent = yrs < 1 ? "under a year" : `${yrs.toFixed(1)} years`;

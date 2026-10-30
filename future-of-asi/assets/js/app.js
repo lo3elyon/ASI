@@ -26,7 +26,7 @@ if (PRE) {
 
 /* ---------- Routes: core views plus EXTRA_ROUTES from views/extra/registry.js ---------- */
 const ROUTES = {};
-ITEMS.filter((i) => !i.page).forEach((i) => { ROUTES[i.slug] = { mod: i.slug || "home", title: i.title }; });
+ITEMS.filter((i) => !i.page).forEach((i) => { ROUTES[i.slug] = { mod: i.mod || i.slug || "home", title: i.title }; });
 ROUTES.home = ROUTES[""];
 const EXTRA = {};
 const view = $("#view");
@@ -45,6 +45,12 @@ const loadMod = (r, bust) => (r.extra ? r.extra.load() : import(modUrl(r, bust))
 
 /* Old links (#/researchers/<id>, #/watch/<id>, and the snapshot style #/r/<id>) become overlays on the list page */
 function legacy() {
+  /* #/history is the story of AI warnings, so it opens the Warnings timeline. Personal history lives at #/your-history. */
+  if (/^#\/history(\/|\?|$)/.test(location.hash)) {
+    history.replaceState(history.state, "", `${location.pathname}${location.search}${location.hash.replace(/^#\/history/, "#/timeline")}`);
+    window.__fromHistory = true;
+    return true;
+  }
   const m = location.hash.match(/^#\/(researchers|watch|r|v)\/([A-Za-z0-9_-]+)\/?$/);
   if (!m || (m[1] === "watch" && m[2] === "c")) return false;
   if (m[1] === "r") m[1] = "researchers"; else if (m[1] === "v") m[1] = "watch";

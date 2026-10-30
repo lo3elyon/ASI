@@ -135,3 +135,6 @@ mark.hl { background: color-mix(in srgb, var(--amber) 38%, transparent); color: 
   .bookview.open, .bv-panel { animation: none; }
 }
 :root.rm .bk .cv3 { transform: none; }
+/* Round 4: what the free filters mean, and what a chapter guide is */
+.lnote { color: var(--muted); font-size: 13.5px; line-height: 1.55; max-width: 74ch; margin: 2px 0 14px; }
+.bv-guide-note { margin: 12px 0 0; padding: 10px 14px; border-left: 3px solid var(--amber, #f59e0b); background: color-mix(in srgb, var(--amber, #f59e0b) 8%, transparent); border-radius: 8px; font-size: 14px; line-height: 1.55; color: var(--text); max-width: 62ch; }

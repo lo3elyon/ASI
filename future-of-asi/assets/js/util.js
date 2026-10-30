@@ -76,10 +76,21 @@ const GROUP_CAT = { pioneer: "pioneer", "lab-leader": "in-lab", alignment: "alig
 export const parseCites = (t) => { const m = String(t || "").replace(/,/g, "").match(/(\d+(?:\.\d+)?)\s*(k|m)?/i); if (!m) return 0; let v = parseFloat(m[1]); if (/k/i.test(m[2] || "")) v *= 1e3; if (/m/i.test(m[2] || "")) v *= 1e6; return v; };
 const A = (x) => (Array.isArray(x) ? x : x ? [x] : []);
 const linkish = (l) => (typeof l === "string" ? { title: l, url: "" } : l && typeof l === "object" ? { title: l.title || l.label || l.name || "", year: l.year || "", url: l.url || l.link || "" } : null);
+/* One spelling per employer: "Google Deepmind" joins "Google DeepMind", and "HumansAnd" joins "Humans&" */
+const EMP_ALIAS = { humansand: "humans&" };
+function empNormer(rows) {
+  const key = (e) => { const k = String(e || "").trim().toLowerCase().replace(/\s+/g, " "); return EMP_ALIAS[k] || k; };
+  const freq = {}, sc = (x) => (x.includes("&") ? 2 : 0) + (/[a-z][A-Z]/.test(x) ? 1 : 0);
+  rows.forEach((e) => { const k = key(e); if (!k) return; (freq[k] = freq[k] || {})[e.trim()] = ((freq[k] || {})[e.trim()] || 0) + 1; });
+  const best = Object.fromEntries(Object.entries(freq).map(([k, m]) => [k, Object.entries(m).sort((a, b) => b[1] - a[1] || sc(b[0]) - sc(a[0]))[0][0]]));
+  return (e) => (e ? best[key(e)] || e.trim() : "");
+}
 export async function signatories() {
   if (_sigs) return _sigs;
   const raw = await load("signatories.json", null);
-  const list = arr(raw, "signatories").filter((s) => s && s.name).map((s) => ({ name: s.name, title: s.title || s.role || "", employer: s.employer || s.org || s.affiliation || "", comment: s.comment || "", researcher_id: s.researcher_id || "", country: s.country || "", url: s.url || "", slug: s.slug || slug(s.name), photo: s.photo || "", photo_credit: s.photo_credit || "" }));
+  const rows = arr(raw, "signatories").filter((s) => s && s.name);
+  const ne = empNormer(rows.map((s) => s.employer || s.org || s.affiliation || ""));
+  const list = rows.map((s) => ({ name: s.name, title: s.title || s.role || "", employer: ne(s.employer || s.org || s.affiliation || ""), comment: s.comment || "", researcher_id: s.researcher_id || "", country: s.country || "", url: s.url || "", slug: s.slug || slug(s.name), photo: s.photo || "", photo_credit: s.photo_credit || "" }));
   const meta = (raw && !Array.isArray(raw) && (raw.meta || raw)) || {};
   _sigs = { list, meta: { count_named: meta.count_named || list.length, count_anon: meta.count_anon || 0, as_of: meta.as_of || "", source: meta.source || meta.url || "", title: meta.title || "Pacing the Frontier", text: meta.statement || meta.text || "" } };
   return _sigs;

@@ -639,14 +639,15 @@ flowchart LR
     R --> H["Home<br/>horizon hero, gap chart"]
     R --> F["Futures<br/>6 sliders, branch map"]
     R --> P["Researchers<br/>218 people, overlays, constellation"]
-    R --> V["Voices, Timeline, Pacing<br/>152 quotes, 59 events, 1,094 signers"]
+    R --> V["Voices, Timeline, Pacing<br/>152 quotes, 59 events, letter with 1,386 signers"]
     R --> W["Watch<br/>1,375 videos, 31 collections, click to play"]
     R --> C["AI Control<br/>blue team game"]
     R --> L["Learn<br/>10 units, 43 lessons, boss quizzes, exam"]
     R --> T["Tools<br/>p(doom), forecaster, dial"]
-    R --> X["Prepare, Orgs globe,<br/>Blog, Docs, History"]
+    R --> X["Prepare, Orgs globe,<br/>Blog, Docs, Your history"]
+    R --> N["Round 4<br/>Compare, Charts, Starter kit"]
     R --> E["explosion/<br/>takeoff sim, agent mind"]
-    R --> B["library/<br/>36 titles, reader"]
+    R --> B["library/<br/>79 titles, 3D reader"]
     W --> S[("localStorage<br/>history, progress, checklist")]
     L --> S
     X --> S
@@ -657,7 +658,7 @@ flowchart LR
     class D,S d
     class H,F,P,V p
     class W,C r
-    class L,T,X,R,E,B w
+    class L,T,X,R,E,B,N w
 ```
 
 <table>
@@ -684,7 +685,7 @@ flowchart LR
 <tr>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/pacing"><img src="future-of-asi/docs-shots/pacing.jpg" width="100%" alt="Pacing"></a><br><sub>1,386 Pacing the Frontier signers</sub></td>
 <td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/researchers"><img src="future-of-asi/docs-shots/researcher-overlay.jpg" width="100%" alt="Overlay"></a><br><sub>Person overlay that keeps your place</sub></td>
-<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/history"><img src="future-of-asi/docs-shots/history.jpg" width="100%" alt="History"></a><br><sub>Your watch and reading history</sub></td>
+<td align="center"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/your-history"><img src="future-of-asi/docs-shots/history.jpg" width="100%" alt="Your history"></a><br><sub>Your history at #/your-history</sub></td>
 </tr>
 </table>
 
@@ -705,9 +706,56 @@ flowchart LR
 <tr><td><b>Orgs</b></td><td>A 3D globe with a flat map fallback and 80 cards, 76 with official logos: Anthropic, Google DeepMind, Redwood, METR, Apollo, MIRI, UK AISI, CAIS, FLI, GovAI, Epoch, BlueDot, MATS, IndiaAI Safety Institute and more.</td></tr>
 <tr><td><b>Tools</b></td><td>A p(doom) calculator on Carlsmith's six step chain, an AGI timeline forecaster with a live countdown, and a risk dial.</td></tr>
 <tr><td><b>Blog and Docs</b></td><td>11 posts in my own voice, 8 docs pages, a 70 term glossary and a 16 question FAQ.</td></tr>
+<tr><td><b>Compare</b> (Round 4)</td><td>Two or three researchers side by side at <code>#/compare</code>: lab, role, p(doom) with its source, timeline, warning, the lab they left and why, books, papers, sourced quotes, Pacing signature and videos. Links like <code>#/compare?ids=yann-lecun,eliezer-yudkowsky</code> share a set.</td></tr>
+<tr><td><b>Threshold in charts</b> (Round 4)</td><td>Charts at <code>#/stats</code> counted live from the data files: people by group, region, country and lab, past employers, every p(doom) on one line, quotes and videos by year, signers by employer, organisations, timeline decades and papers.</td></tr>
+<tr><td><b>Starter kit</b> (Round 4)</td><td>A printable first week plan at <code>#/starter</code> with reading paths, courses, books, newsletters, podcasts, fellowships and key words, tick boxes saved on your device, copy as text and clean print pages.</td></tr>
+<tr><td><b>Your history</b></td><td>Everything you opened, newest first, on this device only, at <code>#/your-history</code>. <code>#/history</code> now opens the Warnings timeline.</td></tr>
 <tr><td><b>Everywhere</b></td><td>Ctrl K search across everything, dark, light and high contrast themes with 6 accents, a motion switch, reduced motion support, keyboard access, SEO tags, JSON-LD, sitemap and an offline service worker scoped to the route.</td></tr>
 </table>
 </details>
+
+<img src="docs/readme/divider.svg" width="100%" alt="">
+
+<h3>Round 4: compare, charts, a starter kit, shortcuts and a full QA pass (30 October 2026)</h3>
+
+<table>
+<tr>
+<td align="center" width="25%"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/compare"><img src="future-of-asi/docs-shots/compare.jpg" width="100%" alt="Compare researchers"></a><br><sub>Compare two or three researchers</sub></td>
+<td align="center" width="25%"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/stats"><img src="future-of-asi/docs-shots/stats.jpg" width="100%" alt="Threshold in charts"></a><br><sub>Threshold in charts</sub></td>
+<td align="center" width="25%"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/starter"><img src="future-of-asi/docs-shots/starter.jpg" width="100%" alt="Starter kit"></a><br><sub>Printable starter kit</sub></td>
+<td align="center" width="25%"><a href="https://lo3elyon.github.io/ASI/future-of-asi/#/your-history"><img src="future-of-asi/docs-shots/your-history.jpg" width="100%" alt="Your history"></a><br><sub>Your history, on this device only</sub></td>
+</tr>
+</table>
+
+| Area | What is new in Round 4 |
+| --- | --- |
+| Compare | [`#/compare`](https://lo3elyon.github.io/ASI/future-of-asi/#/compare): two or three people side by side, with presets and shareable links. |
+| Charts | [`#/stats`](https://lo3elyon.github.io/ASI/future-of-asi/#/stats): every chart counted live from the JSON data. |
+| Starter kit | [`#/starter`](https://lo3elyon.github.io/ASI/future-of-asi/#/starter): a first week plan with tick boxes, copy as text and a print stylesheet. |
+| Today's brief | Home adds a paper, an idea and a person of the day under Today's picks, with one copy button. |
+| Shortcuts | Press ? on any page. g then a letter jumps to a page, Shift T theme, Shift M motion, Shift L copy link. |
+| Share | Share and copy buttons on profiles, quotes, videos, papers and the new pages. |
+| History routes | `#/history` opens the Warnings timeline. Personal history lives at [`#/your-history`](https://lo3elyon.github.io/ASI/future-of-asi/#/your-history). |
+| Search | Exact titles, then whole word names and pages first, highlighted matches, Close spelling labels on guesses. |
+| Library | 11 full texts to read here and 17 more free online, chips that toggle back to All, a chapter guide note, and an inert closed reader. |
+| Offline | Save everything for offline shows a progress panel with size and a final cache check. |
+| QA fixes | Explosion rail labels on hover only, voices counter N of 135, Search all groups on Researchers, filter chip toggles, forecaster subtitles that wrap, Learn drag and tap fixes, control level cards that fit 320 px, and more. Full list in [future-of-asi/CHANGELOG.md](future-of-asi/CHANGELOG.md). |
+
+```mermaid
+flowchart LR
+  D[("data json files")] --> C["#/compare"]
+  D --> S["#/stats"]
+  D --> K["#/starter"]
+  D --> B["Home: today's brief"]
+  SH["core/share.js"] --> C & S & K & B
+  KEYS["core/keys.js: press ?"] --> NAV["one header on every page"]
+  OFF["core/offline.js"] --> P["progress panel and cache check"]
+  SR["core/search.js"] --> RK["exact, whole word, prefix, fuzzy"]
+  classDef d fill:#0b2a3a,stroke:#22d3ee,stroke-width:2px,color:#e6f6ff
+  classDef p fill:#063b33,stroke:#14b8a6,stroke-width:2px,color:#e6f6ff
+  class D,SH,KEYS,OFF,SR d
+  class C,S,K,B,NAV,P,RK p
+```
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
@@ -1107,6 +1155,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-10-30</sub></td><td>Threshold Round 4 at <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><code>/future-of-asi/</code></a>: Compare researchers, Threshold in charts, a printable Starter kit, Today's brief on home, keyboard shortcuts, share buttons, <code>#/history</code> now opens the Warnings timeline with personal history at <code>#/your-history</code>, better search ranking, library counts, offline progress panel and a full QA pass. Hub stepper Back and Next disable at the ends.</td></tr>
 <tr><td><sub>2026-10-30</sub></td><td>Threshold Round 3.2: new banner with 218 researchers, 152 quotes, 1,375 videos and 1,386 signers; every careers path reachable; Back and Forward checked everywhere; two new org logos; phone polish on futures, orgs, pacing, watch, control and learn; a 404 page.</td></tr>
 <tr><td><sub>2026-10-30</sub></td><td>Threshold Round 3.1: fixed the header title overlap, a blank researchers grid after closing a profile, the papers drawer close, clipped search tabs, hidden menu pills, reader zoom clipping, concept map labels, a flat map when WebGL is missing, and the hub banner crop. Tested at 320 to 1920 with zero overflow or console errors, and every page title and description now fits search results.</td></tr>
 <tr><td><sub>2026-10-30</sub></td><td>Threshold Round 3 at <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><code>/future-of-asi/</code></a>: one header with a categorised mega menu on every page and a glowing GitHub link, a sturdier router that never leaves a blank view, full offline reading with Save everything, ten new routes (papers, concepts map, agents, arena, debates, careers, policy tracker, numbers, kids, Bengali and Hindi), deeper AI Control, Timeline, Watch and Orgs pages, about 60 new sections elsewhere, a 79 title library with a WebGL page curl reader, 22 explosion chapters, 217 of 218 researcher photos, 701 signer photos, 1,386 total signers on Pacing, and a font pair per page. See the <a href="future-of-asi/CHANGELOG.md">changelog</a>.</td></tr>

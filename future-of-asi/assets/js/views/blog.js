@@ -27,10 +27,12 @@ export async function render(el, params) {
       <div class="b3-grid" id="b3g"></div>
     </div></section><div id="b3more"></div>`;
     const paint = (t) => {
-      $("#b3g", el).innerHTML = posts.slice(1).filter((b) => !t || (b.tags || []).includes(t)).map((b, i) => `<a class="b3-card card-glow m3-spot ${i % 5 === 0 ? "wide" : ""}" href="#/blog/${b.slug}" data-m3="up" data-v3-tiltimg><div class="im">${cover(b)}</div><div class="tx"><div class="chips">${(b.tags || []).slice(0, 2).map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div><h3>${esc(b.title)}</h3><p>${esc(b.excerpt)}</p><span class="mono muted">${esc(fmtDate(b.date))} · ${b.mins} min</span></div></a>`).join("") || `<p class="muted">No other posts with that topic.</p>`;
+      const lead = $(".b3-lead", el); if (lead) lead.hidden = !!t;
+      $("#b3g", el).innerHTML = (t ? posts : posts.slice(1)).filter((b) => !t || (b.tags || []).includes(t)).map((b, i) => `<a class="b3-card card-glow m3-spot ${i % 5 === 0 ? "wide" : ""}" href="#/blog/${b.slug}" data-m3="up" data-v3-tiltimg><div class="im">${cover(b)}</div><div class="tx"><div class="chips">${(b.tags || []).slice(0, 2).map((x) => `<span class="tag">${esc(x)}</span>`).join("")}</div><h3>${esc(b.title)}</h3><p>${esc(b.excerpt)}</p><span class="mono muted">${esc(fmtDate(b.date))} · ${b.mins} min</span></div></a>`).join("") || `<p class="muted">No posts with that topic yet.</p>`;
       auto($("#b3g", el)); fx3($("#b3g", el));
     };
-    $$("[data-tag]", el).forEach((b) => (b.onclick = () => { $$("[data-tag]", el).forEach((x) => x.classList.toggle("on", x === b)); paint(b.dataset.tag); }));
+    let curTag = "";
+    $$("[data-tag]", el).forEach((b) => { b.setAttribute("aria-pressed", String(!b.dataset.tag)); b.onclick = () => { curTag = curTag === b.dataset.tag ? "" : b.dataset.tag; $$("[data-tag]", el).forEach((x) => { x.classList.toggle("on", x.dataset.tag === curTag); x.setAttribute("aria-pressed", String(x.dataset.tag === curTag)); }); paint(curTag); }; });
     paint("");
     fx3(el);
     try {

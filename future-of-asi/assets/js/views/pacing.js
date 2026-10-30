@@ -55,7 +55,7 @@ export async function render(el, params, query) {
         <a class="v3-btn primary" href="${esc(source)}" target="_blank" rel="noopener" data-m3-magnet>Read the statement at pacingthefrontier.com ${ICON.ext}</a></div>
       <div class="pc3-split" data-v3 role="img" aria-label="${fmtN(named)} named and ${fmtN(anon)} anonymous signers">
         <svg viewBox="0 0 200 200" class="pc3-donut"><circle cx="100" cy="100" r="80" fill="none" stroke="var(--surface-3)" stroke-width="22"/><circle class="a" cx="100" cy="100" r="80" fill="none" stroke="#10b981" stroke-width="22" pathLength="100" stroke-dasharray="${namedPct.toFixed(2)} 100" transform="rotate(-90 100 100)"/><circle class="b" cx="100" cy="100" r="80" fill="none" stroke="#f59e0b" stroke-width="22" pathLength="100" stroke-dasharray="${(100 - namedPct).toFixed(2)} 100" stroke-dashoffset="${(-namedPct).toFixed(2)}" transform="rotate(-90 100 100)"/><text x="100" y="96" text-anchor="middle" font-size="30" fill="var(--text)" font-family="var(--f-mono)">${Math.round(namedPct)}%</text><text x="100" y="120" text-anchor="middle" font-size="12" fill="var(--muted)">named</text></svg>
-        <ul><li><i style="background:#10b981"></i><b data-m3-count="${named}">${fmtN(named)}</b> signed with their name</li><li><i style="background:#f59e0b"></i><b data-m3-count="${anon}">${fmtN(anon)}</b> signed without a public name</li><li><i style="background:var(--surface-3)"></i><b>${fmtN(total)}</b> in total</li></ul></div>
+        <ul><li><i style="background:#10b981"></i><b data-m3-count="${named}">${fmtN(named)}</b> signed with their name</li><li><i style="background:#f59e0b"></i><b data-m3-count="${anon}">${fmtN(anon)}</b> signed without a public name</li><li><i style="background:transparent;border:2px solid var(--text);box-sizing:border-box"></i><b>${fmtN(total)}</b> in total</li></ul></div>
     </div>
     <div class="pc3-stats" data-m3-stagger="70">
       <div data-m3="up"><b data-m3-count="${emps.length}">${emps.length}</b><span>employers and affiliations</span></div>
@@ -91,7 +91,7 @@ export async function render(el, params, query) {
       </aside>
       <div style="min-width:0">
         <div class="toolbar" role="search"><label class="sr-only" for="sq">Search signers</label><input class="input search" id="sq" type="search" placeholder="Search by name, title, employer or comment" value="${esc(S.q)}">
-          <div class="chips"><button class="chip ${S.only === "c" ? "on" : ""}" type="button" data-only="c">With comments</button><button class="chip ${S.only === "p" ? "on" : ""}" type="button" data-only="p">Has a profile</button><button class="chip" type="button" data-view="faces" aria-pressed="false">Compact view</button></div><span class="count" id="sc"></span></div>
+          <div class="chips"><button class="chip ${S.only === "c" ? "on" : ""}" type="button" data-only="c">With comments <span class="mono" style="opacity:.6">${withC.length}</span></button><button class="chip ${S.only === "p" ? "on" : ""}" type="button" data-only="p">Has a profile <span class="mono" style="opacity:.6">${profiled.length}</span></button><button class="chip" type="button" data-view="faces" aria-pressed="false">Compact view</button></div><span class="count" id="sc"></span></div>
         <div class="pc3-list" id="sl"></div>
         <div style="text-align:center;margin-top:20px"><button class="v3-btn" type="button" id="more">Show more</button></div>
       </div>

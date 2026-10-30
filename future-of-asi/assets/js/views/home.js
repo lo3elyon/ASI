@@ -144,6 +144,7 @@ export async function render(el) {
   // gap chart
   const stopGap = gapChart(el);
   try { await mount3(el); } catch (e) { console.warn("home3", e); }
+  try { const b4 = await import("../views3/brief4.js"); await b4.mount(el); } catch (e) { console.warn("brief4", e); }
 
   return () => { stopHero(); stopMorph(); stopGap(); removeEventListener("scroll", onScroll); };
 }
@@ -176,7 +177,7 @@ function gapChart(el) {
     const gap = cap(shown) - ctl(shown);
     $("#gapYear", el).textContent = Math.floor(shown);
     $("#gapMeter", el).style.width = `${clamp(gap, 0, 100)}%`;
-    $("#gapWord", el).textContent = gap < 8 ? "Small. Control keeps up with what AI can do." : gap < 25 ? "Growing. Oversight is falling behind." : gap < 50 ? "Wide. Systems can do far more than we can check." : "Huge. We would be trusting what we cannot verify.";
+    $("#gapWord", el).textContent = gap < 8 ? "Small. Control keeps up with what AI can do." : gap < 16 ? "Narrow. Oversight is only a little behind." : gap < 30 ? "Growing. Oversight is falling behind." : gap < 50 ? "Wide. Systems can do far more than we can check." : "Huge. We would be trusting what we cannot verify.";
     $("#safetyOut", el).textContent = `${safety.value}%`;
     $("#paceOut", el).textContent = +pace.value < 34 ? "slow" : +pace.value < 67 ? "steady" : "fast";
     [safety, pace].forEach((r) => r.style.setProperty("--p", `${r.value}%`));

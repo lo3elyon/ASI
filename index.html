@@ -44,6 +44,7 @@
       .x-nav__links a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 999px; color: var(--x-muted); text-decoration: none; font: 500 14px/1 var(--x-body); transition: color .2s, background .2s; }
       .x-nav__links a:hover { color: var(--x-text); }
       .x-nav__links a.is-active { color: var(--x-bg); background: var(--x-teal); }
+      .x-btn:disabled { opacity: .4; cursor: not-allowed; transform: none; box-shadow: none; }
       .x-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; font: 600 15px/1 var(--x-body); text-decoration: none; border: 1px solid var(--x-line); color: var(--x-text); background: rgba(255, 255, 255, 0.04); cursor: pointer; transition: transform .2s, box-shadow .2s, background .2s; }
       .x-btn:hover { transform: translateY(-2px); background: rgba(34, 211, 238, 0.1); box-shadow: 0 8px 24px -8px rgba(34, 211, 238, 0.5); }
       .x-btn--main { border: 0; color: #04121c; background: linear-gradient(90deg, var(--x-teal), var(--x-cyan)); }
@@ -449,7 +450,7 @@
         {
           slug: "future-of-asi/",
           title: "Threshold: The Future of ASI",
-          tagline: "Six futures you can steer, 218 researchers with photos and 152 sourced quotes, 1,386 Pacing the Frontier signers, 1,375 verified videos, 25 routes that work offline, an intelligence explosion deep dive, a 79 title library with a 3D reader, AI control with a playable game, a 10 unit course and a calm preparation checklist.",
+          tagline: "Six futures you can steer, 218 researchers with photos and 152 sourced quotes, the Pacing the Frontier open letter (1,386 signers in total), 1,375 verified videos, 25 routes that work offline, an intelligence explosion deep dive, a 79 title library with a 3D reader, AI control with a playable game, a 10 unit course and a calm preparation checklist.",
           tags: ["ASI", "AI Safety", "Alignment", "AI Control", "Intelligence Explosion"],
           date: "2026-10-29",
           cover: "future-of-asi.jpg",
@@ -648,7 +649,7 @@
         const levels = [
           { v: 33, note: "Narrow AI: great at one job at a time." },
           { v: 66, note: "AGI: a skilled human at most mental jobs." },
-          { v: 100, note: "ASI: off the charts. Handle with care!" },
+          { v: 100, note: "ASI: off the charts. Handle with care." },
         ];
         let cur = -1;
         function setStep(i) {
@@ -659,6 +660,9 @@
             r.classList.toggle("is-reached", k <= i);
             $("button", r).setAttribute("aria-expanded", open);
           });
+          /* Back is off before the first step, Next is off at the last one */
+          $("#x-prev").disabled = i < 0;
+          $("#x-next").disabled = i >= rungs.length - 1;
           const lv = i < 0 ? { v: 0, note: "Open a step to start." } : levels[i];
           $("#x-rail").style.height = (i < 0 ? 0 : ((i + 1) / rungs.length) * 100) + "%";
           $("#x-arc").style.strokeDashoffset = 251.3 * (1 - lv.v / 100);
@@ -678,6 +682,7 @@
         rungs.forEach((r, k) => $("button", r).addEventListener("click", () => setStep(cur === k ? k - 1 : k)));
         $("#x-next").addEventListener("click", () => setStep(Math.min(rungs.length - 1, cur + 1)));
         $("#x-prev").addEventListener("click", () => setStep(Math.max(-1, cur - 1)));
+        $("#x-prev").disabled = true;
 
         /* ---------- typing subtitle ---------- */
         const words = ["Artificial Intelligence", "Artificial General Intelligence", "Artificial Superintelligence"];

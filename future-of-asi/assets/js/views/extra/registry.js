@@ -1,4 +1,4 @@
-/* Round 3 routes. The shell (app.js) wires these into the router, menu, search, offline list and prerender.
+/* Round 3 and 4 routes. The shell (app.js) wires these into the router, menu, search, offline list and prerender.
    Contract: {slug, title, group, icon, desc, load, cat?}. Each module exports render(el, params, query) and may return a cleanup. */
 export const EXTRA_ROUTES = [
   { slug: "papers", title: "Papers", group: "learn", icon: "doc", cat: "sky", desc: "The 60 key AI safety papers, verified on arXiv, with reading paths and plain words summaries.", load: () => import("./papers.js") },
@@ -11,4 +11,7 @@ export const EXTRA_ROUTES = [
   { slug: "numbers", title: "Numbers", group: "start", icon: "chart", cat: "cyan", desc: "A dashboard of key AI figures with dates and sources: compute, data centers, agent time horizons, money, lab automation, oversight and signatures.", load: () => import("./numbers.js") },
   { slug: "kids", title: "Kids and families", group: "start", icon: "people", cat: "yellow", desc: "AI safety explained gently for children and families: four games, a short story, a word list, talk cards and family habits.", load: () => import("./kids.js") },
   { slug: "bharat", title: "Indian languages", group: "start", icon: "globe", cat: "orange", desc: "AI safety in Bengali and Hindi: plain explainers, a three language glossary, flashcards, family talk cards, India's story and videos.", load: () => import("./bharat.js") },
+  { slug: "compare", title: "Compare researchers", group: "people", icon: "compare", cat: "sky", desc: "Pick two or three researchers and see their roles, labs, p(doom), timelines, warnings and sourced quotes side by side.", load: () => import("./compare.js") },
+  { slug: "stats", title: "Threshold in charts", group: "start", icon: "chart", cat: "teal", desc: "Charts counted live from the data: researchers by group, region and lab, videos by year, signers by employer and more.", load: () => import("./stats.js") },
+  { slug: "starter", title: "Starter kit", group: "act", icon: "kit", cat: "lime", desc: "A printable AI safety starter kit: a first week plan, reading paths, courses, books and words, with progress saved on this device.", load: () => import("./starter.js") },
 ];

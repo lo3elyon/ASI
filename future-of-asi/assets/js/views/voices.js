@@ -1,3 +1,4 @@
+import { copyBtn, quoteText } from "../core/share.js";
 import { $, $$, esc, researchers, avatar, RM, GROUPS, ICON } from "../util.js";
 import { mount as mount3 } from "../views3/voices3.js";
 
@@ -8,7 +9,7 @@ export async function render(el) {
   const pool = all.filter((q) => q.text.length > 40 && q.text.length < 230);
   const shuffle = (a) => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const stage = [...shuffle(pool.filter((q) => KEY.test(q.text))), ...shuffle(pool.filter((q) => !KEY.test(q.text)))];
-  let i = 0, timer = 0, paused = false;
+  let i = 0, timer = 0, paused = false, held = false;
 
   el.innerHTML = `<section class="section" style="padding-bottom:20px;background:radial-gradient(800px 400px at 50% 20%, color-mix(in srgb, var(--amber) 8%, transparent), transparent 70%)">
     <div class="wrap" style="text-align:center"><div class="eyebrow">Voices wall</div></div>
@@ -17,7 +18,7 @@ export async function render(el) {
       <div class="voice-ctrl"><button class="icon-btn" type="button" id="vp" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
       <button class="btn sm" type="button" id="vpause">Pause</button>
       <button class="icon-btn" type="button" id="vn" aria-label="Next quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></button></div>
-      <p class="count" id="vcount" style="margin-top:14px"></p></div>
+      <p class="count" id="vcount" style="margin-top:14px"></p><p class="muted v4-note">${stage.length === all.length ? `All ${all.length} quotes take turns here.` : `This stage rotates the ${stage.length} quotes short enough to read in one look. The wall below has all ${all.length}.`}</p></div>
     </div>
   </section>
   <section class="kinetic" aria-hidden="true">${kinetic(all)}</section>
@@ -35,25 +36,31 @@ export async function render(el) {
     const delay = Math.min(0.09, 2.2 / words.length);
     $("#vq", el).innerHTML = words.map((w, n) => `<span class="w" style="transition-delay:${(n * delay).toFixed(2)}s">${n === 0 ? "&ldquo;" : ""}${esc(w)}${n === words.length - 1 ? "&rdquo;" : ""}</span>`).join(" ");
     $("#vb", el).innerHTML = `${avatar(q.p)}<span><a href="#/researchers/${q.p.id}"><b>${esc(q.p.name)}</b></a><br>${esc(q.source || "")}${q.date ? `, ${esc(q.date)}` : ""} ${q.url ? `<a href="${esc(q.url)}" target="_blank" rel="noopener">source ${ICON.ext}</a>` : ""}</span>`;
-    $("#vcount", el).textContent = `${i + 1} / ${stage.length}`;
+    $("#vcount", el).textContent = `${i + 1} of ${stage.length}`;
     requestAnimationFrame(() => requestAnimationFrame(() => $$("#vq .w", el).forEach((w) => w.classList.add("in"))));
     clearTimeout(timer);
-    if (!paused && !RM()) timer = setTimeout(() => show(i + 1), 4200 + words.length * 260);
+    if (!paused && !RM() && !held) timer = setTimeout(() => show(i + 1), 4200 + words.length * 260);
   }
   $("#vn", el).addEventListener("click", () => show(i + 1));
   $("#vp", el).addEventListener("click", () => show(i - 1));
   $("#vpause", el).addEventListener("click", (e) => { paused = !paused; e.target.textContent = paused ? "Play" : "Pause"; if (!paused) show(i + 1); else clearTimeout(timer); });
   if (RM()) { paused = true; $("#vpause", el).textContent = "Play"; }
+  /* Hold the quote still while the pointer or keyboard focus is on the stage */
+  const vst = $(".voice-stage", el);
+  const hold = (on) => { if (held === on) return; held = on; if (on) clearTimeout(timer); else if (!paused && !RM()) { clearTimeout(timer); timer = setTimeout(() => show(i + 1), 4200); } };
+  vst.addEventListener("pointerenter", () => hold(true)); vst.addEventListener("pointerleave", () => hold(false));
+  vst.addEventListener("focusin", () => hold(true)); vst.addEventListener("focusout", (e) => { if (!vst.contains(e.relatedTarget)) hold(false); });
   const onKey = (e) => { if (/input|textarea/i.test(document.activeElement.tagName)) return; if (e.key === "ArrowRight") show(i + 1); if (e.key === "ArrowLeft") show(i - 1); };
   document.addEventListener("keydown", onKey);
   show(0);
 
   function wall(g) {
     const list = all.filter((q) => g === "all" || q.p.group === g);
-    $("#wall", el).innerHTML = list.map((q, n) => `<div class="rv ${n % 3 ? "d" + (n % 3) : ""}"><figure class="qcard card" style="width:100%;margin:0"><blockquote>&ldquo;${esc(q.text)}&rdquo;</blockquote><figcaption class="by">${avatar(q.p)}<span><a href="#/researchers/${q.p.id}"><b>${esc(q.p.name)}</b></a><br>${esc(q.source || "")}${q.date ? `, ${esc(q.date)}` : ""}${q.url ? ` <a href="${esc(q.url)}" target="_blank" rel="noopener" aria-label="Source">${ICON.ext}</a>` : ""}</span></figcaption></figure></div>`).join("");
+    $("#wall", el).innerHTML = list.map((q, n) => `<div class="rv ${n % 3 ? "d" + (n % 3) : ""}"><figure class="qcard card" style="width:100%;margin:0"><blockquote>&ldquo;${esc(q.text)}&rdquo;</blockquote><figcaption class="by">${avatar(q.p)}<span><a href="#/researchers/${q.p.id}"><b>${esc(q.p.name)}</b></a><br>${esc(q.source || "")}${q.date ? `, ${esc(q.date)}` : ""}${q.url ? ` <a href="${esc(q.url)}" target="_blank" rel="noopener" aria-label="Source">${ICON.ext}</a>` : ""}</span></figcaption>${copyBtn(quoteText(q, q.p), { label: "Copy", aria: `Copy this quote by ${q.p.name} with its source`, msg: "Quote copied with its source.", cls: "sm r4-qc" })}</figure></div>`).join("");
     import("../util.js").then((u) => u.reveal(el));
   }
-  $$("[data-g]", el).forEach((b) => b.addEventListener("click", () => { $$("[data-g]", el).forEach((x) => x.classList.toggle("on", x === b)); wall(b.dataset.g); }));
+  let curG = "all";
+  $$("[data-g]", el).forEach((b) => b.addEventListener("click", () => { curG = curG === b.dataset.g ? "all" : b.dataset.g; $$("[data-g]", el).forEach((x) => { x.classList.toggle("on", x.dataset.g === curG); x.setAttribute("aria-pressed", String(x.dataset.g === curG)); }); wall(curG); }));
   wall("all");
   try { await mount3(el); } catch (e) { console.warn("voices3", e); }
   return () => { clearTimeout(timer); document.removeEventListener("keydown", onKey); };

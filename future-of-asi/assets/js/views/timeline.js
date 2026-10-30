@@ -32,6 +32,7 @@ const eraOf = (y) => ERAS.find((e) => y >= e.a && y <= e.b) || ERAS[ERAS.length 
 const tOf = (e) => { const p = String(e.date).split("-"); return e.year + (p[1] ? (+p[1] - 1) / 12 : 0.5) + 1 / 24; };
 
 export async function render(el, params, query) {
+  const fromHistory = !!window.__fromHistory; window.__fromHistory = false;
   const [raw, ppl, vids, phm] = await Promise.all([load("timeline.json"), researchers(), videos(), photoMap(), orgIndex()]);
   const byId = Object.fromEntries(ppl.map((p) => [p.id, p]));
   const ev = arr(raw, "events").map(normEvent).filter((e) => e.year && e.title).sort((a, b) => (a.date || String(a.year)).localeCompare(b.date || String(b.year)));
@@ -60,7 +61,7 @@ export async function render(el, params, query) {
     eyebrow: "Warnings timeline", title: `${y0} to ${y1}. <span class='serif'>They told us.</span>`,
     lead: "Every major warning, breakthrough, statement, policy moment and incident on the road to superintelligence, in order. Zoom in, scrub through, press play, and notice how the gaps shrink.",
     stats: [{ n: ev.length, label: "moments" }, { n: y1 - y0, label: "years" }, { n: peopleIn.length, label: "people linked" }, { n: uniqUrls.length, label: "sources" }],
-    extra: `<div class="row p3-hero-cta" data-m3="up" data-m3-delay="300"><button class="btn primary p3-rip" type="button" id="heroPlay" data-m3-magnet><span class="shine"></span>${ICON.play} Play the story</button><a class="btn ghost p3-rip" href="#tlx" data-jump="tlx">Open the explorer ${ICON.arrow}</a></div>` })}
+    extra: `<div class="row p3-hero-cta" data-m3="up" data-m3-delay="300"><button class="btn primary p3-rip" type="button" id="heroPlay" data-m3-magnet><span class="shine"></span>${ICON.play} Play the story</button><a class="btn ghost p3-rip" href="#tlx" data-jump="tlx">Open the explorer ${ICON.arrow}</a></div>${fromHistory ? `<p class="tl-moved" data-m3="up" role="note">This is the history of AI warnings. Looking for what you opened on this device? That is in <a href="#/your-history">Your history</a>.</p>` : ""}` })}
 
   <section class="section tight p3-gapsec"><div class="wrap">
     ${headH("The pattern", "The gaps keep <span class='serif'>getting shorter.</span>", "Each bar is the time between one moment and the next. Early on they are decades apart. Now they arrive months, sometimes days, apart.")}
@@ -75,8 +76,9 @@ export async function render(el, params, query) {
       <select class="input" id="tp" aria-label="Person"><option value="">Anyone</option>${peopleIn.map((p) => `<option value="${esc(p.id)}">${esc(p.name)}</option>`).join("")}</select>
       <select class="input" id="to" aria-label="Organisation"><option value="">Any organisation</option>${orgsIn.map((o) => `<option value="${esc(o.id)}">${esc(o.name)}</option>`).join("")}</select>
       <select class="input" id="te" aria-label="Era"><option value="">Every era</option>${ERAS.map((e) => `<option value="${e.id}">${e.a} to ${e.b}: ${esc(e.name)}</option>`).join("")}</select>
-      <span class="count" id="tc"></span>
+      <span class="count" id="tc" aria-live="polite"></span>
     </div>
+    <p class="r4-fhint" id="tmsg" hidden></p>
     <div class="chips p3-types" role="group" aria-label="Kind of moment"><button class="chip on" type="button" data-ty="">All kinds</button>${types.map((t) => `<button class="chip" type="button" data-ty="${esc(t)}" style="--c:${Object.values(TYPES).find((x) => x[0] === t)[1]}"><i class="dot-cat" style="background:${Object.values(TYPES).find((x) => x[0] === t)[1]}"></i>${esc(t)}</button>`).join("")}</div>
     <div class="p3-stage" id="stage">
       <div class="p3-stage-bg" aria-hidden="true">${ERAS.map((e, i) => `<div class="p3-ebg" data-era="${e.id}">${pic(e.img, "", { sizes: "100vw" })}</div>`).join("")}</div>
@@ -199,6 +201,14 @@ export async function render(el, params, query) {
   function applyFilters() {
     list = ev.filter(match);
     $("#tc", el).textContent = `${list.length} of ${ev.length}`;
+    const msg = $("#tmsg", el), q = S.q.trim();
+    const narrowed = S.type || S.person || S.org || S.era;
+    if (msg) {
+      const all = q && narrowed ? ev.filter((e) => `${e.title} ${e.text} ${e.year} ${e.ppl.map((p) => p.name).join(" ")} ${e.k[0]}`.toLowerCase().includes(q.toLowerCase())).length : 0;
+      if (!list.length) { msg.hidden = false; msg.innerHTML = `No moments match${q ? ` "${esc(q)}"` : ""} with these filters.${narrowed ? ` <button class="chip" type="button" data-tclear>Clear the filters</button>` : ""}`; }
+      else if (all > list.length) { msg.hidden = false; msg.innerHTML = `${all - list.length} more ${all - list.length === 1 ? "moment matches" : "moments match"} "${esc(q)}" outside these filters. <button class="chip" type="button" data-tclear>Search every moment</button>`; }
+      else { msg.hidden = true; msg.innerHTML = ""; }
+    }
     if (list.length && !list.includes(ev[S.sel])) select(list[0].i); else layout();
     if (list.length && list.length < ev.length) { const a = list[0].t, b = list[list.length - 1].t; setDomain(a - Math.max(0.6, (b - a) * 0.08), b + Math.max(0.6, (b - a) * 0.08)); }
     almanac();
@@ -206,7 +216,9 @@ export async function render(el, params, query) {
   const fq = debounce(() => applyFilters(), 140);
   $("#tq", el).addEventListener("input", (e) => { S.q = e.target.value; fq(); });
   [["#tp", "person"], ["#to", "org"], ["#te", "era"]].forEach(([s, k]) => $(s, el).addEventListener("change", (e) => { S[k] = e.target.value; applyFilters(); }));
-  $$("[data-ty]", el).forEach((b) => b.addEventListener("click", () => { S.type = b.dataset.ty; $$("[data-ty]", el).forEach((x) => x.classList.toggle("on", x === b)); applyFilters(); }));
+  const setType = (t) => { S.type = t; $$("[data-ty]", el).forEach((x) => { x.classList.toggle("on", x.dataset.ty === t); x.setAttribute("aria-pressed", String(x.dataset.ty === t)); }); };
+  $$("[data-ty]", el).forEach((b) => b.addEventListener("click", () => { setType(S.type === b.dataset.ty ? "" : b.dataset.ty); applyFilters(); }));
+  $("#tmsg", el).addEventListener("click", (e) => { if (!e.target.closest("[data-tclear]")) return; S.person = S.org = S.era = ""; [["#tp", ""], ["#to", ""], ["#te", ""]].forEach(([k, v]) => { const f = $(k, el); if (f) f.value = v; }); setType(""); applyFilters(); });
 
   // pointer: drag to pan, click dot to select, ctrl wheel zoom, pinch
   let pan = null; const ptrs = new Map();

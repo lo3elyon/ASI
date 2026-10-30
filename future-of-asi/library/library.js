@@ -34,13 +34,13 @@ function tilt(el, max = 16) {
 $("#countBooks").textContent = BOOKS.filter((b) => b.kind === "book").length;
 $("#countEssays").textContent = BOOKS.filter((b) => b.kind === "essay").length;
 const BASE_TITLE = document.title;
-const S = { shelf: "all", q: "", sort: "year", free: false };
+const S = { shelf: "all", q: "", sort: "year", free: "" };
 const shelfCounts = BOOKS.reduce((m, b) => ((m[b.shelf] = (m[b.shelf] || 0) + 1), m), {});
 $("#shelves").innerHTML = [["all", "All", BOOKS.length], ...Object.entries(CAT.shelves).filter(([k]) => shelfCounts[k]).map(([k, [l]]) => [k, l, shelfCounts[k]])]
   .map(([k, l, n]) => `<button class="chip" type="button" data-k="${k}" aria-pressed="${k === "all"}" style="--c:${k === "all" ? "var(--cyan)" : esc(CAT.shelves[k][1])}">${k === "all" ? "" : '<i class="sw"></i>'}${esc(l)} <span class="mono" style="opacity:.55">${n}</span></button>`).join("");
 function renderGrid() {
   const q = S.q.trim().toLowerCase();
-  let list = BOOKS.filter((b) => (S.shelf === "all" || b.shelf === S.shelf) && (!S.free || b.free) && (!q || [b.title, b.subtitle, b.pitch, b.publisher, b.authors.map((a) => a.name).join(" ")].join(" ").toLowerCase().includes(q)));
+  let list = BOOKS.filter((b) => (S.shelf === "all" || b.shelf === S.shelf) && (!S.free || (S.free === "full" ? b.free === "full" : !!b.free)) && (!q || [b.title, b.subtitle, b.pitch, b.publisher, b.authors.map((a) => a.name).join(" ")].join(" ").toLowerCase().includes(q)));
   list = list.slice().sort((a, b) => S.sort === "title" ? a.title.localeCompare(b.title) : S.sort === "old" ? a.year.localeCompare(b.year) : b.year.localeCompare(a.year));
   $("#count").textContent = `${list.length} of ${BOOKS.length}`;
   $("#grid").innerHTML = list.map((b, i) => { const p = pct(b); return `<button class="bk rv" type="button" data-id="${esc(b.id)}" style="--c:${esc(b.shelfColor)};transition-delay:${Math.min(12, i % 12) * 0.035}s" aria-label="${esc(b.title)} by ${esc(b.authors.map((a) => a.name).join(", "))}">${coverHTML(b).replace('<div class="cv3">', `<div class="cv3">${p ? `<span class="done">${p}%</span>` : ""}`)}<div class="meta"><b>${esc(b.title)}</b><span>${esc(b.authors.map((a) => a.name).slice(0, 2).join(", "))}${b.authors.length > 2 ? " and others" : ""} · ${esc(b.year)}</span><div class="row"><span class="tag" style="--c:${esc(b.shelfColor)}">${esc(b.shelfLabel)}</span>${b.free === "full" ? '<span class="free">Full text</span>' : b.free === "link" ? '<span class="free link">Free online</span>' : ""}</div></div></button>`; }).join("") || `<div class="empty-state" style="grid-column:1/-1">Nothing matches that search.</div>`;
@@ -52,16 +52,17 @@ function renderContinue() {
   const all = P.get(); const ids = Object.keys(all).filter((id) => BY[id] && all[id].t).sort((a, b) => all[b].t - all[a].t).slice(0, 8);
   $("#continue").innerHTML = ids.length ? `<div class="cont"><h3>Continue reading</h3><div class="cont-row">${ids.map((id) => { const b = BY[id]; return `<button type="button" data-id="${esc(id)}"><span class="mini">${b.cover ? `<img src="${esc(b.cover)}" alt="">` : ""}</span><span><b>${esc(b.title)}</b><small>${pct(b)}% of chapters marked read</small><div class="pbar"><i style="width:${pct(b)}%"></i></div></span></button>`; }).join("")}</div></div>` : "";
 }
-$("#shelves").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S.shelf = b.dataset.k; $$("#shelves .chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))); renderGrid(); });
+$("#shelves").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; S.shelf = S.shelf === b.dataset.k ? "all" : b.dataset.k; $$("#shelves .chip").forEach((c) => c.setAttribute("aria-pressed", String(c.dataset.k === S.shelf))); renderGrid(); });
 $("#q").addEventListener("input", (e) => { S.q = e.target.value; renderGrid(); });
 $("#sort").addEventListener("change", (e) => { S.sort = e.target.value; renderGrid(); });
-$("#freeOnly").addEventListener("click", (e) => { S.free = !S.free; e.currentTarget.setAttribute("aria-pressed", String(S.free)); renderGrid(); });
+$$("#freeOnly, #freeAny").forEach((btn) => btn.addEventListener("click", () => { S.free = S.free === btn.dataset.f ? "" : btn.dataset.f; $$("#freeOnly, #freeAny").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.f === S.free))); renderGrid(); }));
+$("#nFull").textContent = BOOKS.filter((b) => b.free === "full").length; $("#nFree").textContent = BOOKS.filter((b) => b.free).length;
 document.addEventListener("click", (e) => { const b = e.target.closest("[data-id]"); if (b && (b.closest("#grid") || b.closest("#continue"))) location.hash = `#/book/${b.dataset.id}`; });
 let LIST = [], shelf = null;
 renderGrid(); renderContinue();
 { // stats in the hero
   const full = BOOKS.filter((b) => b.free === "full").length, cov = BOOKS.filter((b) => b.cover).length, shelves = Object.keys(shelfCounts).length;
-  $("#lstats").innerHTML = `<span><b>${BOOKS.length}</b> titles</span><span><b>${shelves}</b> shelves</span><span><b>${full}</b> free full texts</span><span><b>${cov}</b> verified covers</span><span><b>${BOOKS.reduce((a, b) => a + (b.nch || 0), 0)}</b> chapter guides</span>`;
+  $("#lstats").innerHTML = `<span><b>${BOOKS.length}</b> titles</span><span><b>${shelves}</b> shelves</span><span><b>${full}</b> full texts to read here</span><span><b>${BOOKS.filter((b) => b.free === "link").length}</b> more free online</span><span><b>${cov}</b> verified covers</span><span><b>${BOOKS.reduce((a, b) => a + (b.nch || 0), 0)}</b> chapter guides</span>`;
 }
 /* ---------- 3D shelf ---------- */
 const gl = (() => { try { const c = document.createElement("canvas"); return !!(c.getContext("webgl2") || c.getContext("webgl")); } catch (e) { return false; } })();
@@ -103,6 +104,7 @@ async function openBook(id, tab = "guide") {
           ${b.free && b.free.kind === "link" ? `<a class="btn ghost" href="${esc(b.free.url)}" target="_blank" rel="noopener">${esc(b.free.label)} ${ICON.ext}</a>` : ""}
           <span id="bvRing"></span>
         </div>
+        ${b.free && b.free.kind === "full" ? "" : `<p class="bv-guide-note">${b.free && b.free.kind === "link" ? "The book itself is free on its own site (the button above). The chapter guide here is a plain words summary of each chapter, written for Threshold." : "This book is not free to share, so the reader here opens a chapter guide: a plain words summary of each chapter, written for Threshold. It is not the book itself. See Where to read for libraries and shops."}</p>`}
       </div>
     </div>
     <div class="bv-tabs" role="tablist">${tabs.map(([k, l]) => `<button type="button" role="tab" data-tab="${k}" aria-selected="${k === tab}">${l}</button>`).join("")}</div>

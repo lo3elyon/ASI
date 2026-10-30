@@ -57,7 +57,7 @@ export function bars(rows, { fmt = (v) => v.toLocaleString("en-US"), max, unit =
 export function rng(seed) { let s = 0; for (const c of String(seed)) s = (s * 31 + c.charCodeAt(0)) >>> 0; return () => { s = (s + 0x6d2b79f5) >>> 0; let t = s; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
 export function shuffle(a, r = Math.random) { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; }
 export const fmtD = (d) => { if (!d) return ""; const [y, m, dd] = String(d).split("-"); const M = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]; return [dd ? +dd : "", m ? M[+m - 1] : "", y].filter(Boolean).join(" "); };
-export const today = () => new Date().toISOString().slice(0, 10);
+export const today = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 /* Run motion3 on content rendered after the first paint (filters, rounds). Returns cleanup. */
 export function anim(node) { try { return m3.auto(node); } catch (e) { return () => {}; } }
 /* Collect cleanups */

@@ -106,5 +106,20 @@
   "bharat": [
     "assets/fonts/extra/mukta-400.woff2",
     "assets/fonts/extra/noto-serif-bengali.woff2"
+  ],
+  "compare": [
+    "assets/fonts/views3/dmserif.woff2",
+    "assets/fonts/views3/plexsans.woff2"
+  ],
+  "stats": [
+    "assets/fonts/pages3/schibsted-grotesk-wght.woff2",
+    "assets/fonts/pages3/spline-sans-mono-wght.woff2"
+  ],
+  "starter": [
+    "assets/fonts/fraunces-latin-wght-normal.woff2",
+    "assets/fonts/views3/worksans.woff2"
+  ],
+  "your-history": [
+    "assets/fonts/unbounded-latin-wght-normal.woff2"
   ]
 }

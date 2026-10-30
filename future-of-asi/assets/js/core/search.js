@@ -65,13 +65,63 @@ function hl(text, matches, key) {
   return out + esc(t.slice(last));
 }
 
+/* Exact and prefix matches first, then words inside the subtitle or text, then fuzzy guesses.
+   Fuzzy guesses only show when there are few real matches, so a name search stays tight. */
+const norm = (x) => String(x || "").toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "");
+const WHOLE = new Set(["person", "page", "org"]);
+const TP = { page: 0, person: 1, org: 2, term: 3, lesson: 4, doc: 5, paper: 6, blog: 7, event: 8, video: 9, quote: 10, signer: 11 };
+function tierOf(d, q, toks) {
+  const t = norm(d.title), sub = norm(d.sub), tags = norm([].concat(d.tags || []).join(" ")), tx = norm(d.text);
+  const all = (str) => toks.every((k) => str.includes(k));
+  if (t === q) return 0;
+  /* A name, page or org whose title holds the query as a whole word (Hinton, AI Control) beats a longer title that only starts with it */
+  if (WHOLE.has(d.type) && new RegExp(`(^|[^a-z0-9])${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}($|[^a-z0-9])`).test(t)) return 0.5;
+  if (t.startsWith(q)) return 1;
+  if (new RegExp(`(^|[^a-z0-9])${q.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}`).test(t)) return 2;
+  if (all(t)) return 3;
+  if (all(`${t} ${sub} ${tags}`)) return 4;
+  if (all(`${t} ${sub} ${tags} ${tx}`)) return 5;
+  return 9;
+}
+function rank(q0, res) {
+  const q = norm(q0).trim(), toks = q.split(/\s+/).filter((k) => k.length > 1);
+  if (!toks.length) return res;
+  res.forEach((r) => { r.tier = tierOf(r.item, q, toks); });
+  const exact = res.filter((r) => r.tier < 9);
+  const fuzzy = exact.length >= 5 ? [] : res.filter((r) => r.tier === 9).slice(0, Math.max(0, 12 - exact.length));
+  fuzzy.forEach((r) => (r.fuzzy = true));
+  return exact.sort((a, b) => a.tier - b.tier || (a.tier < 3 ? (TP[a.item.type] ?? 12) - (TP[b.item.type] ?? 12) : 0) || a.score - b.score).concat(fuzzy);
+}
+/* Mark every place the typed words appear */
+function mark(text, q) {
+  const t = String(text || "");
+  const toks = norm(q).trim().split(/\s+/).filter((k) => k.length > 1);
+  if (!toks.length) return esc(t);
+  const low = norm(t);
+  const hits = [];
+  toks.forEach((k) => { let i = low.indexOf(k); while (i >= 0) { hits.push([i, i + k.length]); i = low.indexOf(k, i + k.length); } });
+  if (!hits.length) return null;
+  hits.sort((a, b) => a[0] - b[0]);
+  let out = "", last = 0;
+  hits.forEach(([a, b]) => { if (a < last) return; out += esc(t.slice(last, a)) + `<mark class="pm">${esc(t.slice(a, b))}</mark>`; last = b; });
+  return out + esc(t.slice(last));
+}
+/* A short piece of the text around the first match, when the match is only in the text */
+function snippet(text, q) {
+  const t = String(text || ""), toks = norm(q).trim().split(/\s+/).filter((k) => k.length > 1);
+  const low = norm(t); let i = -1; toks.some((k) => (i = low.indexOf(k)) >= 0);
+  if (i < 0) return "";
+  const a = Math.max(0, i - 50), b = Math.min(t.length, i + 70);
+  return (a ? "..." : "") + t.slice(a, b).trim() + (b < t.length ? "..." : "");
+}
+
 function facetKey(type) { return { person: "region", video: "cat", signer: "employer", org: "type", event: "decade", paper: "kind" }[type] || ""; }
 
 async function run() {
   await build(window.__ROUTES || {});
   const q = st.q.trim();
   let res;
-  if (q) res = fuse.search(q, { limit: 400 });
+  if (q) res = rank(q, fuse.search(q, { limit: 600 }));
   else res = docs.filter((d) => st.type === "all" ? d.type === "page" : d.type === st.type).slice(0, 200).map((item) => ({ item, matches: [] }));
   const counts = {};
   res.forEach((r) => (counts[r.item.type] = (counts[r.item.type] || 0) + 1));
@@ -101,7 +151,7 @@ function paint(q) {
     const rec = store.get("recentSearch", []);
     const seen = getHistory().slice(0, 6);
     list.innerHTML = `${rec.length ? `<li class="grp">Recent searches</li><li class="recent">${rec.map((r) => `<button class="chip" type="button" data-r="${esc(r)}">${esc(r)}</button>`).join("")}<button class="chip" type="button" data-clr-r>Clear</button></li>` : ""}
-      ${seen.length ? `<li class="grp">Recently opened</li>${seen.map((h) => `<li role="option"><button class="res" type="button" data-h="${esc(h.type)}|${esc(h.id)}"><span class="ic" style="--c:${TC[h.type === "post" ? "blog" : h.type] || "#22d3ee"}">${esc((h.type || "").slice(0, 4))}</span><span class="tx"><b>${esc(h.title || h.id)}</b><span>${esc(h.sub || h.type)}</span></span><small></small></button></li>`).join("")}` : ""}
+      ${seen.length ? `<li class="grp">Recently opened</li>${seen.map((h) => `<li role="option"><button class="res" type="button" data-h="${esc(h.type)}|${esc(h.id)}"><span class="ic" style="--c:${TC[h.type === "post" ? "blog" : h.type] || "#22d3ee"}">${esc((h.type || "").slice(0, 4))}</span><span class="tx"><b>${esc(h.title || h.id)}</b><span class="sr-only">. </span><span>${esc(h.sub || h.type)}</span></span><small></small></button></li>`).join("")}` : ""}
       <li class="grp">Pages and tools</li>` + st.hits.map((h, i) => row(h, i, "")).join("");
   } else {
     list.innerHTML = st.hits.length ? st.hits.map((h, i) => row(h, i, q)).join("") : `<li class="empty">Nothing matches yet. Try a name like Hinton, a word like control, an employer, or a year like 2023.</li>`;
@@ -111,7 +161,14 @@ function paint(q) {
 function row(h, i, q) {
   const d = h.item;
   const title = d.type === "quote" ? `\u201c${d.title.length > 140 ? d.title.slice(0, 140) + "..." : d.title}\u201d` : d.title;
-  return `<li role="option" aria-selected="${i === st.sel}"><button class="res ${i === st.sel ? "sel" : ""}" type="button" data-i="${i}" style="--c:${TC[d.type]}">${iconFor(d)}<span class="tx"><b>${q && d.type !== "quote" ? hl(d.title, h.matches, "title") : esc(title)}</b><span>${q ? hl(d.sub, h.matches, "sub") : esc(d.sub || "")}</span></span><small>${esc(TL[d.type])}</small></button></li>`;
+  let tb = esc(title), sb = esc(d.sub || ""), why = "";
+  if (q) {
+    tb = mark(title, q) || (h.fuzzy ? esc(title) : hl(d.title, h.matches, "title"));
+    sb = mark(d.sub, q) || esc(d.sub || "");
+    if (h.tier === 5 && !mark(title, q) && !mark(d.sub, q)) { const sn = snippet(d.text, q); if (sn) why = `<em class="why">${mark(sn, q) || esc(sn)}</em>`; }
+    if (h.fuzzy) why = `<em class="why">Close spelling</em>`;
+  }
+  return `<li role="option" aria-selected="${i === st.sel}"><button class="res ${i === st.sel ? "sel" : ""}" type="button" data-i="${i}" style="--c:${TC[d.type]}">${iconFor(d)}<span class="tx"><b>${tb}</b><span class="sr-only">. </span><span>${sb}</span>${why}</span><span class="sr-only">. </span><small>${esc(TL[d.type])}</small></button></li>`;
 }
 
 function openItem(d) {

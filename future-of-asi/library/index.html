@@ -22,6 +22,7 @@
   <link rel="preload" href="fonts/mulish-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../shared/fonts.css">
   <link rel="stylesheet" href="../shared/threshold.css">
+  <link rel="stylesheet" href="../assets/css/r4.css">
   <link rel="stylesheet" href="fonts/fonts.css">
   <link rel="stylesheet" href="library.css">
   <link rel="stylesheet" href="reader.css">
@@ -65,10 +66,11 @@
         <div class="row" style="gap:8px">
           <label class="sr-only" for="sort">Sort</label>
           <select id="sort" class="select"><option value="year">Newest first</option><option value="old">Oldest first</option><option value="title">Title A to Z</option></select>
-          <button class="chip" type="button" id="freeOnly" aria-pressed="false">Free to read</button>
+          <button class="chip" type="button" id="freeOnly" data-f="full" aria-pressed="false" title="The whole text opens in the reader here">Full text here <span class="mono" id="nFull" style="opacity:.55"></span></button><button class="chip" type="button" id="freeAny" data-f="any" aria-pressed="false" title="Full text here, plus books the author or publisher gives away online">Free to read <span class="mono" id="nFree" style="opacity:.55"></span></button>
         </div>
       </div>
       <p class="count" id="count" aria-live="polite"></p>
+      <p class="lnote" id="lnote">Full text here means the whole book opens in this reader. Free to read adds books the author or publisher gives away on their own site. Every other book has a chapter by chapter guide in plain words, written for Threshold, plus links to libraries and shops.</p>
       <div class="shelfgrid" id="grid"></div>
       <div class="callout" style="margin-top:56px">
         <div><h3 style="margin:0 0 6px">About this library</h3><p class="muted" style="margin:0">Covers come from Open Library or the publisher. Chapter titles come from the published contents. The guides, ideas and questions are my own short summaries, not the authors' words. Full texts appear only when the licence allows it. See <a href="LICENSES.md">LICENSES.md</a>.</p></div>
@@ -83,7 +85,7 @@
   </div>
 
   <!-- Reader: built by reader/reader.js -->
-  <div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Reader" hidden></div>
+  <div class="reader" id="reader" role="dialog" aria-modal="true" aria-label="Reader" hidden inert></div>
 
   <noscript><div class="wrap section"><p class="lead">The library needs JavaScript. The catalogue is in <a href="data/books.json">data/books.json</a>.</p></div></noscript>
   <script type="module" src="library.js"></script>

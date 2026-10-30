@@ -30,7 +30,7 @@ export async function render(el) {
   const loop = D.loop || [], parts = D.parts || [], aut = D.autonomy || { levels: [] }, evs = D.evals || [], inc = D.incidents || [], vids = D.videos || [], metr = D.metr || { points: [] };
   el.innerHTML = `${hero({ img: "agents", eyebrow: "AI agents", title: `AI that <span class="serif gt">acts.</span>`, lead: "A chatbot answers. An agent does things: it runs code, browses, clicks and sends. Here is how agents work, how far they have come, where they have gone wrong, and a playground to try the guardrails yourself.", stats: [[loop.length, "steps in the loop"], [aut.levels.length, "autonomy levels"], [evs.length, "benchmarks explained"], [inc.length, "real incidents and tests"]] })}
   ${sec("loop", 1, "The loop", "Look, think, act, <span class='serif'>repeat.</span>", "Every agent runs some version of this loop until it decides it is done. Tap a step.",
-    `<div class="x-loop" data-m3="fade"><div class="x-ring" id="ring" aria-hidden="true">${loop.map((s, i) => { const a = (i / loop.length) * Math.PI * 2 - Math.PI / 2; return `<button type="button" class="x-ring-n" data-step="${i}" style="--x:${(50 + Math.cos(a) * 40).toFixed(2)}%;--y:${(50 + Math.sin(a) * 40).toFixed(2)}%" tabindex="-1">${i + 1}</button>`; }).join("")}<div class="x-ring-c"><span class="mono">agent</span></div><i class="x-ring-dot"></i></div>
+    `<div class="x-loop" data-m3="fade"><div class="x-ring" id="ring" aria-hidden="true">${loop.map((s, i) => { const a = (i / loop.length) * Math.PI * 2 - Math.PI / 2; return `<button type="button" class="x-ring-n" data-step="${i}" style="--x:${(50 + Math.cos(a) * 40).toFixed(2)}%;--y:${(50 + Math.sin(a) * 40).toFixed(2)}%" tabindex="-1" title="${esc(s.t)}">${i + 1}</button>`; }).join("")}<div class="x-ring-c"><span class="mono">agent</span><small class="x-ring-now" id="ringNow"></small></div><i class="x-ring-dot"></i></div>
       <ol class="x-loop-list">${loop.map((s, i) => `<li><button type="button" data-step="${i}"><span class="mono">${i + 1}</span><b>${esc(s.t)}</b><span>${esc(s.d)}</span></button></li>`).join("")}</ol></div>`)}
   ${sec("parts", 2, "Inside an agent", "Six <span class='serif'>parts.</span>", "Most agents are a language model plus a harness of tools, memory and rules around it.",
     `<div class="grid g3" data-m3-stagger="70">${parts.map((p, i) => `<article class="card card-glow m3-spot" data-m3="up"><span class="x-pn mono">${String(i + 1).padStart(2, "0")}</span><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p>${p.ref ? `<p style="margin-top:10px">${ext("https://arxiv.org/abs/" + p.ref, "arXiv " + p.ref)}</p>` : ""}</article>`).join("")}</div>`)}
@@ -60,9 +60,10 @@ export async function render(el) {
   // Loop: highlight steps, auto advance gently when visible (not in reduced motion)
   let cur = 0, timer = 0;
   const ring = $("#ring", el);
-  const setStep = (i) => { cur = i; $$("[data-step]", el).forEach((b) => b.classList.toggle("on", +b.dataset.step === i)); const a = (i / loop.length) * Math.PI * 2 - Math.PI / 2; ring.style.setProperty("--dx", (50 + Math.cos(a) * 40).toFixed(2) + "%"); ring.style.setProperty("--dy", (50 + Math.sin(a) * 40).toFixed(2) + "%"); };
+  let picked = false;
+  const setStep = (i) => { cur = i; const rn = $("#ringNow", el); if (rn && loop[i]) rn.textContent = `${i + 1} of ${loop.length}: ${loop[i].t}`; $$("[data-step]", el).forEach((b) => b.classList.toggle("on", +b.dataset.step === i)); const a = (i / loop.length) * Math.PI * 2 - Math.PI / 2; ring.style.setProperty("--dx", (50 + Math.cos(a) * 40).toFixed(2) + "%"); ring.style.setProperty("--dy", (50 + Math.sin(a) * 40).toFixed(2) + "%"); };
   setStep(0);
-  if (!RM()) { const io = new IntersectionObserver((es) => { clearInterval(timer); if (es[0].isIntersecting) timer = setInterval(() => setStep((cur + 1) % loop.length), 2200); }); io.observe(ring); B.add(() => { io.disconnect(); clearInterval(timer); }); }
+  if (!RM()) { const io = new IntersectionObserver((es) => { clearInterval(timer); if (es[0].isIntersecting && !picked) timer = setInterval(() => setStep((cur + 1) % loop.length), 2200); }); io.observe(ring); B.add(() => { io.disconnect(); clearInterval(timer); }); }
 
   // Autonomy ladder
   const lcard = $("#lcard", el), alv = $("#alv", el);
@@ -110,7 +111,7 @@ export async function render(el) {
   $("#prun", el).addEventListener("click", run);
   $("#preset", el).addEventListener("click", () => { P.run++; log.innerHTML = `<p class="muted">Press run.</p>`; score.innerHTML = ""; });
   el.addEventListener("click", (e) => {
-    const s = e.target.closest("[data-step]"); if (s) { clearInterval(timer); setStep(+s.dataset.step); return; }
+    const s = e.target.closest("[data-step]"); if (s) { picked = true; clearInterval(timer); setStep(+s.dataset.step); return; }
     const lv = e.target.closest("[data-lv]"); if (lv) { showLv(+lv.dataset.lv); return; }
     const tk = e.target.closest("[data-task]"); if (tk) { P.task = tk.dataset.task; $$("[data-task]", el).forEach((b) => b.setAttribute("aria-pressed", b === tk)); desc(); return; }
     const au = e.target.closest("[data-aut]"); if (au) { P.aut = au.dataset.aut; $$("[data-aut]", el).forEach((b) => b.setAttribute("aria-pressed", b === au)); }

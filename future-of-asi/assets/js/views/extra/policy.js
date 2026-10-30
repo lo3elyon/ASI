@@ -133,7 +133,7 @@ export async function render(el, params, query) {
     if (e.target.closest("#pqn")) { qi++; pick = null; paintQ(); return; }
     if (e.target.closest("#pqre")) { qi = 0; score = 0; pick = null; quizSet.splice(0, quizSet.length, ...shuffle(items.filter((i) => i.kind !== "Summit")).slice(0, 8)); paintQ(); return; }
     const kd = e.target.closest("[data-kind]"); if (kd) { F.kind = kd.dataset.kind; F.region = ""; paint(); toTracker(); return; }
-    const rg = e.target.closest("[data-reg]"); if (rg) { F.region = rg.dataset.reg; if (rg.classList.contains("x-region")) { F.kind = ""; F.q = ""; $("#polq", el).value = ""; $("#polx", el).hidden = true; } paint(); if (rg.classList.contains("x-region")) toTracker(); return; }
+    const rg = e.target.closest("[data-reg]"); if (rg) { F.region = rg.classList.contains("chip") && F.region === rg.dataset.reg ? "" : rg.dataset.reg; if (rg.classList.contains("x-region")) { F.kind = ""; F.q = ""; $("#polq", el).value = ""; $("#polx", el).hidden = true; } paint(); if (rg.classList.contains("x-region")) toTracker(); return; }
     const g = e.target.closest("[data-goto]"); if (g) { F.region = ""; F.kind = ""; F.q = ""; $("#polq", el).value = ""; $("#polx", el).hidden = true; paint(); const c = $("#p-" + g.dataset.goto, list); if (c) { c.scrollIntoView({ behavior: RM() ? "auto" : "smooth", block: "center" }); c.classList.add("x-flash"); setTimeout(() => c.classList.remove("x-flash"), 1600); } }
   });
   return () => B.run();

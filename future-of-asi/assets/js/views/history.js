@@ -40,7 +40,7 @@ const prettyId = (id) => String(id || "").split("/").pop().replace(/[-_]+/g, " "
 
 /* Turn a raw history entry into something a person can read */
 function resolve(x, D) {
-  const o = { t: x.t, type: x.type, kind: KIND[x.type] ? x.type : "page", attrs: "", href: "#/history", th: "", title: x.title || "", sub: x.sub || "", extra: "" };
+  const o = { t: x.t, type: x.type, kind: KIND[x.type] ? x.type : "page", attrs: "", href: "#/your-history", th: "", title: x.title || "", sub: x.sub || "", extra: "" };
   if (x.type === "video") {
     const v = D.V.get(x.id);
     o.title = (v && v.title) || x.title || "A video";
@@ -129,7 +129,7 @@ export async function render(el) {
     flush();
     $("#hl", el).innerHTML = out;
   }
-  $$("[data-k]", el).forEach((b) => b.addEventListener("click", () => { f = b.dataset.k; $$("[data-k]", el).forEach((x) => { x.classList.toggle("on", x === b); x.setAttribute("aria-pressed", String(x === b)); }); paint(); }));
+  $$("[data-k]", el).forEach((b) => b.addEventListener("click", () => { f = f === b.dataset.k ? "all" : b.dataset.k; $$("[data-k]", el).forEach((x) => { x.classList.toggle("on", x.dataset.k === f); x.setAttribute("aria-pressed", String(x.dataset.k === f)); }); paint(); }));
   let qt = 0;
   $("#hq", el).addEventListener("input", (e) => { clearTimeout(qt); qt = setTimeout(() => { q = e.target.value; paint(); }, 120); });
   $("#hx", el).addEventListener("click", () => { exportHistory(); toast("History exported as JSON."); });

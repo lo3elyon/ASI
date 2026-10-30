@@ -2,6 +2,7 @@
    videos in Indian languages, family talk cards in both languages and a glossary flashcard round. */
 import { X, people, hero, sec, band, tocBar, ext, pchip, bars, anim, bag, fmtD, $, $$, esc, ICON } from "./_kit.js";
 import { ytPoster, toast } from "../../util.js";
+import { copyBtn, shareBtn, ABS } from "../../core/share.js";
 
 const BN = [
   ["সহজ কথায়", "আজকের AI চ্যাট করতে পারে, কোড লিখতে পারে, এমনকি ঘণ্টার পর ঘণ্টা নিজে কাজও করতে পারে। বড় বড় AI গবেষণাগার বলছে, কয়েক বছরের মধ্যে এমন AI আসতে পারে যা প্রায় সব কাজে সেরা মানুষের চেয়েও ভালো। একে বলে অতিবুদ্ধিমত্তা (সুপারইন্টেলিজেন্স) বা ASI।"],
@@ -78,7 +79,8 @@ export async function render(el) {
   ${sec("flash", 7, "Practice", "Learn the <span class='serif'>words.</span>", "A quick flashcard round from the glossary. Pick the right translation.",
     `<div class="seg x-seg" role="group" aria-label="Language" style="margin-bottom:14px"><button type="button" data-fl="bn" aria-pressed="true">বাংলা</button><button type="button" data-fl="hi" aria-pressed="false">हिन्दी</button></div><div class="card x-flash-card" data-m3="up" id="flbox"></div>`)}
   ${sec("share", 8, "Spread it", "Explain it to <span class='serif'>one person.</span>", "",
-    `<div class="grid g3" data-m3-stagger="80">${[["Talk at home", "Read the Bengali or Hindi explainer above with your family. Ask what they think."], ["Post in your language", "Write three lines about one idea from the glossary on WhatsApp, X or LinkedIn."], ["Start a circle", "Five friends, one paper a week. The Start here path on the Papers page is a good first month."]].map(([t, d]) => `<div class="card card-glow" data-m3="up"><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}</div>`)}`;
+    `<div class="grid g3" data-m3-stagger="80">${[["Talk at home", "Read the Bengali or Hindi explainer above with your family. Ask what they think."], ["Post in your language", "Write three lines about one idea from the glossary on WhatsApp, X or LinkedIn."], ["Start a circle", "Five friends, one paper a week. The Start here path on the Papers page is a good first month."]].map(([t, d]) => `<div class="card card-glow" data-m3="up"><h3>${esc(t)}</h3><p>${esc(d)}</p></div>`).join("")}</div>
+    <div class="row x-spread" data-m3="up"><span class="muted">Ready to post:</span>${copyBtn(`AI নিরাপত্তা সহজ ভাষায় বুঝুন। বাংলা আর হিন্দিতে শব্দকোষ, ভিডিও আর ব্যাখ্যা:\n${ABS}#/bharat`, { label: "বাংলা পোস্ট কপি করুন", aria: "Copy a ready post in Bengali", msg: "Copied the Bengali post." })}${copyBtn(`AI सुरक्षा को आसान भाषा में समझिए। बांग्ला और हिन्दी में शब्दकोश, वीडियो और व्याख्या:\n${ABS}#/bharat`, { label: "हिन्दी पोस्ट कॉपी करें", aria: "Copy a ready post in Hindi", msg: "Copied the Hindi post." })}${copyBtn(`AI safety in plain words, with a Bengali and Hindi glossary, videos and explainers:\n${ABS}#/bharat`, { label: "Copy in English", aria: "Copy a ready post in English", msg: "Copied the English post." })}${shareBtn(`${ABS}#/bharat`, { label: "Share this page", aria: "Share the Indian languages corner" })}</div>`)}`;
   B.add(tocBar(el));
 
   const ex = $("#explainbox", el);
@@ -109,7 +111,7 @@ export async function render(el) {
     if (e.target.closest("#flre")) { newRound(); paintF(); return; }
     const fg = e.target.closest("[data-fl]"); if (fg) { fl = fg.dataset.fl; $$("[data-fl]", el).forEach((b) => b.setAttribute("aria-pressed", b === fg)); newRound(); paintF(); return; }
     const t = e.target.closest("[data-tab]"); if (t) { L.tab = t.dataset.tab; paintX(); return; }
-    const v = e.target.closest("[data-vl]"); if (v) { paintV(v.dataset.vl); return; }
+    const v = e.target.closest("[data-vl]"); if (v) { const on = v.getAttribute("aria-pressed") === "true" && v.dataset.vl; const l = on ? "" : v.dataset.vl; $$("[data-vl]", el).forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.vl === l))); paintV(l); return; }
     if (e.target.closest("#copyx")) { const src = L.tab === "bn" ? BN : HI; const txt = src.map(([h, p]) => `${h}\n${p}`).join("\n\n") + "\n\nhttps://lo3elyon.github.io/ASI/future-of-asi/#/bharat"; navigator.clipboard?.writeText(txt).then(() => toast(L.tab === "bn" ? "কপি হয়েছে।" : "कॉपी हो गया।"), () => toast("Copy did not work in this browser.")); }
   });
   return () => B.run();

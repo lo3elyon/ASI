@@ -14,8 +14,10 @@
 @media (min-width: 1380px) { .rail { display: flex; } }
 .rail a { display: flex; align-items: center; gap: 10px; color: var(--muted); font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.08em; padding: 4px 6px; border-radius: 8px; text-decoration: none; }
 .rail a i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--line-2); transition: all 0.4s var(--ease); flex: none; }
-.rail a span { opacity: 0; transform: translateX(-6px); transition: all 0.3s var(--ease); white-space: nowrap; background: var(--surface); padding: 2px 8px; border-radius: 6px; border: 1px solid var(--line); }
-.rail:hover a span, .rail a:focus-visible span { opacity: 1; transform: none; }
+.rail a { position: relative; width: 30px; }
+.rail a span { position: absolute; left: 26px; top: 50%; translate: 0 -50%; pointer-events: none; opacity: 0; transform: translateX(-6px); transition: all 0.3s var(--ease); white-space: nowrap; background: var(--bg, #07111f); color: var(--text); padding: 3px 9px; border-radius: 6px; border: 1px solid var(--line-2); box-shadow: 0 6px 20px rgba(0,0,0,.45); }
+:root[data-theme="light"] .rail a span { background: #fff; color: #0b1626; }
+.rail a:hover span, .rail a:focus-visible span { opacity: 1; transform: none; }
 .rail a.lit i { background: var(--c, var(--accent)); border-color: var(--c, var(--accent)); box-shadow: 0 0 10px var(--c, var(--accent)); }
 .rail a.on { color: var(--text); }
 .rail a.on i { transform: scale(1.5); }

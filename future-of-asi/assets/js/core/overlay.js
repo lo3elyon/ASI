@@ -5,6 +5,7 @@ import { $, $$, esc, researchers, videos, signatories, categories, photoManifest
 import { logView } from "./history.js";
 import { pauseScroll, resumeScroll, jumpTo } from "./motion.js";
 import { ui } from "./sound.js";
+import { shareBtn, copyBtn, quoteText, links, SHARE_ICON } from "./share.js";
 
 const root = () => document.getElementById("ovRoot");
 const S = { p: null, v: null, q: null, lockY: 0, locked: false, lastFocus: [] };
@@ -54,7 +55,7 @@ function ensureDom() {
   r.innerHTML = `
   <div class="ov ov-p" id="ovP" aria-hidden="true"><div class="scrim" data-ovclose="p"></div><div class="pane" role="dialog" aria-modal="true" aria-labelledby="pfName" data-lenis-prevent></div></div>
   <div class="ov ov-v" id="ovV" aria-hidden="true"><div class="scrim" data-ovclose="v"></div><div class="shell" role="dialog" aria-modal="true" aria-labelledby="ovVT">
-    <div class="bar"><b id="ovVT"></b><a class="btn sm ghost" id="ovVY" target="_blank" rel="noopener" style="color:#e6f0fa">YouTube ${ICON.ext}</a><button class="icon-btn" type="button" id="ovVW" aria-label="Wide mode">${ICON.wide}</button><button class="icon-btn" type="button" data-ovclose="v" id="ovVX" aria-label="Close video">${ICON.close}</button></div>
+    <div class="bar"><b id="ovVT"></b><a class="btn sm ghost" id="ovVY" target="_blank" rel="noopener" style="color:#e6f0fa">YouTube ${ICON.ext}</a><button class="icon-btn" type="button" id="ovVSh" aria-label="Copy a link to this video" data-share-url="">${SHARE_ICON}</button><button class="icon-btn" type="button" id="ovVW" aria-label="Wide mode">${ICON.wide}</button><button class="icon-btn" type="button" data-ovclose="v" id="ovVX" aria-label="Close video">${ICON.close}</button></div>
     <div class="stage"><div class="screen" id="ovVS"></div><aside class="side" id="ovVSide" data-lenis-prevent></aside></div></div></div>`;
   r.addEventListener("click", (e) => {
     const c = e.target.closest("[data-ovclose]");
@@ -147,7 +148,8 @@ async function renderPerson(id) {
       <h2 id="pfName">${esc(p.name)}</h2>
       <p class="muted" style="margin:0">${esc([p.role, p.org].filter(Boolean).join(", "))}</p>
       ${p.org || p.former_orgs.length ? `<div class="orgrow">${p.org ? orgChip(p.org) : ""}${p.former_orgs.filter((o) => o && o !== p.org).map((o) => orgChip(o).replace('<span class="orgchip">', '<span class="orgchip" style="opacity:.8" title="Former">')).join("")}</div>` : ""}
-      ${p.country || p.region ? `<p class="muted mono" style="margin:6px 0 0;font-size:12px;letter-spacing:.08em">${esc([p.country, p.region && p.region !== p.country ? p.region : ""].filter(Boolean).join(" · ").toUpperCase())}</p>` : ""}
+      ${p.country || p.region ? `<p class="muted mono" style="margin:6px 0 0;font-size:12px;letter-spacing:.08em">${esc([p.country, p.region && p.region !== p.country && !(p.region === "UK" && /united kingdom|^uk$/i.test(p.country || "")) && !(p.region === "India" && /india/i.test(p.country || "")) && !(p.region === "China" && /china/i.test(p.country || "")) ? p.region : ""].filter(Boolean).join(" · ").toUpperCase())}</p>` : ""}
+      <div class="r4-acts">${shareBtn(links.person(p.id), { label: "Share profile", aria: `Copy a link to ${p.name}'s profile`, title: p.name })}<a class="r4-share" href="#/compare?ids=${esc(p.id)}"><span>Compare with others</span></a></div>
     </div>
   </div>
   <div class="pf-body" style="--c:${c0}">
@@ -164,7 +166,7 @@ async function renderPerson(id) {
     ${p.background ? `<h3>Background</h3><p style="color:var(--text-2)">${esc(p.background)}</p>` : ""}
     ${careerRows.length ? `<h3>Career path</h3><div class="career"><ul>${careerRows.map((c) => `<li class="${p.left_lab && c.org && p.left_lab.org && c.org.includes(p.left_lab.org) && /left|depart/i.test(c.role || "") ? "left" : ""}"><span class="y">${esc(c.year || "")}</span><b>${esc(c.role || "")}</b><span>${esc(c.org || "")}</span></li>`).join("")}</ul></div>` : ""}
     ${p.focus.length ? `<h3>Focus</h3><div class="chips">${p.focus.map((f) => `<span class="chip">${esc(f)}</span>`).join("")}</div>` : ""}
-    ${p.quotes.length ? `<h3>In their words</h3>${p.quotes.map((q) => `<figure class="quote"><blockquote>&ldquo;${esc(q.text)}&rdquo;</blockquote><cite>${esc(q.source || "")}${q.date ? `, ${esc(q.date)}` : ""} ${q.url ? `<a href="${esc(q.url)}" target="_blank" rel="noopener">source ${ICON.ext}</a>` : ""}</cite></figure>`).join("")}` : ""}
+    ${p.quotes.length ? `<h3>In their words</h3>${p.quotes.map((q) => `<figure class="quote"><blockquote>&ldquo;${esc(q.text)}&rdquo;</blockquote><cite>${esc(q.source || "")}${q.date ? `, ${esc(q.date)}` : ""} ${q.url ? `<a href="${esc(q.url)}" target="_blank" rel="noopener">source ${ICON.ext}</a>` : ""}</cite>${copyBtn(quoteText(q, p), { label: "Copy quote", aria: "Copy this quote with its source", msg: "Quote copied with its source.", cls: "sm" })}</figure>`).join("")}` : ""}
     ${p.key_papers.length ? `<h3>Key papers</h3><div class="reflist">${p.key_papers.map((k) => refRow(k, "paper")).join("")}</div>` : ""}
     ${p.books.length ? `<h3>Books</h3><div class="reflist">${p.books.map((k) => refRow(k, "book")).join("")}</div>` : ""}
     ${p.courses.length ? `<h3>Courses and talks</h3><div class="reflist">${p.courses.map((k) => refRow(k, "course")).join("")}</div>` : ""}
@@ -192,6 +194,7 @@ async function renderVideo(id) {
   const v = byId[id] || { id, title: "Video", channel: "", people: [], category: "explainer", level: "", summary: "" };
   $("#ovVT").textContent = v.title;
   $("#ovVY").href = `https://www.youtube.com/watch?v=${encodeURIComponent(v.id)}`;
+  $("#ovVSh").dataset.shareUrl = links.video(v.id); $("#ovVSh").dataset.shareTitle = v.title;
   $("#ovVS").innerHTML = `<div class="yt"><button class="yt-poster" type="button" data-theater-play="${esc(v.id)}" aria-label="Play ${esc(v.title)}"><img src="${ytThumb(v.id, "hqdefault")}" alt="" width="480" height="360"><span class="pb"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="cap">Click to play. YouTube loads only now, in privacy enhanced mode.</span></button></div>`;
   $("#ovVS [data-theater-play]").onclick = (e) => {
     $("#ovVS .yt").innerHTML = `<iframe src="${ytEmbed(v.id)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;

@@ -6,7 +6,7 @@ const noop = () => {};
 const els = (root, sel) => { const out = root && root.matches && root.matches(sel) ? [root] : []; return out.concat(Array.from((root || document).querySelectorAll(sel))); };
 
 export const CAT = { cyan: "#22d3ee", teal: "#14b8a6", amber: "#f59e0b", red: "#ef4444", blue: "#3b82f6", lime: "#84cc16", orange: "#f97316", yellow: "#eab308", emerald: "#10b981", sky: "#0ea5e9" };
-const ROUTE_CAT = { "": "cyan", home: "cyan", futures: "teal", researchers: "cyan", voices: "amber", pacing: "emerald", orgs: "sky", timeline: "red", watch: "blue", blog: "amber", library: "yellow", learn: "lime", control: "teal", explosion: "orange", docs: "blue", tools: "red", prepare: "amber", history: "lime" };
+const ROUTE_CAT = { "": "cyan", home: "cyan", futures: "teal", researchers: "cyan", voices: "amber", pacing: "emerald", orgs: "sky", timeline: "red", watch: "blue", blog: "amber", library: "yellow", learn: "lime", control: "teal", explosion: "orange", docs: "blue", tools: "red", prepare: "amber", "your-history": "lime" };
 const GROUP_CAT = { start: "cyan", people: "sky", history: "red", watch: "blue", learn: "lime", act: "amber", you: "emerald" };
 let extraCats = {};
 export function registerCats(map) { extraCats = Object.assign({}, extraCats, map); }

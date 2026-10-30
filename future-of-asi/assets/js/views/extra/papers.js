@@ -1,4 +1,5 @@
 /* Papers: the 60 most important AI safety and alignment papers, verified with the arXiv API. Deep link: #/papers/<arxiv id> */
+import { shareBtn, links } from "../../core/share.js";
 import { X, people, hero, sec, band, tocBar, ext, pchip, bars, anim, bag, sheet, closeSheet, setRoute, replaceRoute, $, $$, esc, store, ICON } from "./_kit.js";
 
 const LV = { 1: "Beginner", 2: "Intermediate", 3: "Advanced" };
@@ -79,7 +80,7 @@ export async function render(el, params, query) {
       ${ppl.length ? `<h4>Authors with a profile here</h4><div class="x-pchips">${ppl.map((x) => pchip(x)).join("")}</div>` : ""}
       <h4>All ${p.n_authors} authors</h4><p class="x-allauth">${esc(p.authors.join(", "))}</p>
       ${inPaths.length ? `<h4>On these reading paths</h4><div class="chips">${inPaths.map((pt) => `<span class="chip">${esc(pt.title)}</span>`).join("")}</div>` : ""}
-      <div class="row" style="margin-top:20px"><a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Read on arXiv ${ICON.ext}</a><a class="btn" href="${esc(p.pdf)}" target="_blank" rel="noopener">PDF ${ICON.dl}</a><button class="btn ghost" type="button" data-read="${p.id}">${read.has(p.id) ? "Marked as read" : "Mark as read"}</button></div>`, close);
+      <div class="row" style="margin-top:20px"><a class="btn primary" href="${esc(p.url)}" target="_blank" rel="noopener">Read on arXiv ${ICON.ext}</a><a class="btn" href="${esc(p.pdf)}" target="_blank" rel="noopener">PDF ${ICON.dl}</a><button class="btn ghost" type="button" data-read="${p.id}">${read.has(p.id) ? "Marked as read" : "Mark as read"}</button>${shareBtn(links.paper(p.id), { label: "Share", aria: "Copy a link to this paper", title: p.title, cls: "lg" })}</div>`, close);
     if (el._xsheet && !el._xsheet._wired) { el._xsheet._wired = true; el._xsheet.addEventListener("click", onClick); }
     document.title = `${p.title} · Papers · Threshold`;
   }
@@ -92,7 +93,7 @@ export async function render(el, params, query) {
   $("#psort", el).addEventListener("change", (e) => { S.sort = e.target.value; paint(); });
   $("#punread", el).addEventListener("click", (e) => { S.unread = !S.unread; e.currentTarget.setAttribute("aria-pressed", S.unread); paint(); });
   const onClick = (e) => {
-    const tp = e.target.closest("[data-topic]"); if (tp) { S.topic = tp.dataset.topic; S.path = ""; paint(); return; }
+    const tp = e.target.closest("[data-topic]"); if (tp) { S.topic = S.topic === tp.dataset.topic ? "" : tp.dataset.topic; S.path = ""; paint(); return; }
     const pa = e.target.closest("[data-path]"); if (pa) { S.path = pa.dataset.path; S.topic = ""; S.year = ""; paint(); $("#shelf", el).scrollIntoView({ behavior: "smooth", block: "start" }); return; }
     const yr = e.target.closest("[data-year]"); if (yr) { S.year = S.year === yr.dataset.year ? "" : yr.dataset.year; S.path = ""; paint(); $("#shelf", el).scrollIntoView({ behavior: "smooth", block: "start" }); return; }
     if (e.target.closest("#clearf")) { S.path = ""; S.year = ""; paint(); return; }

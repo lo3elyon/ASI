@@ -259,9 +259,11 @@ function dragify(root, sel, onMove, onDrop, opts = {}) {
       el._lx = ev.clientX; el._ly = ev.clientY;
       target = onMove(el, ev.clientX, ev.clientY);
     };
-    const up = () => {
+    const up = (ev) => {
       removeEventListener("pointermove", mv); removeEventListener("pointerup", up); removeEventListener("pointercancel", up);
       if (!dragging) return;
+      /* Read the drop spot from the release point, so a fast drag that skipped the last move still lands */
+      if (ev && ev.type === "pointerup" && ev.clientX != null) { el._lx = ev.clientX; el._ly = ev.clientY; if (ghost) ghost.style.display = "none"; target = onMove(el, ev.clientX, ev.clientY); }
       if (ghost) ghost.remove(); el.style.opacity = ""; el.classList.remove("lift");
       onDrop(el, target);
       setTimeout(() => (el._dragged = false), 0);

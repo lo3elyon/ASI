@@ -32,6 +32,7 @@ export async function render(el, params, query) {
   el.innerHTML = `${pageHero({ img: "cover-researchers", eyebrow: "Researchers", title: "The people <span class='serif gt'>at the threshold.</span>", lead: `${ppl.length} people${Object.keys(regionCounts).length > 1 ? ` across ${Object.keys(regionCounts).length} regions` : ""}. Who left the labs and warned us, who works inside them, who writes the books, who signed Pacing the Frontier. Their words, their careers and their numbers, each with a source.` })}
   <section class="section tight"><div class="wrap">
     <div class="cat-tabs" role="tablist" aria-label="Categories">${tabs.map((t) => `<button type="button" role="tab" data-cat="${t.id}" style="--c:${t.c}" aria-selected="${S.cat === t.id}"><i></i>${esc(t.label)}<b>${t.id === "all" ? ppl.length : t.id === "region" ? Object.keys(regionCounts).length : counts[t.id]}</b></button>`).join("")}</div>
+    <p class="muted r4-overlap">Groups overlap. One person can sit in several, so the group numbers add up to more than ${ppl.length}.</p>
     <div class="cat-intro"><div><h2 id="catH" style="margin:6px 0 6px;font-size:clamp(26px,3.4vw,40px)"></h2><p id="catP"></p></div>
       <div class="view-sw" role="group" aria-label="View">${VIEWS.map(([k, l]) => `<button type="button" data-view="${k}" aria-pressed="${S.view === k}">${l}</button>`).join("")}</div></div>
     <div id="regionBox"></div>
@@ -40,8 +41,9 @@ export async function render(el, params, query) {
       <input class="input search" id="rq" type="search" placeholder="Search name, lab, idea, paper, country">
       <label class="sr-only" for="rs">Sort</label>
       <select class="input" id="rs"><option value="featured">Featured order</option><option value="cites">Most cited first</option><option value="pdoom">Highest p(doom) first</option><option value="pdoomlow">Lowest p(doom) first</option><option value="name">Name A to Z</option><option value="quotes">Most quotes</option></select>
-      <span class="count" id="rc"></span>
+      <span class="count" id="rc" aria-live="polite"></span>
     </div>
+    <p class="r4-fhint" id="rhint" hidden></p>
     <div id="out"></div>
   </div></section>
   <section class="section tight"><div class="wrap">
@@ -62,13 +64,13 @@ export async function render(el, params, query) {
   spectrum($("#spec", el), withPd);
   let stopStars = null;
 
-  function filtered() {
+  function filtered(cat = S.cat, region = S.region) {
     const q = S.q.toLowerCase().split(/\s+/).filter(Boolean);
-    let r = ppl.filter((p) => (S.cat === "all" || S.cat === "region" || p.categories.includes(S.cat)) && (!S.region || p.region === S.region) &&
+    let r = ppl.filter((p) => (cat === "all" || cat === "region" || p.categories.includes(cat)) && (!region || p.region === region) &&
       q.every((w) => `${p.name} ${p.org} ${p.role} ${p.warning} ${p.bio} ${p.country} ${p.region} ${p.focus.join(" ")} ${p.former_orgs.join(" ")} ${p.key_papers.map((k) => k.title).join(" ")} ${p.books.map((k) => k.title).join(" ")} ${p.quotes.map((x) => x.text).join(" ")}`.toLowerCase().includes(w)));
     const by = { cites: (a, b) => b.cites - a.cites, pdoom: (a, b) => (b.pd ?? -1) - (a.pd ?? -1), pdoomlow: (a, b) => (a.pd ?? 999) - (b.pd ?? 999), name: (a, b) => a.name.localeCompare(b.name), quotes: (a, b) => b.quotes.length - a.quotes.length }[S.sort];
     if (by) r = r.slice().sort(by);
-    else if (S.cat === "most-cited") r = r.slice().sort((a, b) => b.cites - a.cites);
+    else if (cat === "most-cited") r = r.slice().sort((a, b) => b.cites - a.cites);
     return r;
   }
   function header() {
@@ -87,8 +89,14 @@ export async function render(el, params, query) {
     header();
     const r = filtered();
     $("#rc", el).textContent = `${r.length} of ${ppl.length}`;
-    const out = $("#out", el);
-    if (!r.length) { out.innerHTML = `<div class="empty-state">Nobody matches that. Try fewer words or another tab.</div>`; return; }
+    const out = $("#out", el), hint = $("#rhint", el);
+    const tl = (tabs.find((x) => x.id === S.cat) || tabs[0]).label;
+    $("#rq", el).placeholder = S.cat === "all" && !S.region ? `Search all ${ppl.length}: name, lab, idea, paper, country` : `Search in ${S.region || tl}`;
+    const scoped = S.q.trim() && (S.cat !== "all" || S.region);
+    const nAll = scoped ? filtered("all", "").length : 0;
+    hint.hidden = true; hint.innerHTML = "";
+    if (!r.length) { out.innerHTML = `<div class="empty-state">Nobody in ${esc(S.region || tl)} matches "${esc(S.q.trim())}".${nAll ? ` ${nAll} ${nAll === 1 ? "person matches" : "people match"} across all groups. <button class="btn sm primary" type="button" data-searchall>Search all groups</button>` : " Try fewer words."}</div>`; return; }
+    if (nAll > r.length) { hint.hidden = false; hint.innerHTML = `${nAll - r.length} more ${nAll - r.length === 1 ? "person matches" : "people match"} "${esc(S.q.trim())}" outside ${esc(S.region || tl)}. <button class="chip" type="button" data-searchall>Search all groups</button>`; }
     if (S.view === "stars") { out.innerHTML = `<div class="constel" id="cst"><canvas></canvas><div class="tip"></div></div><p class="muted" style="font-size:13px;margin-top:10px">Each star is a person, grouped by their main category. Brighter stars have more quotes in the dataset. Hover or tap a star to open them.</p>`; stopStars = constellation($("#cst", el), r, catById); return; }
     if (S.view === "table") { out.innerHTML = `<div class="tscroll"><table class="ptable"><thead><tr><th>Name</th><th>Organisation</th><th>Region</th><th>p(doom)</th><th>Citations</th><th>Categories</th></tr></thead><tbody>${r.map((p) => `<tr><td><a href="#/researchers/${p.id}" data-person="${p.id}"><b>${esc(p.name)}</b></a><br><span class="muted" style="font-size:12.5px">${esc(p.role)}</span></td><td><span class="row" style="gap:8px;flex-wrap:nowrap">${p.org ? logoHtml(p.org, p.org, "ologo sm") : ""}<span>${esc(p.org)}</span></span></td><td>${esc(p.region || "")}</td><td class="mono">${esc(p.pdoom ? shortP(p.pdoom) : "")}</td><td class="mono">${esc(p.citations ? String(p.citations).split(/[ (]/)[0] : "")}</td><td>${p.categories.map((c) => catById[c]).filter(Boolean).slice(0, 3).map((c) => `<span class="tag" style="--c:${c.c}">${esc(c.label)}</span>`).join(" ")}</td></tr>`).join("")}</tbody></table></div>`; return; }
     out.innerHTML = `<div class="people" id="grid">${r.map(card).join("")}</div>`;
@@ -109,6 +117,7 @@ export async function render(el, params, query) {
     /* Scope every lookup to this page: body carries data-cat (the route colour), so an unscoped closest() matched it */
     const within = (sel) => { const n = e.target.closest(sel); return n && el.contains(n) && n !== el ? n : null; };
     const t = within(".cat-tabs [data-cat]"); if (t) { S.cat = t.dataset.cat; if (S.cat !== "region") S.region = ""; setQ(); paint(); return; }
+    if (within("[data-searchall]")) { S.cat = "all"; S.region = ""; setQ(); paint(); return; }
     const v = within("[data-view]"); if (v) { S.view = v.dataset.view; store.set("rview", S.view); setQ(); paint(); return; }
     const rg = within("[data-region]"); if (rg) { S.region = S.region === rg.dataset.region ? "" : rg.dataset.region; setQ(); paint(); }
   });

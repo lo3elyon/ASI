@@ -3,6 +3,8 @@
    theme settings, a glowing GitHub link and the "Save everything for offline" action.
    ctx "app": links are "#/x" and sub pages "explosion/". ctx "sub": links are "../#/x" and "../explosion/". */
 import { CAT, catFor, groupCat } from "./motion3.js";
+import { initKeys } from "./keys.js";
+import { initShare } from "./share.js";
 
 const P = (d) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 export const ICONS = {
@@ -34,6 +36,9 @@ export const ICONS = {
   download: P('<path d="M12 3v12M7 10l5 5 5-5M5 21h14"/>'),
   hub: P('<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/>'),
   log: P('<path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"/>'),
+  keys: P('<rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/>'),
+  compare: P('<rect x="3" y="4" width="7" height="16" rx="1.5"/><rect x="14" y="4" width="7" height="16" rx="1.5"/><path d="M6.5 8v3M17.5 8v6"/>'),
+  kit: P('<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 12h18M12 11v3"/>'),
   chev: '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>',
   search: P('<circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>'),
   sun: P('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
@@ -75,7 +80,7 @@ export const ITEMS = [
   { slug: "docs", title: "Docs", desc: "How Threshold works, glossary and FAQ.", icon: "doc", group: "learn" },
   { slug: "tools", title: "Tools", desc: "p(doom) calculator, timeline forecaster, risk dial.", icon: "wrench", group: "learn" },
   { slug: "prepare", title: "Prepare", desc: "Calm, practical steps without panic.", icon: "lifebuoy", group: "act" },
-  { slug: "history", title: "Your history", desc: "Everything you opened, on this device only.", icon: "history", group: "you" },
+  { slug: "your-history", mod: "history", title: "Your history", desc: "Everything you opened, on this device only.", icon: "history", group: "you" },
 ];
 const GROUP_IDS = GROUPS.map((g) => g.id);
 
@@ -101,13 +106,14 @@ export function hrefFor(it) {
 const colorOf = (it) => CAT[it.cat] || CAT[it.extra ? catFor("~" + it.slug, it.group) : catFor(it.slug, it.group)] || CAT.cyan;
 
 function itemHTML(it, cls) {
-  return `<a class="${cls}" href="${hrefFor(it)}" data-slug="${E(it.slug)}"${it.page ? ` data-page="${E(it.slug)}"` : ""} style="--c:${colorOf(it)}"><span class="mg-ic">${iconOf(it.icon)}</span><span class="mg-tx"><b>${E(it.title)}</b>${it.desc ? `<small>${E(it.desc)}</small>` : ""}</span></a>`;
+  return `<a class="${cls}" href="${hrefFor(it)}" data-slug="${E(it.slug)}"${it.page ? ` data-page="${E(it.slug)}"` : ""} style="--c:${colorOf(it)}"><span class="mg-ic">${iconOf(it.icon)}</span><span class="mg-tx"><b>${E(it.title)}</b>${it.desc ? `<span class="sr-only">. </span><small>${E(it.desc)}</small>` : ""}</span></a>`;
 }
 function youExtras(cls) {
   const up = CTX === "sub" ? "../" : "";
-  return `<button type="button" class="${cls} off-save" data-offline-save style="--c:${CAT.emerald}"><span class="mg-ic">${ICONS.download}</span><span class="mg-tx"><b>Save everything for offline</b><small class="off-msg">Keep the whole guide, books and photos on this device.</small><span class="off-bar" aria-hidden="true"><i></i></span></span></button>
-  <a class="${cls}" href="${up}../" style="--c:${CAT.sky}"><span class="mg-ic">${ICONS.hub}</span><span class="mg-tx"><b>Back to the ASI hub</b><small>All of my other ASI explainers.</small></span></a>
-  <a class="${cls}" href="${CHANGELOG_URL}" target="_blank" rel="noopener" style="--c:${CAT.yellow}"><span class="mg-ic">${ICONS.log}</span><span class="mg-tx"><b>Changelog</b><small>What changed in each version.</small></span></a>`;
+  return `<button type="button" class="${cls} off-save" data-offline-save style="--c:${CAT.emerald}"><span class="mg-ic">${ICONS.download}</span><span class="mg-tx"><b>Save everything for offline</b><span class="sr-only">. </span><small class="off-msg">Keep the whole guide, books and photos on this device.</small><span class="off-bar" aria-hidden="true"><i></i></span></span></button>
+  <a class="${cls}" href="${up}../" style="--c:${CAT.sky}"><span class="mg-ic">${ICONS.hub}</span><span class="mg-tx"><b>Back to the ASI hub</b><span class="sr-only">. </span><small>All of my other ASI explainers.</small></span></a>
+  <a class="${cls}" href="${CHANGELOG_URL}" target="_blank" rel="noopener" style="--c:${CAT.yellow}"><span class="mg-ic">${ICONS.log}</span><span class="mg-tx"><b>Changelog</b><span class="sr-only">. </span><small>What changed in each version.</small></span></a>
+  <button type="button" class="${cls} r4-keys-i" data-keys-help style="--c:${CAT.teal}"><span class="mg-ic">${ICONS.keys}</span><span class="mg-tx"><b>Keyboard shortcuts</b><span class="sr-only">. </span><small>Press ? on any page to see them all.</small></span></button>`;
 }
 
 export function headerHTML() {
@@ -116,7 +122,7 @@ export function headerHTML() {
   const groups = GROUPS.map((g) => {
     const its = items.filter((i) => i.group === g.id);
     if (!its.length && g.id !== "you") return "";
-    const wide = its.length + (g.id === "you" ? 3 : 0) > 3;
+    const wide = its.length + (g.id === "you" ? 4 : 0) > 3;
     return `<li class="mg" data-g="${g.id}" style="--c:${CAT[groupCat(g.id)]}">
       <button class="mg-t" type="button" aria-expanded="false" aria-controls="mg-${g.id}" id="mgt-${g.id}">${E(g.label)}${ICONS.chev}</button>
       <div class="mg-p${wide ? " wide" : ""}" id="mg-${g.id}" role="group" aria-labelledby="mgt-${g.id}">
@@ -187,6 +193,8 @@ export function mountHeader(o = {}) {
   hdr.innerHTML = header; dr.innerHTML = drawer;
   wire(hdr, dr);
   markActive(o.active || "");
+  initShare();
+  initKeys({ up: CTX === "sub" ? "../" : "", toast: o.toast, cycleTheme, toggleMotion });
   return hdr;
 }
 export function refreshMenu() {
@@ -270,6 +278,7 @@ function wireDrawer(dr) {
   dr.addEventListener("click", (e) => {
     if (e.target.closest("[data-close]")) { setDrawer(false); return; }
     if (e.target.closest("[data-offline-save]")) { e.preventDefault(); if (opts.onSaveOffline) opts.onSaveOffline(); return; }
+    if (e.target.closest("[data-keys-help]")) { setDrawer(false); return; }
     if (e.target.closest("[data-search]")) { setDrawer(false); if (opts.onSearch) opts.onSearch(); return; }
     const q = e.target.closest("[data-q]");
     if (q) { const k = q.dataset.q; if (k === "theme") cycleTheme(); if (k === "motion") toggleMotion(); if (k === "sound") opts.onSound && opts.onSound(); return; }

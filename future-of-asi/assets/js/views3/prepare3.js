@@ -53,6 +53,9 @@ export async function mount(el) {
   `;
   const last = el.lastElementChild; if (last && last.querySelector(".callout")) el.insertBefore(box, last); else el.appendChild(box);
 
+  /* Keep each group ring in step with the checklist as boxes are ticked */
+  const syncRings = () => $$(".p3-cat[data-pg]", box).forEach((b) => { const g = b.dataset.pg; const old = b.querySelector(".v3-ring"); if (!old) return; const tmp = document.createElement("div"); tmp.innerHTML = ring(pctG(g), GC[g][1], 56, `${GC[g][0]} progress, ${Math.round(pctG(g) * 100)} percent`); const nw = tmp.firstElementChild; nw.classList.add("v3in"); old.replaceWith(nw); });
+  document.addEventListener("change", (e) => { if (e.target.matches && e.target.matches("#acts input[type=checkbox]") && box.isConnected) setTimeout(syncRings, 0); });
   box.addEventListener("click", (e) => { const b = e.target.closest("[data-pg]"); if (!b) return; const f = document.querySelector(`#gf [data-g="${b.dataset.pg}"]`); if (f) { f.click(); document.getElementById("plan")?.scrollIntoView({ behavior: "smooth" }); } });
 
   /* drills */

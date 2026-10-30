@@ -59,7 +59,7 @@ export async function render(el) {
     meter();
   }
   function meter() { const n = items.filter((i) => done()[i.id]).length; $("#pc", el).textContent = `${n} of ${items.length} steps done`; $("#pm", el).style.width = `${(n / Math.max(1, items.length)) * 100}%`; }
-  $$("#gf [data-g]", el).forEach((b) => b.onclick = () => { g = b.dataset.g; $$("#gf [data-g]", el).forEach((x) => x.classList.toggle("on", x === b)); paint(); });
+  $$("#gf [data-g]", el).forEach((b) => b.onclick = () => { g = g === b.dataset.g ? "all" : b.dataset.g; $$("#gf [data-g]", el).forEach((x) => { x.classList.toggle("on", x.dataset.g === g); x.setAttribute("aria-pressed", String(x.dataset.g === g)); }); paint(); });
   $("#reset", el).onclick = () => { if (confirm("Clear your checklist progress?")) { store.set("prep", {}); paint(); } };
   paint();
   try { await mount3(el); } catch (e) { console.warn("prepare3", e); }

@@ -4,6 +4,43 @@ All notable changes to Threshold: The Future of ASI (`future-of-asi/` in [lo3ely
 
 Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
+## Round 4 (2026-10-30): compare, stats, starter kit, daily brief, shortcuts, share, full QA fixes
+
+Final. Pushed to lo3elyon/ASI on 2026-10-30.
+
+### Added
+
+- Compare researchers (`#/compare`, People menu). Pick two or three of the 218 people and read them side by side: group, lab, role, country, p(doom) with its source and a 0 to 100 bar, AGI timeline, their one line warning, the lab they left and why, past employers, focus, citations, books, key papers, two sourced quotes with a copy button, Pacing the Frontier signature and comment, and their videos. A Common ground panel shows shared labs, shared categories, their p(doom) on one line and videos where they appear together. Five starting sets (the 2018 Turing Award winners, three frontier lab leaders, very worried and very calm, three who left OpenAI, two AI control researchers). The choice lives in the link, `#/compare?ids=a,b,c`, and bad ids are dropped. Empty cells say "Not in the data" instead of guessing.
+- Threshold in charts (`#/stats`, Start menu). Charts counted live from the data files: researchers by group, region, country and current organisation, most common past employers, labs people left, every placeable p(doom) on one line with faces, the four bands, quotes by year, videos by year, category, level and channel, most featured people, Pacing signers named and anonymous and by employer, organisations by type and country, timeline events by decade and the 60 papers by year and topic. Every column chart has a Show the numbers table, and every card names the file and field it was counted from.
+- Starter kit (`#/starter`, Act menu). A printable kit built only from the guide's own data: a seven day first week plan, all eight paper reading paths, nine courses plus the guide's ten units, seven books, newsletters, podcasts, blogs, fellowships, career guides and sixteen glossary words. 107 tick boxes with progress saved on this device, per path progress, Copy as text (ticks included), Copy link, Clear ticks and Print or save as PDF. The print stylesheet gives clean black on white pages with every outside link written out and no header, menu or buttons.
+- Today's brief on Home, right under Today's picks: a paper of the day, an idea of the day from the concepts map and a person of the day, picked by date so everyone sees the same set. Copy today's brief puts the quote, video, book, paper, idea and person on the clipboard with links.
+- Keyboard shortcuts. Press ? on any page, including the explosion and library pages, for the full list. g then a letter jumps to twelve pages (h home, r researchers, c compare, v voices, w watch, p papers, l learn, t timeline, o orgs, s charts, k starter kit, y history). Shift T switches theme, Shift M turns motion on or off, Shift L copies a link to what is open. Nothing fires while you type. The sheet traps focus, closes with Escape and gives focus back. Also in the You menu and the phone drawer.
+- Share and copy buttons. Person profiles get Share profile (copies the crawlable `r/<id>/` link) and Compare with others. Every quote in a profile, on the Voices wall and in Compare gets Copy quote, which copies the exact words, the name, the source link and the profile link. The video theater, the paper drawer, Compare, Charts, the Starter kit and the daily brief cards have Share. Phones use the system share sheet; elsewhere the link is copied and a toast says so. One helper, `assets/js/core/share.js`.
+- Three new hero images (compare, stats, starter) with no people or text, and a heading and body font pair for each new route in `route-fonts.json` (30 routes now).
+- Crawlable snapshot pages for the three new routes with real content (the p(doom) list, chart counts, the kit's links), their own Open Graph images and sitemap entries.
+
+### Changed
+
+- The offline list now includes the new routes, scripts, styles and images.
+- `#/history` now opens the Warnings timeline, the story of AI warnings. Your personal history moved to `#/your-history` (You menu, shortcut g then y), and the nav, shortcuts, metadata, motion colours, route fonts and snapshot pages follow it.
+- Ctrl K search ranks exact titles first, then names, pages and organisations that hold the query as a whole word, then titles that start with it. Matched words are highlighted and fuzzy guesses are labelled Close spelling.
+- Save everything for offline opens a progress panel with files saved, size, and a final check that counts what is really in the cache.
+
+### Fixed
+
+- Explosion: the chapter rail shows its labels only on hover or focus, on a solid background, so it no longer covers chapter 01. The chapter 01 heading was fixed.
+- Library: the hero counts 11 full texts and 17 more free online as two separate figures, chips return to All when pressed again, a note explains when the reader opens a chapter guide rather than the book, the closed reader is inert, and the contents button gives feedback.
+- Accessible names: hidden separators inside links so screen readers do not run words together.
+- Voices: the counter reads N of 135 with a note on why the wall below holds 152, and the stage pauses on hover.
+- Researchers: a search with matches outside the current group says how many and offers Search all groups.
+- Blog: the lead post hides while a topic is chosen, and there is an empty state.
+- Chips on many pages (Blog, Policy, Bharat, Library and others) return to All when the active chip is pressed again. Timeline and Watch get Clear filters buttons.
+- Tools: forecaster subtitles wrap to two lines on word breaks.
+- Learn: sort it drops the item where you let go, even on a fast drag, shows tap targets after a tap, and the prompt says you can drag or tap.
+- Agents loop gets a centre label. Control level cards wrap at any width, down to 320 px.
+- Pacing merges duplicate organisation names and shows chip counts. Orgs gets a Close button and search that ignores spaces. Profiles no longer repeat the country. The Prepare breathing orb stays inside the window. Arena explains its scoring. Home section gap narrowed. Bharat posts get share buttons.
+- Hub: the AI to AGI to ASI stepper disables Back before the first step and Next at the last, and the hub card says the 1,386 figure is the Pacing the Frontier letter's total signers.
+
 ## Round 3.2 (2026-10-30): polish, careers, logos, banner
 
 - Hub banner and social image redrawn with the real counts: 218 researchers, 152 sourced quotes, 1,375 verified videos, 1,386 signers.

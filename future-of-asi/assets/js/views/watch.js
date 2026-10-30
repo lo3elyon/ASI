@@ -96,6 +96,7 @@ export async function render(el, params) {
       <select class="input" id="wg" aria-label="Language, detected from the title"><option value="">Any language</option>${langs.map((l) => `<option>${l}</option>`).join("")}</select>
       <select class="input" id="ws" aria-label="Sort"><option value="new">Newest</option><option value="old">Oldest</option><option value="long">Longest</option><option value="short">Shortest</option><option value="az">Title A to Z</option><option value="ch">Channel</option></select>
       <button class="chip" id="wu" type="button" aria-pressed="false">Unwatched only</button>
+      <button class="chip" id="wclr" type="button" hidden>Clear all filters</button>
       <span class="count" id="wc" aria-live="polite"></span>
     </div>
     <div class="chips cat-scroll p3-catchips" role="group" aria-label="Category"><button class="chip on" type="button" data-cf="all">All</button>${cats.map((k) => `<button class="chip" type="button" data-cf="${esc(k)}" style="--c:${catC(k)}"><i class="dot-cat" style="background:${catC(k)}"></i>${esc(catL(k))}</button>`).join("")}</div>
@@ -123,12 +124,17 @@ export async function render(el, params) {
     return r.sort(k);
   }
   let cur = [];
+  /* Names of the filters that are on, so an empty result can say what is hiding videos */
+  const activeF = () => [S.cat !== "all" && catL(S.cat), S.person && (pById[S.person]?.name || S.person), S.level && S.level, S.len && $("#wn", el)?.selectedOptions[0]?.textContent, S.year && S.year, S.lang && $("#wg", el)?.selectedOptions[0]?.textContent, S.unwatched && "unwatched only"].filter(Boolean);
+  const clearF = () => { Object.assign(S, { cat: "all", person: "", level: "", len: "", year: "", lang: "", unwatched: false, n: PAGE }); ["#wp", "#wl", "#wn", "#wy", "#wg"].forEach((k) => { const f = $(k, el); if (f) f.value = ""; }); const u = $("#wu", el); if (u) { u.classList.remove("on"); u.setAttribute("aria-pressed", "false"); } $$("[data-cf]", el).forEach((x) => x.classList.toggle("on", x.dataset.cf === "all")); $$(".p3-wcat", el).forEach((x) => x.classList.remove("on")); paint(); };
+  el.addEventListener("click", (e) => { if (e.target.closest("[data-wclear], #wclr")) clearF(); });
   function paint(append) {
     if (!append) cur = filtered();
     const w = watched();
     $("#wc", el).textContent = `${cur.length.toLocaleString("en-US")} videos`;
     if (append) { const frag = document.createElement("div"); frag.innerHTML = cur.slice(append, S.n).map((v) => card(v, w)).join(""); const nodes = [...frag.children]; nodes.forEach((n) => { n.classList.add("p3-new"); grid.appendChild(n); }); }
-    else grid.innerHTML = cur.length ? cur.slice(0, S.n).map((v) => card(v, w)).join("") : `<div class="empty-state" style="grid-column:1/-1">No videos match. Clear a filter or two.</div>`;
+    else grid.innerHTML = cur.length ? cur.slice(0, S.n).map((v) => card(v, w)).join("") : `<div class="empty-state" style="grid-column:1/-1">No videos match${S.q.trim() ? ` "${esc(S.q.trim())}"` : ""}${activeF().length ? ` with ${esc(activeF().join(", "))}` : ""}.${activeF().length ? ` <button class="btn sm primary" type="button" data-wclear>${S.q.trim() ? "Keep the search, clear the filters" : "Clear all filters"}</button>` : ""}</div>`;
+    const cb = $("#wclr", el); if (cb) cb.hidden = !activeF().length;
     const m = $("#more", el); m.hidden = cur.length <= S.n; m.textContent = `Show more (${Math.max(0, cur.length - S.n).toLocaleString("en-US")} left)`;
     if (window.ScrollTrigger) requestAnimationFrame(() => window.ScrollTrigger.refresh());
   }
@@ -142,7 +148,7 @@ export async function render(el, params) {
   [["#wp", "person"], ["#wl", "level"], ["#wn", "len"], ["#wy", "year"], ["#wg", "lang"], ["#ws", "sort"]].forEach(([s, k]) => $(s, el).addEventListener("change", (e) => set(k, e.target.value)));
   $("#wu", el).addEventListener("click", (e) => { S.unwatched = !S.unwatched; e.currentTarget.classList.toggle("on", S.unwatched); e.currentTarget.setAttribute("aria-pressed", S.unwatched); set("unwatched", S.unwatched); });
   const setCat = (k, scroll) => { $$("[data-cf]", el).forEach((x) => x.classList.toggle("on", x.dataset.cf === k)); $$(".p3-wcat", el).forEach((x) => x.classList.toggle("on", x.dataset.wcat === k)); set("cat", k); if (scroll) scrollToEl($("#browse", el), { block: "start" }); };
-  $$("[data-cf]", el).forEach((b) => b.addEventListener("click", () => setCat(b.dataset.cf)));
+  $$("[data-cf]", el).forEach((b) => b.addEventListener("click", () => setCat(S.cat === b.dataset.cf ? "all" : b.dataset.cf)));
   $$(".p3-wcat", el).forEach((b) => b.addEventListener("click", () => setCat(b.dataset.wcat, true)));
   $("#feat", el).addEventListener("click", (e) => { const b = e.target.closest("[data-fperson]"); if (!b) return; $("#wp", el).value = b.dataset.fperson; set("person", b.dataset.fperson); scrollToEl($("#browse", el), { block: "start" }); });
 
@@ -152,7 +158,7 @@ export async function render(el, params) {
     const played = new Set(store.get("hist2", []).filter((x) => x.type === "video" && x.played).map((x) => x.id));
     const ago = (t) => { const d = Math.round((Date.now() - t) / 864e5); return d <= 0 ? "today" : d === 1 ? "yesterday" : `${d} days ago`; };
     $("#mine", el).innerHTML = `
-      <div class="p3-rowh"><div><div class="eyebrow">Continue watching</div><h3>${hv.length ? "Pick up where you left off" : "Nothing yet"}</h3></div>${hv.length ? `<a class="btn sm ghost" href="#/history">Full history</a>` : ""}</div>
+      <div class="p3-rowh"><div><div class="eyebrow">Continue watching</div><h3>${hv.length ? "Pick up where you left off" : "Nothing yet"}</h3></div>${hv.length ? `<a class="btn sm ghost" href="#/your-history">Full history</a>` : ""}</div>
       ${hv.length ? `<div class="p3-shelf p3-cont" id="contShelf">${hv.map((v) => { const t = h.find((x) => x.id === v.id).t; return `<div class="p3-cw">${card(v, w)}<span class="p3-cwm">${played.has(v.id) ? "Played" : "Opened"} ${ago(t)}</span></div>`; }).join("")}</div>` : `<p class="muted">Videos you open will show up here, stored only in your browser.</p>`}
       <div class="p3-rowh" style="margin-top:26px"><div><div class="eyebrow">Watch later</div><h3>${lv.length ? `${lv.length} saved` : "Save videos for later"}</h3></div>${lv.length ? `<div class="row"><button class="btn sm p3-rip" type="button" id="laterQ">Queue all</button><button class="btn sm ghost" type="button" id="laterClr">Clear</button></div>` : ""}</div>
       ${lv.length ? `<div class="p3-shelf" id="laterShelf">${lv.map((v) => card(v, w)).join("")}</div>` : `<p class="muted">Tap the clock on any video to keep it here.</p>`}`;
@@ -190,7 +196,7 @@ export async function render(el, params) {
   function playMini(id) {
     const v = byId[id]; if (!v) return; miniId = id;
     mini.hidden = false; mini.classList.add("on");
-    mini.innerHTML = `<div class="p3-mini-bar"><b>${esc(v.title)}</b><button class="icon-btn sm" type="button" data-mexp aria-label="Open in the theater">${ICON.wide}</button><button class="icon-btn sm" type="button" data-mnext aria-label="Next in queue" ${queue().filter((x) => x !== id).length ? "" : "disabled"}>${chev(1)}</button><button class="icon-btn sm" type="button" data-mclose aria-label="Close mini player">${ICON.close}</button></div><div class="p3-mini-scr"><iframe src="${ytEmbed(v.id)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
+    mini.innerHTML = `<div class="p3-mini-bar"><b>${esc(v.title)}</b><button class="icon-btn sm" type="button" data-mexp aria-label="Open in the theater">${ICON.wide}</button><button class="icon-btn sm" type="button" data-mnext ${queue().filter((x) => x !== id).length ? `aria-label="Next in queue" title="Next in queue"` : `aria-label="Next in queue. The queue is empty" title="Nothing else in the queue yet. Add videos with Add to queue." disabled`}>${chev(1)}</button><button class="icon-btn sm" type="button" data-mclose aria-label="Close mini player">${ICON.close}</button></div><div class="p3-mini-scr"><iframe src="${ytEmbed(v.id)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
     logView("video", v.id, v.title, { sub: v.channel, played: true });
     store.set("p3queue", queue().filter((x) => x !== id)); qpaint(); refreshActs();
   }

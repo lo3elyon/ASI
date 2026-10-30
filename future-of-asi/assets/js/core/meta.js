@@ -19,7 +19,10 @@ export const META = {
   docs: { t: "Docs: how Threshold works, data schemas and glossary", d: "Documentation, data schemas, accessibility notes, a glossary and FAQ for Threshold.", img: OG },
   tools: { t: "Tools: p(doom) calculator, AGI timeline forecaster and risk dial", d: "Three small instruments that make your own assumptions about AI risk and timelines visible.", img: COVER("tools") },
   prepare: { t: "Prepare: calm, practical steps for AI catastrophe risk", d: "The real risks of advanced AI, written without panic, with the safeguards on the table and what you can do.", img: COVER("prepare") },
-  history: { t: "Your history", d: "Everything you opened in Threshold, newest first. It lives only in this browser.", img: COVER("history") },
+  compare: { t: "Compare researchers", d: "Pick two or three AI researchers and see their roles, labs, p(doom), timelines, warnings and sourced quotes side by side.", img: BASE_URL + "assets/img/extra/compare.jpg" },
+  stats: { t: "Threshold in charts", d: "Charts counted live from the data: researchers by group, region and lab, quotes and videos by year, signers by employer, organisations and papers.", img: BASE_URL + "assets/img/extra/stats.jpg" },
+  starter: { t: "Starter kit", d: "A printable AI safety starter kit: a first week plan, reading paths, courses, books, newsletters and key words, with progress saved on this device.", img: BASE_URL + "assets/img/extra/starter.jpg" },
+  "your-history": { t: "Your history", d: "Everything you opened in Threshold, newest first. It lives only in this browser.", img: COVER("history") },
 };
 
 const setMeta = (sel, attr, val) => { let m = document.head.querySelector(sel); if (!m) { m = document.createElement("meta"); const [k, v] = sel.replace(/^meta\[|\]$/g, "").split("="); m.setAttribute(k, v.replace(/"/g, "")); document.head.appendChild(m); } m.setAttribute(attr, val); };

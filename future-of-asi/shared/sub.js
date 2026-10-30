@@ -66,7 +66,7 @@ export function footer(extraNote = "") {
       <p class="motto">Start big, fix later, keep shipping.</p></div>
     <div><h5>Deep dives</h5><a href="../explosion/">Intelligence Explosion</a><a href="../library/">Book Library</a><a href="../#/futures">Futures</a><a href="../#/control">AI Control</a></div>
     <div><h5>Threshold</h5><a href="../#/researchers">Researchers</a><a href="../#/timeline">Timeline</a><a href="../#/watch">Watch</a><a href="../#/learn">Alignment 101</a></div>
-    <div><h5>More</h5><a href="../#/blog">Blog</a><a href="../#/docs">Docs</a><a href="../#/history">Your history</a><a href="https://github.com/lo3elyon/ASI/blob/main/future-of-asi/CHANGELOG.md" rel="noopener">Changelog</a><a href="../../">ASI hub</a><a href="https://github.com/lo3elyon/ASI/tree/main/future-of-asi" rel="noopener">GitHub</a></div>
+    <div><h5>More</h5><a href="../#/blog">Blog</a><a href="../#/docs">Docs</a><a href="../#/your-history">Your history</a><a href="https://github.com/lo3elyon/ASI/blob/main/future-of-asi/CHANGELOG.md" rel="noopener">Changelog</a><a href="../../">ASI hub</a><a href="https://github.com/lo3elyon/ASI/tree/main/future-of-asi" rel="noopener">GitHub</a></div>
   </div><div class="legal"><span>Made by Aniruddha Adak, built with Hark. Open source on GitHub.</span><span>${extraNote || "Quotes belong to their speakers. Videos play from YouTube in privacy enhanced mode, only when you press play."}</span></div></div>`;
   document.body.appendChild(f);
   const t = document.createElement("div"); t.className = "toast"; t.id = "toast"; t.setAttribute("role", "status"); t.setAttribute("aria-live", "polite");
