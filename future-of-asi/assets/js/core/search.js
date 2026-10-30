@@ -121,7 +121,8 @@ async function run() {
   await build(window.__ROUTES || {});
   const q = st.q.trim();
   let res;
-  if (q) res = rank(q, fuse.search(q, { limit: 600 }));
+  /* Fuzzy matching on a very long query is slow and means nothing, so Fuse gets the first 48 characters and ranking checks the rest */
+  if (q) res = rank(q, fuse.search(q.length > 48 ? q.slice(0, 48) : q, { limit: 600 }));
   else res = docs.filter((d) => st.type === "all" ? d.type === "page" : d.type === st.type).slice(0, 200).map((item) => ({ item, matches: [] }));
   const counts = {};
   res.forEach((r) => (counts[r.item.type] = (counts[r.item.type] || 0) + 1));
@@ -174,31 +175,63 @@ function row(h, i, q) {
 function openItem(d) {
   const q = st.q.trim();
   if (q) { const rec = store.get("recentSearch", []).filter((x) => x.toLowerCase() !== q.toLowerCase()); rec.unshift(q); store.set("recentSearch", rec.slice(0, 8)); }
-  closePal(true);
-  if ((d.type === "person" || d.type === "quote") && d.id) return openPerson(d.id);
-  if (d.type === "signer") return d.id ? openPerson(d.id) : (location.hash = `#/pacing?q=${encodeURIComponent(d.title)}`);
-  if (d.type === "video") return openVideo(d.vid);
-  if (d.type === "paper") { if (d.url) window.open(d.url, "_blank", "noopener"); else if (d.id) openPerson(d.id); return; }
-  if (d.href) { if (d.href.startsWith("#")) location.hash = d.href; else location.href = d.href; }
+  /* A new tab opens straight from the click, so pop-up blockers allow it */
+  if (d.type === "paper" && d.url) { window.open(d.url, "_blank", "noopener"); closePal(true); return; }
+  closeThen(() => {
+    if ((d.type === "person" || d.type === "quote") && d.id) return openPerson(d.id);
+    if (d.type === "signer") return d.id ? openPerson(d.id) : (location.hash = `#/pacing?q=${encodeURIComponent(d.title)}`);
+    if (d.type === "video") return openVideo(d.vid);
+    if (d.type === "paper") { if (d.id) openPerson(d.id); return; }
+    if (d.href) { if (d.href.startsWith("#")) location.hash = d.href; else location.href = d.href; }
+  });
 }
 
-export function openPal() { pal.classList.add("open"); pal.setAttribute("aria-hidden", "false"); inp.value = st.q; st.sel = 0; run(); setTimeout(() => { inp.focus(); inp.select(); }, 20); ui("open"); }
-export function closePal(silent) { if (!pal.classList.contains("open")) return; pal.classList.remove("open"); pal.setAttribute("aria-hidden", "true"); if (!silent) ui("close"); }
+let palFrom = null, palAfter = null;
+/* Back history (Round 4.2): opening the palette pushes one entry tagged thrPal, so the browser Back button closes it.
+   X, Esc and Ctrl K call history.back() when that entry is ours, so no dead entry is left behind. Picking a result
+   steps back first and then opens it, so Back from the result returns to the page, not to an empty entry. */
+const palEntry = () => !!(history.state && history.state.thrPal);
+function showPal() { if (!pal.classList.contains("open")) palFrom = document.activeElement; pal.classList.add("open"); pal.setAttribute("aria-hidden", "false"); inp.value = st.q; st.sel = 0; run(); setTimeout(() => { inp.focus(); inp.select(); }, 20); }
+function hidePal(silent) { if (!pal.classList.contains("open")) return; pal.classList.remove("open"); pal.setAttribute("aria-hidden", "true"); if (!silent) { ui("close"); if (palFrom && palFrom.focus && document.contains(palFrom) && palFrom !== document.body) palFrom.focus({ preventScroll: true }); } palFrom = null; }
+export function openPal(opts) {
+  if (pal.classList.contains("open")) return;
+  /* Arriving with ?search (the Search button on explosion/ and library/) opens without an entry, so one Back returns to that page */
+  if (!palEntry() && !(opts && opts.history === false)) { try { history.pushState({ ...(history.state || {}), thrPal: 1 }, "", location.href); } catch (e) {} }
+  showPal(); ui("open");
+}
+let palSilent = false;
+export function closePal(silent) {
+  if (!pal.classList.contains("open")) return;
+  if (palEntry()) { palSilent = !!silent; history.back(); return; }
+  hidePal(silent);
+}
+/* Close, then run fn once the palette entry is gone (or at once when there is no entry) */
+function closeThen(fn) {
+  if (pal.classList.contains("open") && palEntry()) { palAfter = fn; palSilent = true; history.back(); setTimeout(() => { if (palAfter === fn) { palAfter = null; hidePal(true); fn(); } }, 400); return; }
+  hidePal(true); fn();
+}
+function onPalPop() {
+  const open = pal.classList.contains("open");
+  if (!palEntry() && open) { hidePal(palSilent); palSilent = false; }
+  else if (palEntry() && !open && !palAfter) showPal();
+  if (palAfter && !palEntry()) { const f = palAfter; palAfter = null; f(); }
+}
 
 export function initSearch(routes) {
   window.__ROUTES = routes;
   pal = $("#palette"); inp = $("#palInput"); list = $("#palList"); tabs = $("#palTabs"); facets = $("#palFacets"); count = $("#palCount");
+  window.addEventListener("popstate", onPalPop);
   $("#openPalette").addEventListener("click", openPal);
   $("#tabSearch")?.addEventListener("click", openPal);
   let t;
-  inp.addEventListener("input", () => { st.q = inp.value; st.sel = 0; st.facet = ""; clearTimeout(t); t = setTimeout(run, 70); });
+  inp.addEventListener("input", () => { st.q = inp.value.slice(0, 200); st.sel = 0; st.facet = ""; clearTimeout(t); t = setTimeout(run, st.q.length > 40 ? 160 : 70); });
   pal.addEventListener("click", (e) => {
     if (e.target.closest("[data-close]")) return closePal();
     const tb = e.target.closest("[data-t]"); if (tb) { st.type = tb.dataset.t; st.facet = ""; st.sel = 0; run(); inp.focus(); return; }
     const f = e.target.closest("[data-f]"); if (f) { st.facet = st.facet === f.dataset.f ? "" : f.dataset.f; st.sel = 0; run(); return; }
     const r = e.target.closest("[data-r]"); if (r) { inp.value = st.q = r.dataset.r; run(); inp.focus(); return; }
     if (e.target.closest("[data-clr-r]")) { store.set("recentSearch", []); run(); return; }
-    const hh = e.target.closest("[data-h]"); if (hh) { const [ty, id] = hh.dataset.h.split("|"); closePal(true); if (ty === "person") openPerson(id); else if (ty === "video") openVideo(id); else if (ty === "post") location.hash = `#/blog/${id}`; else if (ty === "lesson") location.hash = `#/learn/${id}`; return; }
+    const hh = e.target.closest("[data-h]"); if (hh) { const [ty, id] = hh.dataset.h.split("|"); closeThen(() => { if (ty === "person") openPerson(id); else if (ty === "video") openVideo(id); else if (ty === "post") location.hash = `#/blog/${id}`; else if (ty === "lesson") location.hash = `#/learn/${id}`; }); return; }
     const it = e.target.closest("[data-i]"); if (it) openItem(st.hits[+it.dataset.i].item);
   });
   inp.addEventListener("keydown", (e) => {

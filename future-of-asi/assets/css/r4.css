@@ -330,3 +330,16 @@ mark.pm { background: color-mix(in srgb, var(--cat-amber, #f59e0b) 30%, transpar
 @media (max-width: 600px) { .breath { right: 40px; bottom: calc(40px + var(--tabbar-h, 0px)); width: 70px; height: 70px; } }
 /* Charts: year labels turn sideways on the narrowest phones so 2016 to 2025 never clip */
 @media (max-width: 400px) { .r4s-cols .x { font-size: 9.5px; writing-mode: vertical-rl; transform: rotate(180deg); justify-self: center; height: 34px; overflow: visible; } }
+
+/* Round 4.2: light theme text contrast. Accent coloured small text (eyebrows, section numbers, tags) is mixed
+   with black so it reads at 4.5:1 on the light surfaces. :where keeps this weaker than any specific rule. */
+:where(:root[data-theme="light"]) .eyebrow { color: color-mix(in srgb, var(--cat, var(--accent)) 55%, #000); }
+:where(:root[data-theme="light"]) .x-num { color: color-mix(in srgb, var(--cat, var(--accent)) 55%, #000); }
+:root[data-theme="light"] .tag { color: color-mix(in srgb, var(--c, var(--accent)) 55%, #000); }
+
+/* Round 4.2: in the light theme the category colours are the darker shade of the same hue, so text in them passes 4.5:1 */
+:root[data-theme="light"] { --cat-cyan: #0e7490; --cat-teal: #0f766e; --cat-amber: #b45309; --cat-red: #b91c1c; --cat-blue: #1d4ed8; --cat-lime: #4d7c0f; --cat-orange: #c2410c; --cat-yellow: #a16207; --cat-emerald: #047857; --cat-sky: #0369a1; }
+:root[data-theme="light"] .v3-word { color: color-mix(in srgb, var(--c) 55%, #000); }
+:root[data-theme="light"] .pc3-ph.ini { color: color-mix(in srgb, var(--cat) 70%, #000); }
+/* Round 4.2: the organisation sheet starts under the sticky header, so its close button is never covered */
+.p3-sheet { top: var(--nav-h, 64px); }

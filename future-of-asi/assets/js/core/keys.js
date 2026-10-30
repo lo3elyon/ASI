@@ -49,7 +49,10 @@ function build() {
     else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
   });
 }
-export function openKeys() {
+/* Back history (Round 4.2): the sheet pushes one entry tagged thrKeys, so the browser Back button closes it.
+   X, Esc and ? call history.back() when that entry is ours, so no dead entry stays behind. Forward opens it again. */
+const keysEntry = () => !!(history.state && history.state.thrKeys);
+function show() {
   if (!box) build();
   if (!box.hidden) return;
   last = document.activeElement;
@@ -58,16 +61,32 @@ export function openKeys() {
   box.querySelector(".icon-btn").focus({ preventScroll: true });
   requestAnimationFrame(() => box.classList.add("open"));
 }
+export function openKeys() {
+  if (box && !box.hidden) return;
+  if (!keysEntry()) { try { history.pushState({ ...(history.state || {}), thrKeys: 1 }, "", location.href); } catch (e) {} }
+  show();
+}
 export function closeKeys() { close(); }
 function close() {
+  if (!box || box.hidden) return;
+  if (keysEntry()) { history.back(); return; }
+  hide();
+}
+function hide() {
   if (!box || box.hidden) return;
   box.classList.remove("open"); box.hidden = true;
   document.documentElement.classList.remove("r4-keys-on");
   if (last && last.focus && document.contains(last)) last.focus({ preventScroll: true });
   last = null;
 }
+function onPop() {
+  const open = !!(box && !box.hidden);
+  if (!keysEntry() && open) hide();
+  else if (keysEntry() && !open) show();
+}
 
 function onKey(e) {
+  if (e.key === "Escape" && box && !box.hidden) { e.preventDefault(); close(); return; }
   if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.altKey) return;
   if (typing(e.target)) return;
   const pal = document.getElementById("palette");
@@ -96,5 +115,6 @@ export function initKeys(opts = {}) {
   o = opts;
   if (wired) return; wired = true;
   document.addEventListener("keydown", onKey);
+  window.addEventListener("popstate", onPop);
   document.addEventListener("click", (e) => { const b = e.target.closest && e.target.closest("[data-keys-help]"); if (b) { e.preventDefault(); openKeys(); } });
 }

@@ -427,7 +427,7 @@ const sim = (() => {
 (function vids() {
   const byId = Object.fromEntries(D.videos.map((v) => [v.id, v]));
   const T = [["agents", "Agent behaviour"], ["automation", "Automation and AI 2027"], ["idea", "The idea and takeoff"]];
-  $("#vTabs").innerHTML = T.map(([k, l], i) => `<button class="chip" type="button" role="tab" data-k="${k}" aria-selected="${i === 0}" aria-pressed="${i === 0}">${l} <span class="mono" style="opacity:.6">${D.vgroups[k].length}</span></button>`).join("");
+  $("#vTabs").innerHTML = T.map(([k, l], i) => `<button class="chip" type="button" role="tab" data-k="${k}" aria-selected="${i === 0}">${l} <span class="mono" style="opacity:.85">${D.vgroups[k].length}</span></button>`).join("");
   const show = (k) => { $("#vgrid").innerHTML = D.vgroups[k].map((id) => byId[id]).filter(Boolean).map(videoCard).join(""); };
   $("#vTabs").addEventListener("click", (e) => { const b = e.target.closest("button"); if (!b) return; $$("#vTabs .chip").forEach((c) => { c.setAttribute("aria-pressed", String(c === b)); c.setAttribute("aria-selected", String(c === b)); }); show(b.dataset.k); });
   show("agents"); wireVideos($("#vgrid"));

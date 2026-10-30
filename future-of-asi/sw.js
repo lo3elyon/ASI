@@ -5,7 +5,7 @@
    "Save everything for offline" adds the rest. Videos are never cached.
    Code, data and pages: network first, cache fallback, so a deploy is never hidden behind a stale shell.
    Images and fonts: cache first. YouTube posters: cached when viewed, capped. */
-const V = "v3-2026-10-29"; const BUILD = "66a6a6b612f9"; // BUILD is stamped by raw/gen/offline_manifest.py so the worker updates when files change
+const V = "v3-2026-10-29"; const BUILD = "fee10f103f14"; // BUILD is stamped by raw/gen/offline_manifest.py so the worker updates when files change
 const CORE = `thr-core-${V}-${BUILD}`;
 const RT = "thr-rt";          // runtime images, kept across versions
 const YT = "thr-yt";          // YouTube posters, capped

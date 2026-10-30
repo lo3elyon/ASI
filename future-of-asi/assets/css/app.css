@@ -13,7 +13,7 @@
   --text: #e6f0fa;
   --text-2: #b9c9da;
   --muted: #8aa0b8;
-  --dim: #5f7590;
+  --dim: #8197b2;
   --teal: #14b8a6;
   --cyan: #22d3ee;
   --amber: #f59e0b;
@@ -53,7 +53,7 @@
   --text: #0b1a2b;
   --text-2: #26405a;
   --muted: #4d6680;
-  --dim: #7a8ea3;
+  --dim: #5b6f84;
   --shadow: 0 20px 50px -24px rgba(10, 40, 70, 0.25);
   color-scheme: light;
 }
@@ -681,7 +681,7 @@ select.input { padding-right: 30px; }
 .foot { border-top: 1px solid var(--line); padding: 54px 0 40px; margin-top: 40px; position: relative; z-index: 1; }
 .foot .cols { display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 30px; }
 @media (max-width: 760px) { .foot .cols { grid-template-columns: 1fr 1fr; } }
-.foot h5 { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
+.foot h5, .foot h2.fh { font-family: var(--f-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin: 0 0 12px; }
 .foot a { display: block; color: var(--text-2); font-size: 14px; padding: 3px 0; }
 .foot p { color: var(--muted); font-size: 14px; max-width: 40ch; }
 .foot .motto { font-family: var(--f-serif); font-style: italic; font-size: 22px; color: var(--text); }
@@ -725,3 +725,16 @@ select.input { padding-right: 30px; }
   .voice-stage blockquote .w { opacity: 1; transform: none; filter: none; transition: none; }
 }
 @media print { .topbar, .foot, .grain, .ambient, .palette, .toolbar { display: none !important; } body { background: #fff; color: #000; } }
+
+/* ---------- Round 4.2: touch everything QA (focus, contrast, links in text) ---------- */
+input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+:root[data-theme="contrast"] input[type="range"]:focus-visible { outline: 3px solid #fde047; }
+.story .step .box { opacity: 0.62; }
+.story .step.on .box { opacity: 1; }
+.tag { color: color-mix(in srgb, var(--c, var(--accent)) 62%, var(--text)); }
+.chip .mono[style*="opacity"], .chip .n[style*="opacity"] { opacity: 0.9 !important; }
+:where(p, li, figcaption, .disclaimer, td, dd, blockquote) > a:not([class]) { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.r4k-words { list-style: none; padding: 0; }
+.r4k-w dl { margin: 0; }
+.theme-pop .tp-done { margin-top: 10px; width: 100%; }
+#palInput::-webkit-search-cancel-button, #palInput::-webkit-search-decoration { -webkit-appearance: none; appearance: none; display: none; }

@@ -44,10 +44,13 @@ export async function copyWithToast(text, msg = "Copied.") {
 }
 
 /* Markup helpers. label is visible text; aria gives the full name for screen readers. */
+const nm = (label, aria) => (String(aria).toLowerCase().startsWith(String(label).toLowerCase()) ? aria : `${label}: ${aria}`);
 export function shareBtn(url, { label = "Share", aria = "Copy a link", title = "", cls = "" } = {}) {
+  aria = nm(label, aria);
   return `<button type="button" class="r4-share ${cls}" data-share-url="${esc(url)}"${title ? ` data-share-title="${esc(title)}"` : ""} aria-label="${esc(aria)}">${SHARE_IC}<span>${esc(label)}</span></button>`;
 }
 export function copyBtn(text, { label = "Copy", aria = "Copy", msg = "Copied.", cls = "" } = {}) {
+  aria = nm(label, aria);
   return `<button type="button" class="r4-share ${cls}" data-copy-text="${esc(text)}" data-copy-msg="${esc(msg)}" aria-label="${esc(aria)}">${COPY_IC}<span>${esc(label)}</span></button>`;
 }
 /* Text for one quote: the exact words, who said it, where, and links */

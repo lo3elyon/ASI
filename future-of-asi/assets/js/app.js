@@ -81,7 +81,7 @@ let attempt = 0;
 async function route(opts = {}) {
   legacy();
   const { name, params, query } = parse();
-  if (query.has("search")) { setTimeout(() => openPal(), 60); const h = location.hash.replace(/[?&]search(=[^&]*)?/, "").replace(/\?$/, ""); history.replaceState(history.state, "", location.pathname + location.search + (h || "#/")); }
+  if (query.has("search")) { setTimeout(() => openPal({ history: false }), 60); const h = location.hash.replace(/[?&]search(=[^&]*)?/, "").replace(/\?$/, ""); history.replaceState(history.state, "", location.pathname + location.search + (h || "#/")); }
   const r = ROUTES[name] || null;
   const key = name + "/" + params.join("/");
   const live = view.firstElementChild;

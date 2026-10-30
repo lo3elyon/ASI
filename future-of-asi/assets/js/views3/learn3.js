@@ -53,7 +53,7 @@ export async function mount(el) {
   ${banner("learn-review", { eyebrow: "Review", title: "Spaced repetition for the key terms.", lead: `${cards.length} key terms from the lessons, each with its glossary meaning. Cards you know come back later, cards you miss come back tomorrow. It runs on the Leitner box method and saves in your browser.`, alt: "Paper flashcards fanned beside an hourglass with cyan sand under a desk lamp", cat: "teal", id: "l3revH" })}
   <section class="section tight" data-cat="teal" aria-label="Review cards"><div class="wrap">
     <div class="l3-boxes" id="l3boxes" aria-label="Cards in each box"></div>
-    <div class="l3-card-wrap"><div class="l3-flip" id="l3card" tabindex="0" role="button" aria-label="Flip the card"></div></div>
+    <div class="l3-card-wrap"><div class="l3-flip" id="l3card" tabindex="0" role="group" aria-roledescription="flash card" aria-label="Flash card. Press Enter or Space to flip it"></div></div>
     <div class="l3-rev-ctl"><button class="v3-btn" type="button" id="l3miss">I missed it</button><button class="v3-btn primary" type="button" id="l3know">I knew it</button><button class="v3-btn ghost" type="button" id="l3reset">Reset review</button></div>
   </div></section>
 

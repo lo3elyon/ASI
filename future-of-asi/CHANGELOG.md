@@ -4,6 +4,37 @@ All notable changes to Threshold: The Future of ASI (`future-of-asi/` in [lo3ely
 
 Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
+## Round 4.2 (2026-10-30): touch-everything QA, accessibility, Back fixes, performance and SEO
+
+### Fixed
+
+- Search and Back. Opening search (the Search button, Ctrl K or /) now adds one history entry, so the browser Back button closes it and Back again leaves the page as normal. X, Escape and Ctrl K step back over that entry, so Back never lands on a dead step. Picking a result closes search first and then opens it, so Back from a page, a profile or a video you found returns to where you searched.
+- The ? shortcut sheet works the same way: Back closes it, X and Escape leave no dead entry, Forward opens it again.
+- Organisations. Opening an organisation sheet now adds one entry at `#/orgs?o=<id>`, so Back closes the sheet and stays on Organisations instead of leaving the page. Moving to a related organisation inside the open sheet replaces that entry. A shared `#/orgs?o=<id>` link still opens the sheet directly.
+- Very long text in search no longer freezes the page. The box stops at 200 characters, typing is debounced, and fuzzy matching only looks at the first 48 characters while ranking still checks every word.
+- Search showed two X buttons in Chromium (the browser's own clear button next to ours). The box is now a plain text box with a search keyboard on phones, so only one X shows.
+- Search gives focus back to the button that opened it, and the shortcut sheet closes on Escape even when focus moved out of it.
+- The motion button tells the truth when the device asks for reduced motion.
+
+### Accessibility
+
+- Accessible names now contain the words you see (WCAG 2.5.3) on the logo link, the Search button, every Watch card, library books, video posters, AI Control parts and share and copy buttons.
+- Small text colours meet 4.5:1 on dark (the dim grey is lighter, the docs terminal comments, the futures matrix rows, the active researcher tab count, library counters and badges). The light theme uses the darker shade of each category colour for text, and eyebrows, section numbers, tags and the Voices word cloud follow it.
+- Lists that held buttons (the futures bars, the AI Control levels) no longer claim to be lists, charts that hold links are groups instead of images, and the explosion story steps are fully readable with reduced motion.
+- Heading order fixes on the footer and Voices, a visible focus ring on range sliders, a close button on the display popover and a clickable p(doom) dot.
+
+### Performance
+
+- The explosion and library pages ship an empty header of the right height in their HTML, so mounting the menu no longer pushes the page down, and the library preloads its italic and mono fonts. Library layout shift went from 0.196 to 0.003 in the Playwright test at 1440 wide.
+
+### SEO
+
+- The explosion and library pages now carry full Twitter card tags (title, description, image, image alt), Open Graph image size and alt, and the home page has og:image:alt and twitter:image:alt. All 258 snapshot pages pass the SEO checks: unique titles and descriptions, canonical in the sitemap, JSON-LD, Open Graph and Twitter tags.
+
+### Tested
+
+- Playwright at 1440 dark and 360 light: axe-core on all 60 routes, the touch-everything crawler on home, researchers, watch, orgs, careers, compare, stats, starter, learn, explosion and library, a new Back suite for search, the ? sheet and the organisation sheet, and the Round 4.1 Watch mini player history suite.
+
 ## Round 4.1 (2026-10-30): Watch mini player Back fix and a full Watch QA pass
 
 ### Fixed

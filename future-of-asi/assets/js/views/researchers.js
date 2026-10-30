@@ -106,7 +106,7 @@ export async function render(el, params, query) {
     const G = GROUPS[p.group] || { label: p.group, c: "#22d3ee" };
     const cs = p.categories.map((c) => catById[c]).filter(Boolean);
     const c0 = (cs[0] || G).c;
-    return `<button class="card hov spot pcard" type="button" data-person="${p.id}" style="--c:${c0}" aria-label="Open ${esc(p.name)}">
+    return `<button class="card hov spot pcard" type="button" data-person="${p.id}" style="--c:${c0}">
       <div class="ph">${p.photo ? `<img src="${esc(p.photo)}" alt="" loading="lazy" decoding="async" width="300" height="300" referrerpolicy="no-referrer" onerror="this.insertAdjacentHTML('afterend','<div class=ini>${esc(initials(p.name))}</div>');this.remove()">` : `<div class="ini">${esc(initials(p.name))}</div>`}
       <div class="cats">${cs.slice(0, 4).map((c) => `<i style="--c:${c.c}" title="${esc(c.label)}"></i>`).join("")}</div>
       <div class="badges">${p.left_lab ? `<span class="bd r">Left ${esc(p.left_lab.org || "lab")}</span>` : ""}${p.pdoom ? `<span class="bd r">p(doom) ${esc(shortP(p.pdoom))}</span>` : ""}${p.agi_year ? `<span class="bd a">AGI ${esc(yearOf(p.agi_year))}</span>` : ""}${!p.left_lab && !p.pdoom ? `<span class="bd">${esc((cs[0] || G).label)}</span>` : ""}</div></div>
@@ -204,13 +204,13 @@ function spectrum(host, list) {
   const H = 70 + (maxR + 1) * 36;
   const ticks = [0.01, 0.1, 1, 10, 50, 99];
   const col = (v) => (v < 5 ? "#84cc16" : v < 20 ? "#14b8a6" : v < 50 ? "#f59e0b" : "#ef4444");
-  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="p(doom) of ${list.length} people from lowest to highest">
+  host.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="p(doom) of ${list.length} people from lowest to highest">
     <defs><linearGradient id="sg" x1="0" x2="1"><stop offset="0" stop-color="#84cc16"/><stop offset=".45" stop-color="#14b8a6"/><stop offset=".7" stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
     <rect x="${PAD}" y="${H - 34}" width="${W - PAD * 2}" height="6" rx="3" fill="url(#sg)" opacity=".8"/>
     ${ticks.map((t, i) => `<text x="${lx(t)}" y="${H - 8}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="12" fill="var(--muted)">${i ? "" : "\u2264 "}${t}%</text>`).join("")}
-    ${pts.map((d) => { const y = H - 56 - d.r * 36; return `<a href="#/researchers/${d.p.id}" aria-label="${esc(d.p.name)}: ${esc(d.p.pdoom)}"><line x1="${d.x}" x2="${d.x}" y1="${y}" y2="${H - 34}" stroke="${col(d.p.pd)}" opacity=".35"/>
+    ${pts.map((d) => { const y = H - 56 - d.r * 36; return `<a href="#/researchers/${d.p.id}" aria-label="${esc(d.p.name)}: ${esc(d.p.pdoom)}"><line x1="${d.x}" x2="${d.x}" y1="${y}" y2="${H - 34}" stroke="${col(d.p.pd)}" opacity=".35" pointer-events="none"/>
       <circle class="dot" cx="${d.x}" cy="${y}" r="15" fill="var(--surface-2)" stroke="${col(d.p.pd)}" stroke-width="2"/>
-      <text x="${d.x}" y="${y + 4.5}" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="11" fill="var(--text)">${esc(initials(d.p.name))}</text>
+      <text aria-hidden="true" x="${d.x}" y="${y + 4.5}" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="11" fill="var(--text)">${esc(initials(d.p.name))}</text>
       <title>${esc(d.p.name)}: ${esc(d.p.pdoom)}</title></a>`; }).join("")}
   </svg>`;
 }

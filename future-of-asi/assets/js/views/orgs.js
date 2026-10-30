@@ -147,7 +147,7 @@ export async function render(el, params, query) {
     const stack = {}; let dots = "";
     founded.forEach((o, i) => { const y = +o.founded; const k = (stack[y] = (stack[y] || 0) + 1); dots += `<g class="p3-fd" style="--i:${i}" data-open="${esc(o.id)}" tabindex="0" role="button" aria-label="${esc(o.name)}, founded ${y}"><circle cx="${X(y).toFixed(1)}" cy="${h - 40 - k * 15}" r="6" fill="${GC[o.g]}"/><title>${esc(o.name)}, ${y}</title></g>`; });
     const ticks = []; for (let y = Math.ceil(a / 5) * 5; y <= b; y += 5) ticks.push(y);
-    $("#found", el).innerHTML = `<svg viewBox="0 0 ${w} ${h}" role="img" aria-label="Founding years from ${a} to ${b}"><path data-p3-draw class="p3-faxis" d="M40,${h - 30} H${w - 40}"/>${ticks.map((y) => `<g><line x1="${X(y)}" x2="${X(y)}" y1="${h - 34}" y2="${h - 24}"/><text x="${X(y)}" y="${h - 8}" text-anchor="middle">${y}</text></g>`).join("")}${dots}</svg><p class="muted p3-fnote" id="fnote">Tap a dot to open that organisation.</p>`;
+    $("#found", el).innerHTML = `<svg viewBox="0 0 ${w} ${h}" role="group" aria-label="Founding years from ${a} to ${b}"><path data-p3-draw class="p3-faxis" d="M40,${h - 30} H${w - 40}"/>${ticks.map((y) => `<g><line x1="${X(y)}" x2="${X(y)}" y1="${h - 34}" y2="${h - 24}"/><text x="${X(y)}" y="${h - 8}" text-anchor="middle">${y}</text></g>`).join("")}${dots}</svg><p class="muted p3-fnote" id="fnote">Tap a dot to open that organisation.</p>`;
     $("#found", el).addEventListener("keydown", (e) => { if ((e.key === "Enter" || e.key === " ") && e.target.closest("[data-open]")) { e.preventDefault(); openSheet(e.target.closest("[data-open]").dataset.open); } });
   })();
 
@@ -169,7 +169,7 @@ export async function render(el, params, query) {
       <div class="p3-oc-ll">${esc(o.city ? `${o.city}, ${o.country}` : o.country)}${o.exact ? ` · ${fmtLL(o.ll)}` : ""}</div>
       <p>${esc(o.what)}</p>
       ${o.focus.length ? `<div class="chips">${o.focus.slice(0, 4).map((f) => `<span class="tag" style="--c:${GC[o.g]}">${esc(f)}</span>`).join("")}</div>` : ""}
-      ${m.length ? `<div class="p3-faces" aria-label="${m.length} people">${m.slice(0, 6).map((id) => face(pById[id], phm, "p3-face sm")).join("")}${m.length > 6 ? `<span class="more">+${m.length - 6}</span>` : ""}</div>` : ""}
+      ${m.length ? `<div class="p3-faces" role="group" aria-label="${m.length} people">${m.slice(0, 6).map((id) => face(pById[id], phm, "p3-face sm")).join("")}${m.length > 6 ? `<span class="more">+${m.length - 6}</span>` : ""}</div>` : ""}
       <div class="p3-oc-f"><button class="btn sm p3-rip" type="button" data-open="${esc(o.id)}">Details ${ICON.arrow}</button><label class="p3-cmpck"><input type="checkbox" data-cmp="${esc(o.id)}" ${S.cmp.includes(o.id) ? "checked" : ""}> Compare</label></div></article>`; }).join("") || `<div class="empty-state" style="grid-column:1/-1">No organisations match.</div>`;
     m3auto($("#og", el));
   }
@@ -200,9 +200,10 @@ export async function render(el, params, query) {
   /* Detail sheet */
   const sheet = $("#sheet", el), pane = $(".p3-sheet-pane", sheet);
   let lastFocus = null;
-  function openSheet(id) {
+  function openSheet(id, fromUrl) {
     const o = oById[id]; if (!o) return;
-    S.sel = id; lastFocus = document.activeElement;
+    const wasOpen = !!S.sel && !sheet.hidden;
+    S.sel = id; if (!wasOpen) lastFocus = document.activeElement;
     const m = [...members[id]], f = [...formerAt[id]], rel = related(id).slice(0, 8);
     pane.innerHTML = `<div class="p3-sh-img">${pic("p3-orgs-building", "A modern research building at dusk with warm lights inside", { sizes: "480px" })}<button class="icon-btn p3-sh-x" type="button" data-sclose aria-label="Close details">${ICON.close}</button><div class="p3-sh-logo">${logoHtml(o.id, o.name, "ologo xl")}</div></div>
       <div class="p3-sh-body">
@@ -218,9 +219,17 @@ export async function render(el, params, query) {
       </div>`;
     sheet.hidden = false; requestAnimationFrame(() => sheet.classList.add("on"));
     run(pane); pane.focus({ preventScroll: true });
-    history.replaceState(history.state, "", `${location.pathname}${location.search}#/orgs?o=${encodeURIComponent(id)}`);
+    /* Back history (Round 4.2): opening a sheet pushes one #/orgs?o= entry, so Back closes it and stays on Orgs.
+       Moving to another org inside the open sheet replaces that entry. A sheet opened from the URL adds nothing. */
+    if (!fromUrl) {
+      const url = `${location.pathname}${location.search}#/orgs?o=${encodeURIComponent(id)}`;
+      if (wasOpen || (history.state && history.state.thrOrg)) history.replaceState({ ...(history.state || {}), thrOrg: 1 }, "", url);
+      else history.pushState({ ...(history.state || {}), thrOrg: 1 }, "", url);
+    }
   }
-  function closeSheet() { if (sheet.hidden) return; sheet.classList.remove("on"); setTimeout(() => (sheet.hidden = true), RM() ? 0 : 320); S.sel = ""; if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true }); history.replaceState(history.state, "", `${location.pathname}${location.search}#/orgs`); }
+  function hideSheet() { if (sheet.hidden) return; sheet.classList.remove("on"); setTimeout(() => { if (!S.sel) sheet.hidden = true; }, RM() ? 0 : 320); S.sel = ""; if (lastFocus && lastFocus.focus && document.contains(lastFocus)) lastFocus.focus({ preventScroll: true }); }
+  /* X, Esc and the backdrop step back when the entry is ours, so no dead entry stays behind */
+  function closeSheet() { if (sheet.hidden || !S.sel) return; hideSheet(); if (history.state && history.state.thrOrg) history.back(); else history.replaceState(history.state, "", `${location.pathname}${location.search}#/orgs`); }
   el.addEventListener("click", (e) => {
     const c = e.target.closest("[data-sclose]"); const o = e.target.closest("[data-open]");
     if (o) { e.preventDefault(); openSheet(o.dataset.open); return; }
@@ -232,8 +241,8 @@ export async function render(el, params, query) {
   document.addEventListener("keydown", onKey); offs.push(() => document.removeEventListener("keydown", onKey));
 
   paint(); table();
-  const op = query.get("o"); if (op) setTimeout(() => openSheet(op), 250);
-  el._onParams = (p, q) => { const o = q.get("o"); if (o && o !== S.sel) openSheet(o); else if (!o && S.sel) closeSheet(); };
+  const op = query.get("o"); if (op) setTimeout(() => openSheet(op, true), 250);
+  el._onParams = (p, q) => { const o = q.get("o"); if (o && o !== S.sel) openSheet(o, true); else if (!o && S.sel) hideSheet(); };
   offs.push(run(el), m3init(el));
   return () => offs.forEach((f) => { try { f(); } catch (e) {} });
 }

@@ -168,7 +168,7 @@ export function ytThumb(id, q = "mqdefault") { return `https://i.ytimg.com/vi/${
 export function ytEmbed(id, extra = "") { return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&modestbranding=1&playsinline=1${extra}`; }
 
 export function ytPoster(id, title = "", cap = "") {
-  return `<div class="yt" data-yt="${esc(id)}"><button class="yt-poster" type="button" data-play="${esc(id)}" aria-label="Play video: ${esc(title)}"><img src="${ytThumb(id, "hqdefault")}" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="pb">${'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'}</span>${cap ? `<span class="cap">${esc(cap)}</span>` : ""}</button></div>`;
+  return `<div class="yt" data-yt="${esc(id)}"><button class="yt-poster" type="button" data-play="${esc(id)}" data-title="${esc(title)}"${cap ? `><span class="sr-only">Play video: ${esc(title)}. </span>` : ` aria-label="Play video: ${esc(title)}">`}<img src="${ytThumb(id, "hqdefault")}" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="pb">${'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'}</span>${cap ? `<span class="cap">${esc(cap)}</span>` : ""}</button></div>`;
 }
 /* A YouTube iframe built as an element with its src set before it is attached, so loading it is the frame's
    first navigation and never adds an entry to the browser's Back history. */
@@ -184,7 +184,7 @@ export function ytFrame(id, title = "Video", extra = "") {
 export function mountFrame(box, id, title, extra = "") { box.replaceChildren(ytFrame(id, title, extra)); return box.firstChild; }
 export function playPoster(btn, onPlay) {
   const id = btn.dataset.play; const box = btn.closest(".yt");
-  mountFrame(box, id, btn.getAttribute("aria-label") || "Video");
+  mountFrame(box, id, btn.dataset.title || btn.getAttribute("aria-label") || "Video");
   if (onPlay) onPlay(id);
 }
 export function loadScript(src) {

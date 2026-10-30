@@ -137,9 +137,9 @@ export function headerHTML() {
       <div class="dr-p" id="dr-${g.id}" hidden>${its.map((i) => itemHTML(i, "dr-i")).join("")}${g.id === "you" ? youExtras("dr-i") : ""}</div></section>`;
   }).join("");
   const header = `
-    <a class="brand" href="${up}#/" aria-label="Threshold home">
+    <a class="brand" href="${up}#/" aria-label="Threshold, the future of ASI, home">
       <img src="${CTX === "sub" ? "../shared/brand/mark.svg" : "assets/brand/mark.svg"}" alt="" width="32" height="32">
-      <span>THRESHOLD<small>THE FUTURE OF ASI</small></span>
+      <span>THRESHOLD <small>THE FUTURE OF ASI</small></span>
     </a>
     <nav class="mega" aria-label="Main"><ul class="mega-list">${groups}</ul></nav>
     <div class="tb-actions">
@@ -156,6 +156,7 @@ export function headerHTML() {
           <div class="swatches" data-k="accent">${["cyan", "teal", "amber", "red", "blue", "lime"].map((n) => `<button type="button" data-v="${n}" style="--c:${CAT[n]}" aria-label="${n[0].toUpperCase() + n.slice(1)}"></button>`).join("")}</div>
           <div class="toggle"><span>Motion</span><button type="button" class="switch" role="switch" id="motionSw" aria-checked="true" aria-label="Animations on or off"></button></div>
           <div class="toggle" style="margin-top:12px"><span>Soft sounds and music</span><button type="button" class="switch" role="switch" id="soundSw" aria-checked="false" aria-label="Sounds on or off"></button></div>
+          <button type="button" class="btn sm ghost tp-done" id="themeDone" aria-label="Done, close display settings">Done</button>
         </div>
       </div>
       <a class="icon-btn gh-btn" href="${GITHUB_URL}" target="_blank" rel="noopener" aria-label="Threshold source code on GitHub" title="Source code on GitHub">${ICONS.github}</a>
@@ -306,7 +307,8 @@ export function applyPrefs() {
   r.classList.toggle("rm", p.motion === "off");
   $$("#themePop .seg[data-k=theme] button").forEach((b) => b.setAttribute("aria-pressed", String(r.dataset.theme === b.dataset.v)));
   $$("#themePop .swatches button").forEach((b) => b.setAttribute("aria-pressed", String(r.dataset.accent === b.dataset.v)));
-  const mon = p.motion !== "off";
+  const osRM = !!(window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches);
+  const mon = p.motion !== "off" && !osRM;
   $("#motionSw")?.setAttribute("aria-checked", String(mon));
   const mb = $("#motionBtn"); if (mb) { mb.setAttribute("aria-pressed", String(mon)); mb.setAttribute("aria-label", mon ? "Animations on. Turn them off" : "Animations off. Turn them on"); }
   if (p.theme || r.dataset.theme !== "dark") $$('meta[name="theme-color"]').forEach((m) => m.setAttribute("content", THEME_COLOR[r.dataset.theme] || THEME_COLOR.dark));
@@ -326,6 +328,7 @@ function wire(hdr, dr) {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeAllMega(); const pop = $("#themePop"); if (pop && pop.classList.contains("open")) { pop.classList.remove("open"); $("#themeBtn")?.setAttribute("aria-expanded", "false"); $("#themeBtn")?.focus(); } if (drawerOpen) setDrawer(false); } });
   $("#menuBtn", hdr).addEventListener("click", () => setDrawer(!drawerOpen));
   $("#themeBtn", hdr).addEventListener("click", (e) => { e.stopPropagation(); const pop = $("#themePop"); const o = pop.classList.toggle("open"); $("#themeBtn").setAttribute("aria-expanded", String(o)); if (o) setTimeout(() => $("button[aria-pressed=true], button", pop)?.focus(), 20); });
+  $("#themeDone", hdr)?.addEventListener("click", (e) => { e.stopPropagation(); $("#themePop").classList.remove("open"); $("#themeBtn").setAttribute("aria-expanded", "false"); $("#themeBtn").focus(); });
   $$("#themePop [data-k] button", hdr).forEach((b) => b.addEventListener("click", () => setPref(b.parentNode.dataset.k, b.dataset.v)));
   $("#motionSw", hdr).addEventListener("click", toggleMotion);
   $("#motionBtn", hdr).addEventListener("click", toggleMotion);

@@ -86,7 +86,7 @@ function timelines(host, fc, ppl) {
   const Y0 = 2024, Y1 = 2060, X = (y) => 230 + ((y - Y0) / (Y1 - Y0)) * 740;
   const textTimes = ppl.filter((p) => p.agi_year);
   host.innerHTML = `<div class="card fchart"><div class="sec-head" style="margin-bottom:10px"><div><div class="eyebrow">Compare forecasts</div><h3 style="margin:6px 0 0">When do people expect AGI or superintelligence?</h3><p class="muted" style="margin:6px 0 0;font-size:14px">Dots are the headline year. Bars show the range the source gives or implies. Each row links to its source. Definitions differ, so read them before comparing.</p></div></div>
-    <svg id="fsvg" viewBox="0 0 1000 ${80 + fc.length * RH}" role="img" aria-label="Forecast comparison chart"></svg></div>
+    <svg id="fsvg" viewBox="0 0 1000 ${80 + fc.length * RH}" role="group" aria-label="Forecast comparison chart"></svg></div>
     <div class="grid g2" style="margin-top:18px">
       <div class="card"><div class="slider"><label for="my">Your guess <output id="myo">${my}</output></label><p>Drag to set the year you think AGI arrives. It is saved in your browser.</p><input type="range" id="my" min="2026" max="2070" value="${my}"></div>
         <div class="big-num" id="left" style="margin-top:16px">0</div><p class="muted" id="leftw" style="margin:6px 0 0"></p><div class="mono" id="tick" style="font-size:14px;color:var(--accent);margin-top:10px"></div></div>

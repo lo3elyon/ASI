@@ -239,3 +239,8 @@
 }
 :root.rm .mindsvg .grow { stroke-dashoffset: 0; }
 :root.rm .mindsvg .pop { opacity: 1; }
+
+/* Round 4.2: with reduced motion every story step is fully readable, not faded until it scrolls into focus */
+@media (prefers-reduced-motion: reduce) { .story .step .box { opacity: 1; transform: none; } }
+:root.rm .story .step .box { opacity: 1; transform: none; }
+.bigq figcaption a { text-decoration: underline; text-underline-offset: 3px; }

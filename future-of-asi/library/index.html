@@ -16,10 +16,19 @@
   <meta property="og:url" content="https://lo3elyon.github.io/ASI/future-of-asi/library/">
   <meta property="og:image" content="https://lo3elyon.github.io/ASI/future-of-asi/shared/img/library-hero.jpg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:image:width" content="1376">
+  <meta property="og:image:height" content="768">
+  <meta property="og:image:alt" content="Cover art for The Library, a Threshold reading room on AI and ASI">
+  <meta name="twitter:title" content="The Library: 79 books and essays on AI and ASI | Threshold">
+  <meta name="twitter:description" content="A reading room on AGI and superintelligence: 62 books and 17 essays with plain chapter guides, a 3D reader and full text where the licence allows.">
+  <meta name="twitter:image" content="https://lo3elyon.github.io/ASI/future-of-asi/shared/img/library-hero.jpg">
+  <meta name="twitter:image:alt" content="Cover art for The Library, a Threshold reading room on AI and ASI">
   <link rel="icon" href="../shared/brand/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="../shared/brand/icon-192.png">
   <link rel="preload" href="fonts/eb-garamond-wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="fonts/mulish-wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="fonts/eb-garamond-wght-italic.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="../shared/fonts/JetBrainsMono.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../shared/fonts.css">
   <link rel="stylesheet" href="../shared/threshold.css">
   <link rel="stylesheet" href="../assets/css/r4.css">
@@ -40,6 +49,7 @@
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "CollectionPage", "name": "The Library: 79 books and essays on AI and ASI", "url": "https://lo3elyon.github.io/ASI/future-of-asi/library/", "isPartOf": {"@type": "WebSite", "name": "Threshold: The Future of ASI", "url": "https://lo3elyon.github.io/ASI/future-of-asi/"}, "inLanguage": "en"}</script>
 </head>
 <body class="lib">
+  <header id="topbar" class="topbar tb3" role="banner"></header>
   <main id="main" tabindex="-1">
     <section class="lhero">
       <div class="bg" style="background-image:url(../shared/img/library-hero.jpg)" role="img" aria-label="A dark library with one glowing open book"></div>
@@ -47,7 +57,7 @@
         <span class="eyebrow">Threshold library</span>
         <h1>The <span class="serif"><em>reading room</em></span> for the future of AI</h1>
         <p class="lead"><span id="countBooks">62</span> books and <span id="countEssays">17</span> essays and reports on AGI, superintelligence, alignment, governance and the intelligence explosion, plus the sceptics, the history and the fiction. Chapter guides in plain words, the best arguments on both sides, quizzes and talks. Free full texts where the licence allows, in a 3D book you can turn by hand.</p>
-        <div class="lstats" id="lstats"></div>
+        <div class="lstats" id="lstats"><span><b>79</b> titles</span><span><b>11</b> shelves</span><span><b>11</b> full texts to read here</span><span><b>17</b> more free online</span><span><b>60</b> verified covers</span><span><b>787</b> chapter guides</span></div>
         <div class="lsearch">
           <label class="search-box" for="q"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search titles, authors, ideas" autocomplete="off" aria-label="Search the library"></label>
         </div>
@@ -66,7 +76,7 @@
         <div class="row" style="gap:8px">
           <label class="sr-only" for="sort">Sort</label>
           <select id="sort" class="select"><option value="year">Newest first</option><option value="old">Oldest first</option><option value="title">Title A to Z</option></select>
-          <button class="chip" type="button" id="freeOnly" data-f="full" aria-pressed="false" title="The whole text opens in the reader here">Full text here <span class="mono" id="nFull" style="opacity:.55"></span></button><button class="chip" type="button" id="freeAny" data-f="any" aria-pressed="false" title="Full text here, plus books the author or publisher gives away online">Free to read <span class="mono" id="nFree" style="opacity:.55"></span></button>
+          <button class="chip" type="button" id="freeOnly" data-f="full" aria-pressed="false" title="The whole text opens in the reader here">Full text here <span class="mono" id="nFull" style="opacity:.85"></span></button><button class="chip" type="button" id="freeAny" data-f="any" aria-pressed="false" title="Full text here, plus books the author or publisher gives away online">Free to read <span class="mono" id="nFree" style="opacity:.85"></span></button>
         </div>
       </div>
       <p class="count" id="count" aria-live="polite"></p>

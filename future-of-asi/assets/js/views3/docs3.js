@@ -69,7 +69,7 @@ export async function sections() {
 
     vers.length ? sec({ id: "d3log", eyebrow: "Changelog", title: "What changed, round by round.", cat: "blue", lead: `${vers.length} ${vers.length === 1 ? "release" : "releases"} so far. The newest is open.`, body: `
       <div class="d3-log"><div class="d3-logimg">${pic("doc-changelog", "An open leather logbook on a chart table with a brass compass, lantern light and a porthole", { sizes: "(max-width: 900px) 100vw, 34vw" })}</div>
-      <div class="d3-logs">${vers.map((x, i) => `<details class="d3-ver" ${i ? "" : "open"} data-m3="up"><summary><b>${esc(x.v)}</b><span>${esc(x.d)}</span><em>${x.n} items</em></summary><div class="prose d3-logbody">${md(x.body)}</div></details>`).join("")}</div></div>` }) : "",
+      <div class="d3-logs">${vers.map((x, i) => `<details class="d3-ver" ${i ? "" : "open"} data-m3="up"><summary><b>${esc(x.v)}</b><span>${esc(x.d)}</span><em>${x.n} items</em></summary><div class="prose d3-logbody" tabindex="0" role="region" aria-label="Changes in ${esc(x.v)}">${md(x.body)}</div></details>`).join("")}</div></div>` }) : "",
 
     sec({ id: "d3run", eyebrow: "Quick start", title: "Run it on your own laptop.", cat: "blue", lead: "The whole site is static files. Any small web server works.", body: `
       <div class="d3-term3" data-m3="up"><div class="bar"><i></i><i></i><i></i><span>terminal</span></div><pre><code><span class="c"># get the code</span>

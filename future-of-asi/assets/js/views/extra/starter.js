@@ -61,7 +61,7 @@ export async function render(el) {
   ${sec("involved", 6, "Get involved", "When you are <span class='serif'>ready for more.</span>", "Fellowships and career guides from the people who run them.",
     `<div class="r4k-cols two"><div class="card" data-m3="up"><h3>Fellowships</h3>${resList(R("fellowship"), "fel")}</div><div class="card" data-m3="up"><h3>Career guides</h3>${resList(R("career"), "car")}<p class="muted" style="margin-top:12px">More programmes, each checked on its official page, are on the <a href="#/careers">Careers</a> page.</p></div></div>`)}
   ${sec("words", 7, "Words to know", "Sixteen words, <span class='serif'>in plain English.</span>", "From the glossary. Tick the ones you could explain to someone else.",
-    `<dl class="r4k-words">${words.map((w) => `<div class="r4k-w card">${box(`word:${w.term}`, `I can explain ${w.term}`)}<div><dt>${esc(w.term)}</dt><dd>${esc(w.def)}</dd></div></div>`).join("")}</dl><p class="muted" style="margin-top:14px">All ${terms.length} words are in the <a href="#/docs/glossary">glossary</a>.</p>`)}
+    `<ul class="r4k-words" role="list">${words.map((w) => `<li class="r4k-w card">${box(`word:${w.term}`, `I can explain ${w.term}`)}<dl><dt>${esc(w.term)}</dt><dd>${esc(w.def)}</dd></dl></li>`).join("")}</ul><p class="muted" style="margin-top:14px">All ${terms.length} words are in the <a href="#/docs/glossary">glossary</a>.</p>`)}
   <p class="r4k-printfoot">Made from Threshold: The Future of ASI by Aniruddha Adak. Every link was checked when this page was built. Start big, fix later, keep shipping.</p>`;
 
   const total = allIds.length;

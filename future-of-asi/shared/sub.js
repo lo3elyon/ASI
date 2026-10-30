@@ -41,8 +41,10 @@ export function header(active) {
   document.body.dataset.cat = active === "library" ? "yellow" : active === "explosion" ? "orange" : "cyan";
   if (!document.querySelector(".skip")) { const sk = document.createElement("a"); sk.className = "skip"; sk.href = "#main"; sk.textContent = "Skip to content"; document.body.prepend(sk); }
   if (!document.querySelector(".ambient")) { const am = document.createElement("div"); am.className = "ambient"; am.setAttribute("aria-hidden", "true"); const gr = document.createElement("div"); gr.className = "grain"; gr.setAttribute("aria-hidden", "true"); document.body.prepend(am, gr); }
-  const hdr = document.createElement("header"); hdr.id = "topbar"; hdr.className = "topbar tb3"; hdr.setAttribute("role", "banner");
-  const skip = document.querySelector(".skip"); skip.after(hdr);
+  /* The page HTML already holds an empty header of the right height (Round 4.2), so mounting the menu does not push the page down */
+  let hdr = document.getElementById("topbar");
+  const skip = document.querySelector(".skip");
+  if (!hdr) { hdr = document.createElement("header"); hdr.id = "topbar"; hdr.className = "topbar tb3"; hdr.setAttribute("role", "banner"); skip.after(hdr); } else if (hdr.previousElementSibling !== skip) skip.after(hdr);
   const goSearch = () => { location.href = "../#/?search"; };
   mountHeader({ ctx: "sub", active, toast, onSearch: goSearch, onSaveOffline: () => saveEverything(), onSound: () => setSound(!document.documentElement.classList.contains("snd")) });
   document.addEventListener("keydown", (e) => { if ((e.ctrlKey || e.metaKey) && (e.key === "k" || e.key === "K")) { e.preventDefault(); goSearch(); } if (e.key === "/" && !/input|textarea|select/i.test((document.activeElement || {}).tagName || "") && !(document.activeElement || {}).isContentEditable) { e.preventDefault(); goSearch(); } });
@@ -87,7 +89,7 @@ export function reveal(root = document) {
 /* ---------- Video posters and theater (never autoplays: the iframe only exists after a click) ---------- */
 export const ytThumb = (id, q = "hqdefault") => `https://i.ytimg.com/vi/${encodeURIComponent(id)}/${q}.jpg`;
 export function videoCard(v) {
-  return `<button type="button" class="card vcard hov" data-yt="${esc(v.id)}" data-title="${esc(v.title)}" aria-label="Play video: ${esc(v.title)}">
+  return `<button type="button" class="card vcard hov" data-yt="${esc(v.id)}" data-title="${esc(v.title)}"><span class="sr-only">Play video: </span>
     <div class="th"><img loading="lazy" alt="" src="${ytThumb(v.id, "mqdefault")}" onload="this.classList.add('ld')">${v.duration ? `<span class="dur">${esc(v.duration.replace(/^0:/, ""))}</span>` : ""}<div class="play"><span>${ICON.play}</span></div></div>
     <div class="meta"><b>${esc(v.title)}</b><span>${esc(v.channel || "")}${v.date ? " · " + esc(v.date.slice(0, 7)) : ""}</span>${v.summary ? `<span style="color:var(--text-2)">${esc(v.summary)}</span>` : ""}</div>
   </button>`;

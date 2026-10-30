@@ -80,7 +80,7 @@ export async function render(el, params, query) {
   ${facesWall(X)}
   ${leaders(X)}
   ${whyPace(X)}
-  ${withC.length ? sec({ id: "pc3cm", eyebrow: "Comments", title: "Why they signed, in their own words.", cat: "emerald", body: `<div class="pc3-cmq" data-m3-marquee="30">${withC.slice(0, 24).map((s) => `<figure class="pc3-cmc">${face(s)}<blockquote>${esc(s.comment.length > 220 ? s.comment.slice(0, 217) + "..." : s.comment)}</blockquote><figcaption><b>${esc(s.name)}</b> ${esc(s.employer || "")}</figcaption></figure>`).join("")}</div>` }) : ""}
+  ${withC.length ? sec({ id: "pc3cm", eyebrow: "Comments", title: "Why they signed, in their own words.", cat: "emerald", body: `<div class="pc3-cmq" data-m3-marquee="30" tabindex="0" role="region" aria-label="Signer comments">${withC.slice(0, 24).map((s) => `<figure class="pc3-cmc">${face(s)}<blockquote>${esc(s.comment.length > 220 ? s.comment.slice(0, 217) + "..." : s.comment)}</blockquote><figcaption><b>${esc(s.name)}</b> ${esc(s.employer || "")}</figcaption></figure>`).join("")}</div>` }) : ""}
 
   <section class="section tight" data-cat="emerald" aria-labelledby="pc3all"><div class="wrap">
     <div class="v3-head"><div class="eyebrow"><span class="dot-cat"></span>Every named signer</div><h2 id="pc3all">${fmtN(named)} names, searchable.</h2></div>

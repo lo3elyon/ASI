@@ -220,7 +220,7 @@ export function initOverlays() {
   document.addEventListener("click", (e) => {
     if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     const pl = e.target.closest("[data-play]");
-    if (pl) { e.preventDefault(); import("../util.js").then((u) => u.playPoster(pl, (vid) => logView("video", vid, pl.getAttribute("aria-label")?.replace(/^Play video: /, "") || "", { played: true }))); return; }
+    if (pl) { e.preventDefault(); import("../util.js").then((u) => u.playPoster(pl, (vid) => logView("video", vid, pl.dataset.title || pl.getAttribute("aria-label")?.replace(/^Play video: /, "") || "", { played: true }))); return; }
     const pe = e.target.closest("[data-person]");
     if (pe) { e.preventDefault(); openPerson(pe.dataset.person); return; }
     const vi = e.target.closest("[data-video]");

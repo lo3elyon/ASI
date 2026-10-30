@@ -58,7 +58,7 @@ export async function render(el, params, query) {
   <section class="section tight" id="p3build"><div class="wrap">
     ${headH("Protocol builder", "Build your own, <span class='serif'>see the trade.</span>", "Drag parts into the pipeline, or tap them. The amber star shows an illustrative estimate of safety and usefulness. The other dots are real results from the 2023 paper, so you can see where your design would sit.")}
     <div class="p3-builder">
-      <div class="card p3-palette"><div class="eyebrow">Parts</div><div class="p3-parts" id="parts">${PALETTE.map((c) => `<button type="button" class="p3-part p3-rip" data-part="${c.id}" style="--c:${c.c}" aria-label="Add ${c.name}"><span class="p3-badge sm" style="--c:${c.c}">${c.short}</span><span><b>${c.name}</b><small>${c.d}</small></span></button>`).join("")}</div>
+      <div class="card p3-palette"><div class="eyebrow">Parts</div><div class="p3-parts" id="parts">${PALETTE.map((c) => `<button type="button" class="p3-part p3-rip" data-part="${c.id}" style="--c:${c.c}"><span class="sr-only">Add </span><span class="p3-badge sm" style="--c:${c.c}">${c.short}</span><span><b>${c.name}</b><small>${c.d}</small></span></button>`).join("")}</div>
         <div class="eyebrow" style="margin-top:18px">Presets from the paper</div>
         <div class="chips" id="presets"><button class="chip" type="button" data-pre="audit">Upfront auditing</button><button class="chip" type="button" data-pre="audit,tmon">Trusted monitoring</button><button class="chip" type="button" data-pre="audit,tmon,defer" data-g="10">Defer 10%</button><button class="chip" type="button" data-pre="audit,tmon,edit" data-g="20">Edit 20%</button><button class="chip" type="button" data-pre="audit,umon,honey,defer" data-g="10">Untrusted monitoring</button><button class="chip" type="button" data-pre="">Clear</button></div>
       </div>
@@ -77,7 +77,7 @@ export async function render(el, params, query) {
 
   ${banner({ img: "p3-control-game", alt: "Glowing red and teal glass game pieces facing each other across a dark board", eyebrow: "Play", title: "Red team <span class='serif'>versus</span> blue team.", text: "Five levels. You are the blue team on shift, round by round. The red team has already chosen its attack plan.", cat: "red", id: "p3game", align: "right" })}
   <section class="section tight"><div class="wrap">
-    <div class="p3-levels" id="levels" role="list"></div>
+    <div class="p3-levels" id="levels" role="group" aria-label="Levels"></div>
     <div id="gameRoot" class="p3-game-root"></div>
     <p class="muted p3-keys">Keyboard: <kbd>A</kbd> accept, <kbd>U</kbd> audit, <kbd>D</kbd> defer, <kbd>R</kbd> resample, <kbd>X</kbd> expose a lying monitor.</p>
   </div></section>
@@ -293,7 +293,7 @@ function makeGame(root, lvRoot) {
   const unlocked = (id) => id === 1 || !!prog().done[id - 1];
   function levels() {
     const p = prog();
-    lvRoot.innerHTML = LEVELS.map((l) => `<button type="button" role="listitem" class="p3-level p3-rip ${unlocked(l.id) ? "" : "locked"} ${G && G.L.id === l.id ? "on" : ""}" data-lv="${l.id}" ${unlocked(l.id) ? "" : `aria-disabled="true"`}><span class="n">${l.id}</span><b>${esc(l.name)}</b><small>${l.n} rounds · ${l.budget} audits · ${l.attacks} attack${l.attacks > 1 ? "s" : ""}</small><span class="stars" aria-label="${p.stars[l.id] || 0} of 3 stars">${[1, 2, 3].map((s) => `<i class="${(p.stars[l.id] || 0) >= s ? "on" : ""}"></i>`).join("")}</span>${unlocked(l.id) ? "" : `<em>Win level ${l.id - 1} to unlock</em>`}</button>`).join("");
+    lvRoot.innerHTML = LEVELS.map((l) => `<button type="button" class="p3-level p3-rip ${unlocked(l.id) ? "" : "locked"} ${G && G.L.id === l.id ? "on" : ""}" data-lv="${l.id}" ${unlocked(l.id) ? "" : `aria-disabled="true"`}><span class="n">${l.id}</span><b>${esc(l.name)}</b><small>${l.n} rounds · ${l.budget} audits · ${l.attacks} attack${l.attacks > 1 ? "s" : ""}</small><span class="stars" role="img" aria-label="${p.stars[l.id] || 0} of 3 stars">${[1, 2, 3].map((s) => `<i class="${(p.stars[l.id] || 0) >= s ? "on" : ""}"></i>`).join("")}</span>${unlocked(l.id) ? "" : `<em>Win level ${l.id - 1} to unlock</em>`}</button>`).join("");
   }
   lvRoot.addEventListener("click", (e) => { const b = e.target.closest("[data-lv]"); if (!b || b.classList.contains("locked")) return; brief(LEVELS.find((l) => l.id === +b.dataset.lv)); });
   function brief(L) {

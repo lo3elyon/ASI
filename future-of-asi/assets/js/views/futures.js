@@ -33,8 +33,8 @@ export async function render(el, params, query) {
       </aside>
       <div style="display:grid;gap:22px;min-width:0">
         <div class="card"><div class="sec-head" style="margin-bottom:14px"><div><div class="eyebrow">Branch map</div><h3 style="margin:6px 0 0">Where the levers push us</h3></div><span class="count" id="topline"></span></div>
-          <div class="branch" id="branch" role="img" aria-label="Branching diagram of six futures"></div>
-          <div class="scen-bars" id="bars" role="list"></div>
+          <div class="branch" id="branch" role="group" aria-label="Branching diagram of six futures"></div>
+          <div class="scen-bars" id="bars"></div>
         </div>
         <div class="card" id="detail" aria-live="polite"></div>
       </div>
@@ -78,7 +78,7 @@ export async function render(el, params, query) {
     sliders.forEach((s) => { const r = $(`#sl-${s.id}`, el); r.style.setProperty("--p", `${vals[s.id]}%`); $(`#o-${s.id}`, el).textContent = vals[s.id]; });
     drawBranch(P);
     const sorted = scen.slice().sort((a, b) => P[b.id] - P[a.id]);
-    $("#bars", el).innerHTML = sorted.map((s) => `<button class="sbar ${s.id === (selected || sorted[0].id) ? "on" : ""}" type="button" data-id="${s.id}" style="--c:${s.c}" role="listitem"><span>${esc(s.name)}</span><span class="tr"><i style="width:${(P[s.id] * 100).toFixed(1)}%"></i></span><b>${Math.round(P[s.id] * 100)}%</b></button>`).join("");
+    $("#bars", el).innerHTML = sorted.map((s) => `<button class="sbar ${s.id === (selected || sorted[0].id) ? "on" : ""}" type="button" data-id="${s.id}" style="--c:${s.c}"><span>${esc(s.name)}</span><span class="tr"><i style="width:${(P[s.id] * 100).toFixed(1)}%"></i></span><b>${Math.round(P[s.id] * 100)}%</b></button>`).join("");
     $$(".sbar", el).forEach((b) => b.addEventListener("click", () => select(b.dataset.id)));
     $("#topline", el).textContent = `Leading: ${sorted[0].name}`;
     if (!selected) showDetail(sorted[0].id, P);

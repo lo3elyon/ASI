@@ -12,7 +12,7 @@ export async function render(el) {
   let i = 0, timer = 0, paused = false, held = false;
 
   el.innerHTML = `<section class="section" style="padding-bottom:20px;background:radial-gradient(800px 400px at 50% 20%, color-mix(in srgb, var(--amber) 8%, transparent), transparent 70%)">
-    <div class="wrap" style="text-align:center"><div class="eyebrow">Voices wall</div></div>
+    <div class="wrap" style="text-align:center"><h1 class="eyebrow" style="margin:0">Voices wall</h1></div>
     <div class="wrap voice-stage" aria-live="polite">
       <div><blockquote id="vq"></blockquote><div class="by" id="vb"></div>
       <div class="voice-ctrl"><button class="icon-btn" type="button" id="vp" aria-label="Previous quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg></button>
