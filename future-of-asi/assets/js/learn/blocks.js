@@ -1,6 +1,6 @@
 /* Renderers for the 17 Alignment 101 activity types. Each returns { html, bind(root) }.
    Every interaction works with a mouse, a finger and a keyboard. Drag uses pointer events, so it works on phones too. */
-import { $, $$, esc, md, ytThumb, ytEmbed, initials, ICON, RM, loadScript, store } from "../util.js";
+import { $, $$, esc, md, ytThumb, ytEmbed, mountFrame, initials, ICON, RM, loadScript, store } from "../util.js";
 import { ui } from "../core/sound.js";
 
 const shuffle = (a, seed = 7) => { const r = a.slice(); let s = seed; for (let i = r.length - 1; i > 0; i--) { s = (s * 9301 + 49297) % 233280; const j = Math.floor((s / 233280) * (i + 1)); [r[i], r[j]] = [r[j], r[i]]; } return r; };
@@ -208,7 +208,7 @@ const R = {
     const v = ctx.videos[a.video_id] || {};
     const title = a.title || v.title || "Video";
     return { html: `${a.why ? `<p style="margin:0 0 12px">${esc(a.why)}</p>` : ""}<div style="border-radius:14px;overflow:hidden"><div class="yt"><button class="yt-poster" type="button" data-lplay="${esc(a.video_id)}" data-start="${+a.start || 0}" aria-label="Play video: ${esc(title)}"><img src="${ytThumb(a.video_id, "hqdefault")}" alt="" loading="lazy" width="480" height="360"><span class="pb">${ICON.play}</span><span class="cap">${esc(title)}${a.channel || v.channel ? ` · ${esc(a.channel || v.channel)}` : ""}${a.duration ? ` · ${esc(String(a.duration).replace(/^0:/, ""))}` : ""}</span></button></div></div><div class="row" style="margin-top:10px"><a class="chip" href="#/watch/${esc(a.video_id)}" data-video="${esc(a.video_id)}">Open in the theater</a></div>`,
-      bind(root) { const b = $("[data-lplay]", root); if (b) b.onclick = (e) => { e.stopPropagation(); const st = +b.dataset.start; b.closest(".yt").innerHTML = `<iframe src="${ytEmbed(a.video_id, st ? `&start=${st}` : "")}" title="${esc(title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`; import("../core/history.js").then((h) => h.logView("video", a.video_id, title, { sub: a.channel || v.channel || "", played: true })); }; } };
+      bind(root) { const b = $("[data-lplay]", root); if (b) b.onclick = (e) => { e.stopPropagation(); const st = +b.dataset.start; mountFrame(b.closest(".yt"), a.video_id, title, st ? `&start=${st}` : ""); import("../core/history.js").then((h) => h.logView("video", a.video_id, title, { sub: a.channel || v.channel || "", played: true })); }; } };
   },
   quote(a) {
     return { html: `<figure class="quote" style="margin:0"><blockquote>&ldquo;${esc(a.text)}&rdquo;</blockquote><cite><a href="#/researchers/${esc(a.researcher)}" data-person="${esc(a.researcher)}"><b>${esc(a.name || a.researcher)}</b></a>${a.source ? `, ${esc(a.source)}` : ""}${a.date ? `, ${esc(a.date)}` : ""} ${a.url ? `<a href="${esc(a.url)}" target="_blank" rel="noopener">source ${ICON.ext}</a>` : ""}</cite></figure>${a.why ? `<p class="muted" style="margin:12px 0 0;font-size:14.5px">${esc(a.why)}</p>` : ""}` };

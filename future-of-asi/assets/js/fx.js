@@ -2,7 +2,7 @@
 import { RM, clamp, lerp } from "./util.js";
 
 const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-function hexToRgb(h) { h = h.replace("#", ""); if (h.length === 3) h = h.split("").map((c) => c + c).join(""); const n = parseInt(h, 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function hexToRgb(h) { h = String(h || "").trim(); const m = h.match(/^rgba?\(\s*(\d+)[\s,]+(\d+)[\s,]+(\d+)/i); if (m) return [+m[1], +m[2], +m[3]]; h = h.replace("#", ""); if (h.length === 3) h = h.split("").map((c) => c + c).join(""); const n = parseInt(h, 16); return /^[0-9a-f]{6}$/i.test(h) && !isNaN(n) ? [(n >> 16) & 255, (n >> 8) & 255, n & 255] : [34, 211, 238]; }
 function sizeCanvas(c) {
   const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
   const w = c.clientWidth, h = c.clientHeight;
@@ -40,7 +40,7 @@ export function neuralHorizon(canvas, getProgress = () => 0) {
   const L = loop(canvas, (t) => {
     const { ctx, w, h } = S;
     mx = lerp(mx, tmx, 0.04); my = lerp(my, tmy, 0.04);
-    const prog = clamp(getProgress(), 0, 1);
+    const prog = clamp(getProgress(), 0, 1) || 0; /* a page with no scroll room reports NaN */
     const hy = h * (0.78 + my * 0.03);
     const cx = w * (0.5 - mx * 0.06);
     ctx.clearRect(0, 0, w, h);
@@ -129,7 +129,7 @@ export function morphField(canvas, getStage) {
   addEventListener("resize", onResize);
   const L = loop(canvas, (t) => {
     const { ctx, w, h } = S;
-    const st = clamp(getStage(), 0, 4);
+    const st = clamp(getStage(), 0, 4) || 0;
     const a = Math.floor(st), b = Math.min(4, a + 1), k = st - a;
     const e = k * k * (3 - 2 * k);
     const scale = Math.min(w, h) * (w < 760 ? 1.15 : 1.0);

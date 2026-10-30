@@ -574,6 +574,9 @@
 .p3-mini-bar .icon-btn { color: #e6f0fa; }
 .p3-mini-scr { aspect-ratio: 16/9; }
 .p3-mini-scr iframe { width: 100%; height: 100%; border: 0; display: block; }
+.p3-mini-scr .yt { height: 100%; border-radius: 0; }
+.p3-mini-scr .yt-poster .pb { width: 56px; height: 56px; margin: -28px 0 0 -28px; box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent); }
+.p3-mini-scr .yt-poster .pb svg { width: 22px; height: 22px; margin-left: 3px; }
 .p3-qbtn { position: fixed; left: 16px; bottom: 16px; z-index: 79; height: 44px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line-2); background: color-mix(in srgb, var(--surface) 92%, transparent); color: var(--text); backdrop-filter: blur(10px); font-weight: 600; display: inline-flex; gap: 8px; align-items: center; box-shadow: var(--shadow); transition: border-color 0.2s, transform 0.25s var(--ease); }
 .p3-qbtn b { min-width: 22px; height: 22px; border-radius: 11px; display: grid; place-items: center; font-size: 12px; background: var(--line-2); }
 .p3-qbtn.has b { background: var(--p3a); color: #fff; animation: p3pop 0.4s var(--ease); }
@@ -814,3 +817,11 @@ html.rm :is(.p3-mp, .p3-qpanel, .p3-help, .p3-prev, .p3-sheet-pane, .p3-ghost) {
   .p3-flip .f b { font-size: 15px; overflow-wrap: break-word; }
   .p3-flip .b { font-size: 13px; line-height: 1.4; }
 }
+
+/* Round 4.1: the Watch floating controls sit above the phone tab bar instead of under it */
+.p3-mp, .p3-qbtn { bottom: calc(16px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px)); }
+.p3-qpanel, .p3-help { bottom: calc(70px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 520px) { .p3-mp { bottom: calc(70px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px)); } .p3-qpanel { max-height: min(60vh, 520px); } }
+/* When the mini player and the queue are both open on a narrow screen, the queue moves up so the mini controls stay reachable */
+@media (max-width: 860px) { #view:has(.p3-mp.on) .p3-qpanel, .p3-mp.on ~ .p3-qpanel { bottom: calc(16px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px) + min(400px, 100vw - 32px) * 0.5625 + 54px); max-height: max(160px, calc(100vh - 16px - var(--tabbar-h, 0px) - min(400px, 100vw - 32px) * 0.5625 - 54px - 90px)); } }
+@media (max-width: 520px) { #view:has(.p3-mp.on) .p3-qpanel, .p3-mp.on ~ .p3-qpanel { bottom: calc(70px + var(--tabbar-h, 0px) + env(safe-area-inset-bottom, 0px) + (100vw - 32px) * 0.5625 + 54px); max-height: max(160px, calc(100vh - 70px - var(--tabbar-h, 0px) - (100vw - 32px) * 0.5625 - 54px - 70px)); } }

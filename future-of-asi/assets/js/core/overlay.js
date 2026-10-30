@@ -1,7 +1,7 @@
 /* Overlays that sit on top of whatever page is open: the person drawer (?p=id) and the video theater (?v=id).
    The hash route never changes, the page underneath is never re-rendered, and the scroll position is restored exactly.
    Opening pushes a history entry, so Back and Esc close it. Deep links work because the state lives in the query string. */
-import { $, $$, esc, researchers, videos, signatories, categories, photoManifest, orgIndex, orgChip, GROUPS, CATS, initials, ytThumb, ytEmbed, fmtDur, fmtDate, ICON } from "../util.js";
+import { $, $$, esc, researchers, videos, signatories, categories, photoManifest, orgIndex, orgChip, GROUPS, CATS, initials, ytThumb, mountFrame, fmtDur, fmtDate, ICON } from "../util.js";
 import { logView } from "./history.js";
 import { pauseScroll, resumeScroll, jumpTo } from "./motion.js";
 import { ui } from "./sound.js";
@@ -197,7 +197,7 @@ async function renderVideo(id) {
   $("#ovVSh").dataset.shareUrl = links.video(v.id); $("#ovVSh").dataset.shareTitle = v.title;
   $("#ovVS").innerHTML = `<div class="yt"><button class="yt-poster" type="button" data-theater-play="${esc(v.id)}" aria-label="Play ${esc(v.title)}"><img src="${ytThumb(v.id, "hqdefault")}" alt="" width="480" height="360"><span class="pb"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="cap">Click to play. YouTube loads only now, in privacy enhanced mode.</span></button></div>`;
   $("#ovVS [data-theater-play]").onclick = (e) => {
-    $("#ovVS .yt").innerHTML = `<iframe src="${ytEmbed(v.id)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+    mountFrame($("#ovVS .yt"), v.id, v.title);
     logView("video", v.id, v.title, { sub: v.channel, played: true });
   };
   const people = v.people.map((p) => pById[p]).filter(Boolean);

@@ -170,9 +170,21 @@ export function ytEmbed(id, extra = "") { return `https://www.youtube-nocookie.c
 export function ytPoster(id, title = "", cap = "") {
   return `<div class="yt" data-yt="${esc(id)}"><button class="yt-poster" type="button" data-play="${esc(id)}" aria-label="Play video: ${esc(title)}"><img src="${ytThumb(id, "hqdefault")}" alt="" loading="lazy" decoding="async" width="480" height="360"><span class="pb">${'<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>'}</span>${cap ? `<span class="cap">${esc(cap)}</span>` : ""}</button></div>`;
 }
+/* A YouTube iframe built as an element with its src set before it is attached, so loading it is the frame's
+   first navigation and never adds an entry to the browser's Back history. */
+export function ytFrame(id, title = "Video", extra = "") {
+  const f = document.createElement("iframe");
+  f.title = title || "Video";
+  f.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen");
+  f.setAttribute("allowfullscreen", "");
+  f.referrerPolicy = "strict-origin-when-cross-origin";
+  f.src = ytEmbed(id, extra);
+  return f;
+}
+export function mountFrame(box, id, title, extra = "") { box.replaceChildren(ytFrame(id, title, extra)); return box.firstChild; }
 export function playPoster(btn, onPlay) {
   const id = btn.dataset.play; const box = btn.closest(".yt");
-  box.innerHTML = `<iframe src="${ytEmbed(id)}" title="${esc(btn.getAttribute("aria-label") || "Video")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+  mountFrame(box, id, btn.getAttribute("aria-label") || "Video");
   if (onPlay) onPlay(id);
 }
 export function loadScript(src) {

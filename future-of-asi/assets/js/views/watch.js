@@ -1,7 +1,7 @@
 /* Watch (Round 3): a cinema. Hero carousel with posters, continue watching, watch later, a queue, a mini player,
    category glow tiles, playlist shelves you can drag, rich filters, hover previews and keyboard shortcuts.
    Nothing autoplays: YouTube (nocookie) is only contacted after a click on a play control. Grids are paged. */
-import { $, $$, esc, load, arr, videos, researchers, CATS, ytThumb, ytEmbed, fmtDur, fmtDate, durSecs, store, ICON, RM, toast } from "../util.js";
+import { $, $$, esc, load, arr, videos, researchers, CATS, ytThumb, mountFrame, fmtDur, fmtDate, durSecs, store, ICON, RM, toast } from "../util.js";
 import { openVideo } from "../core/overlay.js";
 import { logView } from "../core/history.js";
 import { headH, run, m3init, m3auto, pic, photoMap, face, dragScroll, debounce, sparkBars } from "../pages3/kit.js";
@@ -183,37 +183,79 @@ export async function render(el, params) {
   const arm = () => { clearTimeout(sT); $("#car", el).classList.toggle("paused", paused); if (!paused && visible && slidesEl.length > 1) sT = setTimeout(() => go(si + 1), 7000); };
   $("#cPrev", el).onclick = () => go(si - 1); $("#cNext", el).onclick = () => go(si + 1);
   dotsEl.forEach((d) => (d.onclick = () => go(+d.dataset.sl)));
-  $("#cPause", el).onclick = (e) => { paused = !paused; e.currentTarget.setAttribute("aria-pressed", paused); e.currentTarget.textContent = paused ? "Resume slides" : "Pause slides"; arm(); };
+  const pauseLbl = () => { const b = $("#cPause", el); b.setAttribute("aria-pressed", paused); b.textContent = paused ? "Resume slides" : "Pause slides"; };
+  $("#cPause", el).onclick = () => { paused = !paused; pauseLbl(); arm(); };
+  pauseLbl(); /* with reduced motion the slides start paused, so the button has to say Resume from the start */
   const car = $("#car", el);
   car.addEventListener("pointerenter", () => { clearTimeout(sT); car.classList.add("paused"); }); car.addEventListener("pointerleave", arm);
   car.addEventListener("focusin", () => { clearTimeout(sT); car.classList.add("paused"); }); car.addEventListener("focusout", arm);
   const cio = new IntersectionObserver((es) => { visible = es[0].isIntersecting; arm(); }); cio.observe(car); offs.push(() => { cio.disconnect(); clearTimeout(sT); });
   go(0);
 
-  /* Mini player and queue */
-  const mini = $("#mini", el);
+  /* Mini player and queue.
+     Both are layers with one Back history entry each (Round 4.1): opening pushes an entry tagged with the layer's
+     key, switching the mini video replaces it, Back pops it and closes the layer, and X or Esc call history.back()
+     when the entry is ours so no dead entry is left behind. Coming back to a tagged entry (Forward, or Back from the
+     theater or another page) restores the layer; the mini then shows a poster, so nothing plays without a click. */
+  const mini = $("#mini", el), qpanel = $("#qpanel", el), qbtn = $("#qbtn", el);
   let miniId = "";
-  function playMini(id) {
+  const hs = () => history.state || {};
+  const ownState = () => { const st = { ...hs() }; delete st.thrOv; return st; };
+  /* thrStack lists the open layers in the order their entries were pushed, so Back always closes the newest one */
+  const layerOpen = (k, val) => { const st = ownState(); const had = !!st[k]; st[k] = val; if (had) history.replaceState(st, "", location.href); else { st.thrStack = [...(st.thrStack || []), k]; history.pushState(st, "", location.href); } };
+  let rewrite = null;
+  const layerClose = (k, closeUi) => {
+    const st = hs(), stack = st.thrStack || [], i = stack.indexOf(k);
+    if (!st[k] || i < 0) { closeUi(); return; }
+    if (i === stack.length - 1) { history.back(); return; }
+    /* Closing a layer that has another one above it (the queue under a mini started from it): step back past both
+       entries, then push the upper layers again, so the history never keeps an entry for the closed layer. */
+    closeUi();
+    rewrite = stack.slice(i + 1).map((x) => [x, st[x]]);
+    history.go(-(stack.length - i));
+  };
+  function playMini(id, { restore = false } = {}) {
     const v = byId[id]; if (!v) return; miniId = id;
+    if (!restore) layerOpen("thrMini", id);
     mini.hidden = false; mini.classList.add("on");
-    mini.innerHTML = `<div class="p3-mini-bar"><b>${esc(v.title)}</b><button class="icon-btn sm" type="button" data-mexp aria-label="Open in the theater">${ICON.wide}</button><button class="icon-btn sm" type="button" data-mnext ${queue().filter((x) => x !== id).length ? `aria-label="Next in queue" title="Next in queue"` : `aria-label="Next in queue. The queue is empty" title="Nothing else in the queue yet. Add videos with Add to queue." disabled`}>${chev(1)}</button><button class="icon-btn sm" type="button" data-mclose aria-label="Close mini player">${ICON.close}</button></div><div class="p3-mini-scr"><iframe src="${ytEmbed(v.id)}" title="${esc(v.title)}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe></div>`;
+    mini.innerHTML = `<div class="p3-mini-bar"><b>${esc(v.title)}</b><button class="icon-btn sm" type="button" data-mexp aria-label="Open in the theater">${ICON.wide}</button><button class="icon-btn sm" type="button" data-mnext ${queue().filter((x) => x !== id).length ? `aria-label="Next in queue" title="Next in queue"` : `aria-label="Next in queue. The queue is empty" title="Nothing else in the queue yet. Add videos with Add to queue." disabled`}>${chev(1)}</button><button class="icon-btn sm" type="button" data-mclose aria-label="Close mini player">${ICON.close}</button></div><div class="p3-mini-scr"><div class="yt">${restore ? `<button class="yt-poster" type="button" data-mplay aria-label="Play ${esc(v.title)}"><img src="${ytThumb(v.id, "hqdefault")}" alt="" width="480" height="360"><span class="pb">${ICON.play}</span></button>` : ""}</div></div>`;
+    if (restore) return;
+    mountFrame($(".p3-mini-scr .yt", mini), v.id, v.title);
     logView("video", v.id, v.title, { sub: v.channel, played: true });
     store.set("p3queue", queue().filter((x) => x !== id)); qpaint(); refreshActs();
   }
   const closeMini = () => { mini.classList.remove("on"); mini.innerHTML = ""; mini.hidden = true; miniId = ""; };
+  const shutMini = () => { if (miniId) layerClose("thrMini", closeMini); };
   const nextQ = () => { const q = queue().filter((x) => x !== miniId); if (q.length) playMini(q[0]); else toast("Your queue is empty."); };
-  mini.addEventListener("click", (e) => { if (e.target.closest("[data-mclose]")) closeMini(); else if (e.target.closest("[data-mnext]")) nextQ(); else if (e.target.closest("[data-mexp]")) { const id = miniId; closeMini(); openVideo(id, { queue: queue().length ? [id, ...queue()] : null }); } });
-  const qpanel = $("#qpanel", el), qbtn = $("#qbtn", el);
+  mini.addEventListener("click", (e) => {
+    if (e.target.closest("[data-mclose]")) shutMini();
+    else if (e.target.closest("[data-mnext]")) nextQ();
+    else if (e.target.closest("[data-mplay]")) { const v = byId[miniId]; mountFrame($(".p3-mini-scr .yt", mini), v.id, v.title); logView("video", v.id, v.title, { sub: v.channel, played: true }); }
+    else if (e.target.closest("[data-mexp]")) { const id = miniId; closeMini(); openVideo(id, { queue: queue().length ? [id, ...queue()] : null }); }
+  });
+  const showQ = () => { qpanel.hidden = false; qbtn.setAttribute("aria-expanded", "true"); qpaint(); };
+  const hideQ = () => { qpanel.hidden = true; qbtn.setAttribute("aria-expanded", "false"); };
+  const shutQ = () => { if (!qpanel.hidden) layerClose("thrQueue", hideQ); };
+  /* Back and Forward: make the layers match the entry we landed on */
+  const syncLayers = () => {
+    if (rewrite) { let st = ownState(); rewrite.forEach(([x, v]) => { st = { ...st, [x]: v, thrStack: [...(st.thrStack || []), x] }; history.pushState(st, "", location.href); }); rewrite = null; return; }
+    const st = hs();
+    if (!st.thrMini && miniId) closeMini();
+    else if (st.thrMini && st.thrMini !== miniId && byId[st.thrMini]) playMini(st.thrMini, { restore: true });
+    if (!st.thrQueue && !qpanel.hidden) hideQ();
+    else if (st.thrQueue && qpanel.hidden) showQ();
+  };
+  window.addEventListener("popstate", syncLayers); offs.push(() => window.removeEventListener("popstate", syncLayers));
   function qpaint() {
     const q = queue().map((id) => byId[id]).filter(Boolean);
     $("#qn", el).textContent = q.length; qbtn.classList.toggle("has", q.length > 0);
     qpanel.innerHTML = `<div class="row" style="justify-content:space-between"><b>Your queue</b><button class="icon-btn sm" type="button" data-qclose aria-label="Close queue">${ICON.close}</button></div>
       ${q.length ? `<ol>${q.map((v, i) => `<li><img src="${ytThumb(v.id)}" alt="" loading="lazy" width="96" height="54"><span>${esc(v.title)}<small>${esc(v.channel)}</small></span><span class="qa"><button type="button" class="icon-btn sm" data-qup="${i}" aria-label="Move up" ${i ? "" : "disabled"}>${chev(-2)}</button><button type="button" class="icon-btn sm" data-qrm="${esc(v.id)}" aria-label="Remove">${ICON.close}</button></span></li>`).join("")}</ol><div class="row"><button class="btn sm primary p3-rip" type="button" data-qplay>${ICON.play} Play in mini player</button><button class="btn sm" type="button" data-qtheater>Open in theater</button><button class="btn sm ghost" type="button" data-qclear>Clear</button></div>` : `<p class="muted">Add videos with the plus button on any card, or queue a whole playlist.</p>`}`;
   }
-  qbtn.onclick = () => { const o = qpanel.hidden; qpanel.hidden = !o; qbtn.setAttribute("aria-expanded", o); if (o) qpaint(); };
+  qbtn.onclick = () => { if (qpanel.hidden) { layerOpen("thrQueue", 1); showQ(); } else shutQ(); };
   qpanel.addEventListener("click", (e) => {
     const q = queue();
-    if (e.target.closest("[data-qclose]")) { qpanel.hidden = true; qbtn.setAttribute("aria-expanded", "false"); return; }
+    if (e.target.closest("[data-qclose]")) { shutQ(); return; }
     const up = e.target.closest("[data-qup]"); if (up) { const i = +up.dataset.qup; [q[i - 1], q[i]] = [q[i], q[i - 1]]; store.set("p3queue", q); qpaint(); return; }
     const rm = e.target.closest("[data-qrm]"); if (rm) { store.set("p3queue", q.filter((x) => x !== rm.dataset.qrm)); qpaint(); refreshActs(); return; }
     if (e.target.closest("[data-qplay]") && q.length) playMini(q[0]);
@@ -257,13 +299,13 @@ export async function render(el, params) {
     const cards = $$("#vg .p3-vc", el);
     switch (e.key) {
       case "/": e.preventDefault(); e.stopPropagation(); $("#wq", el).focus(); break;
-      case "?": $("#help", el).hidden = !$("#help", el).hidden; break;
+      case "?": e.preventDefault(); $("#help", el).hidden = !$("#help", el).hidden; break; /* handled here, so the site wide shortcut sheet does not open on top */
       case "j": case "k": { e.preventDefault(); const i = focusCard ? cards.indexOf(focusCard) : -1; const n = cards[Math.max(0, Math.min(cards.length - 1, i + (e.key === "j" ? 1 : -1)))]; if (n) { $(".p3-vplay", n).focus({ preventScroll: true }); scrollToEl(n, { block: "nearest" }); } break; }
       case "w": if (id) toggleLater(id); break;
       case "q": if (id) addQ(id); break;
       case "m": if (id) playMini(id); break;
       case "n": nextQ(); break;
-      case "Escape": if (!$("#help", el).hidden) $("#help", el).hidden = true; else if (miniId) closeMini(); else if (!qpanel.hidden) { qpanel.hidden = true; qbtn.setAttribute("aria-expanded", "false"); } break;
+      case "Escape": if (!$("#help", el).hidden) $("#help", el).hidden = true; else if (miniId) shutMini(); else if (!qpanel.hidden) shutQ(); break;
     }
   };
   document.addEventListener("keydown", onK, true); offs.push(() => document.removeEventListener("keydown", onK, true));
@@ -275,6 +317,7 @@ export async function render(el, params) {
   el._onParams = handle;
   mine(); qpaint(); paint();
   if (params.length) handle(params);
+  syncLayers();
   offs.push(run(el), m3init(el), () => closeMini());
   return () => offs.forEach((f) => { try { f(); } catch (e) {} });
 

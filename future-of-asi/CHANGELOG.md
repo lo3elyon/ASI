@@ -4,6 +4,23 @@ All notable changes to Threshold: The Future of ASI (`future-of-asi/` in [lo3ely
 
 Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
+## Round 4.1 (2026-10-30): Watch mini player Back fix and a full Watch QA pass
+
+### Fixed
+
+- Watch mini player and Back. Opening the mini player (the small picture in picture button on any video card, on a featured slide, with M, or from the queue) made no history entry, so Back skipped straight past it and left the page instead of closing it, and the player then vanished with the page. The mini player is now a layer with exactly one history entry: Back closes it, Back again goes to the previous page as normal. Switching video, Next in queue and a second mini click replace that entry instead of adding more. Closing with X or Escape steps back over the entry, so no dead entry is left for Back to land on. Forward, or coming back to Watch from another page, restores the mini player with a poster, so nothing plays until you press play.
+- Mini player into the theater. Open in the theater keeps the mini entry under the theater, so Back closes the theater and brings the mini back as a poster, and Back again closes the mini.
+- The queue panel works the same way: one entry, Back or X closes it. When the mini is playing from the queue, closing either one leaves no stray entry behind, and Back still closes the newest layer first.
+- YouTube frames (mini player, video theater, inline posters, lesson videos) are now built as an element with the address set before it is attached, through one helper `ytFrame` in `util.js`, so loading a video never adds its own entry to the browser history.
+- On phones the mini player, the Queue button, the queue panel and the shortcuts card sat under the bottom tab bar and could not be tapped. They now sit above it, and when the mini and the queue are both open the queue moves up so the mini controls stay reachable.
+- Pressing ? on Watch opened both the Watch shortcuts card and the site wide shortcut sheet on top of it. It now opens only the Watch card.
+- With reduced motion the featured slides start paused, but the button still said Pause slides. It now says Resume slides from the start.
+- The home hero glow no longer throws a canvas colour error when the page has no scroll room yet.
+
+### Tested
+
+- Every Watch control at 360 and 1440 wide with Playwright: all 17 category chips (and a second click back to All), category tiles, search and its empty state, all six sorts, person, level, length, year and language filters, Unwatched only, Clear all filters, Show more, featured carousel previous, next, dots and pause, card play, theater play, wide mode and Up next, watch later on and off, Queue all and Clear, add to queue and the duplicate guard, mini player open, switch, next, expand, poster restore and close, queue panel open, move up, remove, play in mini, open in theater, clear and close, the shortcuts card, J, K, W, Q, M, Escape and /, hover preview, playlist arrows, Play all and Queue all, featured faces and Profile, deep links `?v=` and `#/watch/c/<id>`, with Back and Forward after each, and zero console errors.
+
 ## Round 4 (2026-10-30): compare, stats, starter kit, daily brief, shortcuts, share, full QA fixes
 
 Final. Pushed to lo3elyon/ASI on 2026-10-30.
