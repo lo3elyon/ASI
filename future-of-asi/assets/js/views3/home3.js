@@ -20,7 +20,7 @@ export async function mount(el) {
   const book = books.length ? books[dayIndex(books.length)] : null;
   const vpool = vids.filter((v) => /warning|documentary|interview|explainer/.test(v.category) && v.duration && v.level === "beginner");
   const vid = vpool.length ? vpool[dayIndex(vpool.length)] : vids[0];
-  const qpool = quotes.filter((q) => q.text.length > 50 && q.text.length < 260 && q.url);
+  const qpool = quotes.filter((q) => q.text.length > 50 && q.text.length < 260 && q.url && !/https?:\/\/|www\./i.test(q.text)); /* a quote that is only a pointer to a link is not a quote of the day */
   const qd = qpool.length ? qpool[dayIndex(qpool.length)] : null;
   const bands = [["Under 5%", (x) => x < 5, "#84cc16"], ["5 to 20%", (x) => x >= 5 && x < 20, "#14b8a6"], ["20 to 50%", (x) => x >= 20 && x < 50, "#f59e0b"], ["50% or more", (x) => x >= 50, "#ef4444"]];
   const yNow = new Date().getFullYear();

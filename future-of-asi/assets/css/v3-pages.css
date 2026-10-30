@@ -797,3 +797,20 @@ html.rm :is(.p3-mp, .p3-qpanel, .p3-help, .p3-prev, .p3-sheet-pane, .p3-ghost) {
 @media (max-width: 980px) { .p3-atlas.is-flat { grid-template-columns: minmax(0, 1fr); } .p3-flat-pin { width: 24px; height: 24px; margin: -12px 0 0 -12px; } }
 @media (prefers-reduced-motion: reduce) { .p3-flat-pin.ping i { animation: none; } }
 :root.rm .p3-flat-pin.ping i { animation: none; }
+/* Round 3.2: org names in the link pairs break between words, never inside one */
+.p3-link-ends .p3-oname span { overflow-wrap: break-word; word-break: normal; hyphens: auto; }
+@media (max-width: 560px) {
+  .p3-link-ends { grid-template-columns: minmax(0, 1fr) 36px minmax(0, 1fr); gap: 4px; }
+  .p3-link-ends .p3-oname { flex-direction: column; align-items: center; text-align: center; gap: 6px; }
+  .p3-link-ends .p3-oname span { font-size: 13px; line-height: 1.3; }
+}
+/* Round 3.2: on phones the queue button only shows once something is queued, so it never sits on top of cards for nothing */
+@media (max-width: 760px) { .p3-qbtn:not(.has) { display: none; } }
+/* Round 3.2: the control glossary is two cards wide on phones instead of one long column */
+@media (max-width: 560px) {
+  .p3-gloss { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .p3-flip { min-height: 150px; }
+  .p3-flip .f, .p3-flip .b { padding: 12px; }
+  .p3-flip .f b { font-size: 15px; overflow-wrap: break-word; }
+  .p3-flip .b { font-size: 13px; line-height: 1.4; }
+}

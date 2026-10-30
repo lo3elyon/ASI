@@ -391,29 +391,64 @@
       "q": "What do you enjoy most?",
       "o": [
         [
-          "Writing and running code",
+          "Doing research and running experiments",
           {
-            "technical": 2,
-            "builder": 2
+            "technical": 3
           }
         ],
         [
-          "Reading, arguing and writing",
+          "Building software, tools and infrastructure",
           {
-            "policy": 2,
+            "builder": 3,
+            "technical": 1
+          }
+        ],
+        [
+          "Reading, arguing and writing about rules",
+          {
+            "policy": 3,
             "comms": 1
           }
         ],
         [
-          "Explaining things to people",
+          "Explaining things and bringing people together",
           {
-            "comms": 2
+            "comms": 3
           }
         ],
         [
           "Not sure yet",
           {
             "general": 2
+          }
+        ]
+      ]
+    },
+    {
+      "q": "Which would you rather make?",
+      "o": [
+        [
+          "A new result in a research paper",
+          {
+            "technical": 2
+          }
+        ],
+        [
+          "A tool or app other people use",
+          {
+            "builder": 2
+          }
+        ],
+        [
+          "A policy brief or a new rule",
+          {
+            "policy": 2
+          }
+        ],
+        [
+          "An article, a video or an event",
+          {
+            "comms": 2
           }
         ]
       ]

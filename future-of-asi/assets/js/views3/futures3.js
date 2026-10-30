@@ -55,7 +55,7 @@ export async function mount(el) {
   const cmp = () => {
     const a = by[$("#f3a", box).value], b = by[$("#f3b", box).value];
     $("#f3cmpOut", box).innerHTML = `<div class="f3-cmp"><div class="hd" style="--c:${a.c}">${pic("fut-" + a.id, ALT[a.id] || "", { sizes: "50vw" })}<h3>${esc(a.name)}</h3><p>${esc(a.tagline)}</p></div><div class="mid" aria-hidden="true"></div><div class="hd" style="--c:${b.c}">${pic("fut-" + b.id, ALT[b.id] || "", { sizes: "50vw" })}<h3>${esc(b.name)}</h3><p>${esc(b.tagline)}</p></div>
-      ${years.map((y, i) => { const ta = (a.timeline || []).find((x) => x.y === y), tb = (b.timeline || []).find((x) => x.y === y); return `<div class="c" style="--c:${a.c};--i:${i}" data-m3="left">${ta ? `<b>${esc(ta.t)}</b><span>${esc(ta.d)}</span>` : ""}</div><div class="yr" style="--i:${i}">${esc(y)}</div><div class="c" style="--c:${b.c};--i:${i}" data-m3="right">${tb ? `<b>${esc(tb.t)}</b><span>${esc(tb.d)}</span>` : ""}</div>`; }).join("")}</div>`;
+      ${years.map((y, i) => { const ta = (a.timeline || []).find((x) => x.y === y), tb = (b.timeline || []).find((x) => x.y === y); if (!ta && !tb) return ""; const cell = (t, s, side) => `<div class="c${t ? "" : " none"}" style="--c:${s.c};--i:${i}" data-m3="${side}">${t ? `<b>${esc(t.t)}</b><span>${esc(t.d)}</span>` : `<span>No new step for ${esc(s.name)} this year.</span>`}</div>`; return `${cell(ta, a, "left")}<div class="yr" style="--i:${i}">${esc(y)}</div>${cell(tb, b, "right")}`; }).join("")}</div>`;
     auto($("#f3cmpOut", box));
   };
   $("#f3a", box).onchange = cmp; $("#f3b", box).onchange = cmp;

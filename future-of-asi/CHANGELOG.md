@@ -4,6 +4,16 @@ All notable changes to Threshold: The Future of ASI (`future-of-asi/` in [lo3ely
 
 Live: https://lo3elyon.github.io/ASI/future-of-asi/
 
+## Round 3.2 (2026-10-30): polish, careers, logos, banner
+
+- Hub banner and social image redrawn with the real counts: 218 researchers, 152 sourced quotes, 1,375 verified videos, 1,386 signers.
+- Careers path finder: every path can now come up, with a new "Which would you rather make?" question. All 240 answer sets tested.
+- Back and Forward work across routes, overlays, library and explosion. #/r/<id> opens that person.
+- New logos for Korea AI Safety Institute and AI Impacts. Logos with purple or pink sit on a plain tile. Inherent and Cognition logos no longer vanish in dark mode.
+- Phone polish: futures compare and year table, lever headers, orgs link pairs, pacing legend, watch queue, control glossary, learn streak card, long words in quotes.
+- Quote of the day never picks a link only quote.
+- 404 page for the route and the repo root.
+
 ## Round 3.1 (2026-10-30): QA fixes and SEO
 
 - Header: THRESHOLD title and its tagline no longer overlap.

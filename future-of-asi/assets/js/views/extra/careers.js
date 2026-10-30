@@ -60,8 +60,13 @@ export async function render(el) {
     const i = ans.length;
     if (i < quiz.length) { const q = quiz[i]; fin.innerHTML = `<div class="x-fin-top"><span class="mono">Question ${i + 1} of ${quiz.length}</span><span class="x-prog"><i style="--w:${(i / quiz.length) * 100}%"></i></span></div><h3>${esc(q.q)}</h3><div class="x-fin-opts">${q.o.map(([t], k) => `<button class="btn" type="button" data-fa="${k}">${esc(t)}</button>`).join("")}</div>${i ? `<button class="btn sm ghost" type="button" id="fback">Back</button>` : ""}`; return; }
     const tags = {}; ans.forEach((a, k) => Object.entries(quiz[k].o[a][1]).forEach(([t, v]) => (tags[t] = (tags[t] || 0) + v)));
-    const track = (tags.technical || 0) + (tags.builder || 0) > (tags.policy || 0) + (tags.comms || 0) ? "technical" : (tags.policy || 0) >= (tags.comms || 0) && tags.policy ? "policy" : "general";
-    const path = paths.find((p) => p.id === (tags.builder > tags.technical ? "builder" : track === "technical" ? "technical" : track === "policy" ? "policy" : tags.comms ? "comms" : "technical")) || paths[0];
+    /* Each path has its own tag. The highest wins; a tie goes to the first answer's main pick, then this order. */
+    const order = ["technical", "builder", "policy", "comms"];
+    const first = Object.entries(quiz[0].o[ans[0]][1]).sort((a, b) => b[1] - a[1])[0][0];
+    const best = order.slice().sort((a, b) => (tags[b] || 0) - (tags[a] || 0) || (b === first) - (a === first) || order.indexOf(a) - order.indexOf(b))[0];
+    const path = paths.find((p) => p.id === best) || paths[0];
+    const track = best === "technical" || best === "builder" ? "technical" : best === "policy" ? "policy" : "general";
+    el.dataset.fit = best;
     /* Only programmes mapped to this path (data: programs[].paths) can be recommended for it */
     const fits = (p) => (Array.isArray(p.paths) ? p.paths : p.tracks).includes(path.id);
     const score = (p) => (p.tracks.includes(track) ? 3 : 0) + (p.tracks.includes("general") ? 1 : 0) + (tags[p.time] || 0) + (tags.remote && /online|remote/i.test(p.where) ? 3 : 0) + (tags.remote && !/online|remote/i.test(p.where) ? -4 : 0) + (tags[p.level] || 0);

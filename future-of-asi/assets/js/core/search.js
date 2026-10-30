@@ -1,6 +1,6 @@
 /* Ctrl K search: fuzzy (Fuse.js, vendored) across everything, with type tabs, facets, highlights, recent searches and keyboard control.
    People and videos open as overlays, so the page underneath stays exactly where it was. */
-import { $, $$, esc, store, load, arr, researchers, videos, signatories, categories, orgIndex, logoSrc, ytThumb, initials, CATS, slug } from "../util.js";
+import { $, $$, esc, store, load, arr, researchers, videos, signatories, categories, orgIndex, logoSrc, modeCls, ytThumb, initials, CATS, slug } from "../util.js";
 import { openPerson, openVideo } from "./overlay.js";
 import { getHistory } from "./history.js";
 import { ui } from "./sound.js";
@@ -92,7 +92,7 @@ function iconFor(d) {
   if (d.type === "video") return `<span class="ic vid"><img src="${ytThumb(d.vid, "default")}" alt="" loading="lazy" width="46" height="46"></span>`;
   if ((d.type === "person" || d.type === "quote" || d.type === "signer") && d.img) return `<span class="ic"><img src="${esc(d.img)}" alt="" loading="lazy" width="46" height="46" referrerpolicy="no-referrer"></span>`;
   if (d.type === "person" || d.type === "signer") return `<span class="ic" style="--c:${TC[d.type]};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`;
-  if (d.type === "org") { const L = logoSrc(d.oid) || logoSrc(d.title); if (L && L.src) return `<span class="ic ologo${L.mode === "invert" ? " inv" : L.mode === "as-is" ? " asis" : ""}" style="width:46px;height:46px"><img src="${esc(L.src)}" alt="" loading="lazy" width="40" height="40"></span>`; return `<span class="ic" style="--c:${TC.org};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`; }
+  if (d.type === "org") { const L = logoSrc(d.oid) || logoSrc(d.title); if (L && L.src) return `<span class="ic ologo${modeCls(L.mode)}" style="width:46px;height:46px"><img src="${esc(L.src)}" alt="" loading="lazy" width="40" height="40"></span>`; return `<span class="ic" style="--c:${TC.org};font-family:var(--f-display);font-size:14px;font-weight:700">${esc(initials(d.title))}</span>`; }
   if (d.type === "page") return `<span class="ic ic-svg" style="--c:${TC.page}" aria-hidden="true">${ICONS[d.icon] || ICONS.spark || ""}</span>`;
   return `<span class="ic" style="--c:${TC[d.type]}">${esc(TL[d.type].slice(0, 4))}</span>`;
 }

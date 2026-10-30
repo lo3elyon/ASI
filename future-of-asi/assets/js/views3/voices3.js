@@ -17,7 +17,7 @@ export async function mount(el) {
   const ppl = await researchers();
   const all = ppl.flatMap((p) => p.quotes.map((q) => ({ ...q, p })));
   if (!all.length) return;
-  const pool = all.filter((q) => q.url && q.text.length > 50 && q.text.length < 300);
+  const pool = all.filter((q) => q.url && q.text.length > 50 && q.text.length < 300 && !/https?:\/\/|www\./i.test(q.text));
   const qd = pool[dayIndex(pool.length)] || all[0];
   const themed = THEMES.map(([l, re, c]) => ({ l, c, qs: all.filter((q) => re.test(q.text)) }));
   const yr = {}; all.forEach((q) => { const y = (String(q.date || "").match(/(19|20)\d\d/) || [])[0]; if (y) yr[y] = (yr[y] || 0) + 1; });

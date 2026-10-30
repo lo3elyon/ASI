@@ -786,3 +786,18 @@ a.v3-barrow:hover { background: var(--surface-2); }
 @media (max-width: 900px) { .v3-hist .b em:not(.k) { display: none; } }
 .v3-hist .b:first-child em { left: 0; transform: none; }
 .v3-hist .b:last-child em { left: auto; right: 0; transform: none; }
+/* Round 3.2: futures compare, matrix and lever grid read well on phones */
+.f3-cmp .c.none { background: transparent; border: 1px dashed var(--line); border-left: 3px dashed color-mix(in srgb, var(--c) 45%, var(--line)); }
+.f3-cmp .c.none span { font-size: 13px; color: var(--muted); }
+@media (max-width: 900px) { .f3-mx { min-width: 0; width: max-content; } .f3-mx td { min-width: 200px; max-width: 240px; } }
+.f3-mx tbody th { position: sticky; left: 0; z-index: 1; background: var(--surface-2); }
+.f3-mx thead th:first-child { left: 0; z-index: 2; }
+.f3-lev-grid { grid-template-columns: 150px repeat(var(--n), minmax(108px, 1fr)); min-width: 820px; }
+.f3-lev-grid .hd { overflow-wrap: break-word; line-height: 1.25; }
+.f3-lev-grid .lv { position: sticky; left: 0; z-index: 1; background: var(--bg); padding: 6px 8px 6px 0; }
+@media (max-width: 760px) { .f3-cmp .c.none { display: none; } }
+/* Round 3.2: Pacing split legend reads as a sentence, and stacks under the ring on small phones */
+.pc3-split li { display: block; line-height: 1.35; }
+.pc3-split li i { display: inline-block; margin-right: 8px; }
+.pc3-split li b { margin-right: 6px; }
+@media (max-width: 480px) { .pc3-split { grid-template-columns: 1fr; justify-items: center; } .pc3-split .pc3-donut { width: 150px; } .pc3-split ul { justify-self: stretch; } }

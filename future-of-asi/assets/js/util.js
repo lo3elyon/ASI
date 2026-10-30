@@ -322,10 +322,12 @@ export function logoSrc(idOrName) {
   if (o && o.logo_local) return { src: o.logo_local, inv: !!o.invert_on_dark, id };
   return id ? { src: "", id } : null;
 }
+/* Logo tile class by manifest on_dark mode. neutral-tile is for marks with purple or pink in them: a plain grey tile, the logo itself untouched. */
+export const modeCls = (m) => (m === "invert" ? " inv" : m === "as-is" ? " asis" : m === "neutral-tile" ? " ntile" : "");
 export function logoHtml(idOrName, label = "", cls = "ologo") {
   const L = logoSrc(idOrName);
   const name = label || (L && _orgIdx.byId[L.id] && _orgIdx.byId[L.id].name) || idOrName || "";
-  if (L && L.src) return `<span class="${cls}${L.mode === "invert" ? " inv" : L.mode === "as-is" ? " asis" : ""}" title="${esc(name)}"><img src="${esc(L.src)}" alt="${esc(name)} logo" loading="lazy" decoding="async" width="28" height="28" onerror="this.parentNode.classList.add('mono');this.parentNode.textContent='${esc(initials(name))}'"></span>`;
+  if (L && L.src) return `<span class="${cls}${modeCls(L.mode)}" title="${esc(name)}"><img src="${esc(L.src)}" alt="${esc(name)} logo" loading="lazy" decoding="async" width="28" height="28" onerror="this.parentNode.classList.add('mono');this.parentNode.textContent='${esc(initials(name))}'"></span>`;
   return `<span class="${cls} mono" title="${esc(name)}" aria-hidden="true">${esc(initials(name))}</span>`;
 }
 export function orgChip(name) { return name ? `<span class="orgchip">${logoHtml(name, name)}<span>${esc(name)}</span></span>` : ""; }

@@ -17,6 +17,16 @@
   "on_dark": "white-chip",
   "name": "AI Futures Project"
  },
+ "ai-impacts": {
+  "file": "logos/ai-impacts.png",
+  "source_url": "https://aiimpacts.org/favicon.ico",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "solid",
+  "on_dark": "as-is",
+  "name": "AI Impacts",
+  "note": "The site has a text only wordmark, so this is its own site icon (32px favicon converted to PNG). Downloaded 2026-10-30."
+ },
  "ai-safety-asia": {
   "file": "logos/ai-safety-asia.png",
   "source_url": "https://www.aisafety.asia/_next/image?url=%2Flogo-white.png&w=256&q=75&dpl=dpl_8MjFvrDJ37SUjGoXQf52hKyCqeaD",
@@ -228,7 +238,7 @@
   "bg": "transparent",
   "on_dark": "invert",
   "name": "Cognition",
-  "note": "Pacing the Frontier signatory employer. Site icon (600px)."
+  "note": "Pacing the Frontier signatory employer. Site icon (600px). The site icon flips to white in dark mode; the copy here keeps only its black fill so the invert treatment works in every theme."
  },
  "cohere": {
   "file": "logos/cohere.svg",
@@ -535,7 +545,7 @@
   "bg": "transparent",
   "on_dark": "white-chip",
   "name": "Inherent",
-  "note": "Pacing the Frontier signatory employer. Site icon (600px)."
+  "note": "Pacing the Frontier signatory employer. Site icon (600px). The site icon switches to a light stroke in dark mode; the copy here keeps only its own green stroke so it shows on the white chip."
  },
  "japan-aisi": {
   "file": "logos/japan-aisi.png",
@@ -545,6 +555,18 @@
   "bg": "transparent",
   "on_dark": "as-is",
   "name": "Japan AI Safety Institute (J-AISI)"
+ },
+ "korea-aisi": {
+  "file": "logos/korea-aisi.svg",
+  "source_url": "https://www.aisi.re.kr/images/site/eng/layout/logo-eng.svg",
+  "kind": "official-site",
+  "invert_on_dark": false,
+  "bg": "transparent",
+  "on_dark": "white-chip",
+  "file_dark": "logos/korea-aisi-dark.svg",
+  "source_url_dark": "https://www.aisi.re.kr/images/site/eng/layout/logo-eng-w.svg",
+  "name": "Korea AI Safety Institute",
+  "note": "Header logo of the English site (www.aisi.re.kr/eng/), set as a CSS background in /css/site/eng/layout.css. Downloaded 2026-10-30."
  },
  "lawzero": {
   "file": "logos/lawzero.png",
@@ -785,9 +807,9 @@
   "kind": "official-site",
   "invert_on_dark": false,
   "bg": "transparent",
-  "on_dark": "as-is",
+  "on_dark": "neutral-tile",
   "name": "SPAR (Supervised Program for Alignment Research)",
-  "note": "upscaled from 254px to 256px"
+  "note": "upscaled from 254px to 256px; shown on a neutral grey tile because the mark has purple or pink in it"
  },
  "ssi": {
   "file": "logos/ssi.png",
@@ -907,8 +929,8 @@
   "kind": "official-site",
   "invert_on_dark": false,
   "bg": "transparent",
-  "on_dark": "white-chip",
+  "on_dark": "neutral-tile",
   "name": "Vector Institute",
-  "note": "downscaled to 1200px"
+  "note": "downscaled to 1200px; shown on a neutral grey tile because the mark has purple or pink in it"
  }
 }

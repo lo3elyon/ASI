@@ -472,3 +472,9 @@ pre, table { max-width: 100%; }
 .ov-v .upnext button span { overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 520px) { #ovVY { padding: 0 10px; font-size: 0; gap: 0; } #ovVY svg { width: 16px; height: 16px; } #ovVW { display: none; } }
 @media (max-width: 640px) { .pf-hero { grid-template-columns: 1fr; align-items: start; padding-right: 64px; } .pf-hero .pf-photo, .pf-hero > :first-child { width: 120px; } }
+/* Round 3.2: logos whose mark has purple or pink sit on a plain neutral tile in every theme; photos with a purple or pink backdrop are shown a little calmer. The files themselves are untouched. */
+.ologo.ntile, :root[data-theme="light"] .ologo.ntile { background: #e8ecf0; border-color: rgba(15, 23, 42, 0.12); }
+img[src$="people/tristan-harris.jpg"], img[src$="people/max-tegmark.jpg"], img[src$="photos-signers/louis-brandy.jpg"], img[src$="photos-signers/brendan-long.jpg"], img[src$="photos-signers/nicolas-thiebaud.jpg"] { filter: saturate(0.45); }
+/* Round 3.2: long words and links inside quotes wrap instead of running past the card */
+blockquote, figcaption { overflow-wrap: break-word; }
+@media (max-width: 560px) { .daily { grid-template-columns: 1fr; } .daily .flame { order: -1; display: flex; align-items: baseline; gap: 10px; text-align: left; font-size: 30px; } .daily .flame small { display: inline; } }

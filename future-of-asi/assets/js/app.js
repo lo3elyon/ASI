@@ -43,10 +43,11 @@ function parse() {
 const modUrl = (r, bust) => (r.extra ? null : `./views/${r.mod}.js${bust ? "?r=" + bust : ""}`);
 const loadMod = (r, bust) => (r.extra ? r.extra.load() : import(modUrl(r, bust)));
 
-/* Old links (#/researchers/<id>, #/watch/<id>) become overlays on the list page */
+/* Old links (#/researchers/<id>, #/watch/<id>, and the snapshot style #/r/<id>) become overlays on the list page */
 function legacy() {
-  const m = location.hash.match(/^#\/(researchers|watch)\/([A-Za-z0-9_-]+)$/);
+  const m = location.hash.match(/^#\/(researchers|watch|r|v)\/([A-Za-z0-9_-]+)\/?$/);
   if (!m || (m[1] === "watch" && m[2] === "c")) return false;
+  if (m[1] === "r") m[1] = "researchers"; else if (m[1] === "v") m[1] = "watch";
   const q = new URLSearchParams(location.search);
   q.set(m[1] === "researchers" ? "p" : "v", m[2]);
   history.replaceState({}, "", `${location.pathname}?${q}#/${m[1]}`);

@@ -1,2080 +1,2080 @@
 [
-  {
-    "id": "anthropic",
-    "name": "Anthropic",
-    "type": "frontier lab",
-    "what": "An AI company that builds the Claude models and does a lot of public safety research, like interpretability and alignment stress tests.",
-    "focus": [
-      "alignment",
-      "interpretability",
-      "responsible scaling"
-    ],
-    "founded": "2021",
-    "country": "USA",
-    "url": "https://www.anthropic.com/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/Anthropic",
-    "people": [
-      "dario-amodei",
-      "jack-clark",
-      "jared-kaplan",
-      "chris-olah",
-      "jan-leike",
-      "evan-hubinger",
-      "sam-bowman",
-      "amanda-askell",
-      "nicholas-carlini",
-      "andrej-karpathy",
-      "daniela-amodei",
-      "jacob-coxon",
-      "todor-markov",
-      "trenton-bricken",
-      "arthur-conmy",
-      "jascha-sohl-dickstein",
-      "benjamin-mann",
-      "ethan-perez",
-      "jack-lindsey",
-      "samuel-marks",
-      "adly-templeton",
-      "catherine-olsson",
-      "julian-schrittwieser",
-      "mike-krieger",
-      "ben-buchanan",
-      "joshua-batson",
-      "ross-girshick"
-    ],
-    "url_status": 200,
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "openai-safety",
-    "name": "OpenAI (safety work)",
-    "type": "frontier lab",
-    "what": "The company behind ChatGPT. Its safety teams work on preparedness, red teaming and alignment, and several safety leaders have left publicly.",
-    "focus": [
-      "alignment",
-      "preparedness",
-      "evals"
-    ],
-    "founded": "2015",
-    "country": "USA",
-    "url": "https://openai.com/safety/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c9/OpenAI_Logo_%282%29.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:OpenAI_Logo_(2).svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/OpenAI",
-    "people": [
-      "sam-altman",
-      "geoffrey-irving",
-      "miles-brundage",
-      "leopold-aschenbrenner",
-      "richard-ngo",
-      "william-saunders",
-      "jakub-pachocki",
-      "wojciech-zaremba",
-      "boaz-barak",
-      "dean-ball",
-      "greg-brockman",
-      "jacob-coxon",
-      "carroll-wainwright",
-      "daniel-ziegler",
-      "leo-gao",
-      "mark-chen",
-      "josh-achiam",
-      "saachi-jain",
-      "mia-glaese",
-      "tejal-patwardhan"
-    ],
-    "url_status": 403,
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "google-deepmind-safety",
-    "name": "Google DeepMind (AGI safety)",
-    "type": "frontier lab",
-    "what": "Google's AI lab. Its AGI safety teams study misuse and misalignment, interpretability and its Frontier Safety Framework.",
-    "focus": [
-      "alignment",
-      "interpretability",
-      "frontier safety framework"
-    ],
-    "founded": "2010",
-    "country": "UK",
-    "url": "https://deepmind.google/about/responsibility-safety/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Google_DeepMind_logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Google_DeepMind_logo.svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/Google_DeepMind",
-    "people": [
-      "demis-hassabis",
-      "shane-legg",
-      "rohin-shah",
-      "victoria-krakovna",
-      "neel-nanda",
-      "allan-dafoe",
-      "geoffrey-irving",
-      "richard-ngo",
-      "jasjeet-sekhon",
-      "ian-goodfellow",
-      "meredith-ringel-morris",
-      "pushmeet-kohli",
-      "sebastian-farquhar",
-      "been-kim",
-      "anca-dragan",
-      "shakir-mohamed",
-      "laura-weidinger",
-      "mary-phuong",
-      "kim-stachenfeld",
-      "stephanie-chan",
-      "gregory-wayne"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "redwood-research",
-    "name": "Redwood Research",
-    "type": "research nonprofit",
-    "what": "A research group that started the field of AI control: staying safe even if a powerful AI is secretly trying to cause harm.",
-    "focus": [
-      "AI control",
-      "alignment faking",
-      "scheming"
-    ],
-    "founded": "2021",
-    "country": "USA",
-    "url": "https://www.redwoodresearch.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "buck-shlegeris",
-      "ryan-greenblatt"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "metr",
-    "name": "METR (Model Evaluation and Threat Research)",
-    "type": "evaluations nonprofit",
-    "what": "Tests frontier AI models for dangerous abilities, like doing long tasks alone, and tracks how fast that ability grows.",
-    "focus": [
-      "dangerous capability evals",
-      "autonomy",
-      "task length"
-    ],
-    "founded": "2022",
-    "country": "USA",
-    "url": "https://metr.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/METR",
-    "people": [
-      "beth-barnes",
-      "chris-painter"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "apollo-research",
-    "name": "Apollo Research",
-    "type": "evaluations nonprofit",
-    "what": "Tests whether AI models can scheme, meaning hide their real goals or deceive the people checking them.",
-    "focus": [
-      "scheming evals",
-      "deception",
-      "monitoring"
-    ],
-    "founded": "2023",
-    "country": "UK",
-    "url": "https://www.apolloresearch.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "marius-hobbhahn"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "miri",
-    "name": "Machine Intelligence Research Institute (MIRI)",
-    "type": "research and advocacy nonprofit",
-    "what": "One of the oldest AI risk groups. It now works mainly on public communication and policy to stop the race to superintelligence.",
-    "focus": [
-      "existential risk",
-      "policy",
-      "communication"
-    ],
-    "founded": "2000",
-    "country": "USA",
-    "url": "https://intelligence.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Machine_Intelligence_Research_Institute",
-    "people": [
-      "eliezer-yudkowsky",
-      "nate-soares",
-      "malo-bourgon"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "arc",
-    "name": "Alignment Research Center (ARC)",
-    "type": "research nonprofit",
-    "what": "Works on theory for explaining why neural networks behave the way they do, so we can catch bad behavior before it happens.",
-    "focus": [
-      "alignment theory",
-      "mechanistic explanations"
-    ],
-    "founded": "2021",
-    "country": "USA",
-    "url": "https://www.alignment.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Alignment_Research_Center",
-    "people": [
-      "paul-christiano",
-      "jacob-hilton"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "uk-aisi",
-    "name": "UK AI Security Institute",
-    "type": "government institute",
-    "what": "The UK government's team that tests frontier AI models for serious risks and funds safety research. It was the first institute of its kind.",
-    "focus": [
-      "evals",
-      "national security",
-      "research grants"
-    ],
-    "founded": "2023",
-    "country": "UK",
-    "url": "https://www.aisi.gov.uk/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/21/AI_security_institute_logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AI_security_institute_logo.svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/AI_Security_Institute",
-    "people": [
-      "ian-hogarth",
-      "geoffrey-irving",
-      "jade-leung"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "us-caisi",
-    "name": "US Center for AI Standards and Innovation (CAISI)",
-    "type": "government institute",
-    "what": "The US government center inside NIST that tests and measures AI systems. It began as the US AI Safety Institute and was renamed in 2025.",
-    "focus": [
-      "evals",
-      "standards",
-      "national security"
-    ],
-    "founded": "2023",
-    "country": "USA",
-    "url": "https://www.nist.gov/caisi",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/e/ee/NIST_logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:NIST_logo.svg)",
-    "wikipedia": "",
-    "people": [
-      "paul-christiano"
-    ],
-    "url_status": 200,
-    "city": "Gaithersburg",
-    "lat": 39.1399,
-    "lng": -77.1929,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cais",
-    "name": "Center for AI Safety (CAIS)",
-    "type": "research and field-building nonprofit",
-    "what": "Does safety research, runs compute for researchers, and organized the 2023 Statement on AI Risk.",
-    "focus": [
-      "research",
-      "field building",
-      "advocacy"
-    ],
-    "founded": "2022",
-    "country": "USA",
-    "url": "https://safe.ai/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Center_for_AI_Safety_logo.png",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Center_for_AI_Safety_logo.png)",
-    "wikipedia": "https://en.wikipedia.org/wiki/Center_for_AI_Safety",
-    "people": [
-      "dan-hendrycks"
-    ],
-    "url_status": 200,
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "fli",
-    "name": "Future of Life Institute (FLI)",
-    "type": "advocacy nonprofit",
-    "what": "Works to steer powerful technology away from large scale risks. It organized the 2023 pause letter and the 2025 Statement on Superintelligence.",
-    "focus": [
-      "advocacy",
-      "policy",
-      "grants"
-    ],
-    "founded": "2014",
-    "country": "USA",
-    "url": "https://futureoflife.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Future_of_Life_Institute",
-    "people": [
-      "max-tegmark",
-      "jaan-tallinn",
-      "victoria-krakovna",
-      "anthony-aguirre"
-    ],
-    "url_status": 200,
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "North America",
-    "geo_note": ""
-  },
-  {
-    "id": "govai",
-    "name": "Centre for the Governance of AI (GovAI)",
-    "type": "research nonprofit",
-    "what": "Researches how governments and companies should govern advanced AI, and trains new policy researchers.",
-    "focus": [
-      "AI governance",
-      "policy research",
-      "fellowships"
-    ],
-    "founded": "2018",
-    "country": "UK",
-    "url": "https://www.governance.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "allan-dafoe",
-      "markus-anderljung",
-      "lennart-heim"
-    ],
-    "url_status": 200,
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "UK",
-    "geo_note": ""
-  },
-  {
-    "id": "epoch-ai",
-    "name": "Epoch AI",
-    "type": "research nonprofit",
-    "what": "Collects data on AI progress, like how much compute and data models use, and makes clear charts about trends.",
-    "focus": [
-      "forecasting",
-      "compute trends",
-      "data"
-    ],
-    "founded": "2022",
-    "country": "",
-    "url": "https://epoch.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "jaime-sevilla",
-      "lennart-heim"
-    ],
-    "url_status": 200,
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "ai-futures-project",
-    "name": "AI Futures Project",
-    "type": "forecasting nonprofit",
-    "what": "Writes detailed forecasts and scenarios about advanced AI. Best known for the AI 2027 scenario.",
-    "focus": [
-      "forecasting",
-      "scenarios",
-      "policy"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://ai-futures.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/AI_Futures_Project",
-    "people": [
-      "daniel-kokotajlo",
-      "eli-lifland",
-      "thomas-larsen",
-      "scott-alexander",
-      "romeo-dean"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "far-ai",
-    "name": "FAR.AI",
-    "type": "research nonprofit",
-    "what": "Runs research on robustness and alignment and hosts events that connect safety researchers.",
-    "focus": [
-      "robustness",
-      "alignment",
-      "events"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://far.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "adam-gleave"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "palisade-research",
-    "name": "Palisade Research",
-    "type": "research nonprofit",
-    "what": "Studies what today's AI agents can do, such as resisting shutdown or hacking, to show the risk of losing control.",
-    "focus": [
-      "shutdown resistance",
-      "offensive capabilities",
-      "demos"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://palisaderesearch.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "jeffrey-ladish"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "conjecture",
-    "name": "Conjecture",
-    "type": "AI safety company",
-    "what": "A London AI safety company focused on building AI that stays bounded and controllable.",
-    "focus": [
-      "controllable AI",
-      "advocacy"
-    ],
-    "founded": "2022",
-    "country": "UK",
-    "url": "https://www.conjecture.dev/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "connor-leahy"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "chai",
-    "name": "Center for Human-Compatible AI (CHAI)",
-    "type": "university research center",
-    "what": "A Berkeley research center working on AI that is provably beneficial and stays uncertain about what humans want.",
-    "focus": [
-      "value alignment",
-      "academic research"
-    ],
-    "founded": "2016",
-    "country": "USA",
-    "url": "https://humancompatible.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Human-Compatible_Artificial_Intelligence",
-    "people": [
-      "stuart-russell",
-      "mark-nitzberg"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "bluedot-impact",
-    "name": "BlueDot Impact",
-    "type": "education nonprofit",
-    "what": "Runs free online courses on AI safety, AI governance and biosecurity, and helps graduates start careers in the field.",
-    "focus": [
-      "courses",
-      "careers",
-      "community"
-    ],
-    "founded": "2022",
-    "country": "UK",
-    "url": "https://bluedot.org/about",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "dewi-erwan",
-      "li-lian-ang"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "mats",
-    "name": "MATS (ML Alignment and Theory Scholars)",
-    "type": "fellowship program",
-    "what": "A mentorship program that pairs new researchers with senior AI safety mentors for focused research projects.",
-    "focus": [
-      "research training",
-      "mentorship"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://www.matsprogram.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "constellation",
-    "name": "Constellation",
-    "type": "research center",
-    "what": "A shared research space in Berkeley that hosts AI safety researchers and runs fellowship programs.",
-    "focus": [
-      "community",
-      "fellowships"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://www.constellation.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "lawzero",
-    "name": "LawZero",
-    "type": "research nonprofit",
-    "what": "A nonprofit started by Yoshua Bengio to build safe-by-design AI that puts safety ahead of commercial pressure.",
-    "focus": [
-      "safe by design",
-      "Scientist AI"
-    ],
-    "founded": "2025",
-    "country": "Canada",
-    "url": "https://lawzero.org/en",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "yoshua-bengio"
-    ],
-    "url_status": 200,
-    "city": "Montreal",
-    "lat": 45.5032,
-    "lng": -73.5698,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "ssi",
-    "name": "Safe Superintelligence Inc. (SSI)",
-    "type": "frontier lab",
-    "what": "A lab that says it works only on building safe superintelligence, with no other products.",
-    "focus": [
-      "superintelligence",
-      "safety"
-    ],
-    "founded": "2024",
-    "country": "USA",
-    "url": "https://ssi.inc/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Safe_Superintelligence_Inc._logo.jpg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Safe_Superintelligence_Inc._logo.jpg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/Safe_Superintelligence_Inc.",
-    "people": [
-      "ilya-sutskever"
-    ],
-    "url_status": 200,
-    "city": "Palo Alto",
-    "lat": 37.4443,
-    "lng": -122.1598,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "controlai",
-    "name": "ControlAI",
-    "type": "advocacy nonprofit",
-    "what": "Campaigns for an international ban on developing superintelligence and briefs lawmakers about extinction risk.",
-    "focus": [
-      "advocacy",
-      "policy",
-      "superintelligence ban"
-    ],
-    "founded": "2023",
-    "country": "UK",
-    "url": "https://controlai.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/ControlAI",
-    "people": [
-      "connor-leahy"
-    ],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "forethought",
-    "name": "Forethought",
-    "type": "research nonprofit",
-    "what": "Researches how society can get ready for an intelligence explosion, including risks like AI-enabled coups.",
-    "focus": [
-      "macrostrategy",
-      "power concentration"
-    ],
-    "founded": "",
-    "country": "UK",
-    "url": "https://www.forethought.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "will-macaskill",
-      "tom-davidson"
-    ],
-    "url_status": 200,
-    "city": "Oxford",
-    "lat": 51.752,
-    "lng": -1.2578,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "ai-impacts",
-    "name": "AI Impacts",
-    "type": "research project",
-    "what": "Runs the largest surveys of AI researchers about when AI will get very capable and what the risks are.",
-    "focus": [
-      "expert surveys",
-      "forecasting"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://aiimpacts.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "katja-grace"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cser",
-    "name": "Centre for the Study of Existential Risk (CSER)",
-    "type": "university research center",
-    "what": "A Cambridge University center that studies risks that could threaten humanity, including AI.",
-    "focus": [
-      "existential risk",
-      "academic research"
-    ],
-    "founded": "2012",
-    "country": "UK",
-    "url": "https://www.cser.ac.uk/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Centre_for_the_Study_of_Existential_Risk",
-    "people": [
-      "jaan-tallinn"
-    ],
-    "url_status": 200,
-    "city": "Cambridge",
-    "lat": 52.1976,
-    "lng": 0.1392,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cht",
-    "name": "Center for Humane Technology",
-    "type": "advocacy nonprofit",
-    "what": "Works to make technology serve people, and warns about racing to deploy AI without safeguards.",
-    "focus": [
-      "advocacy",
-      "public awareness"
-    ],
-    "founded": "2018",
-    "country": "USA",
-    "url": "https://www.humanetech.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Humane_Technology",
-    "people": [
-      "tristan-harris",
-      "aza-raskin"
-    ],
-    "url_status": 200,
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cset",
-    "name": "Center for Security and Emerging Technology (CSET)",
-    "type": "university think tank",
-    "what": "A Georgetown University think tank that studies how AI and other new technologies affect security.",
-    "focus": [
-      "AI policy",
-      "security"
-    ],
-    "founded": "2019",
-    "country": "USA",
-    "url": "https://cset.georgetown.edu/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Security_and_Emerging_Technology",
-    "people": [
-      "helen-toner"
-    ],
-    "url_status": 200,
-    "city": "Washington, DC",
-    "lat": 38.8951,
-    "lng": -77.0364,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "truthful-ai",
-    "name": "Truthful AI",
-    "type": "research nonprofit",
-    "what": "A Berkeley research group studying honesty, deception and surprising emergent behavior in language models.",
-    "focus": [
-      "honesty",
-      "emergent misalignment"
-    ],
-    "founded": "",
-    "country": "USA",
-    "url": "https://truthful.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "owain-evans"
-    ],
-    "url_status": 200,
-    "city": "Berkeley",
-    "lat": 37.8708,
-    "lng": -122.2729,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "arena",
-    "name": "ARENA (Alignment Research Engineer Accelerator)",
-    "type": "training program",
-    "what": "A hands-on program that teaches the machine learning engineering skills needed for alignment research.",
-    "focus": [
-      "technical training"
-    ],
-    "founded": "",
-    "country": "UK",
-    "url": "https://www.arena.education/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "80000-hours",
-    "name": "80,000 Hours",
-    "type": "careers nonprofit",
-    "what": "Gives free career advice for people who want to work on the world's most pressing problems, with AI safety as a top priority.",
-    "focus": [
-      "careers",
-      "podcast",
-      "job board"
-    ],
-    "founded": "2011",
-    "country": "UK",
-    "url": "https://80000hours.org/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/27/80%2C000_Hours_logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:80,000_Hours_logo.svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/80,000_Hours",
-    "people": [],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "pauseai",
-    "name": "PauseAI",
-    "type": "grassroots movement",
-    "what": "A volunteer movement that campaigns for a global pause on building more powerful AI until it can be made safe.",
-    "focus": [
-      "advocacy",
-      "protests",
-      "policy"
-    ],
-    "founded": "2023",
-    "country": "Netherlands",
-    "url": "https://pauseai.info/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f2/PauseAI_Logo.svg",
-    "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:PauseAI_Logo.svg)",
-    "wikipedia": "https://en.wikipedia.org/wiki/PauseAI",
-    "people": [],
-    "url_status": 200,
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "Europe",
-    "geo_note": ""
-  },
-  {
-    "id": "indiaai-safety-institute",
-    "name": "IndiaAI Safety Institute",
-    "type": "government institute",
-    "what": "India's AI safety institute under the IndiaAI Mission. It uses a hub and spoke model with universities, startups and industry to test AI for risks in India's languages and social context.",
-    "focus": [
-      "evals",
-      "standards",
-      "India"
-    ],
-    "founded": "2025",
-    "country": "India",
-    "url": "https://indiaai.gov.in/article/india-takes-the-lead-establishing-the-indiaai-safety-institute-for-responsible-ai-innovation",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "abhishek-singh"
-    ],
-    "url_status": 200,
-    "city": "New Delhi",
-    "lat": 28.6139,
-    "lng": 77.209,
-    "region": "India",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cooperative-ai-foundation",
-    "name": "Cooperative AI Foundation",
-    "type": "charity",
-    "what": "Funds research on how AI systems can cooperate well with each other and with humans.",
-    "focus": [
-      "multi-agent safety",
-      "grants"
-    ],
-    "founded": "",
-    "country": "UK",
-    "url": "https://www.cooperativeai.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": 200,
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "saferai",
-    "name": "SaferAI",
-    "type": "research nonprofit",
-    "what": "Rates and compares how well AI companies manage risk, and works on risk management standards.",
-    "focus": [
-      "risk management",
-      "ratings"
-    ],
-    "founded": "",
-    "country": "France",
-    "url": "https://www.safer-ai.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": 200,
-    "city": "Paris",
-    "lat": 48.8589,
-    "lng": 2.32,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "coefficient-giving",
-    "name": "Coefficient Giving (formerly Open Philanthropy)",
-    "type": "funder",
-    "what": "One of the largest funders of AI safety and governance work in the world.",
-    "focus": [
-      "funding"
-    ],
-    "founded": "2014",
-    "country": "USA",
-    "url": "https://coefficientgiving.org/",
-    "logo": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coefficient_Logo_Green.png",
-    "logo_credit": "CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Coefficient_Logo_Green.png)",
-    "wikipedia": "https://en.wikipedia.org/wiki/Coefficient_Giving",
-    "people": [
-      "holden-karnofsky",
-      "ajeya-cotra",
-      "joe-carlsmith"
-    ],
-    "url_status": 200,
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "eu-ai-office",
-    "name": "European AI Office",
-    "type": "government",
-    "what": "The European Commission's office for AI. It oversees general-purpose AI models under the EU AI Act.",
-    "focus": [
-      "AI Act enforcement",
-      "general-purpose AI"
-    ],
-    "founded": "2024",
-    "country": "Belgium",
-    "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Brussels",
-    "lat": 50.8467,
-    "lng": 4.3525,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "aisi-canada",
-    "name": "Canadian AI Safety Institute",
-    "type": "government",
-    "what": "Canada's national AI safety institute, launched in November 2024. Its research program is run with CIFAR.",
-    "focus": [
-      "AI safety research",
-      "evaluations"
-    ],
-    "founded": "2024",
-    "country": "Canada",
-    "url": "https://www.canada.ca/en/innovation-science-economic-development/news/2024/11/canada-launches-canadian-artificial-intelligence-safety-institute.html",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "nicolas-papernot"
-    ],
-    "url_status": "blocked from our fetcher; listed from the launch press release",
-    "city": "Ottawa",
-    "lat": 45.4209,
-    "lng": -75.6901,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "japan-aisi",
-    "name": "Japan AI Safety Institute (J-AISI)",
-    "type": "government",
-    "what": "Japan's AI safety institute, set up in February 2024 inside the Information-technology Promotion Agency. It works on safety evaluation methods, red teaming and standards.",
-    "focus": [
-      "evaluation methods",
-      "red teaming",
-      "standards"
-    ],
-    "founded": "2024",
-    "country": "Japan",
-    "url": "https://aisi.go.jp/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "akiko-murakami"
-    ],
-    "url_status": "200",
-    "city": "Tokyo",
-    "lat": 35.6769,
-    "lng": 139.7639,
-    "region": "Asia Pacific",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "korea-aisi",
-    "name": "Korea AI Safety Institute",
-    "type": "government",
-    "what": "South Korea's AI safety institute, opened in November 2024 under ETRI. It evaluates AI risks and works with other safety institutes.",
-    "focus": [
-      "risk evaluation",
-      "AI safety policy"
-    ],
-    "founded": "2024",
-    "country": "South Korea",
-    "url": "https://www.aisi.re.kr/eng/contents/23",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "kim-myuhng-joo"
-    ],
-    "url_status": "200",
-    "city": "Seongnam",
-    "lat": 37.4202,
-    "lng": 127.1262,
-    "region": "Asia Pacific",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "singapore-aisi",
-    "name": "Digital Trust Centre (Singapore AI Safety Institute)",
-    "type": "government",
-    "what": "The Digital Trust Centre at NTU Singapore, designated as Singapore's AI Safety Institute.",
-    "focus": [
-      "trust technologies",
-      "AI safety evaluation"
-    ],
-    "founded": "",
-    "country": "Singapore",
-    "url": "https://www.ntu.edu.sg/dtc",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Singapore",
-    "lat": 1.2899,
-    "lng": 103.8519,
-    "region": "Asia Pacific",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "inesia",
-    "name": "INESIA (France)",
-    "type": "government",
-    "what": "France's national institute for AI evaluation and security, created in January 2025. It links ANSSI, Inria, LNE and PEReN under the SGDSN and the DGE.",
-    "focus": [
-      "AI evaluation",
-      "national security"
-    ],
-    "founded": "2025",
-    "country": "France",
-    "url": "https://www.entreprises.gouv.fr/espace-presse/le-gouvernement-annonce-la-creation-de-linstitut-national-pour-levaluation-et-la",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "checked 2026-10-29",
-    "city": "Paris",
-    "lat": 48.8589,
-    "lng": 2.32,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "aisi-australia",
-    "name": "Australian AI Safety Institute",
-    "type": "government",
-    "what": "Australia's AI safety institute, announced in November 2025 inside the Department of Industry, Science and Resources. It analyses emerging AI capabilities, risks and harms.",
-    "focus": [
-      "capability monitoring",
-      "AI harms"
-    ],
-    "founded": "2025",
-    "country": "Australia",
-    "url": "https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence/ai-safety-institute",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "blocked from our fetcher; listed from the department page",
-    "city": "Canberra",
-    "lat": -35.2976,
-    "lng": 149.1013,
-    "region": "Asia Pacific",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "concordia-ai",
-    "name": "Concordia AI",
-    "type": "nonprofit",
-    "what": "A Beijing-based social enterprise on AI safety and governance. It does research, convenings, consulting and frontier risk monitoring.",
-    "focus": [
-      "AI safety in China",
-      "international governance"
-    ],
-    "founded": "",
-    "country": "China",
-    "url": "https://concordia-ai.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "brian-tse"
-    ],
-    "url_status": "200",
-    "city": "Beijing",
-    "lat": 39.9057,
-    "lng": 116.3913,
-    "region": "China",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "shanghai-ai-lab",
-    "name": "Shanghai AI Laboratory",
-    "type": "lab",
-    "what": "A major Chinese AI research lab. It builds the InternLM models and runs safety and open evaluation platforms.",
-    "focus": [
-      "foundation models",
-      "AI safety",
-      "evaluation"
-    ],
-    "founded": "",
-    "country": "China",
-    "url": "https://www.shlab.org.cn/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "zhou-bowen"
-    ],
-    "url_status": "200",
-    "city": "Shanghai",
-    "lat": 31.2323,
-    "lng": 121.4691,
-    "region": "China",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "tsinghua-iaiig",
-    "name": "Institute for AI International Governance, Tsinghua University",
-    "type": "academic",
-    "what": "Tsinghua University's institute for international AI governance, led by Xue Lan.",
-    "focus": [
-      "international AI governance"
-    ],
-    "founded": "",
-    "country": "China",
-    "url": "https://aiig.tsinghua.edu.cn/en/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "xue-lan"
-    ],
-    "url_status": "200",
-    "city": "Beijing",
-    "lat": 39.9057,
-    "lng": 116.3913,
-    "region": "China",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "mila",
-    "name": "Mila - Quebec AI Institute",
-    "type": "academic",
-    "what": "A large deep learning research institute in Montreal founded by Yoshua Bengio.",
-    "focus": [
-      "deep learning",
-      "AI safety",
-      "AI for society"
-    ],
-    "founded": "",
-    "country": "Canada",
-    "url": "https://mila.quebec/en",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "yoshua-bengio",
-      "david-krueger"
-    ],
-    "url_status": "200",
-    "city": "Montreal",
-    "lat": 45.5032,
-    "lng": -73.5698,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "vector-institute",
-    "name": "Vector Institute",
-    "type": "academic",
-    "what": "A Toronto AI research institute that links universities and industry.",
-    "focus": [
-      "machine learning research",
-      "AI adoption"
-    ],
-    "founded": "",
-    "country": "Canada",
-    "url": "https://vectorinstitute.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "david-duvenaud",
-      "sheila-mcilraith",
-      "roger-grosse",
-      "nicolas-papernot"
-    ],
-    "url_status": "200",
-    "city": "Toronto",
-    "lat": 43.6535,
-    "lng": -79.3839,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "oxford-aigi",
-    "name": "Oxford Martin AI Governance Initiative",
-    "type": "academic",
-    "what": "An Oxford University centre for frontier, international and technical AI governance.",
-    "focus": [
-      "frontier AI governance",
-      "international governance",
-      "technical governance"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://aigi.ox.ac.uk/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "robert-trager"
-    ],
-    "url_status": "200",
-    "city": "Oxford",
-    "lat": 51.752,
-    "lng": -1.2578,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cfi-cambridge",
-    "name": "Leverhulme Centre for the Future of Intelligence",
-    "type": "academic",
-    "what": "A Cambridge University centre that studies the future of AI, including its risks, ethics and governance.",
-    "focus": [
-      "AI futures and responsibility",
-      "AI ethics"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://www.lcfi.ac.uk/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "sean-o-heigeartaigh",
-      "shahar-avin"
-    ],
-    "url_status": "200",
-    "city": "Cambridge",
-    "lat": 52.1976,
-    "lng": 0.1392,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "ethz-ai-center",
-    "name": "ETH AI Center",
-    "type": "academic",
-    "what": "ETH Zurich's hub for AI research across departments.",
-    "focus": [
-      "AI research",
-      "trustworthy AI"
-    ],
-    "founded": "",
-    "country": "Switzerland",
-    "url": "https://ai.ethz.ch/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "florian-tramer"
-    ],
-    "url_status": "checked 2026-10-29",
-    "city": "Zurich",
-    "lat": 47.3744,
-    "lng": 8.541,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "tuebingen-ai",
-    "name": "Tubingen AI Center and ELLIS Institute Tubingen",
-    "type": "academic",
-    "what": "A European AI research hub in Tubingen, linked with the Max Planck Institute for Intelligent Systems and the ELLIS Institute.",
-    "focus": [
-      "machine learning",
-      "safe and efficient learning"
-    ],
-    "founded": "",
-    "country": "Germany",
-    "url": "https://tuebingen.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "bernhard-scholkopf",
-      "jonas-geiping"
-    ],
-    "url_status": "checked 2026-10-29",
-    "city": "Tubingen",
-    "lat": 48.5203,
-    "lng": 9.0536,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "goodfire",
-    "name": "Goodfire",
-    "type": "lab",
-    "what": "An AI interpretability research lab and public benefit corporation. It builds tools to understand, monitor and align AI models.",
-    "focus": [
-      "interpretability"
-    ],
-    "founded": "",
-    "country": "United States",
-    "url": "https://www.goodfire.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "transluce",
-    "name": "Transluce",
-    "type": "nonprofit",
-    "what": "An independent nonprofit lab for public oversight of AI. It builds open tools to understand AI systems.",
-    "focus": [
-      "interpretability",
-      "AI oversight tools"
-    ],
-    "founded": "",
-    "country": "United States",
-    "url": "https://transluce.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "jacob-steinhardt",
-      "sarah-schwettmann"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "North America",
-    "geo_note": ""
-  },
-  {
-    "id": "eleutherai",
-    "name": "EleutherAI",
-    "type": "nonprofit",
-    "what": "A nonprofit research group that builds open models, datasets and evaluation tools, with work on open-weight safety.",
-    "focus": [
-      "open models",
-      "evaluation",
-      "interpretability"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://www.eleuther.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "stella-biderman",
-      "connor-leahy"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "simplex",
-    "name": "Simplex",
-    "type": "nonprofit",
-    "what": "An AI safety research group building a theory of how neural networks organize their internal representations. It hires in the Bay Area and London.",
-    "focus": [
-      "theory of intelligence",
-      "interpretability"
-    ],
-    "founded": "",
-    "country": "United States",
-    "url": "https://www.simplexaisafety.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "paul-riechers",
-      "adam-shai"
-    ],
-    "url_status": "200",
-    "city": "San Francisco",
-    "lat": 37.7879,
-    "lng": -122.4075,
-    "region": "North America",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "timaeus",
-    "name": "Timaeus (now Resolution)",
-    "type": "nonprofit",
-    "what": "An AI safety research group that uses singular learning theory to study how training data shapes AI behavior. It now goes by Resolution.",
-    "focus": [
-      "singular learning theory",
-      "developmental interpretability"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://timaeus.co/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "jesse-hoogland",
-      "geoffrey-irving"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "apart-research",
-    "name": "Apart Research",
-    "type": "nonprofit",
-    "what": "A nonprofit AI safety organization that runs research sprints and fellowships, with a research focus on harmful manipulation by AI.",
-    "focus": [
-      "research sprints",
-      "evaluations",
-      "field-building"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://apartresearch.com/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "esben-kran"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "cesia",
-    "name": "CeSIA (French Center for AI Safety)",
-    "type": "nonprofit",
-    "what": "An independent French think tank on preventing major AI risks. It runs the Global Call for AI Red Lines and the AI Safety Atlas.",
-    "focus": [
-      "AI policy",
-      "education",
-      "red lines"
-    ],
-    "founded": "",
-    "country": "France",
-    "url": "https://www.securite-ia.fr/en",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Paris",
-    "lat": 48.8589,
-    "lng": 2.32,
-    "region": "Europe",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "era-fellowship",
-    "name": "ERA Fellowship",
-    "type": "training",
-    "what": "A Cambridge research fellowship on risks from AI.",
-    "focus": [
-      "research training",
-      "AI risk"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://erafellowship.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Cambridge",
-    "lat": 52.1976,
-    "lng": 0.1392,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "lisa",
-    "name": "London Initiative for Safe AI (LISA)",
-    "type": "nonprofit",
-    "what": "An AI safety centre and ecosystem in London that hosts research organizations and individuals.",
-    "focus": [
-      "AI safety ecosystem",
-      "research hub"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://www.safeai.org.uk/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "adam-gleave"
-    ],
-    "url_status": "200",
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cltr",
-    "name": "Centre for Long-Term Resilience",
-    "type": "nonprofit",
-    "what": "An independent UK think tank on resilience to extreme risks, including AI and biosecurity.",
-    "focus": [
-      "AI policy",
-      "biosecurity",
-      "risk management"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://www.longtermresilience.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "jess-whittlestone"
-    ],
-    "url_status": "200",
-    "city": "London",
-    "lat": 51.5074,
-    "lng": -0.1278,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "meridian",
-    "name": "Meridian Cambridge",
-    "type": "nonprofit",
-    "what": "A Cambridge research hub and launch platform for AI safety research programmes.",
-    "focus": [
-      "research programmes",
-      "AI safety hub"
-    ],
-    "founded": "",
-    "country": "United Kingdom",
-    "url": "https://www.meridiancambridge.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Cambridge",
-    "lat": 52.1976,
-    "lng": 0.1392,
-    "region": "UK",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "iaps",
-    "name": "Institute for AI Policy and Strategy (IAPS)",
-    "type": "nonprofit",
-    "what": "A nonpartisan think tank that writes policy research on risks from powerful AI.",
-    "focus": [
-      "AI policy",
-      "national security"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://www.iaps.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "the-future-society",
-    "name": "The Future Society",
-    "type": "nonprofit",
-    "what": "An independent nonprofit based in the US and Europe that works to align AI through better governance.",
-    "focus": [
-      "international AI governance",
-      "European AI governance"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://thefuturesociety.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "frontier-model-forum",
-    "name": "Frontier Model Forum",
-    "type": "industry",
-    "what": "An industry body of frontier AI companies that shares safety and security practice, including on AI and bio, cyber and nuclear risks.",
-    "focus": [
-      "frontier safety frameworks",
-      "information sharing"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://www.frontiermodelforum.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "partnership-on-ai",
-    "name": "Partnership on AI",
-    "type": "nonprofit",
-    "what": "A nonprofit coalition of companies, academics and civil society on responsible AI, including AI safety.",
-    "focus": [
-      "responsible AI",
-      "AI safety",
-      "policy"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://partnershiponai.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "rosie-campbell"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "international-ai-safety-report",
-    "name": "International AI Safety Report",
-    "type": "government",
-    "what": "A yearly report on the risks of general-purpose AI, chaired by Yoshua Bengio and written by experts from many countries.",
-    "focus": [
-      "scientific assessment",
-      "AI risk"
-    ],
-    "founded": "2025",
-    "country": "",
-    "url": "https://internationalaisafetyreport.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "yoshua-bengio",
-      "balaraman-ravindran"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "ilina",
-    "name": "ILINA Program",
-    "type": "nonprofit",
-    "what": "An African-led organization that works on AI safety through research, policy work and talent development.",
-    "focus": [
-      "AI safety in Africa",
-      "research",
-      "talent"
-    ],
-    "founded": "",
-    "country": "Kenya",
-    "url": "https://www.ilinaprogram.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Nairobi",
-    "lat": -1.289,
-    "lng": 36.8173,
-    "region": "Africa",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "global-center-ai-governance",
-    "name": "Global Center on AI Governance",
-    "type": "nonprofit",
-    "what": "An African-led center on AI policy and governance that works to reduce global inequalities made worse by AI. It runs the African Observatory.",
-    "focus": [
-      "AI governance in Africa",
-      "inclusion"
-    ],
-    "founded": "",
-    "country": "South Africa",
-    "url": "https://www.globalcenter.ai/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Cape Town",
-    "lat": -33.9288,
-    "lng": 18.4172,
-    "region": "Africa",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "cair-iit-madras",
-    "name": "Centre for Responsible AI (CeRAI), IIT Madras",
-    "type": "academic",
-    "what": "IIT Madras's Centre for Responsible AI, which works on responsible and safe AI research and AI governance.",
-    "focus": [
-      "responsible AI",
-      "AI governance"
-    ],
-    "founded": "",
-    "country": "India",
-    "url": "https://cerai.iitm.ac.in/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "balaraman-ravindran"
-    ],
-    "url_status": "200",
-    "city": "Chennai",
-    "lat": 13.0801,
-    "lng": 80.2808,
-    "region": "India",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "digital-futures-lab",
-    "name": "Digital Futures Lab",
-    "type": "nonprofit",
-    "what": "An independent research studio in India on technology and society in the Majority World, working toward safe digital futures.",
-    "focus": [
-      "AI and society",
-      "foresight"
-    ],
-    "founded": "",
-    "country": "India",
-    "url": "https://www.digitalfutureslab.in/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Goa",
-    "lat": 15.499,
-    "lng": 73.8282,
-    "region": "India",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "ai-safety-asia",
-    "name": "AI Safety Asia",
-    "type": "nonprofit",
-    "what": "A network that works to give Asian countries a stronger voice in steering frontier AI.",
-    "focus": [
-      "AI governance in Asia"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://www.aisafety.asia/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "saif",
-    "name": "Safe AI Forum",
-    "type": "nonprofit",
-    "what": "A nonprofit that drives global coordination to reduce extreme AI risks. It runs the International Dialogues on AI Safety (IDAIS).",
-    "focus": [
-      "international dialogue",
-      "extreme risks"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://saif.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "adam-gleave"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "eleos-ai",
-    "name": "Eleos AI Research",
-    "type": "nonprofit",
-    "what": "A nonprofit that studies the possible wellbeing and moral status of AI systems.",
-    "focus": [
-      "AI welfare",
-      "AI sentience"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://eleosai.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "rosie-campbell"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "maisi",
-    "name": "Mathematical AI Safety Institute",
-    "type": "nonprofit",
-    "what": "An independent nonprofit building mathematical foundations for the safety of powerful AI.",
-    "focus": [
-      "mathematical AI safety"
-    ],
-    "founded": "",
-    "country": "",
-    "url": "https://maisi.org/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "andrew-critch"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "",
-    "geo_note": ""
-  },
-  {
-    "id": "ai-safety-tokyo",
-    "name": "AI Safety Tokyo",
-    "type": "community",
-    "what": "A Tokyo community that runs AI safety study groups.",
-    "focus": [
-      "community",
-      "education"
-    ],
-    "founded": "",
-    "country": "Japan",
-    "url": "https://aisafety.tokyo/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [],
-    "url_status": "200",
-    "city": "Tokyo",
-    "lat": 35.6769,
-    "lng": 139.7639,
-    "region": "Asia Pacific",
-    "geo_note": "city-level location"
-  },
-  {
-    "id": "alter",
-    "name": "ALTER",
-    "type": "nonprofit",
-    "what": "An Israeli nonprofit for research and advocacy on the long-term future, including AI alignment research.",
-    "focus": [
-      "long-term future",
-      "alignment theory"
-    ],
-    "founded": "",
-    "country": "Israel",
-    "url": "https://alter.org.il/",
-    "logo": "",
-    "logo_credit": "",
-    "wikipedia": "",
-    "people": [
-      "vanessa-kosoy"
-    ],
-    "url_status": "200",
-    "city": "",
-    "lat": "",
-    "lng": "",
-    "region": "Middle East",
-    "geo_note": ""
-  }
+ {
+  "id": "anthropic",
+  "name": "Anthropic",
+  "type": "frontier lab",
+  "what": "An AI company that builds the Claude models and does a lot of public safety research, like interpretability and alignment stress tests.",
+  "focus": [
+   "alignment",
+   "interpretability",
+   "responsible scaling"
+  ],
+  "founded": "2021",
+  "country": "USA",
+  "url": "https://www.anthropic.com/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/Anthropic",
+  "people": [
+   "dario-amodei",
+   "jack-clark",
+   "jared-kaplan",
+   "chris-olah",
+   "jan-leike",
+   "evan-hubinger",
+   "sam-bowman",
+   "amanda-askell",
+   "nicholas-carlini",
+   "andrej-karpathy",
+   "daniela-amodei",
+   "jacob-coxon",
+   "todor-markov",
+   "trenton-bricken",
+   "arthur-conmy",
+   "jascha-sohl-dickstein",
+   "benjamin-mann",
+   "ethan-perez",
+   "jack-lindsey",
+   "samuel-marks",
+   "adly-templeton",
+   "catherine-olsson",
+   "julian-schrittwieser",
+   "mike-krieger",
+   "ben-buchanan",
+   "joshua-batson",
+   "ross-girshick"
+  ],
+  "url_status": 200,
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "openai-safety",
+  "name": "OpenAI (safety work)",
+  "type": "frontier lab",
+  "what": "The company behind ChatGPT. Its safety teams work on preparedness, red teaming and alignment, and several safety leaders have left publicly.",
+  "focus": [
+   "alignment",
+   "preparedness",
+   "evals"
+  ],
+  "founded": "2015",
+  "country": "USA",
+  "url": "https://openai.com/safety/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/c/c9/OpenAI_Logo_%282%29.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:OpenAI_Logo_(2).svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/OpenAI",
+  "people": [
+   "sam-altman",
+   "geoffrey-irving",
+   "miles-brundage",
+   "leopold-aschenbrenner",
+   "richard-ngo",
+   "william-saunders",
+   "jakub-pachocki",
+   "wojciech-zaremba",
+   "boaz-barak",
+   "dean-ball",
+   "greg-brockman",
+   "jacob-coxon",
+   "carroll-wainwright",
+   "daniel-ziegler",
+   "leo-gao",
+   "mark-chen",
+   "josh-achiam",
+   "saachi-jain",
+   "mia-glaese",
+   "tejal-patwardhan"
+  ],
+  "url_status": 403,
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "google-deepmind-safety",
+  "name": "Google DeepMind (AGI safety)",
+  "type": "frontier lab",
+  "what": "Google's AI lab. Its AGI safety teams study misuse and misalignment, interpretability and its Frontier Safety Framework.",
+  "focus": [
+   "alignment",
+   "interpretability",
+   "frontier safety framework"
+  ],
+  "founded": "2010",
+  "country": "UK",
+  "url": "https://deepmind.google/about/responsibility-safety/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/d/dc/Google_DeepMind_logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Google_DeepMind_logo.svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/Google_DeepMind",
+  "people": [
+   "demis-hassabis",
+   "shane-legg",
+   "rohin-shah",
+   "victoria-krakovna",
+   "neel-nanda",
+   "allan-dafoe",
+   "geoffrey-irving",
+   "richard-ngo",
+   "jasjeet-sekhon",
+   "ian-goodfellow",
+   "meredith-ringel-morris",
+   "pushmeet-kohli",
+   "sebastian-farquhar",
+   "been-kim",
+   "anca-dragan",
+   "shakir-mohamed",
+   "laura-weidinger",
+   "mary-phuong",
+   "kim-stachenfeld",
+   "stephanie-chan",
+   "gregory-wayne"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "redwood-research",
+  "name": "Redwood Research",
+  "type": "research nonprofit",
+  "what": "A research group that started the field of AI control: staying safe even if a powerful AI is secretly trying to cause harm.",
+  "focus": [
+   "AI control",
+   "alignment faking",
+   "scheming"
+  ],
+  "founded": "2021",
+  "country": "USA",
+  "url": "https://www.redwoodresearch.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "buck-shlegeris",
+   "ryan-greenblatt"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "metr",
+  "name": "METR (Model Evaluation and Threat Research)",
+  "type": "evaluations nonprofit",
+  "what": "Tests frontier AI models for dangerous abilities, like doing long tasks alone, and tracks how fast that ability grows.",
+  "focus": [
+   "dangerous capability evals",
+   "autonomy",
+   "task length"
+  ],
+  "founded": "2022",
+  "country": "USA",
+  "url": "https://metr.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/METR",
+  "people": [
+   "beth-barnes",
+   "chris-painter"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "apollo-research",
+  "name": "Apollo Research",
+  "type": "evaluations nonprofit",
+  "what": "Tests whether AI models can scheme, meaning hide their real goals or deceive the people checking them.",
+  "focus": [
+   "scheming evals",
+   "deception",
+   "monitoring"
+  ],
+  "founded": "2023",
+  "country": "UK",
+  "url": "https://www.apolloresearch.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "marius-hobbhahn"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "miri",
+  "name": "Machine Intelligence Research Institute (MIRI)",
+  "type": "research and advocacy nonprofit",
+  "what": "One of the oldest AI risk groups. It now works mainly on public communication and policy to stop the race to superintelligence.",
+  "focus": [
+   "existential risk",
+   "policy",
+   "communication"
+  ],
+  "founded": "2000",
+  "country": "USA",
+  "url": "https://intelligence.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Machine_Intelligence_Research_Institute",
+  "people": [
+   "eliezer-yudkowsky",
+   "nate-soares",
+   "malo-bourgon"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "arc",
+  "name": "Alignment Research Center (ARC)",
+  "type": "research nonprofit",
+  "what": "Works on theory for explaining why neural networks behave the way they do, so we can catch bad behavior before it happens.",
+  "focus": [
+   "alignment theory",
+   "mechanistic explanations"
+  ],
+  "founded": "2021",
+  "country": "USA",
+  "url": "https://www.alignment.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Alignment_Research_Center",
+  "people": [
+   "paul-christiano",
+   "jacob-hilton"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "uk-aisi",
+  "name": "UK AI Security Institute",
+  "type": "government institute",
+  "what": "The UK government's team that tests frontier AI models for serious risks and funds safety research. It was the first institute of its kind.",
+  "focus": [
+   "evals",
+   "national security",
+   "research grants"
+  ],
+  "founded": "2023",
+  "country": "UK",
+  "url": "https://www.aisi.gov.uk/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/2/21/AI_security_institute_logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:AI_security_institute_logo.svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/AI_Security_Institute",
+  "people": [
+   "ian-hogarth",
+   "geoffrey-irving",
+   "jade-leung"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "us-caisi",
+  "name": "US Center for AI Standards and Innovation (CAISI)",
+  "type": "government institute",
+  "what": "The US government center inside NIST that tests and measures AI systems. It began as the US AI Safety Institute and was renamed in 2025.",
+  "focus": [
+   "evals",
+   "standards",
+   "national security"
+  ],
+  "founded": "2023",
+  "country": "USA",
+  "url": "https://www.nist.gov/caisi",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/e/ee/NIST_logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:NIST_logo.svg)",
+  "wikipedia": "",
+  "people": [
+   "paul-christiano"
+  ],
+  "url_status": 200,
+  "city": "Gaithersburg",
+  "lat": 39.1399,
+  "lng": -77.1929,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cais",
+  "name": "Center for AI Safety (CAIS)",
+  "type": "research and field-building nonprofit",
+  "what": "Does safety research, runs compute for researchers, and organized the 2023 Statement on AI Risk.",
+  "focus": [
+   "research",
+   "field building",
+   "advocacy"
+  ],
+  "founded": "2022",
+  "country": "USA",
+  "url": "https://safe.ai/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Center_for_AI_Safety_logo.png",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Center_for_AI_Safety_logo.png)",
+  "wikipedia": "https://en.wikipedia.org/wiki/Center_for_AI_Safety",
+  "people": [
+   "dan-hendrycks"
+  ],
+  "url_status": 200,
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "fli",
+  "name": "Future of Life Institute (FLI)",
+  "type": "advocacy nonprofit",
+  "what": "Works to steer powerful technology away from large scale risks. It organized the 2023 pause letter and the 2025 Statement on Superintelligence.",
+  "focus": [
+   "advocacy",
+   "policy",
+   "grants"
+  ],
+  "founded": "2014",
+  "country": "USA",
+  "url": "https://futureoflife.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Future_of_Life_Institute",
+  "people": [
+   "max-tegmark",
+   "jaan-tallinn",
+   "victoria-krakovna",
+   "anthony-aguirre"
+  ],
+  "url_status": 200,
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "North America",
+  "geo_note": ""
+ },
+ {
+  "id": "govai",
+  "name": "Centre for the Governance of AI (GovAI)",
+  "type": "research nonprofit",
+  "what": "Researches how governments and companies should govern advanced AI, and trains new policy researchers.",
+  "focus": [
+   "AI governance",
+   "policy research",
+   "fellowships"
+  ],
+  "founded": "2018",
+  "country": "UK",
+  "url": "https://www.governance.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "allan-dafoe",
+   "markus-anderljung",
+   "lennart-heim"
+  ],
+  "url_status": 200,
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "UK",
+  "geo_note": ""
+ },
+ {
+  "id": "epoch-ai",
+  "name": "Epoch AI",
+  "type": "research nonprofit",
+  "what": "Collects data on AI progress, like how much compute and data models use, and makes clear charts about trends.",
+  "focus": [
+   "forecasting",
+   "compute trends",
+   "data"
+  ],
+  "founded": "2022",
+  "country": "",
+  "url": "https://epoch.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "jaime-sevilla",
+   "lennart-heim"
+  ],
+  "url_status": 200,
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "ai-futures-project",
+  "name": "AI Futures Project",
+  "type": "forecasting nonprofit",
+  "what": "Writes detailed forecasts and scenarios about advanced AI. Best known for the AI 2027 scenario.",
+  "focus": [
+   "forecasting",
+   "scenarios",
+   "policy"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://ai-futures.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/AI_Futures_Project",
+  "people": [
+   "daniel-kokotajlo",
+   "eli-lifland",
+   "thomas-larsen",
+   "scott-alexander",
+   "romeo-dean"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "far-ai",
+  "name": "FAR.AI",
+  "type": "research nonprofit",
+  "what": "Runs research on robustness and alignment and hosts events that connect safety researchers.",
+  "focus": [
+   "robustness",
+   "alignment",
+   "events"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://far.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "adam-gleave"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "palisade-research",
+  "name": "Palisade Research",
+  "type": "research nonprofit",
+  "what": "Studies what today's AI agents can do, such as resisting shutdown or hacking, to show the risk of losing control.",
+  "focus": [
+   "shutdown resistance",
+   "offensive capabilities",
+   "demos"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://palisaderesearch.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "jeffrey-ladish"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "conjecture",
+  "name": "Conjecture",
+  "type": "AI safety company",
+  "what": "A London AI safety company focused on building AI that stays bounded and controllable.",
+  "focus": [
+   "controllable AI",
+   "advocacy"
+  ],
+  "founded": "2022",
+  "country": "UK",
+  "url": "https://www.conjecture.dev/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "connor-leahy"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "chai",
+  "name": "Center for Human-Compatible AI (CHAI)",
+  "type": "university research center",
+  "what": "A Berkeley research center working on AI that is provably beneficial and stays uncertain about what humans want.",
+  "focus": [
+   "value alignment",
+   "academic research"
+  ],
+  "founded": "2016",
+  "country": "USA",
+  "url": "https://humancompatible.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Human-Compatible_Artificial_Intelligence",
+  "people": [
+   "stuart-russell",
+   "mark-nitzberg"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "bluedot-impact",
+  "name": "BlueDot Impact",
+  "type": "education nonprofit",
+  "what": "Runs free online courses on AI safety, AI governance and biosecurity, and helps graduates start careers in the field.",
+  "focus": [
+   "courses",
+   "careers",
+   "community"
+  ],
+  "founded": "2022",
+  "country": "UK",
+  "url": "https://bluedot.org/about",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "dewi-erwan",
+   "li-lian-ang"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "mats",
+  "name": "MATS (ML Alignment and Theory Scholars)",
+  "type": "fellowship program",
+  "what": "A mentorship program that pairs new researchers with senior AI safety mentors for focused research projects.",
+  "focus": [
+   "research training",
+   "mentorship"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://www.matsprogram.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "constellation",
+  "name": "Constellation",
+  "type": "research center",
+  "what": "A shared research space in Berkeley that hosts AI safety researchers and runs fellowship programs.",
+  "focus": [
+   "community",
+   "fellowships"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://www.constellation.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "lawzero",
+  "name": "LawZero",
+  "type": "research nonprofit",
+  "what": "A nonprofit started by Yoshua Bengio to build safe-by-design AI that puts safety ahead of commercial pressure.",
+  "focus": [
+   "safe by design",
+   "Scientist AI"
+  ],
+  "founded": "2025",
+  "country": "Canada",
+  "url": "https://lawzero.org/en",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "yoshua-bengio"
+  ],
+  "url_status": 200,
+  "city": "Montreal",
+  "lat": 45.5032,
+  "lng": -73.5698,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "ssi",
+  "name": "Safe Superintelligence Inc. (SSI)",
+  "type": "frontier lab",
+  "what": "A lab that says it works only on building safe superintelligence, with no other products.",
+  "focus": [
+   "superintelligence",
+   "safety"
+  ],
+  "founded": "2024",
+  "country": "USA",
+  "url": "https://ssi.inc/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Safe_Superintelligence_Inc._logo.jpg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Safe_Superintelligence_Inc._logo.jpg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/Safe_Superintelligence_Inc.",
+  "people": [
+   "ilya-sutskever"
+  ],
+  "url_status": 200,
+  "city": "Palo Alto",
+  "lat": 37.4443,
+  "lng": -122.1598,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "controlai",
+  "name": "ControlAI",
+  "type": "advocacy nonprofit",
+  "what": "Campaigns for an international ban on developing superintelligence and briefs lawmakers about extinction risk.",
+  "focus": [
+   "advocacy",
+   "policy",
+   "superintelligence ban"
+  ],
+  "founded": "2023",
+  "country": "UK",
+  "url": "https://controlai.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/ControlAI",
+  "people": [
+   "connor-leahy"
+  ],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "forethought",
+  "name": "Forethought",
+  "type": "research nonprofit",
+  "what": "Researches how society can get ready for an intelligence explosion, including risks like AI-enabled coups.",
+  "focus": [
+   "macrostrategy",
+   "power concentration"
+  ],
+  "founded": "",
+  "country": "UK",
+  "url": "https://www.forethought.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "will-macaskill",
+   "tom-davidson"
+  ],
+  "url_status": 200,
+  "city": "Oxford",
+  "lat": 51.752,
+  "lng": -1.2578,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "ai-impacts",
+  "name": "AI Impacts",
+  "type": "research project",
+  "what": "Runs the largest surveys of AI researchers about when AI will get very capable and what the risks are.",
+  "focus": [
+   "expert surveys",
+   "forecasting"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://aiimpacts.org/",
+  "logo": "",
+  "logo_credit": "Site icon from the AI Impacts website (https://aiimpacts.org/)",
+  "wikipedia": "",
+  "people": [
+   "katja-grace"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cser",
+  "name": "Centre for the Study of Existential Risk (CSER)",
+  "type": "university research center",
+  "what": "A Cambridge University center that studies risks that could threaten humanity, including AI.",
+  "focus": [
+   "existential risk",
+   "academic research"
+  ],
+  "founded": "2012",
+  "country": "UK",
+  "url": "https://www.cser.ac.uk/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Centre_for_the_Study_of_Existential_Risk",
+  "people": [
+   "jaan-tallinn"
+  ],
+  "url_status": 200,
+  "city": "Cambridge",
+  "lat": 52.1976,
+  "lng": 0.1392,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cht",
+  "name": "Center for Humane Technology",
+  "type": "advocacy nonprofit",
+  "what": "Works to make technology serve people, and warns about racing to deploy AI without safeguards.",
+  "focus": [
+   "advocacy",
+   "public awareness"
+  ],
+  "founded": "2018",
+  "country": "USA",
+  "url": "https://www.humanetech.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Humane_Technology",
+  "people": [
+   "tristan-harris",
+   "aza-raskin"
+  ],
+  "url_status": 200,
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cset",
+  "name": "Center for Security and Emerging Technology (CSET)",
+  "type": "university think tank",
+  "what": "A Georgetown University think tank that studies how AI and other new technologies affect security.",
+  "focus": [
+   "AI policy",
+   "security"
+  ],
+  "founded": "2019",
+  "country": "USA",
+  "url": "https://cset.georgetown.edu/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "https://en.wikipedia.org/wiki/Center_for_Security_and_Emerging_Technology",
+  "people": [
+   "helen-toner"
+  ],
+  "url_status": 200,
+  "city": "Washington, DC",
+  "lat": 38.8951,
+  "lng": -77.0364,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "truthful-ai",
+  "name": "Truthful AI",
+  "type": "research nonprofit",
+  "what": "A Berkeley research group studying honesty, deception and surprising emergent behavior in language models.",
+  "focus": [
+   "honesty",
+   "emergent misalignment"
+  ],
+  "founded": "",
+  "country": "USA",
+  "url": "https://truthful.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "owain-evans"
+  ],
+  "url_status": 200,
+  "city": "Berkeley",
+  "lat": 37.8708,
+  "lng": -122.2729,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "arena",
+  "name": "ARENA (Alignment Research Engineer Accelerator)",
+  "type": "training program",
+  "what": "A hands-on program that teaches the machine learning engineering skills needed for alignment research.",
+  "focus": [
+   "technical training"
+  ],
+  "founded": "",
+  "country": "UK",
+  "url": "https://www.arena.education/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "80000-hours",
+  "name": "80,000 Hours",
+  "type": "careers nonprofit",
+  "what": "Gives free career advice for people who want to work on the world's most pressing problems, with AI safety as a top priority.",
+  "focus": [
+   "careers",
+   "podcast",
+   "job board"
+  ],
+  "founded": "2011",
+  "country": "UK",
+  "url": "https://80000hours.org/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/2/27/80%2C000_Hours_logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:80,000_Hours_logo.svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/80,000_Hours",
+  "people": [],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "pauseai",
+  "name": "PauseAI",
+  "type": "grassroots movement",
+  "what": "A volunteer movement that campaigns for a global pause on building more powerful AI until it can be made safe.",
+  "focus": [
+   "advocacy",
+   "protests",
+   "policy"
+  ],
+  "founded": "2023",
+  "country": "Netherlands",
+  "url": "https://pauseai.info/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/f/f2/PauseAI_Logo.svg",
+  "logo_credit": "Public domain, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:PauseAI_Logo.svg)",
+  "wikipedia": "https://en.wikipedia.org/wiki/PauseAI",
+  "people": [],
+  "url_status": 200,
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "Europe",
+  "geo_note": ""
+ },
+ {
+  "id": "indiaai-safety-institute",
+  "name": "IndiaAI Safety Institute",
+  "type": "government institute",
+  "what": "India's AI safety institute under the IndiaAI Mission. It uses a hub and spoke model with universities, startups and industry to test AI for risks in India's languages and social context.",
+  "focus": [
+   "evals",
+   "standards",
+   "India"
+  ],
+  "founded": "2025",
+  "country": "India",
+  "url": "https://indiaai.gov.in/article/india-takes-the-lead-establishing-the-indiaai-safety-institute-for-responsible-ai-innovation",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "abhishek-singh"
+  ],
+  "url_status": 200,
+  "city": "New Delhi",
+  "lat": 28.6139,
+  "lng": 77.209,
+  "region": "India",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cooperative-ai-foundation",
+  "name": "Cooperative AI Foundation",
+  "type": "charity",
+  "what": "Funds research on how AI systems can cooperate well with each other and with humans.",
+  "focus": [
+   "multi-agent safety",
+   "grants"
+  ],
+  "founded": "",
+  "country": "UK",
+  "url": "https://www.cooperativeai.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": 200,
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "saferai",
+  "name": "SaferAI",
+  "type": "research nonprofit",
+  "what": "Rates and compares how well AI companies manage risk, and works on risk management standards.",
+  "focus": [
+   "risk management",
+   "ratings"
+  ],
+  "founded": "",
+  "country": "France",
+  "url": "https://www.safer-ai.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": 200,
+  "city": "Paris",
+  "lat": 48.8589,
+  "lng": 2.32,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "coefficient-giving",
+  "name": "Coefficient Giving (formerly Open Philanthropy)",
+  "type": "funder",
+  "what": "One of the largest funders of AI safety and governance work in the world.",
+  "focus": [
+   "funding"
+  ],
+  "founded": "2014",
+  "country": "USA",
+  "url": "https://coefficientgiving.org/",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coefficient_Logo_Green.png",
+  "logo_credit": "CC BY 4.0, via Wikimedia Commons (https://commons.wikimedia.org/wiki/File:Coefficient_Logo_Green.png)",
+  "wikipedia": "https://en.wikipedia.org/wiki/Coefficient_Giving",
+  "people": [
+   "holden-karnofsky",
+   "ajeya-cotra",
+   "joe-carlsmith"
+  ],
+  "url_status": 200,
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "eu-ai-office",
+  "name": "European AI Office",
+  "type": "government",
+  "what": "The European Commission's office for AI. It oversees general-purpose AI models under the EU AI Act.",
+  "focus": [
+   "AI Act enforcement",
+   "general-purpose AI"
+  ],
+  "founded": "2024",
+  "country": "Belgium",
+  "url": "https://digital-strategy.ec.europa.eu/en/policies/ai-office",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Brussels",
+  "lat": 50.8467,
+  "lng": 4.3525,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "aisi-canada",
+  "name": "Canadian AI Safety Institute",
+  "type": "government",
+  "what": "Canada's national AI safety institute, launched in November 2024. Its research program is run with CIFAR.",
+  "focus": [
+   "AI safety research",
+   "evaluations"
+  ],
+  "founded": "2024",
+  "country": "Canada",
+  "url": "https://www.canada.ca/en/innovation-science-economic-development/news/2024/11/canada-launches-canadian-artificial-intelligence-safety-institute.html",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "nicolas-papernot"
+  ],
+  "url_status": "blocked from our fetcher; listed from the launch press release",
+  "city": "Ottawa",
+  "lat": 45.4209,
+  "lng": -75.6901,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "japan-aisi",
+  "name": "Japan AI Safety Institute (J-AISI)",
+  "type": "government",
+  "what": "Japan's AI safety institute, set up in February 2024 inside the Information-technology Promotion Agency. It works on safety evaluation methods, red teaming and standards.",
+  "focus": [
+   "evaluation methods",
+   "red teaming",
+   "standards"
+  ],
+  "founded": "2024",
+  "country": "Japan",
+  "url": "https://aisi.go.jp/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "akiko-murakami"
+  ],
+  "url_status": "200",
+  "city": "Tokyo",
+  "lat": 35.6769,
+  "lng": 139.7639,
+  "region": "Asia Pacific",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "korea-aisi",
+  "name": "Korea AI Safety Institute",
+  "type": "government",
+  "what": "South Korea's AI safety institute, opened in November 2024 under ETRI. It evaluates AI risks and works with other safety institutes.",
+  "focus": [
+   "risk evaluation",
+   "AI safety policy"
+  ],
+  "founded": "2024",
+  "country": "South Korea",
+  "url": "https://www.aisi.re.kr/eng/contents/23",
+  "logo": "",
+  "logo_credit": "Official logo from the Korea AI Safety Institute website (https://www.aisi.re.kr/eng/)",
+  "wikipedia": "",
+  "people": [
+   "kim-myuhng-joo"
+  ],
+  "url_status": "200",
+  "city": "Seongnam",
+  "lat": 37.4202,
+  "lng": 127.1262,
+  "region": "Asia Pacific",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "singapore-aisi",
+  "name": "Digital Trust Centre (Singapore AI Safety Institute)",
+  "type": "government",
+  "what": "The Digital Trust Centre at NTU Singapore, designated as Singapore's AI Safety Institute.",
+  "focus": [
+   "trust technologies",
+   "AI safety evaluation"
+  ],
+  "founded": "",
+  "country": "Singapore",
+  "url": "https://www.ntu.edu.sg/dtc",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Singapore",
+  "lat": 1.2899,
+  "lng": 103.8519,
+  "region": "Asia Pacific",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "inesia",
+  "name": "INESIA (France)",
+  "type": "government",
+  "what": "France's national institute for AI evaluation and security, created in January 2025. It links ANSSI, Inria, LNE and PEReN under the SGDSN and the DGE.",
+  "focus": [
+   "AI evaluation",
+   "national security"
+  ],
+  "founded": "2025",
+  "country": "France",
+  "url": "https://www.entreprises.gouv.fr/espace-presse/le-gouvernement-annonce-la-creation-de-linstitut-national-pour-levaluation-et-la",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "checked 2026-10-29",
+  "city": "Paris",
+  "lat": 48.8589,
+  "lng": 2.32,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "aisi-australia",
+  "name": "Australian AI Safety Institute",
+  "type": "government",
+  "what": "Australia's AI safety institute, announced in November 2025 inside the Department of Industry, Science and Resources. It analyses emerging AI capabilities, risks and harms.",
+  "focus": [
+   "capability monitoring",
+   "AI harms"
+  ],
+  "founded": "2025",
+  "country": "Australia",
+  "url": "https://www.industry.gov.au/science-technology-and-innovation/technology/artificial-intelligence/ai-safety-institute",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "blocked from our fetcher; listed from the department page",
+  "city": "Canberra",
+  "lat": -35.2976,
+  "lng": 149.1013,
+  "region": "Asia Pacific",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "concordia-ai",
+  "name": "Concordia AI",
+  "type": "nonprofit",
+  "what": "A Beijing-based social enterprise on AI safety and governance. It does research, convenings, consulting and frontier risk monitoring.",
+  "focus": [
+   "AI safety in China",
+   "international governance"
+  ],
+  "founded": "",
+  "country": "China",
+  "url": "https://concordia-ai.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "brian-tse"
+  ],
+  "url_status": "200",
+  "city": "Beijing",
+  "lat": 39.9057,
+  "lng": 116.3913,
+  "region": "China",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "shanghai-ai-lab",
+  "name": "Shanghai AI Laboratory",
+  "type": "lab",
+  "what": "A major Chinese AI research lab. It builds the InternLM models and runs safety and open evaluation platforms.",
+  "focus": [
+   "foundation models",
+   "AI safety",
+   "evaluation"
+  ],
+  "founded": "",
+  "country": "China",
+  "url": "https://www.shlab.org.cn/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "zhou-bowen"
+  ],
+  "url_status": "200",
+  "city": "Shanghai",
+  "lat": 31.2323,
+  "lng": 121.4691,
+  "region": "China",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "tsinghua-iaiig",
+  "name": "Institute for AI International Governance, Tsinghua University",
+  "type": "academic",
+  "what": "Tsinghua University's institute for international AI governance, led by Xue Lan.",
+  "focus": [
+   "international AI governance"
+  ],
+  "founded": "",
+  "country": "China",
+  "url": "https://aiig.tsinghua.edu.cn/en/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "xue-lan"
+  ],
+  "url_status": "200",
+  "city": "Beijing",
+  "lat": 39.9057,
+  "lng": 116.3913,
+  "region": "China",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "mila",
+  "name": "Mila - Quebec AI Institute",
+  "type": "academic",
+  "what": "A large deep learning research institute in Montreal founded by Yoshua Bengio.",
+  "focus": [
+   "deep learning",
+   "AI safety",
+   "AI for society"
+  ],
+  "founded": "",
+  "country": "Canada",
+  "url": "https://mila.quebec/en",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "yoshua-bengio",
+   "david-krueger"
+  ],
+  "url_status": "200",
+  "city": "Montreal",
+  "lat": 45.5032,
+  "lng": -73.5698,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "vector-institute",
+  "name": "Vector Institute",
+  "type": "academic",
+  "what": "A Toronto AI research institute that links universities and industry.",
+  "focus": [
+   "machine learning research",
+   "AI adoption"
+  ],
+  "founded": "",
+  "country": "Canada",
+  "url": "https://vectorinstitute.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "david-duvenaud",
+   "sheila-mcilraith",
+   "roger-grosse",
+   "nicolas-papernot"
+  ],
+  "url_status": "200",
+  "city": "Toronto",
+  "lat": 43.6535,
+  "lng": -79.3839,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "oxford-aigi",
+  "name": "Oxford Martin AI Governance Initiative",
+  "type": "academic",
+  "what": "An Oxford University centre for frontier, international and technical AI governance.",
+  "focus": [
+   "frontier AI governance",
+   "international governance",
+   "technical governance"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://aigi.ox.ac.uk/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "robert-trager"
+  ],
+  "url_status": "200",
+  "city": "Oxford",
+  "lat": 51.752,
+  "lng": -1.2578,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cfi-cambridge",
+  "name": "Leverhulme Centre for the Future of Intelligence",
+  "type": "academic",
+  "what": "A Cambridge University centre that studies the future of AI, including its risks, ethics and governance.",
+  "focus": [
+   "AI futures and responsibility",
+   "AI ethics"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://www.lcfi.ac.uk/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "sean-o-heigeartaigh",
+   "shahar-avin"
+  ],
+  "url_status": "200",
+  "city": "Cambridge",
+  "lat": 52.1976,
+  "lng": 0.1392,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "ethz-ai-center",
+  "name": "ETH AI Center",
+  "type": "academic",
+  "what": "ETH Zurich's hub for AI research across departments.",
+  "focus": [
+   "AI research",
+   "trustworthy AI"
+  ],
+  "founded": "",
+  "country": "Switzerland",
+  "url": "https://ai.ethz.ch/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "florian-tramer"
+  ],
+  "url_status": "checked 2026-10-29",
+  "city": "Zurich",
+  "lat": 47.3744,
+  "lng": 8.541,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "tuebingen-ai",
+  "name": "Tubingen AI Center and ELLIS Institute Tubingen",
+  "type": "academic",
+  "what": "A European AI research hub in Tubingen, linked with the Max Planck Institute for Intelligent Systems and the ELLIS Institute.",
+  "focus": [
+   "machine learning",
+   "safe and efficient learning"
+  ],
+  "founded": "",
+  "country": "Germany",
+  "url": "https://tuebingen.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "bernhard-scholkopf",
+   "jonas-geiping"
+  ],
+  "url_status": "checked 2026-10-29",
+  "city": "Tubingen",
+  "lat": 48.5203,
+  "lng": 9.0536,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "goodfire",
+  "name": "Goodfire",
+  "type": "lab",
+  "what": "An AI interpretability research lab and public benefit corporation. It builds tools to understand, monitor and align AI models.",
+  "focus": [
+   "interpretability"
+  ],
+  "founded": "",
+  "country": "United States",
+  "url": "https://www.goodfire.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "transluce",
+  "name": "Transluce",
+  "type": "nonprofit",
+  "what": "An independent nonprofit lab for public oversight of AI. It builds open tools to understand AI systems.",
+  "focus": [
+   "interpretability",
+   "AI oversight tools"
+  ],
+  "founded": "",
+  "country": "United States",
+  "url": "https://transluce.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "jacob-steinhardt",
+   "sarah-schwettmann"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "North America",
+  "geo_note": ""
+ },
+ {
+  "id": "eleutherai",
+  "name": "EleutherAI",
+  "type": "nonprofit",
+  "what": "A nonprofit research group that builds open models, datasets and evaluation tools, with work on open-weight safety.",
+  "focus": [
+   "open models",
+   "evaluation",
+   "interpretability"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://www.eleuther.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "stella-biderman",
+   "connor-leahy"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "simplex",
+  "name": "Simplex",
+  "type": "nonprofit",
+  "what": "An AI safety research group building a theory of how neural networks organize their internal representations. It hires in the Bay Area and London.",
+  "focus": [
+   "theory of intelligence",
+   "interpretability"
+  ],
+  "founded": "",
+  "country": "United States",
+  "url": "https://www.simplexaisafety.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "paul-riechers",
+   "adam-shai"
+  ],
+  "url_status": "200",
+  "city": "San Francisco",
+  "lat": 37.7879,
+  "lng": -122.4075,
+  "region": "North America",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "timaeus",
+  "name": "Timaeus (now Resolution)",
+  "type": "nonprofit",
+  "what": "An AI safety research group that uses singular learning theory to study how training data shapes AI behavior. It now goes by Resolution.",
+  "focus": [
+   "singular learning theory",
+   "developmental interpretability"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://timaeus.co/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "jesse-hoogland",
+   "geoffrey-irving"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "apart-research",
+  "name": "Apart Research",
+  "type": "nonprofit",
+  "what": "A nonprofit AI safety organization that runs research sprints and fellowships, with a research focus on harmful manipulation by AI.",
+  "focus": [
+   "research sprints",
+   "evaluations",
+   "field-building"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://apartresearch.com/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "esben-kran"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "cesia",
+  "name": "CeSIA (French Center for AI Safety)",
+  "type": "nonprofit",
+  "what": "An independent French think tank on preventing major AI risks. It runs the Global Call for AI Red Lines and the AI Safety Atlas.",
+  "focus": [
+   "AI policy",
+   "education",
+   "red lines"
+  ],
+  "founded": "",
+  "country": "France",
+  "url": "https://www.securite-ia.fr/en",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Paris",
+  "lat": 48.8589,
+  "lng": 2.32,
+  "region": "Europe",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "era-fellowship",
+  "name": "ERA Fellowship",
+  "type": "training",
+  "what": "A Cambridge research fellowship on risks from AI.",
+  "focus": [
+   "research training",
+   "AI risk"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://erafellowship.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Cambridge",
+  "lat": 52.1976,
+  "lng": 0.1392,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "lisa",
+  "name": "London Initiative for Safe AI (LISA)",
+  "type": "nonprofit",
+  "what": "An AI safety centre and ecosystem in London that hosts research organizations and individuals.",
+  "focus": [
+   "AI safety ecosystem",
+   "research hub"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://www.safeai.org.uk/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "adam-gleave"
+  ],
+  "url_status": "200",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cltr",
+  "name": "Centre for Long-Term Resilience",
+  "type": "nonprofit",
+  "what": "An independent UK think tank on resilience to extreme risks, including AI and biosecurity.",
+  "focus": [
+   "AI policy",
+   "biosecurity",
+   "risk management"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://www.longtermresilience.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "jess-whittlestone"
+  ],
+  "url_status": "200",
+  "city": "London",
+  "lat": 51.5074,
+  "lng": -0.1278,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "meridian",
+  "name": "Meridian Cambridge",
+  "type": "nonprofit",
+  "what": "A Cambridge research hub and launch platform for AI safety research programmes.",
+  "focus": [
+   "research programmes",
+   "AI safety hub"
+  ],
+  "founded": "",
+  "country": "United Kingdom",
+  "url": "https://www.meridiancambridge.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Cambridge",
+  "lat": 52.1976,
+  "lng": 0.1392,
+  "region": "UK",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "iaps",
+  "name": "Institute for AI Policy and Strategy (IAPS)",
+  "type": "nonprofit",
+  "what": "A nonpartisan think tank that writes policy research on risks from powerful AI.",
+  "focus": [
+   "AI policy",
+   "national security"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://www.iaps.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "the-future-society",
+  "name": "The Future Society",
+  "type": "nonprofit",
+  "what": "An independent nonprofit based in the US and Europe that works to align AI through better governance.",
+  "focus": [
+   "international AI governance",
+   "European AI governance"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://thefuturesociety.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "frontier-model-forum",
+  "name": "Frontier Model Forum",
+  "type": "industry",
+  "what": "An industry body of frontier AI companies that shares safety and security practice, including on AI and bio, cyber and nuclear risks.",
+  "focus": [
+   "frontier safety frameworks",
+   "information sharing"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://www.frontiermodelforum.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "partnership-on-ai",
+  "name": "Partnership on AI",
+  "type": "nonprofit",
+  "what": "A nonprofit coalition of companies, academics and civil society on responsible AI, including AI safety.",
+  "focus": [
+   "responsible AI",
+   "AI safety",
+   "policy"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://partnershiponai.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "rosie-campbell"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "international-ai-safety-report",
+  "name": "International AI Safety Report",
+  "type": "government",
+  "what": "A yearly report on the risks of general-purpose AI, chaired by Yoshua Bengio and written by experts from many countries.",
+  "focus": [
+   "scientific assessment",
+   "AI risk"
+  ],
+  "founded": "2025",
+  "country": "",
+  "url": "https://internationalaisafetyreport.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "yoshua-bengio",
+   "balaraman-ravindran"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "ilina",
+  "name": "ILINA Program",
+  "type": "nonprofit",
+  "what": "An African-led organization that works on AI safety through research, policy work and talent development.",
+  "focus": [
+   "AI safety in Africa",
+   "research",
+   "talent"
+  ],
+  "founded": "",
+  "country": "Kenya",
+  "url": "https://www.ilinaprogram.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Nairobi",
+  "lat": -1.289,
+  "lng": 36.8173,
+  "region": "Africa",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "global-center-ai-governance",
+  "name": "Global Center on AI Governance",
+  "type": "nonprofit",
+  "what": "An African-led center on AI policy and governance that works to reduce global inequalities made worse by AI. It runs the African Observatory.",
+  "focus": [
+   "AI governance in Africa",
+   "inclusion"
+  ],
+  "founded": "",
+  "country": "South Africa",
+  "url": "https://www.globalcenter.ai/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Cape Town",
+  "lat": -33.9288,
+  "lng": 18.4172,
+  "region": "Africa",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "cair-iit-madras",
+  "name": "Centre for Responsible AI (CeRAI), IIT Madras",
+  "type": "academic",
+  "what": "IIT Madras's Centre for Responsible AI, which works on responsible and safe AI research and AI governance.",
+  "focus": [
+   "responsible AI",
+   "AI governance"
+  ],
+  "founded": "",
+  "country": "India",
+  "url": "https://cerai.iitm.ac.in/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "balaraman-ravindran"
+  ],
+  "url_status": "200",
+  "city": "Chennai",
+  "lat": 13.0801,
+  "lng": 80.2808,
+  "region": "India",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "digital-futures-lab",
+  "name": "Digital Futures Lab",
+  "type": "nonprofit",
+  "what": "An independent research studio in India on technology and society in the Majority World, working toward safe digital futures.",
+  "focus": [
+   "AI and society",
+   "foresight"
+  ],
+  "founded": "",
+  "country": "India",
+  "url": "https://www.digitalfutureslab.in/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Goa",
+  "lat": 15.499,
+  "lng": 73.8282,
+  "region": "India",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "ai-safety-asia",
+  "name": "AI Safety Asia",
+  "type": "nonprofit",
+  "what": "A network that works to give Asian countries a stronger voice in steering frontier AI.",
+  "focus": [
+   "AI governance in Asia"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://www.aisafety.asia/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "saif",
+  "name": "Safe AI Forum",
+  "type": "nonprofit",
+  "what": "A nonprofit that drives global coordination to reduce extreme AI risks. It runs the International Dialogues on AI Safety (IDAIS).",
+  "focus": [
+   "international dialogue",
+   "extreme risks"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://saif.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "adam-gleave"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "eleos-ai",
+  "name": "Eleos AI Research",
+  "type": "nonprofit",
+  "what": "A nonprofit that studies the possible wellbeing and moral status of AI systems.",
+  "focus": [
+   "AI welfare",
+   "AI sentience"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://eleosai.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "rosie-campbell"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "maisi",
+  "name": "Mathematical AI Safety Institute",
+  "type": "nonprofit",
+  "what": "An independent nonprofit building mathematical foundations for the safety of powerful AI.",
+  "focus": [
+   "mathematical AI safety"
+  ],
+  "founded": "",
+  "country": "",
+  "url": "https://maisi.org/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "andrew-critch"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "",
+  "geo_note": ""
+ },
+ {
+  "id": "ai-safety-tokyo",
+  "name": "AI Safety Tokyo",
+  "type": "community",
+  "what": "A Tokyo community that runs AI safety study groups.",
+  "focus": [
+   "community",
+   "education"
+  ],
+  "founded": "",
+  "country": "Japan",
+  "url": "https://aisafety.tokyo/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [],
+  "url_status": "200",
+  "city": "Tokyo",
+  "lat": 35.6769,
+  "lng": 139.7639,
+  "region": "Asia Pacific",
+  "geo_note": "city-level location"
+ },
+ {
+  "id": "alter",
+  "name": "ALTER",
+  "type": "nonprofit",
+  "what": "An Israeli nonprofit for research and advocacy on the long-term future, including AI alignment research.",
+  "focus": [
+   "long-term future",
+   "alignment theory"
+  ],
+  "founded": "",
+  "country": "Israel",
+  "url": "https://alter.org.il/",
+  "logo": "",
+  "logo_credit": "",
+  "wikipedia": "",
+  "people": [
+   "vanessa-kosoy"
+  ],
+  "url_status": "200",
+  "city": "",
+  "lat": "",
+  "lng": "",
+  "region": "Middle East",
+  "geo_note": ""
+ }
 ]
