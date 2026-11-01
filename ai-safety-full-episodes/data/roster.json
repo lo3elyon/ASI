@@ -754,5 +754,47 @@
   "org": "University of British Columbia",
   "group": "academics",
   "bio": "UBC assistant professor and Canada CIFAR AI Chair working on machine-learning theory and representation learning, co-presenting on Solomonoff induction at ILIAD."
+ },
+ {
+  "name": "Fernando Rosas",
+  "photo": "fernando-rosas.jpg",
+  "org": "University of Sussex",
+  "group": "academics",
+  "bio": "Complex-systems and information-theory researcher at Sussex and Imperial College London who studies emergence, abstraction and symmetry, with a stated focus on AI alignment."
+ },
+ {
+  "name": "Manuel Baltieri",
+  "photo": "manuel-baltieri.jpg",
+  "org": "Araya",
+  "group": "orgs",
+  "bio": "Research team lead at Araya (Tokyo) working on agent foundations: world models, agency and active inference for safe, interpretable AI."
+ },
+ {
+  "name": "Zach Furman",
+  "photo": "zach-furman.jpg",
+  "org": "Iliad",
+  "group": "orgs",
+  "bio": "Research lead for learning theory at Iliad, studying why gradient descent finds good solutions with tractable toy models such as tree tensor networks."
+ },
+ {
+  "name": "Daniel Chernowitz",
+  "photo": "daniel-chernowitz.jpg",
+  "org": "Iliad",
+  "group": "orgs",
+  "bio": "Fellowship research manager at Iliad and former quantitative researcher who helps run its AI-safety research fellowship."
+ },
+ {
+  "name": "Alexander Gietelink Oldenziel",
+  "photo": "alexander-gietelink-oldenziel.jpg",
+  "org": "Iliad",
+  "group": "orgs",
+  "bio": "Executive director of Iliad and organiser of the ILIAD conferences on theoretical AI alignment; a long-time singular-learning-theory and agent-foundations advocate."
+ },
+ {
+  "name": "William Troiani",
+  "photo": "william-troiani.jpg",
+  "org": "Resolution (formerly Timaeus)",
+  "group": "orgs",
+  "bio": "Mathematician (PhD, University of Melbourne) working on singular learning theory and the geometry of computation, with Daniel Murfet."
  }
 ]
