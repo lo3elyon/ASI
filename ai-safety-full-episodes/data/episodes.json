@@ -3147,6 +3147,930 @@
   }
  },
  {
+  "id": "gbcyRAGYssg",
+  "title": "Symmetry and abstractions - Fernando Rosas",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "48:53",
+  "speakers": [
+   {
+    "name": "Fernando Rosas",
+    "affiliation": "University of Sussex (Informatics); Imperial College London (honorary research fellow)"
+   }
+  ],
+  "names": [
+   "Fernando Rosas"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Fernando Rosas argues that symmetries are what make good abstractions possible. He treats an abstraction as a coarse-graining of a process whose predictions can be made without looking at the micro level, formalises that as information closure, and shows how global, local and weak symmetries of a Markov chain each guarantee a different kind of closure. He then applies the idea to belief updating: because symmetric systems can be coarse-grained exactly, a Bayesian filter that would blow up exponentially (his epidemic example) can be run at the macro level in a scalable way. The talk ends with hierarchical emergence, open questions about hidden Markov models, and an audience discussion of how reward picks the right coarse-graining.",
+  "topics": [
+   "0:00:04 Overview: why symmetries enable abstractions",
+   "0:03:01 Levels of description: every level has its own logic",
+   "0:06:00 Examples: a sum on a laptop, and the toilet",
+   "0:09:00 Information closure as the mark of a good coarse-graining",
+   "0:12:00 A six-state Markov chain with a triangular symmetry",
+   "0:15:02 Weak symmetries and isomorphic future trees",
+   "0:21:00 A Hopfield network as an example",
+   "0:24:01 Summary: global, local and weak symmetries",
+   "0:27:01 Belief updating as linear algebra",
+   "0:30:03 Two chambers: tracking a particle count under noisy measurement",
+   "0:36:00 Scalable inference for an epidemic",
+   "0:38:59 Q&A: how do the two error types play in?",
+   "0:42:02 Hierarchical emergence and abstract beliefs",
+   "0:45:00 Open problems: hidden Markov processes",
+   "0:48:00 Q&A: which coarse-graining is right depends on reward"
+  ],
+  "evidence": "[0:02:58] Fernando Rosas: \"every level of description has their own logic so you can forget about what is below\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=gbcyRAGYssg",
+  "thumb": "https://i.ytimg.com/vi/gbcyRAGYssg/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A clean mathematical account of why abstractions exist at all, from the physics-of-emergence side of agent foundations: when a system can be summarised without losing predictive power, and what that means for how an AI could represent its world.",
+  "tags": [
+   "abstraction",
+   "symmetry",
+   "coarse-graining",
+   "information closure",
+   "emergence",
+   "belief updating",
+   "Markov chains",
+   "agent foundations",
+   "ILIAD"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "ILIAD",
+   "University of Sussex"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:04",
+    "seconds": 4,
+    "title": "Overview: why symmetries enable abstractions"
+   },
+   {
+    "t": "0:03:01",
+    "seconds": 181,
+    "title": "Levels of description: every level has its own logic"
+   },
+   {
+    "t": "0:06:00",
+    "seconds": 360,
+    "title": "Examples: a sum on a laptop, and the toilet"
+   },
+   {
+    "t": "0:09:00",
+    "seconds": 540,
+    "title": "Information closure as the mark of a good coarse-graining"
+   },
+   {
+    "t": "0:12:00",
+    "seconds": 720,
+    "title": "A six-state Markov chain with a triangular symmetry"
+   },
+   {
+    "t": "0:15:02",
+    "seconds": 902,
+    "title": "Weak symmetries and isomorphic future trees"
+   },
+   {
+    "t": "0:21:00",
+    "seconds": 1260,
+    "title": "A Hopfield network as an example"
+   },
+   {
+    "t": "0:24:01",
+    "seconds": 1441,
+    "title": "Summary: global, local and weak symmetries"
+   },
+   {
+    "t": "0:27:01",
+    "seconds": 1621,
+    "title": "Belief updating as linear algebra"
+   },
+   {
+    "t": "0:30:03",
+    "seconds": 1803,
+    "title": "Two chambers: tracking a particle count under noisy measurement"
+   },
+   {
+    "t": "0:36:00",
+    "seconds": 2160,
+    "title": "Scalable inference for an epidemic"
+   },
+   {
+    "t": "0:38:59",
+    "seconds": 2339,
+    "title": "Q&A: how do the two error types play in?"
+   },
+   {
+    "t": "0:42:02",
+    "seconds": 2522,
+    "title": "Hierarchical emergence and abstract beliefs"
+   },
+   {
+    "t": "0:45:00",
+    "seconds": 2700,
+    "title": "Open problems: hidden Markov processes"
+   },
+   {
+    "t": "0:48:00",
+    "seconds": 2880,
+    "title": "Q&A: which coarse-graining is right depends on reward"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:02:58",
+    "seconds": 178,
+    "speaker": "Fernando Rosas",
+    "quote": "every level of description has their own logic so you can forget about what is below",
+    "quote_located": true
+   },
+   {
+    "t": "0:06:06",
+    "seconds": 366,
+    "speaker": "Fernando Rosas",
+    "quote": "So the micro level is a mess, but you don't care about it",
+    "quote_located": true
+   },
+   {
+    "t": "0:09:11",
+    "seconds": 551,
+    "speaker": "Fernando Rosas",
+    "quote": "So this is the notion of information closure",
+    "quote_located": true
+   },
+   {
+    "t": "0:39:17",
+    "seconds": 2357,
+    "speaker": "Fernando Rosas",
+    "quote": "the beauty of the symmetries is just knowing the symmetries you can course grain",
+    "quote_located": true
+   },
+   {
+    "t": "0:41:59",
+    "seconds": 2519,
+    "speaker": "Fernando Rosas",
+    "quote": "hierarchical emergence means we have a process that has multiple course grains at which it can be described",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 08:30 PM IST (UTC+05:30)",
+  "added_ms": 1793545200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "9JWiUkgyZ1o",
+  "title": "World models for RL, with triangles - Manuel Baltieri",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:30:39",
+  "speakers": [
+   {
+    "name": "Manuel Baltieri",
+    "affiliation": "Araya (Research Team Lead, agent foundations); visiting researcher, University of Sussex"
+   }
+  ],
+  "names": [
+   "Manuel Baltieri"
+  ],
+  "format": "conference talk + long discussion",
+  "summary": "Manuel Baltieri presents work in progress on what 'world model' should mean for an agent that acts. He separates the environment, agent and joint channels of an agent-environment loop, shows how a joint process can be coarse-grained into a support-restricted environment model and agent model, and then tests the idea with transformers trained on Mess3-style processes under open-loop and closed-loop data. The belief-state 'triangles' show that the closed-loop joint beliefs carry structure the open-loop model misses. Most of the 90 minutes is a lively discussion with the audience about token formats, tool calls as the environment's random force, and what this means for how language-model agents are trained.",
+  "topics": [
+   "0:00:03 Why this talk: work in progress and a request for feedback",
+   "0:01:03 Background: agents as entities distinct from their environment",
+   "0:04:02 Three channels: environment, agent and joint",
+   "0:12:01 Related work on products of processes",
+   "0:20:09 Two coarse-grainings: environment model and agent model",
+   "0:21:06 Triangles: epsilon machines and belief states",
+   "0:28:00 A small Mess3 example with an agent and its memory",
+   "0:32:00 Training on open-loop and closed-loop data",
+   "0:40:04 How to read the triangle panels",
+   "0:42:23 Frozen observation head results",
+   "0:52:12 Joint beliefs and linear regression maps",
+   "1:00:00 Official end and open discussion",
+   "1:12:08 Training transformers with the interaction ordering",
+   "1:16:00 Tool calls as the environment's random force",
+   "1:23:59 Policy concentration and variance reduction"
+  ],
+  "evidence": "[0:01:00] Manuel Baltieri: \"I'm interested in agents as entities that are distinct from their environment\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=9JWiUkgyZ1o",
+  "thumb": "https://i.ytimg.com/vi/9JWiUkgyZ1o/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "An unfinished but candid look at how to formalise world models for acting agents, with experiments on belief-state geometry and an unusually rich audience discussion that connects it to tool-using language-model agents.",
+  "tags": [
+   "world models",
+   "agent foundations",
+   "belief state geometry",
+   "transformers",
+   "closed-loop vs open-loop",
+   "computational mechanics",
+   "tool calls",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Adam Shai",
+   "Paul Riechers"
+  ],
+  "orgs_mentioned": [
+   "Araya",
+   "Simplex",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:03",
+    "seconds": 3,
+    "title": "Why this talk: work in progress and a request for feedback"
+   },
+   {
+    "t": "0:01:03",
+    "seconds": 63,
+    "title": "Background: agents as entities distinct from their environment"
+   },
+   {
+    "t": "0:04:02",
+    "seconds": 242,
+    "title": "Three channels: environment, agent and joint"
+   },
+   {
+    "t": "0:12:01",
+    "seconds": 721,
+    "title": "Related work on products of processes"
+   },
+   {
+    "t": "0:20:09",
+    "seconds": 1209,
+    "title": "Two coarse-grainings: environment model and agent model"
+   },
+   {
+    "t": "0:21:06",
+    "seconds": 1266,
+    "title": "Triangles: epsilon machines and belief states"
+   },
+   {
+    "t": "0:28:00",
+    "seconds": 1680,
+    "title": "A small Mess3 example with an agent and its memory"
+   },
+   {
+    "t": "0:32:00",
+    "seconds": 1920,
+    "title": "Training on open-loop and closed-loop data"
+   },
+   {
+    "t": "0:40:04",
+    "seconds": 2404,
+    "title": "How to read the triangle panels"
+   },
+   {
+    "t": "0:42:23",
+    "seconds": 2543,
+    "title": "Frozen observation head results"
+   },
+   {
+    "t": "0:52:12",
+    "seconds": 3132,
+    "title": "Joint beliefs and linear regression maps"
+   },
+   {
+    "t": "1:00:00",
+    "seconds": 3600,
+    "title": "Official end and open discussion"
+   },
+   {
+    "t": "1:12:08",
+    "seconds": 4328,
+    "title": "Training transformers with the interaction ordering"
+   },
+   {
+    "t": "1:16:00",
+    "seconds": 4560,
+    "title": "Tool calls as the environment's random force"
+   },
+   {
+    "t": "1:23:59",
+    "seconds": 5039,
+    "title": "Policy concentration and variance reduction"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:00",
+    "seconds": 60,
+    "speaker": "Manuel Baltieri",
+    "quote": "I'm interested in agents as entities that are distinct from their environment",
+    "quote_located": true
+   },
+   {
+    "t": "0:04:09",
+    "seconds": 249,
+    "speaker": "Manuel Baltieri",
+    "quote": "So environment agent and join channel",
+    "quote_located": true
+   },
+   {
+    "t": "0:20:10",
+    "seconds": 1210,
+    "speaker": "Manuel Baltieri",
+    "quote": "something that you don't get in general unless again like you know this joint process is just a product of two uh processes",
+    "quote_located": true
+   },
+   {
+    "t": "0:56:14",
+    "seconds": 3374,
+    "speaker": "Manuel Baltieri",
+    "quote": "I'm calculating PC compon like principal components on this n dimensional space",
+    "quote_located": true
+   },
+   {
+    "t": "1:28:27",
+    "seconds": 5307,
+    "speaker": "Manuel Baltieri",
+    "quote": "everything I'm saying needs like a big caveat which is like I say it's like",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 08:30 PM IST (UTC+05:30)",
+  "added_ms": 1793545200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "G7XjVrkoBhs",
+  "title": "Tensor networks: not your grandma's DLNs! - Zach Furman",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:11:00",
+  "speakers": [
+   {
+    "name": "Zach Furman",
+    "affiliation": "Iliad (Research Lead, learning theory)"
+   }
+  ],
+  "names": [
+   "Zach Furman"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Zach Furman proposes tree tensor networks as a toy model for how neural networks learn, one step beyond deep linear networks. Deep linear nets have beautiful, separable learning dynamics but are only linear maps; tree tensor networks add just enough non-linearity to encode worst-case, statistically-hard targets such as parities, while staying analytically tractable and with a polynomial-time population loss. His headline result is that gradient descent on a two-hidden-layer tree tensor network avoids suboptimal local minima even for targets that cannot be learned in polynomial time, and he sketches how saddle-to-saddle learning, balancedness conditions and the geometry of the realisable-tensor variety fit together. Joint work with Stefan and Liam at the University of Melbourne.",
+  "topics": [
+   "0:00:02 Overview: tree tensor networks as a toy model of learning",
+   "0:03:20 How do neural networks learn? The benign loss landscape puzzle",
+   "0:06:39 Deep linear networks: separable, beautiful, but just linear",
+   "0:10:00 Bayesian learning versus gradient descent",
+   "0:16:39 Hardness: statistical-query learning of parities",
+   "0:20:01 Tree tensor networks: non-linear but tractable",
+   "0:23:20 Population loss in polynomial time",
+   "0:26:42 Parameters: nodes, tensors and the parameter vector",
+   "0:33:28 Worst-case target sets in tree tensor networks",
+   "0:40:00 Minimum-norm solutions and convexity in the fibre",
+   "0:43:20 Realisable targets: parameter minima map to function minima",
+   "0:46:41 No bad local minima, even for hard targets",
+   "0:50:02 Rank-deficient saddles in a scalar example",
+   "0:53:21 Why saddle-to-saddle learning is not separable",
+   "0:56:40 Applying the theory to real language models"
+  ],
+  "evidence": "[0:00:02] Zach Furman: \"this talk is going to be about tree tensor networks as a toy model for learning dynamics\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=G7XjVrkoBhs",
+  "thumb": "https://i.ytimg.com/vi/G7XjVrkoBhs/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A rigorous toy model of learning dynamics from Iliad's learning-theory lead, aimed at explaining why gradient descent finds good solutions even where learning is provably hard.",
+  "tags": [
+   "learning theory",
+   "tree tensor networks",
+   "deep linear networks",
+   "loss landscape",
+   "local minima",
+   "saddle-to-saddle dynamics",
+   "singular learning theory",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Stefan Wäldchen",
+   "Michael Kearns"
+  ],
+  "orgs_mentioned": [
+   "Iliad",
+   "University of Melbourne"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "title": "Overview: tree tensor networks as a toy model of learning"
+   },
+   {
+    "t": "0:03:20",
+    "seconds": 200,
+    "title": "How do neural networks learn? The benign loss landscape puzzle"
+   },
+   {
+    "t": "0:06:39",
+    "seconds": 399,
+    "title": "Deep linear networks: separable, beautiful, but just linear"
+   },
+   {
+    "t": "0:10:00",
+    "seconds": 600,
+    "title": "Bayesian learning versus gradient descent"
+   },
+   {
+    "t": "0:16:39",
+    "seconds": 999,
+    "title": "Hardness: statistical-query learning of parities"
+   },
+   {
+    "t": "0:20:01",
+    "seconds": 1201,
+    "title": "Tree tensor networks: non-linear but tractable"
+   },
+   {
+    "t": "0:23:20",
+    "seconds": 1400,
+    "title": "Population loss in polynomial time"
+   },
+   {
+    "t": "0:26:42",
+    "seconds": 1602,
+    "title": "Parameters: nodes, tensors and the parameter vector"
+   },
+   {
+    "t": "0:33:28",
+    "seconds": 2008,
+    "title": "Worst-case target sets in tree tensor networks"
+   },
+   {
+    "t": "0:40:00",
+    "seconds": 2400,
+    "title": "Minimum-norm solutions and convexity in the fibre"
+   },
+   {
+    "t": "0:43:20",
+    "seconds": 2600,
+    "title": "Realisable targets: parameter minima map to function minima"
+   },
+   {
+    "t": "0:46:41",
+    "seconds": 2801,
+    "title": "No bad local minima, even for hard targets"
+   },
+   {
+    "t": "0:50:02",
+    "seconds": 3002,
+    "title": "Rank-deficient saddles in a scalar example"
+   },
+   {
+    "t": "0:53:21",
+    "seconds": 3201,
+    "title": "Why saddle-to-saddle learning is not separable"
+   },
+   {
+    "t": "0:56:40",
+    "seconds": 3400,
+    "title": "Applying the theory to real language models"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "speaker": "Zach Furman",
+    "quote": "this talk is going to be about tree tensor networks as a toy model for learning dynamics",
+    "quote_located": true
+   },
+   {
+    "t": "0:06:49",
+    "seconds": 409,
+    "speaker": "Zach Furman",
+    "quote": "The one problem with all of this is of course well, deep linear nets are just linear",
+    "quote_located": true
+   },
+   {
+    "t": "0:10:13",
+    "seconds": 613,
+    "speaker": "Zach Furman",
+    "quote": "Bayesian learning will kind of look from a god's eye view at the loss landscape",
+    "quote_located": true
+   },
+   {
+    "t": "0:16:47",
+    "seconds": 1007,
+    "speaker": "Zach Furman",
+    "quote": "fixed precision gradient descent",
+    "quote_located": true
+   },
+   {
+    "t": "0:46:38",
+    "seconds": 2798,
+    "speaker": "Zach Furman",
+    "quote": "you can always ensure the gradient descent avoids suboptimal local minima for these two hidden networks",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 08:30 PM IST (UTC+05:30)",
+  "added_ms": 1793545200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "YiK6ITvwAys",
+  "title": "What is the Textbook From The Future? - Daniel Chernowitz, Alexander Gietelink Oldenziel",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "43:19",
+  "speakers": [
+   {
+    "name": "Daniel Chernowitz",
+    "affiliation": "Iliad (Fellowship Research Manager)"
+   },
+   {
+    "name": "Alexander Gietelink Oldenziel",
+    "affiliation": "Iliad (Executive Director)"
+   }
+  ],
+  "names": [
+   "Daniel Chernowitz",
+   "Alexander Gietelink Oldenziel"
+  ],
+  "format": "open session + audience discussion",
+  "summary": "Daniel Chernowitz and Alexander Gietelink Oldenziel pitch Iliad's 'Textbook from the Future' project to the ILIAD audience: a living, chapter-by-chapter account of what is actually understood in technical AI safety. They stress it is not a classic textbook or a journal, explain how busy experts can be authors without giving up much time, and argue that safety guarantees will need some notion of relaxed proof and white-box reasoning about agents. The audience pushes on how it differs from the Alignment Forum, whether theory and application belong together, how to keep chapters current, and which existing material to borrow. Chernowitz also argues that there is no such thing as purely empirical AI safety, only proxies for existential risk.",
+  "topics": [
+   "0:00:01 Intro: the Textbook from the Future session",
+   "0:03:02 Is it a journal? Not a textbook, and not a journal",
+   "0:05:59 Getting busy experts to write chapters",
+   "0:09:00 Author control and using it as a teaching tool",
+   "0:12:02 A live and healthy field, and what ILIAD showcases",
+   "0:15:00 Safety guarantees need relaxed proofs and white-box agents",
+   "0:18:00 Three notions of alignment: corrigibility, value alignment, inheritor",
+   "0:21:01 Offer: a series on why popular ideas fail",
+   "0:23:59 How is this different from the Alignment Forum?",
+   "0:26:59 The Stacks Project analogy and chapter format",
+   "0:30:00 Theory versus applied chapters",
+   "0:33:01 A map of topics so far",
+   "0:36:00 'There is no empirical AI safety'",
+   "0:38:59 Open slots, like a theorem prover",
+   "0:42:01 Borrowing from Arbital"
+  ],
+  "evidence": "[0:12:15] Session leaders: \"part of the Iliad conference maybe hopes to showcase what what's out there\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=YiK6ITvwAys",
+  "thumb": "https://i.ytimg.com/vi/YiK6ITvwAys/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A rare look at how an AI-safety theory group wants to turn a scattered research field into a maintained body of knowledge, including the disagreements the audience raises.",
+  "tags": [
+   "AI safety field-building",
+   "textbook",
+   "agent foundations",
+   "safety guarantees",
+   "Alignment Forum",
+   "Arbital",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Arbital",
+   "Stacks Project"
+  ],
+  "orgs_mentioned": [
+   "Iliad",
+   "Alignment Forum"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Intro: the Textbook from the Future session"
+   },
+   {
+    "t": "0:03:02",
+    "seconds": 182,
+    "title": "Is it a journal? Not a textbook, and not a journal"
+   },
+   {
+    "t": "0:05:59",
+    "seconds": 359,
+    "title": "Getting busy experts to write chapters"
+   },
+   {
+    "t": "0:09:00",
+    "seconds": 540,
+    "title": "Author control and using it as a teaching tool"
+   },
+   {
+    "t": "0:12:02",
+    "seconds": 722,
+    "title": "A live and healthy field, and what ILIAD showcases"
+   },
+   {
+    "t": "0:15:00",
+    "seconds": 900,
+    "title": "Safety guarantees need relaxed proofs and white-box agents"
+   },
+   {
+    "t": "0:18:00",
+    "seconds": 1080,
+    "title": "Three notions of alignment: corrigibility, value alignment, inheritor"
+   },
+   {
+    "t": "0:21:01",
+    "seconds": 1261,
+    "title": "Offer: a series on why popular ideas fail"
+   },
+   {
+    "t": "0:23:59",
+    "seconds": 1439,
+    "title": "How is this different from the Alignment Forum?"
+   },
+   {
+    "t": "0:26:59",
+    "seconds": 1619,
+    "title": "The Stacks Project analogy and chapter format"
+   },
+   {
+    "t": "0:30:00",
+    "seconds": 1800,
+    "title": "Theory versus applied chapters"
+   },
+   {
+    "t": "0:33:01",
+    "seconds": 1981,
+    "title": "A map of topics so far"
+   },
+   {
+    "t": "0:36:00",
+    "seconds": 2160,
+    "title": "'There is no empirical AI safety'"
+   },
+   {
+    "t": "0:38:59",
+    "seconds": 2339,
+    "title": "Open slots, like a theorem prover"
+   },
+   {
+    "t": "0:42:01",
+    "seconds": 2521,
+    "title": "Borrowing from Arbital"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:12:15",
+    "seconds": 735,
+    "speaker": "Session leaders",
+    "quote": "part of the Iliad conference maybe hopes to showcase what what's out there",
+    "quote_located": true
+   },
+   {
+    "t": "0:14:55",
+    "seconds": 895,
+    "speaker": "Session leaders",
+    "quote": "if you want to give safety guarantees, you need to come up with some sort of notion of relaxed proof",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:14",
+    "seconds": 2174,
+    "speaker": "Daniel Chernowitz",
+    "quote": "there is no empirical AI safety. Such a thing doesn't actually exist",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:17",
+    "seconds": 2177,
+    "speaker": "Daniel Chernowitz",
+    "quote": "there are things that are proxies for existential risk",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 08:30 PM IST (UTC+05:30)",
+  "added_ms": 1793545200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "C5laEwZEGYg",
+  "title": "Solomonoff Induction and Singular Integrals - William Troiani",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "52:51",
+  "speakers": [
+   {
+    "name": "William Troiani",
+    "affiliation": "Resolution (formerly Timaeus), research scientist; University of Melbourne"
+   }
+  ],
+  "names": [
+   "William Troiani"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "William Troiani presents his joint work with Daniel Murfet showing that the asymptotics of singular learning theory already live inside the Solomonoff prior. He reframes Solomonoff induction as a mixture over computable predictors rather than a story about Turing machines, builds a sampler in which a program is code, input and random bits, and shows that the sum defining the Solomonoff distribution contains Riemann-sum approximations to the Bayesian evidence of any computable model. That ties the description length of a computable model to its learning coefficient, the quantity SLT uses to measure model complexity. The Q&A with the ILIAD audience probes where the likelihood enters, how tight the bounds are and what the limiting points mean.",
+  "topics": [
+   "0:00:02 Intro: Solomonoff induction meets singular learning theory",
+   "0:03:22 The Solomonoff prior as a mixture over computable predictors",
+   "0:06:41 Programs as code, input and random bits",
+   "0:10:00 Do SLT asymptotics appear inside the Solomonoff prior? Yes",
+   "0:13:20 Bounding the sampling procedure step by step",
+   "0:16:41 Worked example with dyadic boxes",
+   "0:20:01 Summing over lengths gives the Bayesian evidence",
+   "0:23:22 The algorithm and the free energy -log Z_n",
+   "0:26:40 What W is sampled from: the prior, not the posterior",
+   "0:30:01 Dyadic sequences and the limiting point",
+   "0:33:19 Probability of choosing each box",
+   "0:36:40 Q&A: where does the likelihood enter?",
+   "0:43:21 Q&A: how tight is the bound? Is the model class expressive enough?",
+   "0:46:41 A random bit sequence uniquely describes a point",
+   "0:50:03 Two-part description and closing discussion"
+  ],
+  "evidence": "[0:03:32] William Troiani: \"we should be thinking about it as some kind of sum or mixture over computable sequence prediction methods\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=C5laEwZEGYg",
+  "thumb": "https://i.ytimg.com/vi/C5laEwZEGYg/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "Links two foundations of alignment theory, Solomonoff induction and singular learning theory, by showing the second is embedded in the first.",
+  "tags": [
+   "Solomonoff induction",
+   "singular learning theory",
+   "Bayesian evidence",
+   "learning coefficient",
+   "description length",
+   "Occam factor",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Daniel Murfet"
+  ],
+  "orgs_mentioned": [
+   "Resolution",
+   "Timaeus",
+   "University of Melbourne",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "title": "Intro: Solomonoff induction meets singular learning theory"
+   },
+   {
+    "t": "0:03:22",
+    "seconds": 202,
+    "title": "The Solomonoff prior as a mixture over computable predictors"
+   },
+   {
+    "t": "0:06:41",
+    "seconds": 401,
+    "title": "Programs as code, input and random bits"
+   },
+   {
+    "t": "0:10:00",
+    "seconds": 600,
+    "title": "Do SLT asymptotics appear inside the Solomonoff prior? Yes"
+   },
+   {
+    "t": "0:13:20",
+    "seconds": 800,
+    "title": "Bounding the sampling procedure step by step"
+   },
+   {
+    "t": "0:16:41",
+    "seconds": 1001,
+    "title": "Worked example with dyadic boxes"
+   },
+   {
+    "t": "0:20:01",
+    "seconds": 1201,
+    "title": "Summing over lengths gives the Bayesian evidence"
+   },
+   {
+    "t": "0:23:22",
+    "seconds": 1402,
+    "title": "The algorithm and the free energy -log Z_n"
+   },
+   {
+    "t": "0:26:40",
+    "seconds": 1600,
+    "title": "What W is sampled from: the prior, not the posterior"
+   },
+   {
+    "t": "0:30:01",
+    "seconds": 1801,
+    "title": "Dyadic sequences and the limiting point"
+   },
+   {
+    "t": "0:33:19",
+    "seconds": 1999,
+    "title": "Probability of choosing each box"
+   },
+   {
+    "t": "0:36:40",
+    "seconds": 2200,
+    "title": "Q&A: where does the likelihood enter?"
+   },
+   {
+    "t": "0:43:21",
+    "seconds": 2601,
+    "title": "Q&A: how tight is the bound? Is the model class expressive enough?"
+   },
+   {
+    "t": "0:46:41",
+    "seconds": 2801,
+    "title": "A random bit sequence uniquely describes a point"
+   },
+   {
+    "t": "0:50:03",
+    "seconds": 3003,
+    "title": "Two-part description and closing discussion"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:32",
+    "seconds": 212,
+    "speaker": "William Troiani",
+    "quote": "we should be thinking about it as some kind of sum or mixture over computable sequence prediction methods",
+    "quote_located": true
+   },
+   {
+    "t": "0:10:02",
+    "seconds": 602,
+    "speaker": "William Troiani",
+    "quote": "So, happy to report that the answer is yes and that's the point of this paper",
+    "quote_located": true
+   },
+   {
+    "t": "0:23:34",
+    "seconds": 1414,
+    "speaker": "William Troiani",
+    "quote": "Then you can just apply single learning theory to get that relationship",
+    "quote_located": true
+   },
+   {
+    "t": "0:26:57",
+    "seconds": 1617,
+    "speaker": "William Troiani",
+    "quote": "we're not learning from the posterior",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 08:30 PM IST (UTC+05:30)",
+  "added_ms": 1793545200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
   "id": "251IBF_6bzs",
   "title": "Game Theory for AI Agents: What's Different About AI",
   "channel": "CoRe Safe AI",
