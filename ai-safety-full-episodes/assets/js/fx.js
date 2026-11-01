@@ -94,6 +94,9 @@
   let tiltEl = null, raf = 0;
   document.addEventListener("pointermove", (ev) => {
     if (reduced() || ev.pointerType !== "mouse" || !fine()) return;
+    /* no tilt in Battery saver or with card hover animations off */
+    const de = document.documentElement;
+    if (de.getAttribute("data-perf") === "saver" || de.classList.contains("no-hoverfx")) { if (tiltEl) { tiltEl.classList.remove("is-tilt"); tiltEl = null; } return; }
     const t = ev.target.closest && ev.target.closest(TILT);
     if (tiltEl && tiltEl !== t) { tiltEl.classList.remove("is-tilt"); tiltEl.style.removeProperty("--rx"); tiltEl.style.removeProperty("--ry"); tiltEl = null; }
     if (!t || document.body.classList.contains("is-grabbing")) return;
