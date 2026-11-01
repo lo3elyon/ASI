@@ -684,5 +684,33 @@
   "org": "Independent",
   "group": "orgs",
   "bio": "Researcher in algorithmic information theory who works on provable safety properties for universal (AIXI-style) agents."
+ },
+ {
+  "name": "Daniel Murfet",
+  "photo": "daniel-murfet.jpg",
+  "org": "Resolution / Timaeus",
+  "group": "orgs",
+  "bio": "Mathematician (University of Melbourne) who co-founded Resolution and directed research at Timaeus, applying singular learning theory to interpretability and alignment."
+ },
+ {
+  "name": "Abram Demski",
+  "photo": "abram-demski.jpg",
+  "org": "AFFINE",
+  "group": "orgs",
+  "bio": "Agent-foundations researcher, former MIRI fellow and co-author of Embedded Agency, now working on when humans can justifiably trust AI."
+ },
+ {
+  "name": "Rubi Hudson",
+  "photo": "rubi-hudson.jpg",
+  "org": "Principled Agents",
+  "group": "academics",
+  "bio": "Economics PhD student at the University of Toronto who leads Principled Agents and uses mechanism design to specify safe goals and corrigibility."
+ },
+ {
+  "name": "Cole Wyeth",
+  "photo": "cole-wyeth.jpg",
+  "org": "AIXI Labs",
+  "group": "academics",
+  "bio": "University of Waterloo PhD student and founder of AIXI Labs, working on AIXI, algorithmic information theory and agent foundations for AI safety."
  }
 ]
