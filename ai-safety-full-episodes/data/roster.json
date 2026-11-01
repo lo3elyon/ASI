@@ -649,5 +649,40 @@
   "org": "Columbia University",
   "group": "academics",
   "bio": "Columbia PhD candidate studying rare behaviour in generative models and how to estimate the odds of harmful outputs."
+ },
+ {
+  "name": "Luke Muehlhauser",
+  "photo": "luke-muehlhauser.jpg",
+  "org": "Coefficient Giving",
+  "group": "orgs",
+  "bio": "Leads AI governance and policy grantmaking at Coefficient Giving (formerly Open Philanthropy); former executive director of MIRI."
+ },
+ {
+  "name": "Andrew Critch",
+  "photo": "andrew-critch.jpg",
+  "org": "UC Berkeley",
+  "group": "academics",
+  "bio": "Berkeley research scientist and mathematician working on AI existential risk, multi-agent safety and open-source game theory."
+ },
+ {
+  "name": "Olle Häggström",
+  "photo": "olle-haggstrom.jpg",
+  "org": "Chalmers University of Technology",
+  "group": "academics",
+  "bio": "Professor of mathematical statistics at Chalmers who writes and campaigns on AI risk and recursive self-improvement."
+ },
+ {
+  "name": "Stefan Heimersheim",
+  "photo": "stefan-heimersheim.jpg",
+  "org": "Independent",
+  "group": "orgs",
+  "bio": "Mechanistic interpretability researcher and Pivotal Research mentor studying how networks represent their own features."
+ },
+ {
+  "name": "Aram Ebtekar",
+  "photo": "aram-ebtekar.jpg",
+  "org": "Independent",
+  "group": "orgs",
+  "bio": "Researcher in algorithmic information theory who works on provable safety properties for universal (AIXI-style) agents."
  }
 ]
