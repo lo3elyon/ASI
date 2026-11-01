@@ -9,7 +9,7 @@
   const LS = (k, v) => { try { if (v === undefined) return localStorage.getItem("asfe:" + k); if (v === null) localStorage.removeItem("asfe:" + k); else localStorage.setItem("asfe:" + k, v); } catch (e) { return null; } };
   const root = () => document.documentElement;
   const BGS = [
-    { id: "aurora", name: "Aurora", kind: "anim", note: "Default · soft drifting light" },
+    { id: "aurora", name: "Aurora", kind: "anim", note: "Default · soft light; it drifts once you pick it here or with Full effects (Settings → Performance)" },
     { id: "mesh", name: "Mesh gradient", kind: "anim", note: "Slow colour mesh in your accent" },
     { id: "stars", name: "Starfield", kind: "anim", note: "Light canvas particles" },
     { id: "circuit", name: "Circuit lines", kind: "anim", note: "Traces that pulse now and then" },
@@ -51,20 +51,24 @@
     let o = {}; try { o = JSON.parse(LS("bgOpts") || "{}") || {}; } catch (e) { o = {}; }
     return { op: clampN(o.op, 10, 100, DEF.op), blur: clampN(o.blur, 0, 30, DEF.blur), speed: clampN(o.speed, 0.25, 3, DEF.speed), hue: clampN(o.hue, 0, 360, DEF.hue), match: !!o.match, videoAlways: !!o.videoAlways,
       density: clampN(o.density, 0.25, 2, DEF.density), vig: clampN(o.vig, 0, 100, DEF.vig), grain: clampN(o.grain, 0, 100, DEF.grain), palette: Object.prototype.hasOwnProperty.call(PALETTES, o.palette) ? o.palette : "theme",
-      mouse: o.mouse !== false, parallax: !!o.parallax, low: !!o.low || saveData() };
+      mouse: o.mouse !== false, parallax: !!o.parallax, low: !!o.low || saveData() || saverAuto(), lowSet: !!o.low };
   }
   const saveOpts = (o) => LS("bgOpts", JSON.stringify(o));
   const current = () => { const id = LS("bg"); return id && byId.has(id) ? id : "aurora"; };
   const customURL = () => { const d = LS("bgCustom"); return d && DATARX.test(d) && d.length <= MAX_DATAURL ? d : null; };
   const reduced = () => root().classList.contains("rm") || (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  /* Battery saver you chose yourself: animated backgrounds keep a still frame; Battery saver picked automatically: 20 fps */
+  const frozen = () => root().classList.contains("perf-freeze");
+  const saverAuto = () => root().getAttribute("data-perf") === "saver";
+  const bgPaused = () => (A.perf ? A.perf.paused() : document.hidden);
   const saveData = () => !!(navigator.connection && navigator.connection.saveData);
   const mobile = () => (window.matchMedia && window.matchMedia("(max-width: 700px), (pointer: coarse)").matches) || false;
   /* why a video would stay a still frame (null = it may play) */
-  function videoBlock() { if (opts().videoAlways) return null; if (reduced()) return "reduced motion is on"; if (saveData()) return "data saver is on"; if (mobile()) return "this is a phone or touch screen"; return null; }
+  function videoBlock() { if (frozen()) return "Battery saver is on (Settings → Performance)"; if (opts().videoAlways) return null; if (reduced()) return "reduced motion is on"; if (saveData()) return "data saver is on"; if (mobile()) return "this is a phone or touch screen"; return null; }
 
   const playSafe = (v) => { try { const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (e) {} };
   /* ---------------------------------------------------------------- the layer */
-  let layer = null, raf = 0, vid = null;
+  let layer = null, raf = 0, tmo = 0, vid = null, ivs = [], resume = null;
   function host() {
     if (layer && layer.isConnected) return layer;
     layer = document.createElement("div"); layer.id = "bgfx"; layer.className = "bgfx"; layer.setAttribute("aria-hidden", "true");
@@ -72,7 +76,7 @@
     if (au && au.parentNode) au.parentNode.insertBefore(layer, au.nextSibling); else document.body.prepend(layer);
     return layer;
   }
-  function stopAnim() { cancelAnimationFrame(raf); raf = 0; if (vid) { try { vid.pause(); } catch (e) {} vid.removeAttribute("src"); try { vid.load(); } catch (e) {} vid = null; } }
+  function stopAnim() { cancelAnimationFrame(raf); raf = 0; clearTimeout(tmo); tmo = 0; resume = null; ivs.forEach(clearInterval); ivs = []; if (vid) { try { vid.pause(); } catch (e) {} vid.removeAttribute("src"); try { vid.load(); } catch (e) {} vid = null; } }
   function paintVars() {
     const o = opts(), d = root();
     d.style.setProperty("--bgfx-op", String(o.op / 100));
@@ -83,6 +87,7 @@
     d.style.setProperty("--bgfx-vig", String(o.vig / 100));
     d.style.setProperty("--bgfx-grain", String(o.grain / 100));
     d.classList.toggle("bg-parallax", o.parallax && !reduced() && !o.low);
+    d.classList.toggle("bg-grain", o.grain > 0); d.classList.toggle("bg-vig", o.vig > 0);
     const pc = palette();
     pc.forEach((c, i) => d.style.setProperty("--c" + (i + 1), c));
   }
@@ -101,7 +106,8 @@
     const b = byId.get(id);
     stopAnim();
     root().setAttribute("data-bg", id);
-    if (!o.preview) LS("bg", id === "aurora" ? null : id);
+    if (o.reset) LS("bg", null); else if (!o.preview) LS("bg", id);
+    root().classList.toggle("bg-chosen", !!LS("bg"));
     paintVars();
     const L = host();
     L.className = "bgfx bgfx--" + (b.kind === "image" || b.kind === "custom" ? "img" : b.kind === "video" ? "vid" : id);
@@ -117,7 +123,7 @@
         vid.setAttribute("muted", ""); vid.setAttribute("playsinline", ""); vid.setAttribute("disablepictureinpicture", ""); vid.setAttribute("tabindex", "-1");
         vid.poster = b.poster; vid.src = b.src; vid.playbackRate = Math.min(2, Math.max(0.5, opts().speed));
         L.insertBefore(vid, L.querySelector(".bgfx__tint"));
-        if (!document.hidden) playSafe(vid);
+        if (!bgPaused()) playSafe(vid);
       }
     } else if (id === "mesh") L.innerHTML = `<div class="bgfx__l"><i></i><i></i><i></i><i></i></div>`;
     else if (id === "grid") L.innerHTML = `<div class="bgfx__l"></div>`;
@@ -242,22 +248,26 @@
   function runCanvas(cv, eng) {
     const ctx = cv.getContext && cv.getContext("2d"); if (!ctx) return;
     let W = 0, H = 0, st = null, last = 0, o = opts(), cols = palette().map(toHex);
-    const size = () => { const r = o.low ? 1 : Math.min(1.5, window.devicePixelRatio || 1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = Math.round(W * r); cv.height = Math.round(H * r); ctx.setTransform(r, 0, 0, r, 0, 0); st = eng.init(W, H, o); };
+    const size = () => { const r = o.low ? 0.75 : Math.min(1, window.devicePixelRatio || 1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = Math.round(W * r); cv.height = Math.round(H * r); ctx.setTransform(r, 0, 0, r, 0, 0); st = eng.init(W, H, o); };
     size(); eng.draw(ctx, st, 16, W, H, o, M, cols);
     const rs = A.debounce ? A.debounce(() => { if (cv.isConnected) { size(); eng.draw(ctx, st, 16, W, H, o, M, cols); } }, 200) : size;
     window.addEventListener("resize", rs);
     const refresh = () => { o = opts(); cols = palette().map(toHex); };
     cv.__refresh = () => { refresh(); size(); }; cv.__opts = refresh;
-    if (reduced()) { for (let i = 0; i < 30; i++) eng.draw(ctx, st, 33, W, H, o, M, cols); return; }
+    if (reduced() || frozen()) { for (let i = 0; i < 30; i++) eng.draw(ctx, st, 33, W, H, o, M, cols); return; }
+    /* at most 30 fps (20 in low power), drawn at 1x pixel density; the loop stops completely while the background is
+     * paused (hidden tab, window in the background, episode page on top, full-screen video) and restarts after */
     const loop = (t) => {
+      raf = 0;
       if (!cv.isConnected) { window.removeEventListener("resize", rs); return; }
-      raf = requestAnimationFrame(loop);
-      const gap = o.low ? 50 : 25;
-      if (document.hidden || t - last < gap) return;
+      if (bgPaused()) { last = 0; resume = () => { if (!raf && !tmo && cv.isConnected) raf = requestAnimationFrame(loop); }; return; }
+      const gap = o.low ? 50 : 33;
       const dt = Math.min(80, t - (last || t)); last = t; eng.draw(ctx, st, dt || 16, W, H, o, M, cols);
+      /* wake for the next frame only when it is due: 30 (or 20) callbacks a second, not 60 that mostly skip */
+      tmo = setTimeout(() => { tmo = 0; raf = requestAnimationFrame(loop); }, gap - 4);
     };
     raf = requestAnimationFrame(loop);
-    clearInterval(runCanvas.iv); runCanvas.iv = setInterval(() => { if (cv.isConnected) refresh(); }, 2500);
+    ivs.push(setInterval(() => { if (cv.isConnected && !bgPaused()) refresh(); }, 2500));
   }
   /* circuit traces: a fixed, seeded pattern of right-angle paths with pads; a few pulse along their length */
   function circuitSVG() {
@@ -275,7 +285,7 @@
   function stars(cv) {
     const ctx = cv.getContext && cv.getContext("2d"); if (!ctx) return;
     let W = 0, H = 0, pts = [], last = 0;
-    const size = () => { const r = Math.min(2, window.devicePixelRatio || 1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = W * r; cv.height = H * r; ctx.setTransform(r, 0, 0, r, 0, 0); const n = Math.round(Math.min(160, (W * H) / 9000)); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, z: 0.3 + Math.random() * 0.7, t: Math.random() * 6.28 })); };
+    const size = () => { const r = Math.min(1, window.devicePixelRatio || 1); W = cv.clientWidth || innerWidth; H = cv.clientHeight || innerHeight; cv.width = W * r; cv.height = H * r; ctx.setTransform(r, 0, 0, r, 0, 0); const n = Math.round(Math.min(160, (W * H) / 9000)); pts = Array.from({ length: n }, () => ({ x: Math.random() * W, y: Math.random() * H, z: 0.3 + Math.random() * 0.7, t: Math.random() * 6.28 })); };
     const col = () => (getComputedStyle(root()).getPropertyValue(root().classList.contains("bg-match") || root().getAttribute("data-theme") === "light" ? "--amber" : "--tx").trim() || "#e8eef6");
     let c = col();
     const draw = (dt) => {
@@ -286,12 +296,27 @@
     };
     size(); draw(0);
     window.addEventListener("resize", A.debounce ? A.debounce(() => { if (cv.isConnected) { size(); draw(0); } }, 200) : size);
-    if (reduced()) return;
-    const loop = (t) => { if (!cv.isConnected) return; raf = requestAnimationFrame(loop); if (document.hidden || t - last < 33) return; const dt = Math.min(100, t - (last || t)); last = t; draw(dt); };
+    if (reduced() || frozen()) return;
+    const gap = opts().low ? 50 : 33;
+    const loop = (t) => {
+      raf = 0;
+      if (!cv.isConnected) return;
+      if (bgPaused()) { last = 0; resume = () => { if (!raf && !tmo && cv.isConnected) raf = requestAnimationFrame(loop); }; return; }
+      const dt = Math.min(100, t - (last || t)); last = t; draw(dt);
+      tmo = setTimeout(() => { tmo = 0; raf = requestAnimationFrame(loop); }, gap - 4);
+    };
     raf = requestAnimationFrame(loop);
-    setInterval(() => { c = col(); }, 3000);
+    ivs.push(setInterval(() => { if (!bgPaused()) c = col(); }, 3000));
   }
-  document.addEventListener("visibilitychange", () => { if (!vid) return; if (document.hidden) vid.pause(); else playSafe(vid); });
+  document.addEventListener("visibilitychange", () => { if (!vid) return; if (bgPaused() || document.hidden) vid.pause(); else playSafe(vid); });
+  /* perf.js says when the background may move */
+  document.addEventListener("asfe:bgpause", (ev) => {
+    const on = ev.detail && ev.detail.paused;
+    if (vid) { if (on) vid.pause(); else playSafe(vid); }
+    if (!on && resume) { const f = resume; resume = null; f(); }
+  });
+  /* switching performance mode re-applies the background (frame rate, still frame, video or poster) */
+  document.addEventListener("asfe:perf", () => { const id = root().getAttribute("data-bg") || current(); const b = byId.get(id); if (b && (ENG[id] || id === "stars" || b.kind === "video")) apply(id, { preview: true }); });
 
   /* ---------------------------------------------------------------- upload (sanitised: re-encoded through a canvas, capped) */
   function readUpload(file) {
@@ -397,8 +422,8 @@
       return;
     }
     const t = ev.target.closest ? ev.target : null; if (!t) return;
-    if (t.closest('[id$="bgReset"]')) { saveOpts(DEF); apply("aurora"); refreshPicker(); A.ui && A.ui.toast("Background reset", { ms: 1200 }); }
-    if (t.closest('[id$="bgUpDel"]')) { LS("bgCustom", null); if (current() === "custom" || root().getAttribute("data-bg") === "custom") apply("aurora"); refreshPicker(); }
+    if (t.closest('[id$="bgReset"]')) { saveOpts(DEF); apply("aurora", { reset: true }); refreshPicker(); A.ui && A.ui.toast("Background reset", { ms: 1200 }); }
+    if (t.closest('[id$="bgUpDel"]')) { LS("bgCustom", null); if (current() === "custom" || root().getAttribute("data-bg") === "custom") apply("aurora", { reset: true }); refreshPicker(); }
     const pr = t.closest("[data-bgpreset]"); if (pr) { const p = PRESETS.find((x) => x.id === pr.dataset.bgpreset); if (p) { applyPreset(p); A.ui && A.ui.toast(`Background preset: ${esc(p.name)}`, { ms: 1300 }); } return; }
     const mi = t.closest("[data-bgmine]"); if (mi) { const p = customPresets()[Number(mi.dataset.bgmine)]; if (p) { applyPreset(p); A.ui && A.ui.toast(`Your preset: ${esc(p.name)}`, { ms: 1300 }); } return; }
     const md = t.closest("[data-bgmindel]"); if (md) { const l = customPresets(); l.splice(Number(md.dataset.bgmindel), 1); LS("bgPresets", JSON.stringify(l)); refreshPicker(); return; }
