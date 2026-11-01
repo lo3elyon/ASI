@@ -1369,6 +1369,895 @@
   }
  },
  {
+  "id": "5IFngVXsICg",
+  "title": "Susceptibilities and Patterning for Alignment - Daniel Murfet",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "46:53",
+  "speakers": [
+   {
+    "name": "Daniel Murfet",
+    "affiliation": "Resolution / Timaeus (singular learning theory); University of Melbourne"
+   }
+  ],
+  "names": [
+   "Daniel Murfet"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Daniel Murfet gives an overview of the research agenda behind susceptibilities and patterning: use singular learning theory to read the local geometry of a model's loss landscape as internal structure, then reshape the training data so learning heads toward (or away from) that structure. He explains the maths with a toy mixture-of-Gaussians loss, the practical estimators and their uncontrolled biases, and tests on Turing machines, bracket-matching transformers and reward-model length bias. The Q&A presses on whether you must know the bad generalisation in advance and what this offers alignment; he is explicit that it does not yet solve reward hacking.",
+  "topics": [
+   "0:00:01 Overview: susceptibilities and patterning for alignment",
+   "0:03:31 Singular learning theory in a nutshell",
+   "0:05:10 Shaping internal structure is \"patterning\"",
+   "0:06:51 A toy loss landscape: a mixture of Gaussians",
+   "0:09:58 Local loss geometry as asymptotics",
+   "0:15:04 Estimating expectation values, and their biases",
+   "0:18:27 The overall narrative: structure lives in loss geometry",
+   "0:21:42 Extending the theory to reinforcement learning",
+   "0:23:26 Turing machines as a testbed for structure",
+   "0:31:51 Applications: shaping what a model learns",
+   "0:32:22 Patterning bracket-matching away from the counting shortcut",
+   "0:38:20 Q: do you need to know the bad generalisation in advance?",
+   "0:39:47 Debiasing reward models (length bias)",
+   "0:42:58 Q&A: what patterning does and does not offer for alignment",
+   "0:44:33 Next step: RLHF and reward hacking"
+  ],
+  "evidence": "[0:19:57] Daniel Murfet: \"it's possible by shaping the inputs to the Bayesian learning process to direct learning towards models that have certain kinds of internal structure\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=5IFngVXsICg",
+  "thumb": "https://i.ytimg.com/vi/5IFngVXsICg/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "The clearest short statement of how the Timaeus/Resolution team wants to turn interpretability into a lever for shaping what models learn, with honest limits.",
+  "tags": [
+   "singular learning theory",
+   "susceptibilities",
+   "patterning",
+   "developmental interpretability",
+   "generalization",
+   "reward models",
+   "reward hacking",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "George Wang",
+   "Elizabeth Donaway",
+   "Tudor Dumitrascu"
+  ],
+  "orgs_mentioned": [
+   "Timaeus",
+   "Resolution",
+   "University of Melbourne",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Overview: susceptibilities and patterning for alignment"
+   },
+   {
+    "t": "0:03:31",
+    "seconds": 211,
+    "title": "Singular learning theory in a nutshell"
+   },
+   {
+    "t": "0:05:10",
+    "seconds": 310,
+    "title": "Shaping internal structure is \"patterning\""
+   },
+   {
+    "t": "0:06:51",
+    "seconds": 411,
+    "title": "A toy loss landscape: a mixture of Gaussians"
+   },
+   {
+    "t": "0:09:58",
+    "seconds": 598,
+    "title": "Local loss geometry as asymptotics"
+   },
+   {
+    "t": "0:15:04",
+    "seconds": 904,
+    "title": "Estimating expectation values, and their biases"
+   },
+   {
+    "t": "0:18:27",
+    "seconds": 1107,
+    "title": "The overall narrative: structure lives in loss geometry"
+   },
+   {
+    "t": "0:21:42",
+    "seconds": 1302,
+    "title": "Extending the theory to reinforcement learning"
+   },
+   {
+    "t": "0:23:26",
+    "seconds": 1406,
+    "title": "Turing machines as a testbed for structure"
+   },
+   {
+    "t": "0:31:51",
+    "seconds": 1911,
+    "title": "Applications: shaping what a model learns"
+   },
+   {
+    "t": "0:32:22",
+    "seconds": 1942,
+    "title": "Patterning bracket-matching away from the counting shortcut"
+   },
+   {
+    "t": "0:38:20",
+    "seconds": 2300,
+    "title": "Q: do you need to know the bad generalisation in advance?"
+   },
+   {
+    "t": "0:39:47",
+    "seconds": 2387,
+    "title": "Debiasing reward models (length bias)"
+   },
+   {
+    "t": "0:42:58",
+    "seconds": 2578,
+    "title": "Q&A: what patterning does and does not offer for alignment"
+   },
+   {
+    "t": "0:44:33",
+    "seconds": 2673,
+    "title": "Next step: RLHF and reward hacking"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:19:57",
+    "seconds": 1197,
+    "speaker": "Daniel Murfet",
+    "quote": "it's possible by shaping the inputs to the Bayesian learning process to direct learning towards models that have certain kinds of internal structure",
+    "quote_located": true
+   },
+   {
+    "t": "0:42:49",
+    "seconds": 2569,
+    "speaker": "Daniel Murfet",
+    "quote": "we think about alignment as being about undesirable generalization",
+    "quote_located": true
+   },
+   {
+    "t": "0:42:54",
+    "seconds": 2574,
+    "speaker": "Daniel Murfet",
+    "quote": "It's obviously very daunting to deliberately shape generalization",
+    "quote_located": true
+   },
+   {
+    "t": "0:44:27",
+    "seconds": 2667,
+    "speaker": "Daniel Murfet",
+    "quote": "I don't claim we've solved reward hacking",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 01:00 PM IST (UTC+05:30)",
+  "added_ms": 1793518200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "2tbVZy3agzc",
+  "title": "Toward a conception of concepts - Sam Eisenstat",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:20:13",
+  "speakers": [
+   {
+    "name": "Sam Eisenstat",
+    "affiliation": "Machine Intelligence Research Institute (research fellow)"
+   }
+  ],
+  "names": [
+   "Sam Eisenstat"
+  ],
+  "format": "research talk + extended discussion",
+  "summary": "Sam Eisenstat, a MIRI research fellow, presents his work on condensation: a mathematical account of how agents carve the world into concepts or latent variables, and why different agents can end up sharing them. He introduces latent variable models, then the objectivity theorem that compares different ways of compressing the same observations, with examples from coin flips to a Golden Gate text, and links it to out-of-distribution generalisation and to what interpretability could say about an LLM's beliefs. The long discussion covers computational limits, an algorithmic-information version, and his plan to develop the theory mainly to find out what it cannot do.",
+  "topics": [
+   "0:00:03 Intro: condensation, concepts and shared latent variables",
+   "0:00:49 Latent variable models: the setup",
+   "0:06:53 Texts as random variables",
+   "0:10:02 Notation: which latents matter for which variables",
+   "0:20:03 Why agents can share concepts: the objectivity theorem",
+   "0:23:35 Example: coin flips with an unknown bias",
+   "0:30:06 Simplest version: mutual determination up to noise",
+   "0:33:14 Realism check: texts about the Golden Gate",
+   "0:40:08 Out-of-distribution generalisation and the yellow pixel",
+   "0:50:13 What are the propositions an LLM has beliefs about?",
+   "0:53:38 Skipping counterfactuals, on to questions",
+   "1:00:11 Developing condensation to find what it cannot do",
+   "1:02:26 Computational constraints and finding good latents",
+   "1:10:05 The algorithmic-information formulation",
+   "1:16:43 From concepts to observed text"
+  ],
+  "evidence": "[0:00:35] Sam Eisenstat: \"what I'm interested in with condensation is you know I mean something about how we organize the world into some sort of concepts or latent variables\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=2tbVZy3agzc",
+  "thumb": "https://i.ytimg.com/vi/2tbVZy3agzc/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A MIRI agent-foundations researcher explains, at length and with the audience pushing back, a candidate theory of why minds converge on shared concepts, a key question for interpretability and value learning.",
+  "tags": [
+   "condensation",
+   "latent variables",
+   "concepts",
+   "natural latents",
+   "agent foundations",
+   "interpretability",
+   "abstraction",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "John Wentworth",
+   "Scott Garrabrant",
+   "Eliezer Yudkowsky"
+  ],
+  "orgs_mentioned": [
+   "MIRI",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:03",
+    "seconds": 3,
+    "title": "Intro: condensation, concepts and shared latent variables"
+   },
+   {
+    "t": "0:00:49",
+    "seconds": 49,
+    "title": "Latent variable models: the setup"
+   },
+   {
+    "t": "0:06:53",
+    "seconds": 413,
+    "title": "Texts as random variables"
+   },
+   {
+    "t": "0:10:02",
+    "seconds": 602,
+    "title": "Notation: which latents matter for which variables"
+   },
+   {
+    "t": "0:20:03",
+    "seconds": 1203,
+    "title": "Why agents can share concepts: the objectivity theorem"
+   },
+   {
+    "t": "0:23:35",
+    "seconds": 1415,
+    "title": "Example: coin flips with an unknown bias"
+   },
+   {
+    "t": "0:30:06",
+    "seconds": 1806,
+    "title": "Simplest version: mutual determination up to noise"
+   },
+   {
+    "t": "0:33:14",
+    "seconds": 1994,
+    "title": "Realism check: texts about the Golden Gate"
+   },
+   {
+    "t": "0:40:08",
+    "seconds": 2408,
+    "title": "Out-of-distribution generalisation and the yellow pixel"
+   },
+   {
+    "t": "0:50:13",
+    "seconds": 3013,
+    "title": "What are the propositions an LLM has beliefs about?"
+   },
+   {
+    "t": "0:53:38",
+    "seconds": 3218,
+    "title": "Skipping counterfactuals, on to questions"
+   },
+   {
+    "t": "1:00:11",
+    "seconds": 3611,
+    "title": "Developing condensation to find what it cannot do"
+   },
+   {
+    "t": "1:02:26",
+    "seconds": 3746,
+    "title": "Computational constraints and finding good latents"
+   },
+   {
+    "t": "1:10:05",
+    "seconds": 4205,
+    "title": "The algorithmic-information formulation"
+   },
+   {
+    "t": "1:16:43",
+    "seconds": 4603,
+    "title": "From concepts to observed text"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:35",
+    "seconds": 35,
+    "speaker": "Sam Eisenstat",
+    "quote": "what I'm interested in with condensation is you know I mean something about how we organize the world into some sort of concepts or latent variables",
+    "quote_located": true
+   },
+   {
+    "t": "0:01:09",
+    "seconds": 69,
+    "speaker": "Sam Eisenstat",
+    "quote": "what we might observe to the extent we can do interpretability and see that neural nets are are having some sort of representations that relate to ours",
+    "quote_located": true
+   },
+   {
+    "t": "1:00:00",
+    "seconds": 3600,
+    "speaker": "Sam Eisenstat",
+    "quote": "I want to like develop condensation in order to see what it can't do",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 01:00 PM IST (UTC+05:30)",
+  "added_ms": 1793518200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "V0lmY1G5m0k",
+  "title": "Boundedly Rational Trust - Abram Demski",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:07:40",
+  "speakers": [
+   {
+    "name": "Abram Demski",
+    "affiliation": "AFFINE (independent agent-foundations researcher; formerly MIRI)"
+   }
+  ],
+  "names": [
+   "Abram Demski"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Abram Demski asks the question he says drives his work: as recursive self-improvement keeps churning at the frontier labs, is the process self-correcting, or does it go off the rails once the safeguards are not enough? He builds a formal model of when a novice (the human) can justifiably trust an expert (the AI), starting from the 'Difference Done Better' framework and using logical induction as the model of boundedly rational beliefs. He proves that his notion of value implies a 'tower' trust principle, explains why only a weakened version was provable, and fields detailed questions about the maths in the audience.",
+  "topics": [
+   "0:00:01 Boundedly rational trust: when can humans trust AI?",
+   "0:02:04 Basin-of-attraction arguments: optimists vs \"a catastrophe hasn't happened yet\"",
+   "0:02:58 Is recursive self-improvement self-correcting?",
+   "0:04:06 Starting from \"Difference Done Better\"",
+   "0:05:47 Reflection as an epistemic-trust principle",
+   "0:08:33 Candidate experts and modesty",
+   "0:20:02 A productive model that is not yet constructive",
+   "0:22:42 Logical induction as a model of boundedly rational beliefs",
+   "0:31:11 The central inequality: trusting the AI to decide",
+   "0:34:09 Newcomb, two-boxing and random variables",
+   "0:36:57 Moving to a time-series setting",
+   "0:51:14 Value implies \"tower\"",
+   "0:53:51 The human-AI trust dance",
+   "0:54:55 Why only \"weak tower\" was proven",
+   "0:59:27 Q&A: the do operator and counterfactual trust"
+  ],
+  "evidence": "[0:01:20] Abram Demski: \"the top-level question is still, \"When can humans justifiably trust AI?\"\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=V0lmY1G5m0k",
+  "thumb": "https://i.ytimg.com/vi/V0lmY1G5m0k/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A formal attempt to say when humans should trust an AI that is smarter than them, motivated directly by the current state of recursive self-improvement at the labs.",
+  "tags": [
+   "trust",
+   "logical induction",
+   "agent foundations",
+   "boundedly rational agents",
+   "recursive self-improvement",
+   "epistemic deference",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Kevin Dorst",
+   "Ben Levinstein",
+   "Anson Burns",
+   "Sam Eisenstat"
+  ],
+  "orgs_mentioned": [
+   "AFFINE",
+   "OpenAI",
+   "Anthropic",
+   "Google",
+   "xAI",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Boundedly rational trust: when can humans trust AI?"
+   },
+   {
+    "t": "0:02:04",
+    "seconds": 124,
+    "title": "Basin-of-attraction arguments: optimists vs \"a catastrophe hasn't happened yet\""
+   },
+   {
+    "t": "0:02:58",
+    "seconds": 178,
+    "title": "Is recursive self-improvement self-correcting?"
+   },
+   {
+    "t": "0:04:06",
+    "seconds": 246,
+    "title": "Starting from \"Difference Done Better\""
+   },
+   {
+    "t": "0:05:47",
+    "seconds": 347,
+    "title": "Reflection as an epistemic-trust principle"
+   },
+   {
+    "t": "0:08:33",
+    "seconds": 513,
+    "title": "Candidate experts and modesty"
+   },
+   {
+    "t": "0:20:02",
+    "seconds": 1202,
+    "title": "A productive model that is not yet constructive"
+   },
+   {
+    "t": "0:22:42",
+    "seconds": 1362,
+    "title": "Logical induction as a model of boundedly rational beliefs"
+   },
+   {
+    "t": "0:31:11",
+    "seconds": 1871,
+    "title": "The central inequality: trusting the AI to decide"
+   },
+   {
+    "t": "0:34:09",
+    "seconds": 2049,
+    "title": "Newcomb, two-boxing and random variables"
+   },
+   {
+    "t": "0:36:57",
+    "seconds": 2217,
+    "title": "Moving to a time-series setting"
+   },
+   {
+    "t": "0:51:14",
+    "seconds": 3074,
+    "title": "Value implies \"tower\""
+   },
+   {
+    "t": "0:53:51",
+    "seconds": 3231,
+    "title": "The human-AI trust dance"
+   },
+   {
+    "t": "0:54:55",
+    "seconds": 3295,
+    "title": "Why only \"weak tower\" was proven"
+   },
+   {
+    "t": "0:59:27",
+    "seconds": 3567,
+    "title": "Q&A: the do operator and counterfactual trust"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:20",
+    "seconds": 80,
+    "speaker": "Abram Demski",
+    "quote": "the top-level question is still, \"When can humans justifiably trust AI?\"",
+    "quote_located": true
+   },
+   {
+    "t": "0:02:35",
+    "seconds": 155,
+    "speaker": "Abram Demski",
+    "quote": "a catastrophe hasn't happened yet and you'll continue to observe that a catastrophe hasn't happened yet up until a catastrophe happens",
+    "quote_located": true
+   },
+   {
+    "t": "0:03:04",
+    "seconds": 184,
+    "speaker": "Abram Demski",
+    "quote": "do we expect that to be like a self-correcting process",
+    "quote_located": true
+   },
+   {
+    "t": "0:54:48",
+    "seconds": 3288,
+    "speaker": "Abram Demski",
+    "quote": "we get this weak tower",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 01:00 PM IST (UTC+05:30)",
+  "added_ms": 1793518200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "Q3gNYGBBIs8",
+  "title": "Incentives for Decision-Relevant Predictions - Rubi Hudson",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "42:36",
+  "speakers": [
+   {
+    "name": "Rubi Hudson",
+    "affiliation": "Principled Agents; PhD student, University of Toronto"
+   }
+  ],
+  "names": [
+   "Rubi Hudson"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Rubi Hudson presents decision-relevant predictions with joint scoring rules, part of the agenda of Principled Agents to define goals that are safe for a superintelligence to pursue. Standard scoring rules reward predictions over a fixed set of outcomes, but a human cannot digest millions of outcomes; he shows how to elicit the simplest partition of outcomes that still determines the best action, and why a single AI cannot be trusted to supply it. Two AIs in a zero-sum game over partitions and refinements solve this, and he sketches how it fits a broader alignment plan built on unmanipulated, fully informed human approval, plus corrigibility.",
+  "topics": [
+   "0:00:03 Principled Agents and decision-relevant predictions",
+   "0:01:00 Proper scoring rules as scaffolding for safe goals",
+   "0:02:47 Oracle AI versus agent use of predictions",
+   "0:03:13 Predictions over what? Choosing the partition",
+   "0:05:33 The simplest partition that still decides the action",
+   "0:09:06 Example: policy impacts for a president",
+   "0:12:53 Measuring the simplicity of a partition",
+   "0:14:41 Targets: right decision, right reasons",
+   "0:16:49 An impossibility result and the two-agent workaround",
+   "0:18:14 The mechanism: a partition, then a refinement",
+   "0:22:03 Equilibrium incentives",
+   "0:25:54 Extension: a memoryless mechanism",
+   "0:27:41 Planned experiments",
+   "0:31:22 Broader plan: unmanipulated, fully informed human approval",
+   "0:38:30 Q&A: preferring a game of competing partitions"
+  ],
+  "evidence": "[0:02:22] Rubi Hudson: \"they're not a solution, but they could be the start of the solution\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=Q3gNYGBBIs8",
+  "thumb": "https://i.ytimg.com/vi/Q3gNYGBBIs8/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A concrete mechanism-design idea for getting an AI to tell you what actually matters for a decision, from the researcher behind corrigibility transformation.",
+  "tags": [
+   "scoring rules",
+   "mechanism design",
+   "oracle AI",
+   "corrigibility",
+   "debate",
+   "eliciting latent knowledge",
+   "human approval",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Romeo"
+  ],
+  "orgs_mentioned": [
+   "Principled Agents",
+   "LawZero",
+   "University of Toronto",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:03",
+    "seconds": 3,
+    "title": "Principled Agents and decision-relevant predictions"
+   },
+   {
+    "t": "0:01:00",
+    "seconds": 60,
+    "title": "Proper scoring rules as scaffolding for safe goals"
+   },
+   {
+    "t": "0:02:47",
+    "seconds": 167,
+    "title": "Oracle AI versus agent use of predictions"
+   },
+   {
+    "t": "0:03:13",
+    "seconds": 193,
+    "title": "Predictions over what? Choosing the partition"
+   },
+   {
+    "t": "0:05:33",
+    "seconds": 333,
+    "title": "The simplest partition that still decides the action"
+   },
+   {
+    "t": "0:09:06",
+    "seconds": 546,
+    "title": "Example: policy impacts for a president"
+   },
+   {
+    "t": "0:12:53",
+    "seconds": 773,
+    "title": "Measuring the simplicity of a partition"
+   },
+   {
+    "t": "0:14:41",
+    "seconds": 881,
+    "title": "Targets: right decision, right reasons"
+   },
+   {
+    "t": "0:16:49",
+    "seconds": 1009,
+    "title": "An impossibility result and the two-agent workaround"
+   },
+   {
+    "t": "0:18:14",
+    "seconds": 1094,
+    "title": "The mechanism: a partition, then a refinement"
+   },
+   {
+    "t": "0:22:03",
+    "seconds": 1323,
+    "title": "Equilibrium incentives"
+   },
+   {
+    "t": "0:25:54",
+    "seconds": 1554,
+    "title": "Extension: a memoryless mechanism"
+   },
+   {
+    "t": "0:27:41",
+    "seconds": 1661,
+    "title": "Planned experiments"
+   },
+   {
+    "t": "0:31:22",
+    "seconds": 1882,
+    "title": "Broader plan: unmanipulated, fully informed human approval"
+   },
+   {
+    "t": "0:38:30",
+    "seconds": 2310,
+    "title": "Q&A: preferring a game of competing partitions"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:02:22",
+    "seconds": 142,
+    "speaker": "Rubi Hudson",
+    "quote": "they're not a solution, but they could be the start of the solution",
+    "quote_located": true
+   },
+   {
+    "t": "0:17:13",
+    "seconds": 1033,
+    "speaker": "Rubi Hudson",
+    "quote": "you can get around this by having two predictors in a zero sum competition with each other",
+    "quote_located": true
+   },
+   {
+    "t": "0:31:13",
+    "seconds": 1873,
+    "speaker": "Rubi Hudson",
+    "quote": "I would claim that a nice goal to target is unmanipulated, fully informed human approval",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 01:00 PM IST (UTC+05:30)",
+  "added_ms": 1793518200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "H5xRgwDA1s4",
+  "title": "Algorithmic Ambiguity - Cole Wyeth",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "43:29",
+  "speakers": [
+   {
+    "name": "Cole Wyeth",
+    "affiliation": "AIXI Labs; PhD student, University of Waterloo"
+   }
+  ],
+  "names": [
+   "Cole Wyeth"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Cole Wyeth characterises 'ambiguous' situations in sequence prediction, where the past gives a Solomonoff-style predictor no purchase on what comes next, and explains why this matters for safety: a sufficiently pessimistic AIXI-like agent never learns that reward hacking is an option, because it stays uncertain about what happens if it tries. He walks through the blue-then-green sky riddle, the formalism of stopping complexity with oracle access, a chain-rule style inequality and tightness results, and a divergence that breaks one defining property of a solving probability. The discussion ties back to Aram Ebtekar's golden-handcuffs proposal from the previous day.",
+  "topics": [
+   "0:00:01 Ambiguous prediction in sequence prediction",
+   "0:03:40 AIXI-style agents and reward hacking",
+   "0:04:42 Staying uncertain about reward hacking",
+   "0:11:04 Ambiguity: generalisations we would prefer the agent to make",
+   "0:11:24 The blue-then-green sky riddle",
+   "0:12:55 Safety relevance: pessimism or golden handcuffs",
+   "0:16:32 Where the ambiguity comes from",
+   "0:18:26 Oracle access and weaker assumptions",
+   "0:22:11 Stopping complexity",
+   "0:25:44 A chain-rule style inequality",
+   "0:31:13 Examples of stopping complexity",
+   "0:35:07 Is the factorisation tight?",
+   "0:36:46 Divergence of the prefix fraction",
+   "0:40:20 Agents should fear setting events in motion",
+   "0:42:17 Q&A: halting, looping and the \"spinning\" probability"
+  ],
+  "evidence": "[0:03:49] Cole Wyeth: \"It's sort of incentivized to to explore options to to seize control of the source of its rewards\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=H5xRgwDA1s4",
+  "thumb": "https://i.ytimg.com/vi/H5xRgwDA1s4/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "Shows the technical core behind pessimism-based proposals for keeping powerful RL agents from reward hacking, from a founder of AIXI Labs.",
+  "tags": [
+   "AIXI",
+   "Solomonoff induction",
+   "reward hacking",
+   "pessimism",
+   "algorithmic information theory",
+   "agent foundations",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Aram Ebtekar",
+   "Marcus Hutter"
+  ],
+  "orgs_mentioned": [
+   "AIXI Labs",
+   "University of Waterloo",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Ambiguous prediction in sequence prediction"
+   },
+   {
+    "t": "0:03:40",
+    "seconds": 220,
+    "title": "AIXI-style agents and reward hacking"
+   },
+   {
+    "t": "0:04:42",
+    "seconds": 282,
+    "title": "Staying uncertain about reward hacking"
+   },
+   {
+    "t": "0:11:04",
+    "seconds": 664,
+    "title": "Ambiguity: generalisations we would prefer the agent to make"
+   },
+   {
+    "t": "0:11:24",
+    "seconds": 684,
+    "title": "The blue-then-green sky riddle"
+   },
+   {
+    "t": "0:12:55",
+    "seconds": 775,
+    "title": "Safety relevance: pessimism or golden handcuffs"
+   },
+   {
+    "t": "0:16:32",
+    "seconds": 992,
+    "title": "Where the ambiguity comes from"
+   },
+   {
+    "t": "0:18:26",
+    "seconds": 1106,
+    "title": "Oracle access and weaker assumptions"
+   },
+   {
+    "t": "0:22:11",
+    "seconds": 1331,
+    "title": "Stopping complexity"
+   },
+   {
+    "t": "0:25:44",
+    "seconds": 1544,
+    "title": "A chain-rule style inequality"
+   },
+   {
+    "t": "0:31:13",
+    "seconds": 1873,
+    "title": "Examples of stopping complexity"
+   },
+   {
+    "t": "0:35:07",
+    "seconds": 2107,
+    "title": "Is the factorisation tight?"
+   },
+   {
+    "t": "0:36:46",
+    "seconds": 2206,
+    "title": "Divergence of the prefix fraction"
+   },
+   {
+    "t": "0:40:20",
+    "seconds": 2420,
+    "title": "Agents should fear setting events in motion"
+   },
+   {
+    "t": "0:42:17",
+    "seconds": 2537,
+    "title": "Q&A: halting, looping and the \"spinning\" probability"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:49",
+    "seconds": 229,
+    "speaker": "Cole Wyeth",
+    "quote": "It's sort of incentivized to to explore options to to seize control of the source of its rewards",
+    "quote_located": true
+   },
+   {
+    "t": "0:04:07",
+    "seconds": 247,
+    "speaker": "Cole Wyeth",
+    "quote": "the hope is that if you have sort of a sufficiently cautious or pessimistic agent, then it will never explore this possibility",
+    "quote_located": true
+   },
+   {
+    "t": "0:12:46",
+    "seconds": 766,
+    "speaker": "Cole Wyeth",
+    "quote": "This is why you need to do something where either you make the agent pessimistic",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 01:00 PM IST (UTC+05:30)",
+  "added_ms": 1793518200000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "251IBF_6bzs",
   "title": "Game Theory for AI Agents: What's Different About AI",
   "channel": "CoRe Safe AI",
