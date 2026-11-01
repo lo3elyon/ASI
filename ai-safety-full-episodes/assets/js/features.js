@@ -214,7 +214,7 @@
     if (!xs.length) { if (ja) ja.remove(); return; }
     if (!ja) { ja = document.createElement("section"); ja.id = "justAdded"; ja.className = "shelf ja"; ja.setAttribute("aria-labelledby", "jaH"); }
     v.prepend(ja);
-    const today = A.fmtDate(new Date().toISOString().slice(0, 10)), last = xs[0].addedAt ? xs[0].addedAt.slice(0, 10) : "";
+    const today = A.fmtDate(new Date().toISOString().slice(0, 10)), last = xs[0].addedMs ? new Date(xs[0].addedMs).toLocaleDateString("en-CA") : "";
     const isToday = last && Date.now() - xs[0].addedMs < 24 * 3600 * 1000 && new Date(xs[0].addedMs).toDateString() === new Date().toDateString();
     const ds = xs.map((e) => e.date).filter(Boolean).sort(), span = ds.length ? (ds[0] === ds[ds.length - 1] ? A.fmtDate(ds[0]) : `${A.fmtDate(ds[0])} – ${A.fmtDate(ds[ds.length - 1])}`) : "";
     const hrs = Math.round(xs.reduce((a, e) => a + (e.dur || 0), 0) / 360) / 10;
