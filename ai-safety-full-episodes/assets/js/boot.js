@@ -44,6 +44,18 @@
   /* background choice before first paint (bg.js draws it) */
   try {
     var bg = localStorage.getItem("asfe:bg");
-    if (bg && /^[a-z0-9-]{2,24}$/.test(bg)) d.setAttribute("data-bg", bg);
+    if (bg && /^[a-z0-9-]{2,24}$/.test(bg)) { d.setAttribute("data-bg", bg); d.classList.add("bg-chosen"); }
   } catch (e) {}
+  /* performance mode before first paint (js/perf.js owns it; the Battery API answer arrives later there) */
+  try {
+    var pp = localStorage.getItem("asfe:perf"), pm = pp;
+    if (pp !== "saver" && pp !== "balanced" && pp !== "full") {
+      pp = "auto"; pm = "balanced";
+      var dm = Number(navigator.deviceMemory) || 0, hc = Number(navigator.hardwareConcurrency) || 0;
+      if ((window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) || (navigator.connection && navigator.connection.saveData) ||
+        (dm && dm <= 2) || (hc && hc <= 2) || (dm && hc && dm <= 4 && hc <= 4)) pm = "saver";
+    }
+    d.setAttribute("data-perf", pm); d.setAttribute("data-perf-pref", pp);
+    if (pp === "saver") d.classList.add("perf-freeze");
+  } catch (e) { d.setAttribute("data-perf", "balanced"); }
 })();
