@@ -1,0 +1,85 @@
+/* AI Safety Full Episodes · performance modes (js/perf.js; boot.js sets html[data-perf] before the first paint).
+ * saver = Battery saver · balanced = default · full = every effect. Same features in each mode: only how much moves. */
+
+/* ---------------------------------------------------------------- every mode: nothing loops unseen */
+/* looping animations rest in sections that are off screen (perf.js marks them .is-off), and the hover chapter ticker only
+ * runs while its card is hovered */
+.is-off, .is-off * { animation-play-state: paused !important; }
+.thumb__chs > span { animation-play-state: paused; }
+.card:hover .thumb__chs > span { animation-play-state: running; }
+/* the background rests while the tab is hidden, the window is in the background, the episode page covers it or a video
+ * plays in full screen (perf.js sets html.bg-paused) */
+html.bg-paused .aurora i, html.bg-paused .bgfx, html.bg-paused .bgfx *, html.bg-paused .bgfx::before, html.bg-paused .bgfx::after { animation-play-state: paused !important; }
+/* the page under the episode page or a full-screen video is out of sight: its looping animations rest (html.page-covered) */
+html.page-covered main *, html.page-covered main *::before, html.page-covered main *::after,
+html.page-covered .topbar *, html.page-covered .topbar *::before, html.page-covered .topbar *::after { animation-play-state: paused !important; }
+/* film grain and vignette layers exist only when they are turned up (a full-screen blend layer at 0 % still costs a frame) */
+html:not(.bg-grain) .bgfx__grain2, html:not(.bg-vig) .bgfx__vig { display: none; }
+
+/* long lists: the browser skips layout and paint for cards and shelves far off screen */
+.grid > .card { content-visibility: auto; contain-intrinsic-size: auto 320px; }
+.lgrid > .card { content-visibility: auto; contain-intrinsic-size: auto 150px; }
+.view > .shelf:not(:first-child), .view > section.shelf:not(:first-child) { content-visibility: auto; contain-intrinsic-size: auto 360px; }
+.hrow { content-visibility: auto; contain-intrinsic-size: auto 72px; }
+
+/* ---------------------------------------------------------------- Balanced + Battery saver */
+/* a static gradient instead of the drifting aurora, unless you picked a background yourself */
+html:not([data-perf="full"]):not(.bg-chosen) .aurora {
+  background:
+    radial-gradient(62vmax 62vmax at 6% -8%, color-mix(in srgb, var(--amber) 20%, transparent), transparent 70%),
+    radial-gradient(58vmax 58vmax at 102% 36%, color-mix(in srgb, var(--teal) 16%, transparent), transparent 70%),
+    radial-gradient(60vmax 60vmax at 52% 116%, rgba(56, 189, 248, .10), transparent 70%),
+    var(--bg);
+}
+html[data-theme="light"]:not([data-perf="full"]):not(.bg-chosen) .aurora {
+  background:
+    radial-gradient(62vmax 62vmax at 6% -8%, color-mix(in srgb, var(--amber) 13%, transparent), transparent 70%),
+    radial-gradient(58vmax 58vmax at 102% 36%, color-mix(in srgb, var(--teal) 11%, transparent), transparent 70%),
+    var(--bg);
+}
+html:not([data-perf="full"]):not(.bg-chosen) .aurora i { display: none; }
+html:not([data-perf="full"]) .aurora i { will-change: auto; }
+
+/* no looping animations: headings sheen once on hover, live dots pulse three times, icons twinkle / spin on hover */
+html:not([data-perf="full"]) :is(.phead h1, .shelf__hd h2, .th__title) { animation: none; background-position: 100% 0; }
+html:not([data-perf="full"]) :is(.phead:hover h1, .shelf__hd:hover h2, .th__title:hover) { animation: sheen1 1.1s ease-in-out 1; }
+@keyframes sheen1 { from { background-position: 100% 0; } to { background-position: 0 0; } }
+html:not([data-perf="full"]) :is(.eyebrow .dot, .ja__dot, .goalchip.is-hot .flm svg) { animation-iteration-count: 3; }
+html:not([data-perf="full"]) .themetog .tt__star { animation: none; }
+html:not([data-perf="full"]) .themetog:hover .tt__star { animation: twinkle 1.2s ease-in-out 2; }
+html:not([data-perf="full"]) .ghlink::before { animation: none; }
+html:not([data-perf="full"]) .ghlink:hover::before { animation: ghspin 1.6s linear 1; }
+html:not([data-perf="full"]) body.is-playing .hp__art { animation: none; }
+html:not([data-perf="full"]) .bgfx__grain2 { animation: none; }
+
+/* glass blur only on small pop-ups: cards, pills, panels, the top bar and full-screen scrims get a solid tint instead */
+html:not([data-perf="full"]) *, html:not([data-perf="full"]) *::before, html:not([data-perf="full"]) *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html[data-perf="balanced"] :is(.pop, .qset, .pv__menu, .toast, .bcd, .pv__fx, .pv__skip, .drawer__x, .chsheet__hd, .pv__rail .rail__h, .fsp, .pkdock, .pkbin) {
+  -webkit-backdrop-filter: blur(10px) saturate(140%) !important; backdrop-filter: blur(10px) saturate(140%) !important;
+}
+html:not([data-perf="full"]) .topbar { background: color-mix(in srgb, var(--bg) 93%, transparent); }
+html:not([data-perf="full"]) .modal { background: rgba(0, 0, 0, .7); }
+html:not([data-perf="full"]) .scrim { background: rgba(0, 0, 0, .62); }
+html:not([data-perf="full"]) .thumb__date, html:not([data-perf="full"]) .thumb__dur, html:not([data-perf="full"]) .thumb__classic { background-color: rgba(4, 7, 12, .8); }
+html:not([data-perf="full"]) :is(.wtools, .wbar, .pkdock, .pkbin) { background: color-mix(in srgb, var(--solid) 96%, transparent); }
+html:not([data-perf="full"]) .dock[data-mode="audio"] { background: color-mix(in srgb, var(--solid) 97%, transparent); }
+
+/* ---------------------------------------------------------------- Battery saver only */
+html[data-perf="saver"] .is-tilt { transform: none !important; }
+html[data-perf="saver"] .is-tilt .thumb__img { transform: none !important; }
+html[data-perf="saver"] :is(.scard:hover .scard__ph .av, .person:hover .av, .face:hover .av, .topsp a:hover .av) { animation: none; }
+html[data-perf="saver"] .card:hover .thumb__pv img { animation: none; opacity: 0; }
+html[data-perf="saver"] .card:hover .thumb__pv img:first-child { opacity: 1; }
+html[data-perf="saver"] .viz i { animation: none; }
+html[data-perf="saver"] .card:hover { transform: none; }
+/* you chose Battery saver: every background holds still (a picked animated one keeps its still frame) */
+html.perf-freeze .aurora i, html.perf-freeze .bgfx, html.perf-freeze .bgfx * { animation-play-state: paused !important; }
+
+/* ---------------------------------------------------------------- Settings → Performance */
+.perfp { display: flex; flex-direction: column; gap: 10px; }
+.perfl { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.perfl li { display: flex; flex-direction: column; gap: 2px; padding: 9px 11px; border-radius: 12px; border: 1px solid var(--line); background: color-mix(in srgb, var(--surf) 70%, transparent); }
+.perfl li b { font-size: 13px; }
+.perfl li span { font-size: 12px; color: var(--mut); line-height: 1.4; }
+.perfl li.is-on { border-color: color-mix(in srgb, var(--amber) 55%, var(--line)); background: color-mix(in srgb, var(--amber) 9%, var(--surf)); }
+.perfl li.is-on b::after { content: " · in use"; color: var(--amber2); font-weight: 700; }
