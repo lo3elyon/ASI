@@ -1,6 +1,6 @@
 /* AI Safety Full Episodes · prefs: the header's look-and-feel controls.
  *  - Animated sun ⇄ moon theme toggle (dark shows the moon; click flips to light and the sun; System stays in Settings)
- *  - Quick Settings dropdown with tabs: Theme · Background · Fonts · Layout · Motion (all inline, no navigation)
+ *  - Quick Settings dropdown with tabs: Theme · Background · Fonts · Layout · Motion · Performance (all inline, no navigation)
  *  - Font pairings (Google Fonts, allowed by the CSP) + a text size scale, applied site-wide
  *  - Keyboard shortcuts overlay: grouped, searchable, colourful keycaps, a bottom sheet on phones
  *  - Section-shaped loading skeletons for in-app renders
@@ -115,7 +115,7 @@
   }
 
   /* ================================================================ quick settings dropdown */
-  const TABS = [["theme", "Theme"], ["bg", "Background"], ["fonts", "Fonts"], ["layout", "Layout"], ["motion", "Motion"]];
+  const TABS = [["theme", "Theme"], ["bg", "Background"], ["fonts", "Fonts"], ["layout", "Layout"], ["motion", "Motion"], ["perf", "Performance"]];
   let QS = null;
   function themeTab() {
     const pref = root().getAttribute("data-theme-pref") || "system";
@@ -139,13 +139,15 @@
       <label class="switch"><input type="checkbox" data-hoverfx ${hoverFx() ? "checked" : ""}><span></span>Card hover animations</label>
       <label class="switch"><input type="checkbox" data-celeb ${S.celebrations !== false ? "checked" : ""}><span></span>Celebrations (confetti on milestones)</label>
       <label class="switch"><input type="checkbox" id="q-bgLow" data-bgflag="low" ${lo ? "checked" : ""}><span></span>Low-power backgrounds (20 fps, fewer particles)</label>
-      <p class="muted qset__note">Reduced motion stops background animation, morphs and sheens. Animated backgrounds always pause while this tab is hidden.</p>`;
+      <p class="muted qset__note">Reduced motion stops background animation, morphs and sheens. Animated backgrounds always pause while this tab is hidden. For GPU and battery use, see Performance.</p>`;
   }
+  function perfTab() { return A.perf ? A.perf.html() : ""; }
   function tabHTML(t) {
     if (t === "theme") return themeTab();
     if (t === "bg") return A.bg ? A.bg.pickerHTML("q-") : "";
     if (t === "fonts") return fontsHTML();
     if (t === "layout") return layoutTab();
+    if (t === "perf") return perfTab();
     return motionTab();
   }
   function openQS(tab) {
@@ -276,5 +278,5 @@
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire); else wire();
 
-  A.prefs = { FONTS, applyFont, fontScale, motion, density, hoverFx, openQS, closeQS, flipTheme, paintToggle, openKeys, keysHTML, KG, skeleton, fontsHTML, layoutTab, motionTab, tabHTML };
+  A.prefs = { FONTS, applyFont, fontScale, motion, density, hoverFx, openQS, closeQS, flipTheme, paintToggle, openKeys, keysHTML, KG, skeleton, fontsHTML, layoutTab, motionTab, perfTab, tabHTML };
 })(window.ASFE);
