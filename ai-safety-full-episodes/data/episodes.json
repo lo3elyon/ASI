@@ -1,5 +1,204 @@
 [
  {
+  "id": "1qbB3D2CfoM",
+  "title": "John-Clark Levin on AI and the Future of Humanity",
+  "channel": "Dan Elton",
+  "show": "Dan Elton (talk + Q&A)",
+  "date": "2026-10-31",
+  "approx": true,
+  "duration": "1:14:14",
+  "speakers": [
+   {
+    "name": "John-Clark Levin",
+    "affiliation": "Kurzweil Technologies (head of research, AGI futures and safety); PhD candidate, University of Cambridge"
+   }
+  ],
+  "names": [
+   "John-Clark Levin"
+  ],
+  "format": "talk + audience Q&A",
+  "summary": "John-Clark Levin, who leads research for Ray Kurzweil and studies AGI timelines and safety at Cambridge, gives a talk and long audience Q&A. He defines AGI as median-human-level on every measurable cognitive task, puts roughly a 60% chance on it arriving within 1,000 days, and lays out both the upside (cheap goods, AI-designed drugs, longevity) and the catastrophic risks, which he splits roughly evenly between misuse and misalignment. He argues for layered defences instead of one silver bullet: lab incentives, offence-defence fixes for bio risk, sandboxing, a US-China red phone for rogue-AI incidents, and monitoring that avoids civil-liberties abuses. The Q&A covers Kurzweil's forecast record, his outreach to the Vatican, and why a superintelligence probably cannot arbitrarily hack human minds.",
+  "topics": [
+   "0:03:04 Levin takes the stage: feasible paths to catastrophic-risk mitigation",
+   "0:06:27 Defining AGI: a 60% chance within 1,000 days",
+   "0:09:00 The upside: cheap goods and time for human pursuits",
+   "0:12:05 AI-designed drugs on exponential compute trends",
+   "0:15:01 Where AI hits a complexity ceiling",
+   "0:18:25 Catastrophic risk: misuse versus misalignment",
+   "0:21:04 Bio risk: AI-designed viruses and automated labs",
+   "0:24:00 Mitigations: lab incentives and flipping offence-defence on bio",
+   "0:27:10 The pilot analogy: why crash odds are not \"stochastic\"",
+   "0:30:03 Q&A: how accurate are Kurzweil's predictions?",
+   "0:36:14 Taking the AGI case to the Vatican",
+   "0:42:15 Sandboxes: a superhuman hacker bursts out like a tiger from a paper bag",
+   "0:48:09 US-China: a red phone for rogue-AI incidents",
+   "0:54:01 Risk is multi-dimensional: airspeed is not the only variable",
+   "1:03:12 Layered safeguards, monitoring and \"reverse uplift\""
+  ],
+  "evidence": "[0:06:20] John-Clark Levin: \"probably has about a 60% chance of arriving within the next 1,000 days\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=1qbB3D2CfoM",
+  "thumb": "https://i.ytimg.com/vi/1qbB3D2CfoM/hqdefault.jpg",
+  "level": "Intro",
+  "why_watch": "A rare long, plain-spoken case from an AGI-timelines researcher that the risk is split between misuse and loss of control, and what a layered defence could look like.",
+  "tags": [
+   "AGI timelines",
+   "catastrophic risk",
+   "misuse",
+   "misalignment",
+   "biosecurity",
+   "US-China",
+   "sandboxing",
+   "Kurzweil",
+   "Vatican"
+  ],
+  "people_mentioned": [
+   "Ray Kurzweil",
+   "Nick Bostrom",
+   "Dan Elton"
+  ],
+  "orgs_mentioned": [
+   "Kurzweil Technologies",
+   "University of Cambridge",
+   "OpenAI",
+   "Anthropic",
+   "Vatican"
+  ],
+  "chapters": [
+   {
+    "t": "0:03:04",
+    "seconds": 184,
+    "title": "Levin takes the stage: feasible paths to catastrophic-risk mitigation"
+   },
+   {
+    "t": "0:06:27",
+    "seconds": 387,
+    "title": "Defining AGI: a 60% chance within 1,000 days"
+   },
+   {
+    "t": "0:09:00",
+    "seconds": 540,
+    "title": "The upside: cheap goods and time for human pursuits"
+   },
+   {
+    "t": "0:12:05",
+    "seconds": 725,
+    "title": "AI-designed drugs on exponential compute trends"
+   },
+   {
+    "t": "0:15:01",
+    "seconds": 901,
+    "title": "Where AI hits a complexity ceiling"
+   },
+   {
+    "t": "0:18:25",
+    "seconds": 1105,
+    "title": "Catastrophic risk: misuse versus misalignment"
+   },
+   {
+    "t": "0:21:04",
+    "seconds": 1264,
+    "title": "Bio risk: AI-designed viruses and automated labs"
+   },
+   {
+    "t": "0:24:00",
+    "seconds": 1440,
+    "title": "Mitigations: lab incentives and flipping offence-defence on bio"
+   },
+   {
+    "t": "0:27:10",
+    "seconds": 1630,
+    "title": "The pilot analogy: why crash odds are not \"stochastic\""
+   },
+   {
+    "t": "0:30:03",
+    "seconds": 1803,
+    "title": "Q&A: how accurate are Kurzweil's predictions?"
+   },
+   {
+    "t": "0:36:14",
+    "seconds": 2174,
+    "title": "Taking the AGI case to the Vatican"
+   },
+   {
+    "t": "0:42:15",
+    "seconds": 2535,
+    "title": "Sandboxes: a superhuman hacker bursts out like a tiger from a paper bag"
+   },
+   {
+    "t": "0:48:09",
+    "seconds": 2889,
+    "title": "US-China: a red phone for rogue-AI incidents"
+   },
+   {
+    "t": "0:54:01",
+    "seconds": 3241,
+    "title": "Risk is multi-dimensional: airspeed is not the only variable"
+   },
+   {
+    "t": "1:03:12",
+    "seconds": 3792,
+    "title": "Layered safeguards, monitoring and \"reverse uplift\""
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:06:20",
+    "seconds": 380,
+    "speaker": "John-Clark Levin",
+    "quote": "probably has about a 60% chance of arriving within the next 1,000 days",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:17",
+    "seconds": 1097,
+    "speaker": "John-Clark Levin",
+    "quote": "the catastrophic risk is split roughly evenly between misuse",
+    "quote_located": true
+   },
+   {
+    "t": "0:27:02",
+    "seconds": 1622,
+    "speaker": "John-Clark Levin",
+    "quote": "If a pilot takes his hands off the controls",
+    "quote_located": true
+   },
+   {
+    "t": "0:42:02",
+    "seconds": 2522,
+    "speaker": "John-Clark Levin",
+    "quote": "smart enough to hack out of that like a tiger bursting out of a paper bag",
+    "quote_located": true
+   },
+   {
+    "t": "0:48:12",
+    "seconds": 2892,
+    "speaker": "John-Clark Levin",
+    "quote": "if GPT-7 goes rogue during training and knocks out the power grid in Harbin",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "John-Clark Levin",
+    "value": "AGI (median human on all measurable cognitive tasks) ~60% likely within 1,000 days",
+    "t": "0:06:27",
+    "seconds": 387
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 05:00 PM IST (UTC+05:30)",
+  "added_ms": 1793532600000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101p/segs_new.json",
+   "note": ""
+  }
+ },
+ {
   "id": "zttXBCN-2Oc",
   "title": "This Law Bans Superintelligent AI",
   "channel": "Carnegie Endowment",
@@ -2254,6 +2453,696 @@
    "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
    "date_convention": "date = US Pacific upload date",
    "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "vFfPWL9cRPI",
+  "title": "Freedom of Action: America's ASI Strategy, with RAND's Joel Predd, Ben Boudreaux and Matt Chessen",
+  "channel": "The Cognitive Revolution",
+  "show": "The Cognitive Revolution (Nathan Labenz)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:49:39",
+  "speakers": [
+   {
+    "name": "Joel Predd",
+    "affiliation": "RAND (director, Center for the Geopolitics of AGI; senior engineer)"
+   },
+   {
+    "name": "Benjamin Boudreaux",
+    "affiliation": "RAND (policy researcher); RAND School of Public Policy"
+   },
+   {
+    "name": "Matt Chessen",
+    "affiliation": "RAND (resident technical expert, Center for the Geopolitics of AGI)"
+   }
+  ],
+  "names": [
+   "Joel Predd",
+   "Benjamin Boudreaux",
+   "Matt Chessen"
+  ],
+  "format": "podcast interview (3 guests)",
+  "summary": "Nathan Labenz talks with three authors of RAND's perspective paper on a US strategy for an uncertain path to superintelligence. They lay out seven archetypal strategies (acceleration, dominance, co-development, preparedness for coexistence, moratorium, deterrence, continuity of society) and five pivotal uncertainties, among them how close dangerous AI is, whether humans can coexist with it, and whether anyone can win a decisive advantage. Their conclusion is that nobody should pre-commit yet and that the US should pursue 'freedom of action': no-regret moves such as compute visibility and governance, resilient institutions and communication channels with rivals like China. The episode runs long and includes sponsor reads.",
+  "topics": [
+   "0:00:01 Intro: RAND's Center for the Geopolitics of AGI and the freedom-of-action paper",
+   "0:05:08 The thesis: maintain freedom of action on the path to superintelligence",
+   "0:13:06 Bottom line: too much uncertainty to pre-commit to any strategy",
+   "0:15:48 Seven archetypal strategies, including \"continuity of society\"",
+   "0:16:30 A classifier that exposes hidden assumptions behind strategies",
+   "0:18:42 Why confrontational strategies can destroy trust needed later",
+   "0:27:37 AI development is something we can shape",
+   "0:30:56 Decisive strategic advantage: is it possible, and for whom?",
+   "0:43:58 Game theory of cooperation and mutual sabotage",
+   "0:55:02 The moratorium strategy and its pathology",
+   "1:00:30 The seven objectives, one by one",
+   "1:06:13 Adapting nuclear and biosecurity architecture",
+   "1:11:36 No-regret moves: compute visibility and governance",
+   "1:22:31 Communication channels with adversaries like China",
+   "1:33:38 AI risk as an ecology, and closing thoughts"
+  ],
+  "evidence": "[0:01:40] Nathan Labenz: \"a moratorium, aka the pause plan\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=vFfPWL9cRPI",
+  "thumb": "https://i.ytimg.com/vi/vFfPWL9cRPI/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "The clearest map of the superintelligence strategy debate yet: seven win conditions, five open questions and the case for keeping options open rather than betting on one plan.",
+  "tags": [
+   "superintelligence strategy",
+   "geopolitics of AGI",
+   "freedom of action",
+   "deterrence",
+   "moratorium",
+   "compute governance",
+   "US-China",
+   "RAND",
+   "AI policy"
+  ],
+  "people_mentioned": [
+   "Edward Geist",
+   "Dan Hendrycks",
+   "Eric Schmidt",
+   "Alexandr Wang",
+   "Toby Sims",
+   "Eliezer Yudkowsky",
+   "Nate Soares"
+  ],
+  "orgs_mentioned": [
+   "RAND",
+   "OpenAI",
+   "a16z",
+   "Anthropic"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Intro: RAND's Center for the Geopolitics of AGI and the freedom-of-action paper"
+   },
+   {
+    "t": "0:05:08",
+    "seconds": 308,
+    "title": "The thesis: maintain freedom of action on the path to superintelligence"
+   },
+   {
+    "t": "0:13:06",
+    "seconds": 786,
+    "title": "Bottom line: too much uncertainty to pre-commit to any strategy"
+   },
+   {
+    "t": "0:15:48",
+    "seconds": 948,
+    "title": "Seven archetypal strategies, including \"continuity of society\""
+   },
+   {
+    "t": "0:16:30",
+    "seconds": 990,
+    "title": "A classifier that exposes hidden assumptions behind strategies"
+   },
+   {
+    "t": "0:18:42",
+    "seconds": 1122,
+    "title": "Why confrontational strategies can destroy trust needed later"
+   },
+   {
+    "t": "0:27:37",
+    "seconds": 1657,
+    "title": "AI development is something we can shape"
+   },
+   {
+    "t": "0:30:56",
+    "seconds": 1856,
+    "title": "Decisive strategic advantage: is it possible, and for whom?"
+   },
+   {
+    "t": "0:43:58",
+    "seconds": 2638,
+    "title": "Game theory of cooperation and mutual sabotage"
+   },
+   {
+    "t": "0:55:02",
+    "seconds": 3302,
+    "title": "The moratorium strategy and its pathology"
+   },
+   {
+    "t": "1:00:30",
+    "seconds": 3630,
+    "title": "The seven objectives, one by one"
+   },
+   {
+    "t": "1:06:13",
+    "seconds": 3973,
+    "title": "Adapting nuclear and biosecurity architecture"
+   },
+   {
+    "t": "1:11:36",
+    "seconds": 4296,
+    "title": "No-regret moves: compute visibility and governance"
+   },
+   {
+    "t": "1:22:31",
+    "seconds": 4951,
+    "title": "Communication channels with adversaries like China"
+   },
+   {
+    "t": "1:33:38",
+    "seconds": 5618,
+    "title": "AI risk as an ecology, and closing thoughts"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:40",
+    "seconds": 100,
+    "speaker": "Nathan Labenz",
+    "quote": "a moratorium, aka the pause plan",
+    "quote_located": true
+   },
+   {
+    "t": "0:13:09",
+    "seconds": 789,
+    "speaker": "RAND guest",
+    "quote": "if you pre-commit prematurely to any one strategy it forecloses other strategies",
+    "quote_located": true
+   },
+   {
+    "t": "0:13:19",
+    "seconds": 799,
+    "speaker": "RAND guest",
+    "quote": "the best way for the US to secure geopolitical advantage and ensure humanity's survival with agency is by executing a freedom of action strategy",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:40",
+    "seconds": 1120,
+    "speaker": "RAND guest",
+    "quote": "you could destroy the trust that you might need if you have to pivot to a cooperative strategy later on",
+    "quote_located": true
+   },
+   {
+    "t": "1:11:28",
+    "seconds": 4288,
+    "speaker": "RAND guest",
+    "quote": "most of the things that our freedom of action strategy would call for you would consider them to be no regret",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 05:00 PM IST (UTC+05:30)",
+  "added_ms": 1793532600000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101p/segs_new.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "PyF7QnH7dLg",
+  "title": "Data Models for Ambitious Interpretability - Ari Brill",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "58:53",
+  "speakers": [
+   {
+    "name": "Ari Brill",
+    "affiliation": "Principles of Intelligence (formerly PIBBSS), Research Lead: Data Models and Validation"
+   }
+  ],
+  "names": [
+   "Ari Brill"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Ari Brill, who leads the data-models team of PIBBSS's PIRAMID program, argues that interpretability tools need better theories of the data they are applied to. He starts from sparse, heavy-tailed latent variables, builds a data model from high-dimensional percolation whose clusters are power-law distributed and self-similar at criticality, and then extends it to an explicitly hierarchical construction of latent variables with a linear-time algorithm. He closes with planned empirical work testing interpretability methods on such synthetic data, and the Q&A pushes on target functions, connectivity and out-of-distribution behaviour.",
+  "topics": [
+   "0:00:01 Overview: data models for ambitious interpretability",
+   "0:03:15 Sparse, heavy-tailed latent variables",
+   "0:08:35 Hierarchical structure in data",
+   "0:11:56 Percolation and mean-field ideas as a data model",
+   "0:16:43 Clusters: in-distribution versus memorisation",
+   "0:22:14 Criticality: power-law cluster sizes",
+   "0:26:44 Where the general-purpose learning assumption breaks",
+   "0:33:23 Q&A: connectivity and target functions",
+   "0:43:24 Constructing a binary forest of latent variables",
+   "0:45:08 A linear-time algorithm and what the latents mean",
+   "0:50:03 Future empirical directions for testing interpretability tools",
+   "0:53:21 Self-similar fine-graining of the tree",
+   "0:56:56 Q&A: what the target function depends on"
+  ],
+  "evidence": "[0:03:11] Ari Brill: \"interpretability is this idea of sparsity, that latent variables that influence the our observations occur rarely and co-occur rarely\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=PyF7QnH7dLg",
+  "thumb": "https://i.ytimg.com/vi/PyF7QnH7dLg/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A physics-flavoured attempt to build the test data that interpretability methods are currently missing, from a PIBBSS research lead.",
+  "tags": [
+   "mechanistic interpretability",
+   "data models",
+   "percolation",
+   "power laws",
+   "criticality",
+   "latent variables",
+   "ILIAD",
+   "PIBBSS"
+  ],
+  "people_mentioned": [
+   "Sam Eisenstat"
+  ],
+  "orgs_mentioned": [
+   "Principles of Intelligence",
+   "PIBBSS",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Overview: data models for ambitious interpretability"
+   },
+   {
+    "t": "0:03:15",
+    "seconds": 195,
+    "title": "Sparse, heavy-tailed latent variables"
+   },
+   {
+    "t": "0:08:35",
+    "seconds": 515,
+    "title": "Hierarchical structure in data"
+   },
+   {
+    "t": "0:11:56",
+    "seconds": 716,
+    "title": "Percolation and mean-field ideas as a data model"
+   },
+   {
+    "t": "0:16:43",
+    "seconds": 1003,
+    "title": "Clusters: in-distribution versus memorisation"
+   },
+   {
+    "t": "0:22:14",
+    "seconds": 1334,
+    "title": "Criticality: power-law cluster sizes"
+   },
+   {
+    "t": "0:26:44",
+    "seconds": 1604,
+    "title": "Where the general-purpose learning assumption breaks"
+   },
+   {
+    "t": "0:33:23",
+    "seconds": 2003,
+    "title": "Q&A: connectivity and target functions"
+   },
+   {
+    "t": "0:43:24",
+    "seconds": 2604,
+    "title": "Constructing a binary forest of latent variables"
+   },
+   {
+    "t": "0:45:08",
+    "seconds": 2708,
+    "title": "A linear-time algorithm and what the latents mean"
+   },
+   {
+    "t": "0:50:03",
+    "seconds": 3003,
+    "title": "Future empirical directions for testing interpretability tools"
+   },
+   {
+    "t": "0:53:21",
+    "seconds": 3201,
+    "title": "Self-similar fine-graining of the tree"
+   },
+   {
+    "t": "0:56:56",
+    "seconds": 3416,
+    "title": "Q&A: what the target function depends on"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:11",
+    "seconds": 191,
+    "speaker": "Ari Brill",
+    "quote": "interpretability is this idea of sparsity, that latent variables that influence the our observations occur rarely and co-occur rarely",
+    "quote_located": true
+   },
+   {
+    "t": "0:16:37",
+    "seconds": 997,
+    "speaker": "Ari Brill",
+    "quote": "if you're not in a cluster, then the best you can do is just memorization",
+    "quote_located": true
+   },
+   {
+    "t": "0:22:07",
+    "seconds": 1327,
+    "speaker": "Ari Brill",
+    "quote": "if you're at criticality, the cluster sizes are distributed as a power law",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 05:00 PM IST (UTC+05:30)",
+  "added_ms": 1793532600000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101p/segs_new.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "KhacU1M7WXE",
+  "title": "Solomonoff Induction on Finite Data - Aram Ebtekar, Danica Sutherland",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:01:32",
+  "speakers": [
+   {
+    "name": "Aram Ebtekar",
+    "affiliation": "independent researcher (algorithmic information theory)"
+   },
+   {
+    "name": "Danica Sutherland",
+    "affiliation": "University of British Columbia (assistant professor, machine learning theory); Amii"
+   }
+  ],
+  "names": [
+   "Aram Ebtekar",
+   "Danica Sutherland"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Aram Ebtekar and Danica Sutherland present a deliberately philosophical talk on whether Solomonoff induction can be made to work on finite data. They start from the no-free-lunch theorem and the 'meta' no-free-lunch worry that a learner cannot pick its own inductive bias, then show how a universal prior gives bounds for computable worlds that depend on the data, using an oracle-style formalism for accessible programs. They connect it to AGI, which cannot lean on human-chosen inductive biases, and the Q&A debates complexity relative to a reference machine, why averaging beats picking one program, and what neural networks have to do with universal computation.",
+  "topics": [
+   "0:00:03 Why Solomonoff induction on finite data? The no-free-lunch story",
+   "0:03:45 Machine learning as the problem of induction",
+   "0:07:26 Can we formalize which hypotheses are \"obviously\" simpler?",
+   "0:08:45 \"Meta\" no-free-lunch and why it matters",
+   "0:10:46 Specialized priors and hard-coding test data",
+   "0:14:49 Learning algorithms are themselves computations",
+   "0:18:13 Accessible versus inaccessible programs",
+   "0:21:32 The setup: a universal computer with an oracle",
+   "0:29:20 Q&A: algorithmic information and what a prior encodes",
+   "0:36:41 Is complexity relative to the reference Turing machine?",
+   "0:44:01 Why averaging beats picking one random program",
+   "0:47:34 Bounds for a computable world: the arrival prior",
+   "0:55:05 Taking our universe as given: what the bound says",
+   "0:57:47 Closing remarks: neural networks and universal computation"
+  ],
+  "evidence": "[0:08:38] Danica Sutherland: \"this like meta no free lunch was much more surprising to me when Ram was telling me about it and much more concerning\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=KhacU1M7WXE",
+  "thumb": "https://i.ytimg.com/vi/KhacU1M7WXE/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "Why a self-improving learner cannot just inherit our inductive biases, and what a finite-data guarantee for Solomonoff-style prediction actually says.",
+  "tags": [
+   "Solomonoff induction",
+   "no free lunch",
+   "inductive bias",
+   "algorithmic information theory",
+   "AGI",
+   "universal prior",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Marcus Hutter"
+  ],
+  "orgs_mentioned": [
+   "University of British Columbia",
+   "Amii",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:03",
+    "seconds": 3,
+    "title": "Why Solomonoff induction on finite data? The no-free-lunch story"
+   },
+   {
+    "t": "0:03:45",
+    "seconds": 225,
+    "title": "Machine learning as the problem of induction"
+   },
+   {
+    "t": "0:07:26",
+    "seconds": 446,
+    "title": "Can we formalize which hypotheses are \"obviously\" simpler?"
+   },
+   {
+    "t": "0:08:45",
+    "seconds": 525,
+    "title": "\"Meta\" no-free-lunch and why it matters"
+   },
+   {
+    "t": "0:10:46",
+    "seconds": 646,
+    "title": "Specialized priors and hard-coding test data"
+   },
+   {
+    "t": "0:14:49",
+    "seconds": 889,
+    "title": "Learning algorithms are themselves computations"
+   },
+   {
+    "t": "0:18:13",
+    "seconds": 1093,
+    "title": "Accessible versus inaccessible programs"
+   },
+   {
+    "t": "0:21:32",
+    "seconds": 1292,
+    "title": "The setup: a universal computer with an oracle"
+   },
+   {
+    "t": "0:29:20",
+    "seconds": 1760,
+    "title": "Q&A: algorithmic information and what a prior encodes"
+   },
+   {
+    "t": "0:36:41",
+    "seconds": 2201,
+    "title": "Is complexity relative to the reference Turing machine?"
+   },
+   {
+    "t": "0:44:01",
+    "seconds": 2641,
+    "title": "Why averaging beats picking one random program"
+   },
+   {
+    "t": "0:47:34",
+    "seconds": 2854,
+    "title": "Bounds for a computable world: the arrival prior"
+   },
+   {
+    "t": "0:55:05",
+    "seconds": 3305,
+    "title": "Taking our universe as given: what the bound says"
+   },
+   {
+    "t": "0:57:47",
+    "seconds": 3467,
+    "title": "Closing remarks: neural networks and universal computation"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:08:38",
+    "seconds": 518,
+    "speaker": "Danica Sutherland",
+    "quote": "this like meta no free lunch was much more surprising to me when Ram was telling me about it and much more concerning",
+    "quote_located": true
+   },
+   {
+    "t": "0:10:02",
+    "seconds": 602,
+    "speaker": "Aram Ebtekar",
+    "quote": "the theory never really claimed to choose an inductive bias",
+    "quote_located": true
+   },
+   {
+    "t": "0:10:46",
+    "seconds": 646,
+    "speaker": "Aram Ebtekar",
+    "quote": "now we want to understand AGI",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 05:00 PM IST (UTC+05:30)",
+  "added_ms": 1793532600000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101p/segs_new.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "3SdUTOhEgd8",
+  "title": "When are latent variables objective? Theory and open problems in condensation - Sam Eisenstat",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "57:30",
+  "speakers": [
+   {
+    "name": "Sam Eisenstat",
+    "affiliation": "Machine Intelligence Research Institute (research fellow)"
+   }
+  ],
+  "names": [
+   "Sam Eisenstat"
+  ],
+  "format": "research talk + blackboard discussion",
+  "summary": "In this second, blackboard-style session Sam Eisenstat works through the algorithmic-information version of condensation: when different agents carve the same data into latent variables, which of those latents are objective? He defines a contribution relation among latents, shows how a hierarchy of latents can keep objectivity, explains the tension between reconstruction and the Markov condition and proves a lemma about variables that are almost determined by shared latents. The audience presses on constructibility and quantifiers, and he ends by asking what complexity measure, such as a neural network's RLCT or parameter count, might plug into the theory. It is a working session with chalkboard maths and informal discussion.",
+  "topics": [
+   "0:00:04 Recap: the algorithmic-information setting for latent variables",
+   "0:03:25 The contribution relation among latents",
+   "0:06:46 Compression, programs and coin flips",
+   "0:13:20 Where the theorem stands: stochastic versus algorithmic",
+   "0:16:41 Q&A: is the construction effective?",
+   "0:20:11 Quantifiers: all latents and all sets",
+   "0:26:48 A hierarchy of latents that keeps objectivity",
+   "0:33:33 Reconstruction versus the Markov condition",
+   "0:40:01 Basic lemma: almost-determined variables",
+   "0:43:28 What makes a reconstruction a reconstruction",
+   "0:50:04 Telling the biases versus the values",
+   "0:53:23 Complexity measures for neural nets: RLCT or parameter count"
+  ],
+  "evidence": "[0:13:22] Sam Eisenstat: \"I have proved it in the algorithmic information setting\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=3SdUTOhEgd8",
+  "thumb": "https://i.ytimg.com/vi/3SdUTOhEgd8/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "The follow-up that shows the maths under MIRI's condensation programme, and exactly where the audience thinks it is still incomplete.",
+  "tags": [
+   "condensation",
+   "latent variables",
+   "natural latents",
+   "algorithmic information",
+   "agent foundations",
+   "interpretability",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Jesse Hoogland"
+  ],
+  "orgs_mentioned": [
+   "MIRI",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:04",
+    "seconds": 4,
+    "title": "Recap: the algorithmic-information setting for latent variables"
+   },
+   {
+    "t": "0:03:25",
+    "seconds": 205,
+    "title": "The contribution relation among latents"
+   },
+   {
+    "t": "0:06:46",
+    "seconds": 406,
+    "title": "Compression, programs and coin flips"
+   },
+   {
+    "t": "0:13:20",
+    "seconds": 800,
+    "title": "Where the theorem stands: stochastic versus algorithmic"
+   },
+   {
+    "t": "0:16:41",
+    "seconds": 1001,
+    "title": "Q&A: is the construction effective?"
+   },
+   {
+    "t": "0:20:11",
+    "seconds": 1211,
+    "title": "Quantifiers: all latents and all sets"
+   },
+   {
+    "t": "0:26:48",
+    "seconds": 1608,
+    "title": "A hierarchy of latents that keeps objectivity"
+   },
+   {
+    "t": "0:33:33",
+    "seconds": 2013,
+    "title": "Reconstruction versus the Markov condition"
+   },
+   {
+    "t": "0:40:01",
+    "seconds": 2401,
+    "title": "Basic lemma: almost-determined variables"
+   },
+   {
+    "t": "0:43:28",
+    "seconds": 2608,
+    "title": "What makes a reconstruction a reconstruction"
+   },
+   {
+    "t": "0:50:04",
+    "seconds": 3004,
+    "title": "Telling the biases versus the values"
+   },
+   {
+    "t": "0:53:23",
+    "seconds": 3203,
+    "title": "Complexity measures for neural nets: RLCT or parameter count"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:13:22",
+    "seconds": 802,
+    "speaker": "Sam Eisenstat",
+    "quote": "I have proved it in the algorithmic information setting",
+    "quote_located": true
+   },
+   {
+    "t": "0:33:26",
+    "seconds": 2006,
+    "speaker": "Sam Eisenstat",
+    "quote": "there exist you know distributions in which we do have both reconstruction and markoff condition",
+    "quote_located": true
+   },
+   {
+    "t": "0:53:18",
+    "seconds": 3198,
+    "speaker": "Sam Eisenstat",
+    "quote": "if we had like a neural net and just like some measure of complexity whether it's like the RLCT or like the parameter count",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Sun 2026-11-01 05:00 PM IST (UTC+05:30)",
+  "added_ms": 1793532600000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1101p/segs_new.json",
    "note": ""
   }
  },
