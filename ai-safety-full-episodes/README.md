@@ -1,6 +1,6 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 346 verified full-length episodes, Jul–Oct 2026"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 351 verified full-length episodes, Jul–Oct 2026"></a>
 
 <img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
@@ -11,7 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/Open%20the%20app-lo3elyon.github.io%2FASI%2Fai--safety--full--episodes-14b8a6?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open the app"></a>
 <br>
 <img src="https://img.shields.io/badge/updated-2026--10--28-f59e0b?style=flat-square&labelColor=07111f" alt="updated Oct 28, 2026">
-<img src="https://img.shields.io/badge/episodes-346-14b8a6?style=flat-square&labelColor=07111f" alt="346 episodes">
+<img src="https://img.shields.io/badge/episodes-351-14b8a6?style=flat-square&labelColor=07111f" alt="351 episodes">
 <img src="https://img.shields.io/badge/runtime-~331%20hours-f59e0b?style=flat-square&labelColor=07111f" alt="about 331 hours">
 <img src="https://img.shields.io/badge/researchers%20%26%20guests-167-22d3ee?style=flat-square&labelColor=07111f" alt="167 researchers and guests">
 <img src="https://img.shields.io/badge/hosts-120-64748b?style=flat-square&labelColor=07111f" alt="120 hosts">
@@ -23,7 +23,7 @@
 <img src="https://img.shields.io/badge/bundle-terser%20%2B%20csso-10b981?style=flat-square&labelColor=07111f" alt="Minified bundle">
 <img src="https://img.shields.io/badge/pre--rendered-24%20cards%20%2B%20noscript%20list-22d3ee?style=flat-square&labelColor=07111f" alt="Pre-rendered HTML">
 <img src="https://img.shields.io/badge/CSP-strict%20script--src-ef4444?style=flat-square&labelColor=07111f" alt="Strict CSP">
-<img src="https://img.shields.io/badge/JSON--LD-346%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
+<img src="https://img.shields.io/badge/JSON--LD-351%20VideoObjects-f59e0b?style=flat-square&labelColor=07111f" alt="JSON-LD">
 <img src="https://img.shields.io/badge/PWA-installable-14b8a6?style=flat-square&labelColor=07111f" alt="Installable PWA">
 <img src="https://img.shields.io/badge/Fullscreen-cinema%20player-f59e0b?style=flat-square&labelColor=07111f" alt="Fullscreen cinema player">
 <img src="https://img.shields.io/badge/Float%20window-Document%20PiP%20remote-f59e0b?style=flat-square&logo=googlechrome&logoColor=white&labelColor=07111f" alt="Document Picture-in-Picture remote">
@@ -35,7 +35,7 @@
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
-<img src="https://img.shields.io/badge/captions-346%20transcripts-a78bfa?style=flat-square&labelColor=07111f" alt="Captions from 346 transcripts">
+<img src="https://img.shields.io/badge/captions-351%20transcripts-a78bfa?style=flat-square&labelColor=07111f" alt="Captions from 351 transcripts">
 <img src="https://img.shields.io/badge/backgrounds-30-ec4899?style=flat-square&labelColor=07111f" alt="30 backgrounds">
 <img src="https://img.shields.io/badge/fonts-10%20pairings-38bdf8?style=flat-square&labelColor=07111f" alt="10 font pairings">
 
@@ -45,7 +45,21 @@
 
 ## Contents
 
-[RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Nov 1, 2026, 8 pm): five more ILIAD III talks on abstraction, world models and learning theory
+
+The 20:00 sweep added **5 transcript-verified full episodes**, now 351 in all (about 384 hours, 3,938 chapters; October 123). They sit at the front of the **Just added** row with NEW badges, each with chapters, quotes checked against its captions and our caption overlay. All five were recorded at the ILIAD III: AENEID conference and uploaded by the conference channel.
+
+| Episode | Who speaks | Why it is here |
+|---|---|---|
+| [Symmetry and abstractions](https://www.youtube.com/watch?v=gbcyRAGYssg) (49 min) | Fernando Rosas (Sussex, Imperial) | Why symmetries make good abstractions possible, and how that makes belief updating scalable |
+| [World models for RL, with triangles](https://www.youtube.com/watch?v=9JWiUkgyZ1o) (1:31) | Manuel Baltieri (Araya) | Work-in-progress on world models for acting agents, with belief-state geometry experiments and a long discussion |
+| [Tensor networks: not your grandma's DLNs!](https://www.youtube.com/watch?v=G7XjVrkoBhs) (1:11) | Zach Furman (Iliad) | Tree tensor networks as a toy model where gradient descent avoids bad local minima even for hard targets |
+| [What is the Textbook From The Future?](https://www.youtube.com/watch?v=YiK6ITvwAys) (43 min) | Daniel Chernowitz, Alexander Gietelink Oldenziel (Iliad) | A maintained, chapter-by-chapter body of AI-safety knowledge, and the audience's objections |
+| [Solomonoff Induction and Singular Integrals](https://www.youtube.com/watch?v=C5laEwZEGYg) (53 min) | William Troiani (Resolution) | Shows singular learning theory is embedded in the Solomonoff prior |
+
+Six new speakers got face photos (from their own sites, org pages or a press photo supplied by the subject) and one-line bios: Fernando Rosas, Manuel Baltieri, Zach Furman, Daniel Chernowitz, Alexander Gietelink Oldenziel and William Troiani. Held back until a verified photo or a usable caption track turns up: Dan Wilhelm (attention in small transformers), Winter Cross (fragility of value), Vaintrob and Hänni, Max Hennick, Poncini et al. and Paul Rapoport's semantic-ladder talk.
 
 ## What's new (Nov 1, 2026, 4 pm): a RAND strategy panel, Kurzweil's research lead and three more ILIAD talks
 
@@ -211,7 +225,7 @@ flowchart LR
 | **Distraction-free watching** | While a video plays on the episode page, the details, the Summary/Chapters/Claims/Numbers/Notes/Up next tabs and the binge line-up fold into one slim bar with a **Details ▾** pill (and an **Up next** pill). They come back when you click, when the episode ends, or after a pause (Never / 3 / 8 / 15 / 30 s, in Settings › Layout). "Keep open" turns it off. The reading tabs now stay on one scrollable row. |
 | **Never suggests what you watched** | Up next (queued items included), the binge line-up, Recommended, Because you watched, Just added, Home rows (latest, debates, deep dives, hearings, most viewed, short and complete) and Today's picks all leave out finished or "marked as watched" episodes. Speaker pages say **Play all unwatched** (or **Rewatch all** once you've seen everything). Library pages (Browse, Months, speaker lists) still list everything. |
 | **Read mode split** | Drag the divider between video and panel (pointer, touch, ← → keys, Home/End; double-click resets to 60/40); the width is remembered. The **›** button hides the panel and the video takes the full width; the **‹ Panel** tab on the right edge brings it back. On phones the bottom sheet's height is remembered too. |
-| **Captions** | Our own caption overlay from the stored transcripts of **all 346 episodes** (`data/captions/<id>.json`, built by `tools/caps_build.py`), synced to the player clock. Drag the captions anywhere over the video (position remembered), and set size, background opacity, colour, 1–3 lines, font and edge in **Aa** › Caption style. They always sit above the control bar. YouTube's captions are switched off while ours show. |
+| **Captions** | Our own caption overlay from the stored transcripts of **all 351 episodes** (`data/captions/<id>.json`, built by `tools/caps_build.py`), synced to the player clock. Drag the captions anywhere over the video (position remembered), and set size, background opacity, colour, 1–3 lines, font and edge in **Aa** › Caption style. They always sit above the control bar. YouTube's captions are switched off while ours show. |
 | **YouTube controls** | A **YouTube controls** button in the control bar (and Shift+Y) switches to YouTube's own player at the same moment, still playing: pick quality, use YouTube's captions and their styling. **✕ Cinema controls** brings our overlay back at the same moment. The quality menu no longer offers picks YouTube ignores; it explains and offers this switch. |
 | **Controls audit** | ← → now seek 5 s (Shift: 30 s) like YouTube, J/L 10 s; Shift+P plays the previous episode (previous chapter when there is none); Loop video in Settings; every other key (K, M, F, T, I, C, 0–9, , . < >, Shift+N…) was re-checked. |
 | **Full screen panel** | Chapters and an **In this video** transcript (grouped under each chapter, current line highlighted and followed, search box, click a line to seek) in a panel that stays open until you close it (✕, the Chapters button or Esc), never hiding with the controls. Side mode shrinks the video to fit beside it with a draggable divider; Overlay mode floats it semi-transparent; narrow or portrait screens get a bottom sheet with a drag handle. |
@@ -413,13 +427,13 @@ flowchart LR
 | Player controls | YouTube's own controls | **Custom cinema controls**: big play, ±10 s (and ±5/30 via keys), frame step when paused, speed 0.25–3× in 0.05 steps (clamped to YouTube's 2× embed limit), quality menu, volume slider, captions, A–B loop, chapter ticks + bookmarks on the seek bar, buffered bar, hover preview (time + chapter + nearest YouTube frame), sleep timer (15/30/60 min, end of chapter, end of episode), skip intro, auto-skip to the researcher in hearings, double-click/double-tap seek, touch swipe for seek and volume, `?` overlay. A "YouTube's own controls" switch is in Settings for ads or YouTube menus. |
 | Mini player | Fixed bottom-right | **Draggable anywhere** (pointer + touch), **snaps to the nearest corner**, remembers corner and size (`asfe:mini:v3`), **corner resize handle**, double-click to expand. |
 | Error handling | Message only | **Fallback card** for codes 2 / 5 / 100 / 101 / 150 / 153 and API-blocked: Open on YouTube (at your second), **Mark as watched**, Try again, Next episode. |
-| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 346 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
+| Already watched on YouTube | Not possible | **Mark as watched / unwatched** on every card, drawer, theater and the error card; **"I've watched these"** checklist of all 351 grouped by month with thumbnails and speakers, select all per month / speaker / search result, bulk mark, undo, and "watched up to mm:ss" for partial viewing; CSV import. |
 | History | Day list | **Timeline** grouped Today / Yesterday / This week / Earlier, per-session start–end, seconds, from→to, % reached, filters (played here vs marked, completed vs in progress), search, remove, undo marks, **export JSON + CSV, import JSON or CSV** (sanitised). |
 | Home | Continue row | **Continue where you left off** banner, **Recently watched** row, **daily goal ring** + streak flame. |
 | Library | Queue + favourites | **Playlists** (create, rename, reorder by drag or arrows, delete, play all, shuffle), **Watch later**, **1–5 star ratings**, **personal tags**, **context menu** (right-click or ⋯), **monthly recap** ("wrapped"), **share-card image** (canvas PNG), Focus mode with Pomodoro + do-not-disturb, headphones mode with big artwork and visualizer. |
 | Design | Amber/teal glass | **Animated aurora background**, 6 accent themes (amber, teal, emerald, sky, coral, lime) + optional violet/rose, gradient-border glass cards, hover lift + thumbnail zoom + animated chapter preview + avatar fan-out, staggered entrance, view transitions, confetti, Inter + Manrope, **thin accent scrollbars**, carousels with arrow buttons, snap and edge fades. |
 | Brand | Placeholder shield tile | **New logo mark + wordmark** (aperture ring with a spark and play glyph), `favicon.svg`, `favicon.ico` (16/32/48), Apple touch icon, PWA 192/512 + maskable, `manifest.webmanifest`, 1200×630 Open Graph image. |
-| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 346), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 346 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
+| Delivery | 9 separate scripts, client-only render | **Pre-rendered HTML** (hero, stats, 24 cards, `<noscript>` list of all 351), critical CSS inline, one minified deferred bundle, JSON-LD (WebSite + ItemList of 351 VideoObjects), `sitemap.xml` with video entries, `robots.txt`, strict CSP, no inline handlers, splash + progress bar. |
 | Storage | `:v2` keys | **Schema 3** (`:v3` keys). v1 and v2 keys stay untouched as backups. |
 
 ## The cinema player
@@ -524,7 +538,7 @@ flowchart LR
 
 ## A taste of the library
 
-Three of the biggest episodes from each month (click to open on YouTube; every one of the 346 plays inside the app):
+Three of the biggest episodes from each month (click to open on YouTube; every one of the 351 plays inside the app):
 
 <table>
 <tr>
@@ -626,8 +640,8 @@ Every one of the 292 speakers has a photo in `assets/speakers/<slug>.jpg`, mappe
 | July 2026 | 51 | 50.5 | chapters parsed from timestamped topics |
 | August 2026 | 69 | 83.2 | chapters parsed from timestamped topics |
 | September 2026 | 108 | 102.5 | includes the Sep 27–30 items that were "just outside" in v1, and the IPAM and Post-AGI workshop talks |
-| October 2026 | 118 | 142.9 | richest: hand-written chapters, quotes, numbers, tags, level, views |
-| **Total** | **346** | **379.1** | 104 release days · 3,863 chapters |
+| October 2026 | 123 | 148.0 | richest: hand-written chapters, quotes, numbers, tags, level, views |
+| **Total** | **351** | **384.2** | 104 release days · 3,938 chapters |
 
 ## Architecture
 
@@ -785,7 +799,7 @@ ai-safety-full-episodes/
 ├── sw.js                   offline-friendly service worker (cache bumped for this update)
 ├── manifest.webmanifest    installable PWA (standalone, maskable icon, shortcuts)
 ├── favicon.svg · favicon.ico · apple-touch-icon.png
-├── robots.txt · sitemap.xml   (sitemap includes video entries for all 346)
+├── robots.txt · sitemap.xml   (sitemap includes video entries for all 351)
 ├── README.md               this file
 ├── assets/
 │   ├── app.min.css         minified app.css + v3.css (what the page loads)
@@ -811,7 +825,7 @@ ai-safety-full-episodes/
 │   ├── cover.jpg
 │   └── speakers/           283 face photos + neutral.svg (one per speaker, verified)
 └── data/
-    ├── episodes.json       346 verified full episodes, Jul–Oct 2026
+    ├── episodes.json       351 verified full episodes, Jul–Oct 2026
     ├── roster.json         curated researchers with bios
     ├── photos.json         name → photo file
     ├── manifest.json       daily files to merge
@@ -872,6 +886,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-11-01 | 20:00 sweep: 5 new transcript-verified ILIAD III talks (Rosas, Baltieri, Furman, Chernowitz and Gietelink Oldenziel, Troiani), 6 new speaker photos and bios (351 episodes total) |
 | 2026-11-01 | 16:00 sweep: 5 new transcript-verified episodes (RAND on superintelligence strategy, John-Clark Levin, Ari Brill, Ebtekar and Sutherland, Eisenstat part 2), 6 new speaker photos, header date refreshed, and the "New today · added <date>" chip now reads the date from the upload timestamp (346 episodes total) |
 | 2026-11-01 | 12:00 sweep: 5 new transcript-verified ILIAD III talks (Daniel Murfet, Sam Eisenstat, Abram Demski, Rubi Hudson, Cole Wyeth), 4 new speaker photos (341 episodes total) |
 | 2026-11-01 | Deep sweep: 9 new transcript-verified episodes (Luke Muehlhauser on 80,000 Hours, Connor Leahy on Carnegie, Andrew Critch, Olle Häggström, Stephen Casper, Aaron Roth L17, three ILIAD talks), 5 new speaker photos (336 episodes total) |
@@ -879,7 +894,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 | 2026-10-30 | Two more ILIAD conference sessions: Jacob Hilton (ARC) on exhaustive interpretability and the Yudkowsky & Geoffrey Irving debate (327 episodes total) |
 | 2026-10-28 | **Clean paused picture + one chapters panel**: pausing (mini and every other mode) no longer paints a black band over the top of the video: a soft frosted fade softens YouTube's own paused title strip, and ☰ / ✕ float on a light scrim only on hover; Chapters is one surface everywhere: the reading panel split beside the video (drag / touch / keys, double-click reset, collapse handle, remembered width; bottom sheet on phones), switching to its Chapters tab when it is already open, the full screen side panel in full screen; the floating Chapters popup that doubled the list is gone. Real-Firefox checks for both at five widths. |
 | 2026-10-28 | **Live QA follow-up (evening)**: a real-browser pass on the deployed build found the episode title rendered up to three times in the windowed player (toolbar, in-video overlay, details heading). Now exactly one title shows in every mode combination: the heading under the video (or the calm bar while playing); full screen and the mini player keep their own. The Focus timer pill fades with the controls in full screen. With our transcript captions on, the cinema embed no longer forces YouTube's own captions (`cc_load_policy=0`) and re-unloads them shortly after playback starts, so a CC preference remembered from YouTube's controls can't stack a second caption layer. New real-browser check counts the visibly rendered titles after every mode toggle at 390/768/1024/1920 px. |
-| 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 346 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
+| 2026-10-28 | **Calmer watching, real captions, resizable reading, look-and-feel panel**: every player mode combination renders cleanly (no doubled title, no clipped control bar, captions above the bar); distraction-free watching folds details, tabs and the line-up into a Details pill while playing; suggestions never include watched episodes; Read-mode divider (drag, keys, double-click reset, collapse + restore); our own draggable, styleable captions from the transcripts of all 351 episodes; a one-click YouTube controls switch for quality and native captions; ← → 5 s, Shift+P previous episode, Loop video; a full screen Chapters + In this video transcript panel that stays open, beside or over the video or as a sheet; animated sun ⇄ moon toggle; header Settings dropdown (Theme, Background, Fonts, Layout, Motion); 10 font pairings + text size; 30 backgrounds with palettes, density, vignette, grain, parallax, cursor effects, presets, Randomize and saved looks; redesigned shortcuts overlay; GitHub icon; page-shaped skeletons; colour-coded cards; 410-check jsdom test + real-browser checks at 6 widths. |
 | 2026-10-28 | **A year in AI safety, a 1-vs-10 debate and an Oxford governance panel**: 6 new verified full episodes (336 total; Oct 97; about 353.7 hours) with Jakub Kryś, Roman Yampolskiy, Robert Trager with Lisa Klaassen, Luise Eder and Miro Pluckebaum, Aaron Roth (Lecture 15), Cameron Berg and Zachary Horvitz; 7 new speakers with verified photos and bios; captions for every new episode. |
 | 2026-10-28 | **CMU alignment workshop + a lab founder**: 7 new verified full episodes (319 total; Oct 91; about 344.6 hours) with Vincent Conitzer, Aran Nayebi, Ben Levinstein and Daniel Herrmann, Bryan Wilder, Sven Neth, Aydin Mohseni (six talks from the CMU AI Agency & Interpretability Workshop) and Judd Rosenblatt (AE Studio); 8 new speakers with verified photos and bios; Just added row now spans Oct 25–28; 342-check test. |
 | 2026-10-28 | **History, backgrounds, Read mode, Binge, chapters everywhere, no autoplay on open**: History grouped by episode (toggle to every session) with honest numbers (real start/end, reached = furthest really played, completed only at 90 %+) and a one-time repair of stored sessions; no Home flash when reloading another page; 15 backgrounds with intensity/blur/speed/hue/accent controls and your own image; theme tiles are buttons that apply in place; Read mode (60/40 + phone bottom sheet), scroll-linked mini transition, Binge line-up with 5 s Up next, shuffle, repeat, Shift+N/P; Top speakers strip and topic cloud; responsive pass at 6 widths; episodes open paused (only a completed countdown starts the next one; 15 s default, 5–60 s setting); Chapters button and drawer in every player state with sticky headers; coverage strip + first unwatched part (U); colourful animated buttons and headings; 342-check jsdom test + real-browser checks. |
