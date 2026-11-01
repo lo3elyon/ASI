@@ -219,6 +219,7 @@
       flush();
     }
     showUI();
+    syncTimers();
     try { document.dispatchEvent(new CustomEvent("asfe:state", { detail: s })); } catch (x) {}
     if (s === 0) onEnded();
   }
@@ -294,8 +295,18 @@
     A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(P.cur.id);
   }
   function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
-  setInterval(() => { tick(false); pomoTick(); }, 1000);
-  setInterval(() => { if (!P.yt || !P.ready || !P.cur || dock().classList.contains("pv-hover-ctl")) return; let t; try { if (P.yt.getPlayerState() !== 1) return; t = P.yt.getCurrentTime(); } catch (x) { return; } if (typeof t === "number" && !isNaN(t)) paintProgress(t); }, 250);
+  /* timers run only while they have work: one 250 ms beat while a video plays (progress bar every beat, the watch clock
+   * every 4th), the Focus timer once a second only while Focus is on, and a cheap 3 s check (reads the player state, writes
+   * nothing) that catches a play the state event missed. Paused or closed, the page does no timed work. */
+  const PT = { iv: 0, n: 0, pomo: 0 };
+  function progBeat() { if (!P.yt || !P.ready || !P.cur || dock().classList.contains("pv-hover-ctl")) return; let t; try { if (P.yt.getPlayerState() !== 1) return; t = P.yt.getCurrentTime(); } catch (x) { return; } if (typeof t === "number" && !isNaN(t)) paintProgress(t); }
+  function syncTimers() {
+    if (P.playing && !PT.iv) { PT.n = 0; PT.iv = setInterval(() => { PT.n++; if (PT.n % 4 === 0) tick(false); else progBeat(); }, 250); }
+    else if (!P.playing && PT.iv) { clearInterval(PT.iv); PT.iv = 0; }
+    if (P.pomo && !PT.pomo) PT.pomo = setInterval(() => { pomoTick(); if (!P.pomo) { clearInterval(PT.pomo); PT.pomo = 0; } }, 1000);
+    else if (!P.pomo && PT.pomo) { clearInterval(PT.pomo); PT.pomo = 0; }
+  }
+  setInterval(() => { if (PT.iv || !P.yt || !P.ready || !P.cur || document.hidden) return; let s; try { s = P.yt.getPlayerState(); } catch (x) { return; } if (s === 1 && !P.playing) { P.playing = true; document.body.classList.add("is-playing"); P.lastMedia = null; syncTimers(); } }, 3000);
   window.addEventListener("pagehide", () => { tick(true); flush(); });
   // Never pause when the tab is hidden or the window is minimised: only save progress.
   document.addEventListener("visibilitychange", () => { if (document.hidden) { tick(true); flush(); } });
@@ -823,6 +834,7 @@
       P.pomo = { phase: "focus", until: Date.now() + 25 * 60e3 };
       A.ui.toast("Focus mode: notifications paused, 25-minute Focus timer started. Esc or Z to leave.", { icon: "🧘", force: true, ms: 3500 });
     } else { P.dnd = false; P.pomo = null; }
+    syncTimers();
     if (!on) P.chShow = false;
     paintPomo(); paintAmbient();
     relayout(); syncChBtns(); if (A.studio && A.studio.split) A.studio.split.place();
