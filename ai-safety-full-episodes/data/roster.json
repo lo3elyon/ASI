@@ -712,5 +712,47 @@
   "org": "AIXI Labs",
   "group": "academics",
   "bio": "University of Waterloo PhD student and founder of AIXI Labs, working on AIXI, algorithmic information theory and agent foundations for AI safety."
+ },
+ {
+  "name": "John-Clark Levin",
+  "photo": "john-clark-levin.jpg",
+  "org": "Kurzweil Technologies",
+  "group": "academics",
+  "bio": "Head of research for Ray Kurzweil and Cambridge PhD candidate who studies AGI timelines, catastrophic risk and safety, and has taken the AGI case to the Vatican."
+ },
+ {
+  "name": "Joel Predd",
+  "photo": "joel-predd.jpg",
+  "org": "RAND",
+  "group": "policy",
+  "bio": "Director of RAND's Center for the Geopolitics of AGI and senior engineer, lead author of its work on US strategy on the path to superintelligence."
+ },
+ {
+  "name": "Benjamin Boudreaux",
+  "photo": "benjamin-boudreaux.jpg",
+  "org": "RAND",
+  "group": "policy",
+  "bio": "RAND policy researcher and professor at the RAND School of Public Policy working on ethics, human agency and the transition to advanced AI."
+ },
+ {
+  "name": "Matt Chessen",
+  "photo": "matt-chessen.jpg",
+  "org": "RAND",
+  "group": "policy",
+  "bio": "Former US diplomat and State Department AI lead, now a resident technical expert at RAND's Center for the Geopolitics of AGI."
+ },
+ {
+  "name": "Ari Brill",
+  "photo": "ari-brill.jpg",
+  "org": "Principles of Intelligence (PIBBSS)",
+  "group": "orgs",
+  "bio": "Astrophysicist turned AI safety researcher who leads the Data Models and Validation team of the PIRAMID interpretability program at Principles of Intelligence."
+ },
+ {
+  "name": "Danica Sutherland",
+  "photo": "danica-sutherland.jpg",
+  "org": "University of British Columbia",
+  "group": "academics",
+  "bio": "UBC assistant professor and Canada CIFAR AI Chair working on machine-learning theory and representation learning, co-presenting on Solomonoff induction at ILIAD."
  }
 ]
