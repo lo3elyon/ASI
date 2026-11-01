@@ -73,7 +73,7 @@ function parse() {
 function route() {
   scrollMem.set(lastHash, window.scrollY); lastHash = location.hash;
   const r = parse();
-  const views = { '': home, videos, researchers, r: profile, v: video, paths, path, glossary, me, about };
+  const views = { '': home, 'my-list': me, list: me, videos, researchers, r: profile, v: video, paths, path, glossary, me, about };
   const fn = views[r.name] || notFound;
   document.querySelectorAll('[data-nav]').forEach((a) => a.toggleAttribute('aria-current', a.dataset.nav === r.name || (r.name === 'r' && a.dataset.nav === 'researchers') || (r.name === 'v' && a.dataset.nav === 'videos') || (r.name === 'path' && a.dataset.nav === 'paths')));
   if (fn === home) { root.classList.remove('rt'); app.innerHTML = ''; document.title = 'AI Safety Researcher Library: learn from the researchers themselves'; }
@@ -98,7 +98,7 @@ function yearOpts() {
   return [...ds.map((d) => ['d' + d, `${d}s`]), ...ys.map((y) => ['y' + y, String(y)])];
 }
 const DURS = [['s', 'Under 30 min'], ['m', '30–60 min'], ['l', '1–2 hours'], ['x', 'Over 2 hours']];
-const SORTS = [['new', 'Newest'], ['old', 'Oldest'], ['long', 'Longest'], ['short', 'Shortest'], ['rel', 'Best match']];
+const SORTS = [['new', 'Newest'], ['old', 'Oldest'], ['long', 'Longest'], ['short', 'Shortest']];
 let vstate = null;
 function videos(r) {
   setTitle('Videos');
@@ -115,7 +115,7 @@ function videos(r) {
    <label><span>Path</span><select name="p">${opts(M.paths.map((p, i) => [i, p.n]), st.p, 'Any path')}</select></label>
    <label><span>Year</span><select name="y">${opts(yearOpts(), st.y, 'Any year')}</select></label>
    <label><span>Length</span><select name="d">${opts(DURS, st.d, 'Any length')}</select></label>
-   <label><span>Sort</span><select name="s">${opts(SORTS, st.s, st.q ? 'Best match' : 'Newest')}</select></label>
+   <label><span>Sort</span><select name="s">${opts(SORTS, st.s, 'Default (newest, or best match when searching)')}</select></label>
    <button class="btn sm" type="button" data-act="reset">Reset</button>
   </form>
   <p class="count" id="vc"></p><div class="grid vg" id="vr"></div><p class="more"><button class="btn" type="button" id="vm" hidden>Load more</button></p></section>`;
@@ -314,7 +314,7 @@ function about() {
   const fc = by((c) => VS.forEach((v) => c[v.f]++), M.formats.length);
   const ap = VS.filter((v) => v.ap).length, tr = VS.filter((v) => v.tr).length;
   const yrs = VS.map((v) => v.year);
-  const src = (u) => /^https:\/\//.test(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(new URL(u).hostname.replace(/^www\./, ''))}</a>` : (u ? esc(u) : 'initials, no verified photo yet');
+  const src = (u) => u && /^https:\/\//.test(u) ? `<a href="${esc(u)}" target="_blank" rel="noopener noreferrer">${esc(new URL(u).hostname.replace(/^www\./, ''))}</a>` : (u ? esc(u) : 'initials, no verified photo yet');
   app.innerHTML = `<section class="wrap sec narrow"><h1>About this library</h1>
   <p class="lede2">A free, fast place to learn AI safety directly from the researchers: ${VS.length} videos with ${RS.length} people, ${Math.min(...yrs)}–${Math.max(...yrs)}.</p>
   <h2>What is included</h2><ul class="kf"><li><b>Full appearances only.</b> Complete talks, lectures, podcast episodes, interviews, debates, panels and hearings of at least about 10 minutes. No clips, shorts, reaction channels or AI-narrated re-uploads.</li><li><b>Researchers speak in their own voice.</b> Each video is listed under the people who actually speak in it at length.</li><li><b>Checked.</b> Who speaks was verified from YouTube metadata and descriptions (${VS.length - tr} videos) or from the transcript (${tr} videos).</li><li><b>Honest dates.</b> ${ap} videos have an approximate date, shown with a ~ (for example “~2023”).</li></ul>
