@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-433%2F433%20passing-10b981?style=flat-square&labelColor=07111f" alt="433 of 433 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-443%2F443%20passing-10b981?style=flat-square&labelColor=07111f" alt="443 of 443 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -45,7 +45,50 @@
 
 ## Contents
 
-[5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Performance modes, Nov 1 night](#whats-new-nov-1-2026-night-performance-modes-a-cool-gpu-by-default) · [5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Nov 1, 2026, night): Performance modes: a cool GPU by default
+
+The page used to keep a laptop GPU busy even when nothing was happening: the default **Aurora** background drifted three 60vmax circles under an 80 px blur, and about 80 cards and pills on screen used `backdrop-filter`, so the whole screen was re-blurred and redrawn about 60 times a second. On top of that, a dozen headings ran an endless sheen, and the player woke up four times a second even while paused. Now the app is still when you are.
+
+**New: Settings → Performance** (the gear in the header, and on the Settings page):
+
+| Mode | What you get |
+|---|---|
+| 🔋 **Battery saver** | Still background, no glass blur, no tilt or looping effects. A background you picked keeps a still frame when you choose this mode yourself |
+| **Balanced** (default) | Static gradient background, effects on hover and click only, glass blur only on small pop-ups (menus, toasts, the Settings panel). Animated backgrounds are opt-in |
+| ✨ **Full effects** | Everything as before: drifting aurora, sheens, glows, every animation |
+| **Auto** (the starting choice) | Battery saver when your system asks for reduced motion, Data saver is on, the device has little memory or few CPU cores, or the Battery API says you are on battery; otherwise Balanced |
+
+```mermaid
+flowchart LR
+  A[Auto] -->|reduced motion · Data saver · ≤ 2 GB or ≤ 2 cores · on battery| S[Battery saver]
+  A -->|otherwise| B[Balanced]
+  U[Your pick in Settings] --> S & B & F[Full effects]
+  P[Your picked background] -->|kept in every mode| BG[Moves in Balanced / Full · capped at 30 fps]
+  BG -->|tab hidden · window in background · episode page on top · full-screen video| Z[Paused, zero frames]
+```
+
+**Nothing was removed.** Every background (canvas, CSS, photo, video), preset, the 3D tilt, confetti and all hover effects are still there. Only the defaults changed: if you had already picked a background yourself, it stays and keeps moving. A one-time tip points to the new setting.
+
+**What changed under the hood**
+- Balanced and Battery saver draw the default background as a static gradient (no canvas, no video, no animation); `will-change` is gone from it.
+- No infinite CSS animations outside Full effects: headings sheen once on hover, the "live" dots pulse three times, the theme-toggle star and GitHub ring animate on hover only. In every mode, looping animations pause in sections that are off screen (IntersectionObserver), and the hover chapter ticker only runs while its card is hovered.
+- Animated backgrounds: at most 30 fps (20 in low power), drawn at 1× pixel density, and the loop stops completely (zero callbacks) while the tab is hidden, the window is in the background, the episode page covers it or a video plays in full screen. Background videos pause in the same cases. Film-grain and vignette layers only exist when turned up.
+- Player timers run only while a video plays (one 250 ms beat); paused or closed, the page does no timed work.
+- Long lists: cards in Library grids, Home shelves below the fold and History rows use `content-visibility: auto`, so the browser skips layout and paint for what is off screen (Library still pages 48 at a time; History 50 rows at a time).
+
+**Measured** (headless Chromium, 1366×800, fresh profile, 6 s idle windows; Battery saver in brackets because Auto picks it on the 2-core test machine; "0 changes" = the layer tree did not change at all during the window):
+
+| Page (idle, default settings) | Browser CPU, % of one core: before → Balanced (Battery saver) | GPU process | Frames drawn / s | rAF callbacks / s | Looping animations | Blurred glass layers on screen | Compositor layers |
+|---|---|---|---|---|---|---|---|
+| Home | 113 % → **15 %** (32 %) | 92 % → **2 %** | 54 → **4** | 0 → **0** | 18 → **0** | 81 → **0** | 438 → **37** |
+| Library | 113 % → **2 %** (2 %) | 99 % → **0 %** | 58 → **0** | 0 → **0** | 7 → **0** | 20 → **0** | 214 → **0 changes** |
+| History | 102 % → **3 %** (2 %) | 96 % → **0 %** | 57 → **0** | 0 → **0** | 7 → **0** | 3 → **0** | 22 → **0 changes** |
+| Episode, paused | 128 % → **10 %** (5 %) | 95 % → **0 %** | 74 → **0** | 0 → **0** | 19 → **0** | 82 → **1** | 454 → **0 changes** |
+| Episode, playing | 124 % → **11 %** (41 %) | 95 % → **1 %** | 58 → **10** | 0 → **0** | 18 → **0** | 82 → **1** | 447 → **45** |
+
+**Tests:** `smoke3.js` 443/443 (new: default mode is never Full effects, Performance tab, Full / Battery saver / Balanced / Auto, picked backgrounds kept, CSS and boot checks), new `smoke_perf.py` in real Chromium (zero rAF callbacks, zero looping animations and no DOM writes at idle on Home, Library, History and a paused episode with default settings; Full effects brings the aurora back; a picked canvas background runs at ≤ 30 fps and stops while the episode page covers it), plus `smoke_v9.js`, `smoke_mini.py` and `smoke_qa.py`.
 
 ## What's new (Nov 1, 2026, 8 pm): five more ILIAD III talks on abstraction, world models and learning theory
 
@@ -269,7 +312,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-433%2F433%20passing-10b981?style=flat-square&labelColor=07111f" alt="433 of 433 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-443%2F443%20passing-10b981?style=flat-square&labelColor=07111f" alt="443 of 443 checks passing">
 </p>
 
 | Area | What changed |
@@ -886,6 +929,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-11-01 | **Performance modes**: Settings → Performance (Auto / Battery saver / Balanced / Full effects); Balanced by default with a static gradient background, no looping animations and glass blur only on small pop-ups; animated backgrounds opt-in, capped at 30 fps, paused when hidden / covered / full screen; player timers only while playing; content-visibility for long lists; idle GPU near zero; Andrea Miotti photo corrected |
 | 2026-11-01 | 20:00 sweep: 5 new transcript-verified ILIAD III talks (Rosas, Baltieri, Furman, Chernowitz and Gietelink Oldenziel, Troiani), 6 new speaker photos and bios (351 episodes total) |
 | 2026-11-01 | 16:00 sweep: 5 new transcript-verified episodes (RAND on superintelligence strategy, John-Clark Levin, Ari Brill, Ebtekar and Sutherland, Eisenstat part 2), 6 new speaker photos, header date refreshed, and the "New today · added <date>" chip now reads the date from the upload timestamp (346 episodes total) |
 | 2026-11-01 | 12:00 sweep: 5 new transcript-verified ILIAD III talks (Daniel Murfet, Sam Eisenstat, Abram Demski, Rubi Hudson, Cole Wyeth), 4 new speaker photos (341 episodes total) |
