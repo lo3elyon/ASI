@@ -11,7 +11,8 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
-<a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/New-Threshold%20Round%203%3A%2025%20routes%2C%203D%20library%2C%20offline-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Researcher%20Library%3A%20844%20videos%2C%20152%20researchers-10b981?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Researcher Library"></a>
+<a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/Threshold-Threshold%20Round%203%3A%2025%20routes%2C%203D%20library%2C%20offline-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
 <a href="#05-watch"><img src="https://img.shields.io/badge/Videos-1%2C741%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="1,741 videos"></a>
 
 <img src="https://img.shields.io/badge/HTML5-single%20file%20pages-f97316?style=flat-square&logo=html5&logoColor=white&labelColor=07111f" alt="HTML5">
@@ -22,6 +23,7 @@
 <img src="https://img.shields.io/badge/reduced%20motion-respected-22d3ee?style=flat-square&labelColor=07111f" alt="Reduced motion respected">
 <img src="https://img.shields.io/badge/watch%20history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="Watch history stays in the browser">
 <img src="https://img.shields.io/badge/AI%20safety%20episodes-325%20(Jul%E2%80%93Oct)-f59e0b?style=flat-square&labelColor=07111f" alt="325 full episodes">
+<img src="https://img.shields.io/badge/researcher%20library-152%20people%20%C2%B7%20844%20videos-10b981?style=flat-square&labelColor=07111f" alt="Researcher library">
 <img src="https://img.shields.io/github/last-commit/lo3elyon/ASI?style=flat-square&color=14b8a6&labelColor=07111f" alt="Last commit">
 <img src="https://img.shields.io/github/repo-size/lo3elyon/ASI?style=flat-square&color=f59e0b&labelColor=07111f" alt="Repo size">
 
@@ -60,7 +62,7 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/5-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/6-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes, AI Safety Researcher Library</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/1%2C741-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides, a 325-episode library app and a 1,375-video ASI watch room</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
@@ -78,6 +80,7 @@ flowchart LR
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
     L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>351 eps, cinema player, Today's picks, Explore"]
+    L --> E10["AI Safety Researcher Library<br/>/ai-safety-researcher-library/<br/>152 researchers, 844 videos, paths, glossary"]
     L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>218 researchers, 1,386 signers, 25 routes, 3D library, offline"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
     L -.-> E3["How LLMs work<br/>coming soon"]
@@ -90,7 +93,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6,E7,E8,E9 live
+    class E1,E6,E7,E8,E9,E10 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -129,6 +132,12 @@ flowchart LR
 <b>Jacob Coxon on YouTube</b><br>
 <sub>20 hour-plus videos, role filter chips, search and a "Does he speak?" line on every card.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="92%" alt="Jacob Coxon on YouTube hero"></a>
+
+<br><br>
+
+<b>AI Safety Researcher Library</b><br>
+<sub>844 full talks, podcasts and debates with 152 AI safety researchers: round-photo directory, profiles, 9 video filters, six learning paths with progress, a 29-term glossary, lite YouTube player, light/dark. Built to stay cool: zero idle animation loops.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="assets/ai-safety-researcher-library.jpg" width="92%" alt="AI Safety Researcher Library: title and researcher portraits"></a>
 
 <br><br>
 
@@ -218,6 +227,13 @@ flowchart LR
 <td><sub>Story of his resignation and NYC Council testimony, 6 stat figures, colour-coded role legend, filter chips (Guest, Testimony, Clips, About him, Unverified), live search, 20 video cards with thumbnails, timestamps and summaries, caveats, every link</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
+</tr>
+<tr>
+<td><a href="ai-safety-researcher-library/"><code>/ai-safety-researcher-library/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><b>AI Safety Researcher Library</b></a><br><sub>A YouTube-like library of 844 full appearances (talks, lectures, podcasts, debates, panels, hearings, 2010–2026) where 152 AI safety, alignment and AI control researchers speak in their own words</sub></td>
+<td><sub>Prerendered home with What is AI safety?, Start here, featured researchers, topic and group browsing; researcher directory with round photos, filters and A–Z; profiles; videos with 9 filters and search across summaries; lite youtube-nocookie player (iframe only on click); 6 learning paths with progress; 29-term glossary; watch later, watched, history with export/import; light/dark; strict CSP, JSON-LD, zero idle rAF</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-11-01</sub></td>
 </tr>
 <tr>
 <td><a href="ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a></td>
@@ -759,6 +775,33 @@ flowchart LR
 
 <img src="docs/readme/divider.svg" width="100%" alt="">
 
+<a id="04f-researcher-library"></a>
+<h2>04f. Deep dive: AI Safety Researcher Library</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="assets/ai-safety-researcher-library.jpg" width="100%" alt="AI Safety Researcher Library"></a></td>
+<td valign="top">
+<img src="https://img.shields.io/badge/type-video%20library-10b981?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Nov%201%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/researchers-152-1d4ed8?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/videos-844-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/hours-1,131-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/JS-~11%20KB%20gz-facc15?style=flat-square&labelColor=07111f" alt=""><br><br>
+A calm, fast place to learn AI safety <b>directly from the researchers</b>: 844 full appearances (no clips) organised by person, topic and learning path, across five research groups (Pioneers &amp; academics 29, Frontier lab safety teams 42, Control &amp; evals orgs 39, Policy &amp; communicators 37, Teaching &amp; explainers 5). Formats: 408 podcasts, 205 talks, 85 interviews, 71 lectures, 30 panels, 28 debates, 10 courses, 7 hearings. Performance comes first: prerendered HTML, a lite YouTube facade that creates one youtube-nocookie iframe only on click, lazy images, paginated grids, system fonts and <b>no idle animation loops</b>. Who speaks is verified from YouTube metadata or transcripts; 647 approximate dates are marked with ~. Its own <a href="ai-safety-researcher-library/README.md">README</a> covers pages, data, method and limits.
+</td>
+</tr>
+</table>
+
+```mermaid
+flowchart LR
+    H["Home<br/>prerendered"] --> RD["Researchers<br/>152 round photos, filters, A–Z"]
+    H --> VL["Videos<br/>844, 9 filters, search"]
+    H --> LP["6 learning paths<br/>progress in localStorage"]
+    H --> GL["Glossary<br/>29 terms"]
+    RD --> PR["Profile<br/>bio, links, videos"]
+    VL --> VP["Video page<br/>lite player, summary, related"]
+    PR --> VP
+    LP --> VP
+    classDef a fill:#063b33,stroke:#14b8a6,color:#e6f6ff
+    class H,RD,VL,LP,GL,PR,VP a
+```
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -946,7 +989,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -960,6 +1003,11 @@ ASI/
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
 ├── future-of-asi/             Threshold: route on the future of ASI, 218 researchers, 1,375 videos, explosion/, library/, shared/, 10 unit course, tools, blog, docs
+├── ai-safety-researcher-library/  learning library route: 152 researchers, 844 full videos, paths, glossary, lite player
+│   ├── index.html  og.jpg  favicon.svg  sitemap.xml  README.md
+│   ├── assets/                app.js  app.css
+│   ├── data/                  researchers.json  videos.json  details.json
+│   └── photos/                152 headshots (240×240)
 ├── ai-safety-full-episodes/   web app route: 351 full AI safety episodes Jul–Oct 2026, Just added row, cinema player, Today's picks, Explore, 31 themes, speaker hub with 287 face photos, heatmaps
 │   ├── index.html             pre-rendered, SEO tags, JSON-LD, CSP
 │   ├── manifest.webmanifest  favicon.svg  favicon.ico  apple-touch-icon.png  robots.txt  sitemap.xml  sw.js
@@ -1155,6 +1203,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-11-01</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><b>AI Safety Researcher Library</b></a> at <code>/ai-safety-researcher-library/</code>: 844 full talks, podcasts, lectures and debates (2010–2026) with 152 AI safety, alignment and AI control researchers, merged and de-duplicated from five research sets; researcher directory and profiles with photos, 9 video filters and summary search, lite youtube-nocookie player, six learning paths with progress, 29-term glossary, watch later/watched/history with export, light/dark, prerendered HTML, JSON-LD, sitemap, strict CSP, ~11 KB gz JS and zero idle animation loops.</td></tr>
 <tr><td><sub>2026-11-01</sub></td><td><b>AI Safety Full Episodes: 5 more episodes added</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a> (351 in all, 20:00 sweep): five ILIAD III talks (Fernando Rosas on symmetry and abstraction, Manuel Baltieri on world models, Zach Furman on tree tensor networks, the Textbook from the Future session, William Troiani on Solomonoff induction and singular learning theory), with captions, chapters and 6 new speaker photos.</td></tr>
 <tr><td><sub>2026-11-01</sub></td><td><b>AI Safety Full Episodes: 5 more episodes added</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a> (346 in all, 16:00 sweep): RAND's Predd, Boudreaux and Chessen on superintelligence strategy, John-Clark Levin on AGI risk, Ari Brill on interpretability data models, Ebtekar and Sutherland on Solomonoff induction and Sam Eisenstat part 2, with captions, chapters and 6 new speaker photos.</td></tr>
 <tr><td><sub>2026-11-01</sub></td><td><b>AI Safety Full Episodes: 5 ILIAD III talks added</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a> (341 in all): Daniel Murfet on patterning, Sam Eisenstat on condensation, Abram Demski on boundedly rational trust, Rubi Hudson on decision-relevant predictions and Cole Wyeth on algorithmic ambiguity, with captions, chapters and 4 new speaker photos.</td></tr>
