@@ -190,7 +190,7 @@
   document.addEventListener("asfe:layout", () => { paint(true); placeSplit(); dfSync(); });
   document.addEventListener("click", (ev) => { const m = $("#ccxPanel"); if (m && !m.hidden && !ev.target.closest("#ccxPanel") && !ev.target.closest("[data-ccx=style]") && !ev.target.closest('[data-pc="ccstyle"]') && !ev.target.closest('[data-pc="settings"]')) m.hidden = true; });
   /* a seek repaints straight away, even when paused */
-  setInterval(() => { if (CC.el && !CC.el.hidden && P() && !P().playing) paint(); }, 500);
+  setInterval(() => { if (CC.el && !CC.el.hidden && !document.hidden && P() && P().cur && !P().playing) paint(); }, 500);
   loadIndex();
 
   /* ================================================================ distraction-free watching */
