@@ -1,5 +1,185 @@
 [
  {
+  "id": "zttXBCN-2Oc",
+  "title": "This Law Bans Superintelligent AI",
+  "channel": "Carnegie Endowment",
+  "show": "The World Unpacked (Carnegie Endowment for International Peace)",
+  "date": "2026-10-30",
+  "approx": false,
+  "duration": "1:10:52",
+  "speakers": [
+   {
+    "name": "Connor Leahy",
+    "affiliation": "ControlAI (US Executive Director); co-founder, Conjecture"
+   }
+  ],
+  "names": [
+   "Connor Leahy"
+  ],
+  "format": "podcast interview",
+  "summary": "On Carnegie's The World Unpacked, Connor Leahy explains why he moved from building GPT-2 replicas to building a political movement to prohibit superintelligence, which he calls an adversary rather than a tool. He takes the host inside his meetings with members of Congress, saying he can persuade people the problem is real as fast as he can explain it, and compares industry tactics to Big Tobacco. He sketches what a ban would look like, including criminal penalties on the order of nuclear-weapons offences, chip supply-chain choke points and a US–China deal, while insisting he is not against AI in general.",
+  "topics": [
+   "0:00:02 Cold open: superintelligence is an adversary",
+   "0:02:07 Seeing GPT-2 and a teenage worry",
+   "0:06:38 From technical problem to political problem",
+   "0:08:53 Why alignment research will not be enough",
+   "0:13:07 First priority: prohibit superintelligence",
+   "0:19:33 How close is enforceable legislation?",
+   "0:23:55 Not against AI, against superintelligence",
+   "0:26:04 AI is grown, not written",
+   "0:32:33 Persuading Congress, one meeting at a time",
+   "0:41:10 Industry playing the tobacco playbook",
+   "0:43:23 What penalties a ban needs",
+   "0:54:16 Building political power",
+   "0:58:29 Military AI versus superintelligence",
+   "1:05:11 Could the US and China agree to stop?",
+   "1:07:14 Choke points, enforcement and what you can do"
+  ],
+  "evidence": "[0:00:22] Connor Leahy: \"Superintelligence is not a tool. It's not a weapon. It's an adversary.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=zttXBCN-2Oc",
+  "thumb": "https://i.ytimg.com/vi/zttXBCN-2Oc/hqdefault.jpg",
+  "level": "Intro",
+  "why_watch": "The clearest current case for a legal ban on superintelligence, from the person lobbying Congress for it, on a mainstream foreign-policy think tank's show.",
+  "tags": [
+   "superintelligence ban",
+   "ControlAI",
+   "AI policy",
+   "Congress",
+   "loss of control",
+   "compute governance",
+   "US-China",
+   "advocacy"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "ControlAI",
+   "Carnegie Endowment for International Peace",
+   "OpenAI",
+   "Anthropic",
+   "Open Philanthropy"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "title": "Cold open: superintelligence is an adversary"
+   },
+   {
+    "t": "0:02:07",
+    "seconds": 127,
+    "title": "Seeing GPT-2 and a teenage worry"
+   },
+   {
+    "t": "0:06:38",
+    "seconds": 398,
+    "title": "From technical problem to political problem"
+   },
+   {
+    "t": "0:08:53",
+    "seconds": 533,
+    "title": "Why alignment research will not be enough"
+   },
+   {
+    "t": "0:13:07",
+    "seconds": 787,
+    "title": "First priority: prohibit superintelligence"
+   },
+   {
+    "t": "0:19:33",
+    "seconds": 1173,
+    "title": "How close is enforceable legislation?"
+   },
+   {
+    "t": "0:23:55",
+    "seconds": 1435,
+    "title": "Not against AI, against superintelligence"
+   },
+   {
+    "t": "0:26:04",
+    "seconds": 1564,
+    "title": "AI is grown, not written"
+   },
+   {
+    "t": "0:32:33",
+    "seconds": 1953,
+    "title": "Persuading Congress, one meeting at a time"
+   },
+   {
+    "t": "0:41:10",
+    "seconds": 2470,
+    "title": "Industry playing the tobacco playbook"
+   },
+   {
+    "t": "0:43:23",
+    "seconds": 2603,
+    "title": "What penalties a ban needs"
+   },
+   {
+    "t": "0:54:16",
+    "seconds": 3256,
+    "title": "Building political power"
+   },
+   {
+    "t": "0:58:29",
+    "seconds": 3509,
+    "title": "Military AI versus superintelligence"
+   },
+   {
+    "t": "1:05:11",
+    "seconds": 3911,
+    "title": "Could the US and China agree to stop?"
+   },
+   {
+    "t": "1:07:14",
+    "seconds": 4034,
+    "title": "Choke points, enforcement and what you can do"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:22",
+    "seconds": 22,
+    "speaker": "Connor Leahy",
+    "quote": "Superintelligence is not a tool. It's not a weapon. It's an adversary.",
+    "quote_located": true
+   },
+   {
+    "t": "0:13:02",
+    "seconds": 782,
+    "speaker": "Connor Leahy",
+    "quote": "we have to prohibit the development of superintelligence",
+    "quote_located": true
+   },
+   {
+    "t": "0:25:55",
+    "seconds": 1555,
+    "speaker": "Connor Leahy",
+    "quote": "AI is not like normal software. It is grown, not written.",
+    "quote_located": true
+   },
+   {
+    "t": "0:32:29",
+    "seconds": 1949,
+    "speaker": "Connor Leahy",
+    "quote": "I basically can persuade people this problem is a problem as fast as I can tell them about it.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "KV2OBcYSs9E",
   "title": "Clarifying exhaustive interpretability - Jacob Hilton",
   "channel": "ILIAD Conference",
@@ -371,6 +551,818 @@
   "verification": {
    "checked_at": "2026-10-30",
    "source": "https://api.piped.private.coffee/streams/VWUJ5V80ICY",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "DlR1W-qJHPc",
+  "title": "There’s still time to have an impact on AI safety | Luisa Rodriguez w/ Luke Muehlhauser",
+  "channel": "80,000 Hours",
+  "show": "The 80,000 Hours Podcast",
+  "date": "2026-10-29",
+  "approx": false,
+  "duration": "2:36:13",
+  "speakers": [
+   {
+    "name": "Luke Muehlhauser",
+    "affiliation": "Coefficient Giving (AI governance and policy grantmaking)"
+   },
+   {
+    "name": "Luisa Rodriguez",
+    "affiliation": "host, 80,000 Hours"
+   }
+  ],
+  "names": [
+   "Luke Muehlhauser",
+   "Luisa Rodriguez"
+  ],
+  "format": "long-form podcast interview",
+  "summary": "Luke Muehlhauser, who leads AI governance grantmaking at Coefficient Giving (formerly Open Philanthropy), tells Luisa Rodriguez that most of the institutions a safe AI transition needs still do not exist, and that money is less of a bottleneck than grant investigators and founders. He walks through the policy fights of the past year, from the defeated state-law moratorium and state AI bills to export controls and the Mythos wake-up in Washington, and lays out his three threat models and how shorter timelines raise the weight he puts on AI takeover. The second half covers his own path from evangelical upbringing to AI risk in 2010, what the early community got right and wrong about compute, and the jobs he thinks people should take now.",
+  "topics": [
+   "0:00:01 Cold open: most needed institutions do not exist",
+   "0:05:40 Why it is urgent to pivot into AI safety now",
+   "0:08:34 Missing institutions, compared with aviation and nuclear safety",
+   "0:19:56 The real bottleneck: grant investigators, not money",
+   "0:25:33 Founders who do not look like founders",
+   "0:34:07 Was the field ready for the Mythos moment?",
+   "0:45:26 State AI bills and the defeated moratorium",
+   "0:50:59 Export controls and a cooperative regime with China",
+   "0:56:44 Three threat models",
+   "1:02:25 Forecasting AI R&D automation and timelines",
+   "1:16:38 Can one species control a much smarter one?",
+   "1:30:41 How Luke got into AI risk around 2010",
+   "1:44:52 What early thinkers got wrong about compute",
+   "1:56:12 Mistakes the community is making now",
+   "2:21:41 Jobs and institutions worth building"
+  ],
+  "evidence": "[0:00:01] Luke Muehlhauser: \"I think most of the institutions that need to exist don't exist\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=DlR1W-qJHPc",
+  "thumb": "https://i.ytimg.com/vi/DlR1W-qJHPc/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A senior AI-safety funder gives a rare, candid map of what is missing (institutions, auditors, incident investigators, grantmakers) and where new people can still make a difference.",
+  "tags": [
+   "AI governance",
+   "grantmaking",
+   "field building",
+   "threat models",
+   "timelines",
+   "state AI bills",
+   "export controls",
+   "warning shots",
+   "80,000 Hours"
+  ],
+  "people_mentioned": [
+   "Eliezer Yudkowsky",
+   "Luisa Rodriguez"
+  ],
+  "orgs_mentioned": [
+   "Coefficient Giving",
+   "Open Philanthropy",
+   "80,000 Hours",
+   "Anthropic",
+   "OpenAI",
+   "Google DeepMind",
+   "RAND"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Cold open: most needed institutions do not exist"
+   },
+   {
+    "t": "0:05:40",
+    "seconds": 340,
+    "title": "Why it is urgent to pivot into AI safety now"
+   },
+   {
+    "t": "0:08:34",
+    "seconds": 514,
+    "title": "Missing institutions, compared with aviation and nuclear safety"
+   },
+   {
+    "t": "0:19:56",
+    "seconds": 1196,
+    "title": "The real bottleneck: grant investigators, not money"
+   },
+   {
+    "t": "0:25:33",
+    "seconds": 1533,
+    "title": "Founders who do not look like founders"
+   },
+   {
+    "t": "0:34:07",
+    "seconds": 2047,
+    "title": "Was the field ready for the Mythos moment?"
+   },
+   {
+    "t": "0:45:26",
+    "seconds": 2726,
+    "title": "State AI bills and the defeated moratorium"
+   },
+   {
+    "t": "0:50:59",
+    "seconds": 3059,
+    "title": "Export controls and a cooperative regime with China"
+   },
+   {
+    "t": "0:56:44",
+    "seconds": 3404,
+    "title": "Three threat models"
+   },
+   {
+    "t": "1:02:25",
+    "seconds": 3745,
+    "title": "Forecasting AI R&D automation and timelines"
+   },
+   {
+    "t": "1:16:38",
+    "seconds": 4598,
+    "title": "Can one species control a much smarter one?"
+   },
+   {
+    "t": "1:30:41",
+    "seconds": 5441,
+    "title": "How Luke got into AI risk around 2010"
+   },
+   {
+    "t": "1:44:52",
+    "seconds": 6292,
+    "title": "What early thinkers got wrong about compute"
+   },
+   {
+    "t": "1:56:12",
+    "seconds": 6972,
+    "title": "Mistakes the community is making now"
+   },
+   {
+    "t": "2:21:41",
+    "seconds": 8501,
+    "title": "Jobs and institutions worth building"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "speaker": "Luke Muehlhauser",
+    "quote": "I think most of the institutions that need to exist don't exist",
+    "quote_located": true
+   },
+   {
+    "t": "0:05:38",
+    "seconds": 338,
+    "speaker": "Luke Muehlhauser",
+    "quote": "I think it's really urgent that people pivot into AI safety",
+    "quote_located": true
+   },
+   {
+    "t": "1:10:54",
+    "seconds": 4254,
+    "speaker": "Luke Muehlhauser",
+    "quote": "Shorter timelines also makes me upgrade the centrality of kind of the AI takeover threat model",
+    "quote_located": true
+   },
+   {
+    "t": "1:16:34",
+    "seconds": 4594,
+    "speaker": "Luke Muehlhauser",
+    "quote": "what's the likelihood that one species is going to be able to control a vastly more intelligent and capable species",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Luke Muehlhauser",
+    "value": "Rough size of the AI safety and governance workforce: maybe 2,000 to 5,000 people",
+    "t": "1:59:13",
+    "seconds": 7153
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "CMAxQmiBWCM",
+  "title": "Mathematical Foundations of AI Alignment, Lecture 17 (Safe Delegated Approval to Misaligned Agents)",
+  "channel": "Aaron Roth",
+  "show": "CIS 7000: Mathematical Foundations of AI Alignment (UPenn)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "1:27:59",
+  "speakers": [
+   {
+    "name": "Aaron Roth",
+    "affiliation": "University of Pennsylvania (alignment theory)"
+   }
+  ],
+  "names": [
+   "Aaron Roth"
+  ],
+  "format": "university lecture",
+  "summary": "In lecture 17 of his Penn course, Aaron Roth asks how a principal can safely delegate a long-running coding task to an agent whose actions are approved by a panel of possibly misaligned reviewer models, the way auto-review modes in coding agents already work. He models proposals as vectors and approval rules as sets of winning coalitions, and proves that a monotone approval rule is safe exactly when every winning coalition 'covers' the principal, a condition tied to Harsanyi's aggregation theorem. He then treats strategic reviewers, shows unanimous approval makes sincere voting a Nash equilibrium, and explains why binary votes force a trade-off between safety and permissiveness.",
+  "topics": [
+   "0:00:05 Recap: aligned behaviour from misaligned providers",
+   "0:02:42 Agents that must ask permission",
+   "0:05:10 Auto review: AI reviewers approve actions",
+   "0:07:33 The principal, the agent and the reviewers",
+   "0:15:04 Utilities as vectors",
+   "0:17:38 Approval rules beyond unanimity",
+   "0:22:34 Rejecting harm means rejecting some good proposals",
+   "0:37:25 Monotone rules and winning coalitions",
+   "0:42:46 Safety: execution never lowers the principal's utility",
+   "0:50:16 The principal goes to play golf",
+   "0:55:08 Coalition coverage characterises safety",
+   "1:02:45 Link to Harsanyi's aggregation theorem",
+   "1:08:00 Strategic reviewers",
+   "1:15:09 Unanimity makes sincere voting an equilibrium",
+   "1:22:31 Limits of binary votes and what comes next"
+  ],
+  "evidence": "[0:04:59] Aaron Roth: \"there's been a seemingly much more useful feature called auto review\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=CMAxQmiBWCM",
+  "thumb": "https://i.ytimg.com/vi/CMAxQmiBWCM/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A rigorous treatment of a question every agent product now faces: when is it safe to let several imperfect AI reviewers approve an agent's actions?",
+  "tags": [
+   "scalable oversight",
+   "AI control",
+   "delegation",
+   "approval voting",
+   "Harsanyi aggregation",
+   "mechanism design",
+   "coding agents",
+   "alignment theory"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "University of Pennsylvania",
+   "Anthropic"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:05",
+    "seconds": 5,
+    "title": "Recap: aligned behaviour from misaligned providers"
+   },
+   {
+    "t": "0:02:42",
+    "seconds": 162,
+    "title": "Agents that must ask permission"
+   },
+   {
+    "t": "0:05:10",
+    "seconds": 310,
+    "title": "Auto review: AI reviewers approve actions"
+   },
+   {
+    "t": "0:07:33",
+    "seconds": 453,
+    "title": "The principal, the agent and the reviewers"
+   },
+   {
+    "t": "0:15:04",
+    "seconds": 904,
+    "title": "Utilities as vectors"
+   },
+   {
+    "t": "0:17:38",
+    "seconds": 1058,
+    "title": "Approval rules beyond unanimity"
+   },
+   {
+    "t": "0:22:34",
+    "seconds": 1354,
+    "title": "Rejecting harm means rejecting some good proposals"
+   },
+   {
+    "t": "0:37:25",
+    "seconds": 2245,
+    "title": "Monotone rules and winning coalitions"
+   },
+   {
+    "t": "0:42:46",
+    "seconds": 2566,
+    "title": "Safety: execution never lowers the principal's utility"
+   },
+   {
+    "t": "0:50:16",
+    "seconds": 3016,
+    "title": "The principal goes to play golf"
+   },
+   {
+    "t": "0:55:08",
+    "seconds": 3308,
+    "title": "Coalition coverage characterises safety"
+   },
+   {
+    "t": "1:02:45",
+    "seconds": 3765,
+    "title": "Link to Harsanyi's aggregation theorem"
+   },
+   {
+    "t": "1:08:00",
+    "seconds": 4080,
+    "title": "Strategic reviewers"
+   },
+   {
+    "t": "1:15:09",
+    "seconds": 4509,
+    "title": "Unanimity makes sincere voting an equilibrium"
+   },
+   {
+    "t": "1:22:31",
+    "seconds": 4951,
+    "title": "Limits of binary votes and what comes next"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:04:59",
+    "seconds": 299,
+    "speaker": "Aaron Roth",
+    "quote": "there's been a seemingly much more useful feature called auto review",
+    "quote_located": true
+   },
+   {
+    "t": "0:42:39",
+    "seconds": 2559,
+    "speaker": "Aaron Roth",
+    "quote": "execution never lowers the principal's utility relative to the baseline",
+    "quote_located": true
+   },
+   {
+    "t": "1:09:58",
+    "seconds": 4198,
+    "speaker": "Aaron Roth",
+    "quote": "it is never worse for you to vote sincerely than it is to vote insincerely",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "suIkm35DAaM",
+  "title": "Mechanistic interpretability should try to find the \"true features\" - Stefan Heimersheim",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "58:01",
+  "speakers": [
+   {
+    "name": "Stefan Heimersheim",
+    "affiliation": "interpretability researcher (Pivotal Research mentor)"
+   }
+  ],
+  "names": [
+   "Stefan Heimersheim"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Interpretability researcher Stefan Heimersheim argues that mechanistic interpretability should look for the features the network itself uses, not human-made concepts, because more capable systems will think in alien concepts we would otherwise miss. He presents perturbation experiments showing that real activations sit in robust, error-correcting regions where small pushes change nothing until a sharp boundary, unlike random points in activation space. The talk and lively Q&A cover what this implies for sparse autoencoders, steering vectors, superposition and the linearity assumption.",
+  "topics": [
+   "0:00:02 An agenda for the field",
+   "0:01:58 Why human concepts will not scale",
+   "0:05:30 What is wrong with SAEs and clustering",
+   "0:11:07 Error correction in the network",
+   "0:13:01 The perturbation experiment",
+   "0:14:40 Real activations are special",
+   "0:23:55 Sharp boundaries in activation space",
+   "0:27:33 Steering along the found directions",
+   "0:34:50 Privileged and pathological directions",
+   "0:47:40 Comparison with steering vectors",
+   "0:51:27 Superposition and error correction",
+   "0:55:01 Q&A: the linearity assumption"
+  ],
+  "evidence": "[0:01:51] Stefan Heimersheim: \"as you scale to more intelligent systems, they'll probably eventually start thinking of alien concepts\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=suIkm35DAaM",
+  "thumb": "https://i.ytimg.com/vi/suIkm35DAaM/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A concrete research agenda for finding the model's own features rather than ours, with surprising activation-space experiments any interpretability researcher can reproduce.",
+  "tags": [
+   "mechanistic interpretability",
+   "true features",
+   "activation space",
+   "superposition",
+   "sparse autoencoders",
+   "steering vectors",
+   "ILIAD"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "title": "An agenda for the field"
+   },
+   {
+    "t": "0:01:58",
+    "seconds": 118,
+    "title": "Why human concepts will not scale"
+   },
+   {
+    "t": "0:05:30",
+    "seconds": 330,
+    "title": "What is wrong with SAEs and clustering"
+   },
+   {
+    "t": "0:11:07",
+    "seconds": 667,
+    "title": "Error correction in the network"
+   },
+   {
+    "t": "0:13:01",
+    "seconds": 781,
+    "title": "The perturbation experiment"
+   },
+   {
+    "t": "0:14:40",
+    "seconds": 880,
+    "title": "Real activations are special"
+   },
+   {
+    "t": "0:23:55",
+    "seconds": 1435,
+    "title": "Sharp boundaries in activation space"
+   },
+   {
+    "t": "0:27:33",
+    "seconds": 1653,
+    "title": "Steering along the found directions"
+   },
+   {
+    "t": "0:34:50",
+    "seconds": 2090,
+    "title": "Privileged and pathological directions"
+   },
+   {
+    "t": "0:47:40",
+    "seconds": 2860,
+    "title": "Comparison with steering vectors"
+   },
+   {
+    "t": "0:51:27",
+    "seconds": 3087,
+    "title": "Superposition and error correction"
+   },
+   {
+    "t": "0:55:01",
+    "seconds": 3301,
+    "title": "Q&A: the linearity assumption"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:51",
+    "seconds": 111,
+    "speaker": "Stefan Heimersheim",
+    "quote": "as you scale to more intelligent systems, they'll probably eventually start thinking of alien concepts",
+    "quote_located": true
+   },
+   {
+    "t": "0:14:38",
+    "seconds": 878,
+    "speaker": "Stefan Heimersheim",
+    "quote": "So there's something special about real activations, I suppose.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "6_3IUdPOs1k",
+  "title": "Golden Handcuffs make safer AI agents - Aram Ebtekar",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "40:09",
+  "speakers": [
+   {
+    "name": "Aram Ebtekar",
+    "affiliation": "independent researcher (algorithmic information theory)"
+   }
+  ],
+  "names": [
+   "Aram Ebtekar"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Aram Ebtekar presents 'golden handcuffs', a way to make an AIXI-style universal agent safer without having to formalise misalignment. Instead the agent is pessimistic about novelty: when its confidence that high rewards will continue drops, it defers to a trusted mentor policy, so it avoids catastrophes it has never seen while still learning. He is candid about the limits, including the trusted-mentor assumption, computability, the successor-agent problem, and how this relates to quantilizers and regularisation.",
+  "topics": [
+   "0:00:06 From Solomonoff induction to AIXI",
+   "0:01:53 Reading the math critically",
+   "0:03:46 Formalising novelty instead of misalignment",
+   "0:05:34 The trusted mentor assumption",
+   "0:07:26 The universal mixture",
+   "0:09:12 Exploring with the mentor policy",
+   "0:11:01 When the agent loses confidence",
+   "0:14:43 What the guarantees mean",
+   "0:18:21 Be skeptical of complex results",
+   "0:20:13 Computability and time limits",
+   "0:23:50 The successor agent problem",
+   "0:33:14 Q&A: pessimism versus regularisation",
+   "0:36:51 Q&A: formal verification and mentors"
+  ],
+  "evidence": "[0:03:39] Aram Ebtekar: \"we're not able to formalize misalignment. So instead we formalize novelty.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=6_3IUdPOs1k",
+  "thumb": "https://i.ytimg.com/vi/6_3IUdPOs1k/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "A clear, honest example of mathematical alignment work: what you can prove about a superintelligent learner, and exactly which assumptions it costs.",
+  "tags": [
+   "agent foundations",
+   "AIXI",
+   "pessimism",
+   "mentor policy",
+   "novelty avoidance",
+   "successor agents",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Marcus Hutter",
+   "Michael Cohen",
+   "Danica Sutherland"
+  ],
+  "orgs_mentioned": [
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:06",
+    "seconds": 6,
+    "title": "From Solomonoff induction to AIXI"
+   },
+   {
+    "t": "0:01:53",
+    "seconds": 113,
+    "title": "Reading the math critically"
+   },
+   {
+    "t": "0:03:46",
+    "seconds": 226,
+    "title": "Formalising novelty instead of misalignment"
+   },
+   {
+    "t": "0:05:34",
+    "seconds": 334,
+    "title": "The trusted mentor assumption"
+   },
+   {
+    "t": "0:07:26",
+    "seconds": 446,
+    "title": "The universal mixture"
+   },
+   {
+    "t": "0:09:12",
+    "seconds": 552,
+    "title": "Exploring with the mentor policy"
+   },
+   {
+    "t": "0:11:01",
+    "seconds": 661,
+    "title": "When the agent loses confidence"
+   },
+   {
+    "t": "0:14:43",
+    "seconds": 883,
+    "title": "What the guarantees mean"
+   },
+   {
+    "t": "0:18:21",
+    "seconds": 1101,
+    "title": "Be skeptical of complex results"
+   },
+   {
+    "t": "0:20:13",
+    "seconds": 1213,
+    "title": "Computability and time limits"
+   },
+   {
+    "t": "0:23:50",
+    "seconds": 1430,
+    "title": "The successor agent problem"
+   },
+   {
+    "t": "0:33:14",
+    "seconds": 1994,
+    "title": "Q&A: pessimism versus regularisation"
+   },
+   {
+    "t": "0:36:51",
+    "seconds": 2211,
+    "title": "Q&A: formal verification and mentors"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:03:39",
+    "seconds": 219,
+    "speaker": "Aram Ebtekar",
+    "quote": "we're not able to formalize misalignment. So instead we formalize novelty.",
+    "quote_located": true
+   },
+   {
+    "t": "0:23:45",
+    "seconds": 1425,
+    "speaker": "Aram Ebtekar",
+    "quote": "the successor agent problem seems to be a crux in just about every alignment proposal",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "jImX4jX8hBM",
+  "title": "Resolution: Scale and Automation for Higher Confidence in Alignment - Jesse Hoogland",
+  "channel": "ILIAD Conference",
+  "show": "ILIAD III: AENEID Conference (Aug 2026)",
+  "date": "2026-10-29",
+  "approx": true,
+  "duration": "52:50",
+  "speakers": [
+   {
+    "name": "Jesse Hoogland",
+    "affiliation": "Resolution (formerly Executive Director, Timaeus)"
+   }
+  ],
+  "names": [
+   "Jesse Hoogland"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Jesse Hoogland introduces Resolution, the larger alignment organisation formed from Timaeus with a major Open Philanthropy grant, and argues that the AI-safety field should be more ambitious about scale and automation. He outlines its research pillars, from singular learning theory foundations and the 'Occam gap' in generalisation to susceptibilities, spectroscopy and patterning, and how they plan to use models to automate parts of alignment research and theorem proving. The Q&A covers access to frontier models, auditing sandbagging and sandbox escapes, and hiring.",
+  "topics": [
+   "0:00:01 Introducing Resolution",
+   "0:01:52 A large grant to tackle alignment at scale",
+   "0:03:40 Returns to scale and lab partnerships",
+   "0:07:23 AI safety should be more ambitious",
+   "0:11:05 Foundations: learning dynamics and generalisation",
+   "0:14:35 Personas and effective dimensions",
+   "0:18:27 Automating theorem proving, carefully",
+   "0:23:54 Q&A: getting access to frontier models",
+   "0:27:37 Q&A: what automating alignment research means",
+   "0:36:42 The Occam gap",
+   "0:38:30 Auditing sandbagging and sandbox escapes",
+   "0:40:22 From influence functions to susceptibilities"
+  ],
+  "evidence": "[0:07:12] Jesse Hoogland: \"Maybe everybody in AI safety could stand to be a bit more ambitious\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=jImX4jX8hBM",
+  "thumb": "https://i.ytimg.com/vi/jImX4jX8hBM/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A first look at a new, deliberately large alignment org and its bet that scale plus automation can turn developmental interpretability into high-confidence alignment.",
+  "tags": [
+   "Resolution",
+   "Timaeus",
+   "singular learning theory",
+   "developmental interpretability",
+   "automating alignment research",
+   "susceptibilities",
+   "ILIAD"
+  ],
+  "people_mentioned": [
+   "Geoffrey Irving"
+  ],
+  "orgs_mentioned": [
+   "Resolution",
+   "Timaeus",
+   "Open Philanthropy",
+   "ILIAD"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:01",
+    "seconds": 1,
+    "title": "Introducing Resolution"
+   },
+   {
+    "t": "0:01:52",
+    "seconds": 112,
+    "title": "A large grant to tackle alignment at scale"
+   },
+   {
+    "t": "0:03:40",
+    "seconds": 220,
+    "title": "Returns to scale and lab partnerships"
+   },
+   {
+    "t": "0:07:23",
+    "seconds": 443,
+    "title": "AI safety should be more ambitious"
+   },
+   {
+    "t": "0:11:05",
+    "seconds": 665,
+    "title": "Foundations: learning dynamics and generalisation"
+   },
+   {
+    "t": "0:14:35",
+    "seconds": 875,
+    "title": "Personas and effective dimensions"
+   },
+   {
+    "t": "0:18:27",
+    "seconds": 1107,
+    "title": "Automating theorem proving, carefully"
+   },
+   {
+    "t": "0:23:54",
+    "seconds": 1434,
+    "title": "Q&A: getting access to frontier models"
+   },
+   {
+    "t": "0:27:37",
+    "seconds": 1657,
+    "title": "Q&A: what automating alignment research means"
+   },
+   {
+    "t": "0:36:42",
+    "seconds": 2202,
+    "title": "The Occam gap"
+   },
+   {
+    "t": "0:38:30",
+    "seconds": 2310,
+    "title": "Auditing sandbagging and sandbox escapes"
+   },
+   {
+    "t": "0:40:22",
+    "seconds": 2422,
+    "title": "From influence functions to susceptibilities"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:07:12",
+    "seconds": 432,
+    "speaker": "Jesse Hoogland",
+    "quote": "Maybe everybody in AI safety could stand to be a bit more ambitious",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:44",
+    "seconds": 2204,
+    "speaker": "Jesse Hoogland",
+    "quote": "the learning process might prefer a simpler solution than the one you intended",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
    "date_convention": "date = US Pacific upload date",
    "transcript_source": "work/fullpods/daily/transcripts/segs.json",
    "note": ""
@@ -1888,6 +2880,335 @@
   }
  },
  {
+  "id": "iwx6oqjEHnw",
+  "title": "DIverging Limits Episode 4: Andrew Critch - Math and AI Safety",
+  "channel": "Diverging Limits",
+  "show": "Diverging Limits",
+  "date": "2026-10-28",
+  "approx": true,
+  "duration": "2:37:32",
+  "speakers": [
+   {
+    "name": "Andrew Critch",
+    "affiliation": "UC Berkeley (research scientist, EECS)"
+   }
+  ],
+  "names": [
+   "Andrew Critch"
+  ],
+  "format": "long-form podcast interview",
+  "summary": "Berkeley research scientist Andrew Critch spends two and a half hours with a mathematician host on why he takes AI-caused 'omnicide' seriously without fully endorsing If Anyone Builds It, Everyone Dies, and how to put your own probability on it. He explains how reinforcement learning creates pressure for models to hide that they cheated, why chain of thought is not a faithful world model, and why multi-agent pressure could make AI reasoning more honest. Later he describes the new mathematical AI-safety community he is helping build, his claim that profits and safety are more aligned than nonprofits assume, and open-source game theory for agents that reason about each other.",
+  "topics": [
+   "0:00:05 Introduction",
+   "0:02:52 Smarter species and dumber species",
+   "0:05:42 Where he differs from If Anyone Builds It",
+   "0:11:22 How to put a probability on omnicide",
+   "0:16:51 Is he a rationalist?",
+   "0:25:35 Following instructions: literal but not too literal",
+   "0:28:35 Multi-agent pressure and faithful reasoning",
+   "0:31:08 Lying, cheating and scheming happen now",
+   "0:36:50 Pre-training versus reinforcement learning",
+   "0:45:21 RL pressure to hide failures",
+   "0:56:47 The project with his friend Jacob",
+   "1:19:21 Timelines: one to five years",
+   "1:27:49 A new hub of mathematicians for AI safety",
+   "1:33:30 Profits and safety are more aligned than assumed",
+   "2:08:03 Open-source game theory and the fair-bot problem"
+  ],
+  "evidence": "[0:31:15] Andrew Critch: \"The lying and cheating and scheming without telling people and stuff. That happens.\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=iwx6oqjEHnw",
+  "thumb": "https://i.ytimg.com/vi/iwx6oqjEHnw/hqdefault.jpg",
+  "level": "Deep-dive",
+  "why_watch": "One of the longest recent conversations with a CHAI-era alignment researcher, mixing x-risk probabilities, RL incentives to deceive and open-source game theory in plain language.",
+  "tags": [
+   "omnicide",
+   "loss of control",
+   "reinforcement learning",
+   "scheming",
+   "chain of thought",
+   "multi-agent",
+   "open-source game theory",
+   "mathematics for AI safety"
+  ],
+  "people_mentioned": [
+   "Nate Soares",
+   "Eliezer Yudkowsky",
+   "Daniel Kokotajlo",
+   "Stuart Russell"
+  ],
+  "orgs_mentioned": [
+   "UC Berkeley",
+   "OpenAI",
+   "Anthropic",
+   "Google",
+   "xAI",
+   "LessWrong"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:05",
+    "seconds": 5,
+    "title": "Introduction"
+   },
+   {
+    "t": "0:02:52",
+    "seconds": 172,
+    "title": "Smarter species and dumber species"
+   },
+   {
+    "t": "0:05:42",
+    "seconds": 342,
+    "title": "Where he differs from If Anyone Builds It"
+   },
+   {
+    "t": "0:11:22",
+    "seconds": 682,
+    "title": "How to put a probability on omnicide"
+   },
+   {
+    "t": "0:16:51",
+    "seconds": 1011,
+    "title": "Is he a rationalist?"
+   },
+   {
+    "t": "0:25:35",
+    "seconds": 1535,
+    "title": "Following instructions: literal but not too literal"
+   },
+   {
+    "t": "0:28:35",
+    "seconds": 1715,
+    "title": "Multi-agent pressure and faithful reasoning"
+   },
+   {
+    "t": "0:31:08",
+    "seconds": 1868,
+    "title": "Lying, cheating and scheming happen now"
+   },
+   {
+    "t": "0:36:50",
+    "seconds": 2210,
+    "title": "Pre-training versus reinforcement learning"
+   },
+   {
+    "t": "0:45:21",
+    "seconds": 2721,
+    "title": "RL pressure to hide failures"
+   },
+   {
+    "t": "0:56:47",
+    "seconds": 3407,
+    "title": "The project with his friend Jacob"
+   },
+   {
+    "t": "1:19:21",
+    "seconds": 4761,
+    "title": "Timelines: one to five years"
+   },
+   {
+    "t": "1:27:49",
+    "seconds": 5269,
+    "title": "A new hub of mathematicians for AI safety"
+   },
+   {
+    "t": "1:33:30",
+    "seconds": 5610,
+    "title": "Profits and safety are more aligned than assumed"
+   },
+   {
+    "t": "2:08:03",
+    "seconds": 7683,
+    "title": "Open-source game theory and the fair-bot problem"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:31:15",
+    "seconds": 1875,
+    "speaker": "Andrew Critch",
+    "quote": "The lying and cheating and scheming without telling people and stuff. That happens.",
+    "quote_located": true
+   },
+   {
+    "t": "0:48:14",
+    "seconds": 2894,
+    "speaker": "Andrew Critch",
+    "quote": "It's a little unnerving that we're sort of betting our civilization on the assumption",
+    "quote_located": true
+   },
+   {
+    "t": "1:33:21",
+    "seconds": 5601,
+    "speaker": "Andrew Critch",
+    "quote": "I think profits and safety are very aligned.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "wOpljsSStpk",
+  "title": "AI MIGHT TRY TO DESTROY US THROUGH MULTIPLE CRISES - w/ AI Safety Expert Stephen Casper",
+  "channel": "Futureproof Report",
+  "show": "Futureproof Report (live)",
+  "date": "2026-10-28",
+  "approx": true,
+  "duration": "58:39",
+  "speakers": [
+   {
+    "name": "Stephen Casper",
+    "affiliation": "Assistant Professor of Public Policy, Harvard Kennedy School"
+   }
+  ],
+  "names": [
+   "Stephen Casper"
+  ],
+  "format": "live-stream interview",
+  "summary": "Stephen Casper argues that the most likely way AI goes wrong is a 'polycrisis', a cascade of cyber, economic and political shocks, rather than one dramatic takeover, and that p(doom) numbers matter less than acting while uncertainty cuts both ways. He sorts technical defences into three buckets and then critiques the technical frame: the bottlenecks, he says, are political will and maintaining human agency. He also gives a nuanced case for open-weight models and safeguards like data filtering and monitoring, an IAEA-style international body, and why he no longer thinks superintelligence alignment is worth attempting.",
+  "topics": [
+   "0:00:05 Introduction",
+   "0:01:56 Things could get a lot crazier",
+   "0:05:33 Misaligned agents earning money for compute",
+   "0:09:07 What p(doom) estimates are for",
+   "0:12:55 Worlds that go well need more understanding",
+   "0:18:20 Polycrisis versus monocrisis",
+   "0:20:18 Three buckets of technical defence",
+   "0:23:53 The real bottleneck is political will",
+   "0:27:33 The case for open-weight models",
+   "0:36:47 Safeguards: data curation and monitoring",
+   "0:44:05 Company incentives",
+   "0:47:49 An IAEA for AI",
+   "0:49:32 Why not pursue superintelligence alignment"
+  ],
+  "evidence": "[0:18:14] Stephen Casper: \"I think of a poly crisis more as the model for how things go wrong\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=wOpljsSStpk",
+  "thumb": "https://i.ytimg.com/vi/wOpljsSStpk/hqdefault.jpg",
+  "level": "Intro",
+  "why_watch": "A safety researcher turned policy professor explains why he now sees politics, not technical alignment, as the bottleneck, and why open-weight models are not the main threat.",
+  "tags": [
+   "polycrisis",
+   "p(doom)",
+   "AI governance",
+   "open-weight models",
+   "data filtering",
+   "IAEA for AI",
+   "human agency"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "Harvard Kennedy School",
+   "IAEA"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:05",
+    "seconds": 5,
+    "title": "Introduction"
+   },
+   {
+    "t": "0:01:56",
+    "seconds": 116,
+    "title": "Things could get a lot crazier"
+   },
+   {
+    "t": "0:05:33",
+    "seconds": 333,
+    "title": "Misaligned agents earning money for compute"
+   },
+   {
+    "t": "0:09:07",
+    "seconds": 547,
+    "title": "What p(doom) estimates are for"
+   },
+   {
+    "t": "0:12:55",
+    "seconds": 775,
+    "title": "Worlds that go well need more understanding"
+   },
+   {
+    "t": "0:18:20",
+    "seconds": 1100,
+    "title": "Polycrisis versus monocrisis"
+   },
+   {
+    "t": "0:20:18",
+    "seconds": 1218,
+    "title": "Three buckets of technical defence"
+   },
+   {
+    "t": "0:23:53",
+    "seconds": 1433,
+    "title": "The real bottleneck is political will"
+   },
+   {
+    "t": "0:27:33",
+    "seconds": 1653,
+    "title": "The case for open-weight models"
+   },
+   {
+    "t": "0:36:47",
+    "seconds": 2207,
+    "title": "Safeguards: data curation and monitoring"
+   },
+   {
+    "t": "0:44:05",
+    "seconds": 2645,
+    "title": "Company incentives"
+   },
+   {
+    "t": "0:47:49",
+    "seconds": 2869,
+    "title": "An IAEA for AI"
+   },
+   {
+    "t": "0:49:32",
+    "seconds": 2972,
+    "title": "Why not pursue superintelligence alignment"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:18:14",
+    "seconds": 1094,
+    "speaker": "Stephen Casper",
+    "quote": "I think of a poly crisis more as the model for how things go wrong",
+    "quote_located": true
+   },
+   {
+    "t": "0:23:49",
+    "seconds": 1429,
+    "speaker": "Stephen Casper",
+    "quote": "Our bottlenecks are about political will and political action toward maintaining human agency.",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
   "id": "YIAYXEBXIuc",
   "title": "How AI Is Changing Human Psychology (with Meia Chita-Tegmark)",
   "channel": "Future of Life Institute",
@@ -3062,6 +4383,179 @@
   "verification": {
    "checked_at": "2026-10-28",
    "source": "https://api.piped.private.coffee/streams/pIp5PBr-HvM",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/transcripts/segs.json",
+   "note": ""
+  }
+ },
+ {
+  "id": "H-5TxlBqp7U",
+  "title": "From percolation theory to recursive self-improvement and AI risk, Olle Häggström",
+  "channel": "Boston Computation Club",
+  "show": "Boston Computation Club",
+  "date": "2026-10-27",
+  "approx": false,
+  "duration": "55:31",
+  "speakers": [
+   {
+    "name": "Olle Häggström",
+    "affiliation": "Chalmers University of Technology (mathematical statistics)"
+   }
+  ],
+  "names": [
+   "Olle Häggström"
+  ],
+  "format": "seminar talk + Q&A",
+  "summary": "Mathematician Olle Häggström starts with percolation theory, the field of his own research, and the summer in which AI systems proved problems he had worked on in the 1990s, then turns to what that says about recursive self-improvement. He walks through METR's time-horizon doubling, I. J. Good's intelligence explosion and why a feedback term can blow up in finite time, then summarises the case for catastrophic risk with evidence from sandbagging, situational awareness and the Hugging Face incident. In the Q&A he argues that alignment alone will not save us without 'pulling the brakes' and discusses Sweden and the superintelligence statement.",
+  "topics": [
+   "0:00:17 Percolation theory",
+   "0:03:43 The holy grail: no infinite cluster at criticality",
+   "0:09:15 A crazy summer: AIs proving open problems",
+   "0:11:00 The first millennium problem",
+   "0:16:41 Software engineering transformed",
+   "0:20:35 METR time horizons and doubling time",
+   "0:25:40 I. J. Good and the intelligence explosion",
+   "0:28:19 Explosion in finite time",
+   "0:31:19 The case for catastrophe",
+   "0:33:05 Sandbagging, situational awareness and the Hugging Face incident",
+   "0:40:35 Q&A: we are failing on AI safety",
+   "0:51:35 Alignment plus pulling the brakes",
+   "0:55:10 Sweden and the superintelligence statement"
+  ],
+  "evidence": "[0:09:06] Olle Häggström: \"it's been a crazy summer for mathematicians\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=H-5TxlBqp7U",
+  "thumb": "https://i.ytimg.com/vi/H-5TxlBqp7U/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A prominent probabilist explains, from his own field, why AI solving open math problems is a warning about recursive self-improvement.",
+  "tags": [
+   "recursive self-improvement",
+   "intelligence explosion",
+   "AI for mathematics",
+   "METR time horizons",
+   "Hugging Face incident",
+   "pause",
+   "superintelligence statement"
+  ],
+  "people_mentioned": [
+   "Scott Aaronson",
+   "I. J. Good",
+   "Eliezer Yudkowsky",
+   "Nate Soares",
+   "Robin Hanson"
+  ],
+  "orgs_mentioned": [
+   "OpenAI",
+   "Anthropic",
+   "METR",
+   "Hugging Face",
+   "Chalmers University of Technology"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:17",
+    "seconds": 17,
+    "title": "Percolation theory"
+   },
+   {
+    "t": "0:03:43",
+    "seconds": 223,
+    "title": "The holy grail: no infinite cluster at criticality"
+   },
+   {
+    "t": "0:09:15",
+    "seconds": 555,
+    "title": "A crazy summer: AIs proving open problems"
+   },
+   {
+    "t": "0:11:00",
+    "seconds": 660,
+    "title": "The first millennium problem"
+   },
+   {
+    "t": "0:16:41",
+    "seconds": 1001,
+    "title": "Software engineering transformed"
+   },
+   {
+    "t": "0:20:35",
+    "seconds": 1235,
+    "title": "METR time horizons and doubling time"
+   },
+   {
+    "t": "0:25:40",
+    "seconds": 1540,
+    "title": "I. J. Good and the intelligence explosion"
+   },
+   {
+    "t": "0:28:19",
+    "seconds": 1699,
+    "title": "Explosion in finite time"
+   },
+   {
+    "t": "0:31:19",
+    "seconds": 1879,
+    "title": "The case for catastrophe"
+   },
+   {
+    "t": "0:33:05",
+    "seconds": 1985,
+    "title": "Sandbagging, situational awareness and the Hugging Face incident"
+   },
+   {
+    "t": "0:40:35",
+    "seconds": 2435,
+    "title": "Q&A: we are failing on AI safety"
+   },
+   {
+    "t": "0:51:35",
+    "seconds": 3095,
+    "title": "Alignment plus pulling the brakes"
+   },
+   {
+    "t": "0:55:10",
+    "seconds": 3310,
+    "title": "Sweden and the superintelligence statement"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:09:06",
+    "seconds": 546,
+    "speaker": "Olle Häggström",
+    "quote": "it's been a crazy summer for mathematicians",
+    "quote_located": true
+   },
+   {
+    "t": "0:40:27",
+    "seconds": 2427,
+    "speaker": "Olle Häggström",
+    "quote": "the big picture is we're failing on AI safety. We're not even close.",
+    "quote_located": true
+   },
+   {
+    "t": "0:51:24",
+    "seconds": 3084,
+    "speaker": "Olle Häggström",
+    "quote": "AI alignment may still solve a role uh play a role, but only in combination with uh pulling the brakes",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Olle Häggström",
+    "value": "METR task time horizon doubling time: about 7 months",
+    "t": "0:20:23",
+    "seconds": 1223
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "2026-11-01T11:40:00+05:30",
+  "added_ms": 1793513400000,
+  "verification": {
+   "checked_at": "2026-11-01",
+   "source": "full caption track via analyze_video; date from channel RSS (Oct 27/29/30 items) or YouTube relative upload time (approx)",
    "date_convention": "date = US Pacific upload date",
    "transcript_source": "work/fullpods/daily/transcripts/segs.json",
    "note": ""
