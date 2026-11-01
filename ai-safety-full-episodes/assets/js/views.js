@@ -515,7 +515,7 @@
         <div><p class="muted">Daily goal</p><div class="goalcard__set">${[10, 20, 30, 45, 60, 90].map((m) => `<button class="chip ${Math.round(h().goalSec() / 60) === m ? "is-on" : ""}" data-goal="${m}">${m} min</button>`).join("")}</div></div>
         <a class="btn btn--sm" href="#/wrapped">Monthly recap</a><a class="btn btn--sm" href="#/watched">I've watched these</a>
         <a class="btn btn--sm" href="#/history">Backup & restore</a></div>
-        ${A.prefs ? `<div class="settings__more" id="fonts"><p class="muted">Fonts and text size</p>${A.prefs.fontsHTML()}</div><div class="settings__more qset--inline" id="layout"><p class="muted">Layout</p>${A.prefs.layoutTab()}</div><div class="settings__more qset--inline" id="motion"><p class="muted">Motion</p>${A.prefs.motionTab()}</div>` : ""}</section>`;
+        ${A.prefs ? `<div class="settings__more" id="fonts"><p class="muted">Fonts and text size</p>${A.prefs.fontsHTML()}</div><div class="settings__more qset--inline" id="layout"><p class="muted">Layout</p>${A.prefs.layoutTab()}</div><div class="settings__more qset--inline" id="motion"><p class="muted">Motion</p>${A.prefs.motionTab()}</div><div class="settings__more qset--inline" id="perf"><p class="muted">Performance</p>${A.prefs.perfTab()}</div>` : ""}</section>`;
     $("#pName").onchange = (ev) => { L().PREFS.name = ev.target.value.trim().slice(0, 40); h().savePrefs(); };
     $("#sAuto").onchange = (ev) => { L().SETTINGS.autoplay = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); };
     $("#sCeleb").onchange = (ev) => { L().SETTINGS.celebrations = ev.target.checked; A.store.set("settings:v3", L().SETTINGS); if (ev.target.checked && A.fx) A.fx.celebrate("pick", ev.target.closest("label"), true); };
