@@ -113,7 +113,8 @@
     P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.lastRate = 0; P.chIdx = -1; P.loop = null; P.errCode = null;
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
-    P.nB = Math.max(1, Math.ceil((e.dur || r.dur || 1) / h().BUCKET));
+    if (!r.dur && e.dur) r.dur = e.dur; // the exact share is covered seconds ÷ duration seconds
+    P.nB = Math.max(1, Math.ceil((r.dur || e.dur || 1) / h().BUCKET));
     P.cov = h().covDecode(r.cov, P.nB);
     dock().hidden = false;
     $("#dockErr").hidden = true;
@@ -203,7 +204,8 @@
         // once real playback happens, so a play-then-seek never leaves a 0-second session behind
         if (!P.sess || P.sessId !== P.cur.id || Date.now() - P.sess.e > 30 * 60e3) {
           const t0 = Math.floor(P.yt.getCurrentTime() || 0);
-          P.sess = { s: Date.now(), e: Date.now(), w: 0, a: t0, b: t0, m: 0 }; P.sessId = P.cur.id; P.sessStored = false;
+          P.sess = { s: Date.now(), e: Date.now(), w: 0, n: 0, a: t0, b: t0, m: 0 }; P.sessId = P.cur.id; P.sessStored = false;
+          if (r.done) P.sess.rw = 1; // a rewatch of a completed episode: logged, never changes its numbers
           if (!r.first) r.first = Date.now();
         }
       }
@@ -253,9 +255,8 @@
       else if (dm > 0 && dw <= 6 * 3600 && dm <= dw * rateHi * 1.5 + 1.5) real = Math.min(dm / rateLo, dw + 1); // a speed change between readings: the wall-time cap keeps it honest
       if (!moved) { /* keep P.lastMedia / P.lastWall: the next move is measured from the last real one */ }
       else if (real > 0) {
-        r.watched += real;
-        const dk = A.dayKey(Date.now());
-        L().H.daily[dk] = (L().H.daily[dk] || 0) + real;
+        // time spent (wall seconds, rewatches included) is kept apart; "watched" = unique seconds, added below
+        r.spent = (r.spent || 0) + real;
         if (P.sess && P.sessId === P.cur.id) {
           if (!P.sessStored) { P.sessStored = true; P.sess.s = Date.now() - real * 1000; P.sess.a = Math.floor(P.lastMedia); r.sessions = r.sessions || []; r.sessions.push(P.sess); if (r.sessions.length > 200) r.sessions.splice(0, r.sessions.length - 200); }
           P.sess.w += real; P.sess.e = Date.now(); P.sess.b = Math.floor(t);
@@ -269,10 +270,18 @@
         if (!P.run) P.run = { from: P.lastMedia, real: 0 };
         P.run.real += real;
         if (P.run.real >= 3) {
-          const a = Math.floor(P.run.from / h().BUCKET), b = Math.floor(t / h().BUCKET);
-          for (let i = a; i <= b && i < P.nB; i++) P.cov[i >> 3] |= 1 << (i & 7);
+          // exact seconds: cell i ([i, i+1)) is covered when its midpoint lies inside the played stretch run.from…t, so
+          // chained stretches never double-count or round up; a replayed second adds nothing
+          const a = Math.max(0, Math.ceil(P.run.from - 0.5)), b = Math.min(P.nB - 1, Math.floor(t - 0.5));
+          let add = 0;
+          for (let i = a; i <= b; i++) { const bit = 1 << (i & 7); if (!(P.cov[i >> 3] & bit)) { P.cov[i >> 3] |= bit; add++; } }
           P.run.from = t;
-          if (P.sess && P.sessId === P.cur.id) P.sess.m = Math.max(P.sess.m || 0, Math.floor(t));
+          if (add) {
+            r.watched = (r.watched || 0) + add;
+            const dk = A.dayKey(Date.now());
+            L().H.daily[dk] = (L().H.daily[dk] || 0) + add;
+          }
+          if (P.sess && P.sessId === P.cur.id) { P.sess.n = (P.sess.n || 0) + add; if (b >= a) P.sess.m = Math.max(P.sess.m || 0, b + 1); }
         }
       } else P.run = null; // a seek (or a jump that does not fit real playback): no credit, a new run starts here
     }
@@ -288,13 +297,12 @@
   function flush() {
     if (!P.cur || !P.cov) return;
     const r = h().rec(P.cur.id, true);
+    const was = !!r.done;
     if (!(r.manual && !r.manual.partial)) {
-      const covN = h().covCount(P.cov, P.nB);
-      r.covN = covN;
       r.cov = h().covEncode(P.cov);
-      r.pct = clamp(covN / P.nB, 0, 1);
+      h().settle(r); // exact: covN / duration seconds; done only when every second (bar the final ≤ 1 s) is covered
     }
-    if (!r.done && r.pct >= 0.9) { r.done = true; r.doneAt = Date.now(); A.ui.toast(`Completed: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); A.fx && A.fx.celebrate("complete", dock(), true); A.picks && A.picks.sync(P.cur.id); }
+    if (!was && r.done) { r.doneAt = Date.now(); A.ui.toast(`Watched 100%: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); A.fx && A.fx.celebrate("complete", dock(), true); A.picks && A.picks.sync(P.cur.id); }
     P.lastSave = performance.now();
     h().saveH();
     paintCoverage();
@@ -1460,7 +1468,7 @@
       const ap = $("#apToggle"); if (ap) ap.onclick = () => { L().SETTINGS.autoplay = !L().SETTINGS.autoplay; A.store.set("settings:v3", L().SETTINGS); paintSide(); };
     }
   }
-  /* "Your coverage" for the open episode: the 10-second slices you really played, a click-to-seek strip, and jumps to the
+  /* "Your coverage" for the open episode: the seconds you really played, a click-to-seek strip, and jumps to the
    * first part you have not watched and to where you left off (U) */
   function firstGap() { if (!P.cur || !P.cov) return null; for (let i = 0; i < P.nB; i++) if (!(P.cov[i >> 3] & (1 << (i & 7)))) return i * h().BUCKET; return null; }
   function coverageHTML(e) {
@@ -1468,8 +1476,8 @@
     const n = P.nB, segs = 60, per = Math.max(1, Math.ceil(n / segs)), cells = [];
     for (let k = 0; k * per < n; k++) { let c = 0, t = 0; for (let i = k * per; i < Math.min(n, (k + 1) * per); i++, t++) if (P.cov[i >> 3] & (1 << (i & 7))) c++; cells.push({ f: t ? c / t : 0, t: k * per * h().BUCKET }); }
     const g = firstGap(), r = L().H.eps[e.id] || {};
-    return `<section class="rcov" aria-label="Your coverage"><p class="side__h">Your coverage <small>${Math.round((r.pct || 0) * 100)}% played</small></p>
-      <div class="rcov__strip">${cells.map((c) => `<button type="button" class="rcov__c" data-seek="${c.t}" style="--f:${c.f.toFixed(2)}" title="${fmtTime(c.t)} · ${Math.round(c.f * 100)}% played" aria-label="Seek to ${fmtTime(c.t)}"></button>`).join("")}</div>
+    return `<section class="rcov" aria-label="Your coverage"><p class="side__h">Your coverage <small title="${esc(h().covTip(e.id))}">${h().pctText(r)} played</small></p>
+      <div class="rcov__strip">${cells.map((c) => `<button type="button" class="rcov__c" data-seek="${c.t}" style="--f:${c.f.toFixed(2)}" title="${fmtTime(c.t)} · ${(Math.floor(c.f * 1000) / 10)}% played" aria-label="Seek to ${fmtTime(c.t)}"></button>`).join("")}</div>
       <div class="row-gap">${g != null ? `<button type="button" class="btn btn--sm" data-seek="${g}">${A.ui.ICON.play}<span>First unwatched part · ${fmtTime(g)} <kbd>U</kbd></span></button>` : `<span class="ok">✓ every part played</span>`}${r.pos > 5 ? `<button type="button" class="btn btn--sm btn--ghost" data-seek="${Math.floor(r.pos)}">Where you left off · ${fmtTime(r.pos)}</button>` : ""}</div></section>`;
   }
   function jumpGap() { const g = firstGap(); if (g == null) { A.ui.toast("You have played every part of this episode", { icon: "✅", ms: 1600 }); return; } seek(g, true, { keepPaused: !P.playing }); A.ui.toast(`First unwatched part: ${fmtTime(g)}`, { icon: "⏩", ms: 1400 }); }
