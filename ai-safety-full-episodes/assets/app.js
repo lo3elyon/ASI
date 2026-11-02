@@ -10,6 +10,9 @@
   function parseHash() {
     const raw = location.hash.replace(/^#/, "");
     if (/^ep=/.test(raw)) { const p = new URLSearchParams(raw); return { deep: { id: p.get("ep"), t: Number(p.get("t")) || 0 } }; }
+    // #/watch/<id> (also #/watch/<id>?t=90 or &t=90, #/ep/<id>, #/episode/<id>): the same deep link as #ep=<id>
+    const w = raw.match(/^\/?(?:watch|ep|episode)\/([^?&#/]+)\/?(?:[?&](.*))?$/);
+    if (w) { const p = new URLSearchParams(w[2] || ""); return { deep: { id: decodeURIComponent(w[1]), t: Number(p.get("t")) || 0 } }; }
     const m = raw.match(/^\/?([a-z]+)(?:\/([^?]*))?(?:\?(.*))?$/);
     if (!m) return { view: "home" };
     return { view: m[1], arg: m[2] ? decodeURIComponent(m[2]) : null, qs: m[3] || "" };
