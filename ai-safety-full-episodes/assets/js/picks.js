@@ -100,7 +100,7 @@
     if (e.orgs[0]) out.push(`Adds ${e.orgs[0]} to today's mix`);
     if (e.tags[0]) out.push(`Covers ${e.tags[0]}`);
     if (e.views >= 100000) out.push(`Widely watched (${ui().fmtViews(e.views)} views)`);
-    if (e.month === "2026-10") out.push("Fresh this month");
+    if (e.month === (A.MONTH_SPAN && A.MONTH_SPAN.cur)) out.push("Fresh this month");
     out.push(`A ${f} with ${ui().whoLine(e, 1)}`);
     return out;
   }
@@ -274,7 +274,7 @@
     const pct = h().pctOf(e.id);
     return `<li class="pick" data-id="${e.id}" tabindex="0" aria-roledescription="draggable pick" aria-label="${esc(e.title)}. Alt plus arrow keys to reorder.">
       <span class="pick__grip" aria-hidden="true" title="Drag to reorder">⋮⋮</span>
-      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}" draggable="false">${ui().thumbImg(e)}${ui().thumbBadges(e)}<span class="thumb__play">${ui().ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}" draggable="false">${ui().thumbImg(e)}${ui().thumbBadges(e)}<span class="thumb__play">${ui().ICON.play}</span>${pct ? ui().progBar(e.id) : ""}</button>
       <div class="pick__body">
         <p class="pick__why">${ui().ICON.spark}<span>${esc(it.why || "Picked for you")}</span></p>
         <button class="card__title" data-act="open" title="${esc(e.title)}">${esc(e.title)}</button>
