@@ -62,7 +62,7 @@
     let kS = 0; e.kw.forEach((k) => (kS += P.kw.get(k) || 0)); s += Math.min(3, kS * 0.2);
     if (e.level === P.target) { s += 2; if (!why.length) why.push(`Right for your level (${e.level})`); }
     if (st === "none") s += 2.5; else if (st === "progress") s += 1; else s -= 12;
-    const ageDays = (Date.parse("2026-10-28") - Date.parse(e.date || "2026-07-01")) / 864e5;
+    const ageDays = Math.max(0, (Date.parse((STATE.all[0] && STATE.all[0].date) || e.date || "2026-07-01") - Date.parse(e.date || "2026-07-01")) / 864e5); // age vs the newest episode
     s += Math.max(0, 1.5 - ageDays / 60);
     if (e.views) s += Math.min(1.2, Math.log10(e.views) / 5);
     if (A.picks && A.picks.penalty) s -= A.picks.penalty(e); // negative signals from discarded picks
