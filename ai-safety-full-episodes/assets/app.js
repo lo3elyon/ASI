@@ -320,6 +320,7 @@
     document.documentElement.classList.add("is-ready");
     if (bar) { bar.style.transform = "scaleX(1)"; setTimeout(() => bar.classList.add("is-done"), 250); }
     if (splash) { splash.classList.add("is-out"); setTimeout(() => splash.remove(), 700); try { localStorage.setItem("asfe:seen", "1"); } catch (e) {} }
+    try { h().afterData(); } catch (e) {}
     A.feat.paintGoal();
     A.views.paintQueueCount();
     h().checkAwards(true);
