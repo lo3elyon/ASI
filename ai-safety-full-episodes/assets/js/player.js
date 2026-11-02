@@ -114,7 +114,7 @@
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
     if (!r.dur && e.dur) r.dur = e.dur; // the exact share is covered seconds ÷ duration seconds
-    P.nB = Math.max(1, Math.ceil((r.dur || e.dur || 1) / h().BUCKET));
+    P.nB = h().cells(r); P.dLast = 0; // real length (r.ydur) when the player reported it before, else the catalogue length
     P.cov = h().covDecode(r.cov, P.nB);
     dock().hidden = false;
     $("#dockErr").hidden = true;
@@ -192,19 +192,15 @@
     if (P.playing) {
       P.userPlayed = true; dock().classList.remove("is-cued");
       $("#dockErr").hidden = true;
-      const d = P.yt.getDuration();
-      if (d && P.cur) {
+      const d = readDur();
+      if (P.cur) {
         const r = h().rec(P.cur.id, true);
-        if (Math.abs((r.dur || 0) - d) > 2) {
-          r.dur = d;
-          const nB = Math.max(1, Math.ceil(d / h().BUCKET));
-          if (nB !== P.nB) { const old = P.cov; P.cov = new Uint8Array(Math.ceil(nB / 8)); P.cov.set(old.subarray(0, P.cov.length)); P.nB = nB; }
-        }
+        if (d) setRealDur(d);
         // one session per episode per sitting (a new episode or a 30-minute break starts a new one); it is stored only
         // once real playback happens, so a play-then-seek never leaves a 0-second session behind
         if (!P.sess || P.sessId !== P.cur.id || Date.now() - P.sess.e > 30 * 60e3) {
           const t0 = Math.floor(P.yt.getCurrentTime() || 0);
-          P.sess = { s: Date.now(), e: Date.now(), w: 0, n: 0, a: t0, b: t0, m: 0 }; P.sessId = P.cur.id; P.sessStored = false;
+          P.sess = { s: Date.now(), e: Date.now(), w: 0, n: 0, a: t0, b: t0, m: 0, v: 2 }; P.sessId = P.cur.id; P.sessStored = false;
           if (r.done) P.sess.rw = 1; // a rewatch of a completed episode: logged, never changes its numbers
           if (!r.first) r.first = Date.now();
         }
@@ -227,6 +223,31 @@
     if (s === 0) onEnded();
   }
 
+  /* the real length of the loaded video as YouTube's player reports it (0 until known, or when another video is loaded) */
+  function readDur() {
+    try {
+      const vd = P.yt.getVideoData && P.yt.getVideoData();
+      if (vd && vd.video_id && P.cur && vd.video_id !== P.cur.id) return 0;
+      const d = Number(P.yt.getDuration());
+      return d > 0 && isFinite(d) ? d : 0;
+    } catch (x) { return 0; }
+  }
+  /* store the real length per episode (r.ydur) and make it the coverage denominator: cells = floor(real length). The catalogue
+   * duration (r.dur / e.dur) is left as it is for display. A changed length resizes the bitset (covered bits are kept) and
+   * re-runs the end repair for an older full play that ended a few seconds short. */
+  function setRealDur(d) {
+    if (!P.cur || !(d > 0)) return;
+    const r = h().rec(P.cur.id, true);
+    d = Math.round(d * 1000) / 1000;
+    if (Math.abs((Number(r.ydur) || 0) - d) < 0.01) return;
+    r.ydur = d;
+    const nB = h().cells(r);
+    if (nB !== P.nB) { const old = P.cov || new Uint8Array(0); const nb = new Uint8Array(Math.ceil(nB / 8)); nb.set(old.subarray(0, nb.length)); P.cov = nb; P.nB = nB; }
+    r.cov = h().covEncode(P.cov);
+    h().settle(r);
+    if (h().repairEnd(r, P.cur)) P.cov = h().covDecode(r.cov, P.nB);
+    P.lastSave = 0; // flush on the next tick
+  }
   /* The strict watch clock. Counts only forward playback; seeks never count.
    * It reads YouTube's own position, and that position is a cached value: the IFrame API returns the time the embed last
    * posted plus at most 1 s of interpolation, so while the embed's posts are late (background tab, covered or minimised
@@ -244,6 +265,8 @@
     } catch (e) { return; }
     if (typeof t !== "number" || isNaN(t)) return;
     const now = performance.now();
+    // the real length, once it reads the same on two ticks in a row (or at ENDED): stored per episode as the denominator
+    { const d = readDur(); if (d) { if (st === 0 || Math.abs(d - (P.dLast || 0)) < 0.01) setRealDur(d); P.dLast = d; } }
     const r = h().rec(P.cur.id, true);
     let rate = 1; try { rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1; } catch (e) {}
     const rateHi = Math.max(rate, P.lastRate || rate), rateLo = Math.min(rate, P.lastRate || rate); P.lastRate = rate;
@@ -306,6 +329,16 @@
     let t = P.lastMedia;
     try { const c = P.yt.getCurrentTime(); if (typeof c === "number" && !isNaN(c) && c >= (t || 0) && c - (t || 0) <= 3) t = c; } catch (x) {}
     if (t == null) return;
+    // ENDED after continuous play: credit through the REAL end (every whole second up to floor(real length); a partial final
+    // second is not a cell), when the gap from the last observed position to the end fits real playback since that reading
+    const d = readDur(); if (d) setRealDur(d);
+    const rr = h().rec(P.cur.id, true), end = Number(rr.ydur) || d || 0;
+    let rate = 1; try { rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1; } catch (x) {}
+    const dw = Math.max(0, (performance.now() - (P.lastWall || 0)) / 1000);
+    const toEnd = end > 0 && end - t >= -1 && end - t <= (dw + 1) * Math.max(rate, P.lastRate || rate) * 1.5 + 0.5;
+    if (toEnd) t = Math.max(t, Math.floor(end) + 0.5);
+    // the session ended with ENDED after a live (continuous) run: flagged (kept in History; the end repair's ENDED evidence)
+    if (P.sess && P.sessId === P.cur.id) { P.sess.end = 1; if (toEnd) P.sess.b = Math.max(P.sess.b || 0, Math.floor(end)); }
     const a = Math.max(0, Math.ceil(P.run.from - 0.5)), b = Math.min(P.nB - 1, Math.floor(t - 0.5));
     const r = h().rec(P.cur.id, true);
     let add = 0;
