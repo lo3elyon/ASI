@@ -49,6 +49,8 @@
       H.xpCarry = Math.max(0, Math.round(before - after));
       store.set(HKEY, H);
     }
+    // end repair (fix7): re-evaluated on every boot (cheap, idempotent) and again when the player learns the real length
+    if (H) { let k = 0; try { k = repairEnds(H); } catch (e) {} if (k) { H.fix7n = (H.fix7n || 0) + k; store.set(HKEY, H); } }
   }
   function saveH() { store.set(HKEY, L.H); }
   function saveAll() {
@@ -73,37 +75,77 @@
   /* exact progress: one bit per second of the episode (cell i = media seconds [i, i+1)); 100 % / complete only when every
    * second is covered, except the final ≤ 1 s cell that YouTube may not report before ENDED */
   const nSec = (dur) => Math.max(1, Math.ceil(Number(dur) || 1));
+  /* the coverage denominator: the REAL length YouTube's player reports (r.ydur, from getDuration(), stored per episode once
+   * known) in whole seconds, floor(ydur) (a partial final second is not a cell), else the catalogue length ceil(r.dur). The
+   * catalogue duration stays what the app shows everywhere else. */
+  const realDur = (r) => (r && Number(r.ydur) > 0 ? Number(r.ydur) : 0);
+  function cells(r) { const y = realDur(r); return y ? Math.max(1, Math.floor(y)) : nSec(r && r.dur); }
   function covComplete(bytes, n) { for (let i = 0; i < n - 1; i++) if (!(bytes[i >> 3] & (1 << (i & 7)))) return false; return n > 1 || !!(bytes[0] & 1); }
   /* recompute covN / pct / full / done from the bitset; a played record is "done" only when complete, a manual full mark stays done */
   function settle(r) {
     if (!r) return r;
-    const n = nSec(r.dur), b = covDecode(r.cov, n);
+    const n = cells(r), b = covDecode(r.cov, n);
     r.covN = covCount(b, n);
-    const full = r.covN > 0 && covComplete(b, n);
+    // real length known: every whole real second must be covered (ENDED after continuous play credits through the end);
+    // catalogue fallback: every cell except possibly the final one (YouTube may not report the final <= 1 s)
+    const full = r.covN > 0 && (realDur(r) ? r.covN >= n : covComplete(b, n));
     if (r.manual && !r.manual.partial) { r.full = true; r.pct = 1; r.done = true; return r; }
     r.full = full; r.pct = full ? 1 : clamp(r.covN / n, 0, 1);
     if (full && !r.done) { r.done = true; r.doneAt = r.doneAt || r.last || Date.now(); }
     if (!full && r.done) { r.done = false; r.doneAt = 0; }
     return r;
   }
+  /* One-time end repair (fix7) for full plays that stopped at 99.5 % because the catalogue length was a few seconds longer
+   * than the real video and/or the old end race lost the last stretch. Credits ONLY a tail: every second before the first gap
+   * must already be covered (a skipped middle part is never credited), the gap must reach the end, and the end must be
+   * evidenced: tail <= (catalogue − real) + 1 s when the last session ended with ENDED or reached the end continuously;
+   * tail <= 8 s only for a session recorded before this fix (no v) that ended with ENDED. ENDED = the session's end flag (new sessions, v 2), or for an
+   * older session (no v): the saved position is at the end (the player writes it at ENDED) AND the session ran continuously
+   * to the end. Returns the seconds added. */
+  function endEvidence(r, cat) {
+    const ss = (Array.isArray(r.sessions) ? r.sessions : []).filter((x) => x && x.src !== "manual");
+    const x = ss[ss.length - 1]; if (!x) return { ended: false, cont: false };
+    const end = realDur(r) || cat || r.dur || 0; if (!end) return { ended: false, cont: false };
+    const a = Number(x.a) || 0, b = Number(x.b) || 0, w = Number(x.w) || 0, adv = b - a;
+    const cont = adv > 0 && adv >= w * 0.9 - 15 && adv <= w * 2 * 1.1 + 15 && b >= Math.floor(end) - 9;
+    const ended = !!x.end || (!x.v && cont && (Number(r.pos) || 0) >= end - 1.5);
+    return { ended, cont, old: !x.v };
+  }
+  function repairEnd(r, e) {
+    if (!r || !r.cov || r.full || (r.manual && !r.manual.partial)) return 0;
+    const cat = (e && e.dur) || r.dur || 0, n = cells(r), b = covDecode(r.cov, n);
+    let g = 0; while (g < n && (b[g >> 3] & (1 << (g & 7)))) g++;
+    const tail = n - g; if (tail <= 0 || g < 30) return 0;
+    for (let i = g; i < n; i++) if (b[i >> 3] & (1 << (i & 7))) return 0; // a covered second after the gap = a skip, never credited
+    const ev = endEvidence(r, cat);
+    let tol = 0;
+    if (ev.ended || ev.cont) tol = Math.max(0, (realDur(r) && cat ? cat - realDur(r) : 0)) + 1;
+    if (ev.ended && ev.old) tol = Math.max(tol, 8); // the 8-s allowance is for records made before this fix only
+    if (tail > tol) return 0;
+    let add = 0; for (let i = g; i < n; i++) { const bit = 1 << (i & 7); if (!(b[i >> 3] & bit)) { b[i >> 3] |= bit; add++; } }
+    r.cov = covEncode(b); r.watched = (r.watched || 0) + add; r.endRep = { n: add, at: Date.now() };
+    settle(r);
+    return add;
+  }
+  function repairEnds(H) { let k = 0; Object.keys((H && H.eps) || {}).forEach((id) => { const e = STATE.byId && STATE.byId.get(id); try { if (repairEnd(H.eps[id], e)) k++; } catch (x) {} }); return k; }
   /* unique seconds really played here (a manual mark's logged seconds are not "played") */
   function playedSec(r) { if (!r) return 0; if (r.manual && !r.manual.partial) return Math.max(0, (r.manual.prev && r.manual.prev.covN) || 0); return r.covN || 0; }
   /* "89.7%": exact share with one decimal, floored (never rounded up); "100%" only when complete */
   function pctText(r) {
     if (!r) return "0%";
     if (r.full || (r.manual && !r.manual.partial)) return "100%";
-    const p = Math.floor(clamp((r.covN || 0) / nSec(r.dur), 0, 1) * 1000) / 10;
+    const p = Math.floor(clamp((r.covN || 0) / cells(r), 0, 1) * 1000) / 10;
     if (p >= 100) return "99.9%";
     if (p === 0 && (r.covN || 0) > 0) return "<0.1%";
     return (r.covN || 0) ? p.toFixed(1) + "%" : "0%";
   }
   /* bar width in %: floored to 0.1 so a bar never looks fuller than the truth */
-  function pctWidth(r) { if (!r) return 0; if (r.full || (r.manual && !r.manual.partial)) return 100; return Math.min(99.9, Math.floor(clamp((r.covN || 0) / nSec(r.dur), 0, 1) * 1000) / 10); }
+  function pctWidth(r) { if (!r) return 0; if (r.full || (r.manual && !r.manual.partial)) return 100; return Math.min(99.9, Math.floor(clamp((r.covN || 0) / cells(r), 0, 1) * 1000) / 10); }
   const mmss = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : String(m).padStart(2, "0")) + ":" + String(x).padStart(2, "0"); };
   const hhmmss = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return h + ":" + String(m).padStart(2, "0") + ":" + String(x).padStart(2, "0"); };
   /* tooltip: "12:34 of 1:02:03 watched (unique) · 20.2%" (+ how it was marked) */
   function covTip(id) {
-    const r = L.H.eps[id]; const e = STATE.byId && STATE.byId.get(id); const dur = (r && r.dur) || (e && e.dur) || 0;
+    const r = L.H.eps[id]; const e = STATE.byId && STATE.byId.get(id); const dur = (e && e.dur) || (r && r.dur) || 0;
     if (!r) return `00:00 of ${hhmmss(dur)} watched (unique)`;
     const man = r.manual && !r.manual.partial;
     return `${mmss(playedSec(r))} of ${hhmmss(dur)} watched (unique) · ${man ? "Marked watched" : r.full ? "Watched 100%" : pctText(r)}` + (r.lgN ? ` · ${r.lgN} earlier 10-s part${r.lgN === 1 ? "" : "s"} not verified to the second` : "");
@@ -497,8 +539,8 @@
   const isObj = (o) => o && typeof o === "object" && !Array.isArray(o);
   function cleanRec(r) {
     if (!isObj(r)) return null;
-    const out = { pos: num(r.pos), dur: num(r.dur), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.cov || "") ? r.cov || "" : "", spent: Math.min(num(r.spent), 86400 * 30), ...(/^[A-Za-z0-9+/=]{1,4000}$/.test(r.lg || "") ? { lg: r.lg, lgN: num(r.lgN) } : {}), covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
-      sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.m != null ? { m: num(x.m) } : {}), ...(x.n != null ? { n: num(x.n) } : {}), ...(x.rw ? { rw: 1 } : {}), ...(x.legacy ? { legacy: 1 } : {}), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
+    const out = { pos: num(r.pos), dur: num(r.dur), ...(num(r.ydur) > 0 ? { ydur: Math.min(num(r.ydur), 86400 * 2) } : {}), ...(isObj(r.endRep) ? { endRep: { n: Math.min(num(r.endRep.n), 60), at: num(r.endRep.at) } } : {}), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.cov || "") ? r.cov || "" : "", spent: Math.min(num(r.spent), 86400 * 30), ...(/^[A-Za-z0-9+/=]{1,4000}$/.test(r.lg || "") ? { lg: r.lg, lgN: num(r.lgN) } : {}), covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
+      sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.m != null ? { m: num(x.m) } : {}), ...(x.n != null ? { n: num(x.n) } : {}), ...(x.rw ? { rw: 1 } : {}), ...(x.end ? { end: 1 } : {}), ...(x.v ? { v: num(x.v) } : {}), ...(x.legacy ? { legacy: 1 } : {}), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
     if (isObj(r.manual)) out.manual = { at: num(r.manual.at), add: num(r.manual.add), day: /^\d{4}-\d{2}-\d{2}$/.test(r.manual.day) ? r.manual.day : dayKey(Date.now()), partial: !!r.manual.partial, src: "manual", prev: isObj(r.manual.prev) ? { watched: num(r.manual.prev.watched), pct: Math.min(1, num(r.manual.prev.pct)), done: !!r.manual.prev.done, doneAt: num(r.manual.prev.doneAt), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.manual.prev.cov || "") ? r.manual.prev.cov || "" : "", covN: num(r.manual.prev.covN), pos: num(r.manual.prev.pos) } : { watched: 0, pct: 0, done: false, doneAt: 0, cov: "", covN: 0, pos: 0 } };
     return out;
   }
@@ -510,7 +552,7 @@
     if (!isObj(hh) || !isObj(hh.eps)) throw new Error("No history in file");
     const H = freshHistory();
     Object.keys(hh.eps).forEach((id) => { if (IDRX.test(id)) { const r = cleanRec(hh.eps[id]); if (r) H.eps[id] = r; } });
-    if (hh.fix6) { repairHistory(H, BUCKET); Object.values(H.eps).forEach(settle); H.xpCarry = Math.min(num(hh.xpCarry), 1e6); }
+    if (hh.fix6) { repairHistory(H, BUCKET); Object.values(H.eps).forEach(settle); repairEnds(H); H.xpCarry = Math.min(num(hh.xpCarry), 1e6); }
     else { repairHistory(H, OLD_BUCKET); recoverCoverage(H, OLD_BUCKET); migrateExact(H); } // an older backup: 10-s slices → exact seconds
     H.fix4 = H.fix5 = H.fix6 = Date.now();
     H.created = num(hh.created, Date.now()) || Date.now(); H.daily = cleanDays(hh.daily); H.manualDaily = cleanDays(hh.manualDaily);
@@ -574,7 +616,7 @@
   function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.EARNED = {}; L.FOLLOWS = new Set(); L.PLAYLISTS = []; L.LATER = []; L.RATINGS = {}; L.UTAGS = {}; saveAll(); }
 
   A.hist = {
-    L, afterData, BUCKET, OLD_BUCKET, nSec, covComplete, settle, playedSec, pctText, pctWidth, covTip, doneLabel, migrateExact, conv10, evidence, mmss, hhmmss, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
+    L, afterData, BUCKET, OLD_BUCKET, nSec, cells, realDur, repairEnd, repairEnds, endEvidence, covComplete, settle, playedSec, pctText, pctWidth, covTip, doneLabel, migrateExact, conv10, evidence, mmss, hhmmss, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
     watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
     addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
     markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, recoverCoverage, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
