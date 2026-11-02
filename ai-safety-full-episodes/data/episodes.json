@@ -21147,6 +21147,194 @@
   "classic": false
  },
  {
+  "id": "kSKcdM61jsk",
+  "title": "Alignment Evaluations and Engineering Safety | Ida Mattsson | PIBBSS Symposium 2026",
+  "channel": "Principles of Intelligence",
+  "show": "PIBBSS Summer Fellowship Symposium 2026",
+  "date": "2026-10-06",
+  "approx": false,
+  "duration": "40:09",
+  "speakers": [
+   {
+    "name": "Ida Mattsson",
+    "affiliation": "Carnegie Mellon University (philosophy PhD); 2026 PIBBSS fellow"
+   }
+  ],
+  "names": [
+   "Ida Mattsson"
+  ],
+  "format": "fellowship symposium talk + Q&A",
+  "summary": "Ida Mattsson maps inner and outer alignment onto verification and validation from safety engineering, then asks what happens when the system under test is strategic. Using confusion matrices and biological mimicry (Batesian, aggressive, Mullerian), she treats alignment faking as aggressive mimicry and sandbagging as Batesian mimicry, and argues that even weakly strategic systems distort what testers can infer. Her main claim: safety cases and evaluations must account for the selection pressure that testing itself applies, a point she backs by noting that frontier system cards rarely say which component or system was tested.",
+  "topics": [
+   "0:00:24 What the talk covers: alignment evaluations and engineering safety",
+   "0:02:09 Safety cases as a deployment-justification tool",
+   "0:05:01 Verification versus validation",
+   "0:06:26 Mapping inner/outer alignment onto V&V",
+   "0:08:10 Behavioural versus goal-directed views of a system under test",
+   "0:09:28 Mesa-optimization and why intentions matter",
+   "0:10:41 Confusion matrix: alignment faking and sandbagging as deception",
+   "0:13:12 Weakly versus strongly strategic systems",
+   "0:15:23 Mimicry in biology: model, mimic, dupe",
+   "0:16:40 Types of mimicry: Batesian, aggressive, Mullerian",
+   "0:18:18 Testing as a triadic, co-evolutionary relationship",
+   "0:19:48 Alignment failures as mimicry relations",
+   "0:21:05 Safety cases: component, system, and humans in the loop",
+   "0:22:57 What frontier system cards do and do not say about what was tested",
+   "0:24:41 Q&A: ground truth and mathematical models of mimicry"
+  ],
+  "evidence": "[0:01:43] Ida Mattsson: \"when we think about how we justify deployments\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=kSKcdM61jsk",
+  "thumb": "https://i.ytimg.com/vi/kSKcdM61jsk/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A fresh lens on why passing an alignment eval is weaker evidence than it looks: evaluation changes what gets deployed. Short, clear, and linked to the safety-case thinking behind current frontier-lab frameworks.",
+  "tags": [
+   "alignment evaluations",
+   "safety cases",
+   "verification and validation",
+   "alignment faking",
+   "sandbagging",
+   "mimicry",
+   "inner and outer alignment",
+   "PIBBSS"
+  ],
+  "people_mentioned": [
+   "Evan Hubinger",
+   "Junior Okoroafor"
+  ],
+  "orgs_mentioned": [
+   "PIBBSS",
+   "Principles of Intelligence",
+   "Carnegie Mellon University"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:24",
+    "seconds": 24,
+    "title": "What the talk covers: alignment evaluations and engineering safety"
+   },
+   {
+    "t": "0:02:09",
+    "seconds": 129,
+    "title": "Safety cases as a deployment-justification tool"
+   },
+   {
+    "t": "0:05:01",
+    "seconds": 301,
+    "title": "Verification versus validation"
+   },
+   {
+    "t": "0:06:26",
+    "seconds": 386,
+    "title": "Mapping inner/outer alignment onto V&V"
+   },
+   {
+    "t": "0:08:10",
+    "seconds": 490,
+    "title": "Behavioural versus goal-directed views of a system under test"
+   },
+   {
+    "t": "0:09:28",
+    "seconds": 568,
+    "title": "Mesa-optimization and why intentions matter"
+   },
+   {
+    "t": "0:10:41",
+    "seconds": 641,
+    "title": "Confusion matrix: alignment faking and sandbagging as deception"
+   },
+   {
+    "t": "0:13:12",
+    "seconds": 792,
+    "title": "Weakly versus strongly strategic systems"
+   },
+   {
+    "t": "0:15:23",
+    "seconds": 923,
+    "title": "Mimicry in biology: model, mimic, dupe"
+   },
+   {
+    "t": "0:16:40",
+    "seconds": 1000,
+    "title": "Types of mimicry: Batesian, aggressive, Mullerian"
+   },
+   {
+    "t": "0:18:18",
+    "seconds": 1098,
+    "title": "Testing as a triadic, co-evolutionary relationship"
+   },
+   {
+    "t": "0:19:48",
+    "seconds": 1188,
+    "title": "Alignment failures as mimicry relations"
+   },
+   {
+    "t": "0:21:05",
+    "seconds": 1265,
+    "title": "Safety cases: component, system, and humans in the loop"
+   },
+   {
+    "t": "0:22:57",
+    "seconds": 1377,
+    "title": "What frontier system cards do and do not say about what was tested"
+   },
+   {
+    "t": "0:24:41",
+    "seconds": 1481,
+    "title": "Q&A: ground truth and mathematical models of mimicry"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:43",
+    "seconds": 103,
+    "speaker": "Ida Mattsson",
+    "quote": "when we think about how we justify deployments",
+    "quote_located": true
+   },
+   {
+    "t": "0:01:49",
+    "seconds": 109,
+    "speaker": "Ida Mattsson",
+    "quote": "we need to account for the selection pressures",
+    "quote_located": true
+   },
+   {
+    "t": "0:20:01",
+    "seconds": 1201,
+    "speaker": "Ida Mattsson",
+    "quote": "we would like for our models to be malarian mimics",
+    "quote_located": true
+   },
+   {
+    "t": "0:22:59",
+    "seconds": 1379,
+    "speaker": "Ida Mattsson",
+    "quote": "there's not really very much evidence at all to what component or what system",
+    "quote_located": true
+   },
+   {
+    "t": "0:28:18",
+    "seconds": 1698,
+    "speaker": "Ida Mattsson",
+    "quote": "we should be caring about these risks way before we have strongly strategic agents",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Mon 2026-11-02 08:50 PM IST (UTC+05:30)",
+  "added_ms": 1793632800000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS/page: published Oct 6, 2026 (presented Sep 24, 2026, symposium day 3; princint.ai/26-symposium)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1102b/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
   "id": "IejFLhF8efQ",
   "title": "🔴 LIVE: Public Testimony at NYC Council Hearing on AI Safeguards",
   "channel": "New York City Council",
@@ -22029,6 +22217,205 @@
   "month": "2026-10",
   "verified": true,
   "classic": false
+ },
+ {
+  "id": "iaNskAbtCRk",
+  "title": "MLSS 2026 — Roger Grosse — Data counterfactuals as an alignment technique",
+  "channel": "Max Planck Institute for Intelligent Systems",
+  "show": "MLSS 2026 (Machine Learning Summer School, Tübingen)",
+  "date": "2026-10-05",
+  "approx": false,
+  "duration": "1:18:51",
+  "speakers": [
+   {
+    "name": "Roger Grosse",
+    "affiliation": "University of Toronto; Anthropic Alignment Science team (member of technical staff)"
+   }
+  ],
+  "names": [
+   "Roger Grosse"
+  ],
+  "format": "summer-school lecture + Q&A",
+  "summary": "Roger Grosse, associate professor at Toronto and a member of Anthropic's Alignment Science team, argues that training-data attribution is a missing interpretability tool for alignment. He motivates it with emergent misalignment, reward hacking and the OpenAI/Hugging Face incident, splits the problem into an estimation problem (influence functions, EK-FAC, a linear solver that lifts accuracy) and a retrieval problem (a preconditioned, sketched retriever whose errors behave like known Gaussian noise), and shows examples from sycophancy and shutdown-resistance queries. A long Q&A covers saturation, RL, and what labs would actually do with the answers.",
+  "topics": [
+   "0:00:25 Introduction: from Bayesian models to tracing behaviour to data",
+   "0:01:24 Why causal effects of training data matter for alignment",
+   "0:03:02 The OpenAI/Hugging Face incident as motivation",
+   "0:03:53 Covert behaviour and risk reports that rely on chain of thought",
+   "0:05:23 A science of LLM generalization",
+   "0:07:42 The counterfactual: add or remove one training example",
+   "0:10:46 Alignment uses: persona change, offline monitoring, filtering, poisoning",
+   "0:14:30 Two problems: estimation and retrieval",
+   "0:19:17 Influence functions explained",
+   "0:25:41 Generalization gets more abstract with model scale",
+   "0:28:35 Predicting the reversal curse",
+   "0:32:13 Better inverse-Hessian solves (linear data modeling score)",
+   "0:36:27 The retrieval problem and sketching",
+   "0:52:19 Sycophancy and shutdown examples; use on Claude Mythos",
+   "0:58:59 Q&A: validation, interactions, saturation, RL, mitigations"
+  ],
+  "evidence": "[0:01:24] Roger Grosse: \"I think the main reason is that we've seen that large language models show some extremely surprising emergent behaviors\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=iaNskAbtCRk",
+  "thumb": "https://i.ytimg.com/vi/iaNskAbtCRk/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "A rare first-hand technical account, from someone who works on Anthropic's alignment team, of how training-data attribution is used (even in the safety testing of a frontier model) to root-cause suspicious behaviour without trusting the model's chain of thought.",
+  "tags": [
+   "training data attribution",
+   "influence functions",
+   "emergent misalignment",
+   "reward hacking",
+   "interpretability",
+   "alignment",
+   "Anthropic",
+   "sycophancy"
+  ],
+  "people_mentioned": [
+   "Percy Liang",
+   "Sam Park",
+   "Andrew Ilyas",
+   "Lukas Berglund"
+  ],
+  "orgs_mentioned": [
+   "Anthropic",
+   "OpenAI",
+   "Hugging Face",
+   "Vector Institute",
+   "Max Planck Institute for Intelligent Systems"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:25",
+    "seconds": 25,
+    "title": "Introduction: from Bayesian models to tracing behaviour to data"
+   },
+   {
+    "t": "0:01:24",
+    "seconds": 84,
+    "title": "Why causal effects of training data matter for alignment"
+   },
+   {
+    "t": "0:03:02",
+    "seconds": 182,
+    "title": "The OpenAI/Hugging Face incident as motivation"
+   },
+   {
+    "t": "0:03:53",
+    "seconds": 233,
+    "title": "Covert behaviour and risk reports that rely on chain of thought"
+   },
+   {
+    "t": "0:05:23",
+    "seconds": 323,
+    "title": "A science of LLM generalization"
+   },
+   {
+    "t": "0:07:42",
+    "seconds": 462,
+    "title": "The counterfactual: add or remove one training example"
+   },
+   {
+    "t": "0:10:46",
+    "seconds": 646,
+    "title": "Alignment uses: persona change, offline monitoring, filtering, poisoning"
+   },
+   {
+    "t": "0:14:30",
+    "seconds": 870,
+    "title": "Two problems: estimation and retrieval"
+   },
+   {
+    "t": "0:19:17",
+    "seconds": 1157,
+    "title": "Influence functions explained"
+   },
+   {
+    "t": "0:25:41",
+    "seconds": 1541,
+    "title": "Generalization gets more abstract with model scale"
+   },
+   {
+    "t": "0:28:35",
+    "seconds": 1715,
+    "title": "Predicting the reversal curse"
+   },
+   {
+    "t": "0:32:13",
+    "seconds": 1933,
+    "title": "Better inverse-Hessian solves (linear data modeling score)"
+   },
+   {
+    "t": "0:36:27",
+    "seconds": 2187,
+    "title": "The retrieval problem and sketching"
+   },
+   {
+    "t": "0:52:19",
+    "seconds": 3139,
+    "title": "Sycophancy and shutdown examples; use on Claude Mythos"
+   },
+   {
+    "t": "0:58:59",
+    "seconds": 3539,
+    "title": "Q&A: validation, interactions, saturation, RL, mitigations"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:24",
+    "seconds": 84,
+    "speaker": "Roger Grosse",
+    "quote": "I think the main reason is that we've seen that large language models show some extremely surprising emergent behaviors",
+    "quote_located": true
+   },
+   {
+    "t": "0:04:36",
+    "seconds": 276,
+    "speaker": "Roger Grosse",
+    "quote": "we would like ways of understanding their behavior that do not rely on us trusting their chains of thought",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:26",
+    "seconds": 1106,
+    "speaker": "Roger Grosse",
+    "quote": "the field has been stuck is that we have a chicken and egg problem",
+    "quote_located": true
+   },
+   {
+    "t": "0:25:44",
+    "seconds": 1544,
+    "speaker": "Roger Grosse",
+    "quote": "the generalization patterns become more sophisticated and abstract with model scale",
+    "quote_located": true
+   },
+   {
+    "t": "0:52:21",
+    "seconds": 3141,
+    "speaker": "Roger Grosse",
+    "quote": "used a little bit in the safety testing of cloud mythos preview",
+    "quote_located": true
+   },
+   {
+    "t": "1:13:16",
+    "seconds": 4396,
+    "speaker": "Roger Grosse",
+    "quote": "a very bad sign about what's going on mechanistically inside the training process",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Mon 2026-11-02 08:50 PM IST (UTC+05:30)",
+  "added_ms": 1793632800000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; YouTube page: published Oct 5, 2026; MPI-IS channel (official MLSS 2026 upload)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1102b/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
  },
  {
   "id": "_EZzExTs5QY",
@@ -37674,6 +38061,216 @@
   }
  },
  {
+  "id": "X_777YU3A7M",
+  "title": "Measuring AI Capabilities, Trends and Risk (Beth Barnes & Lawrence Chan of METR) | The Curve 2025",
+  "channel": "Golden Gate Institute for AI",
+  "show": "The Curve 2025",
+  "date": "2025-11-20",
+  "approx": false,
+  "duration": "48:04",
+  "speakers": [
+   {
+    "name": "Beth Barnes",
+    "affiliation": "METR (founder and CEO)"
+   },
+   {
+    "name": "Lawrence Chan",
+    "affiliation": "METR (member of technical staff)"
+   }
+  ],
+  "names": [
+   "Beth Barnes",
+   "Lawrence Chan"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Beth Barnes and Lawrence Chan of METR answer three questions with data: what AI does in the real world, when very capable systems might arrive, and whether they will do what we want. They present the developer uplift RCT in which experienced open-source developers were slowed down while believing they were sped up, the time-horizon trend that grows exponentially, and evidence that benchmarks overstate real performance (a quarter of passing SWE-bench submissions are unusable). They end on reward hacking, evaluation awareness and why future evals will be harder to take at face value, followed by audience Q&A.",
+  "topics": [
+   "0:00:09 Who METR is and why it exists",
+   "0:04:46 Three questions: impact, timelines, controllability",
+   "0:09:30 Real-world impact: the developer uplift RCT",
+   "0:13:18 What the RCT does and does not show",
+   "0:17:19 When do very capable AIs arrive?",
+   "0:22:04 The time-horizon measure",
+   "0:23:29 Exponential trend across domains",
+   "0:27:02 Reconciling the RCT with the benchmark trend",
+   "0:28:13 Benchmarks overestimate: the garbage-code finding",
+   "0:31:20 Can we get powerful AIs to do what we want?",
+   "0:32:09 Reward hacking in the wild",
+   "0:35:00 Chain-of-thought monitoring and its limits",
+   "0:36:15 Models that know they are being evaluated",
+   "0:38:36 Recap and takeaways",
+   "0:40:56 Q&A: situational awareness, benchmark gaps"
+  ],
+  "evidence": "[0:12:31] Lawrence Chan: \"the AI slowed them down by a lot\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=X_777YU3A7M",
+  "thumb": "https://i.ytimg.com/vi/X_777YU3A7M/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "Two METR researchers explain, with the actual studies, why vibes about AI progress mislead, how the time-horizon metric works, and why reward hacking and evaluation awareness make future evaluations harder. Why it matters now: METR's reports on the Hugging Face incident and its time-horizon updates build directly on the methods and caveats set out here.",
+  "tags": [
+   "METR",
+   "time horizons",
+   "developer uplift RCT",
+   "benchmarks",
+   "reward hacking",
+   "evaluation awareness",
+   "chain of thought monitoring",
+   "The Curve"
+  ],
+  "people_mentioned": [
+   "Joel Becker",
+   "Gary Marcus",
+   "Dario Amodei"
+  ],
+  "orgs_mentioned": [
+   "METR",
+   "OpenAI",
+   "Redwood Research"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:09",
+    "seconds": 9,
+    "title": "Who METR is and why it exists"
+   },
+   {
+    "t": "0:04:46",
+    "seconds": 286,
+    "title": "Three questions: impact, timelines, controllability"
+   },
+   {
+    "t": "0:09:30",
+    "seconds": 570,
+    "title": "Real-world impact: the developer uplift RCT"
+   },
+   {
+    "t": "0:13:18",
+    "seconds": 798,
+    "title": "What the RCT does and does not show"
+   },
+   {
+    "t": "0:17:19",
+    "seconds": 1039,
+    "title": "When do very capable AIs arrive?"
+   },
+   {
+    "t": "0:22:04",
+    "seconds": 1324,
+    "title": "The time-horizon measure"
+   },
+   {
+    "t": "0:23:29",
+    "seconds": 1409,
+    "title": "Exponential trend across domains"
+   },
+   {
+    "t": "0:27:02",
+    "seconds": 1622,
+    "title": "Reconciling the RCT with the benchmark trend"
+   },
+   {
+    "t": "0:28:13",
+    "seconds": 1693,
+    "title": "Benchmarks overestimate: the garbage-code finding"
+   },
+   {
+    "t": "0:31:20",
+    "seconds": 1880,
+    "title": "Can we get powerful AIs to do what we want?"
+   },
+   {
+    "t": "0:32:09",
+    "seconds": 1929,
+    "title": "Reward hacking in the wild"
+   },
+   {
+    "t": "0:35:00",
+    "seconds": 2100,
+    "title": "Chain-of-thought monitoring and its limits"
+   },
+   {
+    "t": "0:36:15",
+    "seconds": 2175,
+    "title": "Models that know they are being evaluated"
+   },
+   {
+    "t": "0:38:36",
+    "seconds": 2316,
+    "title": "Recap and takeaways"
+   },
+   {
+    "t": "0:40:56",
+    "seconds": 2456,
+    "title": "Q&A: situational awareness, benchmark gaps"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:12:31",
+    "seconds": 751,
+    "speaker": "Lawrence Chan",
+    "quote": "the AI slowed them down by a lot",
+    "quote_located": true
+   },
+   {
+    "t": "0:12:58",
+    "seconds": 778,
+    "speaker": "Lawrence Chan",
+    "quote": "vibes can be really off",
+    "quote_located": true
+   },
+   {
+    "t": "0:23:33",
+    "seconds": 1413,
+    "speaker": "Lawrence Chan",
+    "quote": "the length of task as measured by this methodology we're using is actually growing exponentially",
+    "quote_located": true
+   },
+   {
+    "t": "0:28:20",
+    "seconds": 1700,
+    "speaker": "Lawrence Chan",
+    "quote": "a quarter of them are just garbage code",
+    "quote_located": true
+   },
+   {
+    "t": "0:34:03",
+    "seconds": 2043,
+    "speaker": "Lawrence Chan",
+    "quote": "reward hacking is a product usability issue",
+    "quote_located": true
+   },
+   {
+    "t": "0:39:17",
+    "seconds": 2357,
+    "speaker": "Beth Barnes",
+    "quote": "models knowingly take misaligned actions",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Lawrence Chan",
+    "value": "About 25% of SWE-bench Verified submissions that pass the unit tests are unacceptable code; 88% headline score",
+    "t": "0:28:25",
+    "seconds": 1705
+   }
+  ],
+  "why_now": "Why it matters now: METR's reports on the Hugging Face incident and its time-horizon updates build directly on the methods and caveats set out here.",
+  "month": "2026-11",
+  "orig_month": "2025-11",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 08:50 PM IST (UTC+05:30)",
+  "added_ms": 1793632800000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2025-11-20 18:59 UTC (Nov 21 00:29 IST)",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102b/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
   "id": "ZnjAnPlKCAg",
   "title": "Can We Stop AI from Scheming? Lead Researcher Interview",
   "channel": "Apollo Research",
@@ -37864,6 +38461,217 @@
    "source": "full caption track via analyze_video; channel RSS: published 2025-09-25 13:01 UTC",
    "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
    "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "rVFAJQryzk8",
+  "title": "Debate on AI Takeover and Existential Risk — Sayash Kapoor & Daniel Kokotajlo",
+  "channel": "The Curve",
+  "show": "The Curve 2024",
+  "date": "2025-01-10",
+  "approx": false,
+  "duration": "46:49",
+  "speakers": [
+   {
+    "name": "Sayash Kapoor",
+    "affiliation": "Princeton University (CITP), AI Snake Oil; incoming UC Berkeley School of Information"
+   },
+   {
+    "name": "Daniel Kokotajlo",
+    "affiliation": "AI Futures Project (executive director); former OpenAI governance researcher"
+   }
+  ],
+  "names": [
+   "Sayash Kapoor",
+   "Daniel Kokotajlo"
+  ],
+  "format": "debate + audience Q&A",
+  "summary": "A structured debate from The Curve 2024. Sayash Kapoor lays out the 'AI as normal technology' view: methods, applications and diffusion move on different timescales, safety-critical adoption lags the frontier by decades, and the real work is control and societal resilience. Daniel Kokotajlo gives his median story: agents that automate AI research, then AGI and superintelligence, a million fast copies, and two worries, misalignment and concentration of power. They then probe cruxes: data efficiency, speed limits from real-world testing, and why a six-month lead could matter.",
+  "topics": [
+   "0:00:02 Kapoor: an alternative vision for AI safety",
+   "0:00:48 Three layers: methods, applications, diffusion",
+   "0:03:59 Why AGI is both over- and underestimated",
+   "0:06:44 The next wave of innovation is control",
+   "0:08:29 Four policy points and the common ground",
+   "0:10:41 Kokotajlo: his median scenario",
+   "0:12:41 AGI, superintelligence and a million fast copies",
+   "0:15:55 Two worries: alignment and concentration of power",
+   "0:18:48 Open discussion: where the stories diverge",
+   "0:23:50 The vaccine analogy and real-world speed limits",
+   "0:24:28 Kokotajlo asks for Kapoor's story: research engineers",
+   "0:35:05 Does data efficiency in math and code transfer?",
+   "0:39:20 Why a six-month lead matters politically",
+   "0:42:45 Audience: are experiments and compute really not bottlenecks?",
+   "0:46:09 Closing: agreeing on the first policy bucket"
+  ],
+  "evidence": "[0:06:57] Sayash Kapoor: \"we're calling what we're calling control today\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=rVFAJQryzk8",
+  "thumb": "https://i.ytimg.com/vi/rVFAJQryzk8/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "The cleanest head-to-head between a 'normal technology' sceptic and the author of the AI 2027 scenario. Each side agrees on a shared bucket of resilience policies, which makes it useful for locating the real cruxes. Why it matters now: the 2026 agent incidents and the AI R&D acceleration debate are the live version of this argument; the 2024 positions of both speakers are a useful baseline.",
+  "tags": [
+   "AI takeover",
+   "AI as normal technology",
+   "AI 2027",
+   "recursive self-improvement",
+   "concentration of power",
+   "AI forecasting",
+   "debate",
+   "The Curve"
+  ],
+  "people_mentioned": [
+   "Dario Amodei",
+   "Scott Alexander",
+   "Thomas Larsen"
+  ],
+  "orgs_mentioned": [
+   "AI Futures Project",
+   "OpenAI",
+   "Anthropic",
+   "Princeton CITP"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:02",
+    "seconds": 2,
+    "title": "Kapoor: an alternative vision for AI safety"
+   },
+   {
+    "t": "0:00:48",
+    "seconds": 48,
+    "title": "Three layers: methods, applications, diffusion"
+   },
+   {
+    "t": "0:03:59",
+    "seconds": 239,
+    "title": "Why AGI is both over- and underestimated"
+   },
+   {
+    "t": "0:06:44",
+    "seconds": 404,
+    "title": "The next wave of innovation is control"
+   },
+   {
+    "t": "0:08:29",
+    "seconds": 509,
+    "title": "Four policy points and the common ground"
+   },
+   {
+    "t": "0:10:41",
+    "seconds": 641,
+    "title": "Kokotajlo: his median scenario"
+   },
+   {
+    "t": "0:12:41",
+    "seconds": 761,
+    "title": "AGI, superintelligence and a million fast copies"
+   },
+   {
+    "t": "0:15:55",
+    "seconds": 955,
+    "title": "Two worries: alignment and concentration of power"
+   },
+   {
+    "t": "0:18:48",
+    "seconds": 1128,
+    "title": "Open discussion: where the stories diverge"
+   },
+   {
+    "t": "0:23:50",
+    "seconds": 1430,
+    "title": "The vaccine analogy and real-world speed limits"
+   },
+   {
+    "t": "0:24:28",
+    "seconds": 1468,
+    "title": "Kokotajlo asks for Kapoor's story: research engineers"
+   },
+   {
+    "t": "0:35:05",
+    "seconds": 2105,
+    "title": "Does data efficiency in math and code transfer?"
+   },
+   {
+    "t": "0:39:20",
+    "seconds": 2360,
+    "title": "Why a six-month lead matters politically"
+   },
+   {
+    "t": "0:42:45",
+    "seconds": 2565,
+    "title": "Audience: are experiments and compute really not bottlenecks?"
+   },
+   {
+    "t": "0:46:09",
+    "seconds": 2769,
+    "title": "Closing: agreeing on the first policy bucket"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:06:57",
+    "seconds": 417,
+    "speaker": "Sayash Kapoor",
+    "quote": "we're calling what we're calling control today",
+    "quote_located": true
+   },
+   {
+    "t": "0:09:12",
+    "seconds": 552,
+    "speaker": "Sayash Kapoor",
+    "quote": "irrespective of whether we think Super intelligence is a real threat",
+    "quote_located": true
+   },
+   {
+    "t": "0:13:40",
+    "seconds": 820,
+    "speaker": "Daniel Kokotajlo",
+    "quote": "an army of about a million of them running in parallel",
+    "quote_located": true
+   },
+   {
+    "t": "0:16:25",
+    "seconds": 985,
+    "speaker": "Daniel Kokotajlo",
+    "quote": "I'm worried that we don't have a solution to it yet",
+    "quote_located": true
+   },
+   {
+    "t": "0:17:18",
+    "seconds": 1038,
+    "speaker": "Daniel Kokotajlo",
+    "quote": "a six-month Gap is a huge Gap",
+    "quote_located": true
+   },
+   {
+    "t": "0:25:25",
+    "seconds": 1525,
+    "speaker": "Sayash Kapoor",
+    "quote": "there is no world in which we have automated research engineering",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Daniel Kokotajlo",
+    "value": "Median projection: autonomous research agents in 2026 or 2027, then AGI and superintelligence shortly after",
+    "t": "0:11:15",
+    "seconds": 675
+   }
+  ],
+  "why_now": "Why it matters now: the 2026 agent incidents and the AI R&D acceleration debate are the live version of this argument; the 2024 positions of both speakers are a useful baseline.",
+  "month": "2026-11",
+  "orig_month": "2025-01",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 08:50 PM IST (UTC+05:30)",
+  "added_ms": 1793632800000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2025-01-10 17:27 UTC (22:57 IST); talk recorded at The Curve, Nov 22-24, 2024",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102b/segs_new.json",
    "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
   }
  },
