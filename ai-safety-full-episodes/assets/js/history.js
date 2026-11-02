@@ -19,6 +19,7 @@
     H.stats = Object.assign({}, STAT0, H.stats || {});
     L.H = H;
     if (!H.fix4) { try { repairHistory(H); } catch (e) {} H.fix4 = Date.now(); store.set(HKEY, H); }
+    if (!H.fix5) { try { H.fix5n = recoverCoverage(H).sessions; } catch (e) {} H.fix5 = Date.now(); store.set(HKEY, H); }
     L.NOTES = store.get("notes:v3", {}) || {};
     L.FAVS = new Set(store.get("favs:v3", []) || []);
     L.QUEUE = store.get("queue:v3", []) || [];
@@ -154,6 +155,46 @@
       r.sessions = merged.slice(-200);
       if (r.done && !r.manual && (r.pct || 0) < 0.9) { r.done = false; r.doneAt = 0; out.uncompleted++; }
       if (!(r.pos >= 0) || (dur && r.pos > dur)) r.pos = Math.min(Math.max(0, Number(r.pos) || 0), dur || 0);
+    });
+    return out;
+  }
+  /* One-time recovery (H.fix5) for sessions recorded while the watch clock lost track of YouTube's cached position
+   * (Oct 28 – Nov 2 2026 builds): the session still holds where playback started (a), where it ended (b), the seconds
+   * credited (w) and its wall-clock span (s→e), but the coverage slices and part of the seconds were dropped. A session
+   * counts as one continuous stretch only when its advance b−a matches steady playback at a standard speed over its
+   * wall-clock span or over its credited seconds; then its slices a…b are marked, "reached" is set to b, the missing
+   * seconds (advance ÷ speed − w) are added back to it, the episode total and that day, and "completed" follows the
+   * usual 90 % rule. It only ever adds: nothing is removed, manual marks are untouched, a session with a pause + seek
+   * inside it does not match and is left alone. */
+  const SPEEDS5 = [1, 1.25, 1.5, 1.75, 2];
+  function recoverCoverage(H) {
+    const out = { eps: 0, sessions: 0, slices: 0, secs: 0, completed: 0 };
+    Object.keys(H.eps || {}).forEach((id) => {
+      const r = H.eps[id]; if (!r || typeof r !== "object" || !r.dur || (r.manual && !r.manual.partial)) return;
+      const n = nBOf(r), b = covDecode(r.cov, n); let touched = false, lastE = 0;
+      (Array.isArray(r.sessions) ? r.sessions : []).forEach((x) => {
+        if (!x || x.src === "manual") return;
+        const a = Math.max(0, Number(x.a) || 0), e = Math.min(r.dur, Number(x.b) || 0), adv = e - a, w = Number(x.w) || 0;
+        const span = Math.max(0, ((Number(x.e) || 0) - (Number(x.s) || 0)) / 1000);
+        if (!(adv >= 20)) return;
+        const fits = (base, lo, hi) => SPEEDS5.find((v) => base > 0 && adv >= base * v * lo - 15 && adv <= base * v * hi + 15);
+        const v = fits(w, 0.92, 1.08) || fits(span, 0.9, 1.05);
+        if (!v) return;
+        let added = 0;
+        for (let i = Math.floor(a / BUCKET); i <= Math.floor(e / BUCKET) && i < n; i++) if (!(b[i >> 3] & (1 << (i & 7)))) { b[i >> 3] |= 1 << (i & 7); added++; }
+        const miss = Math.max(0, adv / v - w);
+        if (miss >= 1) {
+          x.w = w + miss; r.watched = (Number(r.watched) || 0) + miss; out.secs += miss;
+          const dk = dayKey(Number(x.e) || Number(x.s) || Date.now()); if (H.daily) H.daily[dk] = (H.daily[dk] || 0) + miss;
+        }
+        if (added || miss >= 1) { out.sessions++; out.slices += added; touched = true; }
+        x.m = Math.max(Number(x.m) || 0, Math.floor(e));
+        lastE = Math.max(lastE, Number(x.e) || 0);
+      });
+      if (!touched) return;
+      out.eps++;
+      r.cov = covEncode(b); r.covN = covCount(b, n); r.pct = clamp(r.covN / n, 0, 1);
+      if (!r.done && r.pct >= 0.9) { r.done = true; r.doneAt = lastE || Date.now(); out.completed++; }
     });
     return out;
   }
@@ -354,6 +395,7 @@
     const H = freshHistory();
     Object.keys(hh.eps).forEach((id) => { if (IDRX.test(id)) { const r = cleanRec(hh.eps[id]); if (r) H.eps[id] = r; } });
     repairHistory(H); H.fix4 = Date.now();
+    recoverCoverage(H); H.fix5 = Date.now();
     H.created = num(hh.created, Date.now()) || Date.now(); H.daily = cleanDays(hh.daily); H.manualDaily = cleanDays(hh.manualDaily);
     if (isObj(hh.stats)) Object.keys(STAT0).forEach((k) => (H.stats[k] = num(hh.stats[k])));
     const notes = {};
@@ -418,7 +460,7 @@
     L, BUCKET, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
     watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
     addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
-    markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
+    markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, recoverCoverage, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
     createPlaylist, playlist, renamePlaylist, deletePlaylist, addToPlaylist, removeFromPlaylist, movePlaylist, toggleLater, rate, setTags, queueNext,
   };
 })(window.ASFE);
