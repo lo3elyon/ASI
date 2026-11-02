@@ -810,5 +810,40 @@
   "org": "AMI Labs; New York University",
   "group": "academics",
   "bio": "Turing Award-winning pioneer of convolutional networks and deep learning, former Meta chief AI scientist and founder of AMI Labs; the best-known sceptic of near-term AGI and of AI x-risk, who argues for world-model, objective-driven AI with built-in guardrails."
+ },
+ {
+  "name": "Sayash Kapoor",
+  "photo": "sayash-kapoor.jpg",
+  "org": "Princeton University (CITP); incoming UC Berkeley School of Information",
+  "group": "academics",
+  "bio": "Computer scientist and co-author of AI Snake Oil who, with Arvind Narayanan, argues that AI is a normal technology; a prominent sceptic of fast-takeoff and extinction scenarios who still backs resilience, transparency and whistleblower protections."
+ },
+ {
+  "name": "Roger Grosse",
+  "photo": "roger-grosse.jpg",
+  "org": "University of Toronto; Anthropic Alignment Science",
+  "group": "lab-insiders",
+  "bio": "Associate professor at Toronto, founding member of the Vector Institute and member of technical staff on Anthropic's Alignment Science team, working on training-data attribution and influence functions for alignment."
+ },
+ {
+  "name": "Ida Mattsson",
+  "photo": "ida-mattsson.jpg",
+  "org": "Carnegie Mellon University; PIBBSS fellow",
+  "group": "academics",
+  "bio": "Philosophy PhD student at Carnegie Mellon working on AI alignment, safety and ethics, game and decision theory; 2026 PIBBSS fellow studying how alignment evaluations map onto engineering verification and validation."
+ },
+ {
+  "name": "Beth Barnes",
+  "photo": "beth-barnes.jpg",
+  "org": "METR",
+  "group": "orgs",
+  "bio": "Founder and CEO of METR, the evaluation nonprofit she started in 2022 after leaving OpenAI; leads work on time-horizon measurement, developer uplift studies and dangerous-capability evals."
+ },
+ {
+  "name": "Lawrence Chan",
+  "photo": "lawrence-chan.jpg",
+  "org": "METR",
+  "group": "orgs",
+  "bio": "Member of technical staff at METR working on time horizons, reward-hacking and evaluation-awareness findings; previously at ARC Evals and Redwood Research."
  }
 ]
