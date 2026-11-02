@@ -486,3 +486,11 @@ html[data-theme="light"] .theater__top .btn[aria-pressed="true"] { color: var(--
 
 /* History: paged timeline footer */
 .hmore { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 18px 0 8px; }
+
+/* exact progress: rewatch tag, History "Rewatch" action, empty month card */
+.tagc--rw{background:rgba(20,184,166,.14);color:var(--teal2,#2dd4bf);border-color:rgba(20,184,166,.35)}
+.hrw{margin-left:6px;font-weight:600;color:var(--amber2,#fbbf24)}
+.hpct{font-variant-numeric:tabular-nums}
+.ribbon{font-variant-numeric:tabular-nums}
+.mcard--empty{opacity:.92}
+.mcard__empty{margin:10px 0 2px;font-size:.92rem;line-height:1.45}
