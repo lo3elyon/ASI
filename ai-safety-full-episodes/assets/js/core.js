@@ -140,13 +140,25 @@
     { id: "xl", label: "2 h +", test: (d) => d >= 7200 },
   ];
   const LEVELS_EP = ["Intro", "Intermediate", "Deep-dive"];
-  const MONTH_LIST = [
-    { id: "all", label: "All", long: "Jul–Oct 2026" },
-    { id: "2026-07", label: "July", long: "July 2026" },
-    { id: "2026-08", label: "August", long: "August 2026" },
-    { id: "2026-09", label: "September", long: "September 2026" },
-    { id: "2026-10", label: "October", long: "October 2026" },
-  ];
+  /* months are data-driven: buildMonths() (end of ingest) fills this list in place from the episode dates, from the first
+   * episode month through the later of the newest episode month and the current month, so a new month (November 2026 and
+   * every one after it) gets its card, heatmap block, filter chip and counts by itself. MONTH_SPAN holds the matching text. */
+  const MONTH_LIST = [{ id: "all", label: "All", long: "All months" }];
+  const MONTH_SPAN = { first: "", last: "", cur: "", short: "", dash: "", to: "" };
+  function monthsBetween0(a, b) { const out = []; let [y, m] = a.split("-").map(Number); const [y1, m1] = b.split("-").map(Number); while (y < y1 || (y === y1 && m <= m1)) { out.push(`${y}-${pad(m)}`); m++; if (m > 12) { m = 1; y++; } if (out.length > 600) break; } return out; }
+  function buildMonths(list) {
+    const ms = Array.from(new Set((list || []).map((e) => e.month).filter((m) => /^\d{4}-\d{2}$/.test(m || "")))).sort();
+    const nowM = dayKey(Date.now()).slice(0, 7);
+    const first = ms[0] || nowM, last = ms.length && ms[ms.length - 1] > nowM ? ms[ms.length - 1] : nowM;
+    const ids = monthsBetween0(first < last ? first : last, last);
+    const nm = (id, full) => { const i = Number(id.slice(5, 7)) - 1; return full ? MONTHS_FULL[i] : MONTHS[i]; };
+    const span = (sep, full) => { const a = nm(ids[0], full), b = nm(last, full), y0 = ids[0].slice(0, 4), y1 = last.slice(0, 4); return ids.length === 1 ? `${b} ${y1}` : y0 === y1 ? `${a}${sep}${b} ${y1}` : `${a} ${y0}${sep}${b} ${y1}`; };
+    Object.assign(MONTH_SPAN, { first: ids[0], last, cur: nowM, short: span("–", false), dash: span("–", true), to: span(" to ", true) });
+    MONTH_LIST.length = 0;
+    MONTH_LIST.push({ id: "all", label: "All", long: MONTH_SPAN.short });
+    ids.forEach((id) => MONTH_LIST.push({ id, label: nm(id, true), long: `${nm(id, true)} ${id.slice(0, 4)}`, cur: id === nowM }));
+    return MONTH_LIST;
+  }
   const GROUPS = [
     { id: "insiders", label: "Ex-lab insiders & forecasters", color: "#f59e0b" },
     { id: "miri", label: "MIRI", color: "#ef4444" },
@@ -393,6 +405,7 @@
     buildClaims();
     STATE.days = new Map();
     STATE.all.forEach((e) => STATE.days.set(e.date, (STATE.days.get(e.date) || 0) + 1));
+    buildMonths(STATE.all);
   }
 
   function buildSpeakers() {
@@ -448,7 +461,7 @@
 
   Object.assign(A, {
     $, $$, esc, clamp, fold, debounce, pad, RM, slug, toSec, fmtTime, fmtHM, hoursStr, dayKey, fmtDate, fmtShort, fmtStamp, initials, hash, avatarGradient,
-    cssEsc, store, migrate, SCHEMA, FORMATS, fmtBucket, LENGTHS, LEVELS_EP, MONTH_LIST, GROUPS, groupById, HOSTS, TAG_RX, ORG_RX, orgsIn, STATE, tokens,
+    cssEsc, store, migrate, SCHEMA, FORMATS, fmtBucket, LENGTHS, LEVELS_EP, MONTH_LIST, MONTH_SPAN, buildMonths, GROUPS, groupById, HOSTS, TAG_RX, ORG_RX, orgsIn, STATE, tokens,
     normalize, loadData, ingest, classifyClaim, headline, parseTimed, MONTHS,
   });
 })();
