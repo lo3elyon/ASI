@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-481%2F481%20passing-10b981?style=flat-square&labelColor=07111f" alt="481 of 481 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-482%2F482%20passing-10b981?style=flat-square&labelColor=07111f" alt="482 of 482 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -78,7 +78,7 @@ flowchart LR
   C -- no --> S
 ```
 
-Tests: `node smoke3.js` 481/481 (new block: the ended state seen by the clock first, the final 0.8 s unreported, 3 s never reported stays 99.9 %, `#/watch/<id>`, `?t=`, `#ep=`, History live before and during playback); `smoke_track.py` whole-episode run reaches 100 % on every rerun.
+Tests: `node smoke3.js` 482/482 (new block: the ended state seen by the clock first, the final 0.8 s unreported, 3 s never reported stays 99.9 %, `#/watch/<id>` with its details drawer (also when the view switch runs in a View Transition), `?t=`, `#ep=`, History live before and during playback); `smoke_track.py` whole-episode run reaches 100 % on every rerun.
 
 ## What's new (Nov 2, 2026, evening): exact, honest progress and months that follow the data
 
@@ -413,7 +413,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-481%2F481%20passing-10b981?style=flat-square&labelColor=07111f" alt="481 of 481 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-482%2F482%20passing-10b981?style=flat-square&labelColor=07111f" alt="482 of 482 checks passing">
 </p>
 
 | Area | What changed |
