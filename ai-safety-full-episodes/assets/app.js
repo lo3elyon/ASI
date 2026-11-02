@@ -23,7 +23,9 @@
     if (r.deep) {
       const e = STATE.byId.get(r.deep.id);
       history.replaceState(null, "", location.pathname + location.search + "#/home");
-      show("home");
+      // synchronous: show() may defer the view switch into a View Transition callback, which would run after (and close)
+      // the drawer opened below
+      doShow("home", null, VIEW !== "home" || ARG != null);
       if (e) { A.views.openDrawer(e.id); A.player.play(e.id, { at: r.deep.t || undefined }); if (r.deep.t) A.ui.toast(`Opened at ${fmtTime(r.deep.t)}`, { icon: "🔗" }); }
       else A.ui.toast("That episode is not in the library", { icon: "⚠️" });
       return;
