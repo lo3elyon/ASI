@@ -44,13 +44,13 @@
   function releaseHeatmap(o) {
     o = o || {};
     const relMonths = Array.from(new Set(STATE.all.map((e) => e.month).filter(Boolean))).sort(); const lastDay = STATE.all.reduce((m, e) => (e.date && e.date > m ? e.date : m), ""); const today = dayKey(Date.now());
-    return heatmap({ id: "rel", months: relMonths.length ? relMonths : ["2026-07", "2026-08", "2026-09", "2026-10"], value: (k) => STATE.days.get(k) || 0, label: (v) => `${v} episode${v === 1 ? "" : "s"} released`, total: (t) => `${t} eps`, selected: o.day, selectedMonth: o.month, onDay: true, legendNote: "Episodes released per day · click a day or month to filter", futureAfter: today > lastDay ? today : lastDay });
+    return heatmap({ id: "rel", months: A.MONTH_LIST.length > 1 ? A.MONTH_LIST.slice(1).map((m) => m.id) : relMonths, value: (k) => STATE.days.get(k) || 0, label: (v) => `${v} episode${v === 1 ? "" : "s"} released`, total: (t) => `${t} eps`, selected: o.day, selectedMonth: o.month, onDay: true, legendNote: "Episodes released per day · click a day or month to filter", futureAfter: today > lastDay ? today : lastDay });
   }
   function watchHeatmap(o) {
     o = o || {};
     const nowM = dayKey(Date.now()).slice(0, 7);
-    const end = nowM > "2026-10" ? nowM : "2026-10";
-    const startM = monthsBetween("2026-07", end).slice(-6)[0];
+    const sp = A.MONTH_SPAN || {}, end = sp.last && sp.last > nowM ? sp.last : nowM;
+    const startM = monthsBetween(sp.first && sp.first < end ? sp.first : end, end).slice(-6)[0];
     return heatmap({ id: "watch", cls: "hm--watch", months: monthsBetween(startM, end), value: (k) => Math.round((h().L.H.daily[k] || 0) / 60), label: (v) => `${v} min watched`, labelK: (k, v) => { const m = Math.round((h().L.H.manualDaily[k] || 0) / 60); return `${v} min` + (m ? ` (${v - m} played + ${m} marked as watched)` : " watched"); }, manual: (k) => (h().L.H.manualDaily[k] || 0) > 0, cell: (v) => (v >= 100 ? Math.round(v / 60) + "h" : v), total: (t) => (t >= 60 ? `${Math.round(t / 6) / 10} h` : `${t} min`), selected: o.day, onDay: true, legendNote: "Minutes per day: real playback, plus episodes you marked as watched (dotted) on the day you marked them" });
   }
 
