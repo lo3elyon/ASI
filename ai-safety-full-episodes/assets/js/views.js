@@ -44,7 +44,7 @@
         <div class="hero__bg" aria-hidden="true"><img src="assets/cover.jpg" alt=""></div>
         <div class="hero__in">
           <p class="eyebrow"><span class="dot"></span> Verified against transcripts · updated Nov 1, 2026</p>
-          <h1>Every verified full-length AI safety episode of <em>July–October 2026</em>, in one player.</h1>
+          <h1>Every verified full-length AI safety episode of <em>${esc(A.MONTH_SPAN.dash)}</em>, in one player.</h1>
           <p class="lede">Whole podcasts, interviews, debates, talks, panels and hearings, never clips. Watch in a fullscreen cinema player, keep listening in headphones mode or the float window, jump by chapter or claim, tick off what you already saw on YouTube, follow researchers and level up as you learn.</p>
           <div class="stats">
             <div class="stat"><b data-count="${STATE.all.length}">0</b><span>full episodes</span></div>
@@ -236,7 +236,12 @@
       const longest = list.slice().sort((a, b) => b.dur - a.dur)[0];
       const fm = FORMATS.map((f) => ({ f, n: list.filter((e) => e.fmt === f.id).length })).filter((x) => x.n);
       const watched = list.filter((e) => h().stateOf(e.id) === "done").length;
-      return `<article class="mcard ${cur === m.id ? "is-sel" : ""}">
+      if (!st.n) return `<article class="mcard mcard--empty ${cur === m.id ? "is-sel" : ""}" data-month="${m.id}">
+        <header><h2>${m.long}</h2><a class="btn btn--sm" href="#/browse?month=${m.id}">Browse 0</a></header>
+        <div class="mcard__k"><span><b>0</b> episodes</span><span><b>0h</b> video</span><span><b>0</b> speakers</span></div>
+        <p class="mcard__empty muted">${m.cur ? "This month has just started. New episodes are added several times a day." : "No episodes this month yet. New episodes are added several times a day."}</p>
+      </article>`;
+      return `<article class="mcard ${cur === m.id ? "is-sel" : ""}" data-month="${m.id}">
         <header><h2>${m.long}</h2><a class="btn btn--sm" href="#/browse?month=${m.id}">Browse ${st.n}</a></header>
         <div class="mcard__k"><span><b>${st.n}</b> episodes</span><span><b>${hoursStr(st.secs)}</b> video</span><span><b>${st.speakers}</b> speakers</span><span><b>${watched}</b>/${st.n} watched</span></div>
         <div class="mcard__bar"><i style="width:${st.n ? (100 * watched / st.n).toFixed(1) : 0}%"></i></div>
@@ -245,7 +250,7 @@
         ${longest ? `<p class="mcard__long">Longest: <button class="linkbtn" data-open="${longest.id}">${esc(longest.title.slice(0, 70))}</button> (${esc(longest.durStr)})</p>` : ""}
       </article>`;
     }).join("");
-    v.innerHTML = `<header class="phead"><p class="eyebrow">Months</p><h1>July to October 2026, month by month</h1><p class="lede">${STATE.all.length} episodes over ${STATE.days.size} release days. Click any day or month to filter the library.</p></header>
+    v.innerHTML = `<header class="phead"><p class="eyebrow">Months</p><h1>${esc(A.MONTH_SPAN.to)}, month by month</h1><p class="lede">${STATE.all.length} episodes over ${STATE.days.size} release days. Click any day or month to filter the library.</p></header>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Episodes released per day</h2></div>${A.charts.releaseHeatmap({ month: cur !== "all" ? cur : null })}</section>
       <div class="mcards">${cards}</div>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2><a class="shelf__more" href="#/insights">Insights ${ui().ICON.chev}</a></div>${A.charts.watchHeatmap()}</section>`;
@@ -346,13 +351,13 @@
     const isCur = A.P.cur && A.P.cur.id === id;
     const sim = A.recs.suggestions(e, 6);
     $("#drawerBody").innerHTML = `
-      <div class="dr__hero"><button class="thumb" data-act="play" data-id="${id}">${ui().thumbImg(e, true)}<span class="thumb__play">${ui().ICON.play}</span>${ui().thumbBadges(e)}${st !== "none" ? `<span class="thumb__bar"><i style="width:${Math.round(h().pctOf(id) * 100)}%"></i></span>` : ""}</button></div>
+      <div class="dr__hero"><button class="thumb" data-act="play" data-id="${id}">${ui().thumbImg(e, true)}<span class="thumb__play">${ui().ICON.play}</span>${ui().thumbBadges(e)}${st !== "none" ? `${ui().progBar(id) || `<span class="thumb__bar"><i style="width:0.1%"></i></span>`}` : ""}</button></div>
       <div class="dr__in" data-id="${id}">
         <p class="eyebrow">${esc(FORMATS.find((f) => f.id === e.fmt).label)} · ${esc(monthLabel(e.month))}${e.verified ? " · verified full episode" : ""}</p>
         <h2 id="drawerTitle">${esc(e.title)}</h2>
         <p class="th__meta"><span>${esc(fmtDate(e.date, e.approx))}</span><span>${esc(e.durStr)}</span><span>${esc(ui().showLine(e))}</span><span class="lvl lvl--${A.slug(e.level)}" title="${e.levelEst ? "Estimated from length and format" : "Editor-assigned level"}">${esc(e.level)}${e.levelEst ? " (est.)" : ""}</span>${e.views ? `<span>${ui().fmtViews(e.views)} views</span>` : ""}</p>
         <div class="dr__act">
-          <button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>${st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Watch again" : "Play"}</span></button>
+          <button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>${st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Rewatch" : "Play"}</span></button>
           <button class="btn" data-act="queue">${q ? ui().ICON.queued : ui().ICON.queue}<span>${q ? "Queued" : "Queue"}</span></button>
           <button class="btn" data-act="fav">${fav ? ui().ICON.heartF : ui().ICON.heart}<span>${fav ? "Favourited" : "Favourite"}</span></button>
           <button class="btn ${st === "done" ? "is-on" : ""}" data-act="watched">${ui().ICON.check}<span>${st === "done" ? "Mark unwatched" : "Mark as watched"}</span></button>
@@ -438,12 +443,12 @@
     rows.forEach((x) => { const k = A.dayKey(x.s.s); if (histDay && k !== histDay) return; if (!byDay.has(k)) byDay.set(k, []); byDay.get(k).push(x); });
     const tot = h().totalWatched();
     const mig = "";
-    v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1><p class="lede">${fmtHM(tot)} actually played across ${Object.values(H.eps).filter((r) => r.watched >= 20).length} episodes · ${h().doneCount()} completed (90%+ really played).</p>${mig}</div>
+    v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1><p class="lede">${fmtHM(tot)} watched (unique seconds) across ${Object.values(H.eps).filter((r) => r.watched >= 20).length} episodes · ${h().doneCount()} completed (every second played, or marked watched).</p>${mig}</div>
       <div class="row-gap"><button class="btn btn--sm" id="hExport">Export backup</button><label class="btn btn--sm btn--ghost">Import<input type="file" id="hImport" accept="application/json" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${histDay ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(histDay))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: histDay })}</section>
       ${byDay.size ? Array.from(byDay.entries()).map(([k, list]) => `<section class="hday"><h2>${esc(fmtDate(k))} <small>${fmtHM(list.reduce((a, x) => a + x.s.w, 0))}</small></h2>
-        <ul class="hlist">${list.map((x) => `<li class="hrow" data-id="${x.e.id}"><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
-          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta">${ui().metaCore(x.e)}<span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.w)} watched</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>${Math.round((x.r.pct || 0) * 100)}% covered</span>${x.r.done ? `<span class="ok">✓ completed</span>` : ""}</p></div>
+        <ul class="hlist">${list.map((x) => `<li class="hrow" data-id="${x.e.id}"><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}${ui().progBar(x.e.id)}</button>
+          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta">${ui().metaCore(x.e)}<span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.n != null ? x.s.n : x.s.w)} ${x.s.n != null ? "new" : "played"}</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span title="${esc(h().covTip(x.e.id))}">${h().pctText(x.r)} covered</span>${x.r.done ? `<span class="ok">✓ ${x.r.manual ? "Marked watched" : "Watched 100%"}</span>` : ""}</p></div>
           <button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove from history">${ui().ICON.trash}</button></li>`).join("")}</ul></section>`).join("") : `<div class="emptybig"><p>${histDay ? "Nothing watched that day." : "Nothing yet. Press play on anything and it shows up here, strictly counted."}</p></div>`}`;
     $("#hExport").onclick = () => { const blob = new Blob([JSON.stringify(h().exportAll(), null, 1)], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `ai-safety-episodes-backup-${A.dayKey(Date.now())}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
     $("#hImport").onchange = async (ev) => { const f = ev.target.files[0]; if (!f) return; try { h().importAll(JSON.parse(await f.text())); ui().toast("Backup restored", { icon: "✅" }); A.app.rerender(); } catch (x) { ui().toast("That file is not a valid backup: " + esc(x.message), { icon: "⚠️" }); } };
@@ -611,12 +616,14 @@
     if (o.title != null) b.title = o.title;
     if (o.text != null) { const sp = b.querySelector("span"); if (sp && sp.textContent !== o.text) sp.textContent = o.text; }
   }
-  function syncBar(holder, pct, before) {
+  function syncBar(holder, pct, before, id) {
     if (!holder) return;
     let bar = holder.querySelector(".thumb__bar");
     if (!pct) { if (bar) bar.remove(); return; }
     if (!bar) { bar = tplEl(`<span class="thumb__bar"><i></i></span>`); holder.appendChild(bar); }
-    const i = bar.querySelector("i"); const w = Math.round(pct * 100) + "%"; if (i.style.width !== w) i.style.width = w;
+    const r = id ? L().H.eps[id] : null;
+    const i = bar.querySelector("i"); const w = (r ? h().pctWidth(r) || 0.1 : Math.floor(pct * 1000) / 10) + "%"; if (i.style.width !== w) i.style.width = w;
+    if (id) { const t = h().covTip(id); if (bar.title !== t) bar.title = t; }
   }
   function syncRibbon(container, id, after, prepend) {
     if (!container) return;
@@ -636,7 +643,7 @@
     el.querySelectorAll(".card__done").forEach((b) => setPressed(b, done, { label: done ? "Mark unwatched" : "Mark as watched", title: done ? "Mark unwatched" : "Already watched on YouTube? Mark as watched" }));
     const th = el.querySelector(".thumb");
     if (list) syncRibbon(el.querySelector(".lrow__act"), id, null, true); else syncRibbon(th, id, th && th.querySelector(".thumb__dur"));
-    syncBar(th, pct);
+    syncBar(th, pct, null, id);
     if (!list) {
       const act = el.querySelector(".card__act"); let r = act && act.querySelector(".card__rt");
       if (act) { if (!rt) { if (r) r.remove(); } else { if (!r) { r = tplEl(`<span class="card__rt" title="Your rating"></span>`); const d = act.querySelector(".card__done"); d ? d.after(r) : act.appendChild(r); } r.textContent = "★" + rt; } }
@@ -644,7 +651,7 @@
   }
   function drHist(id) {
     const r = L().H.eps[id]; const st = h().stateOf(id);
-    return st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual ? "logged" : "watched"} <b>${fmtHM(r.watched)}</b> (${Math.round((r.pct || 0) * 100)}% covered)${r.done ? " · completed " + A.fmtStamp(r.doneAt) : ""} · last ${A.fmtStamp(r.last)}</p>` : "";
+    return st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual && !r.manual.partial ? "logged" : "watched"} <b title="${esc(h().covTip(id))}">${fmtHM(r.manual && !r.manual.partial ? r.watched : h().playedSec(r))}</b> (${r.manual && !r.manual.partial ? "Marked watched" : h().pctText(r) + " covered, unique seconds"})${r.done ? ` · ${r.manual ? "marked watched" : "watched 100%"} ` + A.fmtStamp(r.doneAt) : ""}${r.spent >= 60 ? ` · ${fmtHM(r.spent)} time spent` : ""} · last ${A.fmtStamp(r.last)}</p>` : "";
   }
   function patchDrawer(id) {
     const dr = $("#drawer"); if (!dr || dr.hidden || drawerId !== id) return;
@@ -655,8 +662,8 @@
     setPressed(box.querySelector('[data-act="fav"]'), fav, { icon: fav ? I.heartF : I.heart, text: fav ? "Favourited" : "Favourite" });
     setPressed(box.querySelector('[data-act="watched"]'), st === "done", { text: st === "done" ? "Mark unwatched" : "Mark as watched" });
     setPressed(box.querySelector('[data-act="later"]'), later, { text: later ? "In Watch later" : "Watch later" });
-    const pb = box.querySelector('[data-act="play"] span'); if (pb) pb.textContent = st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Watch again" : "Play";
-    syncBar(dr.querySelector(".dr__hero .thumb"), st !== "none" ? h().pctOf(id) || 0.001 : 0);
+    const pb = box.querySelector('[data-act="play"] span'); if (pb) pb.textContent = st === "progress" && r ? `Resume at ${fmtTime(r.pos)}` : st === "done" ? "Rewatch" : "Play";
+    syncBar(dr.querySelector(".dr__hero .thumb"), st !== "none" ? h().pctOf(id) || 0.001 : 0, null, id);
     const hp = dr.querySelector(".dr__hist"), html = drHist(id);
     if (!html) { if (hp) hp.remove(); }
     else { const nu = tplEl(html); if (hp) { if (hp.innerHTML !== nu.innerHTML) hp.replaceWith(nu); } else { const pf = dr.querySelector("#drPartial"); pf ? pf.before(nu) : box.after(nu); } }
