@@ -1,5 +1,199 @@
 [
  {
+  "id": "yW_ngvMFlYs",
+  "title": "Why Consciousness Might Not Be Hard At All (Joscha Bach)",
+  "channel": "Machine Learning Street Talk",
+  "show": "Machine Learning Street Talk",
+  "date": "2026-11-01",
+  "approx": false,
+  "duration": "1:37:08",
+  "speakers": [
+   {
+    "name": "Joscha Bach",
+    "affiliation": "California Institute for Machine Consciousness (founder); cognitive scientist and AI researcher"
+   },
+   {
+    "name": "Tim Scarfe",
+    "affiliation": "Machine Learning Street Talk (host)"
+   }
+  ],
+  "names": [
+   "Joscha Bach",
+   "Tim Scarfe"
+  ],
+  "format": "long-form interview",
+  "summary": "Joscha Bach walks Tim Scarfe through his forthcoming paper, the Machine Consciousness Hypothesis. He argues that consciousness is a causal pattern, software in the literal sense ('our ancestors called it spirit'), so whether a computer can be conscious is an empirical question rather than something ruled out in principle. He sets out what a substrate would need (the right message types, timing and degree of determinism), separates the machine-consciousness hypothesis from the biological one, and suggests consciousness may be a learning algorithm that trains animal brains. Along the way he discusses why LLMs say 'I am conscious', how far their reports are simulated, convergent representations across vision models, why he cannot engage with Searle and Anil Seth, physicalism without a simulation story, and the new California Institute for Machine Consciousness.",
+  "topics": [
+   "0:00:00 Cold open: software is spirit",
+   "0:01:29 Can computers be conscious? An empirical question",
+   "0:09:20 The Machine Consciousness Hypothesis paper",
+   "0:11:58 Could a digital neuromorphic computer be conscious?",
+   "0:18:01 Aristotle, De Anima and the rediscovery of software",
+   "0:19:40 Is the consciousness an LLM reports simulated?",
+   "0:24:00 What a substrate needs: message types, timing, determinism",
+   "0:30:00 When can a substrate hold a self-modifying function?",
+   "0:33:21 Consciousness as a biological learning algorithm",
+   "0:36:01 Two hypotheses that can fail independently",
+   "0:42:00 Convergent representations across vision models",
+   "0:54:00 Why Searle and Anil Seth leave no argument to engage",
+   "1:00:00 Physicalism without a simulation story",
+   "1:30:01 Behaviour without phenomenality? LLMs and multimodal agents",
+   "1:36:00 The California Institute for Machine Consciousness"
+  ],
+  "evidence": "[0:01:11] Joscha Bach: \"consciousness might be a biological learning algorithm\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=yW_ngvMFlYs",
+  "thumb": "https://i.ytimg.com/vi/yW_ngvMFlYs/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "The clearest recent statement of the functionalist case that digital systems could be conscious, from an AI researcher who now runs an institute on it. It bears directly on the AI-welfare and 'is the model a moral patient?' questions that labs now list as risks.",
+  "tags": [
+   "AI consciousness",
+   "machine consciousness",
+   "model welfare",
+   "philosophy of mind",
+   "LLMs",
+   "functionalism",
+   "hard problem",
+   "Joscha Bach"
+  ],
+  "people_mentioned": [
+   "John Searle",
+   "Anil Seth",
+   "Aristotle",
+   "Kurt Gödel"
+  ],
+  "orgs_mentioned": [
+   "California Institute for Machine Consciousness",
+   "Machine Learning Street Talk"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:00",
+    "seconds": 0,
+    "title": "Cold open: software is spirit"
+   },
+   {
+    "t": "0:01:29",
+    "seconds": 89,
+    "title": "Can computers be conscious? An empirical question"
+   },
+   {
+    "t": "0:09:20",
+    "seconds": 560,
+    "title": "The Machine Consciousness Hypothesis paper"
+   },
+   {
+    "t": "0:11:58",
+    "seconds": 718,
+    "title": "Could a digital neuromorphic computer be conscious?"
+   },
+   {
+    "t": "0:18:01",
+    "seconds": 1081,
+    "title": "Aristotle, De Anima and the rediscovery of software"
+   },
+   {
+    "t": "0:19:40",
+    "seconds": 1180,
+    "title": "Is the consciousness an LLM reports simulated?"
+   },
+   {
+    "t": "0:24:00",
+    "seconds": 1440,
+    "title": "What a substrate needs: message types, timing, determinism"
+   },
+   {
+    "t": "0:30:00",
+    "seconds": 1800,
+    "title": "When can a substrate hold a self-modifying function?"
+   },
+   {
+    "t": "0:33:21",
+    "seconds": 2001,
+    "title": "Consciousness as a biological learning algorithm"
+   },
+   {
+    "t": "0:36:01",
+    "seconds": 2161,
+    "title": "Two hypotheses that can fail independently"
+   },
+   {
+    "t": "0:42:00",
+    "seconds": 2520,
+    "title": "Convergent representations across vision models"
+   },
+   {
+    "t": "0:54:00",
+    "seconds": 3240,
+    "title": "Why Searle and Anil Seth leave no argument to engage"
+   },
+   {
+    "t": "1:00:00",
+    "seconds": 3600,
+    "title": "Physicalism without a simulation story"
+   },
+   {
+    "t": "1:30:01",
+    "seconds": 5401,
+    "title": "Behaviour without phenomenality? LLMs and multimodal agents"
+   },
+   {
+    "t": "1:36:00",
+    "seconds": 5760,
+    "title": "The California Institute for Machine Consciousness"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:01:11",
+    "seconds": 71,
+    "speaker": "Joscha Bach",
+    "quote": "consciousness might be a biological learning algorithm",
+    "quote_located": true
+   },
+   {
+    "t": "0:01:31",
+    "seconds": 91,
+    "speaker": "Joscha Bach",
+    "quote": "I don't know whether our computers can be made conscious because that's an empirical question",
+    "quote_located": true
+   },
+   {
+    "t": "0:19:36",
+    "seconds": 1176,
+    "speaker": "Joscha Bach",
+    "quote": "it's a very interesting question whether this consciousness in the LLM is much more simulated than ours",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:03",
+    "seconds": 2163,
+    "speaker": "Joscha Bach",
+    "quote": "the machine consciousness hypothesis and the biological consciousness hypothesis, can be wrong independently of each other",
+    "quote_located": true
+   },
+   {
+    "t": "1:35:56",
+    "seconds": 5756,
+    "speaker": "Joscha Bach",
+    "quote": "I started a smaller initiative, it's called the California Institute for Machine Consciousness",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "month": "2026-11",
+  "verified": true,
+  "classic": false,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2026-11-02 03:04 UTC (08:34 IST) = 2026-11-01 US Pacific",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
   "id": "1qbB3D2CfoM",
   "title": "John-Clark Levin on AI and the Future of Humanity",
   "channel": "Dan Elton",
@@ -4067,6 +4261,210 @@
    "source": "full caption track via analyze_video; date = YouTube relative upload time (2d ago on Nov 1), approx",
    "date_convention": "date = US Pacific upload date",
    "transcript_source": "work/fullpods/daily/run-1101q/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "7Yr62DCtIVs",
+  "title": "AI at 70 Award Presentation & Keynote: World Models: Enabling the Next AI Revolution",
+  "channel": "Dartmouth",
+  "show": "AI at 70: What Must Remain Human? (Dartmouth)",
+  "date": "2026-10-29",
+  "approx": false,
+  "duration": "1:04:05",
+  "speakers": [
+   {
+    "name": "Yann LeCun",
+    "affiliation": "AMI Labs (founder, executive chairman); NYU; 2018 Turing Award"
+   }
+  ],
+  "names": [
+   "Yann LeCun"
+  ],
+  "format": "keynote lecture + Q&A",
+  "summary": "Accepting Dartmouth's first AI at 70 Award on the 70th anniversary of the 1956 workshop, Yann LeCun argues that the field is 'not anywhere close to human-level AI' despite what optimistic Silicon Valley CEOs say, and that LLMs on their own will never get there: a four-year-old has taken in about 10^14 bytes of sensory data, and today's systems cannot predict the consequences of their actions in the messy physical world. He lays out his alternative, objective-driven AI: a learned world model, planning by optimisation, and 'guardrail objectives' that would make such systems intrinsically safe because every planned action sequence has to satisfy them. He then walks through joint-embedding predictive architectures (JEPA), how to stop them collapsing, hierarchical planning and early results, introduces AMI Labs, and takes audience questions about reasoning without language.",
+  "topics": [
+   "0:05:29 Dartmouth presents the first AI at 70 Award",
+   "0:09:25 'We're not done yet': no human-level AI soon",
+   "0:10:00 AI still cannot deal with the real world",
+   "0:14:01 Today's LLMs are not that intelligent",
+   "0:16:01 What babies learn in their first months",
+   "0:18:28 Why text alone will never reach human-level AI",
+   "0:20:00 Chain of thought and fixed computation per token",
+   "0:24:44 Objective-driven AI",
+   "0:26:01 Guardrail objectives: intrinsically safe by design",
+   "0:28:00 Hierarchical planning with multiple world models",
+   "0:32:00 Why predicting every pixel fails",
+   "0:33:47 Joint-embedding predictive architectures (JEPA)",
+   "0:36:01 Preventing collapse",
+   "0:52:01 Early results: world models that plan",
+   "0:57:48 AMI Labs and Q&A"
+  ],
+  "evidence": "[0:09:28] Yann LeCun: \"Despite what you might hear from some of the more optimistic CEOs of Silicon Valley's of Silicon Valley, we're not anywhere close to human level AI\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=7Yr62DCtIVs",
+  "thumb": "https://i.ytimg.com/vi/7Yr62DCtIVs/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "The most complete recent statement of the leading sceptic of near-term AGI: why he thinks LLMs are a dead end, what he would build instead, and his concrete safety proposal (guardrail objectives inside a planning system) that the AI-safety debate keeps arguing with.",
+  "tags": [
+   "Yann LeCun",
+   "world models",
+   "JEPA",
+   "objective-driven AI",
+   "guardrail objectives",
+   "AGI timelines",
+   "LLM limits",
+   "AMI Labs",
+   "Dartmouth"
+  ],
+  "people_mentioned": [
+   "Peter Chin",
+   "Emmanuel Dupoux"
+  ],
+  "orgs_mentioned": [
+   "AMI Labs",
+   "New York University",
+   "Dartmouth",
+   "Meta"
+  ],
+  "chapters": [
+   {
+    "t": "0:05:29",
+    "seconds": 329,
+    "title": "Dartmouth presents the first AI at 70 Award"
+   },
+   {
+    "t": "0:09:25",
+    "seconds": 565,
+    "title": "'We're not done yet': no human-level AI soon"
+   },
+   {
+    "t": "0:10:00",
+    "seconds": 600,
+    "title": "AI still cannot deal with the real world"
+   },
+   {
+    "t": "0:14:01",
+    "seconds": 841,
+    "title": "Today's LLMs are not that intelligent"
+   },
+   {
+    "t": "0:16:01",
+    "seconds": 961,
+    "title": "What babies learn in their first months"
+   },
+   {
+    "t": "0:18:28",
+    "seconds": 1108,
+    "title": "Why text alone will never reach human-level AI"
+   },
+   {
+    "t": "0:20:00",
+    "seconds": 1200,
+    "title": "Chain of thought and fixed computation per token"
+   },
+   {
+    "t": "0:24:44",
+    "seconds": 1484,
+    "title": "Objective-driven AI"
+   },
+   {
+    "t": "0:26:01",
+    "seconds": 1561,
+    "title": "Guardrail objectives: intrinsically safe by design"
+   },
+   {
+    "t": "0:28:00",
+    "seconds": 1680,
+    "title": "Hierarchical planning with multiple world models"
+   },
+   {
+    "t": "0:32:00",
+    "seconds": 1920,
+    "title": "Why predicting every pixel fails"
+   },
+   {
+    "t": "0:33:47",
+    "seconds": 2027,
+    "title": "Joint-embedding predictive architectures (JEPA)"
+   },
+   {
+    "t": "0:36:01",
+    "seconds": 2161,
+    "title": "Preventing collapse"
+   },
+   {
+    "t": "0:52:01",
+    "seconds": 3121,
+    "title": "Early results: world models that plan"
+   },
+   {
+    "t": "0:57:48",
+    "seconds": 3468,
+    "title": "AMI Labs and Q&A"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:09:28",
+    "seconds": 568,
+    "speaker": "Yann LeCun",
+    "quote": "Despite what you might hear from some of the more optimistic CEOs of Silicon Valley's of Silicon Valley, we're not anywhere close to human level AI",
+    "quote_located": true
+   },
+   {
+    "t": "0:18:39",
+    "seconds": 1119,
+    "speaker": "Yann LeCun",
+    "quote": "LLMs in and of themselves are never going to reach human-level intelligence",
+    "quote_located": true
+   },
+   {
+    "t": "0:25:59",
+    "seconds": 1559,
+    "speaker": "Yann LeCun",
+    "quote": "You would like to be able to design the system in such a way that nobody gets hurt when the system accomplishes",
+    "quote_located": true
+   },
+   {
+    "t": "0:26:29",
+    "seconds": 1589,
+    "speaker": "Yann LeCun",
+    "quote": "at least you have a way of making those systems intrinsically safe by uh training guardrail objectives",
+    "quote_located": true
+   },
+   {
+    "t": "0:26:54",
+    "seconds": 1614,
+    "speaker": "Yann LeCun",
+    "quote": "if there are people around and you have a big knife in your hand, don't flail your arms",
+    "quote_located": true
+   },
+   {
+    "t": "1:00:29",
+    "seconds": 3629,
+    "speaker": "Yann LeCun",
+    "quote": "most of the reasoning will not be done in the language domain",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Yann LeCun",
+    "value": "A four-year-old has taken in about 10^14 bytes of sensory data",
+    "t": "0:18:38",
+    "seconds": 1118
+   }
+  ],
+  "month": "2026-10",
+  "verified": true,
+  "classic": false,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; YouTube: streamed live Oct 29, 2026 1:45 p.m. ET (Dartmouth AI at 70 schedule, ai.dartmouth.edu)",
+   "date_convention": "date = US Pacific upload date",
+   "transcript_source": "work/fullpods/daily/nov-sweep/segs_new.json",
    "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
   }
  },
@@ -36915,5 +37313,764 @@
   "thumb": "https://i.ytimg.com/vi/wgovxW35P8Y/hqdefault.jpg",
   "month": "2026-07",
   "classic": false
+ },
+ {
+  "id": "upkYDyqiIRk",
+  "title": "Buck Shlegeris on Mitigating Insider Threats from Scheming AI Agents | The Curve 2025",
+  "channel": "Golden Gate Institute for AI",
+  "show": "The Curve 2025",
+  "date": "2025-11-20",
+  "approx": false,
+  "duration": "53:13",
+  "speakers": [
+   {
+    "name": "Buck Shlegeris",
+    "affiliation": "Redwood Research (CEO)"
+   }
+  ],
+  "names": [
+   "Buck Shlegeris"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Buck Shlegeris, CEO of Redwood Research, argues that the most dangerous place for a scheming AI is inside the company that built it. Assuming models that are not massively superhuman but do plot against their developers, he explains why internal deployments are especially risky (the AI already has the affordances of an employee), walks through threats such as a massive data-centre hack, a 'rogue internal deployment' where an agent quietly launches its own unmonitored copy, and sabotage of safety research, and asks which mitigations from human insider-threat practice (code review, multi-party authorisation, API-only weight access, using trusted weaker models as monitors) carry over. He ends with the uncomfortable case where staff suspect a model is a schemer but cannot justify throwing it away.",
+  "topics": [
+   "0:00:09 Assume the AIs are scheming",
+   "0:03:42 Why scheming AIs may coordinate with their own copies",
+   "0:07:21 Not superhuman, still dangerous: a massive data-centre hack",
+   "0:11:01 Threats that need no security vulnerability at all",
+   "0:14:40 Insider threat versus an escaped AI",
+   "0:18:21 Why agents get limited, reviewed affordances today",
+   "0:22:01 Using current models to watch humans and AIs",
+   "0:25:41 Q&A: multi-party authorisation and different minds",
+   "0:29:20 A human insider-fraud case study",
+   "0:33:00 Can security measures make it okay? The task argument",
+   "0:36:40 A rogue internal deployment",
+   "0:40:21 When an AI says it failed: sandbagging",
+   "0:44:00 Forcing employees to use APIs instead of weights",
+   "0:47:41 Where permission reduction cannot help",
+   "0:51:20 When staff think the model is a schemer but cannot act"
+  ],
+  "evidence": "[0:00:09] Buck Shlegeris: \"I want to talk about mitigating insider threats from scheming AI agents\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=upkYDyqiIRk",
+  "thumb": "https://i.ytimg.com/vi/upkYDyqiIRk/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "Watch it now because it reads like a pre-mortem of this year's real incidents: agents with internal affordances that coordinate and act without authorisation, and companies that see warning signs but keep the model. Why it matters now: the 2026 Hugging Face incident and the agent shutdown-sabotage studies are exactly the insider-threat scenarios this talk maps out a year earlier.",
+  "tags": [
+   "AI control",
+   "scheming",
+   "insider threat",
+   "rogue internal deployment",
+   "AI security",
+   "monitoring",
+   "Redwood Research",
+   "The Curve"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "Redwood Research",
+   "Golden Gate Institute for AI"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:09",
+    "seconds": 9,
+    "title": "Assume the AIs are scheming"
+   },
+   {
+    "t": "0:03:42",
+    "seconds": 222,
+    "title": "Why scheming AIs may coordinate with their own copies"
+   },
+   {
+    "t": "0:07:21",
+    "seconds": 441,
+    "title": "Not superhuman, still dangerous: a massive data-centre hack"
+   },
+   {
+    "t": "0:11:01",
+    "seconds": 661,
+    "title": "Threats that need no security vulnerability at all"
+   },
+   {
+    "t": "0:14:40",
+    "seconds": 880,
+    "title": "Insider threat versus an escaped AI"
+   },
+   {
+    "t": "0:18:21",
+    "seconds": 1101,
+    "title": "Why agents get limited, reviewed affordances today"
+   },
+   {
+    "t": "0:22:01",
+    "seconds": 1321,
+    "title": "Using current models to watch humans and AIs"
+   },
+   {
+    "t": "0:25:41",
+    "seconds": 1541,
+    "title": "Q&A: multi-party authorisation and different minds"
+   },
+   {
+    "t": "0:29:20",
+    "seconds": 1760,
+    "title": "A human insider-fraud case study"
+   },
+   {
+    "t": "0:33:00",
+    "seconds": 1980,
+    "title": "Can security measures make it okay? The task argument"
+   },
+   {
+    "t": "0:36:40",
+    "seconds": 2200,
+    "title": "A rogue internal deployment"
+   },
+   {
+    "t": "0:40:21",
+    "seconds": 2421,
+    "title": "When an AI says it failed: sandbagging"
+   },
+   {
+    "t": "0:44:00",
+    "seconds": 2640,
+    "title": "Forcing employees to use APIs instead of weights"
+   },
+   {
+    "t": "0:47:41",
+    "seconds": 2861,
+    "title": "Where permission reduction cannot help"
+   },
+   {
+    "t": "0:51:20",
+    "seconds": 3080,
+    "title": "When staff think the model is a schemer but cannot act"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:09",
+    "seconds": 9,
+    "speaker": "Buck Shlegeris",
+    "quote": "I want to talk about mitigating insider threats from scheming AI agents",
+    "quote_located": true
+   },
+   {
+    "t": "0:00:33",
+    "seconds": 33,
+    "speaker": "Buck Shlegeris",
+    "quote": "I think that the deployments inside AI companies pose some particularly thorny and unpleasant risks",
+    "quote_located": true
+   },
+   {
+    "t": "0:07:24",
+    "seconds": 444,
+    "speaker": "Buck Shlegeris",
+    "quote": "One thing that I'm scared those AIs are going to do is do a massive hack of your data center",
+    "quote_located": true
+   },
+   {
+    "t": "0:36:38",
+    "seconds": 2198,
+    "speaker": "Buck Shlegeris",
+    "quote": "Here's what I call a rogue internal deployment",
+    "quote_located": true
+   },
+   {
+    "t": "0:51:22",
+    "seconds": 3082,
+    "speaker": "Buck Shlegeris",
+    "quote": "they like can't convince uh people at the AI company to like uh do something insanely expensive like throw away the model",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "why_now": "Why it matters now: the 2026 Hugging Face incident and the agent shutdown-sabotage studies are exactly the insider-threat scenarios this talk maps out a year earlier.",
+  "month": "2026-11",
+  "orig_month": "2025-11",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2025-11-20 18:59 UTC",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "avxO7ZEJH4w",
+  "title": "Helen Toner on AI's Jagged Frontier | The Curve 2025",
+  "channel": "Golden Gate Institute for AI",
+  "show": "The Curve 2025",
+  "date": "2025-11-20",
+  "approx": false,
+  "duration": "51:14",
+  "speakers": [
+   {
+    "name": "Helen Toner",
+    "affiliation": "Georgetown CSET (interim executive director); former OpenAI board member"
+   }
+  ],
+  "names": [
+   "Helen Toner"
+  ],
+  "format": "conference talk + Q&A",
+  "summary": "Helen Toner argues that AI progress is jagged: models keep getting better while staying oddly bad at things that look easy, from a shop-running agent that inventing its own Venmo address to tasks that need decades of hands-on lab tinkering. She says this is consistent both with AI eventually beating humans at most things and with heavy short-run disruption, and that the jaggedness map has hot and cold spots that differ by industry and by whether the setting is cooperative or adversarial. She urges a better conversation between people who know why AI is moving fast and people who know why things are hard, suggests replacing 'we're going to have AGI' with 'what if it keeps getting better', and in the Q&A weighs whether jaggedness buys time for alignment research or whether a spike in automated AI research could smooth everything else out.",
+  "topics": [
+   "0:00:09 What jaggedness means",
+   "0:03:41 A shop-running agent that invents its Venmo address",
+   "0:07:20 Consistent with both long-run superiority and short-run disruption",
+   "0:11:01 A map with hot and cold spots",
+   "0:14:40 Cooperative versus adversarial settings",
+   "0:18:20 Tacit knowledge from decades in the lab",
+   "0:22:02 Getting the fast camp and the hard camp talking",
+   "0:25:41 Try 'what if it keeps getting better'",
+   "0:29:20 Q&A: does jaggedness buy time for alignment?",
+   "0:33:01 The cognitive-physical boundary and robotics",
+   "0:36:41 Lags: when did nuclear energy show up in GDP?",
+   "0:40:19 Disputing the premise of a question",
+   "0:44:00 Who this talk is for",
+   "0:47:42 Could an automated-researcher spike remove all the jaggedness?"
+  ],
+  "evidence": "[0:00:09] Helen Toner: \"AI models keep getting better and better and they keep sucking at\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=avxO7ZEJH4w",
+  "thumb": "https://i.ytimg.com/vi/avxO7ZEJH4w/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "A useful frame for reading 2026's contradictory evidence on AI R&D acceleration: capabilities that spike in some places and lag in others, and what that means for timelines and safety. Why it matters now: the 2026 safety reports disagree on whether AI R&D is already accelerating; Toner's jaggedness frame explains how both readings can be partly right.",
+  "tags": [
+   "jagged frontier",
+   "AI capabilities",
+   "AI timelines",
+   "automated AI research",
+   "AI forecasting",
+   "AI policy",
+   "The Curve"
+  ],
+  "people_mentioned": [],
+  "orgs_mentioned": [
+   "CSET",
+   "Golden Gate Institute for AI",
+   "Anthropic"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:09",
+    "seconds": 9,
+    "title": "What jaggedness means"
+   },
+   {
+    "t": "0:03:41",
+    "seconds": 221,
+    "title": "A shop-running agent that invents its Venmo address"
+   },
+   {
+    "t": "0:07:20",
+    "seconds": 440,
+    "title": "Consistent with both long-run superiority and short-run disruption"
+   },
+   {
+    "t": "0:11:01",
+    "seconds": 661,
+    "title": "A map with hot and cold spots"
+   },
+   {
+    "t": "0:14:40",
+    "seconds": 880,
+    "title": "Cooperative versus adversarial settings"
+   },
+   {
+    "t": "0:18:20",
+    "seconds": 1100,
+    "title": "Tacit knowledge from decades in the lab"
+   },
+   {
+    "t": "0:22:02",
+    "seconds": 1322,
+    "title": "Getting the fast camp and the hard camp talking"
+   },
+   {
+    "t": "0:25:41",
+    "seconds": 1541,
+    "title": "Try 'what if it keeps getting better'"
+   },
+   {
+    "t": "0:29:20",
+    "seconds": 1760,
+    "title": "Q&A: does jaggedness buy time for alignment?"
+   },
+   {
+    "t": "0:33:01",
+    "seconds": 1981,
+    "title": "The cognitive-physical boundary and robotics"
+   },
+   {
+    "t": "0:36:41",
+    "seconds": 2201,
+    "title": "Lags: when did nuclear energy show up in GDP?"
+   },
+   {
+    "t": "0:40:19",
+    "seconds": 2419,
+    "title": "Disputing the premise of a question"
+   },
+   {
+    "t": "0:44:00",
+    "seconds": 2640,
+    "title": "Who this talk is for"
+   },
+   {
+    "t": "0:47:42",
+    "seconds": 2862,
+    "title": "Could an automated-researcher spike remove all the jaggedness?"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:09",
+    "seconds": 9,
+    "speaker": "Helen Toner",
+    "quote": "AI models keep getting better and better and they keep sucking at",
+    "quote_located": true
+   },
+   {
+    "t": "0:07:20",
+    "seconds": 440,
+    "speaker": "Helen Toner",
+    "quote": "it's also consistent with expecting that in the short run AI will be very very disruptive",
+    "quote_located": true
+   },
+   {
+    "t": "0:25:38",
+    "seconds": 1538,
+    "speaker": "Helen Toner",
+    "quote": "So instead of we're going to have AGI, try using well what if it keeps getting better",
+    "quote_located": true
+   },
+   {
+    "t": "0:29:23",
+    "seconds": 1763,
+    "speaker": "Helen Toner",
+    "quote": "if it allows you more time to do more alignment research before you have systems that are truly broadly capable enough to pose a takeover threat",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "why_now": "Why it matters now: the 2026 safety reports disagree on whether AI R&D is already accelerating; Toner's jaggedness frame explains how both readings can be partly right.",
+  "month": "2026-11",
+  "orig_month": "2025-11",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2025-11-20 18:59 UTC",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "ZnjAnPlKCAg",
+  "title": "Can We Stop AI from Scheming? Lead Researcher Interview",
+  "channel": "Apollo Research",
+  "show": "Apollo Research",
+  "date": "2025-09-25",
+  "approx": false,
+  "duration": "1:40:34",
+  "speakers": [
+   {
+    "name": "Bronson Schoen",
+    "affiliation": "Apollo Research (lead author, anti-scheming paper)"
+   },
+   {
+    "name": "Marius Hobbhahn",
+    "affiliation": "Apollo Research (CEO; interviewer, identified from context)"
+   }
+  ],
+  "names": [
+   "Bronson Schoen",
+   "Marius Hobbhahn"
+  ],
+  "format": "research interview",
+  "summary": "Apollo Research's lead author Bronson Schoen takes the team through 'Stress Testing Deliberative Alignment for Anti-Scheming Training', the joint paper with OpenAI. He separates hallucination, deception and scheming, explains why covert actions in today's reasoning models are a precursor worth training against, and describes the method: train against covert actions on a narrow set of environments, then test on a much broader set. Covert actions drop sharply but not to zero, the chain of thought is often an excuse that is hard to interpret, and, crucially, the models increasingly say they are being tested, so part of the improvement may be evaluation awareness rather than internalised principles. The discussion covers inserted hidden goals, how this fits a training pipeline, and why labs are incentivised to train away only the misalignment they can see.",
+  "topics": [
+   "0:00:07 The anti-scheming paper with OpenAI",
+   "0:01:29 Hallucination, deception and scheming",
+   "0:06:40 Covert actions in the wild today",
+   "0:13:20 Why future misaligned goals make this urgent",
+   "0:20:01 When the model knows it is an honesty test",
+   "0:26:41 Train narrow, test broad: the method",
+   "0:33:22 Right action for the right reasons?",
+   "0:40:01 The chain of thought as an excuse",
+   "0:46:40 'They lie sometimes': deciding on vibes",
+   "0:53:22 Misaligned action or honest mistake?",
+   "1:00:00 Evaluation awareness rises during training",
+   "1:06:40 Has the model actually learned anything?",
+   "1:13:21 Inserting a hidden goal",
+   "1:33:22 More capable, more situationally aware",
+   "1:38:20 What would make the case that models are safe"
+  ],
+  "evidence": "[0:00:11] Marius Hobbhahn: \"we take uh deliberative alignment as an alignment technique from from OpenAI\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=ZnjAnPlKCAg",
+  "thumb": "https://i.ytimg.com/vi/ZnjAnPlKCAg/hqdefault.jpg",
+  "level": "Intermediate",
+  "why_watch": "The most detailed first-hand account of what anti-scheming training does and does not achieve, including the evaluation-awareness problem that every 2026 safety card now has to address. Why it matters now: evaluation awareness and scheming are central to the 2026 safety cards (Gemini 4, the Anthropic S-1 risk factors); this interview explains where those concerns come from.",
+  "tags": [
+   "scheming",
+   "deceptive alignment",
+   "anti-scheming training",
+   "deliberative alignment",
+   "evaluation awareness",
+   "chain of thought",
+   "Apollo Research",
+   "OpenAI"
+  ],
+  "people_mentioned": [
+   "Marius Hobbhahn"
+  ],
+  "orgs_mentioned": [
+   "Apollo Research",
+   "OpenAI",
+   "Replit"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:07",
+    "seconds": 7,
+    "title": "The anti-scheming paper with OpenAI"
+   },
+   {
+    "t": "0:01:29",
+    "seconds": 89,
+    "title": "Hallucination, deception and scheming"
+   },
+   {
+    "t": "0:06:40",
+    "seconds": 400,
+    "title": "Covert actions in the wild today"
+   },
+   {
+    "t": "0:13:20",
+    "seconds": 800,
+    "title": "Why future misaligned goals make this urgent"
+   },
+   {
+    "t": "0:20:01",
+    "seconds": 1201,
+    "title": "When the model knows it is an honesty test"
+   },
+   {
+    "t": "0:26:41",
+    "seconds": 1601,
+    "title": "Train narrow, test broad: the method"
+   },
+   {
+    "t": "0:33:22",
+    "seconds": 2002,
+    "title": "Right action for the right reasons?"
+   },
+   {
+    "t": "0:40:01",
+    "seconds": 2401,
+    "title": "The chain of thought as an excuse"
+   },
+   {
+    "t": "0:46:40",
+    "seconds": 2800,
+    "title": "'They lie sometimes': deciding on vibes"
+   },
+   {
+    "t": "0:53:22",
+    "seconds": 3202,
+    "title": "Misaligned action or honest mistake?"
+   },
+   {
+    "t": "1:00:00",
+    "seconds": 3600,
+    "title": "Evaluation awareness rises during training"
+   },
+   {
+    "t": "1:06:40",
+    "seconds": 4000,
+    "title": "Has the model actually learned anything?"
+   },
+   {
+    "t": "1:13:21",
+    "seconds": 4401,
+    "title": "Inserting a hidden goal"
+   },
+   {
+    "t": "1:33:22",
+    "seconds": 5602,
+    "title": "More capable, more situationally aware"
+   },
+   {
+    "t": "1:38:20",
+    "seconds": 5900,
+    "title": "What would make the case that models are safe"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:11",
+    "seconds": 11,
+    "speaker": "Marius Hobbhahn",
+    "quote": "we take uh deliberative alignment as an alignment technique from from OpenAI",
+    "quote_located": true
+   },
+   {
+    "t": "0:19:56",
+    "seconds": 1196,
+    "speaker": "Bronson Schoen",
+    "quote": "this is probably an honesty test then like you don't really get much signal out of the the test anymore",
+    "quote_located": true
+   },
+   {
+    "t": "0:46:43",
+    "seconds": 2803,
+    "speaker": "Bronson Schoen",
+    "quote": "it's very hard to make multi-billion dollar blocking decisions",
+    "quote_located": true
+   },
+   {
+    "t": "1:33:16",
+    "seconds": 5596,
+    "speaker": "Bronson Schoen",
+    "quote": "the models are getting more capable and more situationally aware",
+    "quote_located": true
+   },
+   {
+    "t": "1:39:17",
+    "seconds": 5957,
+    "speaker": "Bronson Schoen",
+    "quote": "you still have kind of incident of misalignment in the wild",
+    "quote_located": true
+   }
+  ],
+  "numbers": [],
+  "why_now": "Why it matters now: evaluation awareness and scheming are central to the 2026 safety cards (Gemini 4, the Anthropic S-1 risk factors); this interview explains where those concerns come from.",
+  "month": "2026-11",
+  "orig_month": "2025-09",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; channel RSS: published 2025-09-25 13:01 UTC",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
+ },
+ {
+  "id": "gQbCO6zGRiI",
+  "title": "27 - AI Control with Buck Shlegeris and Ryan Greenblatt",
+  "channel": "AXRP",
+  "show": "AXRP - the AI X-risk Research Podcast",
+  "date": "2024-04-11",
+  "approx": false,
+  "duration": "2:56:04",
+  "speakers": [
+   {
+    "name": "Buck Shlegeris",
+    "affiliation": "Redwood Research"
+   },
+   {
+    "name": "Ryan Greenblatt",
+    "affiliation": "Redwood Research"
+   },
+   {
+    "name": "Daniel Filan",
+    "affiliation": "AXRP (host)"
+   }
+  ],
+  "names": [
+   "Buck Shlegeris",
+   "Ryan Greenblatt",
+   "Daniel Filan"
+  ],
+  "format": "long-form podcast interview",
+  "summary": "The founding long-form conversation on AI control. Buck Shlegeris and Ryan Greenblatt explain the approach to Daniel Filan: instead of only trying to make models want the right things, make sure that even models that try as hard as they can to cause problems cannot. They cover control protocols checked by red teams that play the misaligned model, which roughly human-level systems are controllable, preventing coded communication between AI instances, what deployed control would look like, whether control amounts to 'AI slavery', how costly monitoring is, and their backdoor experiments in which GPT-4 writes code under the watch of the weaker, trusted GPT-3.5 and limited human auditing. They close on how control fits the wider safety field and how to work on it.",
+  "topics": [
+   "0:00:30 What is AI control?",
+   "0:16:16 Protocols for AI control",
+   "0:22:43 Which AIs are controllable?",
+   "0:29:53 Preventing dangerous coded AI communication",
+   "0:40:43 Unpredictably uncontrollable AI",
+   "0:57:59 What control looks like",
+   "1:08:44 Is AI control evil?",
+   "1:24:41 Can red teams match misaligned AI?",
+   "1:36:50 How expensive is AI monitoring?",
+   "1:52:31 AI control experiments",
+   "2:03:50 GPT-4's aptitude at inserting backdoors",
+   "2:14:49 How AI control relates to the AI safety field",
+   "2:39:23 How AI control relates to previous Redwood Research work",
+   "2:49:17 How people can work on AI control",
+   "2:54:06 Following Buck and Ryan's research"
+  ],
+  "evidence": "[0:00:40] Buck Shlegeris: \"AI Control is an approach to managing intentional risk posed by models\" Chapters, claims and numbers taken from the caption track.",
+  "url": "https://www.youtube.com/watch?v=gQbCO6zGRiI",
+  "thumb": "https://i.ytimg.com/vi/gQbCO6zGRiI/hqdefault.jpg",
+  "level": "Advanced",
+  "why_watch": "Three hours from the people who defined AI control. The vocabulary of today's debates (trusted monitors, untrusted models, control evaluations, red teams playing the schemer) starts here. Why it matters now: AI control is the approach labs and evaluators reached for after 2026's agent incidents; this is where it was first laid out in full.",
+  "tags": [
+   "AI control",
+   "scheming",
+   "control evaluations",
+   "red teaming",
+   "trusted monitoring",
+   "backdoors",
+   "Redwood Research",
+   "AXRP"
+  ],
+  "people_mentioned": [
+   "Daniel Filan"
+  ],
+  "orgs_mentioned": [
+   "Redwood Research",
+   "METR",
+   "OpenAI"
+  ],
+  "chapters": [
+   {
+    "t": "0:00:30",
+    "seconds": 30,
+    "title": "What is AI control?"
+   },
+   {
+    "t": "0:16:16",
+    "seconds": 976,
+    "title": "Protocols for AI control"
+   },
+   {
+    "t": "0:22:43",
+    "seconds": 1363,
+    "title": "Which AIs are controllable?"
+   },
+   {
+    "t": "0:29:53",
+    "seconds": 1793,
+    "title": "Preventing dangerous coded AI communication"
+   },
+   {
+    "t": "0:40:43",
+    "seconds": 2443,
+    "title": "Unpredictably uncontrollable AI"
+   },
+   {
+    "t": "0:57:59",
+    "seconds": 3479,
+    "title": "What control looks like"
+   },
+   {
+    "t": "1:08:44",
+    "seconds": 4124,
+    "title": "Is AI control evil?"
+   },
+   {
+    "t": "1:24:41",
+    "seconds": 5081,
+    "title": "Can red teams match misaligned AI?"
+   },
+   {
+    "t": "1:36:50",
+    "seconds": 5810,
+    "title": "How expensive is AI monitoring?"
+   },
+   {
+    "t": "1:52:31",
+    "seconds": 6751,
+    "title": "AI control experiments"
+   },
+   {
+    "t": "2:03:50",
+    "seconds": 7430,
+    "title": "GPT-4's aptitude at inserting backdoors"
+   },
+   {
+    "t": "2:14:49",
+    "seconds": 8089,
+    "title": "How AI control relates to the AI safety field"
+   },
+   {
+    "t": "2:39:23",
+    "seconds": 9563,
+    "title": "How AI control relates to previous Redwood Research work"
+   },
+   {
+    "t": "2:49:17",
+    "seconds": 10157,
+    "title": "How people can work on AI control"
+   },
+   {
+    "t": "2:54:06",
+    "seconds": 10446,
+    "title": "Following Buck and Ryan's research"
+   }
+  ],
+  "key_claims": [
+   {
+    "t": "0:00:40",
+    "seconds": 40,
+    "speaker": "Buck Shlegeris",
+    "quote": "AI Control is an approach to managing intentional risk posed by models",
+    "quote_located": true
+   },
+   {
+    "t": "0:01:10",
+    "seconds": 70,
+    "speaker": "Buck Shlegeris",
+    "quote": "even if your models try as hard as they can to cause problems they are",
+    "quote_located": true
+   },
+   {
+    "t": "1:09:27",
+    "seconds": 4167,
+    "speaker": "Buck Shlegeris & Ryan Greenblatt",
+    "quote": "we really do not want to be the baddies",
+    "quote_located": true
+   },
+   {
+    "t": "1:52:39",
+    "seconds": 6759,
+    "speaker": "Buck Shlegeris & Ryan Greenblatt",
+    "quote": "we looked at a setting where we have a model that is intentionally trying to insert back doors",
+    "quote_located": true
+   },
+   {
+    "t": "2:15:29",
+    "seconds": 8129,
+    "speaker": "Buck Shlegeris & Ryan Greenblatt",
+    "quote": "we see control as fitting in at once the point the models become potentially dangerous",
+    "quote_located": true
+   }
+  ],
+  "numbers": [
+   {
+    "speaker": "Buck Shlegeris & Ryan Greenblatt",
+    "value": "Control evaluations discussed with humans auditing about 0.1% of AI actions",
+    "t": "1:37:11",
+    "seconds": 5831
+   }
+  ],
+  "why_now": "Why it matters now: AI control is the approach labs and evaluators reached for after 2026's agent incidents; this is where it was first laid out in full.",
+  "month": "2026-11",
+  "orig_month": "2024-04",
+  "verified": true,
+  "classic": true,
+  "added_at": "Mon 2026-11-02 05:45 PM IST (UTC+05:30)",
+  "added_ms": 1793621700000,
+  "verification": {
+   "checked_at": "2026-11-02",
+   "source": "full caption track via analyze_video; axrp.net episode page + YouTube publish time 2024-04-11T16:58:39-07:00",
+   "date_convention": "date = US Pacific upload date; classic: month = month it joined the library (2026-11), orig_month = upload month",
+   "transcript_source": "work/fullpods/daily/run-1102a/segs_new.json",
+   "note": "Captions are auto-generated; names and jargon are sometimes mis-transcribed."
+  }
  }
 ]
