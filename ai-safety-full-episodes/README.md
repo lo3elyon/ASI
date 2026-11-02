@@ -1,10 +1,10 @@
 <div align="center">
 
-<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 351 verified full-length episodes, Jul–Oct 2026"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="assets/brand/og.jpg" width="100%" alt="AI Safety Full Episodes: 351 verified full-length episodes, Jul–Nov 2026"></a>
 
 <img src="assets/brand/logo.svg" width="420" alt="Full Episodes logo">
 
-# AI Safety Full Episodes · July–October 2026
+# AI Safety Full Episodes · July–November 2026
 
 **A streaming app for every verified full-length AI safety episode of July 1 – October 27, 2026: a fullscreen cinema player with YouTube-style custom controls, a draggable mini player, headphones mode, an always-on-top float window, "I've watched these" bulk marking, a full watch-history timeline, playlists, ratings, monthly recaps, full chapter reports, a P(doom) and timelines claims tracker, a speaker hub with a real face photo for every speaker, Today's picks, Explore (learning paths, quote wall, debate mode, speaker map), 31 themes, heatmaps, insights and achievements.**
 
@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-453%2F453%20passing-10b981?style=flat-square&labelColor=07111f" alt="453 of 453 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-473%2F473%20passing-10b981?style=flat-square&labelColor=07111f" alt="473 of 473 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -45,7 +45,37 @@
 
 ## Contents
 
-[Watch progress fix, Nov 2](#whats-new-nov-2-2026-watch-progress-counts-again) · [Performance modes, Nov 1 night](#whats-new-nov-1-2026-night-performance-modes-a-cool-gpu-by-default) · [5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Exact progress + months, Nov 2 evening](#whats-new-nov-2-2026-evening-exact-honest-progress-and-months-that-follow-the-data) · [Watch progress fix, Nov 2](#whats-new-nov-2-2026-watch-progress-counts-again) · [Performance modes, Nov 1 night](#whats-new-nov-1-2026-night-performance-modes-a-cool-gpu-by-default) · [5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Nov 2, 2026, evening): exact, honest progress and months that follow the data
+
+**Exact to the second.** Coverage is now stored as a 1-second bitset per episode (one bit per second, base64 in `history:v3`), so the share you see is *covered seconds ÷ duration seconds*, with one decimal and never rounded up: `4.3%`, `89.7%`, `99.4%`. **100 % appears only when every second has been played** (YouTube may not report the final ≤ 1 s before the video ends, so only that last second is allowed to be missing).
+
+```mermaid
+flowchart LR
+  P[Real playback run ≥ 3 s] --> B[Mark each second whose midpoint was played]
+  B -->|new second| U[+1 unique second: watched, today, XP]
+  B -->|already covered| R[Rewatch: adds nothing, only time spent]
+  U --> C{Every second covered?}
+  C -->|yes| W[Watched 100%]
+  C -->|no| G[Exact %: 89.7%]
+  M[Mark as watched] --> MW[Marked watched]
+```
+
+| Rule | What it means |
+|---|---|
+| **No 90 % rule** | "Completed / Watched" only at 100 % actual coverage, or when you tap **Mark as watched**. The old ≥ 90 % auto-complete is gone everywhere: the end of a video, the History repair, stats, badges, XP, streaks, Picks and Binge exclusions and completion counts. |
+| **Two labels** | **Watched 100%** (every second played here) vs **Marked watched** (a manual mark), on cards, in Watched, History and the episode panel. A partial "watched up to mm:ss" mark completes only if it reaches 100 %. |
+| **Rewatching never inflates** | Replaying parts you already covered adds no coverage, no watched minutes, no daily minutes and no XP, and resets nothing. Time spent (rewatches included) is kept separately (`spent`). A completed episode shows a **Watched** badge and a **Rewatch** action; rewatch sessions are logged in History with a *Rewatch* tag ("x rewatched · 0 new"). |
+| **Furthest** | "Furthest" / "reached" is the furthest second actually played (never a seek target). |
+| **Tooltips** | Every progress bar and percentage shows `mm:ss of h:mm:ss watched (unique)`. |
+| **XP** | XP for watching counts unique minutes. A one-time migration (`fix6`) recomputes it; if the honest total is lower than what you had, the difference is kept as a fixed carry, so **a level you already reached is never taken away**, and from now on rewatching and the 90 % rule add nothing. |
+
+**Your earlier progress, migrated conservatively** (`assets/js/history.js` → `migrateExact`, stamp `fix6`): each old 10-second slice becomes covered seconds only where a stored session proves it (a session whose advance fits steady 1×–2× playback with no seek inside, or a manual mark). A slice with no such evidence is kept as *unverified* (named in the tooltip) but never counted, so nothing is rounded up. Old credited seconds move to *time spent*; old 90 %-style completions that are not really 100 % go back to *in progress*.
+
+**Months follow the data.** The month list is built from the episode dates plus today's date (`core.js` → `buildMonths`), so **November 2026** and every later month get their own card, heatmap block, filter chip, counts, Insights bars, Picks month chip and SEO text automatically. The current month is shown even before its first episode, with *"New episodes are added several times a day."* The page title, JSON-LD, manifest and sitemap now say **Jul–Nov 2026** and are generated from the same span.
+
+**Tests:** `smoke3.js` (new exact-progress and months blocks), `smoke_track.py` (real Firefox + fake YouTube: 10 s → seek +5 min → 2 min → seek to the end = the exact small %, not completed; full play = 100 % Watched 100%; 99 % = 99.x %, not completed; the same 2 min rewatched twice = unchanged; manual mark = Marked watched), plus `smoke_v9.js`, `smoke_v9ui.py`, `smoke_mini.py`, `smoke_qa.py`, `smoke_perf.py`.
 
 ## What's new (Nov 2, 2026): Watch progress counts again
 
@@ -61,7 +91,7 @@ flowchart LR
   Q -->|stands still / steps back < 1.5 s| N[No news: the run goes on]
   Q -->|moved forward ≤ 1.5 × wall time × speed + 1.5 s| C[Counts: seconds + coverage slices]
   Q -->|anything bigger, or back > 1.5 s| S[A seek: not counted, a new run starts]
-  E[Ended at ≥ 90 % coverage] --> D[Completed]
+  E[Every second covered] --> D[Watched 100%]
 ```
 
 - Each reading is compared with the last reading where the position actually moved, so a late report never breaks a run, and the catch-up jump counts when it fits real playback (at most 1.5 × the wall time × the playback speed, + 1.5 s). Throttled background tabs are caught up the same way (one reading after four minutes counts four minutes).
@@ -70,7 +100,7 @@ flowchart LR
 - 2× and other speeds are credited as real seconds (40 s of video at 2× = 20 s watched, 40 s covered).
 - It works in every mode: default, theater, Read / split, mini player on any page, full screen, Focus and YouTube's own controls (Shift+Y), because it always reads the current player.
 
-**Your earlier progress is recovered once** (`assets/js/history.js` → `recoverCoverage`, stamp `fix5`): each stored session still knows where it started, where it ended, its wall-clock span and the seconds it got. When its advance matches steady playback at a standard speed (1×, 1.25×, 1.5×, 1.75×, 2×) over its wall-clock span or its credited seconds, its slices are marked, the missing seconds are added back to that day, and "completed" follows the usual 90 % rule. It only adds: nothing is removed, manual "watched" marks are untouched, and a session with a pause + a seek inside it does not match and is left as it was. The same recovery runs on an imported backup.
+**Your earlier progress is recovered once** (`assets/js/history.js` → `recoverCoverage`, stamp `fix5`): each stored session still knows where it started, where it ended, its wall-clock span and the seconds it got. When its advance matches steady playback at a standard speed (1×, 1.25×, 1.5×, 1.75×, 2×) over its wall-clock span or its credited seconds, its slices are marked, the missing seconds are added back to that day, and "completed" now needs every second (see the evening update: no 90 % rule). It only adds: nothing is removed, manual "watched" marks are untouched, and a session with a pause + a seek inside it does not match and is left as it was. The same recovery runs on an imported backup.
 
 **Measured** (real Firefox, the 15:06 episode, a YouTube player that reports its time every 3 s like a throttled embed):
 
@@ -350,13 +380,13 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-453%2F453%20passing-10b981?style=flat-square&labelColor=07111f" alt="453 of 453 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-473%2F473%20passing-10b981?style=flat-square&labelColor=07111f" alt="473 of 473 checks passing">
 </p>
 
 | Area | What changed |
 |---|---|
 | **History, grouped** | One row per episode per day group (Today / Yesterday / This week / Earlier) with total watched time, furthest position really played, coverage %, status (completed / in progress / marked) and last watched time; a chevron reveals the individual sessions. Toggle **Group by episode / Show every session** (grouped by default, remembered). Recently watched and Continue watching keep one card per episode. Friendlier empty states with a "Clear filters" button. |
-| **Honest session numbers** | A session's start/end are the real playback positions; each episode gets its own session (switching episodes no longer bleeds into the previous one); a session is stored only once real playback happens (no 0-second rows). **Reached** = the furthest position actually played, from the 10-second coverage slices, and slices count only after 3 s of continuous playback, so scrubbing to the end and letting it end no longer shows "reached 100 %". The resume spot ignores the 0 an unstarted/cued player reports. **Completed** only at 90 %+ coverage or a manual mark. A one-time repair recomputes stored records: drops 0-second/negative sessions, fixes end-before-start, merges duplicates and back-to-back fragments, removes a lone end slice and un-completes records under 90 %. |
+| **Honest session numbers** | A session's start/end are the real playback positions; each episode gets its own session (switching episodes no longer bleeds into the previous one); a session is stored only once real playback happens (no 0-second rows). **Reached** = the furthest position actually played, from the 10-second coverage slices, and slices count only after 3 s of continuous playback, so scrubbing to the end and letting it end no longer shows "reached 100 %". The resume spot ignores the 0 an unstarted/cued player reports. **Completed** only at 100 % coverage (since Nov 2) or a manual mark. A one-time repair recomputes stored records: drops 0-second/negative sessions, fixes end-before-start, merges duplicates and back-to-back fragments, removes a lone end slice and un-completes records under 90 %. |
 | **No Home flash on reload** | `assets/js/boot.js` (blocking, in `<head>`, CSP-safe, no inline script) checks the hash before first paint; on any non-Home route it sets `html.rt`, which hides the pre-rendered Home and shows a page skeleton until the router draws the page. Home and `#ep=` deep links keep the pre-rendered Home (SEO unchanged). |
 | **Backgrounds** (Settings → Background) | Aurora (default), mesh gradient, starfield (light canvas, 30 fps, paused when hidden), circuit lines, subtle grid, noise gradient, four photos (Unsplash), three looping ambient videos (Pexels; 0.2–1 MB H.264, muted, lazy, paused when the tab is hidden, a still frame instead with reduced motion, data saver or on phones unless "Play videos anyway"), your own image (JPG/PNG/WebP, max 6 MB, re-encoded through a canvas to a ≤1.6 MB JPEG, stored only in this browser), and Plain. Controls: intensity, blur, speed, hue shift, match theme accent. All media is in `assets/bg/`, so the CSP gained no hosts. Credits in About. |
 | **Themes fix** | Theme tiles are real `<button type="button">`s that apply in place (no navigation, scroll kept); the popover's "All themes" now opens the full list inside the popover instead of linking to Profile; Violet/Rose swatches are `type="button"`. |
@@ -373,7 +403,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 ```mermaid
 flowchart LR
   T[tick: real playback only] --> R{3 s continuous?}
-  R -- yes --> S[mark 10 s slices + session reached]
+  R -- yes --> S[mark the played seconds + session reached]
   R -- no --> X[seconds counted, no slices]
   S --> H[History: one row per episode per day]
   H --> E[expand: sessions a → b, reached %]
@@ -573,7 +603,7 @@ flowchart LR
   A["Unwatched / in progress"] -->|"Mark as watched"| B["Completed (manual)<br/>watched = duration · 100 %<br/>session src=manual · manualDaily[today]"]
   B -->|"Mark unwatched / Undo"| A
   A -->|"watched up to mm:ss"| C["In progress (manual partial)"]
-  C -->|"≥ 90 % covered"| B
+  C -->|"100 % covered"| B
 ```
 
 ## What's new in v2
@@ -716,12 +746,15 @@ Every one of the 292 speakers has a photo in `assets/speakers/<slug>.jpg`, mappe
 
 ## Months
 
+The month list is derived from the episode dates and today's date, so a new month appears by itself.
+
 | Month | Episodes | Hours | Notes |
 |---|---:|---:|---|
-| July 2026 | 51 | 50.5 | chapters parsed from timestamped topics |
-| August 2026 | 69 | 83.2 | chapters parsed from timestamped topics |
-| September 2026 | 108 | 102.5 | includes the Sep 27–30 items that were "just outside" in v1, and the IPAM and Post-AGI workshop talks |
-| October 2026 | 123 | 148.0 | richest: hand-written chapters, quotes, numbers, tags, level, views |
+| July 2026 | 51 | 50.5 |  |
+| August 2026 | 69 | 83.2 |  |
+| September 2026 | 108 | 102.5 |  |
+| October 2026 | 123 | 148.0 |  |
+| November 2026 | 0 | 0.0 | current month: new episodes are added several times a day |
 | **Total** | **351** | **384.2** | 104 release days · 3,938 chapters |
 
 ## Architecture
@@ -779,9 +812,9 @@ sequenceDiagram
 stateDiagram-v2
   [*] --> Unwatched
   Unwatched --> InProgress: 20 s really played
-  InProgress --> InProgress: contiguous playback adds seconds + 10 s coverage slices
-  InProgress --> Completed: 90% of slices covered
-  Completed --> Completed: rewatching adds time, never un-completes
+  InProgress --> InProgress: contiguous playback adds unique seconds (1 s coverage)
+  InProgress --> Completed: every second covered (Watched 100%)
+  Completed --> Completed: Rewatch is logged, adds nothing, never resets
   Unwatched --> Completed: Mark as watched (manual, full)
   Completed --> InProgress: Mark unwatched (restores the snapshot)
   InProgress --> Unwatched: removed from History
@@ -967,6 +1000,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-11-02 | **Exact, honest progress + data-driven months**: 1-second coverage bitset, true % with one decimal (100 % only when every second is played), no 90 % auto-complete anywhere, *Watched 100%* vs *Marked watched*, rewatches logged without changing numbers (time spent kept apart), unique-second XP with a no-level-loss carry, conservative migration of 10-s slices; months derived from the data + today (November appears with its own card, heatmap, chip, counts) |
 | 2026-11-02 | **Watch progress fix**: the watch clock now survives YouTube's cached, late-reported position (it compares with the last real move, not the previous reading), has its own 1 s timer while playing plus a watchdog that also works in hidden tabs, catches up throttled background tabs, and credits 2× correctly in every mode; a one-time recovery restores coverage, seconds and completions from sessions recorded by the broken clock |
 | 2026-11-01 | **Performance modes**: Settings → Performance (Auto / Battery saver / Balanced / Full effects); Balanced by default with a static gradient background, no looping animations and glass blur only on small pop-ups; animated backgrounds opt-in, capped at 30 fps, paused when hidden / covered / full screen; player timers only while playing; content-visibility for long lists; idle GPU near zero; Andrea Miotti photo corrected |
 | 2026-11-01 | 20:00 sweep: 5 new transcript-verified ILIAD III talks (Rosas, Baltieri, Furman, Chernowitz and Gietelink Oldenziel, Troiani), 6 new speaker photos and bios (351 episodes total) |
