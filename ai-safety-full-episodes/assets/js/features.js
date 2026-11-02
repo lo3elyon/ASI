@@ -8,7 +8,7 @@
   const L = () => A.hist.L;
   const ui = () => A.ui;
   const V = (name) => $(`.view[data-view="${name}"]`);
-  const MONTHS_DESC = MONTH_LIST.slice(1).slice().reverse();
+  const monthsDesc = () => MONTH_LIST.slice(1).slice().reverse(); // MONTH_LIST is filled from the data at ingest
   const download = (name, text, type) => { const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob([text], { type })); a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 3000); };
   const refresh = (id) => { A.views.refreshCardsFor(id); paintGoal(); };
   const fx = (k, el, on) => A.fx && A.fx.celebrate(k, el, on);
@@ -149,7 +149,7 @@
     const box = row.querySelector(".wrow__st");
     if (box) {
       let s0 = box.querySelector(":scope > .ok, :scope > .muted");
-      const html = st === "done" ? `<span class="ok">${ui().ICON.check}${h().isManual(id) ? "Marked" : "Played"}</span>` : st === "progress" ? `<span class="muted">${Math.round((r.pct || 0) * 100)}% · at ${fmtTime(r.pos)}</span>` : "";
+      const html = st === "done" ? `<span class="ok" title="${esc(h().covTip(id))}">${ui().ICON.check}${h().isManual(id) ? "Marked watched" : "Watched 100%"}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : "";
       if (s0) s0.remove();
       if (html) box.insertAdjacentHTML("afterbegin", html);
       const b = box.querySelector('[data-act="watched"]'); if (b) { b.textContent = st === "done" ? "Unmark" : "Mark watched"; b.classList.toggle("btn--ghost", st === "done"); b.setAttribute("aria-pressed", String(st === "done")); }
@@ -280,7 +280,7 @@
       <div class="wrow__tx"><button class="card__title" data-act="open">${ui().hl(e.title, W.q)}</button>
         <p class="card__who"><span class="avs">${e.stars.slice(0, 4).map((p) => ui().avatar(p.name, 22)).join("")}</span>${ui().hl(ui().whoLine(e, 3), W.q)}</p>
         ${ui().cardMeta(e, `<span>${esc(ui().showLine(e))}</span>`)}</div>
-      <div class="wrow__st">${st === "done" ? `<span class="ok">${ui().ICON.check}${h().isManual(e.id) ? "Marked" : "Played"}</span>` : st === "progress" ? `<span class="muted">${Math.round((r.pct || 0) * 100)}% · at ${fmtTime(r.pos)}</span>` : ""}
+      <div class="wrow__st">${st === "done" ? `<span class="ok" title="${esc(h().covTip(e.id))}">${ui().ICON.check}${h().isManual(e.id) ? "Marked watched" : "Watched 100%"}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(e.id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : ""}
         <form class="wrow__up" data-wup><input class="input input--sm" name="t" placeholder="up to mm:ss" aria-label="Watched up to (mm:ss)" size="8" inputmode="numeric"></form>
         <button class="btn btn--sm ${st === "done" ? "btn--ghost" : ""}" data-act="watched">${st === "done" ? "Unmark" : "Mark watched"}</button></div></li>`;
   }
@@ -296,7 +296,7 @@
         <select class="input" id="wSp" aria-label="Filter by speaker"><option value="">All speakers</option>${spk.map((s) => `<option value="${esc(s.k)}" ${W.sp === s.k ? "selected" : ""}>${esc(s.name)} (${s.eps.length})</option>`).join("")}</select>
         <div class="seg seg--sm" role="group" aria-label="Show">${[["all", "All"], ["unwatched", "Not yet"], ["watched", "Watched"]].map(([k, l]) => `<button data-wshow="${k}" aria-pressed="${W.show === k}">${l}</button>`).join("")}</div>
         <button class="btn btn--sm" id="wAll">Select all ${list.length} shown</button></div>
-      <div id="wBody">${MONTHS_DESC.map((m) => { const ml = list.filter((e) => e.month === m.id); if (!ml.length) return ""; const allOn = ml.every((e) => W.sel.has(e.id)); const md = ml.filter((e) => h().stateOf(e.id) === "done").length;
+      <div id="wBody">${monthsDesc().map((m) => { const ml = list.filter((e) => e.month === m.id); if (!ml.length) return ""; const allOn = ml.every((e) => W.sel.has(e.id)); const md = ml.filter((e) => h().stateOf(e.id) === "done").length;
         return `<section class="wmonth" data-wm="${m.id}"><header class="wmonth__hd"><label class="wrow__ck"><input type="checkbox" data-wmonth="${m.id}" ${allOn ? "checked" : ""} aria-label="Select all of ${esc(m.long)}"><span aria-hidden="true"></span></label><h2>${esc(m.long)}</h2><small>${md}/${ml.length} watched</small><span class="grow"></span><button class="btn btn--sm btn--ghost" data-wmmark="${m.id}">Mark all ${ml.length} as watched</button></header>
         <ul class="wlist">${ml.map(wRow).join("")}</ul></section>`; }).join("") || `<div class="emptybig"><p>No episodes match.</p></div>`}</div>
       <div class="wbar" id="wBar" ${W.sel.size || W.undo ? "" : "hidden"}><b id="wN">${W.sel.size} selected</b><span class="grow"></span>
@@ -387,12 +387,16 @@
   }
   const hm = (ts) => { const d = new Date(ts); return `${A.pad(d.getHours())}:${A.pad(d.getMinutes())}`; };
   /* History rows: grouped by episode (default) or one row per session. "reached" = furthest position really played. */
-  const reachPct = (x) => { const dur = x.e.dur || x.r.dur || 1; return Math.round(100 * clamp(h().sessReach(x.r, x.s) / dur, 0, 1)); };
+  const reachPct = (x) => { const dur = x.e.dur || x.r.dur || 1; return (Math.floor(1000 * clamp(h().sessReach(x.r, x.s) / dur, 0, 1)) / 10).toFixed(1); };
+  const isRewatch = (s) => s.src !== "manual" && (s.rw || (s.n != null && s.n < 1 && (s.w || 0) >= 1));
+  /* a session row's seconds: new unique seconds (and time spent when it differs); older sessions show what they credited */
+  const sessSec = (s) => s.src === "manual" ? `${fmtHM(s.w)} logged` : s.n != null ? (isRewatch(s) ? `${fmtHM(s.w)} rewatched · 0 new` : `${fmtHM(s.n)} new${Math.abs((s.w || 0) - s.n) >= 60 ? ` · ${fmtHM(s.w)} spent` : ""}`) : `${fmtHM(s.w)} played`;
+  const sessTag = (s) => s.src === "manual" ? `<span class="tagc tagc--m">Marked watched</span>` : isRewatch(s) ? `<span class="tagc tagc--rw">Rewatch</span>` : `<span class="tagc tagc--p">Played here</span>`;
   function epGroups(list) {
     const m = new Map();
     list.forEach((x) => { let G = m.get(x.e.id); if (!G) { G = { e: x.e, r: x.r, ss: [] }; m.set(x.e.id, G); } G.ss.push(x); });
     return Array.from(m.values()).map((G) => {
-      G.played = G.ss.reduce((a, x) => a + (x.s.src === "manual" ? 0 : x.s.w), 0);
+      G.played = h().playedSec(G.r); // unique seconds (rewatches never add)
       G.logged = G.ss.reduce((a, x) => a + (x.s.src === "manual" ? x.s.w : 0), 0);
       G.last = Math.max(...G.ss.map((x) => x.s.e || x.s.s));
       G.first = Math.min(...G.ss.map((x) => x.s.s));
@@ -401,23 +405,23 @@
       return G;
     }).sort((a, b) => b.last - a.last);
   }
-  function statusTag(st) { return st === "completed" ? `<span class="ok">✓ completed</span>` : st === "marked" ? `<span class="ok">✓ marked watched</span>` : `<span class="tagc">in progress</span>`; }
+  function statusTag(st) { return st === "completed" ? `<span class="ok">✓ Watched 100%</span>` : st === "marked" ? `<span class="ok">✓ Marked watched</span>` : `<span class="tagc">in progress</span>`; }
   function epRow(G, g) {
     const e = G.e, dur = e.dur || G.r.dur || 1, key = e.id + "|" + g, open = HF.open.has(key), n = G.ss.length, man = G.ss.every((x) => x.s.src === "manual");
-    return `<li class="hrow hrow--ep ${man ? "hrow--manual" : ""} ${open ? "is-open" : ""}" data-id="${e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(e.title)}">${ui().thumbImg(e)}${ui().thumbBadges(e)}<span class="thumb__bar"><i style="width:${Math.round((G.r.pct || 0) * 100)}%"></i></span></button>
+    return `<li class="hrow hrow--ep ${man ? "hrow--manual" : ""} ${open ? "is-open" : ""}" data-id="${e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(e.title)}">${ui().thumbImg(e)}${ui().thumbBadges(e)}${ui().progBar(e.id)}</button>
       <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(e.title, HF.q)}</button>
-      <p class="card__meta">${ui().metaCore(e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(G.last)))}</span>` : ""}<span>last ${hm(G.last)}</span><span>${G.played ? `${fmtHM(G.played)} watched` : `${fmtHM(G.logged)} logged`}</span><span>furthest ${fmtTime(G.reach)} (${Math.round(100 * clamp(G.reach / dur, 0, 1))}%)</span><span>${Math.round((G.r.pct || 0) * 100)}% covered</span>${statusTag(G.status)}</p>
-      <div class="hcov" aria-hidden="true"><i style="width:${Math.round((G.r.pct || 0) * 100)}%"></i><b style="left:${(100 * clamp(G.reach / dur, 0, 1)).toFixed(1)}%"></b></div></div>
+      <p class="card__meta">${ui().metaCore(e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(G.last)))}</span>` : ""}<span>last ${hm(G.last)}</span><span title="${esc(h().covTip(e.id))}">${G.played || !G.logged ? `${fmtHM(G.played)} watched (unique)` : `${fmtHM(G.logged)} logged`}</span><span>furthest ${fmtTime(G.reach)} (${(Math.floor(1000 * clamp(G.reach / dur, 0, 1)) / 10).toFixed(1)}%)</span><span class="hpct" title="${esc(h().covTip(e.id))}">${h().pctText(G.r)} covered</span>${statusTag(G.status)}${G.r.done ? `<button type="button" class="linkbtn hrw" data-jump="${e.id}|0" title="Rewatch from the start (your numbers stay as they are)">Rewatch</button>` : ""}</p>
+      <div class="hcov" aria-hidden="true" title="${esc(h().covTip(e.id))}"><i style="width:${h().pctWidth(G.r)}%"></i><b style="left:${(100 * clamp(G.reach / dur, 0, 1)).toFixed(1)}%"></b></div></div>
       <div class="hrow__act"><button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, Math.floor((G.r.pos || 0) - 5))}" aria-label="Resume from ${fmtTime(G.r.pos || 0)}" title="Resume">${ui().ICON.play}</button>${G.r.manual ? `<button class="iconbtn iconbtn--sm" data-hunmark="${e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button>
       <button type="button" class="iconbtn iconbtn--sm hrow__chev" data-hexp="${esc(key)}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${n} session${n === 1 ? "" : "s"}" title="${n} session${n === 1 ? "" : "s"}"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg><small>${n}</small></button></div>
-      <ol class="hsess" ${open ? "" : "hidden"}>${G.ss.map((x) => { const m = x.s.src === "manual"; return `<li><span>${m ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${m ? `${fmtHM(x.s.w)} logged` : `${fmtHM(x.s.w)} watched`}</span>${m ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reachPct(x)}%</span>`}<span class="tagc ${m ? "tagc--m" : "tagc--p"}">${m ? "Marked watched" : "Played here"}</span><button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button></li>`; }).join("")}</ol></li>`;
+      <ol class="hsess" ${open ? "" : "hidden"}>${G.ss.map((x) => { const m = x.s.src === "manual"; return `<li><span>${m ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${sessSec(x.s)}</span>${m ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reachPct(x)}%</span>`}${sessTag(x.s)}<button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button></li>`; }).join("")}</ol></li>`;
   }
   function sessRow(x, g) {
     const reach = reachPct(x); const man = x.s.src === "manual";
-    return `<li class="hrow ${man ? "hrow--manual" : ""}" data-id="${x.e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(x.e.title)}">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}<span class="thumb__bar"><i style="width:${Math.round((x.r.pct || 0) * 100)}%"></i></span></button>
+    return `<li class="hrow ${man ? "hrow--manual" : ""}" data-id="${x.e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(x.e.title)}">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}${ui().progBar(x.e.id)}</button>
           <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(x.e.title, HF.q)}</button>
-          <p class="card__meta">${ui().metaCore(x.e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(x.s.s)))}</span>` : ""}<span>${man ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${man ? `${fmtHM(x.s.w)} logged` : `${fmtHM(x.s.w)} watched`}</span>${man ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reach}%</span>`}<span>${Math.round((x.r.pct || 0) * 100)}% covered</span>
-          <span class="tagc ${man ? "tagc--m" : "tagc--p"}">${man ? "Marked watched" : "Played here"}</span>${statusTag(x.r.done ? (x.r.manual ? "marked" : "completed") : "progress")}</p></div>
+          <p class="card__meta">${ui().metaCore(x.e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(x.s.s)))}</span>` : ""}<span>${man ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${sessSec(x.s)}</span>${man ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reach}%</span>`}<span class="hpct" title="${esc(h().covTip(x.e.id))}">${h().pctText(x.r)} covered</span>
+          ${sessTag(x.s)}${statusTag(x.r.done ? (x.r.manual ? "marked" : "completed") : "progress")}</p></div>
           <div class="hrow__act"><button class="iconbtn iconbtn--sm" data-jump="${x.e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button>${man ? `<button class="iconbtn iconbtn--sm" data-hunmark="${x.e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button></div></li>`;
   }
   function renderHistory() {
@@ -427,12 +431,13 @@
     const groups = new Map();
     rows.forEach((x) => { const b = bucketOf(x.s.s); if (!groups.has(b)) groups.set(b, []); groups.get(b).push(x); });
     const all = sessionRows();
-    const played = all.filter((x) => x.s.src !== "manual").reduce((a, x) => a + x.s.w, 0);
+    const played = Object.values(H.eps).reduce((a, r) => a + h().playedSec(r), 0); // unique seconds: rewatching never adds
+    const spent = Object.values(H.eps).reduce((a, r) => a + (r.spent || 0), 0);
     const manualN = h().manualCount();
     const total = HF.mode === "ep" ? new Set(rows.map((x) => x.e.id + "|" + bucketOf(x.s.s))).size : rows.length;
     const lim = Math.min(total, HF.limit || HPAGE); let budget = lim;
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">History</p><h1>Watch history</h1>
-      <p class="lede">${fmtHM(played)} really played across ${((n) => `${n} session${n === 1 ? "" : "s"}`)(all.filter((x) => x.s.src !== "manual").length)} · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed in total.</p></div>
+      <p class="lede">${fmtHM(played)} watched (unique seconds) across ${((n) => `${n} session${n === 1 ? "" : "s"}`)(all.filter((x) => x.s.src !== "manual").length)}${spent >= 60 ? ` · ${fmtHM(spent)} time spent incl. rewatches` : ""} · ${manualN} marked as watched on YouTube · ${h().doneCount()} completed (watched 100% or marked).</p></div>
       <div class="row-gap"><a class="btn btn--sm" href="#/recent">Recently watched</a><button class="btn btn--sm" id="hExport">Export JSON</button><button class="btn btn--sm" id="hCsv">Export CSV</button><label class="btn btn--sm btn--ghost">Import JSON / CSV<input type="file" id="hImport" accept="application/json,.json,.csv,text/csv" hidden></label><button class="btn btn--sm btn--danger" id="hClear">Clear all</button></div></header>
       <div class="kpis"><div class="kpi"><b>${hoursStr(played)}</b><span>played</span></div><div class="kpi"><b>${manualN}</b><span>marked watched</span></div><div class="kpi"><b>${h().doneCount()}</b><span>completed</span></div><div class="kpi"><b>${h().streaks().cur}</b><span>day streak</span></div><div class="kpi"><b>${all.length}</b><span>sessions</span></div><div class="kpi"><b>${new Set(all.map((x) => x.e.id)).size}</b><span>episodes</span></div></div>
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${HF.day ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(HF.day))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: HF.day })}</section>
