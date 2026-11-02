@@ -194,9 +194,9 @@
     if (cont && !sessionStorage.getItem("asfe:hideCont")) {
       const r = L().H.eps[cont.id]; const ci = cont.chapters.filter((c) => c.t != null && c.t <= r.pos).pop();
       banner = `<section class="contb" data-id="${cont.id}" aria-label="Continue where you left off">
-        <button class="contb__th thumb" data-act="play" aria-label="Resume ${esc(cont.title)}">${ui().thumbImg(cont, true)}${ui().thumbBadges(cont)}<span class="thumb__play">${ui().ICON.play}</span></button>
-        <div class="contb__tx"><p class="eyebrow">Continue where you left off</p><h2>${esc(cont.title)}</h2><p class="muted">${ui().metaDate(cont)} · ${esc(ui().whoLine(cont, 3))} · at <b>${fmtTime(r.pos)}</b> of ${esc(cont.durStr)}${ci ? ` · ${esc(ci.title)}` : ""}</p>
-        <div class="contb__bar"><i style="width:${Math.round(100 * r.pos / Math.max(1, cont.dur || r.dur))}%"></i></div></div>
+        <button class="contb__th thumb" data-act="play" aria-label="Resume ${esc(cont.title)}">${ui().thumbImg(cont, true)}${ui().thumbBadges(cont)}${ui().stateBadge(cont.id)}<span class="thumb__play">${ui().ICON.play}</span>${ui().progBar(cont.id)}</button>
+        <div class="contb__tx"><p class="eyebrow">Continue where you left off</p><h2>${esc(cont.title)}</h2><p class="muted">${ui().metaDate(cont)} · ${esc(ui().whoLine(cont, 3))} · at <b>${fmtTime(r.pos)}</b> of ${esc(cont.durStr)} · <span class="hpct" title="${esc(h().covTip(cont.id))}">${h().pctText(r)} watched</span>${ci ? ` · ${esc(ci.title)}` : ""}</p>
+        <div class="contb__bar" title="${esc(h().covTip(cont.id))}"><i style="width:${h().pctWidth(r)}%"></i></div></div>
         <div class="contb__act"><button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>Resume</span></button><button class="iconbtn" id="contHide" aria-label="Hide for now">✕</button></div></section>`;
     }
     top.innerHTML = banner + (Object.keys(L().H.eps).length ? goalCard() : "");
