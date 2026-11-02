@@ -11,6 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Research%20Atlas%3A%20102%20orgs%2C%20228%20people-0891b2?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=07111f" alt="AI Safety Research Atlas"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Researcher%20Library%3A%20844%20videos%2C%20152%20researchers-10b981?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Researcher Library"></a>
 <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/Threshold-Threshold%20Round%203%3A%2025%20routes%2C%203D%20library%2C%20offline-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
 <a href="#05-watch"><img src="https://img.shields.io/badge/Videos-1%2C741%20linked-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="1,741 videos"></a>
@@ -24,6 +25,7 @@
 <img src="https://img.shields.io/badge/watch%20history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="Watch history stays in the browser">
 <img src="https://img.shields.io/badge/AI%20safety%20episodes-325%20(Jul%E2%80%93Oct)-f59e0b?style=flat-square&labelColor=07111f" alt="325 full episodes">
 <img src="https://img.shields.io/badge/researcher%20library-152%20people%20%C2%B7%20844%20videos-10b981?style=flat-square&labelColor=07111f" alt="Researcher library">
+<img src="https://img.shields.io/badge/research%20atlas-102%20orgs%20%C2%B7%20228%20people%20%C2%B7%20491%20videos-0891b2?style=flat-square&labelColor=07111f" alt="Research atlas">
 <img src="https://img.shields.io/github/last-commit/lo3elyon/ASI?style=flat-square&color=14b8a6&labelColor=07111f" alt="Last commit">
 <img src="https://img.shields.io/github/repo-size/lo3elyon/ASI?style=flat-square&color=f59e0b&labelColor=07111f" alt="Repo size">
 
@@ -62,7 +64,7 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/6-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes, AI Safety Researcher Library</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/7-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes, AI Safety Researcher Library, AI Safety Research Atlas</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/1%2C741-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides, a 325-episode library app and a 1,375-video ASI watch room</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
@@ -80,6 +82,7 @@ flowchart LR
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
     L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>351 eps, cinema player, Today's picks, Explore"]
+    L --> E11["AI Safety Research Atlas<br/>/ai-safety-research-atlas/<br/>102 orgs, 228 people, 491 videos, warnings by theme"]
     L --> E10["AI Safety Researcher Library<br/>/ai-safety-researcher-library/<br/>152 researchers, 844 videos, paths, glossary"]
     L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>218 researchers, 1,386 signers, 25 routes, 3D library, offline"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
@@ -93,7 +96,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6,E7,E8,E9,E10 live
+    class E1,E6,E7,E8,E9,E10,E11 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -132,6 +135,12 @@ flowchart LR
 <b>Jacob Coxon on YouTube</b><br>
 <sub>20 hour-plus videos, role filter chips, search and a "Does he speak?" line on every card.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="92%" alt="Jacob Coxon on YouTube hero"></a>
+
+<br><br>
+
+<b>AI Safety Research Atlas</b><br>
+<sub>A colourful directory of 102 organisations working on AI safety, alignment, AI control, interpretability, evals, x-risk and governance: logo grid with filters, profiles with key work in plain English, warnings and recommendations grouped by theme, 228 people with faces, 491 videos with a lite player, topics, a 2000–2026 timeline and every closure, rename and merger flagged.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><img src="assets/ai-safety-research-atlas.jpg" width="92%" alt="AI Safety Research Atlas: title and a wall of organisation logos"></a>
 
 <br><br>
 
@@ -227,6 +236,13 @@ flowchart LR
 <td><sub>Story of his resignation and NYC Council testimony, 6 stat figures, colour-coded role legend, filter chips (Guest, Testimony, Clips, About him, Unverified), live search, 20 video cards with thumbnails, timestamps and summaries, caveats, every link</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
+</tr>
+<tr>
+<td><a href="ai-safety-research-atlas/"><code>/ai-safety-research-atlas/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><b>AI Safety Research Atlas</b></a><br><sub>A directory of the 102 organisations working on AI safety, alignment, AI control, interpretability, evals, superintelligence/x-risk prevention and governance, with logos, homepage screenshots, plain-English research, warnings, recommendations, people and videos</sub></td>
+<td><sub>Prerendered home (what is AI safety, map of the field by category, featured orgs, closed/renamed/merged list, warn/recommend highlights, latest videos); directory with category/type/focus/country/status filters, search and sort; org profiles; 228 people with faces linking to the Researcher Library; 491 videos with 5 filters and a lite youtube-nocookie player; 20 topic explainers; warnings &amp; precautions by theme; timeline; sun ⇄ moon theme; strict CSP, JSON-LD, ~14 KB gz JS, zero idle rAF</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-11-02</sub></td>
 </tr>
 <tr>
 <td><a href="ai-safety-researcher-library/"><code>/ai-safety-researcher-library/</code></a></td>
@@ -802,6 +818,32 @@ flowchart LR
     class H,RD,VL,LP,GL,PR,VP a
 ```
 
+<a id="04g-research-atlas"></a>
+<h2>04g. Deep dive: AI Safety Research Atlas</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><img src="assets/ai-safety-research-atlas.jpg" width="100%" alt="AI Safety Research Atlas"></a></td>
+<td valign="top">
+<img src="https://img.shields.io/badge/type-directory-0891b2?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Nov%202%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/orgs-102-2563eb?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/people-228-16a34a?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/videos-491-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/key%20work-434-d97706?style=flat-square&labelColor=07111f" alt=""><br><br>
+Who is actually working on AI safety? The atlas answers with <b>102 organisations</b> in seven categories (Control, evals & interpretability 22, X-risk & theory institutes 18, Frontier lab safety teams 6, University labs 10, Governments & international 15, Governance, policy & advocacy 18, Funders & training programs 13). Each profile gives the organisation's own tagline, a plain-English mission, its key papers and reports with short summaries, the risks it <b>warns</b> about, the precautions it <b>recommends</b>, its people with faces and its talks. A dedicated page groups all 295 warnings and 300 recommendations by theme (loss of control, deception and scheming, misuse, race dynamics, concentration of power, security, model welfare and more). Status changes are badged everywhere: AIST (renamed); Center for Advancing Innovation and Standards for Super Intelligence (renamed); Center for AI Policy (closed); Coefficient Giving (renamed); Encode (renamed); Future of Humanity Institute (closed); Institute for Law & AI (renamed); International Network for Advanced AI Measurement, Evaluation and Science (renamed); Irregular (renamed); Long-Term Future Fund (closed); METR (renamed); OECD.AI Policy Observatory / Global Partnership on AI (merged); Principles of Intelligence (renamed); RAND Center on AI, Security, and Technology (merged); Timaeus (merged); UK AI Security Institute (renamed). Built cool: prerendered HTML, ~14 KB gz vanilla JS, lite YouTube facade, WebP images, zero idle animation loops, strict CSP. Its own <a href="ai-safety-research-atlas/README.md">README</a> has the full method, QA and limits.
+</td>
+</tr>
+</table>
+
+```mermaid
+flowchart LR
+    H["Home<br/>prerendered"] --> D["Organisations<br/>102 · 5 filters · search"]
+    H --> W["Warnings &amp; precautions<br/>by theme"]
+    H --> T["Topics<br/>20 explainers"]
+    H --> V["Videos<br/>491 · lite player"]
+    H --> TL["Timeline<br/>2000–2026"]
+    D --> O["Org profile<br/>key work · warnings · people"]
+    O --> P["Person"] --> L["Researcher Library ↗"]
+    classDef a fill:#062a3a,stroke:#0891b2,color:#e6f6ff
+    class H,D,W,T,V,TL,O,P,L a
+```
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -989,7 +1031,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg, ai-safety-research-atlas.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -1003,6 +1045,11 @@ ASI/
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
 ├── future-of-asi/             Threshold: route on the future of ASI, 218 researchers, 1,375 videos, explosion/, library/, shared/, 10 unit course, tools, blog, docs
+├── ai-safety-research-atlas/  directory route: 102 organisations, 228 people, 491 videos, warnings by theme, timeline
+│   ├── index.html  og.jpg  favicon.svg  sitemap.xml  README.md
+│   ├── assets/                app.js  app.css  cats.css  t.js
+│   ├── data/                  orgs.json  people.json  videos.json  themes.json  timeline.json  o/<slug>.json
+│   └── img/                   logos/ (SVG + WebP)  shots/ (WebP 800px)  faces/ (WebP 160 + 320)
 ├── ai-safety-researcher-library/  learning library route: 152 researchers, 844 full videos, paths, glossary, lite player
 │   ├── index.html  og.jpg  favicon.svg  sitemap.xml  README.md
 │   ├── assets/                app.js  app.css
@@ -1152,6 +1199,11 @@ A local server is better than opening the file directly, because some browsers b
 <img src="docs/readme/h-faq.svg" width="100%" alt="11 FAQ">
 
 <details>
+<summary><b>How was the AI Safety Research Atlas researched</b></summary>
+<br>Five research passes opened each organisation's own website, quoted its tagline, simplified its mission and key work into plain English with links to the originals, and recorded the risks it warns about and the precautions it recommends. Duplicates were merged, people merged across organisations and videos merged by YouTube id. Closures, renames and mergers up to November 2026 are badged. People without a verifiable photo show initials rather than a guessed face. Themes for warnings are assigned by keyword rules, so a few lines may sit in a neighbouring theme.
+</details>
+
+<details>
 <summary><b>Is this an official AI Futures Project site</b></summary>
 <br>No. It is an independent, unofficial explainer. All scenario content belongs to the AI Futures Project and is summarized here in simple words, with links to every original source.
 </details>
@@ -1203,6 +1255,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-11-02</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><b>AI Safety Research Atlas</b></a> at <code>/ai-safety-research-atlas/</code>: 102 organisations working on AI safety, alignment, AI control, interpretability, evals, x-risk and governance (Control, evals & interpretability 22, X-risk & theory institutes 18, Frontier lab safety teams 6, University labs 10, Governments & international 15, Governance, policy & advocacy 18, Funders & training programs 13), with logos, homepage screenshots, key work in plain English, 295 warnings and 300 recommendations grouped by theme, 228 people (217 with photos, linking to the Researcher Library), 491 videos with a lite player, 20 topic explainers, a 2000–2026 timeline and closed/renamed/merged badges. Prerendered home, strict CSP, JSON-LD, ~14 KB gz JS, zero idle rAF; QA: jsdom smoke test, 88-render layout audit (360–1920, light + dark), perf budget and WCAG AA contrast check.</td></tr>
 <tr><td><sub>2026-11-02</sub></td><td><b>AI Safety Researcher Library: overlap fix and colourful redesign</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><code>/ai-safety-researcher-library/</code></a>: fixed the Home bug where the topic chips stacked one per line and ran under “Browse by group” and the Full Episodes card (a shared <code>.big</code> class gave the chip row a 200 px circle size, which also drew the stray grey circle). New design system with a gradient hero and researcher mosaic, five group colour palettes on cards, avatar rings and profile banners, colour-coded glossary cards, timeline learning paths and a designed About page. Motion stays GPU-cheap: one-shot transform/opacity reveals, hover lifts, View Transitions, a sun ⇄ moon theme morph, zero idle rAF and zero infinite animations, all off under reduced motion. Real photos for the last five people, an “Approximate upload year” tooltip on ~dates, and a 120-render layout audit plus perf budget. See its <a href="ai-safety-researcher-library/README.md">README</a>.</td></tr>
 <tr><td><sub>2026-11-01</sub></td><td><b>AI Safety Full Episodes: Performance modes</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: Settings → Performance with Auto / Battery saver / Balanced / Full effects. Balanced is the new default (static background, no looping animations, glass blur only on small pop-ups), animated backgrounds are opt-in and capped at 30 fps, and the idle GPU load drops to near zero. Every feature is kept.</td></tr>
 <tr><td><sub>2026-11-01</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><b>AI Safety Researcher Library</b></a> at <code>/ai-safety-researcher-library/</code>: 844 full talks, podcasts, lectures and debates (2010–2026) with 152 AI safety, alignment and AI control researchers, merged and de-duplicated from five research sets; researcher directory and profiles with photos, 9 video filters and summary search, lite youtube-nocookie player, six learning paths with progress, 29-term glossary, watch later/watched/history with export, light/dark, prerendered HTML, JSON-LD, sitemap, strict CSP, ~11 KB gz JS and zero idle animation loops.</td></tr>
@@ -1251,6 +1304,7 @@ A local server is better than opening the file directly, because some browsers b
 <tr><td><b>Jacob Coxon on YouTube</b></td><td><a href="https://www.youtube.com/watch?v=F-Tf5Mo84N4">Megyn Kelly</a>, <a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=_Yl73PhMtm8">AP: NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council recording</a>, plus 16 more linked on <a href="jacob-coxon-podcasts/">the page</a></td></tr>
 <tr><td><b>AI Safety Full Episodes</b></td><td><a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=JIMXEuT_ZAU">The Ezra Klein Show</a>, <a href="https://www.youtube.com/watch?v=qDzg-xvkeXw">The Diary Of A CEO</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=LlGNBPJW8Ww">UK Parliament committee</a>, <a href="https://www.youtube.com/watch?v=tjAg_KxApmw">Machine Gods</a>, plus every link in <a href="ai-safety-full-episodes/data/episodes.json">episodes.json</a></td></tr>
 <tr><td><b>Threshold: The Future of ASI</b></td><td><a href="https://bluedot.org/">BlueDot Impact</a>, <a href="https://www.redwoodresearch.org/">Redwood Research</a>, <a href="https://arxiv.org/abs/2312.06942">AI Control paper</a>, <a href="https://www.safe.ai/work/statement-on-ai-risk">CAIS statement</a>, <a href="https://en.wikipedia.org/wiki/P(doom)">P(doom) table</a>, plus every link in <a href="future-of-asi/data/researchers.json">researchers.json</a>, <a href="future-of-asi/data/videos.json">videos.json</a> and <a href="future-of-asi/data/timeline.json">timeline.json</a></td></tr>
+<tr><td><b>AI Safety Research Atlas</b></td><td>Each organisation's own site (linked on its profile), for example <a href="https://www.apolloresearch.ai/">Apollo Research</a>, <a href="https://intelligence.org/">MIRI</a>, <a href="https://www.aisi.gov.uk/">UK AISI</a>, <a href="https://www.governance.ai/">GovAI</a>, <a href="https://alignment.anthropic.com/">Anthropic Alignment Science</a>, <a href="https://metr.org/">METR</a>, <a href="https://www.redwoodresearch.org/">Redwood Research</a>, <a href="https://futureoflife.org/">FLI</a>; plus YouTube pages for 491 videos</td></tr>
 <tr><td><b>AI Futures Project</b></td><td><a href="https://ai-futures.org/">Home</a>, <a href="https://ai-futures.org/about/">Team</a>, <a href="https://www.aifuturesmodel.com/">AI Futures Model</a>, <a href="https://blog.aifutures.org/">Blog</a></td></tr>
 </table>
 
