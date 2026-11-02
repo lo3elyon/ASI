@@ -796,5 +796,19 @@
   "org": "Resolution (formerly Timaeus)",
   "group": "orgs",
   "bio": "Mathematician (PhD, University of Melbourne) working on singular learning theory and the geometry of computation, with Daniel Murfet."
+ },
+ {
+  "name": "Joscha Bach",
+  "photo": "joscha-bach.jpg",
+  "org": "California Institute for Machine Consciousness",
+  "group": "academics",
+  "bio": "Cognitive scientist and AI researcher (cognitive architectures, MicroPsi) who founded the California Institute for Machine Consciousness and argues that consciousness is a causal pattern a machine could in principle have."
+ },
+ {
+  "name": "Yann LeCun",
+  "photo": "yann-lecun.jpg",
+  "org": "AMI Labs; New York University",
+  "group": "academics",
+  "bio": "Turing Award-winning pioneer of convolutional networks and deep learning, former Meta chief AI scientist and founder of AMI Labs; the best-known sceptic of near-term AGI and of AI x-risk, who argues for world-model, objective-driven AI with built-in guardrails."
  }
 ]
