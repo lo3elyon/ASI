@@ -31,7 +31,7 @@
 <img src="https://img.shields.io/badge/player-YouTube%20IFrame%20API-ef4444?style=flat-square&logo=youtube&logoColor=white&labelColor=07111f" alt="YouTube IFrame API">
 <img src="https://img.shields.io/badge/history-localStorage%20only-84cc16?style=flat-square&labelColor=07111f" alt="localStorage only">
 <img src="https://img.shields.io/badge/offline-service%20worker-22d3ee?style=flat-square&labelColor=07111f" alt="Service worker">
-<img src="https://img.shields.io/badge/jsdom%20test-443%2F443%20passing-10b981?style=flat-square&labelColor=07111f" alt="443 of 443 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-453%2F453%20passing-10b981?style=flat-square&labelColor=07111f" alt="453 of 453 checks passing">
 <img src="https://img.shields.io/badge/themes-31%20(18%20palettes%20%2B%2013%20accents)-84cc16?style=flat-square&labelColor=07111f" alt="31 themes">
 <img src="https://img.shields.io/badge/speaker%20photos-283%20real%20faces-f59e0b?style=flat-square&labelColor=07111f" alt="283 real face photos">
 <img src="https://img.shields.io/badge/Today%27s%20picks-5%20a%20day-14b8a6?style=flat-square&labelColor=07111f" alt="Today's picks">
@@ -45,7 +45,45 @@
 
 ## Contents
 
-[Performance modes, Nov 1 night](#whats-new-nov-1-2026-night-performance-modes-a-cool-gpu-by-default) · [5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+[Watch progress fix, Nov 2](#whats-new-nov-2-2026-watch-progress-counts-again) · [Performance modes, Nov 1 night](#whats-new-nov-1-2026-night-performance-modes-a-cool-gpu-by-default) · [5 more ILIAD talks, Nov 1 8 pm](#whats-new-nov-1-2026-8-pm-five-more-iliad-iii-talks-on-abstraction-world-models-and-learning-theory) · [RAND panel + 4 more, Nov 1](#whats-new-nov-1-2026-4-pm-a-rand-strategy-panel-kurzweils-research-lead-and-three-more-iliad-talks) · [5 ILIAD talks, Nov 1](#whats-new-nov-1-2026-afternoon-five-theory-talks-from-iliad-iii) · [9 new episodes, Nov 1](#whats-new-nov-1-2026-a-deep-sweep-9-new-episodes-from-funders-theorists-and-a-ban-campaigner) · [Reading panel, search, faster History](#whats-new-oct-29-2026-a-readable-reading-panel-at-any-width-smarter-search-and-a-faster-history) · [Clean pause + one chapters panel](#whats-new-oct-28-2026-night-a-clean-paused-picture-and-one-chapters-panel) · [Year in AI safety, debate, Oxford panel](#whats-new-oct-28-2026-8-pm-a-year-in-ai-safety-a-1-vs-10-debate-and-an-oxford-governance-panel-6-new-episodes) · [Calmer watching, captions, look-and-feel](#whats-new-oct-28-2026-evening-calmer-watching-real-captions-resizable-reading-and-a-new-look-and-feel-panel) · [CMU workshop + lab founder](#whats-new-oct-28-2026-4-pm-a-cmu-alignment-workshop-and-a-lab-founder-7-new-episodes) · [History, backgrounds, Read mode, Binge](#whats-new-oct-28-2026-honest-history-backgrounds-read-mode-and-binge) · [Just added](#whats-new-oct-28-2026-just-added-row-and-6-new-episodes) · [Player fixes](#whats-new-oct-28-2026-player-fixes) · [Mini player & dates fix](#whats-new-oct-28-2026-mini-player-and-card-dates-fix) · [Library expansion](#whats-new-oct-28-2026-library-expansion-306-episodes) · [Picks & polish update](#whats-new-oct-28-2026-picks-explore-and-polish) · [Cinema update](#whats-new-oct-28-2026-cinema-update) · [The player](#the-cinema-player) · [Error 153 fix](#the-error-153-fix) · [I've watched these](#ive-watched-these) · [What came in v2](#whats-new-in-v2) · [Features](#features) · [Videos](#a-taste-of-the-library) · [Speakers](#speaker-photo-grid) · [Months](#months) · [Architecture](#architecture) · [Keep playing when minimised](#keep-playing-when-minimised) · [Watch history](#strict-watch-history) · [Recommendations](#recommendations) · [Levels & badges](#levels-and-badges) · [Shortcuts](#keyboard-shortcuts) · [SEO, security & performance](#seo-security-and-performance) · [Tests](#tests) · [Data schema](#data-schema) · [Daily JSON](#adding-new-episodes-daily-json--manifest) · [Files](#files) · [Privacy](#privacy) · [Method](#method) · [FAQ](#faq) · [Sources](#sources) · [Changelog](#changelog)
+
+## What's new (Nov 2, 2026): Watch progress counts again
+
+**The bug:** you could watch an episode from start to finish and still see about 2 %, or a number that looked random, on its progress bar, in History and in "completed".
+
+**Why it happened:** the watch clock reads YouTube's playback position once a second. That position is a cached value: YouTube's IFrame API returns the time the embedded player last reported, plus at most one second of guessing (`getCurrentTime()` in `www-widgetapi.js`). Whenever the embed reports late (a background tab, a covered or minimised window, a busy CPU or battery saver), the time stands still for a few readings and then jumps ahead. The old clock compared each reading only with the previous one: a reading that stood still ended the "3 seconds of continuous playback" run that coverage needs, and the jump that followed looked like a seek and was thrown away. Coverage slices were then almost never marked, and most of the watched seconds were dropped.
+
+**The fix** (`assets/js/player.js`):
+
+```mermaid
+flowchart LR
+  R[Reading every 1 s while playing<br/>+ catch-up when the tab comes back] --> Q{Compared with the last time the position MOVED}
+  Q -->|stands still / steps back < 1.5 s| N[No news: the run goes on]
+  Q -->|moved forward ≤ 1.5 × wall time × speed + 1.5 s| C[Counts: seconds + coverage slices]
+  Q -->|anything bigger, or back > 1.5 s| S[A seek: not counted, a new run starts]
+  E[Ended at ≥ 90 % coverage] --> D[Completed]
+```
+
+- Each reading is compared with the last reading where the position actually moved, so a late report never breaks a run, and the catch-up jump counts when it fits real playback (at most 1.5 × the wall time × the playback speed, + 1.5 s). Throttled background tabs are caught up the same way (one reading after four minutes counts four minutes).
+- The watch clock has its own one-second timer while a video plays (it is no longer every 4th beat of the progress bar), and the progress bar repaints only while the page is visible.
+- A cheap check every 2 s, also in hidden tabs, picks up a play that YouTube's state event missed and starts the clock.
+- 2× and other speeds are credited as real seconds (40 s of video at 2× = 20 s watched, 40 s covered).
+- It works in every mode: default, theater, Read / split, mini player on any page, full screen, Focus and YouTube's own controls (Shift+Y), because it always reads the current player.
+
+**Your earlier progress is recovered once** (`assets/js/history.js` → `recoverCoverage`, stamp `fix5`): each stored session still knows where it started, where it ended, its wall-clock span and the seconds it got. When its advance matches steady playback at a standard speed (1×, 1.25×, 1.5×, 1.75×, 2×) over its wall-clock span or its credited seconds, its slices are marked, the missing seconds are added back to that day, and "completed" follows the usual 90 % rule. It only adds: nothing is removed, manual "watched" marks are untouched, and a session with a pause + a seek inside it does not match and is left as it was. The same recovery runs on an imported backup.
+
+**Measured** (real Firefox, the 15:06 episode, a YouTube player that reports its time every 3 s like a throttled embed):
+
+| Scenario | Before | After |
+|---|---|---|
+| Played 4:00 at 1×, tab in focus | 0 % covered, 53 s of 4:00 counted | **27.5 %** covered, 4:01 counted |
+| Played 4:00 of video at 2× (2 min) | 0 %, 1 s counted | **27.5 %**, 2 min counted |
+| Mini player on Browse / Read mode / theater / full screen / YouTube controls, 4:00 each | 0 % in every mode | **27.5 %** in every mode |
+| Seek to 5:00, play 2:00 | 0 % | **14.3 %** |
+| Whole episode (15:06) | **0 %**, 3:13 counted, not completed | **100 %**, 15:06 counted, completed |
+| Background tab, 1-minute timer wake-ups, 10:00 | 67 % | 65.9 % |
+
+**Tests:** `smoke3.js` 453/453 (new: stale cached time, stall + small step back, 2× with late reports, one reading after 4 minutes, a 200 s jump is still a seek, the watchdog, and the one-time recovery), new `smoke_track.py` (real Firefox + a model of YouTube's cached time + Chrome-like timer throttling: focused, 2×, hidden tab 1 s and 1-minute throttling, blurred window, mini, Read mode, theater, full screen, YouTube controls, seek, whole episode), plus `smoke_v9.js`, `smoke_v9ui.py`, `smoke_mini.py`, `smoke_qa.py` and `smoke_perf.py`.
 
 ## What's new (Nov 1, 2026, night): Performance modes: a cool GPU by default
 
@@ -312,7 +350,7 @@ Seven more transcript-verified full episodes (319 in all, about 344.6 hours; Oct
 <img src="https://img.shields.io/badge/History-grouped%20by%20episode-14b8a6?style=flat-square&labelColor=07111f" alt="History grouped by episode">
 <img src="https://img.shields.io/badge/backgrounds-15%20options-f59e0b?style=flat-square&labelColor=07111f" alt="15 backgrounds">
 <img src="https://img.shields.io/badge/Read%20mode-60%2F40%20%2B%20mobile%20sheet-38bdf8?style=flat-square&labelColor=07111f" alt="Read mode">
-<img src="https://img.shields.io/badge/jsdom%20test-443%2F443%20passing-10b981?style=flat-square&labelColor=07111f" alt="443 of 443 checks passing">
+<img src="https://img.shields.io/badge/jsdom%20test-453%2F453%20passing-10b981?style=flat-square&labelColor=07111f" alt="453 of 453 checks passing">
 </p>
 
 | Area | What changed |
@@ -929,6 +967,7 @@ Every episode links to its YouTube page; the full list with evidence is in [`dat
 
 | Date | Change |
 |---|---|
+| 2026-11-02 | **Watch progress fix**: the watch clock now survives YouTube's cached, late-reported position (it compares with the last real move, not the previous reading), has its own 1 s timer while playing plus a watchdog that also works in hidden tabs, catches up throttled background tabs, and credits 2× correctly in every mode; a one-time recovery restores coverage, seconds and completions from sessions recorded by the broken clock |
 | 2026-11-01 | **Performance modes**: Settings → Performance (Auto / Battery saver / Balanced / Full effects); Balanced by default with a static gradient background, no looping animations and glass blur only on small pop-ups; animated backgrounds opt-in, capped at 30 fps, paused when hidden / covered / full screen; player timers only while playing; content-visibility for long lists; idle GPU near zero; Andrea Miotti photo corrected |
 | 2026-11-01 | 20:00 sweep: 5 new transcript-verified ILIAD III talks (Rosas, Baltieri, Furman, Chernowitz and Gietelink Oldenziel, Troiani), 6 new speaker photos and bios (351 episodes total) |
 | 2026-11-01 | 16:00 sweep: 5 new transcript-verified episodes (RAND on superintelligence strategy, John-Clark Levin, Ari Brill, Ebtekar and Sutherland, Eisenstat part 2), 6 new speaker photos, header date refreshed, and the "New today · added <date>" chip now reads the date from the upload timestamp (346 episodes total) |
