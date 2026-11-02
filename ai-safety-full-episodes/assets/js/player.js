@@ -110,7 +110,7 @@
     if (L().QUEUE.includes(id)) { h().setQueue(L().QUEUE.filter((x) => x !== id)); A.views && A.views.paintQueueCount(); }
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
     if (P.cur && P.cur.id !== e.id && !o.back) { P.backStack = (P.backStack || []).filter((x) => x !== P.cur.id).concat(P.cur.id).slice(-30); }
-    P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.chIdx = -1; P.loop = null; P.errCode = null;
+    P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.lastRate = 0; P.chIdx = -1; P.loop = null; P.errCode = null;
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
     P.nB = Math.max(1, Math.ceil((e.dur || r.dur || 1) / h().BUCKET));
@@ -224,9 +224,13 @@
     if (s === 0) onEnded();
   }
 
-  /* The strict watch clock. Counts only contiguous forward playback; seeks never count.
-   * Background tabs and the float window can throttle timers, so a long gap counts only when
-   * media time advanced at (almost exactly) the playback rate over that wall-clock gap. */
+  /* The strict watch clock. Counts only forward playback; seeks never count.
+   * It reads YouTube's own position, and that position is a cached value: the IFrame API returns the time the embed last
+   * posted plus at most 1 s of interpolation, so while the embed's posts are late (background tab, covered or minimised
+   * window, busy CPU, battery saver) the time stands still and then jumps. So each reading is compared with the last time
+   * the position MOVED, not with the previous tick: a reading that stands still (or steps back a little) is "no news" and
+   * keeps the run going; a forward move counts when it fits real playback (at most 1.5 × the wall time since the last move ×
+   * the speed, + 1.5 s); anything else is a seek. Throttled timers are caught up the same way. */
   function tick(force) {
     if (!P.yt || !P.ready || !P.cur) return;
     let t, st;
@@ -238,14 +242,17 @@
     if (typeof t !== "number" || isNaN(t)) return;
     const now = performance.now();
     const r = h().rec(P.cur.id, true);
+    let rate = 1; try { rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1; } catch (e) {}
+    const rateHi = Math.max(rate, P.lastRate || rate), rateLo = Math.min(rate, P.lastRate || rate); P.lastRate = rate;
+    let moved = true;
     if ((st === 1 || force) && P.lastMedia != null) {
       const dm = t - P.lastMedia;
-      const dw = (now - P.lastWall) / 1000;
-      const rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1;
+      const dw = Math.max(0, (now - P.lastWall) / 1000);
       let real = 0;
-      if (dm > 0 && dw > 0 && dw < 5 && dm <= dw * rate * 1.5 + 0.75) real = Math.min(dw, dm / rate + 0.25);
-      else if (dm > 0 && dw >= 5 && dw <= 600 && Math.abs(dm - dw * rate) <= Math.max(2.5, dw * rate * 0.06)) real = dm / rate;
-      if (real > 0) {
+      if (dm <= 0.05 && dm > -1.5) moved = false; // stale cached time / tiny step back: no news, the run goes on
+      else if (dm > 0 && dw <= 6 * 3600 && dm <= dw * rateHi * 1.5 + 1.5) real = Math.min(dm / rateLo, dw + 1); // a speed change between readings: the wall-time cap keeps it honest
+      if (!moved) { /* keep P.lastMedia / P.lastWall: the next move is measured from the last real one */ }
+      else if (real > 0) {
         r.watched += real;
         const dk = A.dayKey(Date.now());
         L().H.daily[dk] = (L().H.daily[dk] || 0) + real;
@@ -257,8 +264,8 @@
         if (P.mode === "audio") h().bumpStat("audioSec", real);
         if (P.fs) h().bumpStat("fsSec", real);
         if (P.zen) h().bumpStat("zenSec", real);
-        // coverage + "reached" only from a contiguous run of at least 3 s of real playback, so a seek (or a scrub
-        // to the end that lets the video end) never marks slices or "reached" on its own
+        // coverage + "reached" only from a run of at least 3 s of real playback, so a seek (or a scrub to the end that
+        // lets the video end) never marks slices or "reached" on its own
         if (!P.run) P.run = { from: P.lastMedia, real: 0 };
         P.run.real += real;
         if (P.run.real >= 3) {
@@ -267,9 +274,9 @@
           P.run.from = t;
           if (P.sess && P.sessId === P.cur.id) P.sess.m = Math.max(P.sess.m || 0, Math.floor(t));
         }
-      } else P.run = null;
+      } else P.run = null; // a seek (or a jump that does not fit real playback): no credit, a new run starts here
     }
-    if (st === 1) { P.lastMedia = t; P.lastWall = now; } else if (!force) P.run = null;
+    if (st === 1) { if (moved || P.lastMedia == null) { P.lastMedia = t; P.lastWall = now; } } else if (!force) P.run = null;
     // the saved resume spot is the real playback position: never a reset to 0 from an unstarted/cued player
     if (st !== -1 && st !== 5 && !(t === 0 && st !== 1 && (r.pos || 0) > 0)) r.pos = t;
     r.last = Date.now(); P.lastPos = t;
@@ -295,21 +302,29 @@
     A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(P.cur.id);
   }
   function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
-  /* timers run only while they have work: one 250 ms beat while a video plays (progress bar every beat, the watch clock
-   * every 4th), the Focus timer once a second only while Focus is on, and a cheap 3 s check (reads the player state, writes
-   * nothing) that catches a play the state event missed. Paused or closed, the page does no timed work. */
-  const PT = { iv: 0, n: 0, pomo: 0 };
-  function progBeat() { if (!P.yt || !P.ready || !P.cur || dock().classList.contains("pv-hover-ctl")) return; let t; try { if (P.yt.getPlayerState() !== 1) return; t = P.yt.getCurrentTime(); } catch (x) { return; } if (typeof t === "number" && !isNaN(t)) paintProgress(t); }
+  /* timers run only while they have work: while a video plays, the watch clock ticks once a second on its own timer
+   * (never coupled to the progress beat, so a throttled background tab still gets a reading every second it is allowed)
+   * and the progress bar repaints every 250 ms only while the page is visible; the Focus timer runs once a second only
+   * while Focus is on. A cheap 2 s check (reads the player state only; also in hidden tabs) catches a play the state event
+   * missed and starts the clock. Paused or closed, the page does no other timed work. */
+  const PT = { iv: 0, clk: 0, pomo: 0 };
+  function progBeat() { if (document.hidden || !P.yt || !P.ready || !P.cur || dock().classList.contains("pv-hover-ctl")) return; let t; try { if (P.yt.getPlayerState() !== 1) return; t = P.yt.getCurrentTime(); } catch (x) { return; } if (typeof t === "number" && !isNaN(t)) paintProgress(t); }
   function syncTimers() {
-    if (P.playing && !PT.iv) { PT.n = 0; PT.iv = setInterval(() => { PT.n++; if (PT.n % 4 === 0) tick(false); else progBeat(); }, 250); }
-    else if (!P.playing && PT.iv) { clearInterval(PT.iv); PT.iv = 0; }
+    if (P.playing && !PT.clk) { PT.clk = setInterval(() => tick(false), 1000); PT.iv = setInterval(progBeat, 250); }
+    else if (!P.playing && PT.clk) { clearInterval(PT.clk); clearInterval(PT.iv); PT.clk = 0; PT.iv = 0; }
     if (P.pomo && !PT.pomo) PT.pomo = setInterval(() => { pomoTick(); if (!P.pomo) { clearInterval(PT.pomo); PT.pomo = 0; } }, 1000);
     else if (!P.pomo && PT.pomo) { clearInterval(PT.pomo); PT.pomo = 0; }
   }
-  setInterval(() => { if (PT.iv || !P.yt || !P.ready || !P.cur || document.hidden) return; let s; try { s = P.yt.getPlayerState(); } catch (x) { return; } if (s === 1 && !P.playing) { P.playing = true; document.body.classList.add("is-playing"); P.lastMedia = null; syncTimers(); } }, 3000);
+  function watchdog() {
+    if (!P.yt || !P.ready || !P.cur) return;
+    let s; try { s = P.yt.getPlayerState(); } catch (x) { return; }
+    if (s === 1 && !P.playing) { P.playing = true; document.body.classList.add("is-playing"); syncTimers(); tick(false); }
+    else if (s === 1 && !PT.clk) syncTimers();
+  }
+  setInterval(watchdog, 2000);
   window.addEventListener("pagehide", () => { tick(true); flush(); });
   // Never pause when the tab is hidden or the window is minimised: only save progress.
-  document.addEventListener("visibilitychange", () => { if (document.hidden) { tick(true); flush(); } });
+  document.addEventListener("visibilitychange", () => { if (document.hidden) { tick(true); flush(); } else { watchdog(); tick(false); flush(); } });
 
   /* sleep timer, A–B loop, skip intro */
   function timers(t) {
