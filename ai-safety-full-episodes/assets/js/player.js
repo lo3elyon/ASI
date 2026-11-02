@@ -217,6 +217,7 @@
       syncCCSoon();
     } else {
       tick(true);
+      if (s === 0) endCredit();
       P.lastMedia = null; P.run = null;
       flush();
     }
@@ -247,7 +248,10 @@
     let rate = 1; try { rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1; } catch (e) {}
     const rateHi = Math.max(rate, P.lastRate || rate), rateLo = Math.min(rate, P.lastRate || rate); P.lastRate = rate;
     let moved = true;
-    if ((st === 1 || force) && P.lastMedia != null) {
+    // ENDED (0) is a reading too: the stretch from the last observed position to the end was played continuously when the
+    // run is still going, so it is credited like any other reading (only the final <= 1 s may stay unreported)
+    const ended = st === 0;
+    if ((st === 1 || force || ended) && P.lastMedia != null) {
       const dm = t - P.lastMedia;
       const dw = Math.max(0, (now - P.lastWall) / 1000);
       let real = 0;
@@ -285,7 +289,7 @@
         }
       } else P.run = null; // a seek (or a jump that does not fit real playback): no credit, a new run starts here
     }
-    if (st === 1) { if (moved || P.lastMedia == null) { P.lastMedia = t; P.lastWall = now; } } else if (!force) P.run = null;
+    if (st === 1 || (ended && P.lastMedia != null)) { if (moved || P.lastMedia == null) { P.lastMedia = t; P.lastWall = now; } } else if (!force) P.run = null;
     // the saved resume spot is the real playback position: never a reset to 0 from an unstarted/cued player
     if (st !== -1 && st !== 5 && !(t === 0 && st !== 1 && (r.pos || 0) > 0)) r.pos = t;
     r.last = Date.now(); P.lastPos = t;
@@ -293,6 +297,26 @@
     paintProgress(t);
     if (now - P.lastSave > 5000) flush();
     if (now - P.msLast > 4000) { P.msLast = now; msPosition(t); }
+  }
+  /* ENDED: if playback reached the end in one continuous run (no seek since the run started), credit every second from the
+   * run's start up to the last position actually observed (the end itself when YouTube reports it). Nothing is credited
+   * without a live run, so a scrub to the end never counts; YouTube may not report the final <= 1 s, which settle() allows. */
+  function endCredit() {
+    if (!P.cur || !P.cov || !P.run || P.run.real < 3) return;
+    let t = P.lastMedia;
+    try { const c = P.yt.getCurrentTime(); if (typeof c === "number" && !isNaN(c) && c >= (t || 0) && c - (t || 0) <= 3) t = c; } catch (x) {}
+    if (t == null) return;
+    const a = Math.max(0, Math.ceil(P.run.from - 0.5)), b = Math.min(P.nB - 1, Math.floor(t - 0.5));
+    const r = h().rec(P.cur.id, true);
+    let add = 0;
+    for (let i = a; i <= b; i++) { const bit = 1 << (i & 7); if (!(P.cov[i >> 3] & bit)) { P.cov[i >> 3] |= bit; add++; } }
+    P.run.from = Math.max(P.run.from, t);
+    if (add) {
+      r.watched = (r.watched || 0) + add;
+      const dk = A.dayKey(Date.now());
+      L().H.daily[dk] = (L().H.daily[dk] || 0) + add;
+      if (P.sess && P.sessId === P.cur.id) { P.sess.n = (P.sess.n || 0) + add; P.sess.m = Math.max(P.sess.m || 0, b + 1); }
+    }
   }
   function flush() {
     if (!P.cur || !P.cov) return;
@@ -308,6 +332,7 @@
     paintCoverage();
     h().checkAwards();
     A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(P.cur.id);
+    try { document.dispatchEvent(new CustomEvent("asfe:progress", { detail: { id: P.cur.id, done: !!r.done } })); } catch (x) {}
   }
   function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
   /* timers run only while they have work: while a video plays, the watch clock ticks once a second on its own timer
