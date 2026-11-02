@@ -128,10 +128,12 @@
   function metaText(e) { return `${metaDate(e)} · ${esc(e.durStr)}`; }
   function stateBadge(id) {
     const st = h().stateOf(id);
-    if (st === "done") return `<span class="ribbon ribbon--done">${ICON.check}${h().isManual(id) ? "Watched on YouTube" : "Watched"}</span>`;
-    if (st === "progress") return `<span class="ribbon">${Math.round(h().pctOf(id) * 100)}%</span>`;
+    if (st === "done") return `<span class="ribbon ribbon--done" title="${esc(h().covTip(id))}">${ICON.check}${h().isManual(id) ? "Marked watched" : "Watched"}</span>`;
+    if (st === "progress") return `<span class="ribbon" title="${esc(h().covTip(id))}">${h().pctText(h().L.H.eps[id])}</span>`;
     return "";
   }
+  /* exact progress bar for a thumbnail: width floored to 0.1 %, tooltip "mm:ss of hh:mm:ss watched (unique)" */
+  function progBar(id, cls) { const r = h().L.H.eps[id]; if (!r || !(h().pctOf(id) > 0)) return ""; return `<span class="${cls || "thumb__bar"}" title="${esc(h().covTip(id))}"><i style="width:${h().pctWidth(r)}%"></i></span>`; }
   function card(e, o) {
     o = o || {};
     const L = h().L;
@@ -146,7 +148,7 @@
     const meta = `<span class="fmtpill fmtpill--${e.fmt}">${esc({ podcast: "Interview", debate: "Debate", panel: "Panel", talk: "Talk", hearing: "Hearing" }[e.fmt] || "Episode")}</span>${metaCore(e)}<span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>`;
     if (o.list) {
       return `<article class="lrow" data-id="${e.id}" data-fmt="${e.fmt}" draggable="true">
-        <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}${thumbBadges(e)}${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+        <button class="lrow__th thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e)}${thumbBadges(e)}${pct ? progBar(e.id) : ""}</button>
         <div class="lrow__tx">
           <button class="card__title" data-act="open">${hl(e.title, o.q)}</button>
           <p class="card__who"><span class="avs">${avs}</span>${hl(whoLine(e, 4), o.q)}</p>
@@ -161,7 +163,7 @@
       </article>`;
     }
     return `<article class="card" data-id="${e.id}" data-fmt="${e.fmt}" tabindex="-1" draggable="true">
-      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}${thumbBadges(e)}${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? `<span class="thumb__bar"><i style="width:${Math.round(pct * 100)}%"></i></span>` : ""}</button>
+      <button class="thumb" data-act="play" aria-label="Play ${esc(e.title)}">${thumbImg(e, o.eager)}${thumbBadges(e)}${stateBadge(e.id)}<span class="thumb__play">${ICON.play}</span>${pct ? progBar(e.id) : ""}</button>
       <div class="card__body">
         <button class="card__title" data-act="open" title="${esc(e.title)}">${hl(e.title, o.q)}</button>
         <p class="card__who"><span class="avs">${avs}</span><span class="card__names">${hl(whoLine(e), o.q)}</span></p>
@@ -250,5 +252,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { thumbDate, flagBadges, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
+  A.ui = { progBar, thumbDate, flagBadges, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
