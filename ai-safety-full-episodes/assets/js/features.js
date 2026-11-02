@@ -138,6 +138,29 @@
   /* targeted follow-ups after a watched toggle: the watched checklist and cards patch in place (refreshCardsFor);
    * only the history timeline (whose rows are the log itself) re-renders, and Today's picks animates its own card */
   function rerenderIf(id) { const v = A.app.view(); if (v === "history") renderHistory(); if (A.picks && id) A.picks.sync(id); if (v === "recent" && A.feat.renderRecent) A.feat.renderRecent(); }
+  /* History (and Recently watched) follow playback live: the player announces each saved progress step (asfe:progress,
+   * about every 5 s while playing, and on pause/end); an open History page re-renders at most every 4 s, never while
+   * the user is typing in its search box, keeping the scroll position. */
+  const LIVE = { t: 0, at: 0 };
+  function liveRefresh() {
+    LIVE.t = 0;
+    const v = A.app && A.app.view && A.app.view();
+    if (v !== "history" && v !== "recent") return;
+    const box = V(v); if (!box || box.hidden) return;
+    const ae = document.activeElement;
+    if (ae && box.contains(ae) && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) { LIVE.t = setTimeout(liveRefresh, 3000); return; }
+    const y = window.scrollY;
+    LIVE.at = Date.now();
+    try { if (v === "history") renderHistory(); else if (A.feat.renderRecent) A.feat.renderRecent(); if (A.feat.enhance) A.feat.enhance(box); } catch (x) { console.error(x); }
+    if (Math.abs(window.scrollY - y) > 1) window.scrollTo({ top: y, behavior: "auto" });
+  }
+  document.addEventListener("asfe:progress", (ev) => {
+    const v = A.app && A.app.view && A.app.view();
+    if (v !== "history" && v !== "recent") return;
+    if (LIVE.t) return;
+    const wait = (ev.detail && ev.detail.done) ? 0 : Math.max(0, 4000 - (Date.now() - LIVE.at));
+    LIVE.t = setTimeout(liveRefresh, wait);
+  });
   function patchWRow(id) {
     const v = V("watched"); if (!v || v.hidden) return;
     const row = v.querySelector(`.wrow[data-id="${A.cssEsc(id)}"]`);
