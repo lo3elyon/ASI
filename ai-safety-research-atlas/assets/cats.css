@@ -1,0 +1,21 @@
+.k-technical{--c:#0891b2;--c2:#21ccf5;--ci:#066d86}
+[data-theme=dark] .k-technical{--ci:#099dc1}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-technical{--ci:#099dc1}}
+.k-xrisk{--c:#ea580c;--c2:#f7905b;--ci:#a13d08}
+[data-theme=dark] .k-xrisk{--ci:#f35f12}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-xrisk{--ci:#f35f12}}
+.k-labs{--c:#dc2626;--c2:#e97575;--ci:#c42020}
+[data-theme=dark] .k-labs{--ci:#e76868}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-labs{--ci:#e76868}}
+.k-academia{--c:#b45309;--c2:#f47e25;--ci:#974608}
+[data-theme=dark] .k-academia{--ci:#ee6e0c}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-academia{--ci:#ee6e0c}}
+.k-government{--c:#2563eb;--c2:#799ff3;--ci:#1453dd}
+[data-theme=dark] .k-government{--ci:#6b95f1}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-government{--ci:#6b95f1}}
+.k-policy{--c:#16a34a;--c2:#32e373;--ci:#0f6d32}
+[data-theme=dark] .k-policy{--ci:#18b050}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-policy{--ci:#18b050}}
+.k-ecosystem{--c:#4d7c0f;--c2:#80ce19;--ci:#456e0d}
+[data-theme=dark] .k-ecosystem{--ci:#66a514}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]) .k-ecosystem{--ci:#66a514}}
