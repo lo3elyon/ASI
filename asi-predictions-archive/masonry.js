@@ -14,11 +14,27 @@
 
   window.XMasonry = function (el, opts) {
     opts = opts || {};
-    var items = [], cols = [], hs = [], K = 0, t = 0, dead = false;
-    var kOf = function () { var w = el.clientWidth || (el.parentNode && el.parentNode.clientWidth) || 0; return opts.k ? opts.k(w) : kFromWidth(w); };
+    var items = [], cols = [], hs = [], K = 0, W = -1, t = 0, dead = false;
+    /* the content-box width: clientWidth minus horizontal padding */
+    var contentW = function (n) {
+      if (!n || !n.clientWidth) return 0;
+      var cs = getComputedStyle(n);
+      return Math.max(0, n.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0));
+    };
+    var widthOf = function () { return contentW(el) || contentW(el.parentNode); };
+    var kOf = function (w) { if (w == null) w = widthOf(); return opts.k ? opts.k(w) : kFromWidth(w); };
+    var gapOf = function () { var g = parseFloat(getComputedStyle(el).columnGap); return isNaN(g) ? GAP : g; };
+    /* column width = (containerWidth - gap * (K - 1)) / K, floored so the columns never sum past 100% */
+    var size = function (w) {
+      W = w;
+      el.style.setProperty("--x-k", K);
+      var cw = K > 0 && w > 0 ? Math.max(0, Math.floor(((w - gapOf() * (K - 1)) / K) * 100) / 100) : 0;
+      el.style.setProperty("--x-colw", cw + "px");
+    };
     el.classList.add("x-mas");
     var build = function (k) {
       K = k; cols = []; hs = [];
+      size(widthOf());
       el.textContent = "";
       for (var i = 0; i < k; i++) {
         var c = document.createElement("div");
@@ -42,12 +58,20 @@
       reset: function () { items = []; build(Math.max(1, kOf())); },
       relayout: function (force) {
         if (dead) return;
-        var k = Math.max(1, kOf());
-        if (!force && k === K) return;
+        var w = widthOf(), k = Math.max(1, kOf(w));
+        if (!force && k === K) { if (Math.abs(w - W) >= 0.5) size(w); return; }
         build(k);
         items.forEach(place);
       },
-      queue: function () { clearTimeout(t); t = setTimeout(function () { api.relayout(false); }, 150); },
+      /* debounced; does nothing unless the width or K actually changed (a card growing taller is ignored) */
+      queue: function () {
+        clearTimeout(t);
+        t = setTimeout(function () {
+          var w = widthOf();
+          if (Math.abs(w - W) < 0.5 && Math.max(1, kOf(w)) === K) return;
+          api.relayout(false);
+        }, 150);
+      },
       destroy: function () { dead = true; clearTimeout(t); if (ro) ro.unobserve(el); all.splice(all.indexOf(api), 1); el.__xmas = null; }
     };
     el.__xmas = api;
