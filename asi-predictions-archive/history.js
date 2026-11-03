@@ -31,13 +31,16 @@
      dense years would make dots overlap; the decade ticks follow the same warped scale. */
   var prevX = -DOT;
   sorted.forEach(function (m) { m._x = Math.max((m.year - MIN) * PPY, prevX + DOT); prevX = m._x; });
-  var width = prevX + DOT;
+  /* side padding so the first and last labels and dots sit fully inside the strip */
+  var PAD = 28;
+  sorted.forEach(function (m) { m._x += PAD; });
+  var width = prevX + DOT + PAD * 2;
   var height = DOT;
   var posOf = function (y) {
     var a = null, b = null;
     sorted.forEach(function (m) { if (m.year < y) a = m; else if (!b) b = m; });
     if (b && b.year === y) return b._x + DOT / 2;
-    if (!a) return (y - MIN) * PPY + DOT / 2;
+    if (!a) return PAD + (y - MIN) * PPY + DOT / 2;
     if (!b) return a._x + DOT / 2 + (y - a.year) * PPY;
     return a._x + DOT / 2 + (b._x - a._x) * (y - a.year) / (b.year - a.year);
   };
@@ -51,7 +54,7 @@
 
   host.innerHTML =
     '<div class="x-hi__map" aria-label="All milestones on a timeline">' +
-      '<div class="x-hi__scroll"><div class="x-hi__axis" style="width:' + width + "px;height:" + (height + 28) + 'px">' +
+      '<div class="x-hi__scroll" data-strip="wheel"><div class="x-hi__axis" style="width:' + width + "px;height:" + (height + 28) + 'px">' +
         '<div class="x-hi__dots" style="height:' + height + 'px">' + dots + "</div>" +
         '<div class="x-hi__ticks">' + ticks + "</div>" +
       "</div></div>" +

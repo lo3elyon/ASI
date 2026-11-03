@@ -79,8 +79,13 @@
       '<span class="x-pc__bio">' + esc(bio) + "</span>" +
       '<span class="x-pc__meta"><span class="pill x-pc__grp">' + ICON_GRP + esc(GROUP(p.group)) + "</span>" + (talks(p) ? '<span class="pill x-pc__talks">' + ICON_PLAY + talks(p) + "</span>" : "") + "</span></a>";
   };
+  var lastG = null, gc = {};
   var more = function () {
-    $("pgrid").insertAdjacentHTML("beforeend", list.slice(shown, shown + PAGE).map(card).join(""));
+    $("pgrid").insertAdjacentHTML("beforeend", list.slice(shown, shown + PAGE).map(function (p) {
+      var h = "";
+      if (F.sort === "g" && p.group !== lastG) { lastG = p.group; h = '<h3 class="x-pgh" data-pg="' + esc(p.group) + '">' + esc(GROUP(p.group)) + ' <span class="x-n">' + (gc[p.group] || 0) + "</span></h3>"; }
+      return h + card(p);
+    }).join(""));
     shown = Math.min(list.length, shown + PAGE);
     $("pmore").hidden = shown >= list.length;
     $("pmore").textContent = "Show more (" + (list.length - shown) + " left)";
@@ -94,11 +99,13 @@
     });
     /* every order is explicit: the sort key, then name, then id */
     if (F.sort === "az") list.sort(function (a, b) { return cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
+    else if (F.sort === "g") list.sort(function (a, b) { return groups.indexOf(a.group) - groups.indexOf(b.group) || cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
     else if (F.sort === "v") list.sort(function (a, b) { return (b.n_videos || 0) - (a.n_videos || 0) || cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
     else list.sort(function (a, b) { return idx[a.id] - idx[b.id] || cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
     $("pcount").textContent = list.length + (list.length === 1 ? " person" : " people");
     $("pgrid").innerHTML = list.length ? "" : '<p class="fineprint">No one matches. Try another name or group.</p>';
-    shown = 0; more(); paintChips();
+    gc = {}; list.forEach(function (p) { gc[p.group] = (gc[p.group] || 0) + 1; });
+    shown = 0; lastG = null; more(); paintChips();
   };
   if ($("pgrid")) {
     $("pq").addEventListener("input", function () { F.q = this.value; apply(); });

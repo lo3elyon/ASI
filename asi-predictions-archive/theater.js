@@ -44,6 +44,20 @@
   var chip = function (attr, val, label) { return '<button class="x-f" type="button" aria-pressed="false" ' + attr + '="' + esc(val) + '">' + esc(label).replace(/ (\d+)$/, ' <span class="x-n">$1</span>') + "</button>"; };
   var withVideos = {}; V.forEach(function (v) { v.p.forEach(function (id) { withVideos[id] = 1; }); });
   var names = PEOPLE.filter(function (p) { return withVideos[p.id]; }).sort(function (a, b) { return cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
+  /* decade, transcript and length, computed once from the data */
+  var decs = {}, nCC = 0;
+  V.forEach(function (v) {
+    var y = AP.year(v.d);
+    v.dec = y ? String(Math.floor(y / 10) * 10) : "u";
+    decs[v.dec] = (decs[v.dec] || 0) + 1;
+    v.cc = !!(window.ArchiveNotes && ArchiveNotes.hasCC && ArchiveNotes.hasCC(v.id));
+    if (v.cc) nCC++;
+    v.secs = v.len ? String(v.len).split(":").reduce(function (a, b) { return a * 60 + (+b || 0); }, 0) : 0;
+  });
+  var DECS = Object.keys(decs).sort(function (a, b) { return a === "u" ? 1 : b === "u" ? -1 : +a - +b; });
+  var az = function (a, b) { return cmpStr(a.t, b.t) || tie(a, b); };
+  var longest = function (a, b) { return (b.secs || 0) - (a.secs || 0) || newestDatedFirst(a, b); };
+  var SORTS = { "new": newestDatedFirst, old: oldest, az: az, "long": longest };
 
   host.innerHTML =
     '<div class="x-tt">' +
@@ -57,11 +71,11 @@
         '<div class="x-tools" role="search">' +
           '<div class="x-row">' +
             '<input class="x-input" id="ttQ" type="search" placeholder="Search titles, channels, people, summaries…" aria-label="Search the video library" autocomplete="off" />' +
-            '<select class="x-sel" id="ttSort" aria-label="Sort videos"><option value="new">Newest</option><option value="old">Oldest</option></select>' +
+            '<select class="x-sel" id="ttSort" aria-label="Sort videos"><option value="new">Newest</option><option value="old">Oldest</option><option value="az">A–Z</option><option value="long">Longest</option></select>' +
           "</div>" +
-          '<div class="x-row"><span class="x-row__lab">Show</span>' + chip("data-tf", "picks", "Archive picks") + chip("data-tf", "neuro", "🧠 Neuroscience") +
-            '<span class="x-row__lab">Era</span>' + Object.keys(ERA).map(function (k) { return chip("data-tera", k, ERA[k]); }).join("") + "</div>" +
-          '<div class="x-row"><span class="x-row__lab">Kind</span>' + KINDS.map(function (k) { return chip("data-tkind", k, k + " " + kinds[k]); }).join("") + "</div>" +
+          '<div class="x-row"><span class="x-row__lab">Show</span>' + chip("data-tf", "picks", "Archive picks") + chip("data-tf", "neuro", "🧠 Neuroscience") + chip("data-tf", "cc", "CC Has transcript " + nCC) + "</div>" +
+          '<div class="x-row"><span class="x-row__lab">Type</span>' + KINDS.map(function (k) { return chip("data-tkind", k, k + " " + kinds[k]); }).join("") + "</div>" +
+          '<div class="x-row"><span class="x-row__lab">Decade</span>' + DECS.map(function (d) { return chip("data-tdec", d, (d === "u" ? "Undated" : d + "s") + " " + decs[d]); }).join("") + "</div>" +
           '<div class="x-row">' +
             '<input class="x-input x-tt__person" id="ttPerson" list="ttPeople" placeholder="Filter by person…" aria-label="Filter by person" autocomplete="off" />' +
             '<datalist id="ttPeople">' + names.map(function (p) { return '<option value="' + esc(p.name) + '"></option>'; }).join("") + "</datalist>" +
@@ -106,13 +120,15 @@
   }).join("");
 
   /* ---------- library ---------- */
-  var F = { terms: [], kinds: new Set(), eras: new Set(), picks: false, neuro: false, person: null, sort: "new" };
+  var F = { terms: [], kinds: new Set(), eras: new Set(), decs: new Set(), picks: false, neuro: false, cc: false, person: null, sort: "new" };
   var filtered = [], shown = 0, BATCH = 48, grid = $("ttGrid"), more = $("ttMore");
   var match = function (v) {
     if (F.picks && !v.pick) return false;
     if (F.neuro && !v.neuro) return false;
     if (F.kinds.size && !F.kinds.has(v.k)) return false;
     if (F.eras.size && !F.eras.has(v.era)) return false;
+    if (F.decs.size && !F.decs.has(v.dec)) return false;
+    if (F.cc && !v.cc) return false;
     if (F.person && v.p.indexOf(F.person) < 0) return false;
     for (var i = 0; i < F.terms.length; i++) if (v.hay.indexOf(F.terms[i]) < 0) return false;
     return true;
@@ -129,10 +145,11 @@
     host.querySelectorAll("[data-tf]").forEach(function (b) { b.setAttribute("aria-pressed", !!F[b.dataset.tf]); });
     host.querySelectorAll("[data-tkind]").forEach(function (b) { b.setAttribute("aria-pressed", F.kinds.has(b.dataset.tkind)); });
     host.querySelectorAll("[data-tera]").forEach(function (b) { b.setAttribute("aria-pressed", F.eras.has(b.dataset.tera)); });
+    host.querySelectorAll("[data-tdec]").forEach(function (b) { b.setAttribute("aria-pressed", F.decs.has(b.dataset.tdec)); });
     $("ttPersonChip").innerHTML = F.person ? '<button class="x-f" type="button" aria-pressed="true" id="ttPersonClear">' + esc(people[F.person] ? people[F.person].name : F.person) + " ✕</button>" : "";
   };
   var apply = function () {
-    filtered = V.filter(match).sort(F.sort === "new" ? newestDatedFirst : oldest);
+    filtered = V.filter(match).sort(SORTS[F.sort] || newestDatedFirst);
     LISTS.grid = filtered;
     grid.innerHTML = ""; shown = 0;
     $("ttCount").textContent = num(filtered.length) + " of " + num(V.length) + " talks";
@@ -140,7 +157,7 @@
     if (!filtered.length) { grid.innerHTML = '<div class="x-empty" style="grid-column: 1 / -1"><p>No talks match these filters.</p><button class="btn" type="button" id="ttReset">Clear all filters</button></div>'; more.parentNode.hidden = true; }
     else renderMore();
   };
-  var reset = function () { F.terms = []; $("ttQ").value = ""; F.kinds.clear(); F.eras.clear(); F.picks = F.neuro = false; F.person = null; $("ttPerson").value = ""; };
+  var reset = function () { F.terms = []; $("ttQ").value = ""; F.kinds.clear(); F.eras.clear(); F.decs.clear(); F.picks = F.neuro = F.cc = false; F.person = null; $("ttPerson").value = ""; };
   more.addEventListener("click", renderMore);
   /* The library grows only on a Show more click; no observer or timer appends cards. */
 
@@ -222,10 +239,11 @@
   };
 
   host.addEventListener("click", function (ev) {
-    var b = ev.target.closest("[data-tv],[data-tf],[data-tkind],[data-tera],[data-see],#ttPersonClear,#ttReset");
+    var b = ev.target.closest("[data-tv],[data-tf],[data-tkind],[data-tera],[data-tdec],[data-see],#ttPersonClear,#ttReset");
     if (!b) return;
     if (b.dataset.tv) { ev.preventDefault(); if (b.blur) b.blur(); var list = LISTS[b.dataset.list]; select(b.dataset.tv, { queue: list, card: true }); return; }
     if (b.dataset.tf) F[b.dataset.tf] = !F[b.dataset.tf];
+    else if (b.dataset.tdec) { var dd = b.dataset.tdec; F.decs.has(dd) ? F.decs.delete(dd) : F.decs.add(dd); }
     else if (b.dataset.tkind) { var k = b.dataset.tkind; F.kinds.has(k) ? F.kinds.delete(k) : F.kinds.add(k); }
     else if (b.dataset.tera) { var e = b.dataset.tera; F.eras.has(e) ? F.eras.delete(e) : F.eras.add(e); }
     else if (b.dataset.see) {
