@@ -237,6 +237,8 @@
       if (tick) return;
       tick = setInterval(function () {
         paintTime();
+        /* the start cover's own time line follows playback too, until the cover fades */
+        if (root.classList.contains("is-cover") && P.playing) paintCover();
         if (P.playing && ++saveT % 10 === 0) record(P.video.id, now(), P.dur);
       }, 500);
     };
@@ -325,7 +327,7 @@
                 if (tok !== P.token) return;
                 var s = e.data;
                 P.playing = s === 1 || s === 3;
-                if (s === 1) { P.ended = false; upnext.hidden = true; }
+                if (s === 1) { P.ended = false; upnext.hidden = true; startTick(); paintTime(); }
                 if (s === 0 || s === 2) P.pending = false;
                 /* reveal: one-shot, armed by the first PLAYING and held for 2500ms; buffering again before it fires re-arms it */
                 if (s === 1 && !P.shown && !P.revealT) {

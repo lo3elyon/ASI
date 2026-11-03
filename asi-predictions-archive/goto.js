@@ -7,7 +7,7 @@
   "use strict";
   var doc = document, root = doc.documentElement;
   var J = window.XJump || (window.XJump = { active: false, _f: [], onEnd: function (f) { this._f.push(f); } });
-  var GUARD_MS = 1500;
+  var GUARD_MS = 2500;
   var cur = null, lastCall = 0;
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 
@@ -23,10 +23,29 @@
   var mainEl = function () { return doc.querySelector("main.main"); };
   var mainShown = function () { var m = mainEl(); return !!m && !m.hidden; };
   var marginOf = function (el) { return parseFloat(getComputedStyle(el).scrollMarginTop) || 0; };
+  /* a section jump lines up the section's own heading block (eyebrow and h2), not the section box */
+  var headOf = function (el) {
+    if (!el.classList || !el.classList.contains("section")) return el;
+    var h = el.querySelector(":scope > .head");
+    return h && h.getClientRects().length ? h : el;
+  };
+  /* the bottom edge of the sticky nav, measured live; the heading lands 12px below it */
+  var navBottom = function () {
+    var n = doc.querySelector("header.nav");
+    if (!n || !n.getClientRects().length) return -1;
+    var cs = getComputedStyle(n);
+    if (cs.position !== "sticky" && cs.position !== "fixed") return -1;
+    var r = n.getBoundingClientRect();
+    return r.bottom > 0 && r.bottom < window.innerHeight / 2 ? r.bottom : -1;
+  };
+  var topGap = function (c) {
+    if (c.head) { var b = navBottom(); if (b >= 0) return b + 12; }
+    return marginOf(c.el);
+  };
   var wantY = function (c) {
     var r = c.el.getBoundingClientRect(), y;
     if (c.block === "center") y = window.scrollY + r.top + r.height / 2 - window.innerHeight / 2;
-    else y = window.scrollY + r.top - marginOf(c.el) - c.offset;
+    else y = window.scrollY + r.top - topGap(c) - c.offset;
     var max = Math.max(0, root.scrollHeight - window.innerHeight);
     return Math.max(0, Math.min(max, Math.round(y)));
   };
@@ -61,7 +80,8 @@
     if (!el) return false;
     stop();
     lastCall = Date.now();
-    var c = cur = { el: el, block: opts.block === "center" ? "center" : "start", offset: +opts.offset || 0 };
+    var hd = headOf(el);
+    var c = cur = { el: hd, head: hd !== el, block: opts.block === "center" ? "center" : "start", offset: +opts.offset || 0 };
     if (opts.push && el.id) {
       var h = "#" + el.id;
       if (location.hash !== h) {
@@ -81,6 +101,7 @@
       c.ro = new ResizeObserver(settle);
       c.ro.observe(doc.body);
       c.ro.observe(el);
+      if (hd !== el) c.ro.observe(hd);
     }
     c.raf = requestAnimationFrame(align);
     c.timer = setTimeout(stop, opts.ms || GUARD_MS);
@@ -98,6 +119,17 @@
     var el = resolve(href);
     return el && el.closest("main.main") ? el : null;
   };
+  /* explicit jump buttons (the hero's 'Open the tracker'): routed straight to goTo before any other handler */
+  doc.addEventListener("click", function (ev) {
+    if (ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
+    var b = ev.target.closest && ev.target.closest("[data-goto]");
+    if (!b || !mainShown()) return;
+    var el = resolve(b.getAttribute("data-goto"));
+    if (!el) return;
+    ev.preventDefault();
+    ev.stopPropagation();
+    goTo(el, { push: true });
+  }, true);
   doc.addEventListener("click", function (ev) {
     if (ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
     var a = ev.target.closest && ev.target.closest('a[href^="#"]');
