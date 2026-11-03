@@ -76,7 +76,7 @@
   var thumb = function (v) {
     var pr = AP.progress(v.id), len = v.len ? '<span class="x-th__len">' + esc(v.len) + "</span>" : "";
     var secs = v.len ? String(v.len).split(":").reduce(function (a, b) { return a * 60 + (+b || 0); }, 0) : 0;
-    return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" loading="lazy" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
+    return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" loading="lazy" decoding="async" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
       (pr.watched ? '<span class="x-th__done">✓ Watched</span>' : "") +
       (!pr.watched && pr.pos && secs ? '<span class="x-th__bar" style="width:' + Math.min(100, (pr.pos / secs) * 100).toFixed(1) + '%"></span>' : "") + "</span>";
   };
@@ -137,7 +137,14 @@
   };
   var reset = function () { F.terms = []; $("ttQ").value = ""; F.kinds.clear(); F.eras.clear(); F.picks = F.neuro = false; F.person = null; $("ttPerson").value = ""; };
   more.addEventListener("click", renderMore);
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown && shown < filtered.length) renderMore(); }, { rootMargin: "600px" }).observe($("ttSent"));
+  /* Auto-loads only while the reader scrolls the library, never while a nav jump passes through. */
+  var jumping = function () { return !!(window.XJump && window.XJump.active); };
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown && shown < filtered.length && !jumping()) renderMore(); }, { rootMargin: "600px" }).observe($("ttSent"));
+  if (window.XJump) window.XJump.onEnd(function () {
+    if (!shown || shown >= filtered.length) return;
+    var r = $("ttSent").getBoundingClientRect();
+    if (r.top < window.innerHeight + 600 && r.bottom > -600 && r.height) renderMore();
+  });
 
   var tmr;
   $("ttQ").addEventListener("input", function () {
@@ -200,9 +207,7 @@
     /* A card picked while the Theater player is off-screen opens in the pop-out window; the page stays put. */
     if (o.card && AP.popout && !player.inView()) { AP.popout(v, { queue: q }); return; }
     /* Loads the poster only; the page never moves and nothing plays until Play is pressed. */
-    var y = window.scrollY;
-    player.load(v, q ? { queue: q, index: q.indexOf(v) } : null);
-    if (window.scrollY !== y) window.scrollTo(window.scrollX, y);
+    AP.keepScroll(function () { player.load(v, q ? { queue: q, index: q.indexOf(v) } : null); });
   };
 
   host.addEventListener("click", function (ev) {

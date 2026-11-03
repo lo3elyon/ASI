@@ -206,12 +206,12 @@
       menu.style.maxHeight = Math.max(140, (inst.screen ? inst.screen.offsetHeight : 240) - 12) + "px";
       menu.hidden = false; moreB.setAttribute("aria-expanded", "true");
       var f = menu.querySelector("button:not([hidden]):not([disabled]), select, input, a[href]");
-      if (f) f.focus();
+      if (f) f.focus({ preventScroll: true });
     };
     var closeMenu = function (refocus) {
       if (!isOpen()) return;
       menu.hidden = true; moreB.setAttribute("aria-expanded", "false");
-      if (refocus) moreB.focus();
+      if (refocus) moreB.focus({ preventScroll: true });
     };
     var compact = null;
     var setCompact = function (on) {

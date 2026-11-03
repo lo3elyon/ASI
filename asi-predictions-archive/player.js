@@ -99,6 +99,7 @@
           '<div class="x-ap__screen">' +
             '<div class="x-ap__frame"></div>' +
             '<div class="x-ap__shield" aria-hidden="true"></div>' +
+            '<div class="x-ap__cover" hidden><span class="x-ap__cimg" aria-hidden="true"></span><button class="x-ap__big" type="button" data-a="toggle" aria-label="Play">' + ICON.big + '</button><p class="x-ap__ctime"></p></div>' +
             '<button class="x-ap__back" type="button" data-a="siteplayer">Back to site player</button>' +
             '<div class="x-ap__poster"></div>' +
             '<div class="x-ap__upnext" hidden></div>' +
@@ -156,8 +157,23 @@
     var say = function (t) { status.textContent = t; clearTimeout(say.t); say.t = setTimeout(function () { status.textContent = ""; }, 2500); };
     var now = function () { try { return P.yt && P.yt.getCurrentTime ? P.yt.getCurrentTime() || 0 : 0; } catch (e) { return 0; } };
 
+    /* While the site player is not playing (before the first frame, paused or ended), the site's own cover hides
+       YouTube's pause screen, so only one set of controls is ever on show. */
+    var cover = q(".x-ap__cover"), coverImg = cover.querySelector(".x-ap__cimg"), coverTime = cover.querySelector(".x-ap__ctime");
+    var paintCover = function () {
+      var on = !!(P.video && P.started && !P.playing && !P.basic && !P.native);
+      cover.hidden = !on;
+      root.classList.toggle("is-cover", on);
+      if (!on) return;
+      var src = "https://i.ytimg.com/vi/" + encodeURIComponent(P.video.id) + "/hqdefault.jpg";
+      if (coverImg.dataset.src !== src) { coverImg.dataset.src = src; coverImg.style.backgroundImage = 'url("' + src + '")'; }
+      var t = P.ended ? (P.dur || now()) : now();
+      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
+      cover.querySelector(".x-ap__big").setAttribute("aria-label", (P.ended ? "Play again: " : "Play: ") + P.video.t);
+    };
     var paintToggle = function () {
-      root.querySelectorAll('[data-a="toggle"]').forEach(function (b) { b.innerHTML = P.playing ? ICON.pause : ICON.play; b.setAttribute("aria-label", P.playing ? "Pause" : "Play"); });
+      root.querySelectorAll('[data-a="toggle"]:not(.x-ap__big)').forEach(function (b) { b.innerHTML = P.playing ? ICON.pause : ICON.play; b.setAttribute("aria-label", P.playing ? "Pause" : "Play"); });
+      paintCover();
       root.classList.toggle("is-playing", P.playing);
       if (typeof wake === "function") wake();
       if (opts.onPlayState) opts.onPlayState(P.playing);
@@ -171,7 +187,7 @@
       var v = P.video; if (!v) return;
       var pr = progress(v.id), len = v.len ? '<span class="x-ap__tag">' + esc(v.len) + "</span>" : "";
       poster.innerHTML =
-        '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" />' +
+        '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" />' +
         '<button class="x-ap__big" type="button" data-a="play" aria-label="Play: ' + esc(v.t) + '">' + ICON.big + "</button>" +
         '<div class="x-ap__cap"><p class="x-ap__ctitle">' + esc(v.t) + "</p>" +
           '<p class="x-ap__cmeta">' + [esc(v.c), len].filter(Boolean).join(" ") +
@@ -184,7 +200,7 @@
       var meta = [v.c ? esc(v.c) : "", fmtDate(v.d) ? esc(fmtDate(v.d)) : "Undated", v.k ? '<span class="pill">' + esc(v.k) + "</span>" : "", v.len ? '<span class="pill">' + esc(v.len) + "</span>" : ""].filter(Boolean).join(" · ");
       var ppl = (v.p || []).map(function (id) {
         var x = people[id], name = x ? x.name : id;
-        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" loading="lazy" />' : "") + "<span>" + esc(name) + "</span></a>";
+        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" loading="lazy" decoding="async" />' : "") + "<span>" + esc(name) + "</span></a>";
       }).join("");
       info.innerHTML = "<h3>" + esc(v.t) + '</h3><p class="x-ap__meta">' + meta + "</p>" +
         (v.s ? '<p class="x-ap__sum">' + esc(v.s) + "</p>" : "") +
@@ -234,6 +250,7 @@
       P.dur = parseLen(v.len); tDur.textContent = P.dur ? fmt(P.dur) : "0:00";
       paintPoster(); paintInfo(); paintLink(); paintNav();
       if (opts.onChange) opts.onChange(v, P.index);
+      emit("change", v);
     };
 
     var basic = function (start) {
@@ -254,7 +271,7 @@
       var start = P.startAt > 0 ? Math.floor(P.startAt) : progress(v.id).pos, tok = P.token, done = false;
       P.startAt = 0;
       frame.innerHTML = '<div class="x-ap__loading">Loading…</div>';
-      var fail = setTimeout(function () { if (!done && tok === P.token) { done = true; basic(start); } }, 5000);
+      var fail = setTimeout(function () { if (!done && tok === P.token) { done = true; basic(start); } }, 15000);
       loadApi(function (ok) {
         if (done || tok !== P.token) return;
         done = true; clearTimeout(fail);
@@ -317,7 +334,7 @@
       paintToggle();
       say(on ? "YouTube controls on" : "Site player on");
       var f = on ? q('[data-a="siteplayer"]') : q('[data-a="native"]');
-      if (f && root.contains(document.activeElement)) setTimeout(function () { try { f.focus(); } catch (e) {} }, 0);
+      if (f && root.contains(document.activeElement)) setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (e) {} }, 0);
     };
 
     /* ---------- the shield over the iframe: click plays or pauses, double-click goes fullscreen ---------- */
@@ -328,6 +345,8 @@
       clickT = setTimeout(function () { clickT = null; toggle(); }, 220);
     });
     shield.addEventListener("dblclick", function (ev) { ev.preventDefault(); clearTimeout(clickT); clickT = null; fullscreen(); });
+    /* a click anywhere on the paused cover plays; its own button is handled by the root click handler */
+    cover.addEventListener("click", function (ev) { if (!ev.target.closest("[data-a]")) toggle(); });
 
     /* ---------- the bar overlays the video and hides after 2.5s idle while playing ---------- */
     var idleT = null;
@@ -422,7 +441,7 @@
       var n = P.queue.length > 1 ? P.queue[(P.index + 1) % P.queue.length] : null;
       if (!n) return;
       if (store.auto) { setTimeout(function () { go(1, true); }, 0); return; }
-      upnext.innerHTML = '<div class="x-ap__upin"><p class="x-ap__uplab">Up next</p><img src="https://i.ytimg.com/vi/' + esc(n.id) + '/hqdefault.jpg" alt="" loading="lazy" />' +
+      upnext.innerHTML = '<div class="x-ap__upin"><p class="x-ap__uplab">Up next</p><img src="https://i.ytimg.com/vi/' + esc(n.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" />' +
         '<p class="x-ap__ctitle">' + esc(n.t) + '</p><p class="x-ap__cmeta">' + esc(n.c || "") + "</p>" +
         '<div class="x-ap__upbtns"><button class="x-ap__b x-ap__b--solid" type="button" data-a="upplay">' + ICON.play + " Play</button>" +
         '<button class="x-ap__b" type="button" data-a="upcancel">Cancel</button></div></div>';
@@ -430,7 +449,9 @@
     };
 
     var copy = function () {
-      var url = ytUrl(P.video.id, P.started ? now() : 0);
+      /* always carries the current time, or the saved resume point before playback starts */
+      var at = Math.max(0, Math.floor((P.started ? now() : 0) || progress(P.video.id).pos || 0));
+      var url = "https://www.youtube.com/watch?v=" + P.video.id + "&t=" + at + "s";
       var ok = function () { say("Link copied"); var b = q('[data-a="copy"]'); b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy link"; }, 1600); };
       var old = function () {
         var t = document.createElement("textarea"); t.value = url; t.setAttribute("readonly", ""); t.style.position = "fixed"; t.style.opacity = "0";
@@ -617,7 +638,7 @@
       if (!modeB) return;
       var l = modal ? "Shrink to mini player" : "Expand";
       modeB.innerHTML = modal ? IC.pop : IC.expand;
-      modeB.setAttribute("aria-label", l); modeB.setAttribute("data-tip", l);
+      modeB.setAttribute("aria-label", l); modeB.setAttribute("title", l);
       el.setAttribute("aria-label", modal ? "Video player" : "Mini player");
     };
     var setModal = function (on) {
@@ -663,8 +684,10 @@
       if (q !== listQ) {
         listQ = q;
         listEl.innerHTML = q.length < 2 ? "" : q.map(function (x, i) {
-          return '<button class="x-pop__q" type="button" data-pq="' + i + '" aria-current="false"><img src="https://i.ytimg.com/vi/' + esc(x.id) + '/hqdefault.jpg" alt="" loading="lazy" />' +
-            "<span><b>" + esc(x.t) + "</b><small>" + esc([x.c, fmtDate(x.d), x.len].filter(Boolean).join(" · ")) + "</small></span></button>";
+          return '<button class="x-pop__q" type="button" data-pq="' + i + '" aria-current="false" title="' + esc(x.t) + '">' +
+            '<span class="x-pop__qth"><img src="https://i.ytimg.com/vi/' + esc(x.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" width="120" height="68" />' +
+            (x.len ? '<span class="x-pop__qlen">' + esc(x.len) + "</span>" : "") + '<span class="x-pop__qnow">Now playing</span></span>' +
+            '<span class="x-pop__qtx"><b>' + esc(x.t) + "</b><small>" + esc([x.c, fmtDate(x.d)].filter(Boolean).join(" · ")) + "</small></span></button>";
         }).join("");
       }
       var cur = null;
@@ -695,7 +718,7 @@
       pillToggle.setAttribute("aria-label", on ? "Pause" : "Play");
     };
 
-    var tb = function (a, label, icon) { return '<button class="x-pop__i" type="button" data-p="' + a + '" aria-label="' + label + '" data-tip="' + label + '">' + icon + "</button>"; };
+    var tb = function (a, label, icon) { return '<button class="x-pop__i" type="button" data-p="' + a + '" aria-label="' + label + '" title="' + label + '">' + icon + "</button>"; };
     var build = function () {
       if (el) return;
       bd = document.createElement("div");
@@ -711,7 +734,7 @@
             '<p class="x-pop__title"></p>' +
             '<div class="x-pop__tools">' +
               tb("mode", "Expand", IC.expand) + tb("min", "Minimize", IC.min) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Theater mode", IC.wide) + tb("fs", "Fullscreen", IC.fs) +
-              '<a class="x-pop__i" data-p="yt" href="#" target="_blank" rel="noopener" aria-label="Watch on YouTube at the current time" data-tip="Watch on YouTube">' + IC.yt + "</a>" +
+              '<a class="x-pop__i" data-p="yt" href="#" target="_blank" rel="noopener" aria-label="Watch on YouTube at the current time" title="Watch on YouTube at the current time">' + IC.yt + "</a>" +
               tb("close", "Close (Esc)", IC.close) +
             "</div>" +
           "</div>" +
@@ -876,7 +899,7 @@
       if (!cur || cur.id !== st.video.id || st.playing) home.load(st.video, st.queue && st.queue.length ? { queue: st.queue, index: st.index } : null);
       else home.refresh();
       if (visible(home)) {
-        if (!home.inView()) home.root.scrollIntoView({ block: "center" });
+        /* the page never moves on dock: the video goes back into its player wherever that is */
         if (st.playing) home.playAt(st.time);
       }
       return home;
@@ -896,7 +919,7 @@
       if (modal) { setModal(false); opener = null; S.corner = S.corner || "br"; sizeCorner(); }
       isMin = true; el.classList.add("is-min"); el.style.width = ""; win.inert = true;
       place();
-      var r = el.querySelector('[data-p="restore"]'); if (r) r.focus();
+      var r = el.querySelector('[data-p="restore"]'); if (r) r.focus({ preventScroll: true });
     };
     var restore = function () {
       if (!isMin) return;
@@ -961,7 +984,7 @@
   };
 
   /* Every video link outside the Theater opens the in-page window; none ever opens a tab or leaves the page. */
-  var watchLabel = function (a) { return a.getAttribute("data-title") || (a.getAttribute("aria-label") || "").replace(/^Watch[^:]*:\s*/, ""); };
+  var watchLabel = function (a) { return a.getAttribute("data-title") || (a.getAttribute("aria-label") || "").replace(/^(Watch|Play here)[^:]*:\s*/, ""); };
   document.addEventListener("click", function (ev) {
     var a = ev.target.closest && ev.target.closest("a[data-watch]");
     if (!a || ev.defaultPrevented) return;
@@ -1014,11 +1037,43 @@
     if (!active) return;
     if (active._keys(ev)) ev.preventDefault();
   });
-  document.addEventListener("fullscreenchange", function () {
-    instances.forEach(function (p) { p.root.classList.toggle("is-fs", !!document.fullscreenElement && p.root.contains(document.fullscreenElement)); });
-  });
+  /* The player box itself goes fullscreen (Fullscreen API), so Esc exits; every Fullscreen button says Exit fullscreen while it is on. */
+  var onFs = function () {
+    var fe = document.fullscreenElement || document.webkitFullscreenElement || null;
+    instances.forEach(function (p) {
+      var on = !!fe && p.root.contains(fe), label = on ? "Exit fullscreen" : "Fullscreen";
+      p.root.classList.toggle("is-fs", on);
+      p.root.querySelectorAll('[data-a="fs"]').forEach(function (b) {
+        var l = b.querySelector(".x-apx-lbl");
+        if (l) l.textContent = label; else b.textContent = label;
+        if (b.hasAttribute("aria-label")) b.setAttribute("aria-label", label + " (F)");
+        if (b.hasAttribute("data-tip")) b.setAttribute("data-tip", label + " (F)");
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+    });
+    document.querySelectorAll('.x-pop [data-p="fs"]').forEach(function (b) {
+      var on = !!fe && !!b.closest(".x-pop") && b.closest(".x-pop").contains(fe), label = on ? "Exit fullscreen" : "Fullscreen";
+      b.setAttribute("aria-label", label); b.setAttribute("title", label); b.setAttribute("aria-pressed", on ? "true" : "false");
+    });
+  };
+  document.addEventListener("fullscreenchange", onFs);
+  document.addEventListener("webkitfullscreenchange", onFs);
+
+  /* Run fn without moving the page: the scroll position is put back now and again on the next two frames,
+     so a player, panel or list that changes height under the reader never shifts what they are looking at. */
+  var keepScroll = function (fn) {
+    var x = window.scrollX, y = window.scrollY;
+    var put = function () { if (Math.abs(window.scrollY - y) > 1 && !document.documentElement.classList.contains("x-modal-open")) { try { window.scrollTo({ left: x, top: y, behavior: "instant" }); } catch (e) { window.scrollTo(x, y); } } };
+    var r;
+    try { r = fn(); } finally {
+      put();
+      requestAnimationFrame(function () { put(); requestAnimationFrame(put); });
+    }
+    return r;
+  };
 
   window.ArchivePlayer = {
+    keepScroll: keepScroll,
     create: create,
     popout: popout,
     watch: watch,

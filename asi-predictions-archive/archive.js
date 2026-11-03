@@ -42,7 +42,7 @@
 
   btn.addEventListener("click", function () { setOpen(!bar.classList.contains("is-open")); });
   bar.addEventListener("keydown", function (ev) {
-    if (ev.key === "Escape" && bar.classList.contains("is-open")) { setOpen(false); btn.focus(); }
+    if (ev.key === "Escape" && bar.classList.contains("is-open")) { setOpen(false); btn.focus({ preventScroll: true }); }
   });
 
   /* active filter count on the toggle */

@@ -60,7 +60,6 @@
         var r = IDX.videos.filter(function (v) { return v.id === id; })[0];
         if (window.ArchiveTheater) {
           ArchiveTheater.select(id, { title: r ? r.t : "" });
-          var tp = doc.getElementById("ttPlayer"); if (tp) tp.scrollIntoView({ behavior: "smooth", block: "center" });
         }
       } else if (g === "preds") {
         if (window.ArchiveSite && ArchiveSite.gotoPred) ArchiveSite.gotoPred(id);
@@ -119,12 +118,12 @@
     lastFocus = doc.activeElement;
     var lb = doc.getElementById("lb"); if (lb && lb.open) lb.close();
     dlg.showModal();
-    inp.select(); render(); inp.focus();
+    inp.select(); render(); inp.focus({ preventScroll: true });
   };
   var close = function (picked) {
     if (!dlg.open) return;
     dlg.close();
-    if (!picked && lastFocus && lastFocus.focus) lastFocus.focus();
+    if (!picked && lastFocus && lastFocus.focus) lastFocus.focus({ preventScroll: true });
   };
 
   var tmr;
@@ -145,7 +144,7 @@
       ev.preventDefault(); ev.stopPropagation();
       var trig = lastFocus && lastFocus !== doc.body && doc.contains(lastFocus) ? lastFocus : doc.querySelector(".x-search-btn");
       close(true);
-      if (trig && trig.focus) trig.focus();
+      if (trig && trig.focus) trig.focus({ preventScroll: true });
     }
   }, true);
 

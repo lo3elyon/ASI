@@ -68,14 +68,19 @@
   var about = function (v) {
     var sp = speakers(v), y = AP.year ? AP.year(v.d) : 0, kind = KINDS[v.k] || (v.k ? v.k : "video");
     var who = sp.length ? sp.map(function (p) { return p.name; }).join(", ") : (v.c || "the speaker");
-    var bits = [];
-    bits.push("A " + esc(kind) + (who ? " featuring <b>" + esc(who) + "</b>" : "") + (v.c ? ", published on the " + esc(v.c) + " channel" : "") + (y ? " (" + y + ")" : "") + ".");
+    /* "An" before a vowel sound: an interview, an archival clip */
+    var art = /^[aeiou]/i.test(kind) ? "An " : "A ";
     var tp = topics(v);
-    if (tp.length) bits.push("It touches on " + esc(tp.join(", ").toLowerCase()) + (y ? ", recorded in " + eraOf(y) : "") + ".");
-    if (v.s) bits.push(esc(v.s));
-    if (sp[0]) { var bio = firstSentence((DETAIL[sp[0].id] && (DETAIL[sp[0].id].background || [])[0]) || sp[0].bio); if (bio) bits.push('<span class="x-wh__muted">About the speaker: ' + esc(bio) + "</span>"); }
+    var paras = [];
+    paras.push(art + esc(kind) + (who ? " featuring <b>" + esc(who) + "</b>" : "") + (v.c ? ", published on the " + esc(v.c) + " channel" : "") + (y ? " (" + y + ")" : "") + "." +
+      (tp.length ? " It touches on " + esc(tp.join(", ").toLowerCase()) + (y ? ", recorded in " + eraOf(y) : "") + "." : ""));
+    if (v.s) String(v.s).split(/\n\s*\n|\n/).map(function (s) { return s.trim(); }).filter(Boolean).forEach(function (s) { paras.push(esc(s)); });
+    if (sp[0]) { var bio = firstSentence((DETAIL[sp[0].id] && (DETAIL[sp[0].id].background || [])[0]) || sp[0].bio); if (bio) paras.push('<span class="x-wh__muted">About the speaker: ' + esc(bio) + "</span>"); }
     var meta = [v.len ? "⏱ " + esc(v.len) : "", y ? "📅 " + y : "", v.k ? "🎙 " + esc(kind) : ""].filter(Boolean).map(function (m) { return '<span class="x-wh__chip">' + m + "</span>"; }).join("");
-    return '<p class="x-wh__p">' + bits.join(" ") + '</p><div class="x-wh__chips">' + meta + tp.map(function (t) { return '<span class="x-wh__chip x-wh__chip--t">#' + esc(t) + "</span>"; }).join("") + "</div>";
+    var long = paras.length > 2 || paras.join(" ").replace(/<[^>]+>/g, "").length > 360;
+    return '<div class="x-wh__desc' + (long ? " is-clamped" : "") + '">' + paras.map(function (p) { return '<p class="x-wh__p">' + p + "</p>"; }).join("") + "</div>" +
+      (long ? '<button type="button" class="x-wh__toggle" data-wh-more aria-expanded="false">Show more</button>' : "") +
+      '<div class="x-wh__chips">' + meta + tp.map(function (t) { return '<span class="x-wh__chip x-wh__chip--t">#' + esc(t) + "</span>"; }).join("") + "</div>";
   };
 
   var highlights = function (v) {
@@ -99,11 +104,15 @@
     var sp = speakers(v);
     if (!sp.length) return '<p class="x-wh__muted">' + (v.c ? "Channel: " + esc(v.c) + ". " : "") + "No speaker profile is linked to this video.</p>";
     return sp.slice(0, 3).map(function (p) {
-      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).slice(0, 4);
-      return '<div class="x-wh__sp">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" width="56" height="56">' : '<span class="x-wh__av">' + esc(p.name[0]) + "</span>") +
-        '<div><a class="x-wh__name" href="#/person/' + esc(p.id) + '">' + esc(p.name) + "</a><p>" + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p>" +
-        (more.length ? '<div class="x-wh__more">' + more.map(function (id) { return '<button type="button" class="x-wh__mini" data-wh-play="' + esc(id) + '" title="' + esc(VIDS[id].t) + '"><img src="' + AP.thumb(id) + '" alt="" loading="lazy"><span>' + esc(VIDS[id].t) + "</span></button>"; }).join("") + "</div>" : "") +
-        "</div></div>";
+      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).slice(0, 6);
+      return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" width="56" height="56">' : '<span class="x-wh__av">' + esc(p.name[0]) + "</span>") +
+        '<div class="x-wh__spwho"><a class="x-wh__name" href="#/person/' + esc(p.id) + '">' + esc(p.name) + "</a><p>" + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p></div></div>" +
+        (more.length ? '<ul class="x-wh__talks" aria-label="Other talks by ' + esc(p.name) + '">' + more.map(function (id) {
+          var x = VIDS[id];
+          return '<li><button type="button" class="x-wh__row" data-wh-play="' + esc(id) + '" title="' + esc(x.t) + '"><img src="' + AP.thumb(id) + '" alt="" loading="lazy" decoding="async" width="96" height="54"><span class="x-wh__rowtx"><b>' + esc(x.t) + "</b>" + (x.len || x.c ? "<small>" + esc([x.c, x.len].filter(Boolean).join(" · ")) + "</small>" : "") + "</span></button></li>";
+        }).join("") + "</ul>" : "") +
+        '<a class="x-wh__all" href="#/person/' + esc(p.id) + '">All talks by ' + esc(p.name) + " →</a>" +
+        "</div>";
     }).join("");
   };
 
@@ -128,24 +137,45 @@
       moveInd();
     };
     var paintProg = function () { var v = inst.current && inst.current(); var r = v && W[v.id]; prog.textContent = r && r.sec ? "Watched " + fmt(r.sec) + (r.pct ? " · " + r.pct + "%" : "") : ""; };
+    var keep = AP.keepScroll || function (f) { return f(); };
     box.addEventListener("click", function (e) {
-      var t = e.target.closest(".x-wh__tab"); if (t) { cur = t.getAttribute("data-t"); box.querySelectorAll(".x-wh__tab").forEach(function (b) { b.setAttribute("aria-selected", b === t); }); paint(); return; }
-      var pl = e.target.closest("[data-wh-play]"); if (pl) { e.preventDefault(); AP.watch(VIDS[pl.getAttribute("data-wh-play")] || pl.getAttribute("data-wh-play")); }
+      var t = e.target.closest(".x-wh__tab"); if (t) { cur = t.getAttribute("data-t"); box.querySelectorAll(".x-wh__tab").forEach(function (b) { b.setAttribute("aria-selected", b === t); }); keep(function () { paint(); }); return; }
+      var mo = e.target.closest("[data-wh-more]");
+      if (mo) {
+        var d = mo.previousElementSibling, open = d.classList.toggle("is-clamped") === false;
+        mo.setAttribute("aria-expanded", open); mo.textContent = open ? "Show less" : "Show more";
+        return;
+      }
+      var pl = e.target.closest("[data-wh-play]");
+      if (pl) {
+        e.preventDefault();
+        var id = pl.getAttribute("data-wh-play");
+        keep(function () { AP.watch(VIDS[id] || id); });
+        return;
+      }
+      /* a person link inside the video window closes the window first, so the page underneath is free to change */
+      if (e.target.closest('a[href^="#/person/"]') && AP.isWatching && AP.isWatching()) AP.closePopout();
     });
     box.addEventListener("keydown", function (e) {
       if (!e.target.classList.contains("x-wh__tab") || (e.key !== "ArrowRight" && e.key !== "ArrowLeft")) return;
       var tabs = [].slice.call(box.querySelectorAll(".x-wh__tab")), i = tabs.indexOf(e.target) + (e.key === "ArrowRight" ? 1 : -1);
-      var n = tabs[(i + tabs.length) % tabs.length]; n.focus(); n.click();
+      var n = tabs[(i + tabs.length) % tabs.length]; n.focus({ preventScroll: true }); n.click();
     });
     window.addEventListener("resize", moveInd);
     paint(true);
+    /* repainted only when the video changes or its play state changes, never on a timer */
+    if (inst.on) {
+      inst.on("change", function () { keep(function () { paint(false); }); paintProg(); });
+      inst.on("state", function () { paintProg(); });
+    }
     inst._whPaint = function () { paint(false); paintProg(); };
   };
 
   var insts = [];
   AP.onCreate(function (inst) { insts.push(inst); try { attachPanel(inst); } catch (e) {} });
+  /* tracking only: counts seconds watched into storage; it redraws nothing */
   setInterval(function () {
-    insts.forEach(function (i) { if (i.root && i.root.isConnected) { try { tick(i); } catch (e) {} if (i._whPaint) i._whPaint(); } });
+    insts.forEach(function (i) { if (i.root && i.root.isConnected) { try { tick(i); } catch (e) {} } });
   }, 1000);
 
   /* ---------- Continue watching row + history drawer ---------- */
@@ -162,7 +192,7 @@
     row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
-        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" width="240" height="135"><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(x.r.t) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
+        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135"><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(x.r.t) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
       }).join("") + "</div>";
   };
 
@@ -179,16 +209,16 @@
     drawer.querySelector(".x-whd__stats").innerHTML = '<div><b>' + all.length + "</b><span>talks started</span></div><div><b>" + done + "</b><span>finished</span></div><div><b>" + fmt(tot) + "</b><span>time watched</span></div>";
     drawer.querySelector(".x-whd__list").innerHTML = all.length ? all.map(function (x) {
       var v = vidOf(x.id);
-      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" width="112" height="63"><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span></span></button>';
+      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="112" height="63"><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span></span></button>';
     }).join("") : '<p class="x-wh__muted">Nothing watched yet. Press play on any talk and it appears here.</p>';
     drawer.hidden = false; requestAnimationFrame(function () { drawer.classList.add("is-open"); });
-    var x = drawer.querySelector(".x-whd__x"); if (x) x.focus();
+    var x = drawer.querySelector(".x-whd__x"); if (x) x.focus({ preventScroll: true });
   };
   var closeDrawer = function () { if (!drawer) return; drawer.classList.remove("is-open"); setTimeout(function () { drawer.hidden = true; }, 260); };
 
   var onClick = function (e) {
     var p = e.target.closest("[data-cw-play]");
-    if (p) { e.preventDefault(); var id = p.getAttribute("data-cw-play"); closeDrawer(); AP.watch(vidOf(id)); return; }
+    if (p) { e.preventDefault(); var id = p.getAttribute("data-cw-play"); closeDrawer(); (AP.keepScroll || function (f) { f(); })(function () { AP.watch(vidOf(id)); }); return; }
     var c = e.target.closest("[data-cw]"); if (!c) return;
     var a = c.getAttribute("data-cw");
     if (a === "open") openDrawer();
@@ -198,8 +228,11 @@
   document.addEventListener("click", function (e) { if (row && row.contains(e.target)) onClick(e); });
 
   var rowT = 0;
-  document.addEventListener("watchprogress", function () { var n = Date.now(); if (n - rowT > 4000) { rowT = n; paintRow(); } });
-  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { setTimeout(paintRow, 300); }); else setTimeout(paintRow, 300);
+  var known = Object.keys(W).length;
+  /* Static by design: the row is only redrawn when a new video is added to the history, never on a timer. */
+  document.addEventListener("watchprogress", function () { var n = Object.keys(W).length; if (n !== known) { known = n; (AP.keepScroll || function (f) { f(); })(paintRow); } });
+  /* painted once at load, not after a delay, so nothing below it shifts later */
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintRow); else paintRow();
 
   window.ArchiveWatch = { history: function () { return W; }, open: openDrawer };
 })();

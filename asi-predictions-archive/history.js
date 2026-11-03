@@ -73,8 +73,8 @@
       var id = personId[String(n).toLowerCase()];
       return id ? '<a class="x-hi__who" href="#/person/' + esc(id) + '">' + esc(n) + "</a>" : '<span class="x-hi__who is-plain">' + esc(n) + "</span>";
     }).join("");
-    var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" data-watch="' + esc(m.youtube_id) + '" aria-label="Watch: ' + esc(m.title) + '">' +
-      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" loading="lazy" /><span class="x-hi__play">' + PLAY + "</span></a>" : "";
+    var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" data-watch="' + esc(m.youtube_id) + '" data-title="' + esc(m.title) + '" aria-label="Play here: ' + esc(m.title) + '">' +
+      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" /><span class="x-hi__play">' + PLAY + "</span></a>" : "";
     var quote = m.quote ? '<figure class="x-hi__quote"><blockquote>“' + esc(m.quote) + '”</blockquote>' + (m.quote_source ? "<figcaption>" + esc(m.quote_source) + "</figcaption>" : "") + "</figure>" : "";
     return '<li class="x-hi__item" id="hm-' + esc(m.id) + '" style="--c:' + COLORS[m._ci % COLORS.length] + '">' +
       '<span class="x-hi__year">' + esc(m.year) + "</span>" +

@@ -3,7 +3,49 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ASI History Archive · Before It Was Real</title>
+    <title>ASI History Archive: 75 Years of Superintelligence Predictions, People and Talks</title>
+    <meta name="description" content="A searchable, fact-checked archive of superintelligence predictions: 2,504 talks, 320 people and 59 history milestones from Turing in 1951 to 2026, with 30 forecasts checked against what happened." />
+    <link rel="canonical" href="https://lo3elyon.github.io/ASI/asi-predictions-archive/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ASI History Archive" />
+    <meta property="og:title" content="ASI History Archive: 75 Years of Superintelligence Predictions" />
+    <meta property="og:description" content="2,504 talks, 320 people and 59 milestones: what researchers predicted about superintelligence, and what actually happened." />
+    <meta property="og:url" content="https://lo3elyon.github.io/ASI/asi-predictions-archive/" />
+    <meta property="og:image" content="https://lo3elyon.github.io/ASI/asi-predictions-archive/hero.jpg" />
+    <meta property="og:image:alt" content="An abstract image of an emerging machine intelligence" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ASI History Archive: 75 Years of Superintelligence Predictions" />
+    <meta name="twitter:description" content="2,504 talks, 320 people and 59 milestones: what researchers predicted about superintelligence, and what actually happened." />
+    <meta name="twitter:image" content="https://lo3elyon.github.io/ASI/asi-predictions-archive/hero.jpg" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://lo3elyon.github.io/ASI/asi-predictions-archive/#website",
+            "name": "ASI History Archive",
+            "url": "https://lo3elyon.github.io/ASI/asi-predictions-archive/",
+            "description": "A searchable, fact-checked archive of superintelligence predictions, people, talks and history milestones.",
+            "inLanguage": "en"
+          },
+          {
+            "@type": "Dataset",
+            "name": "ASI History Archive: superintelligence predictions, people and talks",
+            "description": "A curated dataset of 2,504 talks, debates and interviews, 320 researchers, pioneers, critics and neuroscientists, 59 history milestones from 1863 to 2026, 78 sourced archive entries and 30 predictions fact-checked as of 3 November 2026.",
+            "url": "https://lo3elyon.github.io/ASI/asi-predictions-archive/",
+            "isPartOf": { "@id": "https://lo3elyon.github.io/ASI/asi-predictions-archive/#website" },
+            "keywords": ["artificial superintelligence", "AGI", "AI predictions", "AI safety", "AI history", "alignment"],
+            "temporalCoverage": "1863/2026",
+            "dateModified": "2026-11-03",
+            "inLanguage": "en",
+            "isAccessibleForFree": true,
+            "creator": { "@type": "Organization", "name": "ASI History Archive" },
+            "variableMeasured": ["Talks", "People", "History milestones", "Archive entries", "Prediction status"]
+          }
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -15,8 +57,10 @@
     <link rel="stylesheet" href="hark-hero.css?v=a0abb3ca" />
     <link rel="stylesheet" href="player.css?v=04fe0b5d" />
     <link rel="stylesheet" href="watch-hub.css?v=5ed21fe7" />
+    <link rel="stylesheet" href="learn.css?v=c01c2145" />
     <style>
       .x-wh__tab { min-height: var(--tap); }
+      .x-ln__flip .x-ln__say { width: var(--tap); height: var(--tap); top: 4px; right: 4px; }
     </style>
     <link rel="stylesheet" href="archive.css?v=8edd28bc" />
     <style>
@@ -107,7 +151,7 @@
       .x-lb::backdrop { background: color-mix(in srgb, var(--hero-surface) 82%, transparent); }
       .x-lb img { max-height: 64vh; width: auto; margin: 0 auto; border-radius: var(--r-m); object-fit: contain; }
       .x-lb__bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 14px; }
-      .x-lb__bar h3 { font: var(--type-heading); }
+      .x-lb__bar h2 { font: var(--type-heading); }
       .x-lb .btn { cursor: pointer; }
 
       /* ask panel */
@@ -128,13 +172,18 @@
       .x-ask form .x-input { min-width: 0; }
     </style>
     <link rel="stylesheet" href="theme.css?v=8f14318e" />
+    <link rel="stylesheet" href="fixes.css?v=4bd42e0d" />
+    <script>
+      /* Anchored jumps: lazy lists pause while a jump scrolls past them (fixes.js runs the jumps). */
+      window.XJump = { active: false, _f: [], onEnd: function (f) { this._f.push(f); } };
+    </script>
   </head>
   <body>
     <div class="page" id="top">
       <header class="nav glass" data-auto></header>
       <main class="main">
         <section class="hero">
-          <img class="hero__img" src="hero.jpg" alt="An abstract image of an emerging machine intelligence" />
+          <img class="hero__img" src="hero.jpg" alt="An abstract image of an emerging machine intelligence" fetchpriority="high" />
           <div class="hero__copy">
             <p class="hero__eyebrow">ASI History Archive · fact-checked 3 Nov 2026</p>
             <h1>Before It Was Real: An Archive of Superintelligence Predictions</h1>
@@ -149,7 +198,7 @@
 
         <section class="stats x-stats" aria-label="The archive in numbers">
           <a class="stat" href="#people" style="--t: var(--x-g-alignment)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><circle cx="9" cy="8" r="3.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M2.5 20c.8-3.6 3.4-5.5 6.5-5.5s5.7 1.9 6.5 5.5M16 4.8a3.5 3.5 0 0 1 0 6.4M18 14.8c1.8.7 3 2.4 3.5 5.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="stat__fig" data-count>320</span><span class="stat__label">People</span></a>
-          <a class="stat" href="#media" style="--t: var(--x-e2)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="5" width="19" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></span><span class="stat__fig" data-count>2,073</span><span class="stat__label">Talks</span></a>
+          <a class="stat" href="#media" style="--t: var(--x-e2)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="2.5" y="5" width="19" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></span><span class="stat__fig" data-count>2,504</span><span class="stat__label">Talks</span></a>
           <a class="stat" href="#history" style="--t: var(--x-e0)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><path d="M3 12h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="6" cy="12" r="2.4" fill="currentColor"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/><circle cx="18" cy="12" r="2.4" fill="currentColor"/></svg></span><span class="stat__fig" data-count>59</span><span class="stat__label">History milestones</span></a>
           <a class="stat" href="#archive" style="--t: var(--x-e1)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="4" width="18" height="5" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M5 9v9.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V9M10 13h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span class="stat__fig" data-count>78</span><span class="stat__label">Archive entries</span></a>
           <a class="stat" href="#tracker" style="--t: var(--x-good)"><span class="x-sti" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg></span><span class="stat__fig" data-count>30</span><span class="stat__label">Predictions</span></a>
@@ -220,10 +269,19 @@
         <section class="section" id="media" data-nav="Media">
           <div class="head">
             <p class="head__eyebrow">Media Theater</p>
-            <h2>2,073 talks, debates and interviews, playable here.</h2>
+            <h2>2,504 talks, debates and interviews, playable here.</h2>
             <p class="head__sub">Picking a video loads its poster and details. Nothing plays until you press Play. Press ? for keyboard shortcuts.</p>
           </div>
           <div id="theater"></div>
+        </section>
+
+        <section class="section" id="learn" data-nav="Learn">
+          <div class="head">
+            <p class="head__eyebrow">Learn</p>
+            <h2>Superintelligence, explained for everyone.</h2>
+            <p class="head__sub">A kids' corner, plain-English explainers, and hands-on maths: simulate an intelligence explosion, feel the power of doubling, build your own risk chain, then test yourself on real predictions.</p>
+          </div>
+          <div id="learn-root"></div>
         </section>
 
         <section class="section" id="tracker" data-nav="Predictions">
@@ -270,10 +328,11 @@
     <dialog class="x-lb" id="lb" aria-label="Portrait">
       <div id="lbFig"></div>
       <div class="x-lb__bar">
-        <div><h3 id="lbName"></h3><p class="fineprint" id="lbSub"></p></div>
+        <div><h2 id="lbName"></h2><p class="fineprint" id="lbSub"></p></div>
         <div class="links">
           <button class="btn" id="lbPrev" type="button">← Prev</button>
           <button class="btn" id="lbNext" type="button">Next →</button>
+          <button class="btn" id="lbProfile" type="button" hidden>View profile</button>
           <button class="btn" id="lbShow" type="button">Show their entries</button>
           <button class="btn" id="lbClose" type="button">Close</button>
         </div>
@@ -382,7 +441,7 @@
   });
   var avatar = function (e, cls) {
     if (!e.portrait) return '<span class="x-av" aria-hidden="true">' + initials(e.person) + "</span>";
-    return '<button class="x-av ' + (cls || "") + '" type="button" data-lb="' + gIdx[e.portrait] + '" data-ini="' + esc(initials(e.person)) + '" aria-label="View portrait of ' + esc(e.person) + '"><img src="' + esc(e.portrait) + '" alt="" loading="lazy" /></button>';
+    return '<button class="x-av ' + (cls || "") + '" type="button" data-lb="' + gIdx[e.portrait] + '" data-ini="' + esc(initials(e.person)) + '" aria-label="View portrait of ' + esc(e.person) + '"><img src="' + esc(e.portrait) + '" alt="' + esc(e.person) + '" loading="lazy" decoding="async" /></button>';
   };
   document.addEventListener("error", function (ev) {
     var im = ev.target; if (im.tagName !== "IMG") return;
@@ -393,7 +452,7 @@
 
   /* ---------- lite youtube ---------- */
   var PLAY = '<span><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>';
-  var lite = function (v, eager) { return '<div class="x-lite"><img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" ' + (eager ? "" : 'loading="lazy"') + ' /><a class="x-play" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" aria-label="Watch: ' + esc(v.title) + '">' + PLAY + "</a></div>"; };
+  var lite = function (v, eager) { return '<div class="x-lite"><img src="https://i.ytimg.com/vi/' + v.id + '/hqdefault.jpg" alt="" decoding="async" ' + (eager ? "" : 'loading="lazy"') + ' /><a class="x-play" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.title) + '" aria-label="Play here: ' + esc(v.title) + '">' + PLAY + "</a></div>"; };
   var ytUrl = function (id) { return "https://www.youtube.com/watch?v=" + id; };
   /* A card's thumbnail opens that video in the in-page window (player.js handles the click); nothing leaves the page. */
 
@@ -483,7 +542,10 @@
     else renderMore();
   };
   var reset = function () { S.q = ""; S.terms = []; $("#q").value = ""; S.eras.clear(); S.topics.clear(); S.video = false; S.focus = null; apply(); };
-  new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown < list.length) renderMore(); }, { rootMargin: "800px" }).observe($("#sentinel"));
+  /* Loads more only while the reader scrolls here, never while a nav jump passes through. */
+  var nearSentinel = function () { var r = $("#sentinel").getBoundingClientRect(); return !$("main.main").hidden && r.top < window.innerHeight + 800 && r.bottom > -800; };
+  new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown < list.length && !(window.XJump && XJump.active)) renderMore(); }, { rootMargin: "800px" }).observe($("#sentinel"));
+  if (window.XJump) XJump.onEnd(function () { if (shown < list.length && nearSentinel()) renderMore(); });
 
   var tmr;
   $("#q").addEventListener("input", function () {
@@ -578,7 +640,7 @@
         data: P.map(function (p, i) { return { x: p.year_made, y: p.target_year, i: i }; }).filter(function (d) { return d.y && stCls(P[d.i].status) === g[1]; }) };
     }).concat([{ type: "line", label: "Today, Nov 2026", data: [{ x: 1955, y: NOW }, { x: 2027, y: NOW }], borderColor: "var(--chart-reference)", borderDash: [3, 4], borderWidth: 1, pointRadius: 0 }]) },
     options: {
-      scales: { x: { type: "linear", min: 1955, max: 2027, title: { display: true, text: "Year made" } }, y: { min: 1960, max: 2060, title: { display: true, text: "Target year" } } },
+      scales: { x: { type: "linear", min: 1955, max: 2027, title: { display: true, text: "Year made" }, ticks: { callback: function (v) { return String(Math.round(v)); } } }, y: { min: 1960, max: 2060, title: { display: true, text: "Target year" }, ticks: { callback: function (v) { return String(Math.round(v)); } } } },
       plugins: { tooltip: { callbacks: { label: function (c) { var p = P[c.raw.i]; return p ? p.who + ": " + p.year_made + " → " + p.target_year + " (" + p.status + ")" : c.dataset.label; } } } },
       onClick: function (ev, els) { var d = els.length && sc.data.datasets[els[0].datasetIndex].data[els[0].index]; if (d && d.i != null) gotoPred(P[d.i].id); }
     }
@@ -586,13 +648,19 @@
 
   /* ---------- gallery + lightbox ---------- */
   $("#gal").innerHTML = G.map(function (g, i) {
-    return '<button class="x-btnreset" type="button" data-lb="' + i + '"><span data-ini="' + esc(initials(g.name)) + '" style="display:grid"><img src="' + esc(g.url) + '" alt="Portrait of ' + esc(g.name) + '" loading="lazy" /></span><span class="x-name">' + esc(g.name) + "</span></button>";
+    return '<button class="x-btnreset" type="button" data-lb="' + i + '"><span data-ini="' + esc(initials(g.name)) + '" style="display:grid"><img src="' + esc(g.url) + '" alt="' + esc(g.name) + '" loading="lazy" decoding="async" /></span><span class="x-name">' + esc(g.name) + "</span></button>";
   }).join("");
   var lb = $("#lb"), li = 0;
+  /* the person page for a portrait: the first linked person on any of its entries */
+  var gPid = function (g) { for (var k = 0; k < g.ids.length; k++) { var p = PIDS[g.ids[k]]; if (p && p.length) return p[0]; } return null; };
   var showLb = function (i) {
     li = (i + G.length) % G.length; var g = G[li];
-    $("#lbFig").innerHTML = '<img id="lbImg" src="' + esc(g.url) + '" alt="Portrait of ' + esc(g.name) + '" />';
+    $("#lbFig").innerHTML = '<img id="lbImg" src="' + esc(g.url) + '" alt="' + esc(g.name) + '" decoding="async" />';
     $("#lbName").textContent = g.name;
+    var pid = gPid(g);
+    $("#lbProfile").hidden = !pid;
+    $("#lbProfile").dataset.pid = pid || "";
+    $("#lbProfile").setAttribute("aria-label", "View profile of " + g.name);
     $("#lbSub").textContent = g.ids.length + (g.ids.length > 1 ? " entries" : " entry") + " · " + (li + 1) + " of " + G.length;
     if (!lb.open) lb.showModal();
   };
@@ -600,6 +668,7 @@
   $("#lbPrev").onclick = function () { showLb(li - 1); };
   $("#lbNext").onclick = function () { showLb(li + 1); };
   $("#lbClose").onclick = function () { lb.close(); };
+  $("#lbProfile").onclick = function () { var id = this.dataset.pid; if (!id) return; lb.close(); location.hash = "#/person/" + encodeURIComponent(id); };
   lb.addEventListener("click", function (ev) { if (ev.target === lb) lb.close(); });
   lb.addEventListener("keydown", function (ev) { if (ev.key === "ArrowLeft") showLb(li - 1); if (ev.key === "ArrowRight") showLb(li + 1); });
   $("#lbShow").onclick = function () {
@@ -673,20 +742,22 @@
     else gotoPred(b.dataset.goP);
   });
   var panel = $("#askPanel"), tg = $("#askToggle");
-  var setAsk = function (open) { panel.hidden = !open; tg.setAttribute("aria-expanded", open); tg.textContent = open ? "Hide Ask the Archive" : "Ask the Archive"; if (open) $("#askQ").focus(); };
+  var setAsk = function (open) { panel.hidden = !open; tg.setAttribute("aria-expanded", open); tg.textContent = open ? "Hide Ask the Archive" : "Ask the Archive"; if (open) $("#askQ").focus({ preventScroll: true }); };
   tg.onclick = function () { setAsk(panel.hidden); };
   $("#askHide").onclick = function () { setAsk(false); };
 
   apply();
 })();
     </script>
-    <script src="player.js?v=979760e2"></script>
-    <script src="player-extra.js?v=bb37c66f"></script>
-    <script src="watch-hub.js?v=24b5b8af"></script>
-    <script src="theater.js?v=3524c29d"></script>
-    <script src="archive.js?v=1407827f"></script>
-    <script src="people.js?v=9c9a7101"></script>
-    <script src="history.js?v=9fabe7fb"></script>
-    <script src="palette.js?v=ad2d6d30"></script>
+    <script src="player.js?v=f0025613"></script>
+    <script src="player-extra.js?v=b5b2a44b"></script>
+    <script src="watch-hub.js?v=ae0bab79"></script>
+    <script src="theater.js?v=f20e9383"></script>
+    <script src="archive.js?v=5cf5a9b4"></script>
+    <script src="people.js?v=54d93163"></script>
+    <script src="history.js?v=638e2332"></script>
+    <script src="palette.js?v=5f829daa"></script>
+    <script src="learn.js?v=84e67a8c"></script>
+    <script src="fixes.js?v=124761c0"></script>
   </body>
 </html>

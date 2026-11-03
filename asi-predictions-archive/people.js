@@ -18,7 +18,7 @@
   var avatar = function (p, cls) {
     var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>";
     return '<span class="x-pav ' + (cls || "") + '" aria-hidden="true">' + ini +
-      (p.photo ? '<img src="' + esc(p.photo) + '" alt="" loading="lazy" onerror="this.remove()" />' : "") + "</span>";
+      (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
   };
   var talks = function (p) { var n = p.n_videos || (vidsOf[p.id] || []).length; return n ? n + (n === 1 ? " talk" : " talks") : ""; };
 
@@ -117,10 +117,12 @@
   var baseTitle = document.title;
   var view = $("person-view"), main = document.querySelector("main.main"), saved = 0, open = false, player = null;
   if (!view || !main) return;
+  /* "On this page" lists the same named sections for everyone, in this order, skipping only the empty ones */
+  var TOC_IDS = ["pv-background", "pv-education", "pv-career", "pv-predictions", "pv-talks", "pv-sources"];
   var toc = [];
   var block = function (title, html, id, label) {
     if (!html) return "";
-    if (id) toc.push({ id: id, t: label || title });
+    if (id && TOC_IDS.indexOf(id) >= 0) toc.push({ id: id, t: label || title });
     return '<section class="x-pv__block"' + (id ? ' id="' + id + '"' : "") + '><h2 class="x-pv__h">' + title + "</h2>" + html + "</section>";
   };
   var stCls = function (s) { return /^Came/.test(s) ? "good" : /^Partial/.test(s) ? "amber" : /^Not yet/.test(s) ? "blue" : /^Wrong/.test(s) ? "bad" : "grey"; };
@@ -160,12 +162,12 @@
   var vmeta = function (v) { return esc([v.c, AP && AP.fmtDate(v.d), v.len].filter(Boolean).join(" · ")); };
   /* Person-page rows open the video in the in-page window (player.js); the page stays put. */
   var vrow = function (v) {
-    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" />' +
+    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" decoding="async" />' +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></a>";
   };
   /* Up-next rows on the watch page load into its player in place. */
   var wrow = function (v, on) {
-    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" />' +
+    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" decoding="async" />' +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></button>";
   };
 
@@ -229,8 +231,8 @@
     var ff = factFile(D);
 
     view.innerHTML =
-      '<div class="links x-pv__top"><a class="btn" href="#/">← Back</a></div>' +
-      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (p.photo ? '<img class="x-pv__bg" src="' + esc(p.photo) + '" alt="" aria-hidden="true" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
+      '<div class="links x-pv__top"><a class="btn" href="#people" data-back>← Back</a></div>' +
+      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (p.photo ? '<img class="x-pv__bg" src="' + esc(p.photo) + '" alt="" aria-hidden="true" decoding="async" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
         "<h1>" + esc(p.name) + "</h1>" +
         (p.born_died ? '<p class="x-pv__sub">' + esc(p.born_died) + "</p>" : "") +
         '<p class="x-pv__sub">' + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p>" +
@@ -239,14 +241,13 @@
       "</div></header>" +
       '<div class="x-pv__grid"><aside class="x-pv__side">' + ff + '<nav class="x-toc" id="pvToc" aria-label="On this page"></nav></aside><div class="x-pv__body">' +
       (lead ? '<p class="x-pv__lead">' + esc(lead) + "</p>" : "") +
-      block("Background", bgHtml, "pv-background") +
-      block("Bio", useBio ? '<div class="prose"><p>' + esc(p.bio) + "</p></div>" : "", "pv-bio") +
+      block("Background", bgHtml || (useBio ? '<div class="prose"><p>' + esc(p.bio) + "</p></div>" : ""), "pv-background") +
       block("Views on AGI, risk &amp; alignment", viewsHtml, "pv-views", "Views on AGI") +
-      block("Predictions", predHtml, "pv-predictions") +
       block("In depth", secHtml, "pv-depth") +
-      block("Career", careerHtml, "pv-career") +
       block("Education", eduHtml, "pv-education") +
+      block("Career", careerHtml, "pv-career") +
       block("Notable work", workHtml, "pv-work") +
+      block("Predictions", predHtml, "pv-predictions") +
       block("Key ideas", (p.key_ideas || []).length ? '<p class="x-pv__badges">' + p.key_ideas.map(function (k) { return '<span class="pill">' + esc(k) + "</span>"; }).join("") + "</p>" : "", "pv-ideas") +
       block("Books", (p.books || []).length ? '<ul class="x-pv__list">' + p.books.map(function (b) { return "<li>" + esc(typeof b === "string" ? b : [b.title, b.year].filter(Boolean).join(", ")) + "</li>"; }).join("") + "</ul>" : "", "pv-books") +
       block("Quotes", (p.quotes || []).map(function (q) {
@@ -257,18 +258,15 @@
         return '<li><span class="pill">' + esc(e.year) + '</span> <a class="link" href="#e-' + esc(e.id) + '" data-go-entry="' + esc(e.id) + '">' + esc(e.title) + "</a>" +
           (e.source_url ? ' · <a class="link" href="' + esc(e.source_url) + '" target="_blank" rel="noopener">Source</a>' : "") + "</li>";
       }).join("") + "</ul>" : "", "pv-archive") +
-      block("Watch", vids.length ? '<div id="pvPlayer"></div><div class="x-pv__vids">' + vids.map(function (v) { return vrow(v); }).join("") + "</div>" : "", "pv-watch") +
+      block("Talks", vids.length ? '<div class="x-pv__vids">' + vids.map(function (v) { return vrow(v); }).join("") + "</div>" : "", "pv-talks") +
       block("Links", links.length ? '<div class="links">' + links.join("") + "</div>" : "", "pv-links") +
       block("Sources", srcHtml, "pv-sources") +
       block("More " + esc(GROUP(p.group).toLowerCase()) + " people", related.length ? '<div class="x-pv__rel">' + related.map(function (x) { return '<a class="x-pv__relp" href="#/person/' + esc(x.id) + '">' + avatar(x) + "<span>" + esc(x.name) + "</span></a>"; }).join("") + "</div>" : "", "pv-related", "Related people") +
       "</div></div>" +
       '<nav class="x-pv__pn" aria-label="Other people"><a class="btn" href="#/person/' + esc(prev.id) + '">← ' + esc(prev.name) + '</a><a class="btn" href="#/person/' + esc(next.id) + '">' + esc(next.name) + " →</a></nav>";
 
+    /* no inline player here: a talk opens only in the in-page window (player.js) */
     player = null;
-    if (vids.length && AP && $("pvPlayer")) {
-      player = AP.create($("pvPlayer"), { people: byId });
-      player.load(vids[0], { queue: vids, index: 0 });
-    }
     view._vids = vids;
     paintToc();
   };
@@ -279,7 +277,7 @@
     var nav = $("pvToc");
     if (tocObs) { tocObs.disconnect(); tocObs = null; }
     if (!nav) return;
-    if (toc.length < 3) {
+    if (!toc.length) {
       var side = nav.parentNode; nav.remove();
       if (!side.children.length) side.parentNode.classList.add("x-pv__grid--solo");
       return;
@@ -373,13 +371,11 @@
     var b = ev.target.closest("[data-wv]");
     if (b && player) {
       var q = view._queue || [], k = q.map(function (v) { return v.id; }).indexOf(b.dataset.wv);
-      var y = window.scrollY;
-      if (k >= 0) player.load(q[k], { queue: q, index: k });
-      if (window.scrollY !== y) window.scrollTo(window.scrollX, y);
+      if (k >= 0) AP.keepScroll(function () { player.load(q[k], { queue: q, index: k }); });
       return;
     }
     var bk = ev.target.closest("[data-back]");
-    if (bk && entered) { ev.preventDefault(); history.back(); return; }
+    if (bk) { ev.preventDefault(); goBack(); return; }
     var g = ev.target.closest("[data-go-entry]");
     if (g) {
       ev.preventDefault();
@@ -390,7 +386,16 @@
     }
   });
 
-  var lastHash = null, entered = false, booted = false;
+  var lastHash = null, entered = false, booted = false, origin = null, depth = 0;
+  var still = function () { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; };
+  var jumpTo = function (y) { try { window.scrollTo({ top: y, left: 0, behavior: "instant" }); } catch (e) { window.scrollTo(0, y); } };
+  var sameHash = function (a, b) { var n = function (h) { h = h || ""; return h === "#" || h === "#/" ? "" : h; }; return n(a) === n(b); };
+  /* "← Back" returns to where the person page was opened from (the People grid, a card, the gallery),
+     skipping any person-to-person steps; a deep link with no in-page origin goes to the People grid. */
+  var goBack = function () {
+    if (entered && depth > 0) history.go(-depth);
+    else location.hash = "#people";
+  };
   var route = function () {
     if (location.hash === lastHash) return; /* hashchange and popstate can both fire for one step */
     var prevHash = lastHash;
@@ -407,20 +412,32 @@
     }
     var m = /^#\/person\/([^/?#]+)/.exec(location.hash), p = m && byId[decodeURIComponent(m[1])];
     if (p) {
-      if (!open) { saved = window.scrollY; entered = booted; }
+      var wasOpen = open, st = history.state && typeof history.state === "object" ? history.state : {};
+      if (!open) { saved = window.scrollY; entered = booted; origin = prevHash; }
+      /* each person entry remembers how many steps it sits from the origin, so Back and browser Back agree */
+      if (typeof st.pvd === "number") depth = st.pvd;
+      else {
+        depth = wasOpen ? depth + 1 : 1;
+        if (history.replaceState) { var ns = {}; for (var k in st) ns[k] = st[k]; ns.pvd = depth; history.replaceState(ns, ""); }
+      }
       open = true;
       main.hidden = true; view.hidden = false;
       render(p); document.title = p.name + " · ASI History Archive";
-      window.scrollTo(0, 0);
+      jumpTo(0);
       return;
     }
     if (!open) return;
-    open = false; entered = false;
+    var back = entered && sameHash(location.hash, origin);
+    open = false; entered = false; depth = 0;
     view.hidden = true; view.innerHTML = ""; player = null;
     main.hidden = false;
     document.title = baseTitle;
     var target = location.hash && location.hash.length > 1 && location.hash.charAt(1) !== "/" ? document.getElementById(location.hash.slice(1)) : null;
-    if (target) target.scrollIntoView(); else window.scrollTo(0, saved);
+    if (back || !target) {
+      /* back where the reader came from: the same scroll position, restored again after the browser's own restore */
+      var y = saved;
+      jumpTo(y); requestAnimationFrame(function () { if (Math.abs(window.scrollY - y) > 2) jumpTo(y); });
+    } else target.scrollIntoView({ block: "start", behavior: still() ? "auto" : "instant" });
   };
   window.addEventListener("hashchange", route);
   window.addEventListener("popstate", route);
