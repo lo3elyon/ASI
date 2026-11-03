@@ -93,10 +93,13 @@
   function upNext(cur, n) {
     const L = h().L;
     const out = [];
-    L.QUEUE.forEach((id) => { const e = STATE.byId.get(id); if (e && (!cur || e.id !== cur.id) && h().stateOf(e.id) !== "done") out.push({ e, why: "From your queue", q: true }); });
+    const seen = new Set(), push1 = (id, why, q) => { const e = STATE.byId.get(id); if (e && !seen.has(id) && (!cur || e.id !== cur.id) && h().stateOf(e.id) !== "done") { seen.add(id); out.push({ e, why, q }); } };
+    const S = L.SESSION, curId = cur ? cur.id : null;
+    if (S && S.ids.length) h().listAfter(S.ids, curId).forEach((id) => push1(id, "Next in " + (S.label || "Play all"), false));
+    h().listAfter(L.QUEUE, curId).forEach((id) => push1(id, "From your queue", true)); // read-only: playing never edits the queue
     if (cur) {
       const P = profile();
-      const sim = STATE.all.filter((e) => e.id !== cur.id && h().stateOf(e.id) !== "done" && !L.QUEUE.includes(e.id))
+      const sim = STATE.all.filter((e) => e.id !== cur.id && h().stateOf(e.id) !== "done" && !L.QUEUE.includes(e.id) && !seen.has(e.id))
         .map((e) => { const a = similar(cur, e), b = score(e, P); return { e, s: a.s * 1.4 + b.s, why: a.s > 4 ? a.why : b.why }; })
         .sort((a, b) => b.s - a.s);
       sim.slice(0, (n || 8) + 2).forEach((x) => out.push(x));
