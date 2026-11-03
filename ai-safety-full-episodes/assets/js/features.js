@@ -172,7 +172,7 @@
     const box = row.querySelector(".wrow__st");
     if (box) {
       let s0 = box.querySelector(":scope > .ok, :scope > .muted");
-      const html = st === "done" ? `<span class="ok" title="${esc(h().covTip(id))}">${ui().ICON.check}${h().isManual(id) ? "Marked watched" : "Watched 100%"}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : "";
+      const html = st === "done" ? `<span class="ok" title="${esc(h().covTip(id))}">${ui().ICON.check}${h().doneLabel(id)}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : "";
       if (s0) s0.remove();
       if (html) box.insertAdjacentHTML("afterbegin", html);
       const b = box.querySelector('[data-act="watched"]'); if (b) { b.textContent = st === "done" ? "Unmark" : "Mark watched"; b.classList.toggle("btn--ghost", st === "done"); b.setAttribute("aria-pressed", String(st === "done")); }
@@ -219,7 +219,7 @@
       banner = `<section class="contb" data-id="${cont.id}" aria-label="Continue where you left off">
         <button class="contb__th thumb" data-act="play" aria-label="Resume ${esc(cont.title)}">${ui().thumbImg(cont, true)}${ui().thumbBadges(cont)}${ui().stateBadge(cont.id)}<span class="thumb__play">${ui().ICON.play}</span>${ui().progBar(cont.id)}</button>
         <div class="contb__tx"><p class="eyebrow">Continue where you left off</p><h2>${esc(cont.title)}</h2><p class="muted">${ui().metaDate(cont)} · ${esc(ui().whoLine(cont, 3))} · at <b>${fmtTime(r.pos)}</b> of ${esc(cont.durStr)} · <span class="hpct" title="${esc(h().covTip(cont.id))}">${h().pctText(r)} watched</span>${ci ? ` · ${esc(ci.title)}` : ""}</p>
-        <div class="contb__bar" title="${esc(h().covTip(cont.id))}"><i style="width:${h().pctWidth(r)}%"></i></div></div>
+        <div class="contb__bar" title="${esc(h().covTip(cont.id))}"><i style="width:${h().pctWidth(r)}%"></i>${ui().gapMarks(r)}</div></div>
         <div class="contb__act"><button class="btn btn--primary" data-act="play">${ui().ICON.play}<span>Resume</span></button><button class="iconbtn" id="contHide" aria-label="Hide for now">✕</button></div></section>`;
     }
     top.innerHTML = banner + (Object.keys(L().H.eps).length ? goalCard() : "");
@@ -303,7 +303,7 @@
       <div class="wrow__tx"><button class="card__title" data-act="open">${ui().hl(e.title, W.q)}</button>
         <p class="card__who"><span class="avs">${e.stars.slice(0, 4).map((p) => ui().avatar(p.name, 22)).join("")}</span>${ui().hl(ui().whoLine(e, 3), W.q)}</p>
         ${ui().cardMeta(e, `<span>${esc(ui().showLine(e))}</span>`)}</div>
-      <div class="wrow__st">${st === "done" ? `<span class="ok" title="${esc(h().covTip(e.id))}">${ui().ICON.check}${h().isManual(e.id) ? "Marked watched" : "Watched 100%"}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(e.id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : ""}
+      <div class="wrow__st">${st === "done" ? `<span class="ok" title="${esc(h().covTip(e.id))}">${ui().ICON.check}${h().doneLabel(e.id)}</span>` : st === "progress" ? `<span class="muted" title="${esc(h().covTip(e.id))}">${h().pctText(r)} · at ${fmtTime(r.pos)}</span>` : ""}
         <form class="wrow__up" data-wup><input class="input input--sm" name="t" placeholder="up to mm:ss" aria-label="Watched up to (mm:ss)" size="8" inputmode="numeric"></form>
         <button class="btn btn--sm ${st === "done" ? "btn--ghost" : ""}" data-act="watched">${st === "done" ? "Unmark" : "Mark watched"}</button></div></li>`;
   }
@@ -410,7 +410,7 @@
   }
   const hm = (ts) => { const d = new Date(ts); return `${A.pad(d.getHours())}:${A.pad(d.getMinutes())}`; };
   /* History rows: grouped by episode (default) or one row per session. "reached" = furthest position really played. */
-  const reachPct = (x) => { const dur = x.e.dur || x.r.dur || 1; return (Math.floor(1000 * clamp(h().sessReach(x.r, x.s) / dur, 0, 1)) / 10).toFixed(1); };
+  const reachPct = (x) => { const dur = x.e.dur || x.r.dur || 1; return String(Math.floor(100 * clamp(h().sessReach(x.r, x.s) / dur, 0, 1))); }; // whole numbers, floored
   const isRewatch = (s) => s.src !== "manual" && (s.rw || (s.n != null && s.n < 1 && (s.w || 0) >= 1));
   /* a session row's seconds: new unique seconds (and time spent when it differs); older sessions show what they credited */
   const sessSec = (s) => s.src === "manual" ? `${fmtHM(s.w)} logged` : s.n != null ? (isRewatch(s) ? `${fmtHM(s.w)} rewatched · 0 new` : `${fmtHM(s.n)} new${Math.abs((s.w || 0) - s.n) >= 60 ? ` · ${fmtHM(s.w)} spent` : ""}`) : `${fmtHM(s.w)} played`;
@@ -424,17 +424,17 @@
       G.last = Math.max(...G.ss.map((x) => x.s.e || x.s.s));
       G.first = Math.min(...G.ss.map((x) => x.s.s));
       G.reach = Math.max(0, ...G.ss.map((x) => h().sessReach(x.r, x.s)));
-      G.status = G.r.done ? (G.r.manual ? "marked" : "completed") : "progress";
+      G.status = G.r.done ? (G.r.manual ? "marked" : G.r.mfN ? "filled" : "completed") : "progress";
       return G;
     }).sort((a, b) => b.last - a.last);
   }
-  function statusTag(st) { return st === "completed" ? `<span class="ok">✓ Watched 100%</span>` : st === "marked" ? `<span class="ok">✓ Marked watched</span>` : `<span class="tagc">in progress</span>`; }
+  function statusTag(st) { return st === "completed" ? `<span class="ok">✓ Watched 100%</span>` : st === "marked" ? `<span class="ok">✓ Marked watched</span>` : st === "filled" ? `<span class="ok ok--m" title="Some parts were marked as watched by hand">✓ Completed (marked)</span>` : `<span class="tagc">in progress</span>`; }
   function epRow(G, g) {
     const e = G.e, dur = e.dur || G.r.dur || 1, key = e.id + "|" + g, open = HF.open.has(key), n = G.ss.length, man = G.ss.every((x) => x.s.src === "manual");
     return `<li class="hrow hrow--ep ${man ? "hrow--manual" : ""} ${open ? "is-open" : ""}" data-id="${e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(e.title)}">${ui().thumbImg(e)}${ui().thumbBadges(e)}${ui().progBar(e.id)}</button>
       <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(e.title, HF.q)}</button>
-      <p class="card__meta">${ui().metaCore(e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(G.last)))}</span>` : ""}<span>last ${hm(G.last)}</span><span title="${esc(h().covTip(e.id))}">${G.played || !G.logged ? `${fmtHM(G.played)} watched (unique)` : `${fmtHM(G.logged)} logged`}</span><span>furthest ${fmtTime(G.reach)} (${(Math.floor(1000 * clamp(G.reach / dur, 0, 1)) / 10).toFixed(1)}%)</span><span class="hpct" title="${esc(h().covTip(e.id))}">${h().pctText(G.r)} covered</span>${statusTag(G.status)}${G.r.done ? `<button type="button" class="linkbtn hrw" data-jump="${e.id}|0" title="Rewatch from the start (your numbers stay as they are)">Rewatch</button>` : ""}</p>
-      <div class="hcov" aria-hidden="true" title="${esc(h().covTip(e.id))}"><i style="width:${h().pctWidth(G.r)}%"></i><b style="left:${(100 * clamp(G.reach / dur, 0, 1)).toFixed(1)}%"></b></div></div>
+      <p class="card__meta">${ui().metaCore(e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(G.last)))}</span>` : ""}<span>last ${hm(G.last)}</span><span title="${esc(h().covTip(e.id))}">${G.played || !G.logged ? `${fmtHM(G.played)} watched (unique)` : `${fmtHM(G.logged)} logged`}</span><span>furthest ${fmtTime(G.reach)} (${Math.floor(100 * clamp(G.reach / dur, 0, 1))}%)</span><span class="hpct" title="${esc(h().covTip(e.id))}">${h().pctText(G.r)} covered</span>${statusTag(G.status)}${G.r.done ? `<button type="button" class="linkbtn hrw" data-jump="${e.id}|0" title="Rewatch from the start (your numbers stay as they are)">Rewatch</button>` : ""}</p>
+      <div class="hcov" aria-hidden="true" title="${esc(h().covTip(e.id))}"><i style="width:${h().pctWidth(G.r)}%"></i>${ui().gapMarks(G.r)}<b style="left:${(100 * clamp(G.reach / dur, 0, 1)).toFixed(1)}%"></b></div></div>
       <div class="hrow__act">${G.r.done ? "" : `<button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, Math.floor((G.r.pos || 0) - 5))}" aria-label="Resume from ${fmtTime(G.r.pos || 0)}" title="Resume">${ui().ICON.play}</button>`}${G.r.manual ? `<button class="iconbtn iconbtn--sm" data-hunmark="${e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button>
       <button type="button" class="iconbtn iconbtn--sm hrow__chev" data-hexp="${esc(key)}" aria-expanded="${open}" aria-label="${open ? "Hide" : "Show"} ${n} session${n === 1 ? "" : "s"}" title="${n} session${n === 1 ? "" : "s"}"><svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg><small>${n}</small></button></div>
       <ol class="hsess" ${open ? "" : "hidden"}>${G.ss.map((x) => { const m = x.s.src === "manual"; return `<li><span>${m ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${sessSec(x.s)}</span>${m ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reachPct(x)}%</span>`}${sessTag(x.s)}<button class="iconbtn iconbtn--sm" data-jump="${e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button></li>`; }).join("")}</ol></li>`;
@@ -444,7 +444,7 @@
     return `<li class="hrow ${man ? "hrow--manual" : ""}" data-id="${x.e.id}"><span class="tl__dot" aria-hidden="true"></span><button class="thumb thumb--sm" data-act="play" aria-label="Play ${esc(x.e.title)}">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}${ui().progBar(x.e.id)}</button>
           <div class="hrow__tx"><button class="card__title" data-act="open">${ui().hl(x.e.title, HF.q)}</button>
           <p class="card__meta">${ui().metaCore(x.e)}${g === "Earlier" || g === "This week" ? `<span>${esc(fmtDate(dayKey(x.s.s)))}</span>` : ""}<span>${man ? `marked ${hm(x.s.s)}` : `${hm(x.s.s)}–${hm(x.s.e)}`}</span><span>${sessSec(x.s)}</span>${man ? "" : `<span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span>reached ${reach}%</span>`}<span class="hpct" title="${esc(h().covTip(x.e.id))}">${h().pctText(x.r)} covered</span>
-          ${sessTag(x.s)}${statusTag(x.r.done ? (x.r.manual ? "marked" : "completed") : "progress")}</p></div>
+          ${sessTag(x.s)}${statusTag(x.r.done ? (x.r.manual ? "marked" : x.r.mfN ? "filled" : "completed") : "progress")}</p></div>
           <div class="hrow__act">${x.r.done ? `<button class="iconbtn iconbtn--sm" data-jump="${x.e.id}|0" aria-label="Rewatch from the start" title="Rewatch from the start (your numbers stay as they are)">${ui().ICON.play}</button>` : `<button class="iconbtn iconbtn--sm" data-jump="${x.e.id}|${Math.max(0, x.s.b - 5)}" aria-label="Resume from ${fmtTime(x.s.b)}" title="Resume from here">${ui().ICON.play}</button>`}${man ? `<button class="iconbtn iconbtn--sm" data-hunmark="${x.e.id}" aria-label="Undo mark" title="Undo mark">↩</button>` : ""}<button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove episode from history" title="Remove from history">${ui().ICON.trash}</button></div></li>`;
   }
   function renderHistory() {
