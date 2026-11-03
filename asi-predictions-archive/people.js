@@ -171,18 +171,26 @@
   var vmeta = function (v) { return esc([v.c, AP && AP.fmtDate(v.d), v.len].filter(Boolean).join(" · ")); };
   /* Person-page rows open the video in the in-page window (player.js); the page stays put. */
   /* the thumbnail, with a static CC badge when the talk has a transcript */
+  /* the 16:9 thumbnail box: duration on the thumb, a play mark on hover, CC when the talk has a site transcript */
+  var NX = function () { return window.ArchiveNotes || null; };
+  var hasTC = function (v) { var n = NX(); return !!(n && n.hasCC(v.id) && n.has(v, "ch")); };
   var vimg = function (v) {
-    var img = '<img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />';
-    return window.ArchiveNotes && ArchiveNotes.hasCC(v.id) ? '<span class="x-pv__th">' + img + '<span class="x-pv__cc" title="Transcript and captions">CC</span></span>' : img;
+    var cc = NX() && NX().hasCC(v.id);
+    return '<span class="x-pv__th x-th16"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
+      '<span class="x-th16__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>' +
+      (v.len ? '<span class="x-th16__len">' + esc(v.len) + "</span>" : "") +
+      (cc ? '<span class="x-pv__cc" title="Transcript and captions">CC</span>' : "") + "</span>";
+  };
+  var vtext = function (v) {
+    return '<span class="x-pv__vtx"><b>' + esc(v.t) + "</b><small>" + vmeta(v) + "</small>" +
+      (hasTC(v) ? '<span class="x-tc" title="This talk has a transcript and chapters">Transcript &amp; chapters</span>' : "") + "</span>";
   };
   var vrow = function (v) {
-    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '">' + vimg(v) +
-      "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></a>";
+    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '">' + vimg(v) + vtext(v) + "</a>";
   };
   /* Up-next rows on the watch page load into its player in place. */
   var wrow = function (v, on) {
-    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '">' + vimg(v) +
-      "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></button>";
+    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '">' + vimg(v) + vtext(v) + "</button>";
   };
 
   var render = function (p) {
@@ -274,7 +282,7 @@
         return '<li><span class="pill">' + esc(e.year) + '</span> <a class="link" href="#e-' + esc(e.id) + '" data-go-entry="' + esc(e.id) + '">' + esc(e.title) + "</a>" +
           (e.source_url ? ' · <a class="link" href="' + esc(e.source_url) + '" target="_blank" rel="noopener">Source</a>' : "") + "</li>";
       }).join("") + "</ul>" : "", "pv-archive") +
-      block("Talks", vids.length ? '<div class="x-pv__vids">' + vids.map(function (v) { return vrow(v); }).join("") + "</div>" : "", "pv-talks") +
+      block("Talks", vids.length ? '<div class="links x-pv__playall"><button type="button" class="btn" data-playall><span aria-hidden="true">▶</span> Play all ' + vids.length + (vids.length === 1 ? " talk" : " talks") + "</button></div>" + '<div class="x-pv__vids">' + vids.map(function (v) { return vrow(v); }).join("") + "</div>" : "", "pv-talks") +
       block("Links", links.length ? '<div class="links">' + links.join("") + "</div>" : "", "pv-links") +
       block("Sources", srcHtml, "pv-sources") +
       block("More " + esc(GROUP(p.group).toLowerCase()) + " people", related.length ? '<div class="x-pv__rel">' + related.map(function (x) { return '<a class="x-pv__relp" href="#/person/' + esc(x.id) + '">' + avatar(x) + "<span>" + esc(x.name) + "</span></a>"; }).join("") + "</div>" : "", "pv-related", "Related people") +
@@ -284,6 +292,7 @@
     /* no inline player here: a talk opens only in the in-page window (player.js) */
     player = null;
     view._vids = vids;
+    view._nPreds = kinds.length + cards.length;
     paintToc();
   };
 
@@ -298,8 +307,12 @@
       if (!side.children.length) side.parentNode.classList.add("x-pv__grid--solo");
       return;
     }
+    var nV = (view._vids || []).length, nP = view._nPreds || 0;
+    var cnt = { "pv-predictions": nP, "pv-talks": nV };
     nav.innerHTML = '<p class="x-toc__h">On this page</p><ol>' +
-      toc.map(function (t) { return '<li><button type="button" class="x-btnreset" data-toc="' + t.id + '">' + t.t + "</button></li>"; }).join("") + "</ol>";
+      toc.map(function (t) { return '<li><button type="button" class="x-btnreset" data-toc="' + t.id + '">' + t.t + (cnt[t.id] ? ' <span class="x-toc__n" aria-label="(' + cnt[t.id] + ')">' + cnt[t.id] + "</span>" : "") + "</button></li>"; }).join("") + "</ol>" +
+      (nP || nV ? '<p class="x-toc__sum">' + [nP ? nP + (nP === 1 ? " prediction" : " predictions") : "", nV ? nV + (nV === 1 ? " talk" : " talks") : ""].filter(Boolean).join(" · ") + "</p>" : "") +
+      (nV ? '<button type="button" class="btn x-toc__play" data-playall><span aria-hidden="true">▶</span> Play all talks (' + nV + ")</button>" : "");
     if (!("IntersectionObserver" in window)) return;
     var mark = function (id) { nav.querySelectorAll("[data-toc]").forEach(function (b) { b.setAttribute("aria-current", b.dataset.toc === id ? "true" : "false"); }); };
     var vis = {};
@@ -372,9 +385,20 @@
       var el = $(t.getAttribute("data-toc"));
       if (el) {
         var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        el.scrollIntoView({ behavior: still ? "auto" : "smooth", block: "start" });
+        /* land the heading 16px below the sticky nav pill, measured live, at any width */
+        var nv = document.querySelector("header.nav"), nb = nv && nv.getClientRects().length ? nv.getBoundingClientRect().bottom : 0;
+        var y = Math.max(0, window.scrollY + el.getBoundingClientRect().top - Math.max(nb, 0) - 16);
+        try { window.scrollTo({ top: y, behavior: still ? "auto" : "smooth" }); } catch (e2) { window.scrollTo(0, y); }
         var h = el.querySelector("h2"); if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
       }
+      return;
+    }
+    /* Play all: the person's talks, newest first, queued in the in-page window; it opens on the poster and waits for Play */
+    var pa = ev.target.closest("[data-playall]");
+    if (pa) {
+      ev.preventDefault();
+      var vs = view._vids || [];
+      if (vs.length && AP && AP.watch) AP.keepScroll(function () { AP.watch(vs[0], { queue: vs.slice(), index: 0 }); });
       return;
     }
     var rm = ev.target.closest("[data-more]");

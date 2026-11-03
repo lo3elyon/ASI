@@ -114,6 +114,7 @@
   var settingsHtml = function (uid) {
     return '<div class="x-pn-ccset" role="group" aria-label="Caption settings">' +
       '<button class="x-ap__b x-pn-ccback" type="button" data-pn="ccback"><span aria-hidden="true">‹</span> Captions</button>' +
+      '<p class="x-pn-src" data-pn-out="src" aria-live="polite"></p>' +
       '<div class="x-pn-cs"><p class="x-apx-h">Captions</p><div class="x-pn-sg x-pn-sg--2">' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="on" data-v="1" aria-pressed="false">On</button>' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="on" data-v="0" aria-pressed="false">Off</button></div></div>' +
@@ -164,7 +165,8 @@
         '<button type="button" class="x-pn-btn" data-pn="copy">Copy transcript</button>' +
       "</div>" +
       '<p class="x-pn-trmeta" aria-live="polite">Loading transcript…</p>' +
-      '<div class="x-pn-trwrap"><div class="x-pn-list" aria-label="Transcript" tabindex="-1"></div>' +
+      '<div class="x-pn-trwrap"><div class="x-pn-list" aria-label="Transcript" tabindex="-1">' +
+        '<div class="x-pn-skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>' +
         '<button type="button" class="x-pn-resume" data-pn="resume" hidden><span aria-hidden="true">↻</span> Resume sync</button></div>' +
       "</div>";
   };
@@ -241,12 +243,67 @@
 
     /* ---- the CC button and the ⚙ menu's caption settings ---- */
     var ccB = function () { return root.querySelector('[data-x="cc"]'); };
+    /* ---- the caption source: the site's transcript when there is one, else YouTube's own captions in the iframe ---- */
+    var toastEl = document.createElement("div");
+    toastEl.className = "x-pn-toast"; toastEl.setAttribute("aria-hidden", "true");
+    screen.appendChild(toastEl);
+    var toastT = 0;
+    var toast = function (t) {
+      toastEl.textContent = t; toastEl.classList.add("is-on");
+      clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove("is-on"); }, 2200);
+      inst.say(t);
+    };
+    var YTNONE = AP._ytNoCC || (AP._ytNoCC = {});
+    var srcOf = function (v) { return !v ? "" : hasCC(v.id) ? "site" : YTNONE[v.id] ? "none" : "yt"; };
+    var ytSize = function () { return C.size <= 75 ? -1 : C.size >= 175 ? 3 : Math.round((C.size - 100) / 25); };
+    var Y = { key: "", size: null, tries: 0, track: false };
+    var ytCall = function (f) { var p = inst.yt(); if (!p) return false; try { f(p); return true; } catch (e) { return false; } };
+    var ytOff = function () {
+      if (Y.key) ytCall(function (p) { if (typeof p.unloadModule === "function") p.unloadModule("captions"); });
+      Y.key = ""; Y.size = null; Y.tries = 0; Y.track = false; inst._ytCC = false;
+    };
+    var pickTrack = function () {
+      var list = null;
+      ytCall(function (p) { list = p.getOption("captions", "tracklist"); });
+      if (!list || !list.length) return false;
+      var en = list.filter(function (t) { return t && /^en/i.test(t.languageCode || ""); })[0];
+      var t = en || list[0];
+      ytCall(function (p) { p.setOption("captions", "track", t && t.languageCode ? t : { languageCode: "en" }); });
+      Y.track = true; Y.lang = (t && (t.displayName || t.languageName || t.languageCode)) || "";
+      paintSet();
+      return true;
+    };
+    /* idempotent: called on every repaint, on ready, on state changes and on video change */
+    var applyYT = function () {
+      var v = cur();
+      var want = !!(v && C.on && srcOf(v) === "yt" && inst.yt() && inst.started());
+      if (!want) { if (Y.key) ytOff(); return; }
+      inst._ytCC = true;
+      if (Y.key !== v.id) {
+        Y.key = v.id; Y.size = null; Y.tries = 0; Y.track = false;
+        ytCall(function (p) { if (typeof p.loadModule === "function") p.loadModule("captions"); });
+        ytCall(function (p) { p.setOption("captions", "track", { languageCode: "en" }); });
+      }
+      var s = ytSize();
+      if (Y.size !== s) { Y.size = s; ytCall(function (p) { p.setOption("captions", "fontSize", s); }); }
+    };
+    /* while playing, look for a track: 'en', else the first one; none after about 8s of playback means none at all */
+    var ytTick = function () {
+      var v = cur(); if (!Y.key || !v || Y.key !== v.id || Y.track || !inst.isPlaying()) return;
+      if (pickTrack()) return;
+      if (++Y.tries > 16) {
+        YTNONE[v.id] = 1; ytOff();
+        toast("No captions for this talk");
+        paintBtn(); paintSet();
+      }
+    };
     var paintBtn = function () {
       var b = ccB(); if (!b) return;
-      var v = cur(), ok = !!(v && hasCC(v.id));
+      var v = cur(), src = srcOf(v);
       b.setAttribute("aria-pressed", String(!!C.on));
-      b.classList.toggle("is-na", !ok);
-      var l = ok ? "Captions (C)" : "Captions (C): none for this video";
+      b.classList.remove("is-na");
+      b.classList.toggle("is-yt", src === "yt");
+      var l = src === "site" ? "Captions (C): site captions" : src === "yt" ? "Captions (C): YouTube auto captions" : "Captions (C): none for this talk";
       b.setAttribute("aria-label", l); b.setAttribute("data-tip", l);
     };
     var menu = root.querySelector(".x-apx-menu"), setEl = null;
@@ -272,7 +329,15 @@
       r.style.setProperty("--x-ap-pct", ((C.op - 25) / 75 * 100) + "%");
       setEl.querySelector('[data-pn="size"][data-d="-25"]').disabled = C.size <= 75;
       setEl.querySelector('[data-pn="size"][data-d="25"]').disabled = C.size >= 200;
-      var v = menu.querySelector(".x-pn-ccv"); if (v) v.textContent = C.on ? "On · " + C.size + "%" : "Off";
+      var vv = cur(), src = srcOf(vv);
+      var v = menu.querySelector(".x-pn-ccv"); if (v) v.textContent = C.on ? (src === "yt" ? "YouTube · " : src === "site" ? "Site · " : "") + C.size + "%" : "Off";
+      var so = setEl.querySelector('[data-pn-out="src"]');
+      if (so) {
+        so.setAttribute("data-src", src);
+        so.textContent = src === "site" ? "Site captions · from this talk's transcript" : src === "yt" ? "YouTube auto captions" + (Y.track && Y.lang ? " · " + Y.lang : "") : "No captions for this talk";
+      }
+      /* YouTube captions only take the size setting, so the style controls apply to site captions */
+      setEl.classList.toggle("is-yt", src !== "site");
     };
     var setSize = function (d) {
       var n = Math.max(75, Math.min(200, C.size + d));
@@ -281,8 +346,11 @@
     };
     inst.ccToggle = function () {
       setC("on", !C.on);
-      var v = cur();
-      inst.say(C.on ? (v && hasCC(v.id) ? "Captions on" : "Captions on; this video has no transcript") : "Captions off");
+      var v = cur(), src = srcOf(v);
+      if (!C.on) { toast("Captions off"); return; }
+      if (src === "site") toast("Captions on · site captions");
+      else if (src === "none" || (inst.started() && !inst.yt())) toast("No captions for this talk");
+      else toast(inst.started() ? "Captions on · YouTube auto captions" : "Captions on · YouTube auto captions start with playback");
     };
     inst.ccSize = setSize;
     /* the chapter under a time, for the seek bar's hover preview */
@@ -362,17 +430,26 @@
     };
     var start = function () { if (!S.timer) S.timer = setInterval(function () { update(); }, 250); };
     var stop = function () { clearInterval(S.timer); S.timer = 0; };
-    inst.on("state", function (s) { if (s === 1) start(); else stop(); update(); if (S.segD !== inst.duration()) paintSegs(); });
-    inst.on("ready", function () { paintSegs(); update(); });
-    inst.on("tick", function (t) { if (S.segD !== inst.duration()) paintSegs(); if (!S.timer) update(t); });
+    inst.on("state", function (s) {
+      if (s === 1) start(); else stop();
+      /* the transcript may still be on its way at the first frame: ask again so captions show without a click */
+      var v = cur();
+      if (s === 1 && v && hasCC(v.id) && !trOf(v.id)) getTr(v.id, function () { if (cur() === v) { S.capKey = null; S.gi = -2; update(); paintBtn(); paintSet(); } });
+      if (s === 1 || s === 3) applyYT();
+      S.capKey = null; update(); if (S.segD !== inst.duration()) paintSegs();
+    });
+    inst.on("ready", function () { Y.key = ""; Y.size = null; paintSegs(); S.capKey = null; update(); applyYT(); });
+    inst.on("tick", function (t) { if (S.segD !== inst.duration()) paintSegs(); if (!S.timer) update(t); ytTick(); });
     inst.on("change", function (v) {
       stop();
+      Y.key = ""; Y.size = null; Y.tries = 0; Y.track = false; inst._ytCC = false;
       S.vid = v && v.id; S.capKey = null; capWin.innerHTML = ""; S.chI = -2; S.gi = -2; S.follow = true;
-      if (v && hasCC(v.id)) getTr(v.id, function () { if (cur() === v) { S.gi = -2; update(); paintBtn(); } });
-      paintSegs(); paintBtn(); update();
+      if (v && hasCC(v.id)) getTr(v.id, function () { if (cur() === v) { S.capKey = null; S.gi = -2; update(); paintBtn(); paintSet(); } });
+      paintSegs(); paintBtn(); paintSet(); update();
     });
-    inst._pnFail = function () { paintBtn(); capWin.innerHTML = ""; S.capKey = null; if (inst._whSync) inst._whSync(); };
-    inst._pnPaint = function () { paintCap(); paintSet(); paintBtn(); S.capKey = null; update(); };
+    /* a transcript that failed to load: captions fall back to YouTube's own */
+    inst._pnFail = function () { paintBtn(); paintSet(); capWin.innerHTML = ""; S.capKey = null; applyYT(); if (inst._whSync) inst._whSync(); };
+    inst._pnPaint = function () { paintCap(); paintSet(); paintBtn(); S.capKey = null; update(); applyYT(); };
     inst._pnUpdate = update;
 
     /* ---- transcript list ---- */
@@ -451,12 +528,25 @@
         S.chList = pane.querySelector(".x-pn-ch"); S.chList.__id = v.id; S.chI = -2;
       } else if (key === "sum" && n) {
         pane.innerHTML = summaryHtml(n);
+      } else if (key === "tr" && !capSet()[v.id]) {
+        pane.innerHTML = '<div class="x-pn-empty"><p class="x-pn-h">No transcript for this talk yet</p>' +
+          '<p class="x-pn-p">Turn on CC for YouTube auto captions.</p>' +
+          (C.on ? '<p class="x-pn-cnote">CC is on: YouTube’s captions show while the talk plays.</p>' : '<button type="button" class="x-pn-btn" data-pn="ccon">Turn on CC</button>') + "</div>";
       } else if (key === "tr") {
         pane.innerHTML = transcriptShell(uid);
         var box = pane.querySelector(".x-pn-tr");
+        var failed = function () {
+          var m = box.querySelector(".x-pn-trmeta"), l = box.querySelector(".x-pn-list");
+          if (m) m.textContent = "The transcript could not be loaded. Captions use YouTube’s for now.";
+          if (l) l.innerHTML = '<div class="x-pn-empty"><button type="button" class="x-pn-btn" data-pn="retry">Try again</button></div>';
+        };
         var r = TR[v.id];
         if (r && r.state === "ok") fillTranscript(v, box);
-        else getTr(v.id, function (rr) { if (rr.state === "ok" && box.isConnected && cur() && cur().id === v.id) fillTranscript(v, box); });
+        else if (r && r.state === "fail") failed();
+        else getTr(v.id, function (rr) {
+          if (!box.isConnected || !cur() || cur().id !== v.id) return;
+          if (rr.state === "ok") fillTranscript(v, box); else failed();
+        });
       } else pane.innerHTML = '<p class="x-wh__muted">Nothing here for this video.</p>';
       update();
     };
@@ -475,7 +565,13 @@
       if (s && root.contains(s)) { ev.preventDefault(); seekTo(s.getAttribute("data-pn-seek")); return; }
       var b = ev.target.closest("[data-pn]"); if (!b || !root.contains(b)) return;
       var a = b.getAttribute("data-pn");
-      if (a === "resume") { setFollow(true); S.gi = -2; update(); }
+      if (a === "retry") {
+        var rv = cur(), rp = b.closest(".x-wh__pane");
+        if (rv && rp) { delete TR[rv.id]; paintBtn(); paintSet(); inst._pnRender("tr", rv, rp);
+          getTr(rv.id, function (rr) { if (cur() === rv && rr.state === "ok") { ytOff(); S.capKey = null; update(); paintBtn(); paintSet(); } }); }
+      }
+      else if (a === "ccon") { if (!C.on) inst.ccToggle(); var ep = b.closest(".x-pn-empty"); if (ep) b.outerHTML = '<p class="x-pn-cnote">CC is on: YouTube’s captions show while the talk plays.</p>'; }
+      else if (a === "resume") { setFollow(true); S.gi = -2; update(); }
       else if (a === "copy") copyText(b);
       else if (a === "ccmenu" && menu) { menu.classList.add("is-pn-cc"); paintSet(); menu.scrollTop = 0; var f = menu.querySelector(".x-pn-ccback"); if (f) f.focus({ preventScroll: true }); }
       else if (a === "ccback" && menu) { menu.classList.remove("is-pn-cc"); var o = menu.querySelector(".x-pn-ccopen"); if (o) o.focus({ preventScroll: true }); }
@@ -500,6 +596,10 @@
     });
 
     paintCap(); paintSet(); paintBtn(); barH();
+    /* the info panel was drawn before this add-on: show its Chapters and Transcript tabs now, not on the next change */
+    if (inst._whPaint) { try { inst._whPaint(); } catch (e) {} }
+    else setTimeout(function () { if (inst._whPaint) { try { inst._whPaint(); } catch (e) {} } }, 0);
+    var v0 = cur(); if (v0 && hasCC(v0.id)) getTr(v0.id, function () { if (cur() === v0) { S.capKey = null; update(); paintBtn(); paintSet(); } });
   }
 
   window.ArchiveNotes = {
@@ -511,7 +611,8 @@
       var n = notesOf(v.id);
       if (key === "ch") return !!(n && n.ch && n.ch.length);
       if (key === "sum") return !!(n && (n.s || n.ww || (n.kc && n.kc.length)));
-      if (key === "tr") return hasCC(v.id);
+      /* the Transcript tab is always there: the transcript, a loading skeleton, a retry, or the empty state */
+      if (key === "tr") return true;
       return false;
     },
     render: function (key, v, pane, inst) { if (inst && inst._pnRender) inst._pnRender(key, v, pane); }

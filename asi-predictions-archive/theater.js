@@ -101,7 +101,9 @@
   };
   var sub = function (v) { return [v.names.slice(0, 2).join(", ") || v.c, AP.fmtDate(v.d)].filter(Boolean).join(" · "); };
   var card = function (v, list) {
-    return '<button class="x-vc" type="button" data-tv="' + esc(v.id) + '" data-list="' + list + '">' + thumb(v) + "<span><b>" + esc(v.t) + "</b><small>" + esc(sub(v)) + "</small></span></button>";
+    var tc = v.cc && window.ArchiveNotes && ArchiveNotes.has(v, "ch");
+    return '<button class="x-vc" type="button" data-tv="' + esc(v.id) + '" data-list="' + list + '">' + thumb(v) + "<span><b>" + esc(v.t) + "</b><small>" + esc(sub(v)) + "</small>" +
+      (tc ? '<span class="x-tc" title="This talk has a transcript and chapters">Transcript &amp; chapters</span>' : "") + "</span></button>";
   };
 
   /* ---------- curated rows ---------- */

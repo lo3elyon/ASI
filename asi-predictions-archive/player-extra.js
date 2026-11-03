@@ -45,7 +45,7 @@
   var SHORTCUTS = [
     ["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"],
     ["↑ / ↓", "Volume up or down 10%"], ["M", "Mute or unmute"], ["F", "Fullscreen"], ["T", "Theater mode (wide window in the pop-out)"],
-    ["C", "Site captions on or off"], ["+ / −", "Larger or smaller captions"], ["0 – 9", "Jump to 0% – 90% of the video"], [", / .", "Back or forward one frame, while paused"],
+    ["C", "Captions on or off (site captions, or YouTube's when a talk has no transcript)"], ["+ / −", "Larger or smaller captions"], ["B", "Bookmark this moment"], ["0 – 9", "Jump to 0% – 90% of the video"], [", / .", "Back or forward one frame, while paused"],
     ["Shift + N", "Next video"], ["Shift + P", "Previous video"], ["Shift + > / <", "Faster or slower"], ["R", "Loop this video"],
     ["I", "Picture-in-picture: pop out or dock"], ["Scroll on 🔊", "Volume up or down"], ["?", "This sheet"], ["Esc", "Close this sheet or the ⚙ menu"]
   ];
@@ -177,9 +177,14 @@
     };
 
     /* site captions off: YouTube's own captions module is unloaded so no captions render */
-    var dropCC = function () { var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
-    inst.on("ready", function () { x.applyVol(); dropCC(); });
-    inst.on("state", function (s) { if (s === 1 || s === 3) dropCC(); });
+    /* Once per mount, at ready and at the first frame: unloading on every PLAYING/BUFFERING made YouTube re-buffer,
+       which kept re-arming the start cover ("Starting…") on captioned talks until a click. Skipped while the
+       YouTube-captions fallback (player-notes.js) is on. */
+    var dropped = false;
+    var dropCC = function () { if (inst._ytCC) return; var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
+    inst.on("change", function () { dropped = false; });
+    inst.on("ready", function () { x.applyVol(); dropped = false; dropCC(); });
+    inst.on("state", function (s) { if (s === 1 && !dropped) { dropped = true; dropCC(); } });
     inst.on("ended", function (yt) {
       if (!S.loop || !yt || !yt.seekTo) return false;
       try { yt.seekTo(0, true); yt.playVideo(); showFlash("loop"); } catch (e) { return false; }

@@ -108,6 +108,15 @@
     document.head.appendChild(s);
   };
 
+  /* Hovering, touching or focusing a talk card loads the IFrame API early, so the player that card opens is ready sooner. */
+  (function () {
+    var SEL = "[data-v],[data-tv],[data-wv],[data-rv],[data-piv],.x-ap";
+    var pre = function (ev) { var t = ev.target; if (t && t.closest && t.closest(SEL)) loadApi(function () {}); };
+    document.addEventListener("pointerover", pre, { passive: true });
+    document.addEventListener("touchstart", pre, { passive: true });
+    document.addEventListener("focusin", pre);
+  })();
+
   var instances = [], active = null, creators = [];
 
   function create(root, opts) {
@@ -168,7 +177,7 @@
       '<dialog class="x-ap__sheet" aria-label="Keyboard shortcuts">' +
         "<h3>Keyboard shortcuts</h3>" +
         "<dl>" +
-          [["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"], ["M", "Mute"], ["F", "Fullscreen"], ["C", "Site captions on or off"], ["+ / −", "Larger or smaller captions"],
+          [["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"], ["M", "Mute"], ["F", "Fullscreen"], ["C", "Captions on or off"], ["+ / −", "Larger or smaller captions"], ["B", "Bookmark this moment"],
             ["T", "Theater mode"], ["I", "Pop out or dock"], ["Shift + N / P", "Next or previous video"], ["Shift + > / <", "Faster or slower"], ["?", "This sheet"]]
             .map(function (r) { return "<div><dt><kbd>" + r[0] + "</kbd></dt><dd>" + r[1] + "</dd></div>"; }).join("") +
         "</dl>" +
@@ -193,18 +202,18 @@
     /* While the site player is not playing (before the first frame, paused or ended), the site's own cover hides
        YouTube's pause screen, so only one set of controls is ever on show. */
     var cover = q(".x-ap__cover"), coverImg = cover.querySelector(".x-ap__cimg"), coverTime = cover.querySelector(".x-ap__ctime");
-    /* On a fresh mount the cover stays up through loading and buffering, and until YouTube has reported PLAYING
-       for 2500ms (P.shown), so YouTube's title row, avatar, 'More videos' and logo never flash; then it fades out. */
+    /* On a fresh start the cover stays up only until YouTube reports PLAYING (P.shown), then fades in 150ms.
+       The spinner shows only while YouTube reports BUFFERING (P.buffering). */
     var fadeT = 0;
     var paintCover = function () {
       var on = !!(P.video && P.started && (!P.playing || !P.shown) && !P.basic && !P.native);
-      var starting = on && !P.shown && !P.ended && (P.playing || P.pending);
+      var starting = on && !P.shown && !P.ended && !!P.buffering;
       root.classList.toggle("is-cover", on);
       root.classList.toggle("is-starting", starting);
       if (!on) {
         if (cover.hidden || fadeT) return;
         cover.classList.add("is-fading");
-        fadeT = setTimeout(function () { fadeT = 0; cover.classList.remove("is-fading"); if (!root.classList.contains("is-cover")) cover.hidden = true; }, 320);
+        fadeT = setTimeout(function () { fadeT = 0; cover.classList.remove("is-fading"); if (!root.classList.contains("is-cover")) cover.hidden = true; }, 150);
         return;
       }
       var appearing = cover.hidden || !!fadeT;
@@ -220,7 +229,7 @@
       var src = "https://i.ytimg.com/vi/" + encodeURIComponent(P.video.id) + "/hqdefault.jpg";
       if (coverImg.dataset.src !== src) { coverImg.dataset.src = src; coverImg.style.backgroundImage = 'url("' + src + '")'; }
       var t = P.ended ? (P.dur || now()) : now();
-      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : starting ? "Starting…" : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
+      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : (P.pending && !P.shown) ? "Starting…" : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
       cover.querySelector(".x-ap__big").setAttribute("aria-label", (P.ended ? "Play again: " : "Play: ") + P.video.t);
     };
     var paintToggle = function () {
@@ -292,7 +301,8 @@
       stopTick();
       if (P.video && P.started && P.yt) record(P.video.id, now(), P.dur, true);
       try { if (P.yt && P.yt.destroy) P.yt.destroy(); } catch (e) {}
-      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = false;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = false; P.buffering = false;
+      P.warming = false; P.ready = false;
       P.yt = null; P.basic = false; P.started = false; P.playing = false; P.ended = false; P.dur = 0; P.token++;
       frame.innerHTML = "";
       root.classList.remove("is-started", "is-basic");
@@ -314,7 +324,25 @@
       paintPoster(); paintInfo(); paintLink(); paintNav();
       if (opts.onChange) opts.onChange(v, P.index);
       emit("change", v);
+      if (inView && root.getClientRects().length) warm();
     };
+
+    /* Warm start: build the YouTube player cued and paused (autoplay 0) behind the poster as soon as a video is
+       selected, the player is on screen, or the pointer or focus reaches it, so Play only calls playVideo().
+       It never plays on its own. */
+    var warm = function () {
+      if (!P.video || P.started || P.yt || P.warming || P.basic) return;
+      var tok = P.token, v = P.video;
+      P.warming = true;
+      loadApi(function (ok) {
+        if (tok !== P.token || P.started || P.yt || P.video !== v) return;
+        P.warming = false;
+        if (!ok) return;
+        mount(progress(v.id).pos || 0, false);
+      });
+    };
+    root.addEventListener("pointerenter", function () { warm(); });
+    root.addEventListener("focusin", function () { warm(); });
 
     var basic = function (start) {
       var v = P.video;
@@ -333,7 +361,17 @@
       root.classList.add("is-started");
       paintCover();
       var start = P.startAt > 0 ? Math.floor(P.startAt) : progress(v.id).pos, tok = P.token, done = false;
+      var jump = P.startAt > 0;
       P.startAt = 0;
+      /* the warm player is already cued: play it now (or as soon as it is ready) */
+      if (P.yt) {
+        P.wantAt = jump ? start : -1;
+        if (P.ready) {
+          try { if (jump) P.yt.seekTo(start, true); P.yt.playVideo(); } catch (e) {}
+          startTick(); paintTime();
+        }
+        return;
+      }
       frame.innerHTML = '<div class="x-ap__loading">Loading…</div>';
       var fail = setTimeout(function () { if (!done && tok === P.token) { done = true; basic(start); } }, 15000);
       loadApi(function (ok) {
@@ -346,7 +384,8 @@
     /* Build the YouTube player. Only reached from play() (a user click or key) or from switching control modes. */
     var mount = function (start, auto) {
       var v = P.video, tok = P.token;
-      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = !!auto;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = !!auto; P.ready = false; P.buffering = false;
+      if (!auto) P.wantAt = -1;
       P.native = isNative(); root.classList.toggle("is-native", P.native);
       var host = document.createElement("div");
       frame.innerHTML = ""; frame.appendChild(host);
@@ -362,9 +401,22 @@
             events: {
               onReady: function (e) {
                 if (tok !== P.token) return;
-                try { if (P.rate !== 1) e.target.setPlaybackRate(P.rate); if (P.muted) e.target.mute(); if (auto) e.target.playVideo(); } catch (x) {}
+                P.ready = true;
+                /* a warm (cued) player plays here only if Play was pressed while it was getting ready */
+                var go = auto || P.started;
+                try {
+                  if (P.rate !== 1) e.target.setPlaybackRate(P.rate); if (P.muted) e.target.mute();
+                  if (!auto && P.started && P.wantAt >= 0) e.target.seekTo(P.wantAt, true);
+                  if (go) e.target.playVideo();
+                } catch (x) {}
+                /* if the browser held back the start (no PLAYING within 4s), the cover says "Press play" instead of "Starting…" */
+                if (go) setTimeout(function () {
+                  if (tok !== P.token || P.shown || P.playing) return;
+                  P.pending = false; paintCover();
+                }, 4000);
                 var ifr = frame.querySelector("iframe"); if (ifr) ifr.title = v.t;
-                startTick(); paintTime();
+                if (go) startTick();
+                paintTime();
                 emit("ready", e.target);
               },
               onStateChange: function (e) {
@@ -373,10 +425,9 @@
                 P.playing = s === 1 || s === 3;
                 if (s === 1) { P.ended = false; closeUp(); startTick(); paintTime(); }
                 if (s === 0 || s === 2) P.pending = false;
-                /* reveal: one-shot, armed by the first PLAYING and held for 2500ms; buffering again before it fires re-arms it */
-                if (s === 1 && !P.shown && !P.revealT) {
-                  P.revealT = setTimeout(function () { P.revealT = 0; if (tok !== P.token) return; P.shown = true; P.pending = false; paintCover(); }, 2500);
-                } else if (s !== 1 && !P.shown && P.revealT) { clearTimeout(P.revealT); P.revealT = 0; }
+                P.buffering = s === 3;
+                /* reveal: the moment YouTube reports PLAYING, the cover fades (150ms) */
+                if (s === 1 && !P.shown) { P.shown = true; P.pending = false; }
                 if (s === 2) record(v.id, now(), P.dur, true);
                 if (s === 0) { P.ended = true; record(v.id, P.dur || now(), P.dur || now()); if (!emit("ended", e.target)) onEnded(); }
                 emit("state", s);
@@ -386,7 +437,7 @@
               onError: function () { if (tok !== P.token) return; P.pending = false; paintCover(); say("YouTube could not play this video here. Try Watch on YouTube."); }
             }
           });
-        } catch (x) { basic(start); }
+        } catch (x) { if (!auto && !P.started) { P.yt = null; frame.innerHTML = ""; return; } basic(start); }
     };
 
     /* ---------- control mode: the site player (default) or YouTube's own controls, remembered across visits ---------- */
@@ -503,7 +554,7 @@
       else if (inView && Pop.autoFrom(self)) Pop.dock();
     };
     if (!opts.floating && "IntersectionObserver" in window) {
-      new IntersectionObserver(function (en) { inView = en[0].intersectionRatio >= 0.25; checkDock(); }, { threshold: [0, 0.25, 0.5] }).observe(slot);
+      new IntersectionObserver(function (en) { inView = en[0].intersectionRatio >= 0.25; if (en[0].isIntersecting) warm(); checkDock(); }, { threshold: [0, 0.25, 0.5] }).observe(slot);
     }
 
     /* ---------- queue ---------- */
@@ -688,7 +739,7 @@
       rate: function () { return P.rate; },
       duration: function () { return P.dur; },
       now: now,
-      seekTo: function (t) { if (P.yt && P.yt.seekTo && !P.basic) { try { P.yt.seekTo(Math.max(0, t), true); } catch (e) {} paintTime(); } },
+      seekTo: function (t) { if (!P.started) return; if (P.yt && P.yt.seekTo && !P.basic) { try { P.yt.seekTo(Math.max(0, t), true); } catch (e) {} paintTime(); } },
       flash: function (k) { emit("flash", k); },
       seek: seek,
       suppress: function () { P.suppress = true; },
