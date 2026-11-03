@@ -25,6 +25,11 @@
     L.NOTES = store.get("notes:v3", {}) || {};
     L.FAVS = new Set(store.get("favs:v3", []) || []);
     L.QUEUE = store.get("queue:v3", []) || [];
+    // where each queued episode came from: written only by explicit "add to queue" actions (items without an entry predate
+    // source tracking, so they may have been added automatically by an older version)
+    L.QSRC = store.get("queuesrc:v1", {}) || {}; if (typeof L.QSRC !== "object" || Array.isArray(L.QSRC)) L.QSRC = {};
+    // the transient play-through list of "Play all" / a playlist / a learning path: memory only, never written to the queue
+    L.SESSION = { ids: [], label: "", at: 0 };
     L.SETTINGS = Object.assign({ autoplay: true, speed: 1, vol: 100, muted: false, dailyGoal: 30, autoSkipHearing: true, captions: false, nativeControls: false, accent: "amber", motion: "auto", celebrations: true }, store.get("settings:v3", {}) || {});
     L.PLAYLISTS = store.get("playlists:v3", []) || [];
     L.LATER = store.get("later:v3", []) || [];
@@ -55,7 +60,7 @@
   function saveH() { store.set(HKEY, L.H); }
   function saveAll() {
     saveH();
-    store.set("notes:v3", L.NOTES); store.set("favs:v3", Array.from(L.FAVS)); store.set("queue:v3", L.QUEUE);
+    store.set("notes:v3", L.NOTES); store.set("favs:v3", Array.from(L.FAVS)); store.set("queue:v3", L.QUEUE); store.set("queuesrc:v1", L.QSRC);
     store.set("settings:v3", L.SETTINGS); store.set("badges:v3", L.EARNED); store.set("follows:v3", Array.from(L.FOLLOWS));
     store.set("savedFilters:v3", L.SAVED); store.set("prefs:v3", L.PREFS);
     saveLib();
@@ -499,7 +504,7 @@
   function toggleLater(id) { const i = L.LATER.indexOf(id); if (i >= 0) L.LATER.splice(i, 1); else L.LATER.unshift(id); saveLib(); return i < 0; }
   function rate(id, n) { n = Math.round(Number(n) || 0); if (n < 1 || n > 5 || L.RATINGS[id] === n) delete L.RATINGS[id]; else L.RATINGS[id] = n; saveLib(); checkAwards(); return L.RATINGS[id] || 0; }
   function setTags(id, tags) { const t = Array.from(new Set((tags || []).map((x) => String(x).trim().slice(0, 32)).filter(Boolean))).slice(0, 12); if (t.length) L.UTAGS[id] = t; else delete L.UTAGS[id]; saveLib(); }
-  function queueNext(id) { const q = L.QUEUE.filter((x) => x !== id); q.unshift(id); setQueue(q); }
+  function queueNext(id, how) { const q = L.QUEUE.filter((x) => x !== id); q.unshift(id); markSrc(id, how || "playnext"); setQueue(q); }
 
   /* ------------------------------------------------------------ levels */
   const LEVELS = [
@@ -584,8 +589,23 @@
 
   /* ------------------------------------------------------------ library actions */
   function toggleFav(id) { L.FAVS.has(id) ? L.FAVS.delete(id) : L.FAVS.add(id); store.set("favs:v3", Array.from(L.FAVS)); checkAwards(); return L.FAVS.has(id); }
-  function toggleQueue(id) { const i = L.QUEUE.indexOf(id); if (i >= 0) L.QUEUE.splice(i, 1); else L.QUEUE.push(id); store.set("queue:v3", L.QUEUE); checkAwards(); return i < 0; }
-  function setQueue(ids) { L.QUEUE = ids.filter((id, i) => STATE.byId.has(id) && ids.indexOf(id) === i); store.set("queue:v3", L.QUEUE); }
+  /* The queue changes ONLY through these, called from explicit user actions ("Add to queue", "Play next", "Add all to queue",
+   * remove / reorder / clear on the Queue page). Playing, finishing or marking an episode watched never touches it. */
+  function saveQueue() { Object.keys(L.QSRC).forEach((k) => { if (!L.QUEUE.includes(k)) delete L.QSRC[k]; }); store.set("queue:v3", L.QUEUE); store.set("queuesrc:v1", L.QSRC); }
+  function markSrc(id, how) { L.QSRC[id] = { src: "manual", how: String(how || "button").slice(0, 24), at: Date.now() }; }
+  function toggleQueue(id, how) { const i = L.QUEUE.indexOf(id); if (i >= 0) L.QUEUE.splice(i, 1); else if (STATE.byId.has(id)) { L.QUEUE.push(id); markSrc(id, how); } else return false; saveQueue(); checkAwards(); return i < 0; }
+  /* explicit bulk add ("Add all to queue"): appends the ones not queued yet, keeps the existing order; returns how many were added */
+  function addToQueue(ids, how) { let n = 0; (ids || []).forEach((id) => { if (STATE.byId.has(id) && !L.QUEUE.includes(id)) { L.QUEUE.push(id); markSrc(id, how); n++; } }); if (n) { saveQueue(); checkAwards(); } return n; }
+  function removeFromQueue(ids) { const s = new Set(ids || []); const n = L.QUEUE.length; L.QUEUE = L.QUEUE.filter((x) => !s.has(x)); saveQueue(); return n - L.QUEUE.length; }
+  /* reorder / clear (Queue page) and backup import */
+  function setQueue(ids) { L.QUEUE = ids.filter((id, i) => STATE.byId.has(id) && ids.indexOf(id) === i); saveQueue(); }
+  function queueSrc(id) { return L.QSRC[id] || null; }
+  function queueLegacy() { return L.QUEUE.filter((id) => !L.QSRC[id]); }
+  /* transient session line-up (Play all, playlists, learning paths, Play these): what plays next, never the queue */
+  function setSession(ids, label) { const a = (ids || []).filter((id, i) => STATE.byId.has(id) && ids.indexOf(id) === i); L.SESSION = { ids: a, label: String(label || "Play all"), at: Date.now() }; return a.length; }
+  function clearSession() { L.SESSION = { ids: [], label: "", at: 0 }; }
+  /* the part of a list still ahead of the current episode: after it when it is in the list, else the whole list */
+  function listAfter(list, curId) { const i = curId ? list.indexOf(curId) : -1; return i >= 0 ? list.slice(i + 1) : list.slice(); }
   function toggleFollow(k) { L.FOLLOWS.has(k) ? L.FOLLOWS.delete(k) : L.FOLLOWS.add(k); store.set("follows:v3", Array.from(L.FOLLOWS)); checkAwards(); return L.FOLLOWS.has(k); }
   function addNote(id, t, text) {
     (L.NOTES[id] = L.NOTES[id] || []).push({ id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5), t: Math.floor(t || 0), text: String(text).slice(0, 2000), at: Date.now() });
@@ -632,7 +652,7 @@
   }
   function importAll(d) {
     const c = sanitizeBackup(d);
-    L.H = c.H; L.NOTES = c.notes; L.FAVS = new Set(c.favs); L.QUEUE = c.queue; L.EARNED = c.badges; L.FOLLOWS = new Set(c.follows);
+    L.H = c.H; L.NOTES = c.notes; L.FAVS = new Set(c.favs); L.QUEUE = c.queue; Object.keys(L.QSRC).forEach((k) => { if (!L.QUEUE.includes(k)) delete L.QSRC[k]; }); L.EARNED = c.badges; L.FOLLOWS = new Set(c.follows);
     L.PLAYLISTS = c.playlists; L.LATER = c.later; L.RATINGS = c.ratings; L.UTAGS = c.tags; L.PREFS = Object.assign(L.PREFS, c.prefs);
     saveAll();
     return c;
@@ -676,11 +696,11 @@
     saveH(); checkAwards();
     return { full, part, rows: rows.length - 1 };
   }
-  function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.EARNED = {}; L.FOLLOWS = new Set(); L.PLAYLISTS = []; L.LATER = []; L.RATINGS = {}; L.UTAGS = {}; saveAll(); }
+  function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.QSRC = {}; clearSession(); L.EARNED = {}; L.FOLLOWS = new Set(); L.PLAYLISTS = []; L.LATER = []; L.RATINGS = {}; L.UTAGS = {}; saveAll(); }
 
   A.hist = {
     L, afterData, BUCKET, OLD_BUCKET, nSec, cells, realDur, repairEnd, repairEnds, endEvidence, covComplete, settle, playedSec, pctInt, pctText, pctWidth, covTip, doneLabel, gaps, missed, gapLabel, markRange, ts, lenOf, fmtSecs, migrateExact, conv10, evidence, mmss, hhmmss, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
-    watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
+    watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, addToQueue, removeFromQueue, queueSrc, queueLegacy, setSession, clearSession, listAfter, toggleFollow,
     addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
     markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, recoverCoverage, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
     createPlaylist, playlist, renamePlaylist, deletePlaylist, addToPlaylist, removeFromPlaylist, movePlaylist, toggleLater, rate, setTags, queueNext,
