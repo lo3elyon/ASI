@@ -52,13 +52,17 @@
   var listeners = [];
   var notify = function (id) { listeners.forEach(function (f) { try { f(id); } catch (e) {} }); };
   var progress = function (id) { return { pos: store.p[id] || 0, watched: !!store.w[id] }; };
-  var record = function (id, t, dur) {
+  /* the one saved resume position: the poster's "Resume from" and the Continue watching row both read store.p.
+     `loud` marks an explicit flush (pause, close, pagehide) so readers can update their label in place. */
+  var saved = [];
+  var record = function (id, t, dur, loud) {
     if (!id || !(t >= 0)) return;
     var was = !!store.w[id];
     if (dur > 0 && (t >= dur - 15 || t / dur > 0.95)) { store.w[id] = 1; delete store.p[id]; }
     else if (t > 10) store.p[id] = Math.floor(t);
     save();
     if (!was && store.w[id]) notify(id);
+    if (loud) saved.forEach(function (f) { try { f(id, progress(id)); } catch (e) {} });
   };
 
   /* ---------- the YouTube IFrame API, loaded once on the first Play ---------- */
@@ -160,15 +164,25 @@
     /* While the site player is not playing (before the first frame, paused or ended), the site's own cover hides
        YouTube's pause screen, so only one set of controls is ever on show. */
     var cover = q(".x-ap__cover"), coverImg = cover.querySelector(".x-ap__cimg"), coverTime = cover.querySelector(".x-ap__ctime");
+    /* On a fresh mount the cover stays up through loading and buffering, and until YouTube has reported PLAYING
+       for ~700ms (P.shown), so YouTube's title row never flashes; then it fades out. */
+    var fadeT = 0;
     var paintCover = function () {
-      var on = !!(P.video && P.started && !P.playing && !P.basic && !P.native);
-      cover.hidden = !on;
+      var on = !!(P.video && P.started && (!P.playing || !P.shown) && !P.basic && !P.native);
       root.classList.toggle("is-cover", on);
-      if (!on) return;
+      if (!on) {
+        if (cover.hidden || fadeT) return;
+        cover.classList.add("is-fading");
+        fadeT = setTimeout(function () { fadeT = 0; cover.classList.remove("is-fading"); if (!root.classList.contains("is-cover")) cover.hidden = true; }, 320);
+        return;
+      }
+      if (fadeT) { clearTimeout(fadeT); fadeT = 0; }
+      cover.classList.remove("is-fading");
+      cover.hidden = false;
       var src = "https://i.ytimg.com/vi/" + encodeURIComponent(P.video.id) + "/hqdefault.jpg";
       if (coverImg.dataset.src !== src) { coverImg.dataset.src = src; coverImg.style.backgroundImage = 'url("' + src + '")'; }
       var t = P.ended ? (P.dur || now()) : now();
-      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
+      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : P.playing && !P.shown ? "Loading…" : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
       cover.querySelector(".x-ap__big").setAttribute("aria-label", (P.ended ? "Play again: " : "Play: ") + P.video.t);
     };
     var paintToggle = function () {
@@ -228,8 +242,9 @@
 
     var teardown = function () {
       stopTick();
-      if (P.video && P.started && P.yt) record(P.video.id, now(), P.dur);
+      if (P.video && P.started && P.yt) record(P.video.id, now(), P.dur, true);
       try { if (P.yt && P.yt.destroy) P.yt.destroy(); } catch (e) {}
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false;
       P.yt = null; P.basic = false; P.started = false; P.playing = false; P.ended = false; P.dur = 0; P.token++;
       frame.innerHTML = "";
       root.classList.remove("is-started", "is-basic");
@@ -282,6 +297,7 @@
     /* Build the YouTube player. Only reached from play() (a user click or key) or from switching control modes. */
     var mount = function (start, auto) {
       var v = P.video, tok = P.token;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false;
       P.native = isNative(); root.classList.toggle("is-native", P.native);
       var host = document.createElement("div");
       frame.innerHTML = ""; frame.appendChild(host);
@@ -307,7 +323,11 @@
                 var s = e.data;
                 P.playing = s === 1 || s === 3;
                 if (s === 1) { P.ended = false; upnext.hidden = true; }
-                if (s === 2) record(v.id, now(), P.dur);
+                /* reveal: one-shot, armed by the first PLAYING; buffering again before it fires re-arms it */
+                if (s === 1 && !P.shown && !P.revealT) {
+                  P.revealT = setTimeout(function () { P.revealT = 0; if (tok !== P.token) return; P.shown = true; paintCover(); }, 700);
+                } else if (s !== 1 && !P.shown && P.revealT) { clearTimeout(P.revealT); P.revealT = 0; }
+                if (s === 2) record(v.id, now(), P.dur, true);
                 if (s === 0) { P.ended = true; record(v.id, P.dur || now(), P.dur || now()); if (!emit("ended", e.target)) onEnded(); }
                 emit("state", s);
                 paintToggle(); paintLink();
@@ -339,12 +359,15 @@
 
     /* ---------- the shield over the iframe: click plays or pauses, double-click goes fullscreen ---------- */
     var clickT = null, swallow = false;
-    shield.addEventListener("click", function () {
+    shield.addEventListener("click", function (ev) {
+      ev.stopPropagation();
       if (swallow) { swallow = false; return; }
-      clearTimeout(clickT);
+      clearTimeout(clickT); clickT = null;
+      /* the second click of a double-click never toggles; the dblclick handler takes it */
+      if (ev.detail > 1) return;
       clickT = setTimeout(function () { clickT = null; toggle(); }, 220);
     });
-    shield.addEventListener("dblclick", function (ev) { ev.preventDefault(); clearTimeout(clickT); clickT = null; fullscreen(); });
+    shield.addEventListener("dblclick", function (ev) { ev.preventDefault(); ev.stopPropagation(); clearTimeout(clickT); clickT = null; fullscreen(); });
     /* a click anywhere on the paused cover plays; its own button is handled by the root click handler */
     cover.addEventListener("click", function (ev) { if (!ev.target.closest("[data-a]")) toggle(); });
 
@@ -552,6 +575,9 @@
       hold: function () { P.hold = Date.now() + 1500; },
       suppress: function () { P.suppress = true; },
       setWide: function (on) { if (P.wide !== !!on) theater(); },
+      isWide: function () { return P.wide; },
+      /* write the live position to storage now (pause, close, pagehide, and before the Continue row renders) */
+      _flush: function () { if (P.video && P.started && P.yt && !P.basic && P.yt.getCurrentTime) record(P.video.id, now(), P.dur, true); },
       /* for add-ons: the live YT.Player (null before Play or in the basic fallback), the control bar and helpers */
       yt: function () { return P.basic ? null : P.yt; },
       started: function () { return P.started; },
@@ -768,8 +794,8 @@
         var b = ev.target.closest("[data-p]"); if (!b) { if (isMin && ev.target.closest(".x-pop__pill")) restore(); return; }
         var a = b.dataset.p;
         if (a === "mode") modal ? shrink() : expand();
-        else if (a === "min") minimize();
-        else if (a === "restore") restore();
+        else if (a === "min") { ev.preventDefault(); ev.stopPropagation(); minimize(); }
+        else if (a === "restore") { ev.preventDefault(); ev.stopPropagation(); restore(); }
         else if (a === "ptoggle") inst.toggle();
         else if (a === "dock") dock();
         else if (a === "wide") wide();
@@ -914,16 +940,28 @@
       } else hide();
     };
     var wide = function () { var h = dock(); if (h) h.setWide(true); };
+    /* Minimise always collapses to the small bar in a corner; it never goes to (or back to) the centred window. */
     var minimize = function () {
       if (!isOpen() || isMin) return;
-      if (modal) { setModal(false); opener = null; S.corner = S.corner || "br"; sizeCorner(); }
+      if (leaveT) return;
+      if (modal) { setModal(false); opener = null; }
+      if (!S.corner) {
+        /* a dragged window minimises into its nearest corner */
+        var w = el.offsetWidth, h = el.offsetHeight;
+        S.corner = (S.y + h / 2 < vh() / 2 ? "t" : "b") + (S.x + w / 2 < vw() / 2 ? "l" : "r");
+      }
+      if (!S.placed) S.placed = true;
+      el.classList.remove("is-modal", "is-enter", "is-leave");
       isMin = true; el.classList.add("is-min"); el.style.width = ""; win.inert = true;
       place();
+      requestAnimationFrame(place);
       var r = el.querySelector('[data-p="restore"]'); if (r) r.focus({ preventScroll: true });
     };
+    /* Restore from the bar goes back to the corner window, never the centred one */
     var restore = function () {
       if (!isMin) return;
-      isMin = false; el.classList.remove("is-min"); win.inert = false; el.style.width = S.w + "px";
+      isMin = false; el.classList.remove("is-min"); win.inert = false;
+      setWidth(S.w); el.style.width = S.w + "px";
       place();
     };
     var toggleKey = function () {
@@ -1027,8 +1065,13 @@
     return !!(t && t.isContentEditable);
   };
   document.addEventListener("keydown", function (ev) {
-    if (ev.key === "Escape" && Pop.isModal() && !document.querySelector("dialog[open]") && !document.fullscreenElement && !Pop.menuOpen()) {
-      ev.preventDefault(); Pop.close(); return;
+    /* Esc: close the in-page window when it is open, else leave Theater mode; the page never scrolls.
+       Skipped while a dialog, fullscreen, a player menu, or another open menu or drawer has Esc. */
+    if (ev.key === "Escape" && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !typing(ev) && !document.querySelector("dialog[open]") && !document.fullscreenElement && !document.webkitFullscreenElement && !Pop.menuOpen() &&
+        !document.querySelector('.x-sheet:not([hidden]), .x-whd:not([hidden]), .x-apx-menu:not([hidden]), .x-apx-more[aria-expanded="true"], [aria-controls="askPanel"][aria-expanded="true"], .x-menu-btn[aria-expanded="true"], #archBar.is-open')) {
+      if (Pop.isOpen()) { ev.preventDefault(); keepScroll(function () { Pop.close(); }); return; }
+      var wideOne = instances.filter(function (i) { return !i.floating && i.isWide && i.isWide(); })[0];
+      if (wideOne) { ev.preventDefault(); keepScroll(function () { wideOne.setWide(false); }); return; }
     }
     if ((ev.key === "i" || ev.key === "I") && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !typing(ev) && !document.querySelector("dialog[open]")) {
       if (Pop.isOpen() || instances.some(function (i) { return !i.floating && i.current(); })) { ev.preventDefault(); Pop.toggleKey(); }
@@ -1072,8 +1115,17 @@
     return r;
   };
 
+  /* one saved position: flushed on pagehide and when the tab is hidden, as well as on pause and close */
+  var flushAll = function () { instances.forEach(function (i) { try { i._flush(); } catch (e) {} }); };
+  window.addEventListener("pagehide", flushAll);
+  document.addEventListener("visibilitychange", function () { if (document.hidden) flushAll(); });
+
   window.ArchivePlayer = {
     keepScroll: keepScroll,
+    /* the saved resume position in seconds (0 when none or watched), and whether the player counts it watched */
+    position: function (id) { return progress(id); },
+    flush: flushAll,
+    onSaved: function (f) { saved.push(f); },
     create: create,
     popout: popout,
     watch: watch,

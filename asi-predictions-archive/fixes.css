@@ -230,3 +230,36 @@
 @media (prefers-reduced-motion: reduce) {
   .x-wh__row, .x-wh__toggle, .x-pop__q, .x-tt__rec, .x-vc, .x-cw__card, .x-pv__v, .x-wh__tab { transition: none; }
 }
+
+/* =====================================================================
+   Player QA round: cover fade, click shield, back pill, minimised bar, speaker rows
+   ===================================================================== */
+/* the cover holds through loading and buffering, then fades once playback has run ~700ms */
+.x-ap__cover { opacity: 1; transition: opacity 300ms var(--ease-out); }
+.x-ap__cover.is-fading { opacity: 0; pointer-events: none; }
+/* site mode: the iframe never takes clicks; a full-size shield above it does (click toggles, double-click fullscreen) */
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__frame iframe { pointer-events: none; }
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__shield {
+  display: block; position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0;
+  width: 100%; height: 100%; z-index: 1; pointer-events: auto; background: transparent;
+}
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__frame { z-index: 0; pointer-events: none; }
+/* YouTube-controls mode: the back pill sits bottom-left, above YouTube's control bar, clear of its title row */
+.x-ap__back { top: auto; bottom: 60px; left: 12px; }
+.x-pop .x-ap__back { bottom: 52px; left: 8px; }
+/* minimised window: only the small bar, pinned to its corner, never the centred window */
+.x-pop.is-min { transform: none; width: auto; max-width: min(340px, calc(100vw - 16px)); max-height: none; }
+.x-pop.is-min .x-pop__win { visibility: hidden; }
+/* speaker tab: the speaker's other talks as full-width compact rows, a 96×54 16:9 thumb and a two-line title */
+.x-wh .x-wh__sp { display: block; }
+.x-wh .x-wh__sp .x-wh__talks { display: flex; flex-direction: column; gap: 2px; width: 100%; grid-template-columns: none; columns: auto; }
+.x-wh .x-wh__sp .x-wh__talks > li { display: block; width: 100%; min-width: 0; margin: 0; }
+.x-wh .x-wh__sp .x-wh__row { display: flex; align-items: center; gap: 10px; width: 100%; }
+.x-wh .x-wh__sp .x-wh__row img {
+  flex: 0 0 96px; width: 96px; height: 54px; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 8px; box-shadow: none;
+}
+.x-wh .x-wh__sp .x-wh__rowtx { flex: 1 1 auto; min-width: 0; }
+@media (prefers-reduced-motion: reduce) { .x-ap__cover { transition: none; } }
+/* people links on history cards: a full touch target even with sub-pixel rounding */
+.x-hi__people a.x-hi__who { box-sizing: border-box; min-height: 48px; min-width: 48px; flex: none; line-height: 1.2; }

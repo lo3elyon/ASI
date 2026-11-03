@@ -182,17 +182,33 @@
   var list = function () { return Object.keys(W).map(function (id) { var r = W[id]; return { id: id, r: r }; }).filter(function (x) { return x.r && x.r.last; }).sort(function (a, b) { return b.r.last - a.r.last; }); };
   var vidOf = function (id) { load(); return VIDS[id] || { id: id, t: (W[id] && W[id].title) || "Video", c: (W[id] && W[id].c) || "", p: [] }; };
 
-  var row = null;
+  var row = null, rowFlushing = false;
+  /* resume time from the player's store (AP.position); the tracker's own r.t only when the player has none */
+  var posOf = function (id) {
+    if (AP.position) { var p = AP.position(id); return p && p.pos > 0 ? p.pos : 0; }
+    return (W[id] && W[id].t) || 0;
+  };
+  var pctOf = function (x) { var d = x.r.dur || 0, p = posOf(x.id); return x.r.done ? 100 : d ? Math.min(100, Math.round(p / d * 100)) : 0; };
+  /* on pause, close and pagehide the player flushes; the matching card's label and bar update in place (no layout change) */
+  if (AP.onSaved) AP.onSaved(function (id) {
+    if (rowFlushing || !row || row.hidden) return;
+    var card = row.querySelector('[data-cw-play="' + (window.CSS && CSS.escape ? CSS.escape(id) : id) + '"]'); if (!card) return;
+    var res = card.querySelector(".x-cw__res"), bar = card.querySelector(".x-cw__bar i"), p = posOf(id), r = W[id];
+    if (res && p > 0) res.textContent = "▶ Resume " + fmt(p);
+    if (bar && r) bar.style.width = pctOf({ id: id, r: r }) + "%";
+  });
   var paintRow = function () {
     var th = document.getElementById("theater"); if (!th) return;
     if (!row) { row = document.createElement("div"); row.className = "x-cw"; th.parentNode.insertBefore(row, th); }
-    var l = list().filter(function (x) { return !x.r.done && x.r.t > 5; }).slice(0, 12), all = list();
+    /* one source for the resume time: the player's saved position, flushed first so it matches "Resume from" */
+    if (AP.flush) { rowFlushing = true; try { AP.flush(); } catch (e) {} rowFlushing = false; }
+    var l = list().filter(function (x) { return !x.r.done && posOf(x.id) > 5; }).slice(0, 12), all = list();
     if (!all.length) { row.hidden = true; return; }
     row.hidden = false;
     row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
-        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135"><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(x.r.t) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
+        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135"><span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id)) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
       }).join("") + "</div>";
   };
 
@@ -209,7 +225,7 @@
     drawer.querySelector(".x-whd__stats").innerHTML = '<div><b>' + all.length + "</b><span>talks started</span></div><div><b>" + done + "</b><span>finished</span></div><div><b>" + fmt(tot) + "</b><span>time watched</span></div>";
     drawer.querySelector(".x-whd__list").innerHTML = all.length ? all.map(function (x) {
       var v = vidOf(x.id);
-      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="112" height="63"><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + (x.r.pct || 0) + '%"></i></span></span></button>';
+      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="112" height="63"><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span></span></button>';
     }).join("") : '<p class="x-wh__muted">Nothing watched yet. Press play on any talk and it appears here.</p>';
     drawer.hidden = false; requestAnimationFrame(function () { drawer.classList.add("is-open"); });
     var x = drawer.querySelector(".x-whd__x"); if (x) x.focus({ preventScroll: true });
