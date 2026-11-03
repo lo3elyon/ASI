@@ -79,9 +79,10 @@
   };
 
   /* =====================================================================
-     A. Kids' corner read-aloud with speechSynthesis
+     A. Kids' corner read-aloud: moved to voice.js (one narrator, attached by event delegation).
+     This older copy never runs, so the two cannot fight over the 🔊 buttons.
      ===================================================================== */
-  safe(function () {
+  false && safe(function () {
     var ss = window.speechSynthesis, ok = !!(ss && window.SpeechSynthesisUtterance);
     var KEY = "asiArchive.say.v1", pref = {};
     try { pref = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { pref = {}; }

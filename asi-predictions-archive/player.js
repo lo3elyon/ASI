@@ -539,8 +539,10 @@
       P.wide = !P.wide;
       var tbn = q('[data-a="theater"]');
       tbn.setAttribute("aria-pressed", P.wide);
-      tbn.textContent = P.wide ? "Exit theater" : "Theater";
-      tbn.setAttribute("title", (P.wide ? "Exit theater mode" : "Theater mode") + " (T)");
+      /* icon button with a fixed width: only its hidden label and tooltip change, never its size */
+      var tl = tbn.querySelector(".x-apx-lbl");
+      if (tl) tl.textContent = P.wide ? "Exit theater" : "Theater"; else if (!tbn.querySelector("svg")) tbn.textContent = P.wide ? "Exit theater" : "Theater";
+      tbn.setAttribute(tbn.hasAttribute("data-tip") ? "data-tip" : "title", (P.wide ? "Exit theater mode" : "Theater mode") + " (T)");
       root.classList.toggle("is-wide", P.wide);
       if (opts.onTheater) opts.onTheater(P.wide);
     };

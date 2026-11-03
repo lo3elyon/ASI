@@ -81,9 +81,12 @@
 
     /* fullscreen gets an icon so it can drop its label on narrow players; help gets a label for the menu */
     var fsB = btns.querySelector('[data-a="fs"]');
-    if (fsB) { fsB.classList.add("x-apx-fs"); fsB.innerHTML = IC.fs + lbl("Fullscreen"); fsB.setAttribute("aria-label", "Fullscreen (F)"); }
+    if (fsB) { fsB.classList.add("x-apx-fs"); fsB.innerHTML = IC.fs + lbl("Fullscreen"); fsB.setAttribute("aria-label", "Fullscreen (F)"); fsB.setAttribute("data-tip", "Fullscreen (F)"); fsB.removeAttribute("title"); }
+    /* Theater is an icon button too, so its width never changes when it toggles */
+    var thB = btns.querySelector('[data-a="theater"]');
+    if (thB) { thB.innerHTML = IC.frame.replace(/width="30" height="30"/, 'width="18" height="18"') + lbl("Theater"); thB.setAttribute("aria-label", "Theater mode (T)"); thB.setAttribute("data-tip", "Theater mode (T)"); thB.removeAttribute("title"); }
     var keysB = btns.querySelector('[data-a="keys"]');
-    if (keysB) { keysB.innerHTML = '<span aria-hidden="true">?</span>' + lbl("Keyboard shortcuts"); keysB.setAttribute("aria-label", "Keyboard shortcuts (?)"); }
+    if (keysB) { keysB.innerHTML = '<span aria-hidden="true">?</span>' + lbl("Keyboard shortcuts"); keysB.setAttribute("aria-label", "Keyboard shortcuts (?)"); keysB.setAttribute("data-tip", "Shortcuts (?)"); }
 
     /* the ⚙ button and its menu: speed, A–B repeat, loop, then links; narrow players move more controls in */
     btns.insertAdjacentHTML("beforeend",
@@ -104,11 +107,19 @@
         '<a class="x-ap__b" data-x="yt" href="#" target="_blank" rel="noopener">' + IC.yt + lbl("YouTube") + "</a>" +
         '<button class="x-ap__b" type="button" data-x="prev">' + IC.prev + lbl("Previous") + "</button>" +
         '<button class="x-ap__b" type="button" data-x="next">' + IC.next + lbl("Next") + "</button>" +
-        '<div class="x-apx-slot" data-slot="end"></div>' +
+        '<div class="x-apx-slot" data-slot="end">' +
+          /* copies of bar controls, shown only on narrow players (fixed container breakpoints in pages.css) */
+          '<label class="x-apx-vol x-apx-dup" data-dup="sm"><span class="x-ap__sr">Volume</span><input class="x-apx-range" type="range" min="0" max="100" step="1" value="100" aria-label="Volume" /></label>' +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="sm" data-a="theater">' + IC.frame.replace(/width="30" height="30"/, 'width="18" height="18"') + lbl("Theater mode (T)") + "</button>" +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="native">' + IC.ytc + lbl("YouTube controls") + "</button>" +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="pop">' + IC.pip + lbl("Picture-in-picture (I)") + "</button>" +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="keys"><span aria-hidden="true">?</span>' + lbl("Keyboard shortcuts") + "</button>" +
+        "</div>" +
       "</div>");
 
-    var muteB = q('[data-x="mute"]'), range = q(".x-apx-range"), ccB = q('[data-x="cc"]'), loopB = q('[data-x="loop"]');
+    var muteB = q('[data-x="mute"]'), range = q(".x-ap__btns .x-apx-range"), ccB = q('[data-x="cc"]'), loopB = q('[data-x="loop"]');
     var moreB = q('[data-x="more"]'), menu = document.getElementById(id), slotTop = menu.querySelector('[data-slot="top"]'), slotEnd = menu.querySelector('[data-slot="end"]');
+    var ranges = [range, menu.querySelector('.x-apx-dup .x-apx-range')].filter(Boolean);
     var act = function (s) { return inst.actions ? inst.actions.querySelector(s) : null; };
 
     /* centred flash */
@@ -142,8 +153,7 @@
       },
       paintVol: function () {
         var silent = V.muted || V.vol === 0, v = silent ? 0 : V.vol;
-        range.value = v; range.style.setProperty("--x-ap-pct", v + "%");
-        range.setAttribute("aria-valuetext", silent ? "Muted" : v + "%");
+        ranges.forEach(function (r) { if (document.activeElement !== r || r.value != v) r.value = v; r.style.setProperty("--x-ap-pct", v + "%"); r.setAttribute("aria-valuetext", silent ? "Muted" : v + "%"); });
         muteB.innerHTML = silent ? IC.off : v < 50 ? IC.low : IC.vol;
         muteB.setAttribute("aria-pressed", silent);
         var t = silent ? "Unmute (M)" : "Mute (M)";
@@ -163,8 +173,10 @@
       saveV(); applyAll();
       inst.say(V.muted ? "Muted" : "Volume " + V.vol + "%");
     };
-    range.addEventListener("input", function () { setVol(+range.value, true); });
-    range.addEventListener("change", function () { inst.say(V.vol ? "Volume " + V.vol + "%" : "Muted"); });
+    ranges.forEach(function (r) {
+      r.addEventListener("input", function () { setVol(+r.value, true); });
+      r.addEventListener("change", function () { inst.say(V.vol ? "Volume " + V.vol + "%" : "Muted"); });
+    });
     x.paintVol();
 
     /* captions are drawn by the site from the transcript (player-notes.js); YouTube's own captions stay off */
@@ -196,14 +208,8 @@
     if (dl) dl.innerHTML = SHORTCUTS.map(function (r) { return "<div><dt><kbd>" + r[0] + "</kbd></dt><dd>" + r[1] + "</dd></div>"; }).join("");
 
     /* the More menu: on players under 480px, secondary controls move into it */
-    var moved = [
-      { el: q(".x-apx-vol"), slot: slotTop },
-      { el: ccB, slot: slotTop },
-      { el: nativeB, slot: slotEnd },
-      { el: popB, slot: slotEnd },
-      { el: keysB, slot: slotEnd }
-    ].filter(function (m) { return m.el; });
-    moved.forEach(function (m) { m.ph = document.createComment("x-apx"); m.el.parentNode.insertBefore(m.ph, m.el); });
+    /* No control ever moves between the bar and the menu: every bar button stays where it is, and narrow players
+       hide some of them at fixed container breakpoints (pages.css) while their copies in this menu show. */
 
     var isOpen = function () { return !menu.hidden; };
     var paintProxies = function () {
@@ -223,15 +229,7 @@
       menu.hidden = true; moreB.setAttribute("aria-expanded", "false");
       if (refocus) moreB.focus({ preventScroll: true });
     };
-    var compact = null;
-    var setCompact = function (on) {
-      if (on === compact) return;
-      compact = on;
-      root.classList.toggle("x-apx-compact", on);
-      if (on) moved.forEach(function (m) { m.slot.appendChild(m.el); });
-      else { closeMenu(false); moved.forEach(function (m) { m.ph.parentNode.insertBefore(m.el, m.ph.nextSibling); }); }
-    };
-    var measure = function () { var w = bar.clientWidth; if (w > 0) { setCompact(w < 480); if (AB && AB.a != null) paintAB(); } };
+    var measure = function () { var w = bar.clientWidth; if (w > 0 && AB && AB.a != null) paintAB(); };
     if ("ResizeObserver" in window) new ResizeObserver(measure).observe(bar);
     else { window.addEventListener("resize", measure); measure(); }
 
@@ -256,7 +254,7 @@
       else if (a === "abA") setA();
       else if (a === "abB") setB();
       else if (a === "abC") clearAB(false);
-      else if (/^(keys|native|pop)$/.test(b.getAttribute("data-a") || "") && menu.contains(b)) closeMenu(false);
+      else if (/^(keys|native|pop|theater)$/.test(b.getAttribute("data-a") || "") && menu.contains(b)) closeMenu(false);
     });
 
     /* ---------- speed list ---------- */

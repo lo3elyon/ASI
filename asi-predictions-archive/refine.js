@@ -118,24 +118,29 @@
       return Math.max(0, Math.floor((p && p.pos) || 0));
     };
 
-    var row = doc.createElement("div");
-    row.className = "x-apt"; row.setAttribute("role", "toolbar"); row.setAttribute("aria-label", "Quick controls");
-    row.innerHTML =
-      '<div class="x-apt__speeds" role="group" aria-label="Playback speed">' + RATES.map(function (r) {
-        return '<button type="button" class="x-ap__b" data-apt-rate="' + r + '" aria-pressed="' + (r === 1) + '" title="Speed ' + r + '×">' + r + "×</button>";
-      }).join("") + "</div>" +
-      '<button type="button" class="x-ap__b" data-apt="copy" title="Copy a link that starts at this moment">' + IC_LINK + '<span class="x-apt__lbl">Copy link at 0:00</span></button>' +
-      '<button type="button" class="x-ap__b" data-apt="mark" title="Add a bookmark at this moment (B)">' + IC_MARK + '<span class="x-apt__lbl">Bookmark</span></button>' +
-      '<button type="button" class="x-ap__b" data-apt="keys" aria-label="Keyboard shortcuts (?)" title="Keyboard shortcuts (?)">' + IC_KEYS + "</button>";
-    screen.appendChild(row);
-    var copyL = row.querySelector('[data-apt="copy"] .x-apt__lbl'), copyB = row.querySelector('[data-apt="copy"]');
-    var rateBs = [].slice.call(row.querySelectorAll("[data-apt-rate]"));
-    var lastT = -1, lastR = -1, copying = false;
+    /* Copy-link-at and Bookmark are fixed-width icon buttons inside the control bar, with tooltips above them.
+       (They used to sit in a hover row over the top-right corner, on top of the pre-play Play / CC / ⚙ pill,
+       so the buttons under the cursor swapped on hover.) Speeds live in the ⚙ menu, shortcuts on the bar's ?.
+       Narrow players hide them from the bar at a fixed container breakpoint and show the copies in the ⚙ menu. */
+    var btnsEl = rootEl.querySelector(".x-ap__btns"), menuEl = rootEl.querySelector(".x-apx-menu");
+    var gapEl = btnsEl && btnsEl.querySelector(".x-ap__gap");
+    var barHtml =
+      '<button type="button" class="x-ap__b x-apt-b" data-apt="copy" aria-label="Copy link at 0:00" data-tip="Copy link at 0:00">' + IC_LINK + "</button>" +
+      '<button type="button" class="x-ap__b x-apt-b" data-apt="mark" aria-label="Bookmark this moment (B)" data-tip="Bookmark (B)">' + IC_MARK + "</button>";
+    if (gapEl) gapEl.insertAdjacentHTML("beforebegin", barHtml); else if (btnsEl) btnsEl.insertAdjacentHTML("beforeend", barHtml);
+    var slotEndEl = menuEl && menuEl.querySelector('[data-slot="end"]');
+    if (slotEndEl) slotEndEl.insertAdjacentHTML("beforeend",
+      '<button type="button" class="x-ap__b x-apx-dup" data-dup="md" data-apt="copy">' + IC_LINK + '<span class="x-apx-lbl x-apt__lbl">Copy link at 0:00</span></button>' +
+      '<button type="button" class="x-ap__b x-apx-dup" data-dup="md" data-apt="mark">' + IC_MARK + '<span class="x-apx-lbl x-apt__lbl">Bookmark</span></button>');
+    var row = rootEl;
+    var copyBs = [].slice.call(rootEl.querySelectorAll('[data-apt="copy"]'));
+    var lastT = -1, copying = false;
+    var setCopyText = function (s) {
+      copyBs.forEach(function (b) { var l = b.querySelector(".x-apt__lbl"); if (l) l.textContent = s; else b.setAttribute("data-tip", s); b.setAttribute("aria-label", s); });
+    };
     var paint = function () {
       var t = at();
-      if (t !== lastT && !copying) { lastT = t; copyL.textContent = "Copy link at " + fmt(t); copyB.setAttribute("aria-label", "Copy link at " + fmt(t)); }
-      var r = inst.rate ? inst.rate() : 1;
-      if (r !== lastR) { lastR = r; rateBs.forEach(function (b) { b.setAttribute("aria-pressed", String(+b.getAttribute("data-apt-rate") === r)); }); }
+      if (t !== lastT && !copying) { lastT = t; setCopyText("Copy link at " + fmt(t)); }
     };
     inst.on("tick", paint);
     inst.on("change", function () { lastT = -1; paint(); });
@@ -153,9 +158,8 @@
       if (list.length > 60) list = list.slice(-60);
       writeBM(v.id, list);
       inst.say("Bookmarked " + fmt(t));
-      var l = row.querySelector('[data-apt="mark"] .x-apt__lbl');
-      l.textContent = "Saved " + fmt(t);
-      setTimeout(function () { l.textContent = "Bookmark"; }, 1400);
+      var mB = rootEl.querySelector('.x-ap__btns [data-apt="mark"]');
+      if (mB) { mB.setAttribute("data-tip", "Saved " + fmt(t)); setTimeout(function () { mB.setAttribute("data-tip", "Bookmark (B)"); }, 1400); }
       refreshAll(v.id);
     };
     var copyAt = function () {
@@ -163,20 +167,16 @@
       var t = at(), url = "https://www.youtube.com/watch?v=" + v.id + "&t=" + t + "s";
       copying = true;
       copyText(url, function () {
-        copyL.textContent = "Copied · " + fmt(t); inst.say("Link at " + fmt(t) + " copied");
+        setCopyText("Copied · " + fmt(t)); inst.say("Link at " + fmt(t) + " copied");
         setTimeout(function () { copying = false; lastT = -1; paint(); }, 1400);
       }, function () { copying = false; inst.say(url); });
     };
 
     row.addEventListener("click", function (ev) {
-      ev.stopPropagation();
-      var r = ev.target.closest("[data-apt-rate]");
-      if (r) { if (inst.setRate) inst.setRate(+r.getAttribute("data-apt-rate")); lastR = -1; paint(); return; }
-      var b = ev.target.closest("[data-apt]"); if (!b) return;
+      var b = ev.target.closest("[data-apt]"); if (!b || !rootEl.contains(b)) return;
       var a = b.getAttribute("data-apt");
       if (a === "copy") copyAt();
       else if (a === "mark") mark();
-      else if (a === "keys") { var k = rootEl.querySelector('[data-a="keys"]'); if (k) k.click(); else if (inst.sheet && inst.sheet.showModal && !inst.sheet.open) inst.sheet.showModal(); }
     });
     inst.on("key", function (ev) {
       if ((ev.key === "b" || ev.key === "B") && !ev.shiftKey) { mark(); return true; }

@@ -98,7 +98,7 @@
         quote +
         '<p class="x-hi__foot">' +
           (m.source_url ? '<a class="link" href="' + esc(m.source_url) + '" target="_blank" rel="noopener">Source</a>' : "") +
-          (m.tags || []).map(function (t) { return '<span class="x-hi__chip">' + esc(t.replace(/-/g, " ")) + "</span>"; }).join("") +
+          (m.tags || []).map(function (t) { return '<a class="x-hi__chip x-tagl" href="#/topic/' + esc(t) + '" aria-label="Topic: ' + esc(t.replace(/-/g, " ")) + '">' + esc(t.replace(/-/g, " ")) + "</a>"; }).join("") +
         "</p>" +
       "</article></li>";
   };

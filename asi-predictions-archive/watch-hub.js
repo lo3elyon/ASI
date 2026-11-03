@@ -80,7 +80,7 @@
     var desc = v.s ? String(v.s).split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean).map(esc) : [];
     var more = [];
     if (sp[0]) { var bio = bioOf(sp[0]); if (bio) more.push('<p class="x-wh__p"><b>About ' + esc(sp[0].name) + ".</b> " + esc(clip(bio, 480)) + "</p>"); }
-    if (tp.length) more.push('<div class="x-wh__tags">' + tp.map(function (t) { return '<span class="x-wh__tag">#' + esc(t) + "</span>"; }).join("") + "</div>");
+    if (tp.length) more.push('<div class="x-wh__tags">' + tp.map(function (t) { return '<a class="x-wh__tag x-tagl" href="#/topic/' + esc(String(t).toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")) + '">#' + esc(t) + "</a>"; }).join("") + "</div>");
     var chips = [v.c ? ["📺", v.c, "Channel"] : null, y ? ["📅", y, "Year"] : null, v.len ? ["⏱", v.len, "Length"] : null].filter(Boolean)
       .map(function (c) { return '<span class="x-wh__chip" title="' + c[2] + '"><span aria-hidden="true">' + c[0] + "</span> " + esc(c[1]) + "</span>"; }).join("");
     var id = "whf" + (++seq), sum = [lead].concat(desc).join(" ");
@@ -280,7 +280,7 @@
         return;
       }
       /* a person link inside the video window closes the window first, so the page underneath is free to change */
-      if (e.target.closest('a[href^="#/person/"]') && AP.isWatching && AP.isWatching()) AP.closePopout();
+      if (e.target.closest('a[href^="#/person/"], a[href^="#/topic/"]') && AP.isWatching && AP.isWatching()) AP.closePopout();
     });
     box.addEventListener("keydown", function (e) {
       if (!e.target.classList.contains("x-wh__tab")) return;

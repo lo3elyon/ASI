@@ -8,12 +8,14 @@
   var data = function (id) { try { return Hark.data(id) || []; } catch (e) { return []; } };
 
   /* ---------- index ---------- */
-  var IDX = { people: [], history: [], entries: [], videos: [], preds: [] };
-  var LABEL = { people: "People", history: "History milestones", entries: "Archive entries", videos: "Videos", preds: "Predictions" };
-  var KIND = { people: "Person", history: "Milestone", entries: "Entry", videos: "Video", preds: "Prediction" };
+  var IDX = { pages: [], people: [], history: [], entries: [], videos: [], preds: [] };
+  var LABEL = { pages: "Pages", people: "People", history: "History milestones", entries: "Archive entries", videos: "Videos", preds: "Predictions" };
+  var KIND = { pages: "Page", people: "Person", history: "Milestone", entries: "Entry", videos: "Video", preds: "Prediction" };
   var built = false;
   var build = function () {
     if (built) return; built = true;
+    /* pages.js lists its pages (topics, eras, quotes, timeline, compare, stats, about) */
+    ((window.XPages && XPages.list) || []).forEach(function (p) { IDX.pages.push({ id: p.id, t: p.t, s: p.s || "", k: "page", hay: (p.t + " " + (p.s || "") + " " + (p.kw || "")).toLowerCase(), key: p.t.toLowerCase() }); });
     data("d-people").forEach(function (p) { IDX.people.push({ id: p.id, t: p.name, s: [p.role, p.org].filter(Boolean).join(" · "), k: String(p.group || "").replace(/-/g, " "), hay: (p.name + " " + (p.role || "")).toLowerCase(), key: p.name.toLowerCase() }); });
     var h = data("d-history"); (h.chapters || []).forEach(function (c) { (c.milestones || []).forEach(function (m) { IDX.history.push({ id: m.id, t: m.title, s: m.year + " · " + c.title, k: String(m.year), hay: (m.title + " " + m.year + " " + (m.people || []).join(" ") + " " + c.title).toLowerCase(), key: m.title.toLowerCase() }); }); });
     data("d-entries").forEach(function (e) { var y = e.date ? String(e.date).slice(0, 4) : e.year; IDX.entries.push({ id: e.id, t: e.title, s: e.person + " · " + y, k: String(y), hay: (e.title + " " + e.person + " " + y + " " + (e.quote || "")).toLowerCase(), key: e.person.toLowerCase() }); });
@@ -43,6 +45,7 @@
     if (main && main.hidden) { location.hash = "#/"; setTimeout(fn, 80); } else fn();
   };
   var go = function (g, id) {
+    if (g === "pages") { location.hash = id; return; }
     if (g === "people") { location.hash = "#/person/" + id; return; }
     /* a video opens in the in-page window over whatever is on screen; the page stays where it is */
     if (g === "videos" && window.ArchivePlayer && ArchivePlayer.watch) {
@@ -95,7 +98,7 @@
     });
     listEl.innerHTML = q.trim()
       ? (html || '<p class="x-cp__empty">Nothing matches “' + esc(q) + "”. Try a surname, a year or a word like “alignment”.</p>")
-      : '<p class="x-cp__empty">Type a name, year, title or channel. Try “Hinton”, “1965”, “alignment” or “Lex Fridman”.</p>';
+      : '<p class="x-cp__empty">Type a name, year, title or channel. Try “Hinton”, “1965”, “alignment”, “Lex Fridman”, or a page like “quotes”, “timeline” or “compare”.</p>';
     nEl.textContent = q.trim() ? total + " match" + (total === 1 ? "" : "es") : "";
     /* ids and indexes follow the listed order exactly: cpo-0, cpo-1, … with no gaps */
     var shown = listEl.querySelectorAll('[role="option"]');

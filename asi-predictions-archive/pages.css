@@ -1,0 +1,328 @@
+/* pages.css: Batch 3. Dark-mode nav, More menu, Where-to-start card, topic links, the extra pages
+   (#/topics, #/topic/…, #/era/…, #/quotes, #/timeline, #/compare, #/stats, #/about), the narrator's
+   controls, era backgrounds and the Customize panel, and two player fixes (YouTube captions, idle controls).
+   Tokens only, apart from the fixed dark-glass nav colours, which must not follow light-dark(). */
+
+/* =====================================================================
+   1. The sticky nav pill in dark mode: dark glass with light text (AA on every state)
+   ===================================================================== */
+:root[data-theme="dark"] .nav.glass {
+  color-scheme: dark;
+  background: #18181b;
+  border-color: rgb(245 245 247 / 0.16);
+  color: #f5f5f7;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.4), 0 10px 40px rgb(0 0 0 / 0.55);
+}
+:root[data-theme="dark"] .nav.glass .seg { background: #2c2c30; }
+:root[data-theme="dark"] .nav.glass .seg a,
+:root[data-theme="dark"] .nav.glass .seg a:not([aria-current="true"]) { color: #d1d1d6; background-color: #2c2c30; }
+:root[data-theme="dark"] .nav.glass .seg a:hover { color: #ffffff; }
+:root[data-theme="dark"] .nav.glass .seg a[aria-current="true"] { background: #f5f5f7; color: #1d1d1f; }
+:root[data-theme="dark"] .nav.glass :is(.theme-btn, .x-search-btn, .x-menu-btn, .x-more__btn) { background: #2c2c30; color: #f5f5f7; }
+:root[data-theme="dark"] .nav.glass :is(.x-menu-btn, .x-more__btn)[aria-expanded="true"] { background: #f5f5f7; color: #1d1d1f; }
+:root[data-theme="dark"] .nav.glass :focus-visible { outline-color: #f5f5f7; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .nav.glass {
+    color-scheme: dark;
+    background: #18181b;
+    border-color: rgb(245 245 247 / 0.16);
+    color: #f5f5f7;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.4), 0 10px 40px rgb(0 0 0 / 0.55);
+  }
+  :root:not([data-theme="light"]) .nav.glass .seg { background: #2c2c30; }
+  :root:not([data-theme="light"]) .nav.glass .seg a,
+  :root:not([data-theme="light"]) .nav.glass .seg a:not([aria-current="true"]) { color: #d1d1d6; background-color: #2c2c30; }
+  :root:not([data-theme="light"]) .nav.glass .seg a:hover { color: #ffffff; }
+  :root:not([data-theme="light"]) .nav.glass .seg a[aria-current="true"] { background: #f5f5f7; color: #1d1d1f; }
+  :root:not([data-theme="light"]) .nav.glass :is(.theme-btn, .x-search-btn, .x-menu-btn, .x-more__btn) { background: #2c2c30; color: #f5f5f7; }
+  :root:not([data-theme="light"]) .nav.glass :is(.x-menu-btn, .x-more__btn)[aria-expanded="true"] { background: #f5f5f7; color: #1d1d1f; }
+  :root:not([data-theme="light"]) .nav.glass :focus-visible { outline-color: #f5f5f7; }
+}
+
+/* =====================================================================
+   2. More menu in the nav (desktop), extra links in the phone Sections sheet
+   ===================================================================== */
+.x-more { position: relative; flex: none; }
+.x-more__btn {
+  display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px;
+  border: 0; border-radius: var(--r-pill); background: var(--hover-wash-primary-on); color: var(--text-primary-on);
+  font: var(--type-label); cursor: pointer; white-space: nowrap;
+}
+.x-more__btn svg { transition: transform var(--dur-quick) var(--ease-out); }
+.x-more__btn[aria-expanded="true"] { background: var(--fill-primary-on); color: var(--text-primary); }
+.x-more__btn[aria-expanded="true"] svg { transform: rotate(180deg); }
+.x-more__menu {
+  position: absolute; top: calc(100% + 12px); right: 0; z-index: 40; width: 260px; padding: 8px;
+  border-radius: var(--r-l); background: var(--mat-agent, var(--fill-primary-on));
+  -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur);
+  border: 1px solid var(--stroke-primary); box-shadow: var(--hark-shadow); color: var(--text-primary);
+}
+.x-more__menu[hidden] { display: none; }
+.x-more__menu ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.x-more__menu a, .x-more__menu button {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: var(--tap); padding: 0 12px;
+  border: 0; border-radius: var(--r-s); background: none; color: var(--text-primary);
+  font: var(--type-label); text-align: left; text-decoration: none; cursor: pointer;
+}
+.x-more__menu a:hover, .x-more__menu button:hover, .x-more__menu a:focus-visible, .x-more__menu button:focus-visible { box-shadow: inset 0 0 0 100px var(--hover-wash); }
+.x-more__menu a[aria-current="page"] { background: var(--fill-primary); color: var(--text-primary-on); }
+.x-more__menu small { margin-left: auto; font: var(--type-caption); color: var(--text-secondary); }
+.x-more__menu hr { margin: 6px 4px; border: 0; border-top: 1px solid var(--stroke-secondary); }
+.x-more__ico { width: 20px; text-align: center; flex: none; }
+@media (pointer: coarse) { .x-more__btn { height: var(--tap); } }
+@media (max-width: 640px) { .x-more { display: none; } }
+.x-sheet__more { margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--stroke-secondary); }
+.x-sheet__lab { margin: 4px 14px 2px; font: var(--type-caption); color: var(--text-secondary); }
+.x-sheet button.x-sheet__cz {
+  display: flex; align-items: center; width: 100%; min-height: var(--tap); padding: 0 14px; border: 0; background: none;
+  border-radius: var(--r-s); font: var(--type-body); color: var(--text-primary); cursor: pointer; text-align: left;
+}
+
+/* =====================================================================
+   3. Where to start: a glass card in the hero with three more ways in
+   ===================================================================== */
+.hero .callout.x-start {
+  background: color-mix(in srgb, var(--fill-primary-on) 62%, transparent);
+  -webkit-backdrop-filter: blur(22px) saturate(1.4); backdrop-filter: blur(22px) saturate(1.4);
+  border: 1px solid color-mix(in srgb, var(--fill-primary-on) 55%, transparent);
+  box-shadow: 0 18px 50px -20px rgb(0 0 0 / 0.55), inset 0 1px 0 color-mix(in srgb, #ffffff 35%, transparent);
+  color: var(--text-primary);
+}
+.x-start__list { list-style: none; margin: 12px 0 0; padding: 10px 0 0; display: grid; gap: 2px; border-top: 1px solid var(--stroke-secondary); }
+.x-start__list a {
+  display: flex; align-items: center; gap: 10px; min-height: var(--tap); padding: 4px 8px; border-radius: var(--r-s);
+  color: var(--text-primary); text-decoration: none;
+}
+.x-start__list a:hover, .x-start__list a:focus-visible { box-shadow: inset 0 0 0 100px var(--hover-wash); }
+.x-start__list a > span:last-child { display: grid; }
+.x-start__list b { font: var(--type-label); }
+.x-start__list small { font: var(--type-caption); color: var(--text-secondary); }
+@media (min-width: 761px) and (max-height: 760px) { .x-start__list small { display: none; } }
+
+/* =====================================================================
+   4. Topic tags are links to #/topic/<slug>
+   ===================================================================== */
+a.x-tagl { text-decoration: none; cursor: pointer; transition: box-shadow var(--dur-quick) var(--ease-out); }
+a.x-tagl:hover, a.x-tagl:focus-visible { text-decoration: underline; text-underline-offset: 2px; box-shadow: inset 0 0 0 1px var(--stroke-primary); }
+.x-hi__foot a.x-tagl { display: inline-flex; align-items: center; min-height: 28px; }
+@media (pointer: coarse), (max-width: 640px) { .x-hi__foot a.x-tagl, .x-wh__tags a.x-tagl { min-height: var(--tap); min-width: var(--tap); justify-content: center; } }
+.x-wh__tags a.x-tagl { color: inherit; display: inline-flex; align-items: center; }
+
+/* footer credit */
+.x-credit { font: var(--type-small); color: var(--text-secondary); }
+.x-credit b { color: var(--text-primary); font-weight: var(--weight-medium); }
+
+/* =====================================================================
+   5. The extra pages
+   ===================================================================== */
+.x-pg[hidden] { display: none !important; }
+.x-pg { padding-top: 8px; }
+.x-pg__top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.x-pg__nav { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+.x-pg__nav .btn[aria-current="page"] { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+.x-pg .head .links, .x-pg__acts { margin-top: 12px; }
+.x-pg__acts { display: flex; flex-wrap: wrap; gap: 6px; }
+.x-pg__count { font: var(--type-small); color: var(--text-secondary); }
+.x-pg__h3 { margin: 18px 0 8px; font: var(--type-heading); }
+.x-pg__more { margin-top: 6px; }
+.x-pg .timeline__what p + p { margin-top: 4px; }
+.x-pg .timeline__what .x-pg__sum { color: var(--text-secondary); font: var(--type-small); }
+.x-pg__rowacts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.x-pg__rowacts .btn { min-height: 36px; }
+@media (pointer: coarse) { .x-pg__rowacts .btn { min-height: var(--tap); } }
+.x-pg__people { display: flex; flex-wrap: wrap; gap: 6px; }
+.x-pg__person {
+  display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 4px 12px 4px 4px;
+  border-radius: var(--r-pill); background: var(--fill-tertiary); color: var(--text-primary); text-decoration: none; font: var(--type-small);
+}
+.x-pg__person img, .x-pg__person .x-pg__ini { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex: none; }
+.x-pg__ini { display: grid; place-items: center; background: var(--fill-primary-on); font: var(--type-caption); color: var(--text-secondary); }
+.x-pg__person:hover { box-shadow: inset 0 0 0 1px var(--stroke-primary); }
+.x-pg .cards h3 a { text-decoration: none; }
+.x-pg .cards h3 a:hover { text-decoration: underline; }
+.x-pg .cards > div { position: relative; }
+.x-pg__card-n { font: var(--type-small); color: var(--text-secondary); }
+
+/* quotes */
+.x-pg__qbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.x-pg__qbar .x-input { flex: 1 1 260px; }
+.x-pg__quotes { list-style: none; margin: 0; padding: 0; columns: 2 320px; column-gap: 16px; }
+.x-pg__q {
+  break-inside: avoid; margin: 0 0 16px; padding: 18px 20px; border-radius: var(--r-m);
+  background: var(--fill-tertiary); display: grid; gap: 10px;
+}
+.x-pg__q[hidden] { display: none; }
+.x-pg__q blockquote { margin: 0; font: var(--type-body); color: var(--text-primary); }
+.x-pg__q figcaption { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font: var(--type-small); color: var(--text-secondary); }
+.x-pg__q figcaption a { color: var(--text-primary); }
+.x-pg__q .x-vo-mini { margin-left: auto; }
+
+/* timeline page */
+.x-pg__decades { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 76px); z-index: 5; padding: 6px; border-radius: var(--r-pill);
+  background: var(--mat-regular); -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur); border: 1px solid var(--stroke-secondary);
+  display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.x-pg__decades::-webkit-scrollbar { display: none; }
+.x-pg__decades button { flex: none; min-height: 36px; padding: 0 12px; border: 0; border-radius: var(--r-pill); background: none; color: var(--text-primary); font: var(--type-tag); cursor: pointer; }
+.x-pg__decades button:hover { box-shadow: inset 0 0 0 100px var(--hover-wash); }
+@media (pointer: coarse) { .x-pg__decades button { min-height: var(--tap); } }
+.x-pg__dec { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 140px); }
+.x-pg__kind { margin-left: 4px; }
+
+/* compare */
+.x-pg__pick { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.x-pg__pick label { display: inline-flex; align-items: center; gap: 8px; font: var(--type-small); color: var(--text-secondary); }
+.x-pg__pick select { min-height: var(--tap); max-width: min(320px, 80vw); padding: 0 10px; border-radius: var(--r-s); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); color: var(--text-primary); font: var(--type-small); }
+.x-pg .compare__media img { aspect-ratio: 1; object-fit: cover; border-radius: var(--r-m); max-height: 180px; margin-inline: auto; }
+
+/* =====================================================================
+   6. Narrator controls (voice.js)
+   ===================================================================== */
+.x-vo-bar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 14px; padding: 8px 10px;
+  border-radius: var(--r-m); background: var(--fill-tertiary); border: 1px solid var(--stroke-secondary);
+  font: var(--type-small); color: var(--text-primary);
+}
+.x-vo-b {
+  display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 16px;
+  border-radius: var(--r-pill); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on);
+  color: var(--text-primary); font: var(--type-label); cursor: pointer;
+}
+.x-vo-b[aria-pressed="true"], .x-vo-b.is-speaking { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+.x-vo-b:disabled { opacity: 0.5; cursor: default; }
+.x-vo-lab { display: inline-flex; align-items: center; gap: 6px; color: var(--text-secondary); }
+.x-vo-lab select { min-height: var(--tap); max-width: 220px; padding: 0 10px; border-radius: var(--r-s); border: 1px solid var(--stroke-primary); background: var(--fill-primary-on); color: var(--text-primary); font: var(--type-small); }
+.x-vo-status { font: var(--type-caption); color: var(--text-secondary); }
+.x-vo-note { margin: 0 0 14px; font: var(--type-small); color: var(--text-secondary); }
+
+/* the wave: still bars at rest, moving while that button is speaking */
+.x-vo-wave { display: none; align-items: center; gap: 2px; height: 16px; }
+.x-vo-wave i { display: block; width: 3px; height: 5px; border-radius: 2px; background: currentColor; }
+.is-speaking > .x-vo-wave { display: inline-flex; }
+.is-speaking > .x-vo-ico { display: none; }
+.is-speaking > .x-vo-wave i { animation: xVoWave 900ms ease-in-out infinite; }
+.is-speaking > .x-vo-wave i:nth-child(2) { animation-delay: -220ms; }
+.is-speaking > .x-vo-wave i:nth-child(3) { animation-delay: -450ms; }
+.is-speaking > .x-vo-wave i:nth-child(4) { animation-delay: -670ms; }
+@keyframes xVoWave { 0%, 100% { height: 4px; } 50% { height: 15px; } }
+@media (prefers-reduced-motion: reduce) {
+  .is-speaking > .x-vo-wave i { animation: none; }
+  .is-speaking > .x-vo-wave i:nth-child(1), .is-speaking > .x-vo-wave i:nth-child(4) { height: 7px; }
+  .is-speaking > .x-vo-wave i:nth-child(2), .is-speaking > .x-vo-wave i:nth-child(3) { height: 13px; }
+}
+
+/* the 🔊 on each Kids' card */
+.x-ln__say.x-vo-say {
+  width: auto; min-width: var(--tap); height: var(--tap); padding: 0 12px; border-radius: var(--r-pill);
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; font: var(--type-tag);
+  background: color-mix(in srgb, var(--fill-primary-on) 85%, transparent); color: var(--text-primary);
+  box-shadow: 0 0 0 1px var(--stroke-primary);
+}
+.x-ln__say.x-vo-say .x-vo-lbl { display: none; }
+.x-ln__say.x-vo-say.is-speaking { background: var(--fill-primary); color: var(--text-primary-on); box-shadow: 0 0 0 3px color-mix(in srgb, var(--x-e1, #06b6d4) 55%, transparent); }
+.x-ln__say.x-vo-say.is-speaking .x-vo-lbl { display: inline; }
+@media (hover: none), (pointer: coarse) { .x-ln__say.x-vo-say .x-vo-lbl { display: inline; } }
+.x-ln__flip.is-reading .x-ln__front, .x-ln__flip.is-reading .x-ln__back { box-shadow: 0 0 0 2px var(--x-e1, var(--fill-primary)), 0 10px 30px -18px rgb(0 0 0 / 0.5); }
+
+/* small 🔊 on a quote or a row */
+.x-vo-mini {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-width: 36px; min-height: 36px; padding: 0 10px;
+  border: 1px solid var(--stroke-primary); border-radius: var(--r-pill); background: var(--fill-primary-on); color: var(--text-primary);
+  font: var(--type-tag); cursor: pointer;
+}
+.x-vo-mini.is-speaking { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+.x-vo-mini .x-vo-lbl { display: none; }
+.x-vo-mini.is-speaking .x-vo-lbl { display: inline; }
+@media (pointer: coarse) { .x-vo-mini { min-width: var(--tap); min-height: var(--tap); } }
+
+/* =====================================================================
+   7. Era backgrounds and the Customize panel
+   ===================================================================== */
+.x-bgl { position: fixed; inset: 0; z-index: -1; background: center / cover no-repeat; pointer-events: none; }
+.x-bgl[hidden] { display: none; }
+.x-bgl::after { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--fill-primary-on) var(--x-scrim, 88%), transparent); }
+html.x-has-bg body { background: transparent; }
+html.x-has-bg { background: var(--fill-primary-on); }
+html.x-has-bg .x-pg .section, html.x-has-bg main.main > .section { border-radius: var(--r-l); }
+
+.x-cz { width: min(460px, calc(100vw - 24px)); max-height: min(86vh, 720px); margin: 8vh auto auto; padding: 0; border: 1px solid var(--stroke-primary);
+  border-radius: var(--r-l); background: var(--fill-primary-on); color: var(--text-primary); box-shadow: var(--hark-shadow); overflow: auto; }
+.x-cz::backdrop { background: rgb(6 8 14 / 0.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.x-cz__in { display: grid; gap: 18px; padding: 20px; }
+.x-cz__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.x-cz__head h2 { font: var(--type-heading); }
+.x-cz fieldset { margin: 0; padding: 0; border: 0; display: grid; gap: 8px; }
+.x-cz legend { padding: 0; margin-bottom: 8px; font: var(--type-label); }
+.x-cz__opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.x-cz__opts label { position: relative; display: inline-flex; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 14px;
+  border-radius: var(--r-pill); border: 1px solid var(--stroke-primary); font: var(--type-small); cursor: pointer; }
+.x-cz__opts input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.x-cz__opts label:has(input:checked) { background: var(--fill-primary); color: var(--text-primary-on); border-color: transparent; }
+.x-cz__opts label:has(input:focus-visible) { outline: 2px solid var(--fill-primary); outline-offset: 2px; }
+.x-cz__sw { width: 28px; height: 18px; border-radius: 5px; background: center / cover no-repeat var(--fill-tertiary); box-shadow: inset 0 0 0 1px var(--stroke-primary); flex: none; }
+.x-cz__hint { font: var(--type-caption); color: var(--text-secondary); }
+.x-cz__voice { display: flex; flex-wrap: wrap; gap: 8px; }
+.x-cz__foot { display: flex; justify-content: space-between; gap: 8px; }
+/* calm motion: animations and transitions off, whatever the OS says */
+html.x-calm *, html.x-calm *::before, html.x-calm *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+html.x-calm .is-speaking > .x-vo-wave i:nth-child(odd) { height: 7px; }
+html.x-calm .is-speaking > .x-vo-wave i:nth-child(even) { height: 13px; }
+
+/* =====================================================================
+   8. Player: YouTube's own captions never cut off; idle controls come back on hover or tap
+   ===================================================================== */
+/* With YouTube captions on, only the title strip at the top is cropped; nothing is cropped at the
+   bottom, so the whole caption line sits inside the visible frame. */
+.x-ap.is-ytcc.is-started:not(.is-basic):not(.is-native) .x-ap__frame iframe,
+.x-ap.is-started:not(.is-basic):not(.is-native):has(.x-apx-cc.is-yt[aria-pressed="true"]) .x-ap__frame iframe {
+  top: 0 !important; bottom: auto !important; height: calc(100% + 52px) !important; transform: translateY(-52px) !important;
+}
+/* the bar's scrim is shorter while YouTube captions show, so it hides less of the caption line */
+.x-ap.is-ytcc:not(.is-basic):not(.is-native) .x-ap__bar,
+.x-ap:not(.is-basic):not(.is-native):has(.x-apx-cc.is-yt[aria-pressed="true"]) .x-ap__bar { padding-top: 14px; background: linear-gradient(to top, var(--hero-scrim-strong), transparent); }
+/* idle: the bar fades, but stays hit-testable; hovering or tapping it wakes it (pages.js swallows a tap that only wakes) */
+.x-ap.is-idle:not(.is-basic):not(.is-native) .x-ap__bar { visibility: visible !important; pointer-events: auto !important; }
+.x-ap:not(.is-basic):not(.is-native) .x-ap__bar .x-apx-cc { position: relative; z-index: 2; pointer-events: auto; }
+.x-ap.is-idle:not(.is-basic):not(.is-native) .x-ap__bar:hover,
+.x-ap.is-idle:not(.is-basic):not(.is-native) .x-ap__bar:focus-within { opacity: 1; }
+
+/* =====================================================================
+   9. Player control bar: a fixed layout. Every button keeps its place and width; nothing appears, hides,
+      reflows or changes size on hover or when the controls fade in. Narrow players hide secondary buttons
+      at fixed container breakpoints (never on hover), and their copies show in the ⚙ menu instead.
+   ===================================================================== */
+.x-ap__wrap { container: xap / inline-size; }
+.x-ap .x-ap__btns { flex-wrap: nowrap !important; overflow-x: clip; overflow-y: visible; min-width: 0; }
+.x-ap .x-ap__btns > * { flex: none; }
+.x-ap .x-ap__btns > .x-ap__gap { flex: 1 1 0; min-width: 0; }
+.x-ap .x-ap__btns > .x-ap__pp, .x-ap .x-ap__btns > .x-apx-mute, .x-ap .x-ap__btns > .x-apx-cc, .x-ap .x-ap__btns > .x-apt-b,
+.x-ap .x-ap__btns > .x-ap__wide, .x-ap .x-ap__btns > .x-apx-fs, .x-ap .x-ap__btns > .x-ap__ytb, .x-ap .x-ap__btns > .x-ap__popb,
+.x-ap .x-ap__btns > [data-a="keys"], .x-ap .x-ap__btns > .x-apx-more { width: var(--tap); min-width: var(--tap); padding: 0; }
+.x-ap .x-ap__btns > .x-ap__t { width: 50px; min-width: 50px; padding: 0; }
+/* bar buttons are icons named by their aria-label, with a tooltip above; their menu labels are not rendered here */
+.x-ap .x-ap__btns .x-apx-lbl { display: none !important; }
+/* the ⚙ button is always on the bar */
+.x-ap:not(.is-basic) .x-ap__btns > .x-apx-more { display: inline-flex; }
+/* tooltips sit above the button, taking no space; before the first play the bar is at the top, so they sit below */
+.x-ap:not(.is-started) .x-ap__btns .x-ap__b[data-tip]::after { bottom: auto; top: calc(100% + 6px); }
+.x-ap .x-ap__btns .x-ap__b:first-child[data-tip]::after { left: 0; transform: none; }
+.x-ap .x-ap__btns .x-apx-more[data-tip]::after, .x-ap .x-ap__btns > :last-child[data-tip]::after { left: auto; right: 0; transform: none; }
+/* menu copies of bar buttons: hidden until the bar drops the original */
+.x-apx-menu .x-apx-dup { display: none !important; }
+@container xap (max-width: 759px) {
+  .x-ap .x-ap__btns > .x-ap__ytb, .x-ap .x-ap__btns > .x-ap__popb, .x-ap .x-ap__btns > [data-a="keys"], .x-ap .x-ap__btns > .x-apt-b { display: none !important; }
+  .x-apx-menu .x-apx-dup[data-dup="md"] { display: inline-flex !important; }
+}
+@container xap (max-width: 519px) {
+  .x-ap .x-ap__btns > .x-apx-vol, .x-ap .x-ap__btns > .x-ap__wide { display: none !important; }
+  .x-apx-menu .x-apx-dup[data-dup="sm"] { display: inline-flex !important; }
+  .x-apx-menu label.x-apx-dup[data-dup="sm"] { display: flex !important; }
+}
+@container xap (max-width: 359px) {
+  .x-ap .x-ap__btns > .x-ap__t { display: none !important; }
+}
+/* the theater copy follows the original: none on small screens or in the pop-out; nor a pop-out copy inside the pop-out */
+@media (max-width: 900px) { .x-apx-menu .x-apx-dup[data-a="theater"] { display: none !important; } }
+.x-pop .x-apx-menu .x-apx-dup[data-a="theater"], .x-pop .x-apx-menu .x-apx-dup[data-a="pop"] { display: none !important; }
+.x-ap.is-basic .x-apx-menu .x-apx-dup { display: none !important; }
+
+@media print { .x-more, .x-bgl, .x-vo-bar, .x-vo-mini { display: none !important; } }
