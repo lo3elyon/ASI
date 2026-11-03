@@ -66,7 +66,7 @@
         "</div>" +
         '<div class="x-tt__grid" id="ttGrid"></div>' +
         '<div class="x-tt__more"><button class="btn" type="button" id="ttMore">Load more</button></div>' +
-        '<div id="ttSent" aria-hidden="true" style="height: 1px"></div>' +
+        '<div id="ttSent" class="x-sent" aria-hidden="true"></div>' +
       "</div>" +
     "</div>";
   var $ = function (id) { return document.getElementById(id); };
@@ -76,7 +76,7 @@
   var thumb = function (v) {
     var pr = AP.progress(v.id), len = v.len ? '<span class="x-th__len">' + esc(v.len) + "</span>" : "";
     var secs = v.len ? String(v.len).split(":").reduce(function (a, b) { return a * 60 + (+b || 0); }, 0) : 0;
-    return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" loading="lazy" decoding="async" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
+    return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
       (pr.watched ? '<span class="x-th__done">✓ Watched</span>' : "") +
       (!pr.watched && pr.pos && secs ? '<span class="x-th__bar" style="width:' + Math.min(100, (pr.pos / secs) * 100).toFixed(1) + '%"></span>' : "") + "</span>";
   };
@@ -118,6 +118,7 @@
     grid.insertAdjacentHTML("beforeend", h);
     more.parentNode.hidden = shown >= filtered.length;
     more.textContent = "Load more (" + num(filtered.length - shown) + " left)";
+    $("ttSent").classList.toggle("x-lazy-ph", shown < filtered.length);
     markCurrent();
   };
   var syncChips = function () {
@@ -129,7 +130,7 @@
   var apply = function () {
     filtered = V.filter(match).sort(F.sort === "new" ? newestDatedFirst : oldest);
     LISTS.grid = filtered;
-    grid.innerHTML = ""; shown = 0;
+    grid.innerHTML = ""; shown = 0; $("ttSent").classList.remove("x-lazy-ph");
     $("ttCount").textContent = num(filtered.length) + " of " + num(V.length) + " talks";
     syncChips();
     if (!filtered.length) { grid.innerHTML = '<div class="x-empty" style="grid-column: 1 / -1"><p>No talks match these filters.</p><button class="btn" type="button" id="ttReset">Clear all filters</button></div>'; more.parentNode.hidden = true; }
@@ -139,11 +140,12 @@
   more.addEventListener("click", renderMore);
   /* Auto-loads only while the reader scrolls the library, never while a nav jump passes through. */
   var jumping = function () { return !!(window.XJump && window.XJump.active); };
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (en[0].isIntersecting && shown && shown < filtered.length && !jumping()) renderMore(); }, { rootMargin: "600px" }).observe($("ttSent"));
+  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (en[0].isIntersecting && en[0].boundingClientRect.top >= 0 && shown && shown < filtered.length && !jumping()) renderMore(); }, { rootMargin: "600px" }).observe($("ttSent"));
   if (window.XJump) window.XJump.onEnd(function () {
     if (!shown || shown >= filtered.length) return;
     var r = $("ttSent").getBoundingClientRect();
-    if (r.top < window.innerHeight + 600 && r.bottom > -600 && r.height) renderMore();
+    /* only when the reader is above the sentinel: growing the library under Learn would push Learn down */
+    if (r.top < window.innerHeight + 600 && r.top >= 0 && r.height) renderMore();
   });
 
   var tmr;
@@ -200,12 +202,25 @@
   };
 
   var fallback = function (id, title) { return byId[id] || (byId[id] = { id: id, t: title || "YouTube video", c: "", d: "", len: "", k: "", p: [], s: "", names: [], era: "u", hay: "" }); };
+  /* Run fn, then keep window.scrollY where it was for ~800ms (focus moves, player mounts and the dock placeholder
+     can all scroll late). Any wheel, touch or key from the reader ends the hold at once. */
+  var holdScroll = function (fn) {
+    var x = window.scrollX, y = window.scrollY, until = Date.now() + 800, stop = false;
+    var quit = function () { stop = true; ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (t) { window.removeEventListener(t, quit, true); }); };
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (t) { window.addEventListener(t, quit, { capture: true, passive: true }); });
+    var put = function () {
+      if (stop || document.documentElement.classList.contains("x-modal-open")) return;
+      if (Math.abs(window.scrollY - y) > 1 || Math.abs(window.scrollX - x) > 1) { try { window.scrollTo({ left: x, top: y, behavior: "instant" }); } catch (e) { window.scrollTo(x, y); } }
+    };
+    var tick = function () { put(); if (!stop && Date.now() < until) requestAnimationFrame(tick); else if (!stop) quit(); };
+    try { if (AP.keepScroll) AP.keepScroll(fn); else fn(); } finally { put(); requestAnimationFrame(tick); }
+  };
   var select = function (id, o) {
     o = o || {};
     var v = fallback(id, o.title);
     var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : null;
     /* A card picked while the Theater player is off-screen opens in the pop-out window; the page stays put. */
-    if (o.card && AP.popout && !player.inView()) { AP.popout(v, { queue: q }); return; }
+    if (o.card && AP.popout && !player.inView()) { holdScroll(function () { AP.popout(v, { queue: q }); }); return; }
     /* Loads the poster only; the page never moves and nothing plays until Play is pressed. */
     AP.keepScroll(function () { player.load(v, q ? { queue: q, index: q.indexOf(v) } : null); });
   };
@@ -224,7 +239,7 @@
       else if (b.dataset.see === "debate") F.kinds.add("debate");
       if (b.dataset.see !== "picks") F.sort = "new";
       $("ttSort").value = F.sort;
-      apply(); $("library").scrollIntoView({ behavior: "smooth", block: "start" }); return;
+      apply(); if (window.XGoTo) window.XGoTo("library"); else $("library").scrollIntoView({ block: "start" }); return;
     }
     else if (b.id === "ttPersonClear") F.person = null;
     else if (b.id === "ttReset") reset();

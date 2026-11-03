@@ -103,8 +103,7 @@
           '<div class="x-ap__screen">' +
             '<div class="x-ap__frame"></div>' +
             '<div class="x-ap__shield" aria-hidden="true"></div>' +
-            '<div class="x-ap__cover" hidden><span class="x-ap__cimg" aria-hidden="true"></span><button class="x-ap__big" type="button" data-a="toggle" aria-label="Play">' + ICON.big + '</button><p class="x-ap__ctime"></p></div>' +
-            '<button class="x-ap__back" type="button" data-a="siteplayer">Back to site player</button>' +
+            '<div class="x-ap__cover" hidden><span class="x-ap__cimg" aria-hidden="true"></span><button class="x-ap__big" type="button" data-a="toggle" aria-label="Play">' + ICON.big + '</button><span class="x-ap__spin" aria-hidden="true"></span><p class="x-ap__ctime"></p></div>' +
             '<div class="x-ap__poster"></div>' +
             '<div class="x-ap__upnext" hidden></div>' +
             '<div class="x-ap__out"><p>Playing in the pop-out window</p><button class="x-ap__b x-ap__b--solid" type="button" data-a="dockhere">' + IC.dock + " Bring it back</button></div>" +
@@ -132,6 +131,7 @@
             "</div>" +
           "</div>" +
         "</div>" +
+        '<div class="x-ap__under"><button class="x-ap__back" type="button" data-a="siteplayer">Back to site player</button></div>' +
       "</div>" +
       '<div class="x-ap__info"></div>' +
       '<div class="links x-ap__actions">' +
@@ -165,11 +165,13 @@
        YouTube's pause screen, so only one set of controls is ever on show. */
     var cover = q(".x-ap__cover"), coverImg = cover.querySelector(".x-ap__cimg"), coverTime = cover.querySelector(".x-ap__ctime");
     /* On a fresh mount the cover stays up through loading and buffering, and until YouTube has reported PLAYING
-       for ~700ms (P.shown), so YouTube's title row never flashes; then it fades out. */
+       for 2500ms (P.shown), so YouTube's title row, avatar, 'More videos' and logo never flash; then it fades out. */
     var fadeT = 0;
     var paintCover = function () {
       var on = !!(P.video && P.started && (!P.playing || !P.shown) && !P.basic && !P.native);
+      var starting = on && !P.shown && !P.ended && (P.playing || P.pending);
       root.classList.toggle("is-cover", on);
+      root.classList.toggle("is-starting", starting);
       if (!on) {
         if (cover.hidden || fadeT) return;
         cover.classList.add("is-fading");
@@ -182,7 +184,7 @@
       var src = "https://i.ytimg.com/vi/" + encodeURIComponent(P.video.id) + "/hqdefault.jpg";
       if (coverImg.dataset.src !== src) { coverImg.dataset.src = src; coverImg.style.backgroundImage = 'url("' + src + '")'; }
       var t = P.ended ? (P.dur || now()) : now();
-      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : P.playing && !P.shown ? "Loading…" : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
+      coverTime.textContent = P.ended ? "Ended · " + fmt(t) : starting ? "Starting…" : t > 0 ? "Paused · " + fmt(t) + (P.dur ? " / " + fmt(P.dur) : "") : "Press play" + (P.dur ? " · " + fmt(P.dur) : "");
       cover.querySelector(".x-ap__big").setAttribute("aria-label", (P.ended ? "Play again: " : "Play: ") + P.video.t);
     };
     var paintToggle = function () {
@@ -201,7 +203,7 @@
       var v = P.video; if (!v) return;
       var pr = progress(v.id), len = v.len ? '<span class="x-ap__tag">' + esc(v.len) + "</span>" : "";
       poster.innerHTML =
-        '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" />' +
+        '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async" />' +
         '<button class="x-ap__big" type="button" data-a="play" aria-label="Play: ' + esc(v.t) + '">' + ICON.big + "</button>" +
         '<div class="x-ap__cap"><p class="x-ap__ctitle">' + esc(v.t) + "</p>" +
           '<p class="x-ap__cmeta">' + [esc(v.c), len].filter(Boolean).join(" ") +
@@ -214,7 +216,7 @@
       var meta = [v.c ? esc(v.c) : "", fmtDate(v.d) ? esc(fmtDate(v.d)) : "Undated", v.k ? '<span class="pill">' + esc(v.k) + "</span>" : "", v.len ? '<span class="pill">' + esc(v.len) + "</span>" : ""].filter(Boolean).join(" · ");
       var ppl = (v.p || []).map(function (id) {
         var x = people[id], name = x ? x.name : id;
-        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" loading="lazy" decoding="async" />' : "") + "<span>" + esc(name) + "</span></a>";
+        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" width="34" height="34" loading="lazy" decoding="async" />' : "") + "<span>" + esc(name) + "</span></a>";
       }).join("");
       info.innerHTML = "<h3>" + esc(v.t) + '</h3><p class="x-ap__meta">' + meta + "</p>" +
         (v.s ? '<p class="x-ap__sum">' + esc(v.s) + "</p>" : "") +
@@ -244,7 +246,7 @@
       stopTick();
       if (P.video && P.started && P.yt) record(P.video.id, now(), P.dur, true);
       try { if (P.yt && P.yt.destroy) P.yt.destroy(); } catch (e) {}
-      clearTimeout(P.revealT); P.revealT = 0; P.shown = false;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = false;
       P.yt = null; P.basic = false; P.started = false; P.playing = false; P.ended = false; P.dur = 0; P.token++;
       frame.innerHTML = "";
       root.classList.remove("is-started", "is-basic");
@@ -281,8 +283,9 @@
       var v = P.video; if (!v) return;
       setActive(); P.suppress = false;
       if (P.started) { if (P.yt && P.yt.playVideo) { if (P.ended) { try { P.yt.seekTo(0, true); } catch (e) {} } P.yt.playVideo(); } return; }
-      P.started = true; P.suppress = false; upnext.hidden = true;
+      P.started = true; P.suppress = false; upnext.hidden = true; P.pending = true;
       root.classList.add("is-started");
+      paintCover();
       var start = P.startAt > 0 ? Math.floor(P.startAt) : progress(v.id).pos, tok = P.token, done = false;
       P.startAt = 0;
       frame.innerHTML = '<div class="x-ap__loading">Loading…</div>';
@@ -297,12 +300,12 @@
     /* Build the YouTube player. Only reached from play() (a user click or key) or from switching control modes. */
     var mount = function (start, auto) {
       var v = P.video, tok = P.token;
-      clearTimeout(P.revealT); P.revealT = 0; P.shown = false;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = !!auto;
       P.native = isNative(); root.classList.toggle("is-native", P.native);
       var host = document.createElement("div");
       frame.innerHTML = ""; frame.appendChild(host);
       var pv = { autoplay: auto ? 1 : 0, controls: P.native ? 1 : 0, disablekb: P.native ? 0 : 1, fs: P.native ? 1 : 0, iv_load_policy: 3,
-        rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
+        cc_load_policy: 0, rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
       if (/^https?:/.test(location.origin)) pv.origin = location.origin;
         try {
           P.yt = new window.YT.Player(host, {
@@ -323,9 +326,10 @@
                 var s = e.data;
                 P.playing = s === 1 || s === 3;
                 if (s === 1) { P.ended = false; upnext.hidden = true; }
-                /* reveal: one-shot, armed by the first PLAYING; buffering again before it fires re-arms it */
+                if (s === 0 || s === 2) P.pending = false;
+                /* reveal: one-shot, armed by the first PLAYING and held for 2500ms; buffering again before it fires re-arms it */
                 if (s === 1 && !P.shown && !P.revealT) {
-                  P.revealT = setTimeout(function () { P.revealT = 0; if (tok !== P.token) return; P.shown = true; paintCover(); }, 700);
+                  P.revealT = setTimeout(function () { P.revealT = 0; if (tok !== P.token) return; P.shown = true; P.pending = false; paintCover(); }, 2500);
                 } else if (s !== 1 && !P.shown && P.revealT) { clearTimeout(P.revealT); P.revealT = 0; }
                 if (s === 2) record(v.id, now(), P.dur, true);
                 if (s === 0) { P.ended = true; record(v.id, P.dur || now(), P.dur || now()); if (!emit("ended", e.target)) onEnded(); }
@@ -333,7 +337,7 @@
                 paintToggle(); paintLink();
                 if (P.playing && !P.suppress) checkDock();
               },
-              onError: function () { if (tok === P.token) say("YouTube could not play this video here. Try Watch on YouTube."); }
+              onError: function () { if (tok !== P.token) return; P.pending = false; paintCover(); say("YouTube could not play this video here. Try Watch on YouTube."); }
             }
           });
         } catch (x) { basic(start); }
@@ -464,7 +468,7 @@
       var n = P.queue.length > 1 ? P.queue[(P.index + 1) % P.queue.length] : null;
       if (!n) return;
       if (store.auto) { setTimeout(function () { go(1, true); }, 0); return; }
-      upnext.innerHTML = '<div class="x-ap__upin"><p class="x-ap__uplab">Up next</p><img src="https://i.ytimg.com/vi/' + esc(n.id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" />' +
+      upnext.innerHTML = '<div class="x-ap__upin"><p class="x-ap__uplab">Up next</p><img src="https://i.ytimg.com/vi/' + esc(n.id) + '/hqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
         '<p class="x-ap__ctitle">' + esc(n.t) + '</p><p class="x-ap__cmeta">' + esc(n.c || "") + "</p>" +
         '<div class="x-ap__upbtns"><button class="x-ap__b x-ap__b--solid" type="button" data-a="upplay">' + ICON.play + " Play</button>" +
         '<button class="x-ap__b" type="button" data-a="upcancel">Cancel</button></div></div>';

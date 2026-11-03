@@ -167,13 +167,18 @@
       inst.say(S.loop ? "Loop on" : "Loop off");
     };
 
+    /* site captions off: YouTube's own captions module is unloaded so no captions render */
+    var dropCC = function () { var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
     inst.on("ready", function (yt) {
       S.ccOn = false;
       x.applyVol();
       if (!yt || typeof yt.loadModule !== "function" || typeof yt.setOption !== "function") noCC();
+      if (!S.cc) dropCC();
     });
     inst.on("state", function (s) {
-      if (s === 1 && S.cc && !S.ccOn) setCC(true, true); /* keep captions on across videos once the reader turned them on */
+      if (s !== 1 && s !== 3) return;
+      if (S.cc) { if (!S.ccOn) setCC(true, true); } /* keep captions on across videos once the reader turned them on */
+      else dropCC();
     });
     inst.on("ended", function (yt) {
       if (!S.loop || !yt || !yt.seekTo) return false;

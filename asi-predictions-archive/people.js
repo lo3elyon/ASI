@@ -18,7 +18,7 @@
   var avatar = function (p, cls) {
     var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>";
     return '<span class="x-pav ' + (cls || "") + '" aria-hidden="true">' + ini +
-      (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
+      (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
   };
   var talks = function (p) { var n = p.n_videos || (vidsOf[p.id] || []).length; return n ? n + (n === 1 ? " talk" : " talks") : ""; };
 
@@ -162,12 +162,12 @@
   var vmeta = function (v) { return esc([v.c, AP && AP.fmtDate(v.d), v.len].filter(Boolean).join(" · ")); };
   /* Person-page rows open the video in the in-page window (player.js); the page stays put. */
   var vrow = function (v) {
-    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" decoding="async" />' +
+    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></a>";
   };
   /* Up-next rows on the watch page load into its player in place. */
   var wrow = function (v, on) {
-    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" decoding="async" />' +
+    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></button>";
   };
 
@@ -387,8 +387,34 @@
   });
 
   var lastHash = null, entered = false, booted = false, origin = null, depth = 0;
-  var still = function () { return window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; };
   var jumpTo = function (y) { try { window.scrollTo({ top: y, left: 0, behavior: "instant" }); } catch (e) { window.scrollTo(0, y); } };
+  var goTo = function (t, o) { if (window.XGoTo && window.XGoTo(t, o)) return; var el = typeof t === "string" ? $(t.replace(/^#/, "")) : t; if (el) el.scrollIntoView({ block: o && o.block === "center" ? "center" : "start" }); };
+
+  /* Where a person page was opened from, kept as an element, never as a scroll position:
+     the People card's id plus the grid's search, filter and sort, or the nearest element with an id. */
+  var from = null, pendingFrom = null;
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href^="#/person/"]');
+    if (!a || !main.contains(a) || main.hidden) return;
+    var c = a.closest(".x-pc[data-id]");
+    if (c && $("pgrid") && $("pgrid").contains(c)) pendingFrom = { card: c.getAttribute("data-id"), f: { q: F.q, group: F.group, neuro: F.neuro, sort: F.sort } };
+    else { var host = a.parentNode && a.parentNode.closest("[id]"); pendingFrom = { id: host && main.contains(host) ? host.id : null }; }
+  }, true);
+  var sameF = function (f) { return f && f.q === F.q && f.group === F.group && f.neuro === F.neuro && f.sort === F.sort; };
+  var restoreFrom = function (o) {
+    if (o && o.card && $("pgrid")) {
+      if (o.f && !sameF(o.f)) {
+        F.q = o.f.q; F.group = o.f.group; F.neuro = o.f.neuro; F.sort = o.f.sort;
+        $("pq").value = F.q; $("psort").value = F.sort;
+        apply();
+      }
+      var sel = '.x-pc[data-id="' + (window.CSS && CSS.escape ? CSS.escape(o.card) : o.card) + '"]', card;
+      while (!(card = $("pgrid").querySelector(sel)) && shown < list.length) more();
+      if (card) { goTo(card, { block: "center" }); return; }
+    }
+    if (o && o.id && $(o.id)) { goTo($(o.id), { block: "center" }); return; }
+    goTo("people");
+  };
   var sameHash = function (a, b) { var n = function (h) { h = h || ""; return h === "#" || h === "#/" ? "" : h; }; return n(a) === n(b); };
   /* "← Back" returns to where the person page was opened from (the People grid, a card, the gallery),
      skipping any person-to-person steps; a deep link with no in-page origin goes to the People grid. */
@@ -413,12 +439,15 @@
     var m = /^#\/person\/([^/?#]+)/.exec(location.hash), p = m && byId[decodeURIComponent(m[1])];
     if (p) {
       var wasOpen = open, st = history.state && typeof history.state === "object" ? history.state : {};
-      if (!open) { saved = window.scrollY; entered = booted; origin = prevHash; }
-      /* each person entry remembers how many steps it sits from the origin, so Back and browser Back agree */
+      if (!open) { from = pendingFrom || (st.pvf && typeof st.pvf === "object" ? st.pvf : null); entered = booted; origin = prevHash; }
+      pendingFrom = null;
+      if (window.XGoTo) window.XGoTo.stop();
+      /* each person entry remembers how many steps it sits from the origin, and where it was opened from,
+         so "← Back" and browser Back agree */
       if (typeof st.pvd === "number") depth = st.pvd;
       else {
         depth = wasOpen ? depth + 1 : 1;
-        if (history.replaceState) { var ns = {}; for (var k in st) ns[k] = st[k]; ns.pvd = depth; history.replaceState(ns, ""); }
+        if (history.replaceState) { var ns = {}; for (var k in st) ns[k] = st[k]; ns.pvd = depth; if (from) ns.pvf = from; history.replaceState(ns, ""); }
       }
       open = true;
       main.hidden = true; view.hidden = false;
@@ -433,11 +462,11 @@
     main.hidden = false;
     document.title = baseTitle;
     var target = location.hash && location.hash.length > 1 && location.hash.charAt(1) !== "/" ? document.getElementById(location.hash.slice(1)) : null;
-    if (back || !target) {
-      /* back where the reader came from: the same scroll position, restored again after the browser's own restore */
-      var y = saved;
-      jumpTo(y); requestAnimationFrame(function () { if (Math.abs(window.scrollY - y) > 2) jumpTo(y); });
-    } else target.scrollIntoView({ block: "start", behavior: still() ? "auto" : "instant" });
+    var o = from; from = null;
+    /* back where the reader came from: the same card (centred, with the grid's search and filters as they were),
+       found by element once the main page is laid out again; with no origin, the People grid */
+    if (target && !(back && o)) goTo(target);
+    else restoreFrom(o);
   };
   window.addEventListener("hashchange", route);
   window.addEventListener("popstate", route);

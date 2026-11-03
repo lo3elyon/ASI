@@ -196,15 +196,31 @@
         '<blockquote class="x-ln__q">"' + esc(p.prediction) + '"<footer>— ' + esc(p.who) + ", " + esc(p.year_made) + (p.target_year ? " · aimed at " + esc(p.target_year) : "") + "</footer></blockquote><p class=\"x-ln__ask\">What happened?</p><div class=\"x-ln__opts\">" +
         OPTS.map(function (o) { return '<button type="button" class="x-ln__opt" data-o="' + esc(o) + '">' + esc(o) + "</button>"; }).join("") + '</div><div class="x-ln__fb" aria-live="polite"></div>';
     };
+    /* The quiz is self-contained: no click inside it reaches the page's global handlers ([data-watch] links,
+       card clicks, players), so nothing opens a video or moves the page. A Source link still opens normally. */
+    el.classList.add("x-ln__quiz");
+    var steady = function (fn) {
+      var top = el.getBoundingClientRect().top;
+      el.style.minHeight = el.offsetHeight + "px"; /* never shrinks under the reader mid-quiz */
+      fn();
+      var d = el.getBoundingClientRect().top - top;
+      if (Math.abs(d) > 1) { var r = document.documentElement, b = r.style.scrollBehavior; r.style.scrollBehavior = "auto"; window.scrollBy({ top: d, left: 0, behavior: "auto" }); r.style.scrollBehavior = b; }
+    };
     el.addEventListener("click", function (e) {
-      if (e.target.closest('[data-q="again"]')) { i = 0; score = 0; streak = 0; order.sort(function () { return Math.random() - 0.5; }); paint(); return; }
-      if (e.target.closest('[data-q="next"]')) { i++; paint(); return; }
+      e.stopPropagation();
+      var src = e.target.closest("a[href]");
+      if (src) return; /* Source: the browser opens it in a new tab as usual */
+      var btn = e.target.closest("button");
+      if (btn) { e.preventDefault(); if (btn.getAttribute("type") !== "button") btn.type = "button"; }
+      if (e.target.closest('[data-q="again"]')) { i = 0; score = 0; streak = 0; order.sort(function () { return Math.random() - 0.5; }); steady(function () { el.style.minHeight = ""; paint(); }); return; }
+      if (e.target.closest('[data-q="next"]')) { i++; steady(paint); return; }
       var b = e.target.closest(".x-ln__opt"); if (!b || b.disabled) return;
       var p = P[order[i]], right = GROUP(p.status), ok = b.getAttribute("data-o") === right;
       el.querySelectorAll(".x-ln__opt").forEach(function (x) { x.disabled = true; if (x.getAttribute("data-o") === right) x.classList.add("is-right"); });
       if (!ok) b.classList.add("is-wrong");
       if (ok) { score++; streak++; } else streak = 0;
-      el.querySelector(".x-ln__fb").innerHTML = "<p><b>" + (ok ? "✅ Correct!" : "❌ Not quite.") + "</b> Status: <b>" + esc(p.status) + "</b>. " + esc(p.evidence || "") + "</p>" +
+      var fb = el.querySelector(".x-ln__fb");
+      fb.innerHTML = "<p><b>" + (ok ? "✅ Correct!" : "❌ Not quite.") + "</b> Status: <b>" + esc(p.status) + "</b>. " + esc(p.evidence || "") + "</p>" +
         (p.evidence_source_url ? '<a href="' + esc(p.evidence_source_url) + '" target="_blank" rel="noopener">Source</a> · ' : "") + '<button type="button" class="x-ln__btn" data-q="next">Next →</button>';
       var nx = el.querySelector('[data-q="next"]'); if (nx) nx.focus({ preventScroll: true });
     });

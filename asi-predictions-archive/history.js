@@ -74,7 +74,7 @@
       return id ? '<a class="x-hi__who" href="#/person/' + esc(id) + '">' + esc(n) + "</a>" : '<span class="x-hi__who is-plain">' + esc(n) + "</span>";
     }).join("");
     var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" data-watch="' + esc(m.youtube_id) + '" data-title="' + esc(m.title) + '" aria-label="Play here: ' + esc(m.title) + '">' +
-      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" loading="lazy" decoding="async" /><span class="x-hi__play">' + PLAY + "</span></a>" : "";
+      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async" /><span class="x-hi__play">' + PLAY + "</span></a>" : "";
     var quote = m.quote ? '<figure class="x-hi__quote"><blockquote>“' + esc(m.quote) + '”</blockquote>' + (m.quote_source ? "<figcaption>" + esc(m.quote_source) + "</figcaption>" : "") + "</figure>" : "";
     return '<li class="x-hi__item" id="hm-' + esc(m.id) + '" style="--c:' + COLORS[m._ci % COLORS.length] + '">' +
       '<span class="x-hi__year">' + esc(m.year) + "</span>" +
@@ -131,7 +131,7 @@
   };
   var flash = function (id) {
     var el = document.getElementById("hm-" + id); if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    if (window.XGoTo) window.XGoTo(el, { block: "center" }); else el.scrollIntoView({ block: "center" });
     el.classList.remove("is-flash"); void el.offsetWidth; el.classList.add("is-flash");
     setTimeout(function () { el.classList.remove("is-flash"); }, 2200);
   };
@@ -148,7 +148,8 @@
     if (b.dataset.ch != null) { state.tags = {}; state.ch = +b.dataset.ch; render(); return; }
     if (b.dataset.step) {
       state.ch = Math.max(0, Math.min(CH.length - 1, state.ch + +b.dataset.step)); render(); showTab();
-      document.getElementById("history").querySelector(".x-hi__tabs").scrollIntoView({ behavior: "smooth", block: "start" });
+      var tabs = document.getElementById("history").querySelector(".x-hi__tabs");
+      if (window.XGoTo) window.XGoTo(tabs); else tabs.scrollIntoView({ block: "start" });
     }
   });
 

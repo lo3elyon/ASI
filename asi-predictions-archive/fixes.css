@@ -114,7 +114,18 @@
 /* =====================================================================
    No scroll jumps: height changes in the Theater and players never move the page
    ===================================================================== */
-#theater, #ttTop, #ttPlayer, .x-tt, .x-ap, .x-wh, .x-cw, .x-pop, #people-view, .x-pv { overflow-anchor: none; }
+/* only the player surfaces opt out, so a loading player never makes the browser shift the page;
+   everything else (the library, the archive, the People grid, Learn) keeps scroll anchoring on */
+html, body, .main, #theater, #ttRows, .x-tt__lib, #people-view { overflow-anchor: auto; }
+#ttTop, #ttPlayer, .x-ap, .x-pop { overflow-anchor: none; }
+
+/* reserved space: thumbnails 16:9, portraits and avatars square, before the image arrives */
+.x-lite img, .x-th__thumb img, .x-hi__vid img, .x-pv__v img, .x-ap__poster img, .x-ap__upin img, .x-wh__mini img, .x-cw__th img { aspect-ratio: 16 / 9; }
+.x-pav img, .x-av img, .x-gal img, .x-ap__person img, .x-wh__sphead img { aspect-ratio: 1 / 1; }
+
+/* lazy lists: the sentinel is a 1px line, and while more remain it holds a fixed-height placeholder */
+.x-sent { height: 1px; }
+.x-sent.x-lazy-ph { height: 200px; }
 
 /* =====================================================================
    Watch hub panel (About, Highlights, Speaker)
@@ -263,3 +274,29 @@
 @media (prefers-reduced-motion: reduce) { .x-ap__cover { transition: none; } }
 /* people links on history cards: a full touch target even with sub-pixel rounding */
 .x-hi__people a.x-hi__who { box-sizing: border-box; min-height: 48px; min-width: 48px; flex: none; line-height: 1.2; }
+
+/* =====================================================================
+   Player QA round 2: start cover, YouTube chrome crop, back pill strip, fixed info panel
+   ===================================================================== */
+/* F1: while starting (until PLAYING has run 2500ms) the cover shows a small spinner in place of the play button */
+.x-ap__spin { display: none; position: absolute; left: 50%; top: 45%; z-index: 2; width: 28px; height: 28px; margin: -14px 0 0 -14px; border-radius: 50%; border: 2px solid var(--hero-glass-stroke); border-top-color: var(--hero-text); animation: xApSpin 0.8s linear infinite; }
+.x-ap.is-starting .x-ap__cover .x-ap__spin { display: block; }
+.x-ap.is-starting .x-ap__cover .x-ap__big { visibility: hidden; }
+@keyframes xApSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .x-ap__spin { animation-duration: 2.4s; } }
+/* F1: site mode crops YouTube's title strip and logo outside the clipped video box */
+.x-ap__screen { overflow: hidden; }
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__frame iframe { top: 0; bottom: auto; height: calc(100% + 120px); transform: translateY(-60px); }
+/* F3: the back pill sits in the strip under the player, left side, never over the video */
+.x-ap__under { display: none; }
+.x-ap.is-started.is-native:not(.is-basic) .x-ap__under { display: flex; justify-content: flex-start; padding-top: 8px; }
+.x-ap .x-ap__under .x-ap__back, .x-pop .x-ap__under .x-ap__back {
+  position: static; top: auto; right: auto; bottom: auto; left: auto; display: inline-flex;
+  background: var(--fill-tertiary); color: var(--text-primary); box-shadow: inset 0 0 0 1px var(--stroke-secondary);
+  -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+.x-ap .x-ap__under .x-ap__back:focus-visible { outline: 2px solid var(--text-primary); }
+.x-pop .x-ap__under { padding: 6px 8px; }
+/* F5: the About / Highlights / Speaker panel keeps one height; long content scrolls inside it */
+.x-wh__body { box-sizing: border-box; height: 280px; max-height: none; overflow-y: auto; }
+@media (max-width: 599px) { .x-wh__body { height: 240px; } }

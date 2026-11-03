@@ -53,7 +53,7 @@
     home(function () {
       if (g === "history") {
         var dot = doc.querySelector('#historyApp .x-hi__dot[data-go="' + id + '"]');
-        if (dot) dot.click(); else doc.getElementById("history").scrollIntoView({ behavior: "smooth" });
+        if (dot) dot.click(); else if (window.XGoTo) XGoTo("history"); else doc.getElementById("history").scrollIntoView();
       } else if (g === "entries") {
         if (window.ArchiveSite && ArchiveSite.gotoEntry) ArchiveSite.gotoEntry(id);
       } else if (g === "videos") {
@@ -63,7 +63,7 @@
         }
       } else if (g === "preds") {
         if (window.ArchiveSite && ArchiveSite.gotoPred) ArchiveSite.gotoPred(id);
-        else doc.getElementById("tracker").scrollIntoView({ behavior: "smooth" });
+        else if (window.XGoTo) XGoTo("tracker"); else doc.getElementById("tracker").scrollIntoView();
       }
     });
   };

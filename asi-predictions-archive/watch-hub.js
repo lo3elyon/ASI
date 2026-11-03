@@ -133,6 +133,7 @@
       load();
       body.classList.remove("is-in"); void body.offsetWidth;
       body.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
+      body.scrollTop = 0; /* fixed-height panel: each video's content starts at its top */
       body.classList.add("is-in");
       moveInd();
     };
