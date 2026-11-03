@@ -369,6 +369,7 @@
           <a class="btn btn--ghost" href="${esc(e.url)}" target="_blank" rel="noopener noreferrer">${ui().ICON.yt}<span>YouTube</span></a>
         </div>
         ${drHist(id)}
+        ${ui().progCard(id)}
         <form class="partial" id="drPartial"><label>Watched part of it on YouTube? Up to <input class="input input--sm" name="t" placeholder="mm:ss" inputmode="numeric" pattern="[0-9:]*" aria-label="Watched up to (mm:ss or h:mm:ss)" size="7"></label><button class="btn btn--sm btn--ghost">Save</button></form>
         ${A.feat ? A.feat.rateTagHTML(id) : ""}
         ${e.whyWatch ? `<p class="th__why"><b>Why watch:</b> ${esc(e.whyWatch)}</p>` : ""}
@@ -448,7 +449,7 @@
       <section class="panel panel--flat"><div class="panel__hd"><h2>Your watch activity</h2>${histDay ? `<button class="chip is-on" id="hDayClr">${esc(fmtDate(histDay))} ✕</button>` : `<span class="muted">Click a day to see just that day</span>`}</div>${A.charts.watchHeatmap({ day: histDay })}</section>
       ${byDay.size ? Array.from(byDay.entries()).map(([k, list]) => `<section class="hday"><h2>${esc(fmtDate(k))} <small>${fmtHM(list.reduce((a, x) => a + x.s.w, 0))}</small></h2>
         <ul class="hlist">${list.map((x) => `<li class="hrow" data-id="${x.e.id}"><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(x.e)}${ui().thumbBadges(x.e)}${ui().progBar(x.e.id)}</button>
-          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta">${ui().metaCore(x.e)}<span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.n != null ? x.s.n : x.s.w)} ${x.s.n != null ? "new" : "played"}</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span title="${esc(h().covTip(x.e.id))}">${h().pctText(x.r)} covered</span>${x.r.done ? `<span class="ok">✓ ${x.r.manual ? "Marked watched" : "Watched 100%"}</span>` : ""}</p></div>
+          <div class="hrow__tx"><button class="card__title" data-act="open">${esc(x.e.title)}</button><p class="card__meta">${ui().metaCore(x.e)}<span>${new Date(x.s.s).toTimeString().slice(0, 5)}</span><span>${fmtHM(x.s.n != null ? x.s.n : x.s.w)} ${x.s.n != null ? "new" : "played"}</span><span>${fmtTime(x.s.a)} → ${fmtTime(x.s.b)}</span><span title="${esc(h().covTip(x.e.id))}">${h().pctText(x.r)} covered</span>${x.r.done ? `<span class="ok">✓ ${h().doneLabel(x.e.id)}</span>` : ""}</p></div>
           <button class="iconbtn iconbtn--sm" data-clear="${x.e.id}" aria-label="Remove from history">${ui().ICON.trash}</button></li>`).join("")}</ul></section>`).join("") : `<div class="emptybig"><p>${histDay ? "Nothing watched that day." : "Nothing yet. Press play on anything and it shows up here, strictly counted."}</p></div>`}`;
     $("#hExport").onclick = () => { const blob = new Blob([JSON.stringify(h().exportAll(), null, 1)], { type: "application/json" }); const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `ai-safety-episodes-backup-${A.dayKey(Date.now())}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 2000); };
     $("#hImport").onchange = async (ev) => { const f = ev.target.files[0]; if (!f) return; try { h().importAll(JSON.parse(await f.text())); ui().toast("Backup restored", { icon: "✅" }); A.app.rerender(); } catch (x) { ui().toast("That file is not a valid backup: " + esc(x.message), { icon: "⚠️" }); } };
@@ -651,7 +652,7 @@
   }
   function drHist(id) {
     const r = L().H.eps[id]; const st = h().stateOf(id);
-    return st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual && !r.manual.partial ? "logged" : "watched"} <b title="${esc(h().covTip(id))}">${fmtHM(r.manual && !r.manual.partial ? r.watched : h().playedSec(r))}</b> (${r.manual && !r.manual.partial ? "Marked watched" : h().pctText(r) + " covered, unique seconds"})${r.done ? ` · ${r.manual ? "marked watched" : "watched 100%"} ` + A.fmtStamp(r.doneAt) : ""}${r.spent >= 60 ? ` · ${fmtHM(r.spent)} time spent` : ""} · last ${A.fmtStamp(r.last)}</p>` : "";
+    return st !== "none" && r ? `<p class="dr__hist">${ui().ICON.clock} ${r.manual ? `Marked as watched${r.manual.partial ? ` up to ${fmtTime(r.pos)}` : ""} on ${A.fmtStamp(r.manual.at)} · ` : ""}You've ${r.manual && !r.manual.partial ? "logged" : "watched"} <b title="${esc(h().covTip(id))}">${fmtHM(r.manual && !r.manual.partial ? r.watched : h().playedSec(r))}</b> (${r.manual && !r.manual.partial ? "Marked watched" : h().pctText(r) + " covered, unique seconds"})${r.done ? ` · ${h().doneLabel(id).toLowerCase()} ` + A.fmtStamp(r.doneAt) : ""}${r.spent >= 60 ? ` · ${fmtHM(r.spent)} time spent` : ""} · last ${A.fmtStamp(r.last)}</p>` : "";
   }
   function patchDrawer(id) {
     const dr = $("#drawer"); if (!dr || dr.hidden || drawerId !== id) return;
@@ -667,6 +668,7 @@
     const hp = dr.querySelector(".dr__hist"), html = drHist(id);
     if (!html) { if (hp) hp.remove(); }
     else { const nu = tplEl(html); if (hp) { if (hp.innerHTML !== nu.innerHTML) hp.replaceWith(nu); } else { const pf = dr.querySelector("#drPartial"); pf ? pf.before(nu) : box.after(nu); } }
+    ui().paintProg(id);
   }
   function patchRating(id) {
     const rt = (L().RATINGS || {})[id] || 0;
