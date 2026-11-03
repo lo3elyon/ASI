@@ -67,7 +67,8 @@
     if (kind === "follow") { if (on) { play(el, "fx-pop", 600); burst(el, { kind, glyphs: ["⭐", "✦"], n: 12 }); buzz(); } return; }
     if (kind === "rate") { play(el, "fx-pop", 600); if (on) burst(el, { kind, glyphs: ["★", "✦"], n: 8, dist: 30, cols: ["var(--amber)"] }); return; }
     if (kind === "pick") { play(el, "fx-pop", 600); burst(el, { kind, glyphs: ["✦", "✓"], n: 10 }); return; }
-    if (kind === "complete") { confetti(70); return; }
+    // a real 100 % play: a SMALL confetti shower (28 pieces, CSS-only, removed after 4 s); Battery saver gets a ring pulse only
+    if (kind === "complete") { if (document.documentElement.getAttribute("data-perf") === "saver") { ring(el); return; } confetti(28); return; }
     if (kind === "picksdone") { confetti(120); burst(el, { kind, glyphs: ["🎉", "✦", "⭐"], n: 16, dist: 70 }); return; }
   }
 
