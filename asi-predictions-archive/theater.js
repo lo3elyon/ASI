@@ -92,7 +92,7 @@
 
   var LISTS = {};
   var thumb = function (v) {
-    var pr = AP.progress(v.id), len = v.len ? '<span class="x-th__len">' + esc(v.len) + "</span>" : "";
+    var pr = AP.progress(v.id), len = window.XDur ? XDur.html(v.id, "x-th__len") : v.len ? '<span class="x-dur x-th__len">' + esc(v.len) + "</span>" : "";
     var secs = v.len ? String(v.len).split(":").reduce(function (a, b) { return a * 60 + (+b || 0); }, 0) : 0;
     return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
       (pr.watched ? '<span class="x-th__done">✓ Watched</span>' : "") +

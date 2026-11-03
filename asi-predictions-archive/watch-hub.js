@@ -86,11 +86,20 @@
     var id = "whf" + (++seq), sum = [lead].concat(desc).join(" ");
     /* the summary shows three lines; the button appears when there is more to read */
     var long = more.length || sum.replace(/<[^>]+>/g, "").length > 150;
+    /* speakers, linked to their profiles */
+    var who2 = sp.length ? '<div class="x-wh__who" aria-label="Speakers">' + sp.map(function (p) {
+      return '<a class="x-wh__whoa" href="#/person/' + esc(p.id) + '">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" width="28" height="28" loading="lazy" decoding="async">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
+    }).join("") + "</div>" : "";
+    var nx = NX(), claims = nx && nx.summary ? nx.summary(v) : "";
     return '<div class="x-wh__about">' +
       '<h3 class="x-wh__title">' + esc(v.t) + "</h3>" +
       (chips ? '<div class="x-wh__chips">' + chips + "</div>" : "") +
+      who2 +
       '<div class="x-wh__desc" id="' + id + '"><p class="x-wh__sum">' + sum + "</p>" + (more.length ? '<div class="x-wh__full">' + more.join("") + "</div>" : "") + "</div>" +
       (long ? '<button type="button" class="x-wh__toggle" data-wh-more aria-expanded="false" aria-controls="' + id + '">Read full description</button>' : "") +
+      (claims ? '<div class="x-wh__claims">' + claims + "</div>" : "") +
+      '<details class="x-wh__more"><summary>Context highlights</summary>' + highlights(v) + "</details>" +
+      (sp.length ? '<details class="x-wh__more"><summary>Speaker' + (sp.length > 1 ? "s" : "") + " and more talks</summary>" + speaker(v) + "</details>" : "") +
       "</div>";
   };
 
@@ -131,19 +140,55 @@
         '<a class="x-wh__view" href="#/person/' + esc(p.id) + '">View profile <span aria-hidden="true">→</span></a>' +
         (more.length ? '<p class="x-wh__sub">More talks</p><ul class="x-wh__talks" aria-label="Other talks by ' + esc(p.name) + '">' + more.map(function (id) {
           var x = VIDS[id];
-          return '<li><button type="button" class="x-wh__row" data-wh-play="' + esc(id) + '" title="' + esc(x.t) + '"><img src="' + AP.thumb(id) + '" alt="" loading="lazy" decoding="async" width="96" height="54"><span class="x-wh__rowtx"><b>' + esc(x.t) + "</b>" + (x.len || x.c ? "<small>" + esc([x.c, x.len].filter(Boolean).join(" · ")) + "</small>" : "") + "</span></button></li>";
+          return '<li><button type="button" class="x-wh__row" data-wh-play="' + esc(id) + '" title="' + esc(x.t) + '"><span class="x-dur-w"><img src="' + AP.thumb(id) + '" alt="" loading="lazy" decoding="async" width="96" height="54">' + (window.XDur ? XDur.html(id) : "") + '</span><span class="x-wh__rowtx"><b>' + esc(x.t) + "</b>" + (x.len || x.c ? "<small>" + esc([x.c, x.len].filter(Boolean).join(" · ")) + "</small>" : "") + "</span></button></li>";
         }).join("") + "</ul>" : "") +
         "</div>";
     }).join("");
   };
 
-  /* [key, label, icon, tooltip] */
-  var TABS = [["about", "About", "ℹ", "About this talk"], ["ch", "Chapters", "≡", "Chapters"], ["tr", "Transcript", "¶", "Transcript"], ["sum", "Summary", "✎", "Summary and key claims"],
-    ["hl", "Highlights", "✦", "Context highlights"], ["sp", "Speaker", "👤", "Speaker profile"]];
+  /* [key, label, icon, tooltip]: the same five tabs in every mode (page, theater, window, mini flyout, fullscreen) */
+  var TABS = [["about", "About", "ℹ", "About this talk"], ["ch", "Chapters", "≡", "Chapters"], ["tr", "Transcript", "¶", "Transcript"],
+    ["up", "Up next", "▶", "Up next and queue"], ["notes", "Notes", "✎", "Your notes and bookmarks"]];
   /* the notes tabs (player-notes.js) show only for videos that have them */
-  var NOTE_TABS = { ch: 1, tr: 1, sum: 1 };
+  var NOTE_TABS = { ch: 1, tr: 1 };
   var NX = function () { return window.ArchiveNotes || null; };
-  var UPTAB = ["up", "Up next", "▶", "Up next in this window"];
+
+  /* ---------- Notes tab: a free-text note per talk, kept on this device ---------- */
+  var NK = "asi.talkNotes";
+  var readNotes = function () { try { var o = JSON.parse(localStorage.getItem(NK)); return o && typeof o === "object" ? o : {}; } catch (e) { return {}; } };
+  var noteOf = function (id) { var o = readNotes()[id]; return o && typeof o.x === "string" ? o.x : ""; };
+  var saveNote = function (id, x) {
+    var o = readNotes();
+    if (x && x.trim()) o[id] = { x: x, at: Date.now() }; else delete o[id];
+    try { localStorage.setItem(NK, JSON.stringify(o)); } catch (e) {}
+  };
+  var notesTab = function (v, uid) {
+    return '<div class="x-wh__notes"><p class="x-pn-h">Your notes</p>' +
+      '<label class="x-pn-sr" for="' + uid + '-note">Notes on this talk</label>' +
+      '<textarea class="x-wh__note" id="' + uid + '-note" rows="5" placeholder="Write while you watch. Press the clock to drop in the current time." data-wh-note>' + esc(noteOf(v.id)) + "</textarea>" +
+      '<div class="x-wh__noterow"><button type="button" class="x-pn-btn" data-wh-stamp>⏱ Insert time</button><span class="x-wh__saved" aria-live="polite"></span></div>' +
+      '<p class="x-pn-cnote x-wh__nhelp">Saved on this device as you type. Bookmarks (B) are listed below.</p></div>';
+  };
+
+  /* ---------- Up next: the queue, then related talks (same people, then same kind) ---------- */
+  var upList = function (inst) {
+    load();
+    var st = inst.state ? inst.state() : {}, v = st.video; if (!v) return "";
+    var q = (st.queue || []).filter(Boolean), out = [], seen = {};
+    var row = function (x, i, now) {
+      var yr = AP.year ? AP.year(x.d) : 0;
+      return '<li><button type="button" class="x-wh__row x-wh__uprow" data-wh-q="' + i + '" data-wh-id="' + esc(x.id) + '"' + (now ? ' aria-current="true"' : "") + ' title="' + esc(x.t) + '">' +
+        '<span class="x-dur-w"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="96" height="54">' + (window.XDur ? XDur.html(x.id) : "") + '</span><span class="x-wh__rowtx"><b>' + esc(x.t) + "</b><small>" + esc([x.c, yr || "", x.len].filter(Boolean).join(" · ")) + "</small></span>" +
+        (now ? '<span class="x-wh__now">Playing</span>' : "") + "</button></li>";
+    };
+    q.forEach(function (x, i) { seen[x.id] = 1; out.push(row(x, i, i === st.index)); });
+    var more = [], p = v.p || [];
+    Object.keys(VIDS).forEach(function (id) { var x = VIDS[id]; if (seen[id] || more.length >= 8) return; if ((x.p || []).some(function (pid) { return p.indexOf(pid) >= 0; })) { seen[id] = 1; more.push(x); } });
+    if (v.k) Object.keys(VIDS).forEach(function (id) { var x = VIDS[id]; if (seen[id] || more.length >= 8) return; if (x.k === v.k) { seen[id] = 1; more.push(x); } });
+    return (q.length > 1 ? '<p class="x-pn-h">Queue · ' + q.length + " talks</p><ol class=\"x-wh__uplist\">" + out.join("") + "</ol>" : "") +
+      (more.length ? '<p class="x-pn-h x-wh__uph">Related talks</p><ol class="x-wh__uplist">' + more.map(function (x) { return row(x, -1, false); }).join("") + "</ol>" : "") +
+      (q.length <= 1 && !more.length ? '<p class="x-wh__muted">Nothing queued after this talk.</p>' : "");
+  };
   var FOLD = "asiWatch.panelHidden";
   var folded = false;
   try { folded = localStorage.getItem(FOLD) === "1"; } catch (e) {}
@@ -157,14 +202,15 @@
     var host = inst.root; if (!host || host.querySelector(".x-wh")) return;
     var pop = host.closest ? host.closest(".x-pop") : null;
     var list = pop ? pop.querySelector(".x-pop__list") : null;
-    var tabs = TABS.concat(list ? [UPTAB] : []);
+    var tabs = TABS;
     var uid = "wh" + (++seq);
     var box = document.createElement("div");
     box.className = "x-wh";
     box.innerHTML =
+      '<div class="x-wh__grip" role="separator" aria-orientation="vertical" aria-label="Resize the side panel" title="Drag to resize · double-click to reset" tabindex="0" aria-valuemin="280" aria-valuemax="720"></div>' +
       '<div class="x-wh__main" id="' + uid + '-main">' +
         '<p class="x-wh__prog" aria-live="off"></p>' +
-        '<div class="x-wh__body" id="' + uid + '-body" role="tabpanel" tabindex="-1"><div class="x-wh__pane"></div>' + (list ? '<div class="x-wh__up" hidden></div>' : "") + "</div>" +
+        '<div class="x-wh__body" id="' + uid + '-body" role="tabpanel" tabindex="-1"><div class="x-wh__pane"></div><div class="x-wh__up" hidden>' + (list ? "" : '<div class="x-wh__upin"></div>') + "</div></div>" +
         '<button type="button" class="x-wh__down" data-wh-down hidden aria-label="Scroll the panel down">↓ more</button>' +
       "</div>" +
       '<div class="x-wh__rail">' +
@@ -173,6 +219,7 @@
             '<span class="x-wh__ic" aria-hidden="true">' + t[2] + '</span><span class="x-wh__lb">' + t[1] + "</span></button>";
         }).join("") + "</div>" +
         '<button type="button" class="x-wh__fold" data-wh-fold aria-controls="' + uid + '-main"><span class="x-wh__ic" aria-hidden="true"></span><span class="x-wh__lb"></span></button>' +
+        '<button type="button" class="x-wh__x" data-wh-close aria-label="Close the panel (\\)" title="Close (\\)">×</button>' +
       "</div>";
     host.appendChild(box);
     host.classList.add("has-wh");
@@ -185,16 +232,26 @@
     var side = false;
     var isSide = function () { return side; };
     var layout = function () {
+      /* fullscreen has its own layout (watch-shell rules): panel on the right, or a bottom sheet on narrow or portrait screens */
+      var fs = host.classList.contains("is-fs");
+      var sheet = fs && (host.clientWidth < 640 || window.innerHeight > window.innerWidth);
+      host.classList.toggle("is-fs-sheet", sheet);
+      host.classList.toggle("is-fs-side", fs && !sheet);
+      if (fs) applyW();
       /* the wide window puts the video across the full width, with the panel under it */
-      var on = !!(wide && wide.matches) && host.clientWidth >= SIDE_MIN && !(pop && (!pop.classList.contains("is-modal") || pop.classList.contains("is-wide")));
+      var on = !fs && !!(wide && wide.matches) && host.clientWidth >= SIDE_MIN && !(pop && (!pop.classList.contains("is-modal") || pop.classList.contains("is-wide")));
       if (on === side && host.classList.contains("is-wh-side") === on) return;
       side = on; host.classList.toggle("is-wh-side", on);
       orient(); edges();
     };
 
     /* soft fade masks and the "more" chevron, only when the side panel has more to show */
+    var isFly = function () { return host.classList.contains("is-wh-fly"); };
+    var isMini = function () { return !!pop && !pop.classList.contains("is-modal") && !host.classList.contains("is-fs"); };
+    /* the panel body is its own scroller beside the video, in fullscreen (side or sheet) and in the mini flyout */
+    var scrolls = function () { return isSide() || host.classList.contains("is-fs") || isFly(); };
     var edges = function () {
-      var can = isSide() && !folded && !box.hidden && body.scrollHeight - body.clientHeight > 2;
+      var can = scrolls() && (isFly() || !folded) && !box.hidden && body.scrollHeight - body.clientHeight > 2;
       var top = can && body.scrollTop > 2, bot = can && body.scrollHeight - body.clientHeight - body.scrollTop > 2;
       body.classList.toggle("is-fade-top", top); body.classList.toggle("is-fade-bot", bot);
       down.hidden = !bot;
@@ -208,10 +265,11 @@
       foldB.querySelector(".x-wh__ic").textContent = folded ? "⇤" : "⇥";
       foldB.querySelector(".x-wh__lb").textContent = folded ? "Show" : "Hide";
       edges();
+      if (inst._sxPanelPaint) inst._sxPanelPaint();
     };
     var slideIn = function () { body.classList.remove("is-in"); void body.offsetWidth; body.classList.add("is-in"); };
     var showCurrentInList = function () {
-      var c = up && up.querySelector('[aria-current="true"]'); if (!c || !isSide()) return;
+      var c = up && up.querySelector('[aria-current="true"]'); if (!c || !scrolls()) return;
       body.scrollTop += c.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
     };
     var syncTabs = function () {
@@ -234,6 +292,9 @@
       body.setAttribute("aria-labelledby", uid + "-" + cur);
       if (cur === "up") {
         pane.hidden = true; up.hidden = false;
+        /* the page and theater players list their own queue and related talks; the window keeps its list */
+        var upin = up.querySelector(".x-wh__upin");
+        if (upin && (force || anim || upin.__id !== v.id)) { upin.__id = v.id; upin.innerHTML = upList(inst); }
         if (anim) { slideIn(); body.scrollTop = 0; showCurrentInList(); }
         edges(); return;
       }
@@ -242,7 +303,7 @@
       last = v.id + cur;
       load();
       if (NOTE_TABS[cur] && NX()) { pane.innerHTML = ""; NX().render(cur, v, pane, inst); }
-      else pane.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
+      else pane.innerHTML = cur === "notes" ? notesTab(v, uid) : about(v);
       body.scrollTop = 0; /* each video and tab starts at its top */
       slideIn();
       edges();
@@ -256,13 +317,34 @@
     box.addEventListener("click", function (e) {
       var t = e.target.closest(".x-wh__tab");
       if (t) {
-        var k = t.getAttribute("data-t"), reopen = folded && isSide();
+        var k = t.getAttribute("data-t"), reopen = folded && !isFly();
         if (k === cur && !reopen) return;
         select(k);
         keep(function () { if (reopen) setFold(false, true); paint(false, true); });
         return;
       }
       if (e.target.closest("[data-wh-fold]")) { keep(function () { setFold(!folded, true); }); return; }
+      if (e.target.closest("[data-wh-close]")) { keep(function () { toggle(false); }); return; }
+      if (e.target.closest("[data-wh-stamp]")) { stamp(); return; }
+      var qr = e.target.closest("[data-wh-id]");
+      if (qr) {
+        e.preventDefault();
+        var st = inst.state(), qi = +qr.getAttribute("data-wh-q"), x = VIDS[qr.getAttribute("data-wh-id")];
+        keep(function () {
+          if (qi >= 0 && st.queue && st.queue[qi]) inst.load(st.queue[qi], { queue: st.queue, index: qi });
+          else if (x) { var qq = (st.queue || []).slice(); qq.splice((st.index || 0) + 1, 0, x); inst.load(x, { queue: qq, index: (st.index || 0) + 1 }); }
+          else return;
+          if (st.playing) inst.play();
+        });
+        return;
+      }
+      /* names and topics lead to other pages: leave fullscreen first, so the page that opens is on show */
+      if (e.target.closest('a[href^="#/person/"], a[href^="#/topic/"]')) {
+        var d = document;
+        if (d.fullscreenElement || d.webkitFullscreenElement) { try { (d.exitFullscreen || d.webkitExitFullscreen).call(d); } catch (x2) {} }
+        if (inst.exitPseudoFs) inst.exitPseudoFs();
+        if (isFly()) toggle(false);
+      }
       if (e.target.closest("[data-wh-down]")) { body.scrollBy({ top: Math.max(80, body.clientHeight * 0.85), behavior: still() ? "auto" : "smooth" }); return; }
       var mo = e.target.closest("[data-wh-more]");
       if (mo) {
@@ -291,6 +373,103 @@
       n.focus({ preventScroll: true }); n.click();
     });
     body.addEventListener("scroll", edges, { passive: true });
+
+    /* ---------- Notes tab: saves as you type; the clock inserts the current time ---------- */
+    var noteT = 0;
+    box.addEventListener("input", function (e) {
+      if (!e.target.matches || !e.target.matches("[data-wh-note]")) return;
+      var v = inst.current && inst.current(); if (!v) return;
+      var ta = e.target, out = box.querySelector(".x-wh__saved");
+      clearTimeout(noteT); noteT = setTimeout(function () { saveNote(v.id, ta.value); if (out) out.textContent = "Saved"; setTimeout(function () { if (out) out.textContent = ""; }, 1400); }, 400);
+    });
+    var stamp = function () {
+      var ta = box.querySelector("[data-wh-note]"), v = inst.current && inst.current(); if (!ta || !v) return;
+      var t = inst.started && inst.started() ? inst.now() : (AP.position ? AP.position(v.id).pos : 0);
+      var s = "[" + fmt(t) + "] ", a = ta.selectionStart || ta.value.length, b = ta.selectionEnd || a;
+      var pre = ta.value.slice(0, a), nl = pre && !/\n$/.test(pre) ? "\n" : "";
+      ta.value = pre + nl + s + ta.value.slice(b);
+      var at = (pre + nl + s).length;
+      try { ta.focus({ preventScroll: true }); ta.setSelectionRange(at, at); } catch (x) {}
+      saveNote(v.id, ta.value);
+    };
+    /* keys typed in the note never reach the player's shortcuts */
+    box.addEventListener("keydown", function (e) { if (e.target.matches && e.target.matches("[data-wh-note]")) e.stopPropagation(); });
+
+    /* ---------- open, collapse, and the mini player's flyout ---------- */
+    var fly = false;
+    var placeFly = function () {
+      if (!fly || !pop) return;
+      var r = pop.getBoundingClientRect(), vw = document.documentElement.clientWidth || window.innerWidth, vh = window.innerHeight;
+      var w = Math.min(vw - 16, Math.max(320, r.width)), h, x, y;
+      if (r.top >= 280) { h = Math.min(r.top - 16, vh * 0.6, 520); y = r.top - 8 - h; x = r.left; }
+      else if (vh - r.bottom >= 280) { h = Math.min(vh - r.bottom - 16, vh * 0.6, 520); y = r.bottom + 8; x = r.left; }
+      else if (r.left >= 340) { w = Math.min(r.left - 16, 420); h = Math.min(vh - 16, 560); y = Math.max(8, Math.min(r.top, vh - h - 8)); x = r.left - 8 - w; }
+      else { w = r.width; h = r.height; x = r.left; y = r.top; }
+      x = Math.max(8, Math.min(vw - w - 8, x));
+      box.style.left = Math.round(x) + "px"; box.style.top = Math.round(y) + "px";
+      box.style.width = Math.round(w) + "px"; box.style.height = Math.round(h) + "px";
+    };
+    var setFly = function (on) {
+      fly = !!on; host.classList.toggle("is-wh-fly", fly);
+      if (!fly) { box.style.left = box.style.top = box.style.width = box.style.height = ""; }
+      else { placeFly(); paint(false, true); }
+      edges(); if (inst._sxPanelPaint) inst._sxPanelPaint();
+    };
+    var toggle = function (want) {
+      if (isMini()) { setFly(want == null ? !fly : want); return; }
+      if (fly) setFly(false);
+      setFold(want == null ? !folded : !want, true);
+      if (!folded) paint(false, false);
+    };
+    inst._whToggle = function () { keep(function () { toggle(); }); };
+    inst._whOpen = function () { return isMini() ? fly : !folded; };
+    if (pop && "MutationObserver" in window) new MutationObserver(function () { if (fly) { if (!isMini()) setFly(false); else placeFly(); } }).observe(pop, { attributes: true, attributeFilter: ["class", "style", "hidden"] });
+    window.addEventListener("resize", function () { if (fly) placeFly(); }, { passive: true });
+    document.addEventListener("pointerdown", function (e) {
+      if (fly && !box.contains(e.target) && !(e.target.closest && e.target.closest('[data-x="panel"]'))) setFly(false);
+    });
+
+    /* ---------- resize: drag the panel's inner edge (beside the video and in fullscreen); remembered ---------- */
+    var WK = "asi.panelW", PW = 0;
+    try { PW = +localStorage.getItem(WK) || 0; } catch (e) {}
+    var maxW = function () { return Math.max(300, Math.min(720, host.clientWidth * 0.6)); };
+    var applyW = function () {
+      if (PW > 0) host.style.setProperty("--wh-w", Math.round(Math.max(280, Math.min(maxW(), PW))) + "px");
+      else host.style.removeProperty("--wh-w");
+      grip.setAttribute("aria-valuenow", String(Math.round(box.offsetWidth || PW || 380)));
+    };
+    var grip = box.querySelector(".x-wh__grip"), gd = null;
+    grip.addEventListener("pointerdown", function (e) {
+      if (e.button !== 0) return;
+      e.preventDefault(); e.stopPropagation();
+      try { grip.setPointerCapture(e.pointerId); } catch (x) {}
+      gd = { id: e.pointerId }; host.classList.add("is-wh-sizing");
+    });
+    grip.addEventListener("pointermove", function (e) {
+      if (!gd || e.pointerId !== gd.id) return;
+      var r = host.getBoundingClientRect();
+      PW = Math.max(280, Math.min(maxW(), r.right - e.clientX)); applyW();
+    });
+    var endG = function (e) {
+      if (!gd || e.pointerId !== gd.id) return;
+      gd = null; host.classList.remove("is-wh-sizing");
+      try { grip.releasePointerCapture(e.pointerId); } catch (x) {}
+      try { localStorage.setItem(WK, String(Math.round(PW))); } catch (x) {}
+    };
+    grip.addEventListener("pointerup", endG); grip.addEventListener("pointercancel", endG);
+    grip.addEventListener("dblclick", function () { PW = 0; try { localStorage.removeItem(WK); } catch (x) {} applyW(); });
+    grip.addEventListener("keydown", function (e) {
+      var d = e.key === "ArrowLeft" ? 24 : e.key === "ArrowRight" ? -24 : 0; if (!d) return;
+      e.preventDefault(); e.stopPropagation();
+      PW = Math.max(280, Math.min(maxW(), (PW || box.offsetWidth || 380) + d)); applyW();
+      try { localStorage.setItem(WK, String(Math.round(PW))); } catch (x) {}
+    });
+    applyW();
+
+    var onFsChange = function () { requestAnimationFrame(function () { if (fly && host.classList.contains("is-fs")) setFly(false); layout(); applyW(); edges(); paint(false, false); }); };
+    document.addEventListener("fullscreenchange", onFsChange);
+    document.addEventListener("webkitfullscreenchange", onFsChange);
+    document.addEventListener("x-fschange", onFsChange);
     if ("ResizeObserver" in window) {
       var ro = new ResizeObserver(function () { edges(); }); ro.observe(body); ro.observe(pane); if (up) ro.observe(up);
       new ResizeObserver(function () { layout(); }).observe(host);
@@ -310,7 +489,8 @@
       });
       inst.on("state", function () { paintProg(); });
     }
-    inst._whPaint = function () { paint(false); paintProg(); };
+    /* called once by player-notes.js when it loads: About gains the summary and key claims then */
+    inst._whPaint = function () { paint(true); paintProg(); };
     /* a transcript that failed to load: its tab goes away quietly, and the panel falls back to About if it was showing */
     inst._whSync = function () { if (syncTabs()) keep(function () { paint(true); }); };
   };
@@ -359,7 +539,7 @@
     row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
-        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135"><span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id)) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
+        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id)) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
       }).join("") + "</div>";
   };
 
@@ -376,7 +556,7 @@
     drawer.querySelector(".x-whd__stats").innerHTML = '<div><b>' + all.length + "</b><span>talks started</span></div><div><b>" + done + "</b><span>finished</span></div><div><b>" + fmt(tot) + "</b><span>time watched</span></div>";
     drawer.querySelector(".x-whd__list").innerHTML = all.length ? all.map(function (x) {
       var v = vidOf(x.id);
-      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="112" height="63"><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span></span></button>';
+      return '<button type="button" class="x-whd__it" data-cw-play="' + esc(x.id) + '"><span class="x-dur-w"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="112" height="63">' + (window.XDur ? XDur.html(x.id) : "") + '</span><span><b>' + esc(v.t) + "</b><small>" + esc(v.c || "") + " · " + ago(x.r.last) + " · watched " + fmt(x.r.sec || 0) + '</small><span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span></span></button>';
     }).join("") : '<p class="x-wh__muted">Nothing watched yet. Press play on any talk and it appears here.</p>';
     drawer.hidden = false; requestAnimationFrame(function () { drawer.classList.add("is-open"); });
     var x = drawer.querySelector(".x-whd__x"); if (x) x.focus({ preventScroll: true });

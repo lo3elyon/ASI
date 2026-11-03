@@ -46,7 +46,7 @@
   };
   var emit = function () { var s = { speaking: !!cur, id: cur ? cur.id : null }; subs.forEach(function (f) { try { f(s); } catch (e) {} }); };
   var stop = function () {
-    tok++; clearInterval(keep);
+    tok++; clearInterval(keep); clearTimeout(speak.wd);
     if (ok) ss.cancel();
     all = false;
     cur = null;
@@ -56,16 +56,18 @@
     o = o || {};
     if (!ok) return false;
     var list = chunks(text); if (!list.length) return false;
-    var my = ++tok, i = 0;
-    ss.cancel(); clearInterval(keep);
-    cur = { id: o.id || "x" }; emit();
-    var done = function () { if (my !== tok) return; clearInterval(keep); cur = null; emit(); if (o.onend) o.onend(); };
+    var my = ++tok, i = 0, began = false;
+    ss.cancel(); clearInterval(keep); clearTimeout(speak.wd);
+    /* the pressed state shows at once, on the click; the 'start' event confirms it and 'end' clears it */
+    cur = { id: o.id || "x", live: false }; emit();
+    var done = function () { if (my !== tok) return; clearInterval(keep); clearTimeout(speak.wd); cur = null; emit(); if (o.onend) o.onend(); };
     var next = function () {
       if (my !== tok) return;
       if (i >= list.length) { done(); return; }
       var u = new SpeechSynthesisUtterance(list[i++]);
       if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = "en-GB";
       u.rate = 0.95 * rate;
+      u.onstart = function () { if (my !== tok) return; began = true; clearTimeout(speak.wd); if (cur) { cur.live = true; emit(); } };
       u.onend = next;
       u.onerror = function (e) { if (my !== tok) return; if (e && (e.error === "interrupted" || e.error === "canceled")) return; next(); };
       ss.speak(u);
@@ -73,6 +75,8 @@
     };
     /* Chrome drops an utterance spoken in the same tick as cancel(); a short gap avoids it */
     setTimeout(next, 80);
+    /* if the browser never starts speaking (no voice, blocked), the buttons go back to rest after 4s */
+    speak.wd = setTimeout(function () { if (my !== tok || began || ss.speaking) return; tok++; all = false; cur = null; emit(); }, 4000);
     /* Chrome pauses long speech after ~15s; a pause/resume nudge keeps it going (not on Android, where pause ends it) */
     if (!android) keep = setInterval(function () { if (my !== tok || !ss.speaking) return; ss.pause(); ss.resume(); }, 10000);
     return true;

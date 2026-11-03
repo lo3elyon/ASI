@@ -178,7 +178,7 @@
     var cc = NX() && NX().hasCC(v.id);
     return '<span class="x-pv__th x-th16"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
       '<span class="x-th16__play" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>' +
-      (v.len ? '<span class="x-th16__len">' + esc(v.len) + "</span>" : "") +
+      (window.XDur ? XDur.html(v.id, "x-th16__len") : v.len ? '<span class="x-dur x-th16__len">' + esc(v.len) + "</span>" : "") +
       (cc ? '<span class="x-pv__cc" title="Transcript and captions">CC</span>' : "") + "</span>";
   };
   var vtext = function (v) {
@@ -256,7 +256,7 @@
 
     view.innerHTML =
       '<div class="links x-pv__top"><a class="btn" href="#people" data-back>← Back</a></div>' +
-      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (p.photo ? '<img class="x-pv__bg" src="' + esc(p.photo) + '" alt="" aria-hidden="true" decoding="async" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
+      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (p.photo ? '<img class="x-pv__bg" src="' + esc(p.photo) + '" alt="" aria-hidden="true" width="400" height="400" decoding="async" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
         "<h1>" + esc(p.name) + "</h1>" +
         (p.born_died ? '<p class="x-pv__sub">' + esc(p.born_died) + "</p>" : "") +
         '<p class="x-pv__sub">' + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p>" +

@@ -43,13 +43,24 @@
   var applyAll = function () { all.forEach(function (x) { x.applyVol(); x.paintVol(); }); };
 
   var SHORTCUTS = [
-    ["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"],
-    ["↑ / ↓", "Volume up or down 10%"], ["M", "Mute or unmute"], ["F", "Fullscreen"], ["T", "Theater mode (wide window in the pop-out)"],
-    ["C", "Captions on or off (site captions, or YouTube's when a talk has no transcript)"], ["+ / −", "Larger or smaller captions"], ["B", "Bookmark this moment"], ["0 – 9", "Jump to 0% – 90% of the video"], [", / .", "Back or forward one frame, while paused"],
-    ["Shift + N", "Next video"], ["Shift + P", "Previous video"], ["Shift + > / <", "Faster or slower"], ["R", "Loop this video"],
-    ["I", "Picture-in-picture: pop out or dock"], ["Scroll on 🔊", "Volume up or down"], ["?", "This sheet"], ["Esc", "Close this sheet or the ⚙ menu"]
+    ["Space / K", "Play or pause"], ["J / L", "Back or forward by the skip step (5, 10 or 30 s, set in ⚙)"], ["← / →", "Back or forward 5 seconds"],
+    [", / .", "Back or forward 1 second"], ["0 – 9", "Jump to 0% – 90% of the video"],
+    ["↑ / ↓", "Volume up or down 10%"], ["M", "Mute or unmute"], ["Shift + > / <", "Faster or slower (0.25× – 3×)"],
+    ["F", "Fullscreen: video and side panel"], ["\\", "Show or hide the side panel"], ["T", "Theater mode (wide window in the pop-out)"], ["I", "Picture-in-picture: the site's mini player"],
+    ["Y", "Switch between the site player and YouTube controls"],
+    ["C", "Captions on or off (site captions, or YouTube's when a talk has no transcript)"], ["+ / −", "Larger or smaller captions"],
+    ["A", "A–B loop: set A, then B, then clear"], ["R", "Loop this video"], ["B", "Bookmark this moment"],
+    ["Shift + N", "Next video"], ["Shift + P", "Previous video"],
+    ["Scroll on 🔊", "Volume up or down"], ["?", "This sheet"], ["Esc", "Close this sheet or the ⚙ menu; leave fullscreen"]
   ];
-  var SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
+  var SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
+  var QL = { hd2160: "2160p", hd1440: "1440p", hd1080: "1080p", hd720: "720p", large: "480p", medium: "360p", small: "240p", tiny: "144p", highres: "Highest", auto: "Auto" };
+  var IC2 = {
+    panel: svg('<rect x="3" y="4.5" width="18" height="15" rx="2"/><path d="M14.5 4.5v15"/><path d="M17 9h1.5M17 12h1.5"/>'),
+    palette: svg('<path d="M12 3.5a8.5 8.5 0 1 0 0 17c1.2 0 1.8-.8 1.8-1.7 0-1.2-1-1.6-1-2.6 0-.9.7-1.5 1.6-1.5h2.1a4 4 0 0 0 4-4C20.5 6.6 16.7 3.5 12 3.5z"/><circle cx="7.6" cy="11.5" r="1.2" fill="currentColor"/><circle cx="10" cy="7.6" r="1.2" fill="currentColor"/><circle cx="14.6" cy="7.6" r="1.2" fill="currentColor"/>'),
+    site: svg('<rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M7 15h10"/><circle cx="10" cy="15" r="1.4" fill="currentColor"/>'),
+    sleep: svg('<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>')
+  };
   var fmt = AP.fmt || function (s) { s = Math.max(0, Math.floor(s || 0)); return Math.floor(s / 60) + ":" + (s % 60 < 10 ? "0" : "") + (s % 60); };
 
   var uid = 0;
@@ -85,6 +96,10 @@
     /* Theater is an icon button too, so its width never changes when it toggles */
     var thB = btns.querySelector('[data-a="theater"]');
     if (thB) { thB.innerHTML = IC.frame.replace(/width="30" height="30"/, 'width="18" height="18"') + lbl("Theater"); thB.setAttribute("aria-label", "Theater mode (T)"); thB.setAttribute("data-tip", "Theater mode (T)"); thB.removeAttribute("title"); }
+    /* the side-panel toggle sits before Fullscreen; the caption-style palette right after CC */
+    if (fsB) fsB.insertAdjacentHTML("beforebegin", '<button class="x-ap__b x-sx-panelb" type="button" data-x="panel" aria-pressed="true" aria-label="Side panel (\\)" data-tip="Side panel (\\)">' + IC2.panel + lbl("Side panel") + "</button>");
+    var ccB0 = btns.querySelector('[data-x="cc"]');
+    if (ccB0) ccB0.insertAdjacentHTML("afterend", '<button class="x-ap__b x-sx-palb" type="button" data-x="palette" aria-label="Caption style" data-tip="Caption style">' + IC2.palette + lbl("Caption style") + "</button>");
     var keysB = btns.querySelector('[data-a="keys"]');
     if (keysB) { keysB.innerHTML = '<span aria-hidden="true">?</span>' + lbl("Keyboard shortcuts"); keysB.setAttribute("aria-label", "Keyboard shortcuts (?)"); keysB.setAttribute("data-tip", "Shortcuts (?)"); }
 
@@ -93,9 +108,19 @@
       '<button class="x-ap__b x-apx-more" type="button" data-x="more" aria-haspopup="true" aria-expanded="false" aria-controls="' + id + '" aria-label="Settings: speed, A–B repeat, captions, loop" title="Settings: speed, A–B repeat, captions, loop">' + IC.more + "</button>");
     bar.insertAdjacentHTML("beforeend",
       '<div class="x-apx-menu" id="' + id + '" role="group" aria-label="Settings" hidden>' +
-        '<div class="x-apx-sec"><p class="x-apx-h">Speed</p><div class="x-apx-speeds" role="group" aria-label="Playback speed">' +
-          SPEEDS.map(function (s) { return '<button class="x-ap__b" type="button" data-x="rate" data-rate="' + s + '" aria-pressed="' + (s === 1) + '">' + (s === 1 ? "Normal" : s + "×") + "</button>"; }).join("") +
+        '<div class="x-apx-sec"><p class="x-apx-h">Speed <span class="x-apx-abtx" data-r="rate">1×</span></p><div class="x-apx-speeds x-sx-speeds" role="group" aria-label="Playback speed">' +
+          SPEEDS.map(function (s) { return '<button class="x-ap__b" type="button" data-x="rate" data-rate="' + s + '" aria-pressed="' + (s === 1) + '">' + (s === 1 ? "1×" : s + "×") + "</button>"; }).join("") +
+        "</div>" +
+        '<label class="x-sx-fine"><span class="x-ap__sr">Fine speed</span><input class="x-apx-range" type="range" min="0.25" max="3" step="0.05" value="1" data-x="ratefine" aria-label="Fine playback speed" /></label>' +
+        "</div>" +
+        '<div class="x-apx-sec"><p class="x-apx-h">Skip step <span class="x-apx-abtx">J / L and the ± buttons</span></p><div class="x-apx-abrow" role="group" aria-label="Skip step">' +
+          [5, 10, 30].map(function (s) { return '<button class="x-ap__b" type="button" data-x="step" data-step="' + s + '" aria-pressed="false">' + s + " s</button>"; }).join("") +
         "</div></div>" +
+        '<div class="x-apx-sec"><p class="x-apx-h">Sleep timer <span class="x-apx-abtx" data-r="sleep">Off</span></p><div class="x-sx-row5" role="group" aria-label="Sleep timer">' +
+          [["off", "Off"], ["15", "15 m"], ["30", "30 m"], ["60", "60 m"], ["ch", "Chapter"]].map(function (s) { return '<button class="x-ap__b" type="button" data-x="sleep" data-sleep="' + s[0] + '" aria-pressed="' + (s[0] === "off") + '"' + (s[0] === "ch" ? ' title="Stop at the end of this chapter"' : "") + ">" + s[1] + "</button>"; }).join("") +
+        "</div></div>" +
+        '<div class="x-apx-sec"><p class="x-apx-h">Quality <span class="x-apx-abtx" data-r="ql">Auto</span></p><div class="x-sx-ql" role="group" aria-label="Quality"></div></div>' +
+        '<button class="x-ap__b x-sx-rem" type="button" data-x="remember" aria-pressed="true">' + svg('<path d="M7 4h10v16l-5-3.6L7 20z"/>') + '<span class="x-apx-lbl">Remember position</span></button>' +
         '<div class="x-apx-sec"><p class="x-apx-h">A–B repeat <span class="x-apx-abtx" data-r="ab">Off</span></p><div class="x-apx-abrow">' +
           '<button class="x-ap__b" type="button" data-x="abA" aria-pressed="false" title="Set A at the current time">Set A</button>' +
           '<button class="x-ap__b" type="button" data-x="abB" aria-pressed="false" title="Set B at the current time; playback loops from A to B">Set B</button>' +
@@ -114,6 +139,8 @@
           '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="native">' + IC.ytc + lbl("YouTube controls") + "</button>" +
           '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="pop">' + IC.pip + lbl("Picture-in-picture (I)") + "</button>" +
           '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-a="keys"><span aria-hidden="true">?</span>' + lbl("Keyboard shortcuts") + "</button>" +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="md" data-x="palette">' + IC2.palette + lbl("Caption style") + "</button>" +
+          '<button class="x-ap__b x-apx-dup" type="button" data-dup="sm" data-x="panel">' + IC2.panel + lbl("Side panel (\\)") + "</button>" +
         "</div>" +
       "</div>");
 
@@ -135,7 +162,7 @@
       else if (String(k).indexOf("rate:") === 0) h = "<b>" + String(k).slice(5) + "×</b>";
       else if (String(k).indexOf("vol:") === 0) { var vv = +String(k).slice(4); h = (vv === 0 ? IC.off : vv < 50 ? IC.low : IC.vol) + "<b>" + vv + "%</b>"; }
       else if (String(k).indexOf("pct:") === 0) h = "<b>" + String(k).slice(4) + "%</b>";
-      else if (k === "frame-1" || k === "frame1") h = IC.frame + "<b>" + (k === "frame-1" ? "−1" : "+1") + "</b>";
+      else if (k === "frame-1" || k === "frame1") h = (k === "frame-1" ? IC.back : IC.fwd) + "<b>" + (k === "frame-1" ? "−1s" : "+1s") + "</b>";
       else if (k === "ab") h = IC.ab + "<b>A–B</b>";
       else if (k === "loop") h = IC.loop + "<b>Loop</b>";
       else return;
@@ -144,6 +171,91 @@
       clearTimeout(flashT); flashT = setTimeout(function () { flash.classList.remove("is-on"); }, 600);
     };
     inst.on("flash", showFlash);
+
+    /* ---------- overlays on the video ----------
+       Title overlay (fullscreen) with the panel toggle on the right; it fades with the bar, by opacity only.
+       In YouTube-controls mode a persistent pill sits top left: "Use site player" (Y), the panel toggle and
+       Fullscreen, so the reader can switch back in every mode, fullscreen included. */
+    if (inst.screen) {
+      inst.screen.insertAdjacentHTML("beforeend",
+        '<div class="x-sx-top">' +
+          '<div class="x-sx-title"><p class="x-sx-t"></p><p class="x-sx-m"></p></div>' +
+          '<button class="x-sx-ob" type="button" data-x="panel" aria-label="Side panel (\\)" title="Side panel (\\)">' + IC2.panel + "</button>" +
+        "</div>" +
+        '<div class="x-sx-nat" role="group" aria-label="Player mode">' +
+          '<button class="x-sx-pill" type="button" data-a="siteplayer" aria-label="Use site player (Y)" title="Use site player (Y)">' + IC2.site + '<span>Use site player</span><kbd>Y</kbd></button>' +
+          '<button class="x-sx-ob" type="button" data-x="panel" aria-label="Side panel (\\)" title="Side panel (\\)">' + IC2.panel + "</button>" +
+          '<button class="x-sx-ob" type="button" data-a="fs" aria-label="Fullscreen (F)" title="Fullscreen (F)">' + IC.fs + '<span class="x-apx-lbl">Fullscreen</span></button>' +
+        "</div>");
+    }
+    var titleT = inst.screen && inst.screen.querySelector(".x-sx-t"), titleM = inst.screen && inst.screen.querySelector(".x-sx-m");
+    var paintTitle = function (v) {
+      if (!titleT || !v) return;
+      titleT.textContent = v.t || "";
+      var yr = AP.year ? AP.year(v.d) : 0;
+      titleM.textContent = [v.c, yr || "", v.len].filter(Boolean).join(" · ");
+    };
+    inst.on("change", paintTitle);
+    if (inst.current && inst.current()) paintTitle(inst.current());
+    var paintPanelBtns = function () {
+      var open = inst._whOpen ? inst._whOpen() : true;
+      root.querySelectorAll('[data-x="panel"]').forEach(function (b) {
+        b.setAttribute("aria-pressed", String(open));
+        var t = (open ? "Hide side panel" : "Show side panel") + " (\\)";
+        b.setAttribute("aria-label", t);
+        if (b.hasAttribute("data-tip")) b.setAttribute("data-tip", t); else if (b.hasAttribute("title")) b.setAttribute("title", t);
+      });
+    };
+    inst._sxPanelPaint = paintPanelBtns;
+    var togglePanel = function () { if (inst._whToggle) { inst._whToggle(); paintPanelBtns(); } else inst.say("No side panel here."); };
+    setTimeout(paintPanelBtns, 0);
+
+    /* ---------- sleep timer: after 15 / 30 / 60 minutes, or at the end of the current chapter ---------- */
+    var SL = { mode: "off", at: 0, ch: -1 };
+    var clock = function (ms) { var d = new Date(ms), h = d.getHours(), m = d.getMinutes(); return h + ":" + (m < 10 ? "0" : "") + m; };
+    var paintSleep = function () {
+      menu.querySelectorAll('[data-x="sleep"]').forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-sleep") === (SL.mode === "time" ? String(SL.min) : SL.mode))); });
+      var o = menu.querySelector('[data-r="sleep"]');
+      if (o) o.textContent = SL.mode === "time" ? "Stops at " + clock(SL.at) : SL.mode === "ch" ? "End of chapter" : "Off";
+    };
+    var setSleep = function (k) {
+      if (k === "off") { SL.mode = "off"; inst.say("Sleep timer off"); }
+      else if (k === "ch") {
+        var t = inst.started() ? inst.now() : 0, i = inst.chapterIndexAt ? inst.chapterIndexAt(t) : -1;
+        SL.mode = "ch"; SL.ch = i;
+        inst.say(i >= 0 ? "Stops at the end of this chapter" : "No chapters here: stops at the end of the video");
+      } else { SL.mode = "time"; SL.min = +k; SL.at = Date.now() + (+k) * 60000; inst.say("Sleep timer: stops at " + clock(SL.at)); }
+      paintSleep();
+    };
+    var sleepNow = function (why) { SL.mode = "off"; paintSleep(); if (inst.isPlaying()) inst.pause(); inst.say("Sleep timer: paused " + why); };
+    inst.on("tick", function (t) {
+      if (SL.mode === "time" && Date.now() >= SL.at) sleepNow("after " + SL.min + " minutes");
+      else if (SL.mode === "ch" && SL.ch >= 0 && inst.chapterIndexAt) { var i = inst.chapterIndexAt(t); if (i !== SL.ch && i >= 0) sleepNow("at the end of the chapter"); }
+    });
+    inst.on("ended", function () { if (SL.mode !== "off") { SL.mode = "off"; paintSleep(); } return false; });
+    inst.on("change", function () { if (SL.mode === "ch") { SL.mode = "off"; paintSleep(); } });
+
+    /* ---------- quality: YouTube's own levels where it reports them (it may still choose for itself) ---------- */
+    var paintQuality = function () {
+      var box = menu.querySelector(".x-sx-ql"), out = menu.querySelector('[data-r="ql"]'); if (!box) return;
+      var yt = inst.yt(), lv = [], curQ = "auto";
+      try { if (yt && yt.getAvailableQualityLevels) lv = yt.getAvailableQualityLevels() || []; if (yt && yt.getPlaybackQuality) curQ = yt.getPlaybackQuality() || "auto"; } catch (e) {}
+      lv = lv.filter(function (x) { return QL[x] && x !== "auto"; });
+      if (!lv.length) { box.innerHTML = '<p class="x-pn-cnote">Auto: YouTube picks the quality' + (inst.started() ? " for this video." : " once the video plays.") + "</p>"; out.textContent = "Auto"; return; }
+      box.innerHTML = ["auto"].concat(lv).map(function (x) { return '<button class="x-ap__b" type="button" data-x="ql" data-ql="' + x + '" aria-pressed="' + (x === (S.ql || "auto")) + '">' + QL[x] + "</button>"; }).join("");
+      out.textContent = (QL[curQ] || "Auto") + (S.ql && S.ql !== "auto" ? " · asked " + QL[S.ql] : "");
+    };
+    var setQuality = function (x) {
+      S.ql = x; var yt = inst.yt();
+      try { if (yt && yt.setPlaybackQuality) yt.setPlaybackQuality(x === "auto" ? "default" : x); } catch (e) {}
+      inst.say(x === "auto" ? "Quality: auto" : "Asked YouTube for " + QL[x] + "; it may still adapt");
+      paintQuality();
+    };
+    inst.on("change", function () { S.ql = ""; });
+
+    /* ---------- skip step and remember position ---------- */
+    var paintStep = function () { var s = inst.step ? inst.step() : 10; menu.querySelectorAll('[data-x="step"]').forEach(function (b) { b.setAttribute("aria-pressed", String(+b.getAttribute("data-step") === s)); }); };
+    var paintRem = function () { var b = menu.querySelector('[data-x="remember"]'); if (b) b.setAttribute("aria-pressed", String(AP.remember ? AP.remember() : true)); };
 
     /* volume */
     var x = {
@@ -218,7 +330,7 @@
       ["prev", "next"].forEach(function (k) { var o = act('[data-a="' + k + '"]'), b = menu.querySelector('[data-x="' + k + '"]'); b.disabled = !o || o.disabled; b.hidden = !o || o.disabled; });
     };
     var openMenu = function () {
-      paintProxies(); paintRates(); paintAB();
+      paintProxies(); paintRates(); paintAB(); paintSleep(); paintQuality(); paintStep(); paintRem();
       menu.style.maxHeight = Math.max(140, (inst.screen ? inst.screen.offsetHeight : 240) - 12) + "px";
       menu.hidden = false; moreB.setAttribute("aria-expanded", "true");
       var f = menu.querySelector('[data-x="rate"][aria-pressed="true"]') || menu.querySelector("button:not([hidden]):not([disabled]), select, input, a[href]");
@@ -251,6 +363,15 @@
       else if (a === "yt") { paintProxies(); if (inst.isPlaying()) inst.pause(); closeMenu(false); }
       else if (a === "prev" || a === "next") { var o = act('[data-a="' + a + '"]'); closeMenu(false); if (o && !o.disabled) o.click(); }
       else if (a === "rate") { inst.setRate(+b.getAttribute("data-rate")); paintRates(); }
+      else if (a === "step") { if (inst.setStep) inst.setStep(+b.getAttribute("data-step")); paintStep(); inst.say("Skip step " + b.getAttribute("data-step") + " seconds"); }
+      else if (a === "sleep") setSleep(b.getAttribute("data-sleep"));
+      else if (a === "ql") setQuality(b.getAttribute("data-ql"));
+      else if (a === "remember") { var on = !(AP.remember ? AP.remember() : true); if (AP.setRemember) AP.setRemember(on); paintRem(); inst.say(on ? "Remembering where you stop in each talk" : "Talks start from the beginning"); }
+      else if (a === "panel") { if (menu.contains(b)) closeMenu(false); togglePanel(); }
+      else if (a === "palette") {
+        if (!isOpen()) openMenu();
+        var cco = menu.querySelector('[data-pn="ccmenu"]'); if (cco) cco.click();
+      }
       else if (a === "abA") setA();
       else if (a === "abB") setB();
       else if (a === "abC") clearAB(false);
@@ -259,7 +380,18 @@
 
     /* ---------- speed list ---------- */
     var rateBs = [].slice.call(menu.querySelectorAll('[data-x="rate"]'));
-    var paintRates = function () { var r = inst.rate ? inst.rate() : 1; rateBs.forEach(function (b) { b.setAttribute("aria-pressed", String(+b.getAttribute("data-rate") === r)); }); };
+    var fineR = menu.querySelector('[data-x="ratefine"]'), rateOut = menu.querySelector('[data-r="rate"]');
+    var paintRates = function () {
+      var r = inst.rate ? inst.rate() : 1;
+      rateBs.forEach(function (b) { b.setAttribute("aria-pressed", String(+b.getAttribute("data-rate") === r)); });
+      if (fineR && document.activeElement !== fineR) fineR.value = r;
+      if (fineR) fineR.style.setProperty("--x-ap-pct", ((r - 0.25) / 2.75 * 100) + "%");
+      if (rateOut) rateOut.textContent = r + "×";
+    };
+    if (fineR) {
+      fineR.addEventListener("input", function () { var r = +fineR.value; if (rateOut) rateOut.textContent = r + "×"; fineR.style.setProperty("--x-ap-pct", ((r - 0.25) / 2.75 * 100) + "%"); });
+      fineR.addEventListener("change", function () { inst.setRate(+fineR.value); paintRates(); });
+    }
 
     /* ---------- A–B repeat: markers on the seek bar, playback jumps back to A on reaching B ---------- */
     var seekEl = inst.seek, seekRow = seekEl ? seekEl.parentNode : null;
@@ -362,16 +494,17 @@
         if (!inst.started() || !inst.yt() || !(d > 0)) return false;
         inst.seekTo(d * (+k) / 10); inst.flash("pct:" + (+k * 10)); return true;
       }
-      /* , and . step one frame (about 1/30 s) while paused */
+      /* , and . step one second back or forward (YouTube has no true frame step) */
       if ((k === "," || k === ".") && !ev.shiftKey) {
         if (!inst.started() || !inst.yt()) return false;
-        if (inst.isPlaying()) { inst.say("Pause first to step frames."); return true; }
-        inst.seekTo(inst.now() + (k === "," ? -1 : 1) / 30); inst.flash(k === "," ? "frame-1" : "frame1"); return true;
+        inst.seekTo(Math.max(0, inst.now() + (k === "," ? -1 : 1))); inst.flash(k === "," ? "frame-1" : "frame1"); return true;
       }
+      if (k === "\\") { togglePanel(); return true; }
       switch (k.toLowerCase()) {
         case "m": toggleMute(); return true;
         case "c": toggleCC(); return true;
         case "r": toggleLoop(); return true;
+        case "a": if (ev.shiftKey) return false; if (AB.a == null) setA(); else if (AB.b == null) setB(); else clearAB(false); return true;
       }
       return false;
     });

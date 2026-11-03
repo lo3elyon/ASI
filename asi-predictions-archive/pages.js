@@ -297,7 +297,7 @@
     var ps = ids.map(function (id) { return PBY[id]; });
     var row = function (label, f, cls) { return '<tr><th scope="row">' + label + "</th>" + ps.map(function (p) { var v = f(p); return "<td" + (v ? (cls ? ' class="' + cls + '"' : "") : ' class="muted"') + ">" + (v || "—") + "</td>"; }).join("") + "</tr>"; };
     var table = '<div class="compare"><table><thead><tr><td></td>' + ps.map(function (p) {
-      return '<th scope="col">' + (p.photo ? '<figure class="compare__media compare__media--photo"><img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" /></figure>' : "") +
+      return '<th scope="col">' + (p.photo ? '<figure class="compare__media compare__media--photo"><img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" width="240" height="240" loading="lazy" decoding="async" /></figure>' : "") +
         esc(p.name) + "<small>" + esc(p.role || "") + "</small></th>";
     }).join("") + "</tr></thead><tbody>" +
       row("Organisation", function (p) { return esc(p.org || ""); }) +

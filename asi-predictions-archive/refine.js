@@ -195,7 +195,8 @@
     };
     var paneOf = function () { return rootEl.querySelector(".x-wh__pane"); };
     var bodyOf = function () { return rootEl.querySelector(".x-wh__body"); };
-    var wants = function () { var b = bodyOf(); var t = b && b.getAttribute("data-t"); return t === "about" || t === "sp"; };
+    /* bookmarks live in the panel's Notes tab */
+    var wants = function () { var b = bodyOf(); var t = b && b.getAttribute("data-t"); return t === "notes"; };
     inst._bmPaint = function () {
       var pane = paneOf(), v = cur(); if (!pane || !v) return;
       var old = pane.querySelector(".x-bm");

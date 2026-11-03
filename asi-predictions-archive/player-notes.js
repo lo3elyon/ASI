@@ -35,6 +35,32 @@
     if (cur) out.push(cur);
     return out;
   };
+  /* Auto captions roll: each cue often repeats the previous cue's last line before adding new words, which showed
+     the first caption line twice. Strip the longest run of words a cue shares with the end of the previous one
+     (whole previous cue, or 3+ words); a cue with nothing new is dropped. */
+  var norm = function (w) { return w.toLowerCase().replace(/[^a-z0-9']/g, ""); };
+  var dedupe = function (c) {
+    var out = [], prev = null;
+    c.forEach(function (x) {
+      var words = x[1].split(" ");
+      if (prev) {
+        var pw = prev.split(" "), max = Math.min(pw.length, words.length), cut = 0;
+        for (var k = max; k >= 1; k--) {
+          if (k < 3 && k !== pw.length && k !== words.length) break;
+          var ok = true;
+          for (var j = 0; j < k; j++) { if (norm(pw[pw.length - k + j]) !== norm(words[j])) { ok = false; break; } }
+          if (ok) { cut = k; break; }
+        }
+        if (cut) words = words.slice(cut);
+      }
+      var text = words.join(" ").trim();
+      if (!text) return;
+      if (out.length && x[0] - out[out.length - 1][0] < 0.05) out[out.length - 1][1] += " " + text;
+      else out.push([x[0], text]);
+      prev = x[1];
+    });
+    return out;
+  };
   var parseTr = function (d) {
     var c = (d && Array.isArray(d.c) ? d.c : []).filter(function (x) { return Array.isArray(x) && isFinite(+x[0]) && typeof x[1] === "string" && x[1].trim(); })
       .map(function (x) { return [+x[0], x[1].replace(/\s+/g, " ").trim()]; });
@@ -46,6 +72,8 @@
     gaps.sort(function (a, b) { return a - b; });
     var med = gaps.length ? gaps[Math.floor(gaps.length / 2)] : 0;
     if (med >= 8 || c[c.length - 1][0] > 6 * 3600) c.forEach(function (x) { x[0] = x[0] / 10; });
+    c = dedupe(c);
+    if (!c.length) return null;
     var groups = groupCues(c);
     return { cues: c, starts: c.map(function (x) { return x[0]; }), groups: groups, gStarts: groups.map(function (g) { return g.t; }) };
   };
@@ -78,33 +106,127 @@
   };
 
   /* ---------- caption settings, shared by every player and remembered ---------- */
-  var CK = "asiArchive.captions.v1";
-  var DEF = { on: false, size: 100, color: "white", bg: "semi", op: 100, font: "sans", edge: "none", pos: "bottom", y: null };
-  var COLORS = { white: ["White", "#ffffff"], yellow: ["Yellow", "#ffe14d"], cyan: ["Cyan", "#67e8f9"], green: ["Green", "#86efac"] };
-  var FONTS = { sans: ["Sans", "var(--sans)"], serif: ["Serif", "Georgia, 'Times New Roman', serif"], mono: ["Mono", "'Geist Mono', ui-monospace, Menlo, monospace"], rounded: ["Rounded", "ui-rounded, 'SF Pro Rounded', 'Varela Round', 'Nunito', system-ui, sans-serif"] };
-  var BGS = { none: ["None", "transparent"], semi: ["Semi", "rgba(8, 10, 14, 0.62)"], solid: ["Solid", "rgb(8, 10, 14)"] };
-  var EDGES = { none: ["None", "none"], shadow: ["Shadow", "0 0.06em 0.2em rgba(0, 0, 0, 0.95), 0 0 0.45em rgba(0, 0, 0, 0.7)"], outline: ["Outline", "-0.06em -0.06em 0 #000, 0.06em -0.06em 0 #000, -0.06em 0.06em 0 #000, 0.06em 0.06em 0 #000, 0 0 0.12em #000"] };
+  /* Caption style, one object in localStorage under asi.captionStyle (the older asiArchive.captions.v1 is read once).
+     Text colour and background colour are separate; background opacity applies to the background only. */
+  var CK = "asi.captionStyle", CK_OLD = "asiArchive.captions.v1";
+  var DEF = { on: false, preset: "classic", size: 100, color: "#ffffff", bg: "#080a0e", bgop: 62, font: "sans", edge: "none", pos: "bottom", y: null, lines: 2, kw: false, karaoke: false };
+  var FONTS = { sans: ["Sans", "var(--sans)"], serif: ["Serif", "Georgia, 'Times New Roman', serif"], mono: ["Mono", "'Geist Mono', ui-monospace, Menlo, monospace"], rounded: ["Rounded", "ui-rounded, 'SF Pro Rounded', 'Varela Round', 'Nunito', system-ui, sans-serif"], wide: ["Wide", "Verdana, 'DejaVu Sans', sans-serif"] };
+  var EDGES = {
+    none: ["None", "none"],
+    shadow: ["Shadow", "0 0.06em 0.2em rgba(0, 0, 0, 0.95), 0 0 0.45em rgba(0, 0, 0, 0.7)"],
+    outline: ["Outline", "-0.06em -0.06em 0 #000, 0.06em -0.06em 0 #000, -0.06em 0.06em 0 #000, 0.06em 0.06em 0 #000, 0 0 0.12em #000"],
+    glow: ["Glow", "0 0 0.18em currentColor, 0 0 0.6em color-mix(in srgb, currentColor 70%, transparent), 0 0.05em 0.1em rgba(0, 0, 0, 0.9)"]
+  };
+  var TEXT_SW = [["#ffffff", "White"], ["#ffe14d", "Yellow"], ["#67e8f9", "Cyan"], ["#86efac", "Green"], ["#f9a8d4", "Pink"], ["era", "Era colour"]];
+  var BG_SW = [["#080a0e", "Black"], ["#1e293b", "Slate"], ["#0b3b4a", "Teal"], ["#3b0a1e", "Wine"], ["#ffffff", "White"]];
+  /* [label, settings]: each preset sets the look; on/off, size and position stay the reader's */
+  var PRESETS = {
+    classic: ["Classic", { color: "#ffffff", bg: "#080a0e", bgop: 62, font: "sans", edge: "none", kw: false, karaoke: false }],
+    neon: ["Neon", { color: "#67e8f9", bg: "#05070b", bgop: 35, font: "mono", edge: "glow", kw: true, karaoke: false }],
+    era: ["Era colours", { color: "era", bg: "#080a0e", bgop: 55, font: "sans", edge: "shadow", kw: true, karaoke: false }],
+    contrast: ["High contrast", { color: "#ffe14d", bg: "#000000", bgop: 100, font: "wide", edge: "outline", kw: false, karaoke: false }],
+    minimal: ["Minimal", { color: "#ffffff", bg: "#080a0e", bgop: 0, font: "sans", edge: "shadow", kw: false, karaoke: false }],
+    karaoke: ["Karaoke", { color: "#ffffff", bg: "#080a0e", bgop: 55, font: "rounded", edge: "shadow", kw: false, karaoke: true }]
+  };
+  var isHex = function (s) { return typeof s === "string" && /^#[0-9a-f]{6}$/i.test(s); };
   var C = {};
   var loadC = function () {
-    var got = null;
+    var got = null, old = null;
     try { got = JSON.parse(window.localStorage.getItem(CK)); } catch (e) {}
+    if (!got) { try { old = JSON.parse(window.localStorage.getItem(CK_OLD)); } catch (e) {} }
     C = {}; Object.keys(DEF).forEach(function (k) { C[k] = DEF[k]; });
-    if (got && typeof got === "object") {
-      C.on = !!got.on;
-      if (got.size >= 75 && got.size <= 200) C.size = Math.round(got.size / 25) * 25;
-      if (COLORS[got.color]) C.color = got.color;
-      if (BGS[got.bg]) C.bg = got.bg;
-      if (got.op >= 25 && got.op <= 100) C.op = Math.round(got.op);
-      if (FONTS[got.font]) C.font = got.font;
-      if (EDGES[got.edge]) C.edge = got.edge;
-      if (got.pos === "top" || got.pos === "bottom") C.pos = got.pos;
-      if (typeof got.y === "number" && got.y >= 0 && got.y <= 1) C.y = got.y;
+    var src = got || old;
+    if (!src || typeof src !== "object") return;
+    C.on = !!src.on;
+    if (src.size >= 75 && src.size <= 200) C.size = Math.round(src.size / 25) * 25;
+    if (FONTS[src.font]) C.font = src.font;
+    if (EDGES[src.edge]) C.edge = src.edge;
+    if (src.pos === "top" || src.pos === "bottom") C.pos = src.pos;
+    if (typeof src.y === "number" && src.y >= 0 && src.y <= 1) C.y = src.y;
+    if (got) {
+      if (PRESETS[got.preset] || got.preset === "custom") C.preset = got.preset;
+      if (isHex(got.color) || got.color === "era") C.color = got.color;
+      if (isHex(got.bg)) C.bg = got.bg;
+      if (got.bgop >= 0 && got.bgop <= 100) C.bgop = Math.round(got.bgop);
+      if (got.lines >= 1 && got.lines <= 3) C.lines = Math.round(got.lines);
+      C.kw = !!got.kw; C.karaoke = !!got.karaoke;
+    } else {
+      var oc = { white: "#ffffff", yellow: "#ffe14d", cyan: "#67e8f9", green: "#86efac" };
+      if (oc[old.color]) C.color = oc[old.color];
+      if (old.bg === "none") C.bgop = 0; else if (old.bg === "solid") C.bgop = 100;
+      C.preset = "custom";
     }
   };
   loadC();
   var saveC = function () { try { window.localStorage.setItem(CK, JSON.stringify(C)); } catch (e) {} };
   var everywhere = function () { INST.forEach(function (i) { try { i._pnPaint(); } catch (e) {} }); };
-  var setC = function (k, v) { C[k] = v; saveC(); everywhere(); };
+  var LOOK = { color: 1, bg: 1, bgop: 1, font: 1, edge: 1, kw: 1, karaoke: 1 };
+  var setC = function (k, v) { C[k] = v; if (LOOK[k]) C.preset = "custom"; saveC(); everywhere(); };
+  var applyPreset = function (p) { var s = PRESETS[p]; if (!s) return; Object.keys(s[1]).forEach(function (k) { C[k] = s[1][k]; }); C.preset = p; saveC(); everywhere(); };
+  var rgba = function (hex, op) {
+    var n = parseInt(String(hex).slice(1), 16); if (!isFinite(n)) n = 0x080a0e;
+    return "rgba(" + ((n >> 16) & 255) + ", " + ((n >> 8) & 255) + ", " + (n & 255) + ", " + (Math.max(0, Math.min(100, op)) / 100).toFixed(2) + ")";
+  };
+
+  /* ---------- keywords: people in people.json and the archive's core terms, linked to their pages ---------- */
+  var TERMS = [
+    ["superintelligen\\w*", "superintelligence", "Superintelligence"], ["artificial general intelligence|\\bAGI\\b", "agi-timelines", "AGI"],
+    ["alignment|misalign\\w*", "alignment", "Alignment"], ["control problem|\\bcontrol\\b", "control", "Control"],
+    ["existential risk|extinction|\\brisks?\\b", "ai-risk", "Risk"], ["\\bsafety\\b", "ai-risk", "Safety"],
+    ["interpretability", "interpretability", "Interpretability"], ["intelligence explosion|singularity", "intelligence-explosion", "Intelligence explosion"],
+    ["deep learning|neural net(?:work)?s?", "deep-learning", "Deep learning"], ["large language models?|\\bLLMs?\\b|transformers?", "transformers", "LLMs"]
+  ];
+  var KW = null;
+  var kwIndex = function () {
+    if (KW) return KW;
+    KW = { re: null, map: {} };
+    var alts = [];
+    (readJSON("d-people") || []).forEach(function (p) {
+      if (!p || !p.name || !p.id || p.name.length < 5 || !/\s/.test(p.name)) return;
+      var key = p.name.toLowerCase();
+      if (KW.map[key]) return;
+      KW.map[key] = { href: "#/person/" + p.id, kind: "person", label: p.name };
+      alts.push(p.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    });
+    alts.sort(function (a, b) { return b.length - a.length; });
+    TERMS.forEach(function (t, i) { alts.push("(?<t" + i + ">" + t[0] + ")"); });
+    try { KW.re = new RegExp("\\b(?:" + alts.join("|") + ")", "gi"); } catch (e) {
+      /* no named groups: terms only, matched one by one */
+      KW.re = null;
+    }
+    return KW;
+  };
+  /* text → [{t, k}] with k = {href, kind, label} for a keyword */
+  var kwSplit = function (text) {
+    var K = kwIndex(); if (!K.re) return [{ t: text, k: null }];
+    var out = [], last = 0, m;
+    K.re.lastIndex = 0;
+    while ((m = K.re.exec(text))) {
+      if (!m[0]) { K.re.lastIndex++; continue; }
+      var k = K.map[m[0].toLowerCase()] || null;
+      if (!k && m.groups) { for (var i = 0; i < TERMS.length; i++) { if (m.groups["t" + i]) { k = { href: "#/topic/" + TERMS[i][1], kind: "term", label: TERMS[i][2] }; break; } } }
+      if (!k) continue;
+      if (m.index > last) out.push({ t: text.slice(last, m.index), k: null });
+      out.push({ t: m[0], k: k });
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) out.push({ t: text.slice(last), k: null });
+    return out;
+  };
+  /* words wrapped in <i class="w"> for the progressive tint; keywords as chips (links in the transcript, plain on video) */
+  var richHtml = function (text, o) {
+    o = o || {};
+    var segs = o.kw === false ? [{ t: text, k: null }] : kwSplit(text), ctr = { n: 0 }, html = "";
+    segs.forEach(function (s) {
+      var inner;
+      if (o.words) inner = s.t.split(/(\s+)/).map(function (w) { if (!w || /^\s+$/.test(w)) return w; return '<i class="w" data-w="' + (ctr.n++) + '">' + esc(w) + "</i>"; }).join("");
+      else inner = esc(s.t);
+      if (!s.k) html += inner;
+      else if (o.link) html += '<a class="x-kw x-kw--' + s.k.kind + '" href="' + esc(s.k.href) + '" title="' + esc((s.k.kind === "person" ? "Profile: " : "Topic: ") + s.k.label) + '">' + inner + "</a>";
+      else html += '<b class="x-kw x-kw--' + s.k.kind + '">' + inner + "</b>";
+    });
+    return { html: html, words: ctr.n };
+  };
 
   var svg = function (d) { return '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + d + "</svg>"; };
   var IC_CC = svg('<rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M10.5 10.2a2 2 0 1 0 0 3.6M16.5 10.2a2 2 0 1 0 0 3.6"/>');
@@ -112,37 +234,79 @@
     return Object.keys(map).map(function (x) { return '<button class="x-ap__b" type="button" data-pn="set" data-k="' + k + '" data-v="' + x + '" aria-pressed="false">' + map[x][0] + "</button>"; }).join("");
   };
   var settingsHtml = function (uid) {
-    return '<div class="x-pn-ccset" role="group" aria-label="Caption settings">' +
-      '<button class="x-ap__b x-pn-ccback" type="button" data-pn="ccback"><span aria-hidden="true">‹</span> Captions</button>' +
+    var sw = function (k, list) {
+      return list.map(function (c) {
+        var fill = c[0] === "era" ? "linear-gradient(135deg, var(--x-e0, #f59e0b), var(--x-e1, #06b6d4) 55%, var(--x-e2, #f43f5e))" : c[0];
+        return '<button class="x-ap__b x-pn-sw" type="button" data-pn="set" data-k="' + k + '" data-v="' + c[0] + '" aria-pressed="false" aria-label="' + c[1] + '" title="' + c[1] + '"><span style="background:' + fill + '"></span></button>';
+      }).join("");
+    };
+    return '<div class="x-pn-ccset" role="group" aria-label="Caption style">' +
+      '<button class="x-ap__b x-pn-ccback" type="button" data-pn="ccback"><span aria-hidden="true">‹</span> Caption style</button>' +
       '<p class="x-pn-src" data-pn-out="src" aria-live="polite"></p>' +
+      '<div class="x-pn-prev" aria-hidden="true"><span class="x-pn-prev__l">Captions from <b class="x-kw x-kw--person">Stuart Russell</b> on <b class="x-kw x-kw--term">alignment</b> look like this</span></div>' +
       '<div class="x-pn-cs"><p class="x-apx-h">Captions</p><div class="x-pn-sg x-pn-sg--2">' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="on" data-v="1" aria-pressed="false">On</button>' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="on" data-v="0" aria-pressed="false">Off</button></div></div>' +
-      '<div class="x-pn-cs"><p class="x-apx-h">Language</p><div class="x-pn-sg x-pn-sg--1"><button class="x-ap__b" type="button" aria-pressed="true" disabled>English (auto)</button></div></div>' +
+      '<div class="x-pn-cs"><p class="x-apx-h">Preset</p><div class="x-pn-sg x-pn-sg--3">' +
+        Object.keys(PRESETS).map(function (p) { return '<button class="x-ap__b" type="button" data-pn="preset" data-v="' + p + '" aria-pressed="false">' + PRESETS[p][0] + "</button>"; }).join("") + "</div></div>" +
+      '<div class="x-pn-cs"><p class="x-apx-h">Font</p><div class="x-pn-sg x-pn-sg--5">' +
+        Object.keys(FONTS).map(function (x) { return '<button class="x-ap__b" type="button" data-pn="set" data-k="font" data-v="' + x + '" aria-pressed="false" style="font-family:' + FONTS[x][1].replace(/"/g, "&quot;") + '">' + FONTS[x][0] + "</button>"; }).join("") + "</div></div>" +
       '<div class="x-pn-cs"><p class="x-apx-h">Size <span class="x-apx-abtx" data-pn-out="size">100%</span></p><div class="x-pn-sg x-pn-sg--2">' +
         '<button class="x-ap__b" type="button" data-pn="size" data-d="-25" aria-label="Smaller captions (−)">A−</button>' +
         '<button class="x-ap__b" type="button" data-pn="size" data-d="25" aria-label="Larger captions (+)">A+</button></div></div>' +
-      '<div class="x-pn-cs"><p class="x-apx-h">Text colour</p><div class="x-pn-sg x-pn-sg--4">' +
-        Object.keys(COLORS).map(function (x) { return '<button class="x-ap__b x-pn-sw" type="button" data-pn="set" data-k="color" data-v="' + x + '" aria-pressed="false" aria-label="' + COLORS[x][0] + '" title="' + COLORS[x][0] + '"><span style="background:' + COLORS[x][1] + '"></span></button>'; }).join("") + "</div></div>" +
-      '<div class="x-pn-cs"><p class="x-apx-h">Background</p><div class="x-pn-sg x-pn-sg--3">' + seg("bg", BGS) + "</div></div>" +
-      '<div class="x-pn-cs"><label class="x-pn-range" for="' + uid + '-op"><span class="x-apx-h x-mo-oph">' + svg('<rect x="3" y="7" width="18" height="10" rx="2.5"/><path d="M7 12h6M15 12h2"/>') + 'Caption background <span class="x-apx-abtx" data-pn-out="op">100%</span></span>' +
-        '<input class="x-apx-range" id="' + uid + '-op" type="range" min="25" max="100" step="5" value="100" data-pn="op" /></label></div>' +
-      '<div class="x-pn-cs"><p class="x-apx-h">Font</p><div class="x-pn-sg x-pn-sg--4">' + seg("font", FONTS) + "</div></div>" +
-      '<div class="x-pn-cs"><p class="x-apx-h">Edge</p><div class="x-pn-sg x-pn-sg--3">' + seg("edge", EDGES) + "</div></div>" +
+      '<div class="x-pn-cs"><p class="x-apx-h">Text colour</p><div class="x-pn-sg x-pn-sg--7">' + sw("color", TEXT_SW) +
+        '<label class="x-ap__b x-pn-pick" title="Any text colour"><span class="x-ap__sr">Custom text colour</span><input type="color" data-pn="pick" data-k="color" value="#ffffff" /></label></div></div>' +
+      '<div class="x-pn-cs"><p class="x-apx-h">Background colour</p><div class="x-pn-sg x-pn-sg--7">' + sw("bg", BG_SW) +
+        '<label class="x-ap__b x-pn-pick" title="Any background colour"><span class="x-ap__sr">Custom background colour</span><input type="color" data-pn="pick" data-k="bg" value="#080a0e" /></label><span></span></div></div>' +
+      '<div class="x-pn-cs"><label class="x-pn-range" for="' + uid + '-op"><span class="x-apx-h">Background opacity <span class="x-apx-abtx" data-pn-out="op">62%</span></span>' +
+        '<input class="x-apx-range" id="' + uid + '-op" type="range" min="0" max="100" step="5" value="62" data-pn="op" aria-describedby="' + uid + '-opn" /></label>' +
+        '<p class="x-pn-cnote" id="' + uid + '-opn">Only the box behind the words fades; the text stays solid.</p></div>' +
+      '<div class="x-pn-cs"><p class="x-apx-h">Outline and shadow</p><div class="x-pn-sg x-pn-sg--4">' +
+        Object.keys(EDGES).map(function (x) { return '<button class="x-ap__b" type="button" data-pn="set" data-k="edge" data-v="' + x + '" aria-pressed="false">' + EDGES[x][0] + "</button>"; }).join("") + "</div></div>" +
+      '<div class="x-pn-cs"><p class="x-apx-h">Lines at most</p><div class="x-pn-sg x-pn-sg--3">' +
+        [1, 2, 3].map(function (n) { return '<button class="x-ap__b" type="button" data-pn="set" data-k="lines" data-v="' + n + '" aria-pressed="false">' + n + "</button>"; }).join("") + "</div></div>" +
+      '<div class="x-pn-cs"><p class="x-apx-h">Highlights</p><div class="x-pn-sg x-pn-sg--2">' +
+        '<button class="x-ap__b" type="button" data-pn="tog" data-k="kw" aria-pressed="false">Colour keywords</button>' +
+        '<button class="x-ap__b" type="button" data-pn="tog" data-k="karaoke" aria-pressed="false">Karaoke words</button></div></div>' +
       '<div class="x-pn-cs"><p class="x-apx-h">Position</p><div class="x-pn-sg x-pn-sg--3">' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="pos" data-v="bottom" aria-pressed="false">Bottom</button>' +
         '<button class="x-ap__b" type="button" data-pn="set" data-k="pos" data-v="top" aria-pressed="false">Top</button>' +
         '<button class="x-ap__b" type="button" data-pn="posreset">Reset</button></div>' +
-        '<p class="x-pn-cnote">Drag the captions on the video to move them. Two lines at most.</p></div>' +
-      '<button class="x-ap__b x-pn-ccreset" type="button" data-pn="ccreset">Reset caption settings</button>' +
+        '<p class="x-pn-cnote">Drag the captions on the video to move them anywhere.</p></div>' +
+      '<button class="x-ap__b x-pn-ccreset" type="button" data-pn="ccreset">Reset caption style</button>' +
       "</div>";
   };
 
   /* ---------- panel tabs ---------- */
-  var chaptersHtml = function (n) {
-    return '<p class="x-pn-h">' + n.ch.length + " chapters</p>" +
-      '<ol class="x-pn-ch">' + n.ch.map(function (c, i) {
-        return '<li><button type="button" class="x-pn-row" data-pn-seek="' + (+c[0]) + '" data-i="' + i + '" aria-label="' + esc(fmt(c[0]) + " " + c[1]) + '"><span class="x-pn-time">' + fmt(c[0]) + '</span><span class="x-pn-chx">' + esc(c[1]) + "</span></button></li>";
+  /* ---------- chapters: the talk's own, else auto sections every ~5 minutes from the transcript ---------- */
+  var ERAS = [["Early era", 0, "var(--x-e0, #f59e0b)"], ["Deep learning era", 4, "var(--x-e1, #06b6d4)"], ["After ChatGPT", 7, "var(--x-e2, #f43f5e)"]];
+  var eraOf = function (v) { var y = AP.year ? AP.year(v && v.d) : 0; return !y ? null : y < 2012 ? ERAS[0] : y < 2023 ? ERAS[1] : ERAS[2]; };
+  var chColor = function (v, i) { var e = eraOf(v), off = e ? e[1] : 5; return "var(--x-ch-" + ((off + i) % 8) + ")"; };
+  var AUTO_STEP = 300;
+  var sectionsOf = function (v) {
+    if (!v) return null;
+    var n = notesOf(v.id);
+    if (n && n.ch && n.ch.length) return { auto: false, list: n.ch.map(function (c) { return { t: +c[0], x: String(c[1] || "") }; }).filter(function (c) { return isFinite(c.t); }) };
+    var tr = trOf(v.id); if (!tr || !tr.groups.length) return null;
+    var out = [], g = tr.groups, k = 0, last = g[g.length - 1].t;
+    for (var at = 0; at <= last; at += AUTO_STEP) {
+      while (k < g.length && g[k].t < at) k++;
+      if (k >= g.length) break;
+      if (out.length && g[k].t - out[out.length - 1].t < AUTO_STEP * 0.5) continue;
+      var words = g[k].x.split(" "), title = words.slice(0, 8).join(" ").replace(/[,;:]$/, "");
+      out.push({ t: at === 0 ? 0 : g[k].t, x: title + (words.length > 8 ? "…" : "") });
+    }
+    return out.length >= 2 ? { auto: true, list: out } : null;
+  };
+  var chaptersHtml = function (sec, v) {
+    var e = eraOf(v);
+    return '<div class="x-pn-chhead">' + (e ? '<span class="x-pn-era" style="--c:' + e[2] + '">' + e[0] + "</span>" : "") +
+      '<p class="x-pn-h">' + (sec.auto ? "Auto sections · every 5 minutes, from the transcript" : sec.list.length + " chapters") + "</p></div>" +
+      '<ol class="x-pn-ch" aria-label="' + (sec.auto ? "Auto sections" : "Chapters") + '">' + sec.list.map(function (c, i) {
+        return '<li><button type="button" class="x-pn-row" data-pn-seek="' + c.t + '" data-i="' + i + '" style="--c:' + chColor(v, i) + '" aria-label="' + esc(fmt(c.t) + " " + c.x) + '">' +
+          '<span class="x-pn-chip" aria-hidden="true">' + (i < 9 ? "0" : "") + (i + 1) + "</span>" +
+          '<span class="x-pn-chbody"><span class="x-pn-chx">' + esc(c.x) + '</span><span class="x-pn-time">' + fmt(c.t) + "</span></span>" +
+          '<span class="x-pn-chp" aria-hidden="true"><i></i></span></button></li>';
       }).join("") + "</ol>";
   };
   var summaryHtml = function (n) {
@@ -162,10 +326,17 @@
       '<div class="x-pn-trbar">' +
         '<label class="x-pn-search" for="' + uid + '-q"><span class="x-pn-sr">Search the transcript</span>' +
           '<input id="' + uid + '-q" type="search" placeholder="Search transcript" autocomplete="off" spellcheck="false" data-pn="q" /></label>' +
-        '<button type="button" class="x-pn-btn" data-pn="copy">Copy transcript</button>' +
+        '<span class="x-pn-count" data-pn-out="count" aria-live="polite"></span>' +
+        '<button type="button" class="x-pn-ib" data-pn="qprev" aria-label="Previous match" title="Previous match (Shift + Enter)" disabled>↑</button>' +
+        '<button type="button" class="x-pn-ib" data-pn="qnext" aria-label="Next match" title="Next match (Enter)" disabled>↓</button>' +
+      "</div>" +
+      '<div class="x-pn-trtools">' +
+        '<button type="button" class="x-pn-btn x-pn-follow" data-pn="follow" aria-pressed="true"><span class="x-pn-dot" aria-hidden="true"></span>Follow along</button>' +
+        '<button type="button" class="x-pn-btn" data-pn="copy">Copy all</button>' +
+        '<button type="button" class="x-pn-btn" data-pn="dl">Download .txt</button>' +
       "</div>" +
       '<p class="x-pn-trmeta" aria-live="polite">Loading transcript…</p>' +
-      '<div class="x-pn-trwrap"><div class="x-pn-list" aria-label="Transcript" tabindex="-1">' +
+      '<div class="x-pn-trwrap"><div class="x-pn-list" role="list" aria-label="Transcript" tabindex="-1">' +
         '<div class="x-pn-skel" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>' +
         '<button type="button" class="x-pn-resume" data-pn="resume" hidden><span aria-hidden="true">↻</span> Resume sync</button></div>' +
       "</div>";
@@ -177,7 +348,8 @@
     if (!root || !screen || root.__pn) return;
     root.__pn = true;
     var uid = "pn" + (++uidN);
-    var S = { vid: "", capKey: null, chI: -2, gi: -2, follow: true, q: "", prog: 0, userAt: 0, timer: 0, chList: null, list: null, meta: null, chip: null, segD: -1 };
+    var S = { vid: "", capKey: null, chI: -2, gi: -2, follow: true, q: "", prog: 0, userAt: 0, timer: 0, chList: null, list: null, meta: null, chip: null, segD: -1,
+      capN: -1, capW: 0, capS: 0, capE: 0, lineN: -1, lineW: 0, hits: [], hit: -1, chUser: 0, sec: null };
     inst._pn = S;
     INST.push(inst);
     var cur = function () { return inst.current ? inst.current() : null; };
@@ -202,11 +374,15 @@
     } else window.addEventListener("resize", function () { sizeT(); barH(); });
 
     var paintCap = function () {
-      root.style.setProperty("--x-pn-col", COLORS[C.color][1]);
-      root.style.setProperty("--x-pn-bg", BGS[C.bg][1]);
-      root.style.setProperty("--x-pn-op", String(C.op / 100));
+      var e = eraOf(cur());
+      root.style.setProperty("--x-pn-col", C.color === "era" ? (e ? e[2] : "var(--x-e1, #06b6d4)") : C.color);
+      root.style.setProperty("--x-pn-bg", rgba(C.bg, C.bgop));
       root.style.setProperty("--x-pn-font", FONTS[C.font][1]);
       root.style.setProperty("--x-pn-edge", EDGES[C.edge][1]);
+      root.style.setProperty("--x-pn-lines", String(C.lines));
+      cap.classList.toggle("is-kw", !!C.kw);
+      cap.classList.toggle("is-karaoke", !!C.karaoke);
+      cap.classList.toggle("is-nobg", C.bgop === 0);
       var free = C.y != null;
       cap.classList.toggle("is-free", free);
       cap.classList.toggle("is-top", !free && C.pos === "top");
@@ -228,7 +404,8 @@
       if (!drag.moved && Math.abs(ev.clientY - drag.y) < 5) return;
       drag.moved = true; cap.classList.add("is-drag");
       var r = screen.getBoundingClientRect();
-      if (r.height > 0) { C.y = Math.max(0.08, Math.min(0.92, (ev.clientY - r.top) / r.height)); paintCap(); }
+      /* the block's centre is kept far enough in that three lines never leave the frame */
+      if (r.height > 0) { var hh = capWin.offsetHeight / 2 / r.height + 0.02; C.y = Math.max(Math.max(0.06, hh), Math.min(Math.min(0.94, 1 - hh), (ev.clientY - r.top) / r.height)); paintCap(); }
     });
     var endDrag = function (ev) {
       if (!drag || ev.pointerId !== drag.id) return;
@@ -322,19 +499,36 @@
       menu.insertAdjacentHTML("beforeend", settingsHtml(uid));
       setEl = menu.querySelector(".x-pn-ccset");
       if ("MutationObserver" in window) new MutationObserver(function () { if (menu.hidden) menu.classList.remove("is-pn-cc"); }).observe(menu, { attributes: true, attributeFilter: ["hidden"] });
-      setEl.querySelector('[data-pn="op"]').addEventListener("input", function () { setC("op", +this.value); });
+      setEl.querySelector('[data-pn="op"]').addEventListener("input", function () { setC("bgop", +this.value); });
+      setEl.querySelectorAll('[data-pn="pick"]').forEach(function (inp) { inp.addEventListener("input", function () { setC(inp.getAttribute("data-k"), inp.value.toLowerCase()); }); });
     }
     var paintSet = function () {
       if (!setEl) return;
       setEl.querySelectorAll('[data-pn="set"]').forEach(function (b) {
         var k = b.getAttribute("data-k"), v = b.getAttribute("data-v");
-        var on = k === "on" ? String(C.on ? 1 : 0) === v : k === "pos" ? C.y == null && C.pos === v : String(C[k]) === v;
+        var on = k === "on" ? String(C.on ? 1 : 0) === v : k === "pos" ? C.y == null && C.pos === v : String(C[k]).toLowerCase() === v.toLowerCase();
         b.setAttribute("aria-pressed", String(on));
       });
+      setEl.querySelectorAll('[data-pn="preset"]').forEach(function (b) { b.setAttribute("aria-pressed", String(C.preset === b.getAttribute("data-v"))); });
+      setEl.querySelectorAll('[data-pn="tog"]').forEach(function (b) { b.setAttribute("aria-pressed", String(!!C[b.getAttribute("data-k")])); });
+      setEl.querySelectorAll('[data-pn="pick"]').forEach(function (inp) {
+        var k = inp.getAttribute("data-k"), val = C[k];
+        if (isHex(val) && document.activeElement !== inp) inp.value = val;
+        inp.parentNode.setAttribute("aria-pressed", String(isHex(val) && !(k === "color" ? TEXT_SW : BG_SW).some(function (c) { return c[0].toLowerCase() === String(val).toLowerCase(); })));
+      });
+      var pv = setEl.querySelector(".x-pn-prev");
+      if (pv) {
+        var e0 = eraOf(cur());
+        pv.style.setProperty("--x-pn-col", C.color === "era" ? (e0 ? e0[2] : "var(--x-e1, #06b6d4)") : C.color);
+        pv.style.setProperty("--x-pn-bg", rgba(C.bg, C.bgop));
+        pv.style.setProperty("--x-pn-font", FONTS[C.font][1]);
+        pv.style.setProperty("--x-pn-edge", EDGES[C.edge][1]);
+        pv.classList.toggle("is-kw", !!C.kw);
+      }
       setEl.querySelector('[data-pn-out="size"]').textContent = C.size + "%";
-      setEl.querySelector('[data-pn-out="op"]').textContent = C.op + "%";
-      var r = setEl.querySelector('[data-pn="op"]'); if (+r.value !== C.op) r.value = C.op;
-      r.style.setProperty("--x-ap-pct", ((C.op - 25) / 75 * 100) + "%");
+      setEl.querySelector('[data-pn-out="op"]').textContent = C.bgop + "%";
+      var r = setEl.querySelector('[data-pn="op"]'); if (+r.value !== C.bgop) r.value = C.bgop;
+      r.style.setProperty("--x-ap-pct", C.bgop + "%");
       setEl.querySelector('[data-pn="size"][data-d="-25"]').disabled = C.size <= 75;
       setEl.querySelector('[data-pn="size"][data-d="25"]').disabled = C.size >= 200;
       var vv = cur(), src = srcOf(vv);
@@ -342,7 +536,7 @@
       var so = setEl.querySelector('[data-pn-out="src"]');
       if (so) {
         so.setAttribute("data-src", src);
-        so.textContent = src === "site" ? "Site captions · from this talk's transcript" : src === "yt" ? "YouTube auto captions" + (Y.track && Y.lang ? " · " + Y.lang : "") : "No captions for this talk";
+        so.textContent = src === "site" ? "Site captions · from this talk's transcript" : src === "yt" ? "YouTube auto captions" + (Y.track && Y.lang ? " · " + Y.lang : "") + " · YouTube draws these, so only Size applies" : "No captions for this talk";
       }
       /* YouTube captions only take the size setting, so the style controls apply to site captions */
       setEl.classList.toggle("is-yt", src !== "site");
@@ -362,11 +556,20 @@
     };
     inst.ccSize = setSize;
     /* the chapter under a time, for the seek bar's hover preview */
-    inst.chapterAt = function (t) {
-      var v = cur(), n = v && notesOf(v.id); if (!n || !n.ch || !n.ch.length) return "";
-      var i = find(chStarts(n), t);
-      return i >= 0 ? n.ch[i][1] : "";
+    var secs = function () {
+      var v = cur(); if (!v) return null;
+      if (S.sec && S.sec.id === v.id && (S.sec.auto === false || S.sec.n === (trOf(v.id) ? 1 : 0))) return S.sec.s;
+      var s = sectionsOf(v);
+      S.sec = { id: v.id, s: s, auto: s ? s.auto : true, n: trOf(v.id) ? 1 : 0 };
+      if (s) s.starts = s.list.map(function (c) { return c.t; });
+      return s;
     };
+    inst.chapterAt = function (t) {
+      var s = secs(); if (!s) return "";
+      var i = find(s.starts, t);
+      return i >= 0 ? s.list[i].x : "";
+    };
+    inst.chapterIndexAt = function (t) { var s = secs(); return s ? find(s.starts, t) : -1; };
 
     /* ---- chapter marks on the seek bar ---- */
     var seekEl = inst.seek, track = root.querySelector(".x-apx-track"), segs = null;
@@ -379,13 +582,17 @@
     if (seekEl && "ResizeObserver" in window) new ResizeObserver(placeTrack).observe(seekEl);
     var paintSegs = function () {
       if (!segs) return;
-      var v = cur(), n = v && notesOf(v.id), d = inst.duration ? inst.duration() : 0;
-      S.segD = d;
-      if (!n || !n.ch || n.ch.length < 2 || !(d > 0)) { segs.innerHTML = ""; return; }
+      var v = cur(), s = secs(), d = inst.duration ? inst.duration() : 0;
+      S.segD = d; S.segN = s ? s.list.length : 0;
+      if (!s || s.list.length < 2 || !(d > 0)) { segs.innerHTML = ""; root.classList.remove("has-chsegs"); return; }
       placeTrack();
-      segs.innerHTML = n.ch.filter(function (c) { return +c[0] > 0 && +c[0] < d; }).map(function (c) {
-        return '<i style="left:' + (Math.min(100, (+c[0] / d) * 100)).toFixed(3) + '%"></i>';
+      /* one coloured segment per chapter, in its chapter colour, with a small gap between */
+      var L = s.list.filter(function (c) { return c.t < d; });
+      segs.innerHTML = L.map(function (c, i) {
+        var a = Math.max(0, Math.min(100, (c.t / d) * 100)), b = i + 1 < L.length ? Math.min(100, (L[i + 1].t / d) * 100) : 100;
+        return '<i style="left:' + a.toFixed(3) + "%;width:" + Math.max(0, b - a).toFixed(3) + "%;--c:" + chColor(v, i) + '"></i>';
       }).join("");
+      root.classList.add("has-chsegs");
     };
 
     /* ---- following playback: the caption line, the current chapter and transcript line ---- */
@@ -397,42 +604,92 @@
       S.prog = Date.now() + 900;
       try { L.scrollTo({ top: y, behavior: reduced.matches ? "auto" : "smooth" }); } catch (e) { L.scrollTop = y; }
     };
+    /* the chapter list scrolls only inside its own panel (the side panel, fullscreen panel, sheet or flyout); never the page */
+    var scrollPanelTo = function (el) {
+      var sc = el.closest(".x-wh__body"); if (!sc) return;
+      var cs = window.getComputedStyle(sc);
+      if (!/(auto|scroll)/.test(cs.overflowY) || sc.scrollHeight <= sc.clientHeight + 2) return;
+      if (Date.now() - S.chUser < 4000) return;
+      var r = el.getBoundingClientRect(), b = sc.getBoundingClientRect(), vh = sc.clientHeight;
+      if (r.top >= b.top + vh * 0.1 && r.bottom <= b.top + vh * 0.8) return;
+      var y = Math.max(0, sc.scrollTop + (r.top - b.top) - vh * 0.3);
+      try { sc.scrollTo({ top: y, behavior: reduced.matches ? "auto" : "smooth" }); } catch (e) { sc.scrollTop = y; }
+    };
+    /* progressive tint: words already spoken in a line get .is-said (classes only; the text is never redrawn) */
+    var tint = function (box, n) {
+      if (!box) return;
+      var ws = box.querySelectorAll(".w");
+      for (var i = 0; i < ws.length; i++) { var on = i < n; if (ws[i].classList.contains("is-said") !== on) ws[i].classList.toggle("is-said", on); }
+    };
+    var frac = function (t, a, b) { return b > a ? Math.max(0, Math.min(1, (t - a) / (b - a))) : 1; };
+    var lineHtml = function (g, words) { return richHtml(g.x, { link: true, words: words }); };
     var update = function (t) {
       var v = cur(); if (!v) return;
       if (t == null) t = inst.started() ? inst.now() : 0;
       var tr = trOf(v.id);
-      /* captions */
+      /* captions: one cue at a time (rolling repeats are stripped when the transcript loads), up to the chosen line count */
       var key = "", html = "";
       if (C.on && tr && inst.started() && inst.yt()) {
         var st = tr.starts, i = find(st, t);
         if (i >= 0) {
           var s = st[i], nx = i + 1 < st.length ? st[i + 1] : s + 6;
           if (t < nx + 0.6 && t - s < 9) {
-            /* one line block, two lines at most: auto-caption cues roll over each other, so the previous cue is never repeated */
-            key = "c" + i;
-            html = '<div class="x-pn-cap__l"><span>' + esc(tr.cues[i][1]) + "</span></div>";
+            key = "c" + i + (C.kw ? "k" : "") + (C.karaoke ? "w" : "");
+            if (key !== S.capKey) {
+              var rh = richHtml(tr.cues[i][1], { kw: !!C.kw, words: !!C.karaoke, link: false });
+              html = '<div class="x-pn-cap__l"><span>' + rh.html + "</span></div>";
+              S.capW = rh.words; S.capS = s; S.capE = Math.min(nx, s + 8); S.capN = -1;
+            }
           }
         }
       }
       if (key !== S.capKey) { S.capKey = key; capWin.innerHTML = html; }
-      /* chapters */
-      var n = notesOf(v.id);
-      if (S.chList && S.chList.isConnected && S.chList.__id === v.id && n && n.ch) {
-        var ci = find(chStarts(n), t);
+      if (key && C.karaoke && S.capW) {
+        var cn = Math.ceil(S.capW * frac(t, S.capS, S.capE));
+        if (cn !== S.capN) { S.capN = cn; tint(capWin, cn); }
+      }
+      /* chapters: the current row, its thin progress fill, and the list kept in view inside the panel */
+      var sc = secs();
+      if (sc && S.chList && S.chList.isConnected && S.chList.__id === v.id) {
+        var ci = find(sc.starts, t);
+        var rows = S.chList.querySelectorAll(".x-pn-row");
         if (ci !== S.chI) {
           S.chI = ci;
-          S.chList.querySelectorAll(".x-pn-row").forEach(function (b, k) { if (k === ci) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); });
+          rows.forEach(function (b, k) { if (k === ci) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); b.classList.toggle("is-past", k < ci); });
+          if (ci >= 0 && rows[ci]) scrollPanelTo(rows[ci]);
+        }
+        if (ci >= 0 && rows[ci]) {
+          var end = ci + 1 < sc.starts.length ? sc.starts[ci + 1] : (inst.duration() || sc.starts[ci] + 60);
+          rows[ci].style.setProperty("--p", (frac(t, sc.starts[ci], end) * 100).toFixed(1) + "%");
         }
       }
-      /* transcript */
+      /* transcript: the current line glows, past lines dim (CSS), its words tint as they are spoken */
       if (tr && S.list && S.list.isConnected && S.list.__id === v.id) {
         var gi = find(tr.gStarts, t);
         if (gi !== S.gi) {
           var old = S.list.querySelector(".x-pn-line.is-now");
-          if (old) { old.classList.remove("is-now"); old.removeAttribute("aria-current"); }
-          S.gi = gi;
+          if (old) {
+            old.classList.remove("is-now"); old.removeAttribute("aria-current");
+            var og = tr.groups[+old.getAttribute("data-gi")], otx = old.querySelector(".x-pn-tx");
+            if (og && otx && old.__w) { otx.innerHTML = lineHtml(og, false).html; old.__w = false; }
+          }
+          /* past lines dim: only the lines between the old and new position change class */
+          var kids = S.list.children, from = S.gi < 0 ? 0 : Math.min(S.gi, gi), to = S.gi < 0 ? kids.length - 1 : Math.max(S.gi, gi);
+          for (var pk = Math.max(0, from); pk <= to && pk < kids.length; pk++) { var past = pk < gi; if (kids[pk].classList.contains("is-past") !== past) kids[pk].classList.toggle("is-past", past); }
+          S.gi = gi; S.lineN = -1; S.lineW = 0;
           var el = gi >= 0 ? S.list.children[gi] : null;
-          if (el) { el.classList.add("is-now"); el.setAttribute("aria-current", "true"); if (S.follow && !S.q && !el.hidden) keepInView(el); }
+          S.list.classList.toggle("has-now", !!el);
+          if (el) {
+            el.classList.add("is-now"); el.setAttribute("aria-current", "true");
+            var tx = el.querySelector(".x-pn-tx");
+            if (tx && !el.__m) { var lh = lineHtml(tr.groups[gi], true); tx.innerHTML = lh.html; el.__w = true; S.lineW = lh.words; }
+            if (S.follow && !S.q) keepInView(el);
+          }
+        }
+        if (gi >= 0 && S.lineW) {
+          var ge = gi + 1 < tr.gStarts.length ? tr.gStarts[gi + 1] : tr.gStarts[gi] + 8;
+          var ln = Math.ceil(S.lineW * frac(t, tr.gStarts[gi], ge));
+          if (ln !== S.lineN) { S.lineN = ln; tint(S.list.children[gi], ln); }
         }
       }
     };
@@ -442,7 +699,7 @@
       if (s === 1) start(); else stop();
       /* the transcript may still be on its way at the first frame: ask again so captions show without a click */
       var v = cur();
-      if (s === 1 && v && hasCC(v.id) && !trOf(v.id)) getTr(v.id, function () { if (cur() === v) { S.capKey = null; S.gi = -2; update(); paintBtn(); paintSet(); } });
+      if (s === 1 && v && hasCC(v.id) && !trOf(v.id)) getTr(v.id, function () { trArrived(v); });
       if (s === 1 || s === 3) applyYT();
       S.capKey = null; update(); if (S.segD !== inst.duration()) paintSegs();
     });
@@ -456,13 +713,20 @@
       if (!Y.track) pickTrack();
       Y.size = null; applyYT();
     });
-    inst.on("tick", function (t) { if (S.segD !== inst.duration()) paintSegs(); if (!S.timer) update(t); ytTick(); });
+    inst.on("tick", function (t) { var sc = secs(); if (S.segD !== inst.duration() || S.segN !== (sc ? sc.list.length : 0)) paintSegs(); if (!S.timer) update(t); ytTick(); });
+    /* a transcript arriving later can give a talk without chapters its auto sections: redraw that tab once */
+    var trArrived = function (v) {
+      if (cur() !== v) return;
+      S.capKey = null; S.gi = -2; S.chI = -2; paintSegs(); update(); paintBtn(); paintSet();
+      var pane = root.querySelector('.x-wh__body[data-t="ch"] .x-wh__pane');
+      if (pane && pane.querySelector(".x-pn-chwait")) inst._pnRender("ch", v, pane);
+    };
     inst.on("change", function (v) {
       stop();
       Y.key = ""; Y.size = null; Y.tries = 0; Y.track = false; inst._ytCC = false;
-      S.vid = v && v.id; S.capKey = null; capWin.innerHTML = ""; S.chI = -2; S.gi = -2; S.follow = true;
-      if (v && hasCC(v.id)) getTr(v.id, function () { if (cur() === v) { S.capKey = null; S.gi = -2; update(); paintBtn(); paintSet(); } });
-      paintSegs(); paintBtn(); paintSet(); update();
+      S.vid = v && v.id; S.capKey = null; capWin.innerHTML = ""; S.chI = -2; S.gi = -2; S.follow = true; S.sec = null;
+      if (v && hasCC(v.id)) getTr(v.id, function () { trArrived(v); });
+      paintCap(); paintSegs(); paintBtn(); paintSet(); update();
     });
     /* a transcript that failed to load: captions fall back to YouTube's own */
     inst._pnFail = function () { paintBtn(); paintSet(); capWin.innerHTML = ""; S.capKey = null; applyYT(); if (inst._whSync) inst._whSync(); };
@@ -473,16 +737,23 @@
     var setFollow = function (on) {
       S.follow = on;
       if (S.chip && S.chip.isConnected) S.chip.hidden = on || !!S.q;
+      var fb = S.list && S.list.isConnected ? S.list.closest(".x-pn-tr").querySelector('[data-pn="follow"]') : null;
+      if (fb) fb.setAttribute("aria-pressed", String(!!on));
     };
+    var LINE_ACTS = '<span class="x-pn-acts">' +
+      '<button type="button" class="x-pn-ib" data-pn="cl" aria-label="Copy line" title="Copy line">' + svg('<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>') + "</button>" +
+      '<button type="button" class="x-pn-ib" data-pn="ct" aria-label="Copy line with timestamp link" title="Copy with timestamp">' + svg('<circle cx="12" cy="13" r="7.5"/><path d="M12 9.5V13l2.5 1.5M9.5 2.5h5"/>') + "</button></span>";
     var fillTranscript = function (v, box) {
       var tr = trOf(v.id), list = box.querySelector(".x-pn-list"), meta = box.querySelector(".x-pn-trmeta");
       if (!tr) { meta.textContent = "The transcript could not be loaded."; return; }
       list.innerHTML = tr.groups.map(function (g, i) {
-        return '<button type="button" class="x-pn-line" data-pn-seek="' + g.t + '" data-gi="' + i + '"><span class="x-pn-time">' + fmt(g.t) + '</span><span class="x-pn-tx">' + esc(g.x) + "</span></button>";
+        return '<div class="x-pn-line" role="listitem" data-pn-seek="' + g.t + '" data-gi="' + i + '">' +
+          '<button type="button" class="x-pn-time" data-pn-seek="' + g.t + '" aria-label="Play from ' + fmt(g.t) + '">' + fmt(g.t) + "</button>" +
+          '<span class="x-pn-tx">' + lineHtml(g, false).html + "</span>" + LINE_ACTS + "</div>";
       }).join("");
       list.__id = v.id;
-      meta.textContent = tr.groups.length.toLocaleString("en-US") + " lines · tap a line to jump there";
-      S.list = list; S.meta = meta; S.chip = box.querySelector(".x-pn-resume"); S.gi = -2; S.q = "";
+      meta.textContent = tr.groups.length.toLocaleString("en-US") + " lines · tap a line to jump there · names and key terms link to their pages";
+      S.list = list; S.meta = meta; S.chip = box.querySelector(".x-pn-resume"); S.gi = -2; S.q = ""; S.hits = []; S.hit = -1;
       var inp = box.querySelector('[data-pn="q"]'); if (inp && inp.value) { S.q = ""; search(inp.value); }
       setFollow(true);
       var mark = function () { S.userAt = Date.now(); };
@@ -496,53 +767,108 @@
       }, { passive: true });
       update();
     };
+    /* search: every line stays in place; matches are marked, counted, and stepped through with ↑ / ↓ (or Enter) */
+    var paintCount = function () {
+      var box = S.list && S.list.isConnected ? S.list.closest(".x-pn-tr") : null; if (!box) return;
+      var out = box.querySelector('[data-pn-out="count"]'), n = S.hits.length;
+      out.textContent = !S.q ? "" : n ? (S.hit + 1) + " of " + n : "0 of 0";
+      box.querySelector('[data-pn="qnext"]').disabled = n < 1;
+      box.querySelector('[data-pn="qprev"]').disabled = n < 1;
+    };
+    var goHit = function (d) {
+      var n = S.hits.length; if (!n) return;
+      var old = S.list.querySelector(".x-pn-line.is-hit"); if (old) old.classList.remove("is-hit");
+      S.hit = ((S.hit < 0 ? (d > 0 ? -1 : 0) : S.hit) + d + n) % n;
+      var el = S.list.children[S.hits[S.hit]];
+      if (el) { el.classList.add("is-hit"); S.prog = Date.now() + 900; keepInView(el, true); }
+      paintCount();
+    };
     var search = function (raw) {
       var tr = S.vid && trOf(S.vid), list = S.list;
       if (!tr || !list || !list.isConnected) return;
       var q = String(raw || "").trim().toLowerCase();
       if (q === S.q) return;
-      S.q = q;
+      S.q = q; S.hits = []; S.hit = -1;
       var terms = q ? q.split(/\s+/).filter(Boolean) : [];
       var re = terms.length ? new RegExp("(" + terms.map(function (x) { return x.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|") + ")", "gi") : null;
-      var hits = 0;
       [].forEach.call(list.children, function (el, i) {
         var g = tr.groups[i], tx = el.querySelector(".x-pn-tx"); if (!g) return;
-        if (!re) { el.hidden = false; if (el.__m) { tx.textContent = g.x; el.__m = false; } return; }
-        var low = g.x.toLowerCase(), ok = terms.every(function (x) { return low.indexOf(x) >= 0; });
-        el.hidden = !ok;
-        if (ok) { hits++; tx.innerHTML = esc(g.x).replace(re, "<mark>$1</mark>"); el.__m = true; }
-        else if (el.__m) { tx.textContent = g.x; el.__m = false; }
+        el.classList.remove("is-hit");
+        var low = g.x.toLowerCase(), ok = !!re && terms.every(function (x) { return low.indexOf(x) >= 0; });
+        el.classList.toggle("is-match", ok);
+        if (ok) { S.hits.push(i); tx.innerHTML = esc(g.x).replace(re, "<mark>$1</mark>"); el.__m = true; el.__w = false; }
+        else if (el.__m) { tx.innerHTML = lineHtml(g, false).html; el.__m = false; }
       });
-      if (S.meta) S.meta.textContent = re ? (hits ? hits.toLocaleString("en-US") + (hits === 1 ? " matching line" : " matching lines") : "No lines match “" + raw.trim() + "”") : tr.groups.length.toLocaleString("en-US") + " lines · tap a line to jump there";
-      list.scrollTop = 0;
-      if (!re) { setFollow(true); S.gi = -2; update(); }
-      else if (S.chip) S.chip.hidden = true;
+      list.classList.toggle("is-searching", !!re);
+      if (S.meta) S.meta.textContent = re ? (S.hits.length ? S.hits.length.toLocaleString("en-US") + (S.hits.length === 1 ? " matching line" : " matching lines") + " · Enter for the next" : "No lines match “" + raw.trim() + "”") : tr.groups.length.toLocaleString("en-US") + " lines · tap a line to jump there · names and key terms link to their pages";
+      if (!re) { S.gi = -2; paintCount(); setFollow(true); update(); return; }
+      if (S.chip) S.chip.hidden = true;
+      paintCount();
+      if (S.hits.length) goHit(1);
     };
-    var copyText = function (btn) {
-      var v = cur(), tr = v && trOf(v.id); if (!tr) return;
-      var text = (v.t ? v.t + "\n" : "") + "https://www.youtube.com/watch?v=" + v.id + "\n\n" +
-        tr.groups.map(function (g) { return "[" + fmt(g.t) + "] " + g.x; }).join("\n") + "\n\n" + PROV + "\n";
-      var ok = function () { btn.textContent = "Copied"; inst.say("Transcript copied"); setTimeout(function () { btn.textContent = "Copy transcript"; }, 1600); };
+    var copyStr = function (text, done) {
       var old = function () {
         var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", "");
         ta.style.position = "fixed"; ta.style.top = "0"; ta.style.left = "0"; ta.style.opacity = "0";
-        (root.closest("dialog, .x-pop") || document.body).appendChild(ta);
+        var back = document.activeElement;
+        root.appendChild(ta);
         try { ta.focus({ preventScroll: true }); } catch (e) {}
         ta.select();
-        try { document.execCommand("copy"); ok(); } catch (e) { inst.say("Copy is not available here."); }
+        try { document.execCommand("copy"); done(true); } catch (e) { done(false); }
         ta.remove();
-        try { btn.focus({ preventScroll: true }); } catch (e) {}
+        try { if (back) back.focus({ preventScroll: true }); } catch (e) {}
       };
-      try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, old); else old(); } catch (e) { old(); }
+      try { if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(function () { done(true); }, old); else old(); } catch (e) { old(); }
+    };
+    var allText = function (v, tr) {
+      return (v.t ? v.t + "\n" : "") + "https://www.youtube.com/watch?v=" + v.id + "\n\n" +
+        tr.groups.map(function (g) { return "[" + fmt(g.t) + "] " + g.x; }).join("\n") + "\n\n" + PROV + "\n";
+    };
+    var copyText = function (btn) {
+      var v = cur(), tr = v && trOf(v.id); if (!tr) return;
+      copyStr(allText(v, tr), function (ok) {
+        if (!ok) { inst.say("Copy is not available here."); return; }
+        btn.textContent = "Copied"; inst.say("Transcript copied"); setTimeout(function () { btn.textContent = "Copy all"; }, 1600);
+      });
+    };
+    var copyLine = function (btn, withTime) {
+      var v = cur(), tr = v && trOf(v.id), line = btn.closest(".x-pn-line"); if (!tr || !line) return;
+      var g = tr.groups[+line.getAttribute("data-gi")]; if (!g) return;
+      var text = withTime ? "[" + fmt(g.t) + "] " + g.x + "\nhttps://www.youtube.com/watch?v=" + v.id + "&t=" + Math.floor(g.t) + "s" : g.x;
+      copyStr(text, function (ok) {
+        inst.say(ok ? (withTime ? "Line copied with its " + fmt(g.t) + " link" : "Line copied") : "Copy is not available here.");
+        if (ok) { btn.classList.add("is-done"); setTimeout(function () { btn.classList.remove("is-done"); }, 1200); }
+      });
+    };
+    var download = function () {
+      var v = cur(), tr = v && trOf(v.id); if (!tr) return;
+      try {
+        var blob = new Blob([allText(v, tr)], { type: "text/plain;charset=utf-8" }), url = URL.createObjectURL(blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = (String(v.t || v.id).replace(/[^\w\- ]+/g, "").trim().slice(0, 80) || v.id) + " - transcript.txt";
+        root.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        inst.say("Transcript downloaded");
+      } catch (e) { inst.say("Download is not available here."); }
     };
 
     /* the panel calls this to draw a notes tab into its pane */
     inst._pnRender = function (key, v, pane) {
       var n = notesOf(v.id);
       S.vid = v.id;
-      if (key === "ch" && n && n.ch) {
-        pane.innerHTML = chaptersHtml(n);
-        S.chList = pane.querySelector(".x-pn-ch"); S.chList.__id = v.id; S.chI = -2;
+      if (key === "ch") {
+        var sec = secs();
+        if (sec) {
+          pane.innerHTML = chaptersHtml(sec, v);
+          S.chList = pane.querySelector(".x-pn-ch"); S.chList.__id = v.id; S.chI = -2;
+          var body = pane.closest(".x-wh__body");
+          if (body && !body.__chU) { body.__chU = 1; var mk = function () { S.chUser = Date.now(); }; body.addEventListener("wheel", mk, { passive: true }); body.addEventListener("touchmove", mk, { passive: true }); }
+        } else if (hasCC(v.id) && !trOf(v.id)) {
+          pane.innerHTML = '<div class="x-pn-empty x-pn-chwait"><p class="x-pn-h">Auto sections</p><p class="x-pn-p">This talk has no chapters. Building sections every 5 minutes from its transcript…</p></div>';
+          getTr(v.id, function () { trArrived(v); });
+        } else {
+          pane.innerHTML = '<div class="x-pn-empty"><p class="x-pn-h">No chapters</p><p class="x-pn-p">This talk has no chapters and no transcript to build sections from. Use the seek bar, or press 0 – 9 to jump through it in tenths.</p></div>';
+        }
       } else if (key === "sum" && n) {
         pane.innerHTML = summaryHtml(n);
       } else if (key === "tr" && !capSet()[v.id]) {
@@ -578,10 +904,19 @@
       });
     };
     root.addEventListener("click", function (ev) {
+      /* keyword chips are links: they navigate (leaving fullscreen first, in watch-hub.js) and never seek */
+      if (ev.target.closest("a[href]")) return;
+      var b = ev.target.closest("[data-pn]");
       var s = ev.target.closest("[data-pn-seek]");
-      if (s && root.contains(s)) { ev.preventDefault(); seekTo(s.getAttribute("data-pn-seek")); return; }
-      var b = ev.target.closest("[data-pn]"); if (!b || !root.contains(b)) return;
+      if (s && root.contains(s) && !(b && s.contains(b) && b !== s)) { ev.preventDefault(); seekTo(s.getAttribute("data-pn-seek")); return; }
+      if (!b || !root.contains(b)) return;
       var a = b.getAttribute("data-pn");
+      if (a === "cl" || a === "ct") { copyLine(b, a === "ct"); return; }
+      if (a === "qnext" || a === "qprev") { goHit(a === "qnext" ? 1 : -1); return; }
+      if (a === "follow") { var on = !S.follow; setFollow(on); if (on) { S.gi = -2; update(); } inst.say(on ? "Following along" : "Follow along off"); return; }
+      if (a === "dl") { download(); return; }
+      if (a === "preset") { applyPreset(b.getAttribute("data-v")); inst.say("Caption style: " + PRESETS[b.getAttribute("data-v")][0]); return; }
+      if (a === "tog") { var tk = b.getAttribute("data-k"); setC(tk, !C[tk]); return; }
       if (a === "retry") {
         var rv = cur(), rp = b.closest(".x-wh__pane");
         if (rv && rp) { delete TR[rv.id]; paintBtn(); paintSet(); inst._pnRender("tr", rv, rp);
@@ -596,11 +931,12 @@
         var k = b.getAttribute("data-k"), v = b.getAttribute("data-v");
         if (k === "on") { if ((v === "1") !== C.on) inst.ccToggle(); }
         else if (k === "pos") { C.y = null; setC("pos", v); }
+        else if (k === "lines") setC("lines", +v);
         else setC(k, v);
       }
       else if (a === "size") setSize(+b.getAttribute("data-d"));
       else if (a === "posreset") { C.y = null; setC("pos", "bottom"); inst.say("Caption position reset"); }
-      else if (a === "ccreset") { var on = C.on; loadC(); Object.keys(DEF).forEach(function (k2) { C[k2] = DEF[k2]; }); C.on = on; saveC(); everywhere(); inst.say("Caption settings reset"); }
+      else if (a === "ccreset") { var was = C.on; Object.keys(DEF).forEach(function (k2) { C[k2] = DEF[k2]; }); C.on = was; saveC(); everywhere(); inst.say("Caption style reset"); }
     });
     var qT = 0;
     root.addEventListener("input", function (ev) {
@@ -609,7 +945,9 @@
       clearTimeout(qT); qT = setTimeout(function () { search(val); }, 140);
     });
     root.addEventListener("keydown", function (ev) {
-      if (ev.key === "Escape" && ev.target.matches && ev.target.matches(".x-pn-search input") && ev.target.value) { ev.preventDefault(); ev.stopPropagation(); ev.target.value = ""; search(""); }
+      if (!ev.target.matches || !ev.target.matches(".x-pn-search input")) return;
+      if (ev.key === "Escape" && ev.target.value) { ev.preventDefault(); ev.stopPropagation(); ev.target.value = ""; search(""); }
+      else if (ev.key === "Enter") { ev.preventDefault(); clearTimeout(qT); search(ev.target.value); goHit(ev.shiftKey ? -1 : 1); }
     });
 
     paintCap(); paintSet(); paintBtn(); barH();
@@ -626,12 +964,17 @@
     has: function (v, key) {
       if (!v || !v.id) return false;
       var n = notesOf(v.id);
-      if (key === "ch") return !!(n && n.ch && n.ch.length);
+      /* Chapters is always there too: the talk's chapters, auto sections from the transcript, or an empty state */
+      if (key === "ch") return true;
       if (key === "sum") return !!(n && (n.s || n.ww || (n.kc && n.kc.length)));
       /* the Transcript tab is always there: the transcript, a loading skeleton, a retry, or the empty state */
       if (key === "tr") return true;
       return false;
     },
+    /* the summary, why-watch and key claims block, for the About tab */
+    summary: function (v) { var n = v && notesOf(v.id); return n && (n.s || n.ww || (n.kc && n.kc.length)) ? summaryHtml(n) : ""; },
+    /* text with names and key terms as chips linking to #/person/<id> and #/topic/<slug> */
+    rich: function (text) { return richHtml(String(text || ""), { link: true }).html; },
     render: function (key, v, pane, inst) { if (inst && inst._pnRender) inst._pnRender(key, v, pane); }
   };
 
