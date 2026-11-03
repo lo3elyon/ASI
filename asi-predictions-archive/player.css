@@ -119,6 +119,64 @@ select.x-ap__b option { color: var(--text-primary); background: var(--fill-prima
 .x-pop.is-min .x-pop__pill { display: flex; }
 .x-pop.is-min .x-pop__win { position: fixed; left: -200vw; top: 0; width: 360px; pointer-events: none; }
 
+/* the up-next list: only in the modal */
+.x-pop__side { display: none; }
+.x-pop__sh { margin: 0; padding: 12px 16px 8px; font: var(--type-tag); font-weight: var(--weight-medium); color: var(--hero-text-muted); }
+.x-pop__list { position: relative; display: grid; align-content: start; gap: 4px; padding: 0 8px 12px; overflow-y: auto; overscroll-behavior: contain; }
+.x-pop__q { display: flex; gap: 10px; align-items: center; width: 100%; min-height: var(--tap); padding: 6px; border: 0; border-radius: var(--r-s); background: none; color: var(--hero-text); text-align: left; cursor: pointer; transition: background-color var(--dur-quick) var(--ease-out); }
+.x-pop__q:hover { background: var(--hero-glass); }
+.x-pop__q[aria-current="true"] { background: var(--hero-glass); box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
+.x-pop__q:focus-visible { outline: 2px solid var(--x-e1, var(--hero-text)); outline-offset: -2px; }
+.x-pop__q img { flex: none; width: 112px; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.x-pop__q span { min-width: 0; }
+.x-pop__q b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; font: var(--type-small); font-weight: var(--weight-medium); }
+.x-pop__q small { display: block; margin-top: 2px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font: var(--type-caption); color: var(--hero-text-muted); }
+
+/* modal: the same window centred over a dimmed page, the list beside the video */
+.x-pop-bd { position: fixed; inset: 0; z-index: 60; background: var(--hero-scrim-strong); -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur); transition: opacity 240ms var(--ease-out); }
+.x-pop-bd[hidden] { display: none; }
+.x-pop-bd.is-enter, .x-pop-bd.is-leave { opacity: 0; }
+.x-pop.is-modal {
+  z-index: 61; left: 50%; top: 50%; transform: translate(-50%, -50%); max-width: none;
+  width: min(1240px, calc(100vw - 32px), calc((100vh - 200px) * 16 / 9 + 340px));
+  width: min(1240px, calc(100vw - 32px), calc((100dvh - 200px) * 16 / 9 + 340px));
+}
+.x-pop.is-modal .x-pop__win {
+  display: grid; grid-template-columns: minmax(0, 1fr) 340px; grid-template-rows: auto auto;
+  max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); border-radius: var(--r-l);
+  transition: opacity 240ms var(--ease-out), transform 280ms var(--ease-out);
+}
+.x-pop.is-modal.is-enter .x-pop__win, .x-pop.is-modal.is-leave .x-pop__win { opacity: 0; transform: translateY(12px) scale(0.96); }
+.x-pop.is-leave, .x-pop-bd.is-leave { pointer-events: none; }
+.x-pop.is-modal .x-pop__bar { grid-column: 1 / -1; min-height: 48px; padding: 4px 6px 4px 16px; border-radius: var(--r-l) var(--r-l) 0 0; cursor: default; touch-action: auto; }
+.x-pop.is-modal .x-pop__title { font: var(--type-label); font-weight: var(--weight-medium); }
+.x-pop.is-modal .x-pop__body { grid-column: 1; grid-row: 2; align-self: start; }
+.x-pop.is-modal .x-ap__wrap { border-radius: 0 0 0 var(--r-l); }
+.x-pop.is-modal .x-pop__side { display: flex; flex-direction: column; grid-column: 2; grid-row: 2; min-height: 0; contain: size; border-left: 1px solid var(--hero-glass-stroke); }
+.x-pop.is-modal .x-pop__list { flex: 1 1 auto; min-height: 0; }
+.x-pop.is-modal .x-pop__grip { display: none; }
+.x-pop.is-modal .x-ap__btns { padding-right: 0; }
+.x-pop.is-modal .x-ap__big { width: 76px; height: 76px; }
+.x-pop.is-modal.is-solo { width: min(1000px, calc(100vw - 32px), calc((100vh - 200px) * 16 / 9)); width: min(1000px, calc(100vw - 32px), calc((100dvh - 200px) * 16 / 9)); }
+.x-pop.is-modal.is-solo .x-pop__win { grid-template-columns: minmax(0, 1fr); }
+.x-pop.is-modal.is-solo .x-pop__side { display: none; }
+.x-pop.is-modal.is-solo .x-ap__wrap { border-radius: 0 0 var(--r-l) var(--r-l); }
+@media (max-width: 899px) {
+  .x-pop.is-modal, .x-pop.is-modal.is-solo { width: min(calc(100vw - 16px), 720px); }
+  .x-pop.is-modal .x-pop__win { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto; max-height: calc(100vh - 16px); max-height: calc(100dvh - 16px); overflow-y: auto; overscroll-behavior: contain; }
+  .x-pop.is-modal .x-pop__bar { position: sticky; top: 0; z-index: 4; background: var(--x-ink-dark, var(--hero-surface)); }
+  .x-pop.is-modal .x-ap__wrap { border-radius: 0; }
+  .x-pop.is-modal.is-solo .x-ap__wrap { border-radius: 0 0 var(--r-l) var(--r-l); }
+  .x-pop.is-modal .x-pop__side { grid-column: 1; grid-row: 3; contain: none; border-left: 0; border-top: 1px solid var(--hero-glass-stroke); }
+  .x-pop.is-modal .x-pop__list { overflow: visible; }
+}
+@media (max-width: 599px) { .x-pop__q img { width: 96px; } }
+html.x-modal-open { scrollbar-gutter: auto; }
+@media (prefers-reduced-motion: reduce) {
+  .x-pop-bd, .x-pop.is-modal .x-pop__win, .x-pop__q { transition: none; }
+  .x-pop.is-modal.is-enter .x-pop__win, .x-pop.is-modal.is-leave .x-pop__win { transform: none; }
+}
+
 /* "Play here" on archive cards */
 .x-ph { position: absolute; left: 8px; bottom: 8px; z-index: 2; display: inline-flex; align-items: center; min-height: 32px; padding: 0 12px; border: 0; border-radius: var(--r-pill); background: var(--hero-scrim-strong); color: var(--hero-text); font: var(--type-tag); cursor: pointer; box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur); }
 .x-ph:hover { background: var(--x-ink-dark, var(--hero-surface)); }
@@ -246,3 +304,21 @@ select.x-ap__b option { color: var(--text-primary); background: var(--fill-prima
 .x-apx-menu .x-ap__sr { position: static; width: auto; height: auto; overflow: visible; clip: auto; color: var(--hero-text-muted); }
 .x-apx-menu .x-apx-range { flex: 1; width: auto; max-width: 180px; }
 .x-apx-menu [data-a="keys"] { grid-column: 1 / -1; }
+
+/* shield over the YouTube iframe: keeps YouTube's hover UI hidden; click plays or pauses, double-click goes fullscreen */
+.x-ap__shield { display: none; position: absolute; inset: 0; z-index: 1; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__shield { display: block; }
+.x-ap.is-idle .x-ap__shield { cursor: none; }
+
+/* the site bar overlays the foot of the video on a dark scrim, and fades out after idle while playing */
+.x-ap.x-ap:not(.is-basic) .x-ap__bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; padding-top: 36px; background: linear-gradient(to top, var(--hero-scrim-strong), var(--hero-scrim-strong) 40%, transparent); transition: opacity var(--dur-quick) var(--ease-out), visibility 0s linear 0s; }
+.x-ap.is-idle:not(.is-basic) .x-ap__bar { opacity: 0; visibility: hidden; pointer-events: none; transition: opacity var(--dur-quick) var(--ease-out), visibility 0s linear var(--dur-quick); }
+.x-ap.is-native .x-ap__bar { display: none !important; }
+.x-pop .x-pop__grip { z-index: 4; }
+
+/* YouTube-controls mode: a small pill to switch back */
+.x-ap__back { display: none; position: absolute; top: 10px; left: 10px; z-index: 3; align-items: center; min-height: 32px; padding: 0 12px; border: 0; border-radius: var(--r-pill); background: var(--hero-scrim-strong); color: var(--hero-text); font: var(--type-tag); cursor: pointer; box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); -webkit-backdrop-filter: var(--hark-blur); backdrop-filter: var(--hark-blur); }
+.x-ap.is-started.is-native:not(.is-basic) .x-ap__back { display: inline-flex; }
+.x-ap__back:focus-visible { outline: 2px solid var(--hero-text); outline-offset: 2px; }
+@media (pointer: coarse) { .x-ap__back { min-height: var(--tap); } }
+@media (prefers-reduced-motion: reduce) { .x-ap .x-ap__bar { transition: none !important; } }

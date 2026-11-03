@@ -40,7 +40,8 @@
     yt: svg('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>'),
     close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
     restore: svg('<path d="M14 4h6v6M10 20H4v-6"/>'),
-    grip: svg('<path d="M20 12l-8 8M20 17l-3 3"/>')
+    grip: svg('<path d="M20 12l-8 8M20 17l-3 3"/>'),
+    expand: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 9h6v6"/>')
   };
 
   /* ---------- storage: resume position, watched state, autoplay toggle ---------- */
@@ -97,6 +98,8 @@
         '<div class="x-ap__wrap">' +
           '<div class="x-ap__screen">' +
             '<div class="x-ap__frame"></div>' +
+            '<div class="x-ap__shield" aria-hidden="true"></div>' +
+            '<button class="x-ap__back" type="button" data-a="siteplayer">Back to site player</button>' +
             '<div class="x-ap__poster"></div>' +
             '<div class="x-ap__upnext" hidden></div>' +
             '<div class="x-ap__out"><p>Playing in the pop-out window</p><button class="x-ap__b x-ap__b--solid" type="button" data-a="dockhere">' + IC.dock + " Bring it back</button></div>" +
@@ -118,6 +121,7 @@
               '<span class="x-ap__gap"></span>' +
               '<button class="x-ap__b x-ap__wide" type="button" data-a="theater" aria-pressed="false">Theater</button>' +
               '<button class="x-ap__b" type="button" data-a="fs">Fullscreen</button>' +
+              '<button class="x-ap__b x-ap__ytb" type="button" data-a="native" aria-label="Switch to YouTube controls" data-tip="Switch to YouTube controls">' + svg('<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/>') + "</button>" +
               '<button class="x-ap__b x-ap__popb" type="button" data-a="pop" aria-label="Pop out (I)" data-tip="Pop out (I)">' + IC.pop + "</button>" +
               '<button class="x-ap__b" type="button" data-a="keys" aria-label="Keyboard shortcuts">?</button>' +
             "</div>" +
@@ -129,7 +133,7 @@
         '<button class="btn" type="button" data-a="prev">← Prev</button>' +
         '<button class="btn" type="button" data-a="next">Next →</button>' +
         '<button class="btn x-ap__auto" type="button" data-a="auto" aria-pressed="false">Autoplay next: Off</button>' +
-        '<a class="btn" data-r="yt" href="#" target="_blank" rel="noopener">Open on YouTube</a>' +
+        '<a class="btn" data-r="yt" href="#" target="_blank" rel="noopener">Watch on YouTube</a>' +
         '<button class="btn" type="button" data-a="copy">Copy link</button>' +
       "</div>" +
       '<p class="x-ap__status" role="status" aria-live="polite"></p>' +
@@ -146,6 +150,7 @@
     var q = function (s) { return root.querySelector(s); };
     var slot = q(".x-ap__slot"), wrap = q(".x-ap__wrap"), frame = q(".x-ap__frame"), poster = q(".x-ap__poster"), upnext = q(".x-ap__upnext");
     var seek = q(".x-ap__seek"), tCur = q('[data-r="cur"]'), tDur = q('[data-r="dur"]'), speedSel = q('[data-r="speed"]');
+    var shield = q(".x-ap__shield"), barEl = q(".x-ap__bar");
     var info = q(".x-ap__info"), ytA = q('[data-r="yt"]'), status = q(".x-ap__status"), sheet = q(".x-ap__sheet"), autoB = q('[data-a="auto"]');
 
     var say = function (t) { status.textContent = t; clearTimeout(say.t); say.t = setTimeout(function () { status.textContent = ""; }, 2500); };
@@ -154,6 +159,7 @@
     var paintToggle = function () {
       root.querySelectorAll('[data-a="toggle"]').forEach(function (b) { b.innerHTML = P.playing ? ICON.pause : ICON.play; b.setAttribute("aria-label", P.playing ? "Pause" : "Play"); });
       root.classList.toggle("is-playing", P.playing);
+      if (typeof wake === "function") wake();
       if (opts.onPlayState) opts.onPlayState(P.playing);
     };
     var paintAuto = function () { autoB.setAttribute("aria-pressed", store.auto); autoB.textContent = "Autoplay next: " + (store.auto ? "On" : "Off"); };
@@ -253,18 +259,28 @@
         if (done || tok !== P.token) return;
         done = true; clearTimeout(fail);
         if (!ok) return basic(start);
-        var host = document.createElement("div");
-        frame.innerHTML = ""; frame.appendChild(host);
+        mount(start, true);
+      });
+    };
+    /* Build the YouTube player. Only reached from play() (a user click or key) or from switching control modes. */
+    var mount = function (start, auto) {
+      var v = P.video, tok = P.token;
+      P.native = isNative(); root.classList.toggle("is-native", P.native);
+      var host = document.createElement("div");
+      frame.innerHTML = ""; frame.appendChild(host);
+      var pv = { autoplay: auto ? 1 : 0, controls: P.native ? 1 : 0, disablekb: P.native ? 0 : 1, fs: P.native ? 1 : 0, iv_load_policy: 3,
+        rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
+      if (/^https?:/.test(location.origin)) pv.origin = location.origin;
         try {
           P.yt = new window.YT.Player(host, {
             host: "https://www.youtube-nocookie.com",
             videoId: v.id,
             width: "100%", height: "100%",
-            playerVars: { autoplay: 1, rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 },
+            playerVars: pv,
             events: {
               onReady: function (e) {
                 if (tok !== P.token) return;
-                try { if (P.rate !== 1) e.target.setPlaybackRate(P.rate); if (P.muted) e.target.mute(); e.target.playVideo(); } catch (x) {}
+                try { if (P.rate !== 1) e.target.setPlaybackRate(P.rate); if (P.muted) e.target.mute(); if (auto) e.target.playVideo(); } catch (x) {}
                 var ifr = frame.querySelector("iframe"); if (ifr) ifr.title = v.t;
                 startTick(); paintTime();
                 emit("ready", e.target);
@@ -280,12 +296,69 @@
                 paintToggle(); paintLink();
                 if (P.playing && !P.suppress) checkDock();
               },
-              onError: function () { if (tok === P.token) say("YouTube could not play this video here. Try Open on YouTube."); }
+              onError: function () { if (tok === P.token) say("YouTube could not play this video here. Try Watch on YouTube."); }
             }
           });
         } catch (x) { basic(start); }
-      });
     };
+
+    /* ---------- control mode: the site player (default) or YouTube's own controls, remembered across visits ---------- */
+    var NKEY = "asiYtNative";
+    var isNative = function () { try { return window.localStorage.getItem(NKEY) === "1"; } catch (e) { return false; } };
+    var setNative = function (on) {
+      try { window.localStorage.setItem(NKEY, on ? "1" : "0"); } catch (e) {}
+      if (!P.started || P.basic || !P.yt || !P.video) { P.native = on; root.classList.toggle("is-native", on); return; }
+      var t = now(), was = P.playing && !P.ended;
+      stopTick();
+      if (t > 0) record(P.video.id, t, P.dur);
+      try { P.yt.destroy(); } catch (e) {}
+      P.yt = null; P.token++; P.playing = false; P.ended = false;
+      mount(Math.floor(t), was);
+      paintToggle();
+      say(on ? "YouTube controls on" : "Site player on");
+      var f = on ? q('[data-a="siteplayer"]') : q('[data-a="native"]');
+      if (f && root.contains(document.activeElement)) setTimeout(function () { try { f.focus(); } catch (e) {} }, 0);
+    };
+
+    /* ---------- the shield over the iframe: click plays or pauses, double-click goes fullscreen ---------- */
+    var clickT = null, swallow = false;
+    shield.addEventListener("click", function () {
+      if (swallow) { swallow = false; return; }
+      clearTimeout(clickT);
+      clickT = setTimeout(function () { clickT = null; toggle(); }, 220);
+    });
+    shield.addEventListener("dblclick", function (ev) { ev.preventDefault(); clearTimeout(clickT); clickT = null; fullscreen(); });
+
+    /* ---------- the bar overlays the video and hides after 2.5s idle while playing ---------- */
+    var idleT = null;
+    var keepBar = function () {
+      if (barEl.matches(":hover")) return true;
+      if (barEl.querySelector(".x-apx-menu:not([hidden])")) return true;
+      var a = document.activeElement;
+      if (a && barEl.contains(a)) { try { return a.matches(":focus-visible"); } catch (e) { return true; } }
+      return false;
+    };
+    var hide = function () {
+      idleT = null;
+      if (!P.playing || P.native || P.basic) return;
+      if (keepBar()) { idleT = setTimeout(hide, 2500); return; }
+      root.classList.add("is-idle");
+    };
+    var wake = function () {
+      root.classList.remove("is-idle");
+      clearTimeout(idleT); idleT = null;
+      if (P.playing && !P.native && !P.basic) idleT = setTimeout(hide, 2500);
+    };
+    wrap.addEventListener("pointermove", function (ev) { if (ev.pointerType !== "touch") wake(); });
+    wrap.addEventListener("pointerdown", function (ev) {
+      if (ev.pointerType === "touch" && ev.target === shield && root.classList.contains("is-idle")) { swallow = true; setTimeout(function () { swallow = false; }, 700); }
+      wake();
+    });
+    wrap.addEventListener("pointerleave", function (ev) {
+      if (ev.pointerType === "touch" || !P.playing) return;
+      clearTimeout(idleT); idleT = setTimeout(hide, 600);
+    });
+    barEl.addEventListener("focusin", wake);
     var pause = function () { if (P.yt && P.yt.pauseVideo) P.yt.pauseVideo(); };
     var toggle = function () {
       if (!P.started || P.ended) { emit("flash", "play"); play(); }
@@ -381,6 +454,8 @@
       else if (a === "theater") theater();
       else if (a === "fs") fullscreen();
       else if (a === "pop") Pop.fromInstance(self, false);
+      else if (a === "native") setNative(true);
+      else if (a === "siteplayer") setNative(false);
       else if (a === "dockhere") Pop.dock();
       else if (a === "prev") go(-1, false);
       else if (a === "next") go(1, false);
@@ -412,6 +487,7 @@
       var openD = document.querySelector("dialog[open]");
       if (openD && openD !== sheet) return false;
       var k = ev.key;
+      wake();
       if (k === "?") { sheet.open ? sheet.close() : showKeys(); return true; }
       if (sheet.open) return false;
       if (emit("key", ev)) return true;
@@ -472,11 +548,15 @@
     return self;
   }
 
-  /* ---------- the one shared pop-out window ---------- */
+  /* ---------- the one shared pop-out window ----------
+     Two shapes: a centred modal over a dimmed, scroll-locked page with the up-next list beside it,
+     and the draggable corner window. Both minimise to a pill; nothing ever leaves the page. */
   var Pop = (function () {
-    var el = null, win, bar, body, titleEl, pillTitle, pillToggle, tabA, ytA, inst = null;
+    var el = null, bd = null, win, bar, body, titleEl, pillTitle, pillToggle, ytA, modeB, listEl, inst = null;
     var S = { x: 0, y: 0, w: 400, corner: "br" };
     var src = null, auto = false, isMin = false, drag = null;
+    var modal = false, lock = null, opener = null, leaveT = 0, listQ = null;
+    var still = function () { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); };
     var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
     var vw = function () { return document.documentElement.clientWidth || window.innerWidth; };
     var vh = function () { return window.innerHeight; };
@@ -486,7 +566,7 @@
     var gap = function (side) { return side === "B" ? 76 : 16; }; /* bottom-right clears the Ask button */
 
     var place = function () {
-      if (!isOpen()) return;
+      if (!isOpen() || modal) return;
       var w = el.offsetWidth, h = el.offsetHeight, W = vw(), H = vh();
       if (S.corner) {
         S.x = S.corner[1] === "l" ? 16 : W - w - 16;
@@ -499,8 +579,100 @@
     var setWidth = function (w) {
       var W = vw(), lo = Math.min(280, W - 16), hi = Math.max(lo, Math.floor(W * 0.9));
       S.w = Math.round(clamp(w, lo, hi));
+      if (modal) return;
       if (!isMin) el.style.width = S.w + "px";
       el.classList.toggle("is-narrow", S.w < 420);
+    };
+    var sizeCorner = function () {
+      if (!S.placed) { S.placed = true; S.corner = "br"; setWidth(Math.min(400, vw() * 0.9)); }
+      else setWidth(S.w);
+    };
+
+    /* ---------- the page under the modal: no scroll, no focus, no clicks; the scroll position comes back on close ---------- */
+    var lockPage = function () {
+      if (lock) return;
+      var de = document.documentElement, b = document.body, y = window.scrollY || de.scrollTop || 0;
+      var sb = Math.max(0, window.innerWidth - de.clientWidth);
+      lock = { x: window.scrollX || 0, y: y, bs: b.getAttribute("style"), hs: de.getAttribute("style"), inert: [] };
+      de.style.overflow = "hidden";
+      b.style.position = "fixed"; b.style.top = -y + "px"; b.style.left = "0"; b.style.right = "0"; b.style.width = "100%";
+      if (sb) b.style.paddingRight = (parseFloat(getComputedStyle(b).paddingRight) || 0) + sb + "px";
+      Array.prototype.forEach.call(b.children, function (c) {
+        if (c === el || c === bd || c.inert || /^(SCRIPT|STYLE|LINK)$/.test(c.tagName)) return;
+        c.inert = true; lock.inert.push(c);
+      });
+      de.classList.add("x-modal-open");
+    };
+    var unlockPage = function () {
+      if (!lock) return;
+      var de = document.documentElement, b = document.body, L = lock; lock = null;
+      L.inert.forEach(function (c) { c.inert = false; });
+      if (L.bs == null) b.removeAttribute("style"); else b.setAttribute("style", L.bs);
+      de.style.scrollBehavior = "auto";
+      window.scrollTo(L.x, L.y);
+      if (L.hs == null) de.removeAttribute("style"); else de.setAttribute("style", L.hs);
+      de.classList.remove("x-modal-open");
+    };
+    var paintMode = function () {
+      if (!modeB) return;
+      var l = modal ? "Shrink to mini player" : "Expand";
+      modeB.innerHTML = modal ? IC.pop : IC.expand;
+      modeB.setAttribute("aria-label", l); modeB.setAttribute("data-tip", l);
+      el.setAttribute("aria-label", modal ? "Video player" : "Mini player");
+    };
+    var setModal = function (on) {
+      on = !!on;
+      if (on === modal) return;
+      modal = on;
+      el.classList.toggle("is-modal", on);
+      if (on) { el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); }
+      else { el.removeAttribute("role"); el.removeAttribute("aria-modal"); }
+      paintMode();
+      if (on) {
+        var a = document.activeElement;
+        opener = a && !el.contains(a) ? a : opener;
+        el.style.left = ""; el.style.top = ""; el.style.width = "";
+        el.classList.remove("is-narrow");
+        bd.hidden = false;
+        lockPage();
+        if (!still()) {
+          el.classList.add("is-enter"); bd.classList.add("is-enter");
+          void el.offsetWidth;
+          requestAnimationFrame(function () { el.classList.remove("is-enter"); bd.classList.remove("is-enter"); });
+        }
+      } else {
+        bd.hidden = true;
+        el.classList.remove("is-enter", "is-leave"); bd.classList.remove("is-enter", "is-leave");
+        unlockPage();
+      }
+    };
+    var refocus = function () {
+      var o = opener; opener = null;
+      if (o && o.isConnected && o.focus) { try { o.focus({ preventScroll: true }); } catch (e) {} }
+    };
+    var focusPlay = function () {
+      var b = body.querySelector('.x-ap__poster [data-a="play"]') || el.querySelector('[data-p="close"]');
+      if (b) { try { b.focus({ preventScroll: true }); } catch (e) {} }
+    };
+
+    /* the up-next list beside the modal: the window's own queue */
+    var paintList = function () {
+      if (!listEl || !inst) return;
+      var st = inst.state(), q = st.queue || [];
+      el.classList.toggle("is-solo", q.length < 2);
+      if (q !== listQ) {
+        listQ = q;
+        listEl.innerHTML = q.length < 2 ? "" : q.map(function (x, i) {
+          return '<button class="x-pop__q" type="button" data-pq="' + i + '" aria-current="false"><img src="https://i.ytimg.com/vi/' + esc(x.id) + '/hqdefault.jpg" alt="" loading="lazy" />' +
+            "<span><b>" + esc(x.t) + "</b><small>" + esc([x.c, fmtDate(x.d), x.len].filter(Boolean).join(" · ")) + "</small></span></button>";
+        }).join("");
+      }
+      var cur = null;
+      listEl.querySelectorAll("[data-pq]").forEach(function (b) { var on = +b.dataset.pq === st.index; b.setAttribute("aria-current", on); if (on) cur = b; });
+      if (cur && modal) {
+        var top = cur.offsetTop, h = cur.offsetHeight;
+        if (top < listEl.scrollTop || top + h > listEl.scrollTop + listEl.clientHeight) listEl.scrollTop = Math.max(0, top - 8);
+      }
     };
     var snap = function () {
       var w = el.offsetWidth, h = el.offsetHeight, dl = S.x, dr = vw() - S.x - w, dt = S.y, db = vh() - S.y - h;
@@ -514,7 +686,6 @@
     var paintLinks = function () {
       if (!inst) return;
       var st = inst.state(), v = st.video; if (!v) return;
-      tabA.href = "#/watch/" + encodeURIComponent(v.id); tabA.setAttribute("data-watch", v.id);
       ytA.href = ytUrl(v.id, st.time || progress(v.id).pos);
     };
     var paintTitle = function (v) { titleEl.textContent = v.t; titleEl.title = v.t; pillTitle.textContent = v.t; paintLinks(); };
@@ -527,21 +698,25 @@
     var tb = function (a, label, icon) { return '<button class="x-pop__i" type="button" data-p="' + a + '" aria-label="' + label + '" data-tip="' + label + '">' + icon + "</button>"; };
     var build = function () {
       if (el) return;
+      bd = document.createElement("div");
+      bd.className = "x-pop-bd"; bd.hidden = true;
+      document.body.appendChild(bd);
+      bd.addEventListener("click", function () { close(); });
       el = document.createElement("section");
       el.className = "x-pop"; el.hidden = true;
-      el.setAttribute("aria-label", "Pop-out player");
+      el.setAttribute("aria-label", "Mini player");
       el.innerHTML =
         '<div class="x-pop__win">' +
           '<div class="x-pop__bar">' +
             '<p class="x-pop__title"></p>' +
             '<div class="x-pop__tools">' +
-              tb("min", "Minimize", IC.min) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Theater mode", IC.wide) + tb("fs", "Fullscreen", IC.fs) +
-              '<a class="x-pop__i" data-p="tab" href="#" target="_blank" rel="noopener" aria-label="Open in a new tab" data-tip="Open in a new tab">' + IC.tab + "</a>" +
-              '<a class="x-pop__i" data-p="yt" href="#" target="_blank" rel="noopener" aria-label="Open on YouTube at the current time" data-tip="Open on YouTube here">' + IC.yt + "</a>" +
-              tb("close", "Close", IC.close) +
+              tb("mode", "Expand", IC.expand) + tb("min", "Minimize", IC.min) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Theater mode", IC.wide) + tb("fs", "Fullscreen", IC.fs) +
+              '<a class="x-pop__i" data-p="yt" href="#" target="_blank" rel="noopener" aria-label="Watch on YouTube at the current time" data-tip="Watch on YouTube">' + IC.yt + "</a>" +
+              tb("close", "Close (Esc)", IC.close) +
             "</div>" +
           "</div>" +
           '<div class="x-pop__body"></div>' +
+          '<aside class="x-pop__side" aria-label="Up next"><p class="x-pop__sh">Up next</p><div class="x-pop__list"></div></aside>' +
           '<button class="x-pop__grip" type="button" data-p="grip" aria-label="Resize: drag, or use the arrow keys">' + IC.grip + "</button>" +
         "</div>" +
         '<div class="x-pop__pill">' +
@@ -551,32 +726,40 @@
       document.body.appendChild(el);
       var g = function (s) { return el.querySelector(s); };
       win = g(".x-pop__win"); bar = g(".x-pop__bar"); body = g(".x-pop__body"); titleEl = g(".x-pop__title");
-      pillTitle = g(".x-pop__pt span"); pillToggle = g('[data-p="ptoggle"]'); tabA = g('[data-p="tab"]'); ytA = g('[data-p="yt"]');
+      pillTitle = g(".x-pop__pt span"); pillToggle = g('[data-p="ptoggle"]'); ytA = g('[data-p="yt"]');
+      modeB = g('[data-p="mode"]'); listEl = g(".x-pop__list");
       inst = create(body, {
         floating: true,
-        onChange: function (v) { paintTitle(v); },
+        onChange: function (v) { paintTitle(v); paintList(); },
         onPlayState: function (on) { paintPill(on); paintLinks(); },
         onTheaterKey: function () { wide(); }
       });
 
       el.addEventListener("click", function (ev) {
+        var qb = ev.target.closest("[data-pq]");
+        if (qb) {
+          var st = inst.state(), i = +qb.dataset.pq;
+          if (st.queue && st.queue[i]) { inst.load(st.queue[i], { queue: st.queue, index: i }); if (st.playing) inst.play(); }
+          return;
+        }
         var b = ev.target.closest("[data-p]"); if (!b) { if (isMin && ev.target.closest(".x-pop__pill")) restore(); return; }
         var a = b.dataset.p;
-        if (a === "min") minimize();
+        if (a === "mode") modal ? shrink() : expand();
+        else if (a === "min") minimize();
         else if (a === "restore") restore();
         else if (a === "ptoggle") inst.toggle();
         else if (a === "dock") dock();
         else if (a === "wide") wide();
         else if (a === "fs") inst.fullscreen();
         else if (a === "close") close();
-        else if (a === "tab" || a === "yt") { paintLinks(); if (inst.isPlaying()) inst.toggle(); }
+        else if (a === "yt") { paintLinks(); if (inst.isPlaying()) inst.toggle(); }
       });
       ytA.addEventListener("pointerenter", paintLinks);
       ytA.addEventListener("focus", paintLinks);
 
       /* drag by the title bar */
       bar.addEventListener("pointerdown", function (ev) {
-        if (ev.button !== 0 || ev.target.closest("button, a")) return;
+        if (modal || ev.button !== 0 || ev.target.closest("button, a")) return;
         ev.preventDefault();
         try { bar.setPointerCapture(ev.pointerId); } catch (e) {}
         drag = { id: ev.pointerId, sx: ev.clientX, sy: ev.clientY, x: S.x, y: S.y };
@@ -624,30 +807,51 @@
       });
 
       if ("ResizeObserver" in window) new ResizeObserver(function () { if (!drag) place(); }).observe(el);
-      window.addEventListener("resize", function () { if (isOpen()) { setWidth(S.w); place(); } });
+      window.addEventListener("resize", function () { if (isOpen() && !modal) { setWidth(S.w); place(); } });
+      paintMode();
     };
 
     var unmark = function () { if (src) src.root.classList.remove("is-out"); };
+    var unMin = function () { if (isMin) { isMin = false; el.classList.remove("is-min"); win.inert = false; } };
     var show = function () {
-      var first = el.hidden;
       el.hidden = false;
-      if (first && !S.placed) { S.placed = true; setWidth(Math.min(400, vw() * 0.9)); }
-      else setWidth(S.w);
-      if (isMin) restore(); else place();
+      unMin();
+      if (modal) return;
+      sizeCorner();
+      place();
     };
-    /* Open a video in the window. It shows the poster and never autoplays, unless o.at carries on a video already playing. */
+    /* Open a video in the window: o.modal for the centred window, else the corner.
+       It shows the poster and never autoplays, unless o.at carries on a video already playing. */
     var open = function (v, o) {
       o = o || {};
       build();
+      if (leaveT) { clearTimeout(leaveT); leaveT = 0; hide(); }
       unmark();
       src = o.src || null; auto = !!o.auto;
+      if (o.modal) { unMin(); setModal(true); }
       show();
       var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : null;
       var cur = inst.current();
       if (!(cur && cur.id === v.id && o.at == null && !q)) inst.load(v, q ? { queue: q, index: o.index != null ? o.index : q.indexOf(v) } : null);
       if (o.at != null) inst.playAt(o.at);
       if (src) src.root.classList.add("is-out");
-      paintLinks();
+      paintLinks(); paintList();
+      if (modal) focusPlay();
+    };
+    /* modal to the draggable corner window, and back */
+    var shrink = function () {
+      if (!isOpen() || !modal) return;
+      setModal(false);
+      S.corner = S.corner || "br";
+      sizeCorner(); place();
+      opener = null;
+      if (modeB) { try { modeB.focus({ preventScroll: true }); } catch (e) {} }
+    };
+    var expand = function () {
+      if (!isOpen() || modal) return;
+      unMin();
+      setModal(true);
+      paintList(); focusPlay();
     };
     var fromInstance = function (s, isAuto) {
       if (!s || s.floating) return;
@@ -657,8 +861,9 @@
     };
     var hide = function () {
       unmark(); src = null; auto = false;
-      if (isMin) { isMin = false; el.classList.remove("is-min"); win.inert = false; }
+      unMin();
       el.hidden = true;
+      if (modal) { setModal(false); refocus(); }
     };
     /* Dock: move the video back into the page's player, keeping its time. */
     var dock = function () {
@@ -677,14 +882,18 @@
       return home;
     };
     var close = function () {
-      if (!isOpen()) return;
+      if (!isOpen() || leaveT) return;
       inst.stop();
       if (src) src.suppress();
-      hide();
+      if (modal && !still()) {
+        el.classList.add("is-leave"); bd.classList.add("is-leave");
+        leaveT = setTimeout(function () { leaveT = 0; hide(); }, 220);
+      } else hide();
     };
     var wide = function () { var h = dock(); if (h) h.setWide(true); };
     var minimize = function () {
       if (!isOpen() || isMin) return;
+      if (modal) { setModal(false); opener = null; S.corner = S.corner || "br"; sizeCorner(); }
       isMin = true; el.classList.add("is-min"); el.style.width = ""; win.inert = true;
       place();
       var r = el.querySelector('[data-p="restore"]'); if (r) r.focus();
@@ -695,6 +904,7 @@
       place();
     };
     var toggleKey = function () {
+      if (isOpen() && modal) { shrink(); return; }
       if (isOpen()) { dock(); return; }
       var s = active && !active.floating ? active : primary();
       if (s) fromInstance(s, false);
@@ -702,32 +912,72 @@
 
     return {
       open: open, fromInstance: fromInstance, dock: dock, close: close, toggleKey: toggleKey, isOpen: isOpen,
+      isModal: function () { return isOpen() && modal; },
+      menuOpen: function () { return !!(el && el.querySelector(".x-apx-menu:not([hidden])")); },
       autoFrom: function (s) { return isOpen() && auto && src === s; }
     };
   })();
 
   /* A video id to the library's record, or a bare stand-in with the title we were given. */
-  var lib = null;
+  var lib = null, libList = [];
+  var loadLib = function () {
+    if (lib) return;
+    lib = {};
+    try { libList = (window.Hark && Hark.data ? Hark.data("d-videos") || [] : []).slice(); libList.forEach(function (v) { lib[v.id] = v; }); } catch (e) { libList = []; }
+  };
   var findVideo = function (id, title) {
-    if (!lib) { lib = {}; try { (window.Hark && Hark.data ? Hark.data("d-videos") || [] : []).forEach(function (v) { lib[v.id] = v; }); } catch (e) {} }
+    loadLib();
     var v = lib[id];
     if (!v) v = lib[id] = { id: id, t: title || "YouTube video", c: "", d: "", len: "", k: "", p: [], s: "" };
     if (!Array.isArray(v.p)) v.p = [];
     return v;
   };
+  /* The video, then up to 12 others: the same people first, then the same kind. */
+  var related = function (v) {
+    loadLib();
+    var out = [v], seen = {}; seen[v.id] = 1;
+    var p = Array.isArray(v.p) ? v.p : [];
+    var add = function (f) { libList.forEach(function (x) { if (out.length < 13 && !seen[x.id] && f(x)) { seen[x.id] = 1; out.push(x); } }); };
+    if (p.length) add(function (x) { return (x.p || []).some(function (id) { return p.indexOf(id) >= 0; }); });
+    if (v.k) add(function (x) { return x.k === v.k; });
+    return out;
+  };
+  var asVideo = function (arg, o) { return typeof arg === "string" ? findVideo(arg, o && o.title) : arg; };
+  /* the corner mini player */
   var popout = function (arg, o) {
     o = o || {};
-    var v = typeof arg === "string" ? findVideo(arg, o.title) : arg;
+    var v = asVideo(arg, o);
     if (!v || !v.id) return;
     Pop.open(v, { queue: o.queue, index: o.index });
   };
+  /* the centred in-page window with its up-next list */
+  var watch = function (arg, o) {
+    o = o || {};
+    var v = asVideo(arg, o);
+    if (!v || !v.id) return;
+    if (!Array.isArray(v.p)) v.p = [];
+    var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : related(v);
+    Pop.open(v, { modal: true, queue: q, index: q.indexOf(v) });
+  };
 
-  /* "Play here" beside every archive card's new-tab link: opens that video in the pop-out window. */
+  /* Every video link outside the Theater opens the in-page window; none ever opens a tab or leaves the page. */
+  var watchLabel = function (a) { return a.getAttribute("data-title") || (a.getAttribute("aria-label") || "").replace(/^Watch[^:]*:\s*/, ""); };
+  document.addEventListener("click", function (ev) {
+    var a = ev.target.closest && ev.target.closest("a[data-watch]");
+    if (!a || ev.defaultPrevented) return;
+    ev.preventDefault();
+    watch(a.getAttribute("data-watch"), { title: watchLabel(a) });
+  });
+  document.addEventListener("auxclick", function (ev) {
+    if (ev.target.closest && ev.target.closest("a[data-watch]")) ev.preventDefault();
+  });
+
+  /* "Play here" on every archive card: the same video in the corner mini player. */
   var enhance = function () {
     document.querySelectorAll(".x-lite > a.x-play[data-watch]").forEach(function (a) {
       var box = a.parentNode; if (box.querySelector(".x-ph")) return;
-      var id = a.getAttribute("data-watch"), t = (a.getAttribute("aria-label") || "").replace(/^Watch in a new tab:\s*/, "");
-      box.insertAdjacentHTML("beforeend", '<button class="x-ph" type="button" data-play-here="' + esc(id) + '" data-title="' + esc(t) + '" aria-label="Play here in the pop-out window: ' + esc(t) + '">▶ Play here</button>');
+      var id = a.getAttribute("data-watch"), t = watchLabel(a);
+      box.insertAdjacentHTML("beforeend", '<button class="x-ph" type="button" data-play-here="' + esc(id) + '" data-title="' + esc(t) + '" aria-label="Play in the mini player: ' + esc(t) + '">▶ Play here</button>');
     });
   };
   var enhT = 0;
@@ -754,6 +1004,9 @@
     return !!(t && t.isContentEditable);
   };
   document.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && Pop.isModal() && !document.querySelector("dialog[open]") && !document.fullscreenElement && !Pop.menuOpen()) {
+      ev.preventDefault(); Pop.close(); return;
+    }
     if ((ev.key === "i" || ev.key === "I") && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !typing(ev) && !document.querySelector("dialog[open]")) {
       if (Pop.isOpen() || instances.some(function (i) { return !i.floating && i.current(); })) { ev.preventDefault(); Pop.toggleKey(); }
       return;
@@ -768,6 +1021,8 @@
   window.ArchivePlayer = {
     create: create,
     popout: popout,
+    watch: watch,
+    isWatching: function () { return Pop.isModal(); },
     dock: function () { return Pop.dock(); },
     closePopout: function () { Pop.close(); },
     isPoppedOut: function () { return Pop.isOpen(); },

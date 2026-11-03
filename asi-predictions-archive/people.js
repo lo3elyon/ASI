@@ -68,13 +68,15 @@
     $("pchips").innerHTML = chip("data-pg", "", "All " + PEOPLE.length, !F.group && !F.neuro) + chip("data-pn", "1", "🧠 Neuroscientists " + nNeuro, F.neuro) +
       groups.map(function (g) { return chip("data-pg", g, GROUP(g) + " " + counts[g], F.group === g); }).join("");
   };
+  var ICON_GRP = '<svg class="x-ic" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1 1 0 0 1 0 1.4l-6.9 6.9a1 1 0 0 1-1.4 0z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="8.2" cy="8.2" r="1.7" fill="currentColor"/></svg>';
+  var ICON_PLAY = '<svg class="x-ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg>';
   var card = function (p) {
     var bio = bioOf(p);
     return '<a class="x-pc" data-id="' + esc(p.id) + '" data-g="' + esc(p.group) + '" href="#/person/' + esc(p.id) + '">' + avatar(p) +
       '<span class="x-pc__name">' + esc(p.name) + (p.neuro ? " 🧠" : "") + "</span>" +
       (p.role ? '<span class="x-pc__role">' + esc(p.role) + "</span>" : "") +
       '<span class="x-pc__bio">' + esc(bio) + "</span>" +
-      '<span class="x-pc__meta"><span class="pill">' + esc(GROUP(p.group)) + "</span>" + (talks(p) ? '<span class="pill">' + talks(p) + "</span>" : "") + "</span></a>";
+      '<span class="x-pc__meta"><span class="pill x-pc__grp">' + ICON_GRP + esc(GROUP(p.group)) + "</span>" + (talks(p) ? '<span class="pill x-pc__talks">' + ICON_PLAY + talks(p) + "</span>" : "") + "</span></a>";
   };
   var more = function () {
     $("pgrid").insertAdjacentHTML("beforeend", list.slice(shown, shown + PAGE).map(card).join(""));
@@ -156,9 +158,9 @@
   var statusChip = function (s) { return s ? '<span class="chip' + (/came true|correct|on track/i.test(s) ? " chip--solid" : "") + '">' + esc(s) + "</span>" : ""; };
   var thumbUrl = function (id) { return AP ? AP.thumb(id) : "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; };
   var vmeta = function (v) { return esc([v.c, AP && AP.fmtDate(v.d), v.len].filter(Boolean).join(" · ")); };
-  /* Person-page rows open the watch page in a new tab. */
+  /* Person-page rows open the video in the in-page window (player.js); the page stays put. */
   var vrow = function (v) {
-    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" target="_blank" rel="noopener" data-watch="' + esc(v.id) + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" />' +
+    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" loading="lazy" />' +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></a>";
   };
   /* Up-next rows on the watch page load into its player in place. */
@@ -349,19 +351,6 @@
     showWatchInfo(v);
   };
 
-  /* Thumbnails outside the Theater: a new tab on the watch page, or this tab if pop-ups are blocked. */
-  document.addEventListener("click", function (ev) {
-    var a = ev.target.closest && ev.target.closest("a[data-watch]");
-    if (!a || ev.defaultPrevented || ev.button !== 0 || ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey) return;
-    ev.preventDefault();
-    var id = a.getAttribute("data-watch"), w = null;
-    if (/^https?:$|^file:$/.test(location.protocol)) {
-      try { w = window.open(location.href.split("#")[0] + "#/watch/" + encodeURIComponent(id), "_blank"); } catch (e) { w = null; }
-    }
-    if (w) { try { w.opener = null; } catch (e) {} return; }
-    location.hash = "#/watch/" + encodeURIComponent(id);
-  });
-
   view.addEventListener("click", function (ev) {
     var t = ev.target.closest("[data-toc]");
     if (t) {
@@ -404,15 +393,24 @@
   var lastHash = null, entered = false, booted = false;
   var route = function () {
     if (location.hash === lastHash) return; /* hashchange and popstate can both fire for one step */
+    var prevHash = lastHash;
     lastHash = location.hash;
-    var m = /^#\/person\/([^/?#]+)/.exec(location.hash), p = m && byId[decodeURIComponent(m[1])];
+    /* #/watch/<id> is only a deep link: it opens the in-page video window over the current view,
+       then the address goes back to what it was, so nothing navigates. */
     var w = /^#\/watch\/([^/?#]+)/.exec(location.hash), wid = w && decodeURIComponent(w[1]);
-    if (p || wid) {
+    if (wid) {
+      var back = prevHash && !/^#\/watch\//.test(prevHash) ? prevHash : "";
+      if (history.replaceState) history.replaceState(history.state, "", location.pathname + location.search + back);
+      lastHash = location.hash;
+      if (AP && AP.watch) AP.watch(videoFor(wid));
+      return;
+    }
+    var m = /^#\/person\/([^/?#]+)/.exec(location.hash), p = m && byId[decodeURIComponent(m[1])];
+    if (p) {
       if (!open) { saved = window.scrollY; entered = booted; }
       open = true;
       main.hidden = true; view.hidden = false;
-      if (p) { render(p); document.title = p.name + " · ASI History Archive"; }
-      else renderWatch(videoFor(wid));
+      render(p); document.title = p.name + " · ASI History Archive";
       window.scrollTo(0, 0);
       return;
     }
