@@ -130,6 +130,14 @@
   dlg.querySelector("#cpClose").addEventListener("click", function () { close(); });
   dlg.addEventListener("click", function (ev) { if (ev.target === dlg) close(); });
   dlg.addEventListener("cancel", function (ev) { ev.preventDefault(); close(); });
+  doc.addEventListener("keydown", function (ev) {
+    if ((ev.key === "Escape" || ev.key === "Esc") && dlg.open) {
+      ev.preventDefault(); ev.stopPropagation();
+      var trig = lastFocus && lastFocus !== doc.body && doc.contains(lastFocus) ? lastFocus : doc.querySelector(".x-search-btn");
+      close(true);
+      if (trig && trig.focus) trig.focus();
+    }
+  }, true);
 
   window.addEventListener("keydown", function (ev) {
     var t = doc.activeElement, typing = t && (/INPUT|TEXTAREA|SELECT/.test(t.tagName) || t.isContentEditable);

@@ -145,13 +145,16 @@
     if (g) {
       ev.preventDefault();
       var id = g.getAttribute("data-go-entry");
-      history.pushState(null, "", "#/");
+      location.hash = "#/";
       route();
       if (window.ArchiveSite && window.ArchiveSite.gotoEntry) window.ArchiveSite.gotoEntry(id);
     }
   });
 
+  var lastHash = null;
   var route = function () {
+    if (location.hash === lastHash) return; /* hashchange and popstate can both fire for one step */
+    lastHash = location.hash;
     var m = /^#\/person\/([^/?#]+)/.exec(location.hash), p = m && byId[decodeURIComponent(m[1])];
     if (p) {
       if (!open) saved = window.scrollY;
@@ -171,5 +174,6 @@
     if (target) target.scrollIntoView(); else window.scrollTo(0, saved);
   };
   window.addEventListener("hashchange", route);
+  window.addEventListener("popstate", route);
   route();
 })();

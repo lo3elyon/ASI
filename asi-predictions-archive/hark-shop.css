@@ -1,0 +1,198 @@
+/* Hark's shop components: a plain page title, a shelf of the library's photo cards on a studio sweep, and the same sweep behind the photos in the library's compare. They use hark.css's tokens, so link this file after it. style-gates: data */
+
+/* @component shop foundations */
+:root {
+  --stage: light-dark(#ececee, #262629); /* the card: a studio sweep behind each product */
+  --stage-glow: light-dark(
+    #fafafb,
+    #3c3c41
+  ); /* the sweep's lit centre, so a black product still reads in dark */
+  --stage-fill: radial-gradient(ellipse 70% 60% at 50% 46%, var(--stage-glow), var(--stage));
+  --type-product: var(--weight-medium) 22px / 1.2 var(--sans);
+}
+/* Section heads stay left-aligned at every width on a shop page. */
+.head {
+  grid-template-columns: minmax(0, 1fr);
+}
+.head__sub {
+  justify-self: start;
+  text-align: left;
+}
+.dot--no::before {
+  background: var(--fill-system-red);
+}
+
+/* @component shop title */
+.shop-title {
+  display: grid;
+  justify-items: start;
+  gap: 14px;
+  max-width: 680px;
+  padding-block: clamp(24px, 5vw, 56px) 8px;
+}
+.shop-title h1 {
+  font: var(--weight-regular) clamp(28px, 3.75vw, 42px) / 1.1 var(--sans);
+  letter-spacing: -0.01em;
+}
+.shop-title__eyebrow {
+  font: var(--type-small);
+  color: var(--text-secondary);
+  font-variant-numeric: tabular-nums;
+}
+.shop-title__intro {
+  max-width: 46ch;
+  font-size: clamp(16px, 1.5vw, 18px);
+  color: var(--text-secondary);
+}
+
+/* @component shelf */
+/* The products as the library's photo cards, under a one-line label saying how they are ranked. */
+.shelf {
+  padding-block: clamp(32px, 4vw, 48px) 16px;
+}
+.shelf__head {
+  margin-bottom: 14px;
+}
+.shelf__label {
+  font: var(--type-label);
+  color: var(--text-secondary);
+}
+
+/* @component photo cards, on the stage */
+/* In the shelf, the photo is a square that fits a cutout product whole, with its dots under it
+   instead of over it. */
+.shelf .photo-card {
+  background: var(--stage);
+}
+.shelf .photo-card__stage {
+  background: var(--stage-fill);
+}
+.shelf .photo-card__photos {
+  aspect-ratio: 1;
+  padding: 9% 9% 2%;
+  overflow: visible;
+}
+.shelf .photo-card__photos img {
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+.shelf .photo-card__photos[data-turn]:active img.is-on {
+  transform: scale(0.98);
+  transition:
+    opacity 240ms ease,
+    transform 100ms ease-out;
+}
+:root[data-theme='dark'] .shelf .photo-card__photos img {
+  mix-blend-mode: normal;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .shelf .photo-card__photos img {
+    mix-blend-mode: normal;
+  }
+}
+.shelf .photo-card__dots {
+  position: static;
+  padding-bottom: 6px;
+}
+.shelf .photo-card__dots i {
+  background: var(--text-primary);
+  opacity: 0.2;
+  box-shadow: none;
+}
+.shelf .photo-card__dots i.is-on {
+  opacity: 0.9;
+}
+.shelf .photo-card__head h3 {
+  font: var(--type-product);
+}
+.photo-card__colors {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+  font: var(--type-small);
+  color: var(--text-secondary);
+}
+.photo-card__colors + .photo-card__link {
+  margin-top: 4px;
+}
+.minis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.minis i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--swatch);
+  box-shadow: inset 0 0 0 1px var(--stroke-primary);
+}
+.compare .minis {
+  margin-top: 6px;
+}
+.compare .minis i {
+  width: 10px;
+  height: 10px;
+}
+
+/* @component compare, on the stage */
+/* The library's compare, with each photo on the same sweep as the cards, and a bar on one scale per
+   row for numbers worth reading at a glance. */
+.compare .compare__media {
+  background: var(--stage-fill);
+  padding: 8px;
+}
+.compare .compare__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.meter {
+  display: block;
+  max-width: 140px;
+  height: 4px;
+  margin-top: 8px;
+  border-radius: 2px;
+  background: linear-gradient(
+    to right,
+    var(--fill-primary) calc(var(--v) * 100%),
+    var(--fill-tertiary) 0
+  );
+}
+
+@media (min-width: 761px) {
+  .section {
+    padding-block: 48px 16px;
+  }
+  .head {
+    row-gap: 6px;
+    margin-bottom: 28px;
+  }
+  .head h2 {
+    font-size: 28px;
+    line-height: 1.25;
+  }
+}
+@media (max-width: 760px) {
+  .shelf {
+    padding-top: 28px;
+  }
+  .section {
+    padding-block: 32px 12px;
+  }
+  .head {
+    gap: 4px;
+    margin-bottom: 18px;
+  }
+  .head h2 {
+    font-size: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shelf .photo-card__photos[data-turn]:active img.is-on {
+    transform: none;
+  }
+}

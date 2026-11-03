@@ -50,7 +50,11 @@
       .x-era:first-child { margin-top: 0; }
       .x-era h3 { font: var(--type-title); }
       .x-era p { color: var(--text-secondary); max-width: 70ch; }
-      .x-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr)); gap: 16px; margin-top: 16px; }
+      /* masonry: multi-columns, so short cards pack with no row gaps */
+      .x-grid { display: block; column-width: 340px; column-gap: 16px; margin-top: 16px; }
+      .x-grid > * { -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid; margin: 0 0 12px; width: 100%; }
+      /* anchored jumps clear the sticky nav */
+      .section, .section .head, .section h2, .main h1, .x-hi__tabs, .x-hi__item { scroll-margin-top: calc(var(--stick-top, 76px) + 8px); }
       .x-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: var(--r-m); background: var(--fill-tertiary); min-width: 0; }
       .x-card h3 { font: var(--type-body-strong); font-size: 17px; }
       .x-who { display: flex; gap: 12px; align-items: center; }
