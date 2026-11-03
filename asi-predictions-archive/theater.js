@@ -197,14 +197,18 @@
     o = o || {};
     var v = fallback(id, o.title);
     var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : null;
+    /* A card picked while the Theater player is off-screen opens in the pop-out window; the page stays put. */
+    if (o.card && AP.popout && !player.inView()) { AP.popout(v, { queue: q }); return; }
+    /* Loads the poster only; the page never moves and nothing plays until Play is pressed. */
+    var y = window.scrollY;
     player.load(v, q ? { queue: q, index: q.indexOf(v) } : null);
-    if (o.scroll) $("ttPlayer").scrollIntoView({ behavior: "smooth", block: "center" });
+    if (window.scrollY !== y) window.scrollTo(window.scrollX, y);
   };
 
   host.addEventListener("click", function (ev) {
     var b = ev.target.closest("[data-tv],[data-tf],[data-tkind],[data-tera],[data-see],#ttPersonClear,#ttReset");
     if (!b) return;
-    if (b.dataset.tv) { var list = LISTS[b.dataset.list]; select(b.dataset.tv, { queue: list, scroll: b.dataset.list !== "recs" || window.innerWidth < 901 }); return; }
+    if (b.dataset.tv) { ev.preventDefault(); if (b.blur) b.blur(); var list = LISTS[b.dataset.list]; select(b.dataset.tv, { queue: list, card: true }); return; }
     if (b.dataset.tf) F[b.dataset.tf] = !F[b.dataset.tf];
     else if (b.dataset.tkind) { var k = b.dataset.tkind; F.kinds.has(k) ? F.kinds.delete(k) : F.kinds.add(k); }
     else if (b.dataset.tera) { var e = b.dataset.tera; F.eras.has(e) ? F.eras.delete(e) : F.eras.add(e); }

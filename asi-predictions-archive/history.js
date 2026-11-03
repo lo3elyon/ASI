@@ -73,8 +73,8 @@
       var id = personId[String(n).toLowerCase()];
       return id ? '<a class="x-hi__who" href="#/person/' + esc(id) + '">' + esc(n) + "</a>" : '<span class="x-hi__who is-plain">' + esc(n) + "</span>";
     }).join("");
-    var vid = m.youtube_id ? '<button type="button" class="x-hi__vid" data-yt="' + esc(m.youtube_id) + '" data-title="' + esc(m.title) + '" aria-label="Load the video in the Theater: ' + esc(m.title) + '">' +
-      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" loading="lazy" /><span class="x-hi__play">' + PLAY + "</span></button>" : "";
+    var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" target="_blank" rel="noopener" data-watch="' + esc(m.youtube_id) + '" aria-label="Watch in a new tab: ' + esc(m.title) + '">' +
+      '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" loading="lazy" /><span class="x-hi__play">' + PLAY + "</span></a>" : "";
     var quote = m.quote ? '<figure class="x-hi__quote"><blockquote>“' + esc(m.quote) + '”</blockquote>' + (m.quote_source ? "<figcaption>" + esc(m.quote_source) + "</figcaption>" : "") + "</figure>" : "";
     return '<li class="x-hi__item" id="hm-' + esc(m.id) + '" style="--c:' + COLORS[m._ci % COLORS.length] + '">' +
       '<span class="x-hi__year">' + esc(m.year) + "</span>" +
@@ -137,17 +137,11 @@
   };
 
   host.addEventListener("click", function (ev) {
-    var b = ev.target.closest("[data-go],[data-tag],[data-clear],[data-ch],[data-step],[data-yt]");
+    var b = ev.target.closest("[data-go],[data-tag],[data-clear],[data-ch],[data-step]");
     if (!b) return;
     if (b.dataset.go) {
       var m = all.filter(function (x) { return x.id === b.dataset.go; })[0]; if (!m) return;
       state.tags = {}; state.ch = m._ci; render(); showTab(); flash(m.id); return;
-    }
-    if (b.dataset.yt) {
-      var T = window.ArchiveTheater;
-      if (T && T.select) T.select(b.dataset.yt, { title: b.dataset.title, scroll: true });
-      else { var media = document.getElementById("media"); if (media) media.scrollIntoView({ behavior: "smooth", block: "start" }); }
-      return;
     }
     if (b.dataset.tag) { state.tags[b.dataset.tag] = !state.tags[b.dataset.tag]; render(); return; }
     if (b.hasAttribute("data-clear")) { state.tags = {}; render(); return; }

@@ -52,7 +52,10 @@
         if (window.ArchiveSite && ArchiveSite.gotoEntry) ArchiveSite.gotoEntry(id);
       } else if (g === "videos") {
         var r = IDX.videos.filter(function (v) { return v.id === id; })[0];
-        if (window.ArchiveTheater) ArchiveTheater.select(id, { title: r ? r.t : "", scroll: true });
+        if (window.ArchiveTheater) {
+          ArchiveTheater.select(id, { title: r ? r.t : "" });
+          var tp = doc.getElementById("ttPlayer"); if (tp) tp.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
       } else if (g === "preds") {
         if (window.ArchiveSite && ArchiveSite.gotoPred) ArchiveSite.gotoPred(id);
         else doc.getElementById("tracker").scrollIntoView({ behavior: "smooth" });
