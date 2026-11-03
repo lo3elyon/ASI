@@ -86,6 +86,8 @@
     const H = h().L.H;
     const total = h().totalWatched();
     const done = h().doneCount();
+    // "Watched 100%" = every second really played; anything marked by hand (whole episode or parts) is "completed (marked)"
+    const doneReal = Object.values(h().L.H.eps).filter((r) => r.done && !r.manual && !r.mfN).length;
     const started = STATE.all.filter((e) => h().stateOf(e.id) !== "none").length;
     const st = h().streaks();
     const sessions = []; Object.values(H.eps).forEach((r) => (r.sessions || []).forEach((s) => s.w > 30 && sessions.push(s.w)));
@@ -120,15 +122,15 @@
       <header class="phead"><p class="eyebrow">Insights</p><h1>Your listening, measured honestly</h1><p class="lede">Every number below comes from real playback only: seeks, skips and paused time never count.</p></header>
       <div class="kpis">
         <div class="kpi">${total < 3600 ? `<b>${Math.round(total / 60)}</b><span>minutes watched</span>` : `<b data-count="${(total / 3600).toFixed(1)}" data-dec="1">0</b><span>hours watched</span>`}</div>
-        <div class="kpi"><b data-count="${done}">0</b><span>episodes completed</span></div>
-        <div class="kpi"><b>${started ? Math.round((100 * done) / started) : 0}%</b><span>completion rate (${done}/${started} started)</span></div>
+        <div class="kpi"><b data-count="${done}">0</b><span>episodes completed${done ? ` (${doneReal} watched 100%${done - doneReal ? ` · ${done - doneReal} completed (marked)` : ""})` : ""}</span></div>
+        <div class="kpi"><b>${started ? Math.floor((100 * done) / started) : 0}%</b><span>completion rate (${done}/${started} started)</span></div>
         <div class="kpi"><b>${st.cur}</b><span>day streak · best ${st.best}</span></div>
         <div class="kpi"><b>${fmtHM(avgS)}</b><span>average session</span></div>
         <div class="kpi"><b>${h().heardSpeakers(300).size}</b><span>researchers heard</span></div>
       </div>
       <div class="panels">
         <section class="panel panel--wide"><div class="panel__hd"><h2>Hours watched</h2><div class="seg seg--sm" role="tablist"><button data-range="day" aria-selected="${range === "day"}">Per day</button><button data-range="week" aria-selected="${range === "week"}">Per week</button></div></div>${bars(series, { fmt: (v) => (v * 60 < 60 ? Math.round(v * 60) + " min" : v.toFixed(1) + " h"), aria: "Hours watched over time" })}</section>
-        <section class="panel"><div class="panel__hd"><h2>Completion</h2></div><div class="donutwrap">${donut(started ? done / started : 0, started ? Math.round((100 * done) / started) + "%" : "0%", "of started")}<ul class="legend"><li><i class="sw sw--a"></i>${done} completed</li><li><i class="sw sw--b"></i>${started - done} in progress</li><li><i class="sw"></i>${STATE.all.length - started} not started</li></ul></div></section>
+        <section class="panel"><div class="panel__hd"><h2>Completion</h2></div><div class="donutwrap">${donut(started ? done / started : 0, started ? Math.floor((100 * done) / started) + "%" : "0%", "of started")}<ul class="legend"><li><i class="sw sw--a"></i>${done} completed</li><li><i class="sw sw--b"></i>${started - done} in progress</li><li><i class="sw"></i>${STATE.all.length - started} not started</li></ul></div></section>
         <section class="panel"><div class="panel__hd"><h2>By speaker</h2></div>${hbars(spData, { fmt: hfmt, floor: 0.5 })}</section>
         <section class="panel"><div class="panel__hd"><h2>By organisation</h2></div>${hbars(orgData, { fmt: hfmt, floor: 0.5 })}</section>
         <section class="panel"><div class="panel__hd"><h2>By release month</h2></div>${hbars(monthData.map((m) => ({ label: `${m.label} (${hfmt(m.v)} of ${Math.round(m.avail)}h)`, v: m.v, href: `#/browse?month=${m.id}` })), { fmt: hfmt, floor: 0.5, empty: "Nothing watched yet." })}</section>
