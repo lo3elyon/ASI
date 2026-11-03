@@ -277,3 +277,9 @@ h1, h2, h3, .hero h1, .head h2 { text-wrap: balance; }
   .x-strip__sc { overflow: visible !important; -webkit-mask-image: none !important; mask-image: none !important; }
   .x-hi__map { display: none; }
 }
+
+/* masonry parents: a grid track sized "auto" grows to the cards' unwrapped max-content (the column width uses %, which counts as auto during intrinsic sizing), so the 4th column was clipped and links stopped wrapping. Pin every masonry parent to the container width. */
+.x-era { grid-template-columns: minmax(0, 1fr); min-width: 0; }
+.x-era > *, #arch, .x-mas { min-width: 0; max-width: 100%; }
+.x-mas { contain: inline-size; }
+:has(> .x-mas) { min-width: 0; }
