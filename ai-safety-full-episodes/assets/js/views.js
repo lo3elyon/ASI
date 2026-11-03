@@ -138,7 +138,7 @@
         <div class="saved" id="savedFilters"></div>
         <div class="browse ${facetsOpen ? "is-open" : ""}" id="browseWrap">
           <aside class="facets" id="facets" aria-label="Filters"></aside>
-          <div class="results"><div class="results__hd"><p id="resCount" aria-live="polite"></p><button class="linkbtn" id="playResults">${ui().ICON.play} Queue these & play</button></div><div id="resList"></div><div class="more" id="moreWrap"></div></div>
+          <div class="results"><div class="results__hd"><p id="resCount" aria-live="polite"></p><span class="results__acts"><button class="linkbtn" id="playResults" title="Plays these one after another; your queue is not changed">${ui().ICON.play} Play these</button><button class="linkbtn" id="queueResults" title="Adds these to the end of your queue">${ui().ICON.queue} Add these to queue</button></span></div><div id="resList"></div><div class="more" id="moreWrap"></div></div>
         </div>`;
       const q = $("#q");
       q.value = F.q;
@@ -148,7 +148,10 @@
       v.querySelectorAll("[data-layout]").forEach((b) => (b.onclick = () => { L().PREFS.layout = b.dataset.layout; h().savePrefs(); v.querySelectorAll("[data-layout]").forEach((x) => x.setAttribute("aria-pressed", x === b)); renderBrowse(); }));
       $("#saveFilter").onclick = saveFilter;
       $("#clearFilter").onclick = () => { A.recs.setFilter(A.recs.emptyFilter()); $("#q").value = ""; shown = 48; renderBrowse(); };
-      $("#playResults").onclick = () => { const list = A.recs.results(F, curSort()).filter((e) => h().stateOf(e.id) !== "done").slice(0, 25); if (!list.length) return; h().setQueue(list.slice(1).map((e) => e.id).concat(L().QUEUE)); paintQueueCount(); A.player.play(list[0].id); ui().toast(`Playing 1 of ${list.length}; ${list.length - 1} queued`, { icon: "▶️" }); };
+      const resIds = () => A.recs.results(F, curSort()).filter((e) => h().stateOf(e.id) !== "done").slice(0, 25).map((e) => e.id);
+      // Play these: a transient line-up (binge / Up next follow it); the queue is never touched
+      $("#playResults").onclick = () => { const ids = resIds(); if (!ids.length) return; h().setSession(ids, "these results"); A.player.play(ids[0]); ui().toast(`Playing 1 of ${ids.length}; the rest follow in order. Your queue is unchanged.`, { icon: "▶️" }); };
+      $("#queueResults").onclick = () => { const ids = resIds(); if (!ids.length) return; const n = h().addToQueue(ids, "addall"); paintQueueCount(); ids.forEach((id) => refreshCardsFor(id)); ui().toast(n ? `Added ${n} to your queue` : "These are already in your queue", { icon: "➕" }); };
       v.addEventListener("click", onFacetClick);
       v.addEventListener("change", (ev) => { if (ev.target.id === "spkPick") pickSpeaker(ev.target); });
     }
@@ -317,6 +320,7 @@
           <div class="sprof__k"><span><b>${eps.length}</b> episodes</span><span><b>${hoursStr(s.secs)}</b> total</span><span><b>${watched}</b>/${eps.length} watched</span><span><b>${claimsCount}</b> quoted claims</span>${dates.length ? `<span>${esc(fmtShort(dates[0]))} → ${esc(fmtShort(dates[dates.length - 1]))}</span>` : ""}</div>
           <div class="sprof__act">
             <button class="btn btn--primary" id="playAll">${ui().ICON.play}<span>${eps.some((e) => h().stateOf(e.id) !== "done") ? `Play all unwatched (${eps.filter((e) => h().stateOf(e.id) !== "done").length})` : `Rewatch all (${eps.length})`}</span></button>
+            ${eps.length > 1 ? `<button class="btn" id="spAddAll" title="Adds this speaker's unwatched episodes to the end of your queue">${ui().ICON.queue}<span>Add all to queue</span></button>` : ""}
             <button class="follow follow--lg ${fol ? "is-on" : ""}" data-follow="${esc(s.k)}" aria-pressed="${fol}">${fol ? ui().ICON.check + "Following" : ui().ICON.plus + "Follow"}</button>
             <a class="btn btn--ghost" href="#/browse?speaker=${esc(s.slug)}">Filter library</a>
           </div>
@@ -331,10 +335,16 @@
     $("#playAll").onclick = () => {
       const order = eps.slice().sort((a, b) => (a.date || "").localeCompare(b.date || "")).filter((e) => h().stateOf(e.id) !== "done");
       const list = order.length ? order : eps;
-      h().setQueue(list.slice(1).map((e) => e.id).concat(L().QUEUE.filter((id) => !list.some((e) => e.id === id))));
-      paintQueueCount();
+      // a transient line-up for this sitting (binge / Up next follow it); the queue is never touched
+      h().setSession(list.map((e) => e.id), s.name);
       A.player.play(list[0].id);
-      ui().toast(`Playing all ${list.length} from ${esc(s.name)}; the rest are in your queue`, { icon: "▶️" });
+      ui().toast(`Playing all ${list.length} from ${esc(s.name)} in order. Your queue is unchanged.`, { icon: "▶️" });
+    };
+    const addAll = $("#spAddAll");
+    if (addAll) addAll.onclick = () => {
+      const ids = eps.slice().sort((a, b) => (a.date || "").localeCompare(b.date || "")).filter((e) => h().stateOf(e.id) !== "done").map((e) => e.id);
+      const n = h().addToQueue(ids, "addall"); paintQueueCount(); ids.forEach((id) => refreshCardsFor(id));
+      ui().toast(n ? `Added ${n} episode${n === 1 ? "" : "s"} from ${esc(s.name)} to your queue` : ids.length ? "They're already in your queue" : "Nothing unwatched to add", { icon: "➕" });
     };
   }
 
@@ -471,11 +481,13 @@
     const secs = list.reduce((a, e) => a + Math.max(0, e.dur - (h().pctOf(e.id) * e.dur)), 0);
     v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Queue</p><h1>Up next: ${list.length} episode${list.length === 1 ? "" : "s"}</h1><p class="lede">${fmtHM(secs)} left to watch. Drag to reorder; the queue always plays before recommendations.</p></div>
       <div class="row-gap">${list.length ? `<button class="btn btn--primary btn--sm" id="qPlay">${ui().ICON.play}<span>Play queue</span></button><button class="btn btn--sm" id="qShuffle">${ui().ICON.shuffle}<span>Shuffle</span></button><button class="btn btn--sm btn--ghost" id="qClear">Clear</button>` : ""}</div></header>
+      ${queueBanner(list)}
       ${list.length ? `<ol class="qlist" id="qList">${list.map((e, i) => qRow(e, i)).join("")}</ol>`
-        : `<div class="emptybig"><p>Your queue is empty.</p><p class="muted">Add episodes with the ${ui().ICON.queue} button, or use “Play all” on a speaker page.</p><a class="btn" href="#/browse">Browse</a></div>`}
+        : `<div class="emptybig"><p>Your queue is empty.</p><p class="muted">Add episodes with the ${ui().ICON.queue} button, or use “Add all to queue” on a speaker page. Only you change your queue: playing or finishing an episode never adds or removes one.</p><a class="btn" href="#/browse">Browse</a></div>`}
       ${ui().shelf("Suggested for your queue", A.recs.forYou(12).filter((x) => !L().QUEUE.includes(x.e.id)), { icon: "✨" })}`;
+    wireQueueBanner();
     if (!list.length) return;
-    $("#qPlay").onclick = () => A.player.play(L().QUEUE[0]);
+    $("#qPlay").onclick = () => A.player.play(L().QUEUE.find((id) => h().stateOf(id) !== "done") || L().QUEUE[0]);
     $("#qShuffle").onclick = () => { const q = L().QUEUE.slice(); for (let i = q.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [q[i], q[j]] = [q[j], q[i]]; } h().setQueue(q); renderQueue(); };
     $("#qClear").onclick = async () => { if (await ui().confirmBox("Clear the queue?", "Clear", true)) { h().setQueue([]); paintQueueCount(); renderQueue(); } };
     const ol = $("#qList");
@@ -685,9 +697,32 @@
     patchRating(id);
     if (A.player && A.player.patchTheater) A.player.patchTheater(id);
   }
+  /* one-time notice for queues filled before source tracking: an older version could add episodes by itself (Play all, playlists,
+   * learning paths, "Queue these & play"). Nothing is deleted unless you press a button. */
+  const QB_KEY = "queueBanner:v1";
+  function queueBanner(list) {
+    if (!list.length || A.store.get(QB_KEY, null)) return "";
+    const legacy = h().queueLegacy(); if (!legacy.length) return "";
+    const nW = list.filter((e) => h().stateOf(e.id) === "done").length;
+    return `<div class="qbanner" id="qBanner" role="region" aria-label="About your queue"><p><b>Some of these may have been added automatically by an earlier bug.</b> <span class="muted">Your queue now changes only when you add or remove an episode yourself.</span></p>
+      <div class="row-gap"><button class="btn btn--sm" data-qb="watched" ${nW ? "" : "disabled"}>Remove watched ones (${nW})</button><button class="btn btn--sm btn--ghost" data-qb="clear">Clear all</button><button class="btn btn--sm btn--primary" data-qb="keep">Keep all</button></div>
+      <button class="iconbtn iconbtn--sm qbanner__x" data-qb="keep" aria-label="Dismiss">✕</button></div>`;
+  }
+  function wireQueueBanner() {
+    const b = $("#qBanner"); if (!b) return;
+    b.onclick = async (ev) => {
+      const t = ev.target.closest("[data-qb]"); if (!t || t.disabled) return;
+      const k = t.dataset.qb;
+      if (k === "watched") { const ids = L().QUEUE.filter((id) => h().stateOf(id) === "done"); const n = h().removeFromQueue(ids); ui().toast(`Removed ${n} watched episode${n === 1 ? "" : "s"} from your queue`, { icon: "➖" }); }
+      else if (k === "clear") { if (!(await ui().confirmBox("Remove <b>all</b> episodes from your queue?", "Clear all", true))) return; h().setQueue([]); ui().toast("Queue cleared", { icon: "➖" }); }
+      else ui().toast("Kept your queue as it is", { ms: 1400 });
+      A.store.set(QB_KEY, { at: Date.now(), choice: k });
+      paintQueueCount(); renderQueue();
+    };
+  }
   /* queue view: targeted add/remove instead of re-rendering the page */
   function qRow(e, i) {
-    return `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}${ui().thumbBadges(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button>${ui().cardMeta(e, `<span>${esc(ui().whoLine(e, 2))}</span>`)}</div>
+    return `<li class="qrow" draggable="true" data-id="${e.id}" data-i="${i}"><span class="qrow__grip" aria-hidden="true">⋮⋮</span><span class="qrow__n">${i + 1}</span><button class="thumb thumb--sm" data-act="play">${ui().thumbImg(e)}${ui().thumbBadges(e)}</button><div class="hrow__tx"><button class="card__title" data-act="open">${esc(e.title)}</button>${ui().cardMeta(e, `<span>${esc(ui().whoLine(e, 2))}</span>`)}${h().stateOf(e.id) === "done" ? `<span class="qwatched" title="You finished this one; it stays in your queue until you remove it">✓ Watched</span>` : ""}</div>
         <div class="qrow__act"><button class="iconbtn iconbtn--sm" data-mv="-1" aria-label="Move up">↑</button><button class="iconbtn iconbtn--sm" data-mv="1" aria-label="Move down">↓</button><button class="iconbtn iconbtn--sm" data-act="queue" aria-label="Remove from queue">✕</button></div></li>`;
   }
   function queueHead() {
