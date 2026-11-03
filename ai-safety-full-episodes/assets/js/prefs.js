@@ -214,7 +214,7 @@
   /* ================================================================ keyboard shortcuts overlay */
   const KG = [
     { t: "Playback", c: "amber", k: [["Space", "K"], "Play / pause"], items: [[["Space"], "Play or pause"], [["K"], "Play or pause"], [["0", "–", "9"], "Jump to 0 %–90 %"], [["Home"], "Start (on the seek bar)"], [["End"], "End (on the seek bar)"], [[","], "Frame step back (paused)"], [["."], "Frame step forward (paused)"]] },
-    { t: "Seeking", c: "teal", items: [[["J"], "Back 10 s"], [["L"], "Forward 10 s"], [["←"], "Back 5 s"], [["→"], "Forward 5 s"], [["Shift", "←"], "Back 30 s"], [["Shift", "→"], "Forward 30 s"], [["U"], "First part you have not watched"], [["S"], "Skip intro"]] },
+    { t: "Seeking", c: "teal", items: [[["J"], "Back 10 s"], [["L"], "Forward 10 s"], [["←"], "Back 5 s"], [["→"], "Forward 5 s"], [["Shift", "←"], "Back 30 s"], [["Shift", "→"], "Forward 30 s"], [["U"], "Continue from the first part you have not watched"], [["S"], "Skip intro"]] },
     { t: "Speed & sound", c: "sky", items: [[["<"], "Slower (−0.25×)"], [[">"], "Faster (+0.25×, up to 2×)"], [["M"], "Mute"], [["↑"], "Volume up"], [["↓"], "Volume down"]] },
     { t: "Views & modes", c: "violet", items: [[["F"], "Full screen"], [["T"], "Theater mode / default view"], [["I"], "Miniplayer / expand"], [["Shift", "R"], "Read mode (video + panel)"], [["Z"], "Focus mode"], [["A"], "Headphones mode"], [["O"], "Float window"], [["Shift", "Y"], "YouTube's own controls"], [["Esc"], "Close / leave full screen / minimise"]] },
     { t: "Chapters & episodes", c: "coral", items: [[["Shift", "]"], "Next chapter"], [["Shift", "N"], "Next episode"], [["Shift", "P"], "Previous episode"], [["["], "Loop start"], [["]"], "Loop end"], [["\\"], "Clear loop"]] },
