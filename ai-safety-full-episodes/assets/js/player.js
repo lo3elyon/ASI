@@ -111,11 +111,12 @@
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
     if (P.cur && P.cur.id !== e.id && !o.back) { P.backStack = (P.backStack || []).filter((x) => x !== P.cur.id).concat(P.cur.id).slice(-30); }
     P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.lastRate = 0; P.chIdx = -1; P.loop = null; P.errCode = null;
+    P.hold = null; P.endDone = false; P.anchor = { id: e.id, t: start }; // playback starts at the cue point: the first reading may already be past it
     P.autoSkip = e.fmt === "hearing" && L().SETTINGS.autoSkipHearing && start === 0 && o.at == null;
     const r = h().rec(e.id, true);
     if (!r.dur && e.dur) r.dur = e.dur; // the exact share is covered seconds ÷ duration seconds
     P.nB = h().cells(r); P.dLast = 0; // real length (r.ydur) when the player reported it before, else the catalogue length
-    P.cov = h().covDecode(r.cov, P.nB);
+    P.cov = h().covDecode(r.cov, P.nB); P.mf = r.mf ? h().covDecode(r.mf, P.nB) : null;
     dock().hidden = false;
     $("#dockErr").hidden = true;
     const want = o.mode || (P.mode === "none" ? "theater" : o.mini ? (P.mode === "audio" ? "audio" : "mini") : P.mode === "audio" ? "audio" : P.mode === "mini" && o.keepMini ? "mini" : "theater");
@@ -205,7 +206,8 @@
           if (!r.first) r.first = Date.now();
         }
       }
-      P.lastMedia = P.yt.getCurrentTime();
+      P.endDone = false;
+      P.lastMedia = startFrom(P.yt.getCurrentTime());
       P.lastWall = performance.now();
       if (P.autoSkip) { P.autoSkip = false; autoSkipHearing(); }
       if (L().SETTINGS.captions && !L().SETTINGS.nativeControls && !(A.ccx && A.ccx.on())) captionsOn(true);
@@ -214,6 +216,10 @@
     } else {
       tick(true);
       if (s === 0) endCredit();
+      // a pause or a buffering stall does not end the stretch being played: if playback resumes where it stopped (no seek
+      // in between), the same run goes on, so a short stretch (< 3 s) cut by YouTube's buffering right after Play, or just
+      // before the end, is still credited
+      P.hold = (s === 2 || s === 3) && P.run && P.cur ? { id: P.cur.id, run: P.run, t: P.lastPos } : null;
       P.lastMedia = null; P.run = null;
       flush();
     }
@@ -232,6 +238,19 @@
       return d > 0 && isFinite(d) ? d : 0;
     } catch (x) { return 0; }
   }
+  /* where the stretch that starts now really began: YouTube's first reading after Play / a seek / a resume can already be a
+   * moment past the point it started from (start-up latency, more at 2×), and that moment was played. So when the reading
+   * is just past the cue/seek point (≤ 1.5 s × speed + 0.5 s), the run starts AT that point; when playback resumes where a
+   * pause or buffering stall left it, the held run continues. Anything else (a seek elsewhere) starts fresh at the reading. */
+  function startFrom(t) {
+    const hd = P.hold, an = P.anchor; P.hold = null; P.anchor = null;
+    if (typeof t !== "number" || isNaN(t) || !P.cur) return t;
+    let rate = 1; try { rate = (P.yt.getPlaybackRate && P.yt.getPlaybackRate()) || 1; } catch (x) {}
+    const lag = 1.5 * Math.max(1, rate) + 0.5;
+    if (hd && hd.id === P.cur.id && hd.t != null && t >= hd.t - 0.5 && t - hd.t <= lag) { P.run = hd.run; return Math.min(t, hd.t); }
+    if (an && an.id === P.cur.id && an.t != null && t >= an.t - 0.5 && t - an.t <= lag) return Math.min(t, an.t);
+    return t;
+  }
   /* store the real length per episode (r.ydur) and make it the coverage denominator: cells = floor(real length). The catalogue
    * duration (r.dur / e.dur) is left as it is for display. A changed length resizes the bitset (covered bits are kept) and
    * re-runs the end repair for an older full play that ended a few seconds short. */
@@ -242,8 +261,11 @@
     if (Math.abs((Number(r.ydur) || 0) - d) < 0.01) return;
     r.ydur = d;
     const nB = h().cells(r);
-    if (nB !== P.nB) { const old = P.cov || new Uint8Array(0); const nb = new Uint8Array(Math.ceil(nB / 8)); nb.set(old.subarray(0, nb.length)); P.cov = nb; P.nB = nB; }
-    r.cov = h().covEncode(P.cov);
+    if (nB !== P.nB) {
+      const fit = (old) => { const nb = new Uint8Array(Math.ceil(nB / 8)); nb.set((old || new Uint8Array(0)).subarray(0, nb.length)); return nb; };
+      P.cov = fit(P.cov); if (P.mf) P.mf = fit(P.mf); P.nB = nB;
+    }
+    r.cov = h().covEncode(P.cov); if (P.mf) r.mf = h().covEncode(P.mf);
     h().settle(r);
     if (h().repairEnd(r, P.cur)) P.cov = h().covDecode(r.cov, P.nB);
     P.lastSave = 0; // flush on the next tick
@@ -300,8 +322,7 @@
           // exact seconds: cell i ([i, i+1)) is covered when its midpoint lies inside the played stretch run.from…t, so
           // chained stretches never double-count or round up; a replayed second adds nothing
           const a = Math.max(0, Math.ceil(P.run.from - 0.5)), b = Math.min(P.nB - 1, Math.floor(t - 0.5));
-          let add = 0;
-          for (let i = a; i <= b; i++) { const bit = 1 << (i & 7); if (!(P.cov[i >> 3] & bit)) { P.cov[i >> 3] |= bit; add++; } }
+          const add = markCells(a, b);
           P.run.from = t;
           if (add) {
             r.watched = (r.watched || 0) + add;
@@ -312,10 +333,12 @@
         }
       } else P.run = null; // a seek (or a jump that does not fit real playback): no credit, a new run starts here
     }
-    if (st === 1 || (ended && P.lastMedia != null)) { if (moved || P.lastMedia == null) { P.lastMedia = t; P.lastWall = now; } } else if (!force) P.run = null;
+    if (st === 1 || (ended && P.lastMedia != null)) { if (moved || P.lastMedia == null) { P.lastMedia = P.lastMedia == null ? startFrom(t) : t; P.lastWall = now; } } else if (!force) P.run = null;
     // the saved resume spot is the real playback position: never a reset to 0 from an unstarted/cued player
     if (st !== -1 && st !== 5 && !(t === 0 && st !== 1 && (r.pos || 0) > 0)) r.pos = t;
     r.last = Date.now(); P.lastPos = t;
+    // the clock saw ENDED first (or the ENDED event never comes, which some embeds/modes do): credit the end here, once
+    if (ended && P.run && !P.endDone) endCredit();
     if (st === 1) timers(t);
     paintProgress(t);
     if (now - P.lastSave > 5000) flush();
@@ -325,7 +348,8 @@
    * run's start up to the last position actually observed (the end itself when YouTube reports it). Nothing is credited
    * without a live run, so a scrub to the end never counts; YouTube may not report the final <= 1 s, which settle() allows. */
   function endCredit() {
-    if (!P.cur || !P.cov || !P.run || P.run.real < 3) return;
+    if (!P.cur || !P.cov || !P.run || P.run.real < 3 || P.endDone) return;
+    P.endDone = true;
     let t = P.lastMedia;
     try { const c = P.yt.getCurrentTime(); if (typeof c === "number" && !isNaN(c) && c >= (t || 0) && c - (t || 0) <= 3) t = c; } catch (x) {}
     if (t == null) return;
@@ -341,8 +365,7 @@
     if (P.sess && P.sessId === P.cur.id) { P.sess.end = 1; if (toEnd) P.sess.b = Math.max(P.sess.b || 0, Math.floor(end)); }
     const a = Math.max(0, Math.ceil(P.run.from - 0.5)), b = Math.min(P.nB - 1, Math.floor(t - 0.5));
     const r = h().rec(P.cur.id, true);
-    let add = 0;
-    for (let i = a; i <= b; i++) { const bit = 1 << (i & 7); if (!(P.cov[i >> 3] & bit)) { P.cov[i >> 3] |= bit; add++; } }
+    const add = markCells(a, b);
     P.run.from = Math.max(P.run.from, t);
     if (add) {
       r.watched = (r.watched || 0) + add;
@@ -351,23 +374,42 @@
       if (P.sess && P.sessId === P.cur.id) { P.sess.n = (P.sess.n || 0) + add; P.sess.m = Math.max(P.sess.m || 0, b + 1); }
     }
   }
+  /* mark cells a…b as played; a second filled in by hand before ("Mark this part watched") and now really played becomes
+   * a played second. Returns the seconds that are newly played. */
+  function markCells(a, b) {
+    let add = 0;
+    for (let i = a; i <= b; i++) {
+      const bit = 1 << (i & 7);
+      if (!(P.cov[i >> 3] & bit)) { P.cov[i >> 3] |= bit; add++; }
+      else if (P.mf && (P.mf[i >> 3] & bit)) { P.mf[i >> 3] &= ~bit; add++; }
+    }
+    return add;
+  }
   function flush() {
     if (!P.cur || !P.cov) return;
     const r = h().rec(P.cur.id, true);
     const was = !!r.done;
     if (!(r.manual && !r.manual.partial)) {
       r.cov = h().covEncode(P.cov);
+      if (P.mf) r.mf = h().covEncode(P.mf);
       h().settle(r); // exact: covN / duration seconds; done only when every second (bar the final ≤ 1 s) is covered
     }
-    if (!was && r.done) { r.doneAt = Date.now(); A.ui.toast(`Watched 100%: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: "✅" }); A.fx && A.fx.celebrate("complete", dock(), true); A.picks && A.picks.sync(P.cur.id); }
+    if (!was && r.done) {
+      r.doneAt = Date.now();
+      const real = !r.mfN; // confetti only for a real, every-second play; a completion that needed hand-filled parts gets a quiet tick
+      A.ui.toast(`${real ? "Watched 100%" : "Completed (marked)"}: <b>${esc(P.cur.title.slice(0, 64))}</b>`, { icon: real ? "🎉" : "✅" });
+      if (real) A.fx && A.fx.celebrate("complete", dock(), true);
+      A.picks && A.picks.sync(P.cur.id);
+    }
     P.lastSave = performance.now();
     h().saveH();
     paintCoverage();
+    A.ui.paintProg && A.ui.paintProg(P.cur.id);
     h().checkAwards();
     A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(P.cur.id);
     try { document.dispatchEvent(new CustomEvent("asfe:progress", { detail: { id: P.cur.id, done: !!r.done } })); } catch (x) {}
   }
-  function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); paintCoverage(); }
+  function reloadCov(id) { if (!P.cur || P.cur.id !== id) return; const r = h().rec(id, true); P.cov = h().covDecode(r.cov, P.nB); P.mf = r.mf ? h().covDecode(r.mf, P.nB) : null; paintCoverage(); A.ui.paintProg && A.ui.paintProg(id); }
   /* timers run only while they have work: while a video plays, the watch clock ticks once a second on its own timer
    * (never coupled to the progress beat, so a throttled background tab still gets a reading every second it is allowed)
    * and the progress bar repaints every 250 ms only while the page is visible; the Focus timer runs once a second only
@@ -394,7 +436,7 @@
 
   /* sleep timer, A–B loop, skip intro */
   function timers(t) {
-    if (P.loop && P.loop.b != null && t >= P.loop.b) { P.lastMedia = null; P.run = null; try { P.yt.seekTo(P.loop.a, true); } catch (x) {} return; }
+    if (P.loop && P.loop.b != null && t >= P.loop.b) { P.lastMedia = null; P.run = null; P.hold = null; P.anchor = P.cur ? { id: P.cur.id, t: P.loop.a } : null; try { P.yt.seekTo(P.loop.a, true); } catch (x) {} return; }
     const sl = P.sleep;
     if (sl) {
       const hit = (sl.type === "time" && Date.now() >= sl.until) || (sl.type === "chapter" && chapterAt(t) !== sl.ch);
@@ -411,7 +453,8 @@
     const d = P.yt.getDuration() || (P.cur && P.cur.dur) || 0;
     const to = clamp(abs ? t : cur + t, 0, Math.max(0, d - 0.5));
     tick(false);
-    P.lastMedia = null; P.run = null;
+    P.lastMedia = null; P.run = null; P.hold = null; P.endDone = false;
+    P.anchor = P.cur ? { id: P.cur.id, t: to } : null;
     h().bumpStat("seeks");
     P.yt.seekTo(to, true);
     if (!o.keepPaused && P.yt.getPlayerState() !== 1) P.yt.playVideo();
@@ -480,7 +523,7 @@
   function playNext() { const n = nextUp(); if (n) play(n.e.id, { mini: P.mode !== "theater", keepMini: true }); else A.ui.toast("Nothing left to suggest. You've seen it all!", { icon: "🎉" }); }
   function onEnded() {
     flush();
-    if (P.loopAll && P.yt && P.ready) { try { P.yt.seekTo(0, true); P.yt.playVideo(); } catch (x) {} fx("↻ Loop", "c"); return; }
+    if (P.loopAll && P.yt && P.ready) { P.hold = null; P.anchor = P.cur ? { id: P.cur.id, t: 0 } : null; try { P.yt.seekTo(0, true); P.yt.playVideo(); } catch (x) {} fx("↻ Loop", "c"); return; }
     if (P.sleep && P.sleep.type === "end") { P.sleep = null; A.ui.toast("Sleep timer: stopped at the end of the episode", { icon: "🌙", force: true }); return; }
     if (A.binge && A.binge.onEnded()) return; // Binge mode in Theater: slim 5 s "Up next" bar instead
     if (!L().SETTINGS.autoplay) return;
@@ -1023,6 +1066,7 @@
     if (!P.cur) return applySettings();
     const t = curTime(), id = P.cur.id, wasPlaying = P.playing || P.lastState === 1;
     tick(true); flush(); destroyPlayer();
+    P.hold = null; P.run = null; P.anchor = { id, t: Math.floor(t) }; // the new player starts at floor(t), a moment already played
     createPlayer(freshHost(), id, Math.floor(t), wasPlaying && !!P.userPlayed);
     if (!wasPlaying) dock().classList.toggle("is-cued", true);
     applySettings();
@@ -1336,7 +1380,19 @@
     }
     return stops.length ? `linear-gradient(90deg, ${stops.join(",")})` : "none";
   }
-  function paintCoverage() { const g = covGradient(); $$("[data-seekbar] .seekbar__cov").forEach((el) => (el.style.background = g)); }
+  function paintCoverage() { const g = covGradient(); $$("[data-seekbar] .seekbar__cov").forEach((el) => (el.style.background = g)); paintGaps(); }
+  /* striped marks on the seek bar for the parts not watched yet that matter: holes behind the furthest second played, and the
+   * tail when the episode was played to its end (A.hist.missed); one tiny element per gap, redrawn only when they change */
+  function paintGaps() {
+    const r = P.cur && L().H.eps[P.cur.id], list = r ? h().missed(r) : [], n = (r && h().cells(r)) || P.nB || 1;
+    const key = (P.cur ? P.cur.id : "") + "|" + n + "|" + list.map((x) => x[0] + "-" + x[1]).join(",");
+    $$("[data-seekbar]").forEach((sb) => {
+      let g = sb.querySelector(".seekbar__gaps");
+      if (!g) { if (!list.length) return; g = document.createElement("div"); g.className = "seekbar__gaps"; g.setAttribute("aria-hidden", "true"); const c = sb.querySelector(".seekbar__cov"); if (c) c.after(g); else sb.prepend(g); }
+      if (g.dataset.k === key) return; g.dataset.k = key;
+      g.innerHTML = list.slice(0, 60).map((x) => `<i style="left:${((100 * x[0]) / n).toFixed(3)}%;width:${((100 * (x[1] - x[0])) / n).toFixed(3)}%"></i>`).join("");
+    });
+  }
   function paintTicks() {
     const d = (P.cur && P.cur.dur) || 0;
     $$("[data-seekbar] .seekbar__ticks").forEach((el) => {
@@ -1481,6 +1537,7 @@
     $("#thInfo").innerHTML = `
       <h1 class="th__title">${esc(e.title)}</h1>
       <p class="th__meta"><span>${esc(A.fmtDate(e.date, e.approx))}</span><span>${esc(e.durStr)}</span><span>${esc(A.ui.showLine(e))}</span><span class="lvl lvl--${A.slug(e.level)}">${esc(e.level)}</span>${e.views ? `<span>${A.ui.fmtViews(e.views)} views</span>` : ""}</p>
+      ${A.ui.progCard ? A.ui.progCard(e.id) : ""}
       <div class="th__people">${e.people.map((p) => `<a class="person ${p.host ? "person--host" : ""}" href="#/speaker/${esc(p.slug)}" data-closeth>${A.ui.avatar(p.name, 34)}<span><b>${esc(p.name)}</b><small>${p.host ? "Host" : esc((A.ui.speakerOf(p.name) || {}).org || p.desc || "")}</small></span></a>`).join("")}</div>
       <div class="th__act">
         <button class="btn btn--sm" data-th="fav">${fav ? A.ui.ICON.heartF : A.ui.ICON.heart}<span>${fav ? "Favourited" : "Favourite"}</span></button>
@@ -1535,10 +1592,10 @@
     for (let k = 0; k * per < n; k++) { let c = 0, t = 0; for (let i = k * per; i < Math.min(n, (k + 1) * per); i++, t++) if (P.cov[i >> 3] & (1 << (i & 7))) c++; cells.push({ f: t ? c / t : 0, t: k * per * h().BUCKET }); }
     const g = firstGap(), r = L().H.eps[e.id] || {};
     return `<section class="rcov" aria-label="Your coverage"><p class="side__h">Your coverage <small title="${esc(h().covTip(e.id))}">${h().pctText(r)} played</small></p>
-      <div class="rcov__strip">${cells.map((c) => `<button type="button" class="rcov__c" data-seek="${c.t}" style="--f:${c.f.toFixed(2)}" title="${fmtTime(c.t)} · ${(Math.floor(c.f * 1000) / 10)}% played" aria-label="Seek to ${fmtTime(c.t)}"></button>`).join("")}</div>
-      <div class="row-gap">${g != null ? `<button type="button" class="btn btn--sm" data-seek="${g}">${A.ui.ICON.play}<span>First unwatched part · ${fmtTime(g)} <kbd>U</kbd></span></button>` : `<span class="ok">✓ every part played</span>`}${r.pos > 5 ? `<button type="button" class="btn btn--sm btn--ghost" data-seek="${Math.floor(r.pos)}">Where you left off · ${fmtTime(r.pos)}</button>` : ""}</div></section>`;
+      <div class="rcov__strip">${cells.map((c) => `<button type="button" class="rcov__c" data-seek="${c.t}" style="--f:${c.f.toFixed(2)}" title="${fmtTime(c.t)} · ${Math.floor(c.f * 100)}% played" aria-label="Seek to ${fmtTime(c.t)}"></button>`).join("")}</div>
+      <div class="row-gap">${g != null ? `<button type="button" class="btn btn--sm" data-seek="${g}">${A.ui.ICON.play}<span>Continue from first unwatched part · ${fmtTime(g)} <kbd>U</kbd></span></button>` : `<span class="ok">✓ every part played</span>`}${r.pos > 5 ? `<button type="button" class="btn btn--sm btn--ghost" data-seek="${Math.floor(r.pos)}">Where you left off · ${fmtTime(r.pos)}</button>` : ""}</div></section>`;
   }
-  function jumpGap() { const g = firstGap(); if (g == null) { A.ui.toast("You have played every part of this episode", { icon: "✅", ms: 1600 }); return; } seek(g, true, { keepPaused: !P.playing }); A.ui.toast(`First unwatched part: ${fmtTime(g)}`, { icon: "⏩", ms: 1400 }); }
+  function jumpGap() { const g = firstGap(); if (g == null) { A.ui.toast("You have played every part of this episode", { icon: "✅", ms: 1600 }); return; } seek(g, true, { keepPaused: !P.playing }); A.ui.toast(`Continuing from the first unwatched part: ${fmtTime(g)}`, { icon: "⏩", ms: 1400 }); }
   /* filter box for long chapter / claim / number lists in the reading panel */
   function sideFilterHTML(ph) { return `<input class="input input--sm side__q" type="search" id="sideQ" placeholder="${esc(ph)}" aria-label="${esc(ph)}" value="${esc(P.sideQ || "")}">`; }
   function applySideFilter() { const q = A.fold(P.sideQ || "").trim(); $$("#sideBody .chaps > li, #sideBody .claims > li").forEach((li) => { li.hidden = !!q && !A.fold(li.textContent).includes(q); }); }
@@ -1687,7 +1744,7 @@
   }
 
   A.player = {
-    P, play, seek, jumpTo, togglePlay, toggleRead, syncChBtns, chOpen, jumpGap, firstGap, openChapters, closeChSheet, placeChSheet, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
+    P, play, seek, jumpTo, startFrom, togglePlay, toggleRead, syncChBtns, chOpen, jumpGap, firstGap, openChapters, closeChSheet, placeChSheet, flipStep, flipProgress, miniRect, nudgeOff, readRect, sheetSize, hideCountdown, setSticky, setSpeed, setVol, toggleMute, prevChapter, nextChapter, playNext, minimize, expand, audioMode, popOut, closePlayer, curTime, durNow, openNote, wire,
     tick, flush, setQuality, curQuality, paintQuality, paintSide, paintTheater, patchTheater, placeDock, placeMini, snapMini, dropMini, setSticky, checkSticky, backToTop, setMode, chapterAt, hideCountdown, loadAPI, reloadCov, toggleFs, enterFs, exitFs, toggleMini, toggleWide, paintModeButtons, toggleZen, toggleDnd, toggleCC, syncCC, ccActual,
     frameStep, bookmark, setLoop, relayout, toggleNative, playPrev, setSleep, skipIntro, onError, showEmbedError, openMenu, closeMenu, showUI, toggleWatchedCur, embedSrc, paintMarks, SPEEDS,
   };
