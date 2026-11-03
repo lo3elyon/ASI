@@ -6,7 +6,7 @@
   const HKEY = "history:v3";
   const BUCKET = 1; // seconds per coverage cell: a 1-second bitset (fix6); stores before fix6 used 10-second slices
   const OLD_BUCKET = 10;
-  const STAT0 = { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0, fsSec: 0, zenSec: 0, manualMarks: 0, bookmarks: 0, shares: 0 };
+  const STAT0 = { chapterJumps: 0, pipSec: 0, audioSec: 0, pipUses: 0, seeks: 0, fsSec: 0, zenSec: 0, manualMarks: 0, manualParts: 0, bookmarks: 0, shares: 0 };
   function freshHistory() { const t = Date.now(); return { v: 3, created: t, eps: {}, daily: {}, manualDaily: {}, stats: Object.assign({}, STAT0), fix4: t, fix5: t, fix6: t, xpCarry: 0 }; }
 
   const L = {};
@@ -86,6 +86,9 @@
     if (!r) return r;
     const n = cells(r), b = covDecode(r.cov, n);
     r.covN = covCount(b, n);
+    // seconds filled in by hand ("Mark this part watched"): they count towards the share, are labelled, and never make a
+    // record "Watched 100%" (that label is for real plays only)
+    if (r.mf) { const m = covDecode(r.mf, n); let k = 0; for (let i = 0; i < n; i++) { const bit = 1 << (i & 7); if ((m[i >> 3] & bit) && (b[i >> 3] & bit)) k++; } if (k) r.mfN = k; else { delete r.mf; delete r.mfN; } } else if (r.mfN) delete r.mfN;
     // real length known: every whole real second must be covered (ENDED after continuous play credits through the end);
     // catalogue fallback: every cell except possibly the final one (YouTube may not report the final <= 1 s)
     const full = r.covN > 0 && (realDur(r) ? r.covN >= n : covComplete(b, n));
@@ -129,29 +132,84 @@
   }
   function repairEnds(H) { let k = 0; Object.keys((H && H.eps) || {}).forEach((id) => { const e = STATE.byId && STATE.byId.get(id); try { if (repairEnd(H.eps[id], e)) k++; } catch (x) {} }); return k; }
   /* unique seconds really played here (a manual mark's logged seconds are not "played") */
-  function playedSec(r) { if (!r) return 0; if (r.manual && !r.manual.partial) return Math.max(0, (r.manual.prev && r.manual.prev.covN) || 0); return r.covN || 0; }
-  /* "89.7%": exact share with one decimal, floored (never rounded up); "100%" only when complete */
+  function playedSec(r) { if (!r) return 0; if (r.manual && !r.manual.partial) return Math.max(0, (r.manual.prev && r.manual.prev.covN) || 0); return Math.max(0, (r.covN || 0) - (r.mfN || 0)); }
+  /* the share as a WHOLE number, computed per second and floored (never rounded up): 906 of 907 s → 99; 100 only when
+   * complete (every second covered, or a manual full mark) */
+  function pctInt(r) {
+    if (!r) return 0;
+    if (r.full || (r.manual && !r.manual.partial)) return 100;
+    return Math.min(99, Math.floor(clamp((r.covN || 0) / cells(r), 0, 1) * 100));
+  }
+  /* "99%": whole numbers everywhere; "<1%" when something was played but less than 1 %; "100%" only when complete */
   function pctText(r) {
     if (!r) return "0%";
-    if (r.full || (r.manual && !r.manual.partial)) return "100%";
-    const p = Math.floor(clamp((r.covN || 0) / cells(r), 0, 1) * 1000) / 10;
-    if (p >= 100) return "99.9%";
-    if (p === 0 && (r.covN || 0) > 0) return "<0.1%";
-    return (r.covN || 0) ? p.toFixed(1) + "%" : "0%";
+    const p = pctInt(r);
+    if (p === 100) return "100%";
+    if (!(r.covN || 0)) return "0%";
+    return p === 0 ? "<1%" : p + "%";
   }
   /* bar width in %: floored to 0.1 so a bar never looks fuller than the truth */
   function pctWidth(r) { if (!r) return 0; if (r.full || (r.manual && !r.manual.partial)) return 100; return Math.min(99.9, Math.floor(clamp((r.covN || 0) / cells(r), 0, 1) * 1000) / 10); }
   const mmss = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return (h ? h + ":" + String(m).padStart(2, "0") : String(m).padStart(2, "0")) + ":" + String(x).padStart(2, "0"); };
   const hhmmss = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60; return h + ":" + String(m).padStart(2, "0") + ":" + String(x).padStart(2, "0"); };
-  /* tooltip: "12:34 of 1:02:03 watched (unique) · 20.2%" (+ how it was marked) */
+  /* m:ss / h:mm:ss, as YouTube writes times ("0:12", "14:58", "1:02:03") */
+  const ts = (s) => { s = Math.max(0, Math.floor(s || 0)); const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = String(s % 60).padStart(2, "0"); return h ? `${h}:${String(m).padStart(2, "0")}:${x}` : `${m}:${x}`; };
+  /* the length the share is measured against: the real length (whole seconds) once the player reported it, else the catalogue */
+  function lenOf(r, e) { return realDur(r) ? cells(r) : Math.round((e && e.dur) || (r && r.dur) || 0); }
+  /* tooltip: "14:58 of 15:06 watched (unique) · 99%" (exact seconds, whole-number share, + how anything was marked) */
   function covTip(id) {
-    const r = L.H.eps[id]; const e = STATE.byId && STATE.byId.get(id); const dur = (e && e.dur) || (r && r.dur) || 0;
-    if (!r) return `00:00 of ${hhmmss(dur)} watched (unique)`;
+    const r = L.H.eps[id]; const e = STATE.byId && STATE.byId.get(id); const len = lenOf(r, e);
+    if (!r) return `0:00 of ${ts(len)} watched (unique) · 0%`;
     const man = r.manual && !r.manual.partial;
-    return `${mmss(playedSec(r))} of ${hhmmss(dur)} watched (unique) · ${man ? "Marked watched" : r.full ? "Watched 100%" : pctText(r)}` + (r.lgN ? ` · ${r.lgN} earlier 10-s part${r.lgN === 1 ? "" : "s"} not verified to the second` : "");
+    return `${ts(playedSec(r))} of ${ts(len)} watched (unique) · ${man ? "Marked watched" : r.done ? doneLabel(id) : pctText(r)}` + (r.mfN ? ` · includes ${fmtSecs(r.mfN)} marked manually` : "") + (r.lgN ? ` · ${r.lgN} earlier 10-s part${r.lgN === 1 ? "" : "s"} not verified to the second` : "");
   }
-  /* "Watched 100%" (every second played) vs "Marked watched" (a manual mark) */
-  function doneLabel(id) { const r = L.H.eps[id]; if (!r || !r.done) return ""; return r.manual ? "Marked watched" : "Watched 100%"; }
+  const fmtSecs = (n) => (n < 60 ? `${n} s` : n < 3600 ? `${Math.floor(n / 60)} min${n % 60 ? ` ${n % 60} s` : ""}` : `${Math.floor(n / 3600)} h ${Math.floor((n % 3600) / 60)} min`);
+  /* "Watched 100%" (every second really played) vs "Completed (marked)" (some seconds were filled in by hand) vs "Marked
+   * watched" (the whole episode marked by hand) */
+  function doneLabel(id) { const r = L.H.eps[id]; if (!r || !r.done) return ""; return r.manual ? "Marked watched" : r.mfN ? "Completed (marked)" : "Watched 100%"; }
+  /* the parts not watched yet, as whole-second ranges [from, to) (to of the last range = the length), in order */
+  function gaps(r) {
+    if (!r || r.full || (r.manual && !r.manual.partial)) return [];
+    const n = cells(r), b = covDecode(r.cov, n), out = [];
+    let s = -1;
+    for (let i = 0; i <= n; i++) {
+      const on = i < n && (b[i >> 3] & (1 << (i & 7)));
+      if (i < n && !on) { if (s < 0) s = i; } else if (s >= 0) { out.push([s, i]); s = -1; }
+    }
+    return out;
+  }
+  /* the gaps worth flagging on a bar: holes BEHIND the furthest second played (skipped or lost parts), plus the tail when
+   * the episode was played to (or within 2 s of) its end; the not-yet-reached rest of an episode in progress is not "missed" */
+  function missed(r) {
+    const g = gaps(r); if (!g.length) return [];
+    const n = cells(r), b = covDecode(r.cov, n);
+    let last = -1; for (let i = n - 1; i >= 0; i--) if (b[i >> 3] & (1 << (i & 7))) { last = i; break; }
+    if (last < 0) return [];
+    const atEnd = (Number(r.pos) || 0) >= n - 2;
+    return g.filter(([a, z]) => a < last || (z >= n && atEnd));
+  }
+  const gapLabel = ([a, z]) => `${ts(a)}–${ts(z)}`;
+  /* "Mark this part watched": fills the seconds [a, z) by hand. They count towards the share and are labelled
+   * ("includes 8 s marked manually"); a record completed this way reads "Completed (marked)", never "Watched 100%". They are
+   * not "played" (no unique seconds, XP or daily minutes). Returns an undo function (the toast offers it for 10 s). */
+  function markRange(id, a, z) {
+    const e = STATE.byId.get(id); if (!e) return null;
+    const r = rec(id, true); if (!r.dur && e.dur) r.dur = e.dur;
+    const n = cells(r); a = Math.max(0, Math.floor(a)); z = Math.min(n, Math.ceil(z)); if (!(z > a)) return null;
+    const snap = { cov: r.cov, mf: r.mf, mfN: r.mfN, covN: r.covN, pct: r.pct, full: r.full, done: r.done, doneAt: r.doneAt, last: r.last, first: r.first };
+    const b = covDecode(r.cov, n), m = covDecode(r.mf, n);
+    let add = 0;
+    for (let i = a; i < z; i++) { const bit = 1 << (i & 7); if (!(b[i >> 3] & bit)) { b[i >> 3] |= bit; m[i >> 3] |= bit; add++; } }
+    if (!add) return null;
+    r.cov = covEncode(b); r.mf = covEncode(m);
+    const now = Date.now(); r.last = now; if (!r.first) r.first = now;
+    const was = !!r.done; settle(r); if (!was && r.done) r.doneAt = now;
+    L.H.stats.manualParts = (L.H.stats.manualParts || 0) + 1;
+    saveH(); checkAwards();
+    if (A.player && A.player.reloadCov) A.player.reloadCov(id);
+    const undo = () => { const x = L.H.eps[id]; if (!x) return; Object.keys(snap).forEach((k) => { if (snap[k] === undefined) delete x[k]; else x[k] = snap[k]; }); settle(x); if (snap.done && !x.done) { x.done = true; x.doneAt = snap.doneAt; } saveH(); checkAwards(true); if (A.player && A.player.reloadCov) A.player.reloadCov(id); };
+    return { add, undo, done: !!r.done && !was };
+  }
   /* 1-second migration (fix6) of the old 10-second slices. A second counts only when a stored session evidences it: a manual
    * session [a, b] (declared by the user), or a played session whose advance b−a fits steady playback at 1×–2× over its
    * credited seconds (± 10 % + 15 s), so no seek is hidden inside. A slice with no evidenced second is kept (r.lg, shown
@@ -358,7 +416,7 @@
   function episodeSummary(id) {
     const r = L.H.eps[id]; if (!r) return null;
     const ss = r.sessions || [];
-    return { id, watched: playedSec(r), spent: r.spent || 0, reach: furthestPlayed(r), pct: r.pct || 0, pctText: pctText(r), status: r.done ? (r.manual ? "marked" : "completed") : "progress", last: r.last || Math.max(0, ...ss.map((x) => x.e || 0)), sessions: ss.length };
+    return { id, watched: playedSec(r), spent: r.spent || 0, reach: furthestPlayed(r), pct: r.pct || 0, pctText: pctText(r), status: r.done ? (r.manual ? "marked" : r.mfN ? "filled" : "completed") : "progress", last: r.last || Math.max(0, ...ss.map((x) => x.e || 0)), sessions: ss.length };
   }
 
   const manualCount = () => Object.values(L.H.eps).filter((r) => r.manual && r.done).length;
@@ -411,6 +469,11 @@
       r.sessions = (r.sessions || []).filter((x) => !(x.src === "manual" && x.s === m.at));
       addDay(L.H.daily, m.day, -m.add); addDay(L.H.manualDaily, m.day, -m.add);
       delete r.manual;
+    } else if (r.mfN) {
+      // completed with seconds filled in by hand: un-marking takes back only those seconds (the played ones stay)
+      const n = cells(r), b = covDecode(r.cov, n), m = covDecode(r.mf, n);
+      for (let i = 0; i < b.length; i++) b[i] &= ~m[i];
+      r.cov = covEncode(b); delete r.mf; delete r.mfN; settle(r);
     } else if (r.done) {
       // completed by real playback: keep the real seconds (they happened) but reset completion and coverage
       r.done = false; r.doneAt = 0; r.cov = ""; r.covN = 0; r.pct = 0; r.full = false; r.pos = 0; r.reset = Date.now();
@@ -539,7 +602,7 @@
   const isObj = (o) => o && typeof o === "object" && !Array.isArray(o);
   function cleanRec(r) {
     if (!isObj(r)) return null;
-    const out = { pos: num(r.pos), dur: num(r.dur), ...(num(r.ydur) > 0 ? { ydur: Math.min(num(r.ydur), 86400 * 2) } : {}), ...(isObj(r.endRep) ? { endRep: { n: Math.min(num(r.endRep.n), 60), at: num(r.endRep.at) } } : {}), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.cov || "") ? r.cov || "" : "", spent: Math.min(num(r.spent), 86400 * 30), ...(/^[A-Za-z0-9+/=]{1,4000}$/.test(r.lg || "") ? { lg: r.lg, lgN: num(r.lgN) } : {}), covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
+    const out = { pos: num(r.pos), dur: num(r.dur), ...(num(r.ydur) > 0 ? { ydur: Math.min(num(r.ydur), 86400 * 2) } : {}), ...(isObj(r.endRep) ? { endRep: { n: Math.min(num(r.endRep.n), 60), at: num(r.endRep.at) } } : {}), watched: Math.min(num(r.watched), 86400 * 3), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.cov || "") ? r.cov || "" : "", ...(/^[A-Za-z0-9+/=]{1,40000}$/.test(r.mf || "") ? { mf: r.mf } : {}), spent: Math.min(num(r.spent), 86400 * 30), ...(/^[A-Za-z0-9+/=]{1,4000}$/.test(r.lg || "") ? { lg: r.lg, lgN: num(r.lgN) } : {}), covN: num(r.covN), pct: Math.min(1, num(r.pct)), done: !!r.done, doneAt: num(r.doneAt), first: num(r.first), last: num(r.last),
       sessions: (Array.isArray(r.sessions) ? r.sessions : []).slice(-200).filter(isObj).map((x) => ({ s: num(x.s), e: num(x.e), w: num(x.w), a: num(x.a), b: num(x.b), ...(x.m != null ? { m: num(x.m) } : {}), ...(x.n != null ? { n: num(x.n) } : {}), ...(x.rw ? { rw: 1 } : {}), ...(x.end ? { end: 1 } : {}), ...(x.v ? { v: num(x.v) } : {}), ...(x.legacy ? { legacy: 1 } : {}), ...(x.src === "manual" ? { src: "manual" } : {}) })) };
     if (isObj(r.manual)) out.manual = { at: num(r.manual.at), add: num(r.manual.add), day: /^\d{4}-\d{2}-\d{2}$/.test(r.manual.day) ? r.manual.day : dayKey(Date.now()), partial: !!r.manual.partial, src: "manual", prev: isObj(r.manual.prev) ? { watched: num(r.manual.prev.watched), pct: Math.min(1, num(r.manual.prev.pct)), done: !!r.manual.prev.done, doneAt: num(r.manual.prev.doneAt), cov: /^[A-Za-z0-9+/=]{0,40000}$/.test(r.manual.prev.cov || "") ? r.manual.prev.cov || "" : "", covN: num(r.manual.prev.covN), pos: num(r.manual.prev.pos) } : { watched: 0, pct: 0, done: false, doneAt: 0, cov: "", covN: 0, pos: 0 } };
     return out;
@@ -616,7 +679,7 @@
   function resetAll() { L.H = freshHistory(); L.NOTES = {}; L.FAVS = new Set(); L.QUEUE = []; L.EARNED = {}; L.FOLLOWS = new Set(); L.PLAYLISTS = []; L.LATER = []; L.RATINGS = {}; L.UTAGS = {}; saveAll(); }
 
   A.hist = {
-    L, afterData, BUCKET, OLD_BUCKET, nSec, cells, realDur, repairEnd, repairEnds, endEvidence, covComplete, settle, playedSec, pctText, pctWidth, covTip, doneLabel, migrateExact, conv10, evidence, mmss, hhmmss, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
+    L, afterData, BUCKET, OLD_BUCKET, nSec, cells, realDur, repairEnd, repairEnds, endEvidence, covComplete, settle, playedSec, pctInt, pctText, pctWidth, covTip, doneLabel, gaps, missed, gapLabel, markRange, ts, lenOf, fmtSecs, migrateExact, conv10, evidence, mmss, hhmmss, loadState, saveH, saveAll, savePrefs, covDecode, covEncode, covCount, rec, pctOf, stateOf, watchedOf, totalWatched, doneCount, noteCount, streaks,
     watchedSecFor, heardSpeakers, inProgress, recentlyWatched, doneByDay, LEVELS, BADGES, xp, levelInfo, checkAwards, toggleFav, toggleQueue, setQueue, toggleFollow,
     addNote, delNote, bumpStat, clearOne, exportAll, importAll, resetAll, freshHistory, saveLib, sanitizeBackup, exportCSV, importCSV, parseCSV,
     markWatched, unmarkWatched, furthestPlayed, sessReach, repairHistory, recoverCoverage, episodeSummary, bulkMark, bulkUnmark, isManual, manualCount, goalSec, goalDays, todaySec,
