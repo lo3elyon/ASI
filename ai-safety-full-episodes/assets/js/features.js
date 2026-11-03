@@ -126,13 +126,13 @@
     }
     if (a === "later") { const on = h().toggleLater(id); ui().toast(on ? "Saved to Watch later" : "Removed from Watch later", { icon: "🕒", ms: 1400 }); refresh(id); fx("later", el, on); return true; }
     if (a === "playlist") { playlistPicker(id, el); return true; }
-    if (a === "playnext") { h().queueNext(id); A.views.paintQueueCount(); ui().toast("Plays next", { icon: "⏭️", ms: 1300 }); refresh(id); fx("queue", el, true); return true; }
+    if (a === "playnext") { h().queueNext(id, "playnext"); A.views.paintQueueCount(); ui().toast("Plays next", { icon: "⏭️", ms: 1300 }); refresh(id); fx("queue", el, true); return true; }
     if (a === "pick") { if (A.picks && A.picks.add(id, "menu")) ui().toast("Added to Today's picks", { icon: "🎯", ms: 1500 }); return true; }
     if (a === "sharecard") { shareCard(id, A.P.cur && A.P.cur.id === id ? A.player.curTime() : 0); return true; }
     if (a === "link") { A.views.copyLinkAt(id, 0); return true; }
     if (a === "play") { A.player.play(id); return true; }
     if (a === "open") { A.views.openDrawer(id); return true; }
-    if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); ui().toast(on ? "Added to queue" : "Removed from queue", { ms: 1300 }); refresh(id); fx("queue", el, on); if (A.app.view() === "queue") A.views.queueSync(id, on); return true; }
+    if (a === "queue") { const on = h().toggleQueue(id, "menu"); A.views.paintQueueCount(); ui().toast(on ? "Added to queue" : "Removed from queue", { ms: 1300 }); refresh(id); fx("queue", el, on); if (A.app.view() === "queue") A.views.queueSync(id, on); return true; }
     return false;
   }
   /* targeted follow-ups after a watched toggle: the watched checklist and cards patch in place (refreshCardsFor);
@@ -508,7 +508,7 @@
     const v = V("playlists");
     if (arg) return renderPlaylist(v, arg);
     const lists = L().PLAYLISTS;
-    v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Library</p><h1>Playlists & Watch later</h1><p class="lede">Right-click any card (or its ⋯ button) to save it. Playing a playlist fills your queue in order.</p></div>
+    v.innerHTML = `<header class="phead phead--row"><div><p class="eyebrow">Library</p><h1>Playlists & Watch later</h1><p class="lede">Right-click any card (or its ⋯ button) to save it. Playing a playlist plays it in order without touching your queue.</p></div>
       <form class="row-gap" id="plNew"><input class="input input--sm" name="n" maxlength="80" placeholder="New playlist name" aria-label="New playlist name" required><button class="btn btn--primary btn--sm">${ui().ICON.plus}<span>Create</span></button></form></header>
       <div class="plgrid"><a class="plcard" href="#/playlist/later">${plCover(L().LATER)}<b>Watch later</b><small>${L().LATER.length} episode${L().LATER.length === 1 ? "" : "s"}</small></a>
       ${lists.map((p) => `<a class="plcard" href="#/playlist/${esc(p.id)}">${plCover(p.ids)}<b>${esc(p.name)}</b><small>${p.ids.length} episode${p.ids.length === 1 ? "" : "s"} · ${fmtHM(p.ids.reduce((a, id) => a + ((STATE.byId.get(id) || {}).dur || 0), 0))}</small></a>`).join("")}</div>`;
@@ -528,8 +528,9 @@
     const save = (arr) => { if (later) { L().LATER = arr; h().saveLib(); } else { h().playlist(pid).ids = arr; h().saveLib(); } renderPlaylist(v, pid); };
     const nm = $("#plName"); if (nm) nm.onchange = () => h().renamePlaylist(pid, nm.value.trim());
     const del = $("#plDel"); if (del) del.onclick = async () => { if (await ui().confirmBox(`Delete the playlist <b>${esc(p.name)}</b>? The episodes stay in the library.`, "Delete", true)) { h().deletePlaylist(pid); location.hash = "#/playlists"; } };
-    const pl = $("#plPlay"); if (pl) pl.onclick = () => { const a = ids().slice(); h().setQueue(a.slice(1).concat(L().QUEUE.filter((x) => !a.includes(x)))); A.views.paintQueueCount(); A.player.play(a[0]); };
-    const sh = $("#plShuf"); if (sh) sh.onclick = () => { const a = ids().slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } h().setQueue(a.slice(1)); A.views.paintQueueCount(); A.player.play(a[0]); };
+    // Play all / Shuffle: a transient line-up for this sitting (binge / Up next follow it); the queue is never touched
+    const pl = $("#plPlay"); if (pl) pl.onclick = () => { const a = ids().slice(); if (!a.length) return; h().setSession(a, p.name); A.player.play(a[0]); };
+    const sh = $("#plShuf"); if (sh) sh.onclick = () => { const a = ids().slice(); if (!a.length) return; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } h().setSession(a, p.name + " (shuffled)"); A.player.play(a[0]); };
     const ol = $("#plList"); if (!ol) return;
     ol.onclick = (ev) => {
       const li = ev.target.closest("[data-i]"); if (!li) return;
