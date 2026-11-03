@@ -5,14 +5,36 @@
 # Before It Was Real: An Archive of Superintelligence Predictions
 
 <a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><img src="https://img.shields.io/badge/Open%20live-asi--predictions--archive-f59e0b?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Open live"></a>
+<img src="https://img.shields.io/badge/people-320%20with%20own%20pages-f43f5e?style=for-the-badge&labelColor=07111f" alt="320 people">
+<img src="https://img.shields.io/badge/history-59%20milestones%201863%E2%86%922026-f59e0b?style=for-the-badge&labelColor=07111f" alt="history">
 <img src="https://img.shields.io/badge/entries-78-2563eb?style=for-the-badge&labelColor=07111f" alt="78 entries">
-<img src="https://img.shields.io/badge/verified%20videos-49-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="videos">
+<img src="https://img.shields.io/badge/verified%20videos-2%2C073-ef4444?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="videos">
 <img src="https://img.shields.io/badge/predictions-30-16a34a?style=for-the-badge&labelColor=07111f" alt="30 predictions">
 <img src="https://img.shields.io/badge/fact--checked-3%20Nov%202026-14b8a6?style=for-the-badge&labelColor=07111f" alt="fact-checked">
 
 </div>
 
 > 75 years of warnings, bets and breakthroughs: from Turing's 1951 "take control" to the 2025 Statement on Superintelligence. What researchers, pioneers and neuroscientists said about **artificial superintelligence, the control problem and AI safety**, before it felt real, and how their predictions are holding up.
+
+## v2 (3 Nov 2026): History, People pages, cinema player
+
+| Feature | What it does |
+|---|---|
+| **History** | 8 chapters, 59 sourced milestones from Samuel Butler (1863) to the 2026 Ban Artificial Superintelligence Act; a 59-dot mini-map, chapter tabs, tag filters, quotes, sources and 21 playable videos |
+| **People** | 320 people (pioneers, neuroscientists, philosophers, lab leaders, alignment and policy researchers), each with their own page at `#/person/<id>`: bio, key ideas, books, quotes, archive entries, predictions, all their talks, links, related people |
+| **Player** | poster first, plays **only when you press Play**; custom controls (±10 s, seek, speed 0.75–2×, mute, theater, fullscreen), docking mini-player, Up next queue (autoplay off by default), keyboard shortcuts (Space/K, J/L, ←/→, M, F, T, N, P, ?), resume position and ✓ Watched, open on YouTube at the current time |
+| **Media Theater** | library of 2,073 verified talks: search, kind/era/person filters, Archive picks, Neuroscience, curated rows, recommendations |
+| **Search palette** | Ctrl/⌘ K or `/` searches people, milestones, entries, videos and predictions |
+| **Design** | era colour system (amber · teal · rose), emerald neuroscience badges, content-sized cards (no blank space), dark mode, scroll progress, count-up stats |
+
+```mermaid
+flowchart LR
+    H["History<br/>59 milestones"] --> PP["Person pages<br/>320"]
+    A["Archive<br/>78 entries"] --> PP
+    PP --> PL["Player<br/>click-to-play"]
+    T["Theater<br/>2,073 talks"] --> PL
+    K["⌘K palette"] --> H & A & PP & T & TR["Prediction Tracker"]
+```
 
 ## Eras
 
@@ -104,8 +126,13 @@ Deadlines closing soon: Amodei's "powerful AI as early as 2026" and Musk's "smar
 
 | File | What |
 |---|---|
-| `index.html` | the app (data inlined) |
-| `era_early.json`, `era_deeplearning.json`, `era_postchatgpt.json` | archive entries: person, role, neuroscientist flag, year, title, summary, quote, prediction, source, videos |
+| `index.html` | the app (all JSON inlined so it runs on Pages) |
+| `entries_all.json` | 78 archive entries with linked `people_ids` |
+| `people.json` | 320 people profiles (photos via Wikimedia Commons and this repo) |
+| `videos.json` | 2,073 oEmbed-verified YouTube talks |
+| `history.json` | 8 chapters, 59 sourced milestones |
+| `player.js`, `theater.js`, `people.js`, `history.js`, `palette.js`, `archive.js` | player, theater, people pages, history, search palette, archive bar |
+| `theme.css`, `player.css`, `archive.css` | design system |
 | `predictions.json` | 30 predictions with status, evidence, sources |
 | `hero.jpg` | AI-generated hero illustration |
 | `hark*.css`, `hark*.js`, `chart.js`, `datalabels.js` | styles and chart helpers |

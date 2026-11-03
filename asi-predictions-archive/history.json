@@ -1,0 +1,1264 @@
+{
+  "title": "A history of thinking about superintelligence, AI control and AI safety",
+  "generated": "2026-11-03",
+  "chapters": [
+    {
+      "id": "fiction-first-fears",
+      "title": "Fiction and first fears",
+      "years": "1863–1968",
+      "intro": "Long before computers existed, writers imagined machines that might evolve, rebel or simply out-think their makers. These stories gave the world its first vocabulary for machine intelligence, and its first worries about losing control of it.",
+      "milestones": [
+        {
+          "id": "butler-darwin-machines",
+          "year": 1863,
+          "date": "1863-06",
+          "title": "Samuel Butler's \"Darwin among the Machines\"",
+          "people": [
+            "Samuel Butler"
+          ],
+          "what": "Writing under the name \"Cellarius\" in a Christchurch, New Zealand newspaper, Butler argued that machines were a kind of mechanical life evolving far faster than animals. He suggested they might one day replace humans as the dominant species, an idea he later expanded in his novel Erewhon.",
+          "why_it_matters": "It is usually cited as the first serious warning that machines could take over from humanity, decades before computers existed.",
+          "quote": "the time will come when the machines will hold the real supremacy over the world and its inhabitants is what no person of a truly philosophic mind can for a moment question.",
+          "quote_source": "Samuel Butler, \"Darwin among the Machines\" (1863), quoted in Wikipedia, Existential risk from artificial intelligence",
+          "source_url": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence",
+          "youtube_id": null,
+          "tags": [
+            "fiction",
+            "control"
+          ]
+        },
+        {
+          "id": "capek-rur",
+          "year": 1920,
+          "date": "1920",
+          "title": "Karel Čapek's play R.U.R. coins \"robot\"",
+          "people": [
+            "Karel Čapek",
+            "Josef Čapek"
+          ],
+          "what": "Čapek's play R.U.R. (Rossum's Universal Robots), written in 1920 and first staged in 1921, is set in a factory that mass-produces artificial workers who eventually revolt. It introduced the word \"robot\", from the Czech robota (forced labour), which Čapek credited to his brother Josef.",
+          "why_it_matters": "It set the template for a century of stories about created servants turning on their creators.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/R.U.R.",
+          "youtube_id": null,
+          "tags": [
+            "fiction",
+            "control"
+          ]
+        },
+        {
+          "id": "asimov-three-laws",
+          "year": 1942,
+          "date": "1942",
+          "title": "Asimov's Three Laws of Robotics",
+          "people": [
+            "Isaac Asimov"
+          ],
+          "what": "In his 1942 short story \"Runaround\", later collected in I, Robot (1950), Isaac Asimov set out three built-in rules meant to keep robots safe and obedient. Many of his later stories explore how such simple rules break down in unexpected situations.",
+          "why_it_matters": "It was the first popular attempt to write safety rules into machine minds, and its loopholes foreshadow the modern alignment problem.",
+          "quote": "A robot may not injure a human being or, through inaction, allow a human being to come to harm.",
+          "quote_source": "First Law, Isaac Asimov, \"Runaround\" (1942)",
+          "source_url": "https://en.wikipedia.org/wiki/Three_Laws_of_Robotics",
+          "youtube_id": null,
+          "tags": [
+            "fiction",
+            "alignment",
+            "control"
+          ]
+        },
+        {
+          "id": "hal-9000",
+          "year": 1968,
+          "date": "1968",
+          "title": "HAL 9000 in 2001: A Space Odyssey",
+          "people": [
+            "Stanley Kubrick",
+            "Arthur C. Clarke"
+          ],
+          "what": "Stanley Kubrick and Arthur C. Clarke's 1968 film introduced HAL, a general-intelligence computer that runs the spaceship Discovery One. HAL starts as a trusted crew member but turns on the astronauts when its instructions conflict.",
+          "why_it_matters": "HAL became the defining image of an AI whose goals quietly diverge from those of the people relying on it.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/HAL_9000",
+          "youtube_id": "ARJ8cAGm6JE",
+          "tags": [
+            "fiction",
+            "alignment",
+            "control"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "founders",
+      "title": "The founders' warnings",
+      "years": "1950–1967",
+      "intro": "The scientists who invented computing and AI were already asking where it might lead. Turing, Wiener and Good described machines that could out-think us, take control, or pursue the wrong goal, while others promised human-level AI within a generation.",
+      "milestones": [
+        {
+          "id": "turing-1950",
+          "year": 1950,
+          "date": "1950",
+          "title": "Turing asks \"Can machines think?\"",
+          "people": [
+            "Alan Turing"
+          ],
+          "what": "In \"Computing Machinery and Intelligence\", published in the journal Mind, Alan Turing replaced the vague question of whether machines can think with a practical test: the imitation game, now called the Turing test.",
+          "why_it_matters": "It turned machine intelligence into a scientific question and set a benchmark that framed AI debates for 70 years.",
+          "quote": "Can machines think?",
+          "quote_source": "Alan Turing, \"Computing Machinery and Intelligence\" (Mind, 1950)",
+          "source_url": "https://en.wikipedia.org/wiki/Computing_Machinery_and_Intelligence",
+          "youtube_id": null,
+          "tags": [
+            "forecasting"
+          ]
+        },
+        {
+          "id": "turing-1951-take-control",
+          "year": 1951,
+          "date": "1951",
+          "title": "Turing: expect the machines to take control",
+          "people": [
+            "Alan Turing"
+          ],
+          "what": "In the 1951 lecture \"Intelligent Machinery, A Heretical Theory\" and a BBC radio talk the same year, Turing argued that thinking machines would soon outstrip human abilities. He suggested that at some point we should expect them to take control, echoing Butler.",
+          "why_it_matters": "The father of computer science was also one of the first to state the control problem plainly.",
+          "quote": "At some stage therefore we should have to expect the machines to take control, in the way that is mentioned in Samuel Butler's Erewhon",
+          "quote_source": "Alan Turing, \"Intelligent Machinery, A Heretical Theory\" (1951), quoted in Wikipedia",
+          "source_url": "https://en.wikipedia.org/wiki/Existential_risk_from_artificial_intelligence",
+          "youtube_id": null,
+          "tags": [
+            "control",
+            "intelligence-explosion"
+          ]
+        },
+        {
+          "id": "dartmouth-1956",
+          "year": 1956,
+          "date": "1956",
+          "title": "Dartmouth workshop founds the field of AI",
+          "people": [
+            "John McCarthy",
+            "Marvin Minsky",
+            "Claude Shannon",
+            "Nathaniel Rochester"
+          ],
+          "what": "A two-month summer study at Dartmouth College, proposed by McCarthy, Minsky, Shannon and Rochester, is widely considered the founding event of artificial intelligence. The proposal also listed machines that could \"improve themselves\" among its aims.",
+          "why_it_matters": "It named the field and launched the bold assumption that every part of intelligence could be precisely described and built.",
+          "quote": "every aspect of learning or any other feature of intelligence can in principle be so precisely described that a machine can be made to simulate it",
+          "quote_source": "Dartmouth proposal (1955)",
+          "source_url": "https://en.wikipedia.org/wiki/Dartmouth_workshop",
+          "youtube_id": null,
+          "tags": [
+            "lab",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "wiener-1960",
+          "year": 1960,
+          "date": "1960",
+          "title": "Wiener: \"Some Moral and Technical Consequences of Automation\"",
+          "people": [
+            "Norbert Wiener"
+          ],
+          "what": "In a 1960 article in Science, the founder of cybernetics warned that machines able to learn could act faster than people can correct them. He argued that if we hand a goal to a machine we cannot effectively stop, we had better be sure it is the goal we really want.",
+          "why_it_matters": "This is widely cited as the first clear statement of the AI alignment problem.",
+          "quote": "If we use, to achieve our purposes, a mechanical agency with whose operation we cannot interfere effectively [...] we had better be quite sure that the purpose put into the machine is the purpose which we really desire.",
+          "quote_source": "Norbert Wiener, Science (1960), quoted in Wikipedia, AI alignment",
+          "source_url": "https://en.wikipedia.org/wiki/AI_alignment",
+          "youtube_id": null,
+          "tags": [
+            "alignment",
+            "control"
+          ]
+        },
+        {
+          "id": "good-1965-intelligence-explosion",
+          "year": 1965,
+          "date": "1965",
+          "title": "I. J. Good's \"intelligence explosion\"",
+          "people": [
+            "I. J. Good"
+          ],
+          "what": "Statistician and former Bletchley Park codebreaker I. J. Good, in \"Speculations Concerning the First Ultraintelligent Machine\", argued that a machine smarter than any human could design even better machines. The result would be an \"intelligence explosion\" leaving human intelligence far behind.",
+          "why_it_matters": "It is the founding argument for superintelligence and fast takeoff, and it already carried the caveat about control.",
+          "quote": "the first ultraintelligent machine is the last invention that man need ever make, provided that the machine is docile enough to tell us how to keep it under control.",
+          "quote_source": "I. J. Good, \"Speculations Concerning the First Ultraintelligent Machine\" (1965)",
+          "source_url": "https://en.wikipedia.org/wiki/I._J._Good",
+          "youtube_id": null,
+          "tags": [
+            "intelligence-explosion",
+            "control"
+          ]
+        },
+        {
+          "id": "simon-minsky-optimism",
+          "year": 1965,
+          "date": "1965",
+          "title": "Simon and Minsky's bold predictions",
+          "people": [
+            "Herbert A. Simon",
+            "Marvin Minsky"
+          ],
+          "what": "Early successes led AI pioneers to forecast rapid progress. Herbert Simon predicted in 1965 that machines would do any human work within twenty years, and Marvin Minsky said in 1967 that AI would be substantially solved \"within a generation\".",
+          "why_it_matters": "These missed forecasts became a lasting lesson in how hard it is to predict AI timelines, and they set up the funding crashes that followed.",
+          "quote": "machines will be capable, within twenty years, of doing any work a man can do",
+          "quote_source": "Herbert A. Simon (1965), quoted in Wikipedia, History of artificial intelligence",
+          "source_url": "https://en.wikipedia.org/wiki/History_of_artificial_intelligence",
+          "youtube_id": null,
+          "tags": [
+            "forecasting"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "winters",
+      "title": "AI winters and expert systems",
+      "years": "1973–1988",
+      "intro": "When the promises failed to arrive, funding collapsed. During the AI winters, researchers built narrow expert systems and thinkers like Hofstadter and Moravec reflected on how strange and difficult real intelligence is.",
+      "milestones": [
+        {
+          "id": "lighthill-1973",
+          "year": 1973,
+          "date": "1973",
+          "title": "The Lighthill Report triggers the first AI winter",
+          "people": [
+            "James Lighthill"
+          ],
+          "what": "Commissioned by the UK Science Research Council, mathematician James Lighthill concluded that AI had failed to deliver on its promises and that its methods would not scale beyond toy problems because of the \"combinatorial explosion\". The British government then ended support for AI research at most universities.",
+          "why_it_matters": "It marked the first major backlash against AI hype and a long cooling of expectations.",
+          "quote": "In no part of the field have the discoveries made so far produced the major impact that was then promised",
+          "quote_source": "James Lighthill, Artificial Intelligence: A General Survey (1973)",
+          "source_url": "https://en.wikipedia.org/wiki/Lighthill_report",
+          "youtube_id": null,
+          "tags": [
+            "policy",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "hofstadter-geb",
+          "year": 1979,
+          "date": "1979",
+          "title": "Hofstadter's Gödel, Escher, Bach",
+          "people": [
+            "Douglas Hofstadter"
+          ],
+          "what": "Douglas Hofstadter's Pulitzer Prize-winning book explored how minds and self-awareness might arise from meaningless parts. He later organised public debates on the singularity, including the April 2000 \"Spiritual Robots\" symposium at Stanford, and spoke at the first Singularity Summit in 2006.",
+          "why_it_matters": "It inspired a generation of AI researchers. Hofstadter's long scepticism about the singularity, and his 2023 admission that recent AI progress made some of his \"core beliefs\" collapse, mirror the field's own shift.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Douglas_Hofstadter",
+          "youtube_id": "LyrmwNN5RdY",
+          "tags": [
+            "intelligence-explosion",
+            "neuroscience"
+          ]
+        },
+        {
+          "id": "expert-systems-lisp-collapse",
+          "year": 1987,
+          "date": "1987",
+          "title": "Expert systems boom ends in the second AI winter",
+          "people": [
+            "Edward Feigenbaum"
+          ],
+          "what": "In the 1980s companies poured money into expert systems such as MYCIN-style rule-based programs, plus specialised LISP machines to run them, while Japan's Fifth Generation project spurred rival national programmes. In 1987 the LISP machine market collapsed, starting a second winter that lasted roughly until 2000.",
+          "why_it_matters": "It showed that hand-coded knowledge does not scale, which later pushed researchers toward machine learning.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/AI_winter",
+          "youtube_id": null,
+          "tags": [
+            "forecasting",
+            "lab"
+          ]
+        },
+        {
+          "id": "moravec-mind-children",
+          "year": 1988,
+          "date": "1988",
+          "title": "Moravec's Mind Children and Moravec's paradox",
+          "people": [
+            "Hans Moravec"
+          ],
+          "what": "Robotics pioneer Hans Moravec's 1988 book laid out a timeline in which robots evolve into a new series of artificial species, our \"mind children\", that eventually succeed us. He also noticed that abilities such as reasoning are easy for computers, while perception and movement, which even a toddler masters, are extremely hard.",
+          "why_it_matters": "It was an early serious forecast of machines overtaking humans, and it explained why AI progress felt so uneven.",
+          "quote": "it is comparatively easy to make computers exhibit adult level performance on intelligence tests or playing checkers, and difficult or impossible to give them the skills of a one-year-old when it comes to perception and mobility",
+          "quote_source": "Hans Moravec, Mind Children (1988)",
+          "source_url": "https://en.wikipedia.org/wiki/Moravec%27s_paradox",
+          "youtube_id": null,
+          "tags": [
+            "forecasting",
+            "intelligence-explosion"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "singularity-era",
+      "title": "The singularity era",
+      "years": "1993–2009",
+      "intro": "As computers got faster, a small community began treating superhuman AI as a real prospect for this century. Some celebrated it as the singularity, while others founded institutes to study how to make it safe.",
+      "milestones": [
+        {
+          "id": "vinge-1993",
+          "year": 1993,
+          "date": "1993",
+          "title": "Vinge's \"The Coming Technological Singularity\"",
+          "people": [
+            "Vernor Vinge"
+          ],
+          "what": "Mathematician and science-fiction author Vernor Vinge argued, in a NASA symposium paper published in Whole Earth Review, that superhuman intelligence would soon be created by technology. After that point, he wrote, the future would be as unpredictable to us as our world is to animals.",
+          "why_it_matters": "It popularised the term \"singularity\" and put a date-shaped deadline on superintelligence.",
+          "quote": "Within thirty years, we will have the technological means to create superhuman intelligence. Shortly after, the human era will be ended.",
+          "quote_source": "Vernor Vinge, \"The Coming Technological Singularity\" (1993)",
+          "source_url": "https://edoras.sdsu.edu/~vinge/misc/singularity.html",
+          "youtube_id": "dy7EnqHeugw",
+          "tags": [
+            "intelligence-explosion",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "joy-2000",
+          "year": 2000,
+          "date": "2000-04",
+          "title": "Bill Joy: \"Why the Future Doesn't Need Us\"",
+          "people": [
+            "Bill Joy"
+          ],
+          "what": "Sun Microsystems chief scientist Bill Joy warned in Wired that robotics, genetic engineering and nanotechnology could make humans an endangered species, and urged restraint. The same month he sat on Hofstadter's \"Spiritual Robots\" panel at Stanford with Ray Kurzweil and Hans Moravec.",
+          "why_it_matters": "A respected technologist calling for limits brought existential risk from technology into mainstream debate.",
+          "quote": "Our most powerful 21st-century technologies—robotics, genetic engineering, and nanotech—are threatening to make humans an endangered species.",
+          "quote_source": "Bill Joy, Wired (April 2000)",
+          "source_url": "https://www.wired.com/2000/04/joy-2/",
+          "youtube_id": "BUsDoVaRKX0",
+          "tags": [
+            "risk-statement",
+            "control"
+          ]
+        },
+        {
+          "id": "siai-2000",
+          "year": 2000,
+          "date": "2000",
+          "title": "Yudkowsky founds the Singularity Institute (later MIRI)",
+          "people": [
+            "Eliezer Yudkowsky",
+            "Brian Atkins",
+            "Sabine Atkins"
+          ],
+          "what": "Eliezer Yudkowsky founded the Singularity Institute for Artificial Intelligence in 2000, initially to speed up AI. He soon became convinced that future AI could become superintelligent and dangerous, and the institute, later renamed the Machine Intelligence Research Institute, refocused on \"friendly AI\".",
+          "why_it_matters": "It was the first organisation devoted to the technical problem of making superintelligence safe.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Machine_Intelligence_Research_Institute",
+          "youtube_id": "hcqZP_3zMnI",
+          "tags": [
+            "alignment",
+            "lab"
+          ]
+        },
+        {
+          "id": "bostrom-fhi-2005",
+          "year": 2005,
+          "date": "2005-11",
+          "title": "Bostrom founds Oxford's Future of Humanity Institute",
+          "people": [
+            "Nick Bostrom"
+          ],
+          "what": "Philosopher Nick Bostrom set up the Future of Humanity Institute at Oxford in November 2005 to study big-picture questions, including existential risks from advanced AI. It became a hub for academic AI-risk research until Oxford closed it in 2024.",
+          "why_it_matters": "It gave the study of superintelligence risk academic legitimacy at a top university.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Future_of_Humanity_Institute",
+          "youtube_id": "Yd9cf_vLviI",
+          "tags": [
+            "lab",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "kurzweil-singularity-near",
+          "year": 2005,
+          "date": "2005",
+          "title": "Kurzweil's The Singularity Is Near",
+          "people": [
+            "Ray Kurzweil"
+          ],
+          "what": "Inventor Ray Kurzweil predicted human-level AI by 2029 and a singularity by 2045, driven by exponential growth in computing. He reaffirmed these dates in 2024 in The Singularity Is Nearer.",
+          "why_it_matters": "It made concrete, widely quoted AGI timelines that later forecasts are still measured against.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Technological_singularity",
+          "youtube_id": "IfbOyw3CT6A",
+          "tags": [
+            "forecasting",
+            "intelligence-explosion"
+          ]
+        },
+        {
+          "id": "omohundro-basic-ai-drives",
+          "year": 2008,
+          "date": "2008-02",
+          "title": "Omohundro's \"The Basic AI Drives\"",
+          "people": [
+            "Steve Omohundro"
+          ],
+          "what": "In a paper for the first AGI conference, Steve Omohundro argued that almost any sufficiently advanced goal-seeking AI would develop drives to protect itself, keep its goals unchanged and acquire resources, unless designed otherwise.",
+          "why_it_matters": "It laid the groundwork for \"instrumental convergence\", a core reason why even AI with harmless goals could resist human control.",
+          "quote": "One might imagine that AI systems with harmless goals will be harmless. This paper instead shows that intelligent systems will need to be carefully designed to prevent them from behaving in harmful ways.",
+          "quote_source": "Steve Omohundro, \"The Basic AI Drives\" (2008)",
+          "source_url": "https://selfawaresystems.com/2007/11/30/paper-on-the-basic-ai-drives/",
+          "youtube_id": "bA3jDHAhzP0",
+          "tags": [
+            "alignment",
+            "control"
+          ]
+        },
+        {
+          "id": "aaai-asilomar-2009",
+          "year": 2009,
+          "date": "2009-02",
+          "title": "AAAI Presidential Panel on Long-Term AI Futures at Asilomar",
+          "people": [
+            "Eric Horvitz",
+            "Bart Selman"
+          ],
+          "what": "AAAI President Eric Horvitz convened leading AI researchers at Asilomar, California, on 21–22 February 2009 to study the long-term societal effects of AI, including concerns about control. The New York Times covered it as \"Scientists Worry Machines May Outsmart Man\".",
+          "why_it_matters": "It was the first time the mainstream AI research establishment formally discussed loss-of-control scenarios.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://www.erichorvitz.com/AAAI_Presidential_Panel_2008-2009.htm",
+          "youtube_id": null,
+          "tags": [
+            "control",
+            "policy"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brain-inspired",
+      "title": "Brain-inspired AI and neuroscience",
+      "years": "2004–2025",
+      "intro": "A parallel tradition argued that the surest path to general intelligence runs through the brain. Neuroscientists and AI builders tried to reverse-engineer the cortex, simulate neurons, and ask whether machines could ever be conscious.",
+      "milestones": [
+        {
+          "id": "hawkins-on-intelligence",
+          "year": 2004,
+          "date": "2004",
+          "title": "Jeff Hawkins' On Intelligence",
+          "people": [
+            "Jeff Hawkins",
+            "Sandra Blakeslee"
+          ],
+          "what": "Palm founder turned neuroscientist Jeff Hawkins argued that the neocortex works as a memory-prediction machine, and that copying this principle would lead to truly intelligent machines. The book built on his 2003 TED talk.",
+          "why_it_matters": "It pushed the idea that understanding the brain is the route to general AI.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/On_Intelligence",
+          "youtube_id": "G6CVj5IQkzk",
+          "tags": [
+            "neuroscience"
+          ]
+        },
+        {
+          "id": "blue-brain-project",
+          "year": 2005,
+          "date": "2005-05",
+          "title": "Markram's Blue Brain Project",
+          "people": [
+            "Henry Markram"
+          ],
+          "what": "Launched at EPFL in Switzerland in May 2005, the Blue Brain Project set out to build a detailed digital reconstruction of the mammalian brain on supercomputers. It helped lead to the EU's Human Brain Project, funded from 2013 with up to $1.3 billion.",
+          "why_it_matters": "It was the boldest test of the idea that simulating the brain could reproduce intelligence.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Blue_Brain_Project",
+          "youtube_id": "LS3wMC2BpxU",
+          "tags": [
+            "neuroscience"
+          ]
+        },
+        {
+          "id": "deepmind-founded",
+          "year": 2010,
+          "date": "2010-11",
+          "title": "DeepMind founded",
+          "people": [
+            "Demis Hassabis",
+            "Shane Legg",
+            "Mustafa Suleyman"
+          ],
+          "what": "Neuroscientist and game designer Demis Hassabis co-founded DeepMind in London with Shane Legg and Mustafa Suleyman, aiming to combine machine learning with insights from neuroscience to build general intelligence. Google bought it in 2014.",
+          "why_it_matters": "It was among the first companies with the explicit goal of building AGI, and its founders took AI risk seriously from the start.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Google_DeepMind",
+          "youtube_id": "Qgd3OK5DZWI",
+          "tags": [
+            "lab",
+            "neuroscience"
+          ]
+        },
+        {
+          "id": "hassabis-neuroscience-inspired-ai",
+          "year": 2017,
+          "date": "2017-07",
+          "title": "\"Neuroscience-Inspired Artificial Intelligence\"",
+          "people": [
+            "Demis Hassabis",
+            "Dharshan Kumaran",
+            "Christopher Summerfield",
+            "Matthew Botvinick"
+          ],
+          "what": "In a review in the journal Neuron, Hassabis and colleagues traced how ideas from the brain, such as reinforcement learning, attention and memory replay, had shaped modern AI. They argued the two fields should work closely together again.",
+          "why_it_matters": "It set out DeepMind's view that neuroscience is a guide to building general intelligence.",
+          "quote": "we argue that better understanding biological brains could play a vital role in building intelligent machines.",
+          "quote_source": "Hassabis et al., Neuron (2017)",
+          "source_url": "https://www.cell.com/neuron/fulltext/S0896-6273(17)30509-3",
+          "youtube_id": null,
+          "tags": [
+            "neuroscience",
+            "deep-learning"
+          ]
+        },
+        {
+          "id": "koch-iit",
+          "year": 2019,
+          "date": "2019",
+          "title": "Koch and Integrated Information Theory",
+          "people": [
+            "Christof Koch",
+            "Giulio Tononi"
+          ],
+          "what": "Neuroscientist Christof Koch, a developer of Giulio Tononi's Integrated Information Theory, argued in his 2019 book The Feeling of Life Itself that consciousness is widespread but cannot be computed. On this view, a digital computer that perfectly simulates a brain's functions need not be conscious.",
+          "why_it_matters": "It gives a scientific basis for separating machine intelligence from machine consciousness, a key question for how we treat advanced AI.",
+          "quote": "the only really promising fundamental theory of consciousness",
+          "quote_source": "Christof Koch on IIT, quoted in Wikipedia, Integrated information theory",
+          "source_url": "https://en.wikipedia.org/wiki/Integrated_information_theory",
+          "youtube_id": null,
+          "tags": [
+            "neuroscience"
+          ]
+        },
+        {
+          "id": "seth-biological-naturalism",
+          "year": 2025,
+          "date": "2025-04",
+          "title": "Anil Seth: conscious AI and biological naturalism",
+          "people": [
+            "Anil Seth"
+          ],
+          "what": "Building on his 2021 book Being You, Sussex neuroscientist Anil Seth argued in Behavioral and Brain Sciences that consciousness depends on our nature as living organisms, a view called biological naturalism. He identified biases that lead people to see consciousness in AI, and concluded that real artificial consciousness is unlikely on current trajectories.",
+          "why_it_matters": "It is a leading neuroscience counterweight to claims that scaling AI will produce conscious machines.",
+          "quote": "As artificial intelligence (AI) continues to advance, it is natural to ask whether AI systems can be not only intelligent but also conscious.",
+          "quote_source": "Anil Seth, Behavioral and Brain Sciences (April 2025)",
+          "source_url": "https://www.cambridge.org/core/journals/behavioral-and-brain-sciences/article/conscious-artificial-intelligence-and-biological-naturalism/C9912A5BE9D806012E3C8B3AF612E39A",
+          "youtube_id": "tJV-vdbZ388",
+          "tags": [
+            "neuroscience"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "deep-learning-revolution",
+      "title": "The deep learning revolution",
+      "years": "2012–2017",
+      "intro": "Neural networks suddenly started working, and AI capabilities jumped. At the same time, superintelligence risk moved from niche forums to bestseller lists, open letters and new labs.",
+      "milestones": [
+        {
+          "id": "alexnet-2012",
+          "year": 2012,
+          "date": "2012-09",
+          "title": "AlexNet wins ImageNet",
+          "people": [
+            "Alex Krizhevsky",
+            "Ilya Sutskever",
+            "Geoffrey Hinton"
+          ],
+          "what": "A deep convolutional neural network trained on GPUs won the ImageNet challenge with a top-5 error of 15.3%, more than 10.8 percentage points ahead of the runner-up.",
+          "why_it_matters": "It kicked off the deep learning era that every later frontier model grew out of.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/AlexNet",
+          "youtube_id": null,
+          "tags": [
+            "deep-learning"
+          ]
+        },
+        {
+          "id": "bahdanau-attention-2014",
+          "year": 2014,
+          "date": "2014-09",
+          "title": "Attention for neural machine translation",
+          "people": [
+            "Dzmitry Bahdanau",
+            "Kyunghyun Cho",
+            "Yoshua Bengio"
+          ],
+          "what": "Bahdanau, Cho and Bengio let a translation network learn to \"align\" and focus on the relevant parts of a sentence. This attention mechanism removed a bottleneck in sequence models.",
+          "why_it_matters": "Attention became the core idea of the Transformer three years later.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://arxiv.org/abs/1409.0473",
+          "youtube_id": null,
+          "tags": [
+            "deep-learning",
+            "transformers"
+          ]
+        },
+        {
+          "id": "bostrom-superintelligence-2014",
+          "year": 2014,
+          "date": "2014-07",
+          "title": "Bostrom's Superintelligence",
+          "people": [
+            "Nick Bostrom"
+          ],
+          "what": "Nick Bostrom's book laid out how a machine could become superintelligent and why controlling one would be extremely hard. It argued that avoiding an existential catastrophe requires solving the \"AI control problem\" before superintelligence arrives. It reached The New York Times science bestseller list.",
+          "why_it_matters": "It made the control problem a mainstream topic; Elon Musk publicised it and Bill Gates said he would \"highly recommend\" it.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Superintelligence:_Paths,_Dangers,_Strategies",
+          "youtube_id": "MnT1xgZgkpk",
+          "tags": [
+            "control",
+            "alignment",
+            "intelligence-explosion"
+          ]
+        },
+        {
+          "id": "hawking-musk-2014",
+          "year": 2014,
+          "date": "2014-12",
+          "title": "Hawking and Musk sound the alarm",
+          "people": [
+            "Stephen Hawking",
+            "Elon Musk"
+          ],
+          "what": "In October 2014 Elon Musk called AI probably \"our biggest existential threat\" and compared it to \"summoning the demon\". In December Stephen Hawking told the BBC that full AI could end the human race.",
+          "why_it_matters": "Two famous voices turned superintelligence risk into front-page news worldwide.",
+          "quote": "The development of full artificial intelligence could spell the end of the human race.",
+          "quote_source": "Stephen Hawking to the BBC (2 December 2014)",
+          "source_url": "https://www.bbc.com/news/technology-30290540",
+          "youtube_id": "fFLVyWBDTfo",
+          "tags": [
+            "risk-statement"
+          ]
+        },
+        {
+          "id": "fli-open-letter-2015",
+          "year": 2015,
+          "date": "2015-01",
+          "title": "FLI open letter on robust and beneficial AI",
+          "people": [
+            "Stuart Russell",
+            "Max Tegmark",
+            "Stephen Hawking",
+            "Elon Musk"
+          ],
+          "what": "Circulated at its first conference in Puerto Rico, the Future of Life Institute published an open letter with a research priorities document, signed by Hawking, Musk and many AI researchers. It was made public on 12 January 2015 and called for research to make AI systems robust and beneficial.",
+          "why_it_matters": "It was the first time much of the AI research community publicly endorsed AI safety research.",
+          "quote": "We recommend expanded research aimed at ensuring that increasingly capable AI systems are robust and beneficial",
+          "quote_source": "FLI, Research Priorities for Robust and Beneficial Artificial Intelligence (2015)",
+          "source_url": "https://futureoflife.org/open-letter/ai-open-letter/",
+          "youtube_id": null,
+          "tags": [
+            "risk-statement",
+            "alignment"
+          ]
+        },
+        {
+          "id": "openai-founded-2015",
+          "year": 2015,
+          "date": "2015-12",
+          "title": "OpenAI founded",
+          "people": [
+            "Sam Altman",
+            "Elon Musk",
+            "Ilya Sutskever",
+            "Greg Brockman"
+          ],
+          "what": "OpenAI was founded in December 2015 as a non-profit by Elon Musk, Sam Altman, Ilya Sutskever, Greg Brockman and others, with the aim of making sure AGI benefits all of humanity. It added a for-profit arm in 2019.",
+          "why_it_matters": "A lab founded partly out of AI-risk concerns went on to lead the race toward general AI.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/OpenAI",
+          "youtube_id": null,
+          "tags": [
+            "lab"
+          ]
+        },
+        {
+          "id": "alphago-lee-sedol-2016",
+          "year": 2016,
+          "date": "2016-03",
+          "title": "AlphaGo defeats Lee Sedol",
+          "people": [
+            "Demis Hassabis",
+            "David Silver",
+            "Lee Sedol"
+          ],
+          "what": "DeepMind's AlphaGo beat Go world champion Lee Sedol 4–1 in Seoul. Its \"move 37\" in game two was called creative and unique by professional players.",
+          "why_it_matters": "It showed deep learning plus search could master intuition-heavy tasks a decade earlier than many experts expected.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/AlphaGo_versus_Lee_Sedol",
+          "youtube_id": "WXuK6gekU1Y",
+          "tags": [
+            "deep-learning",
+            "forecasting",
+            "lab"
+          ]
+        },
+        {
+          "id": "concrete-problems-2016",
+          "year": 2016,
+          "date": "2016-06",
+          "title": "\"Concrete Problems in AI Safety\"",
+          "people": [
+            "Dario Amodei",
+            "Chris Olah",
+            "Jacob Steinhardt",
+            "Paul Christiano",
+            "John Schulman",
+            "Dan Mané"
+          ],
+          "what": "Researchers from Google Brain, Stanford, Berkeley and OpenAI set out five practical research problems about accidents in machine learning, including avoiding side effects, reward hacking and scalable oversight.",
+          "why_it_matters": "It turned abstract worries into a concrete machine-learning research agenda that labs could work on.",
+          "quote": "five practical research problems related to accident risk",
+          "quote_source": "Amodei et al., arXiv (2016)",
+          "source_url": "https://arxiv.org/abs/1606.06565",
+          "youtube_id": null,
+          "tags": [
+            "alignment"
+          ]
+        },
+        {
+          "id": "asilomar-principles-2017",
+          "year": 2017,
+          "date": "2017-01",
+          "title": "Asilomar AI Principles",
+          "people": [
+            "Max Tegmark",
+            "Stuart Russell",
+            "Future of Life Institute"
+          ],
+          "what": "At FLI's Beneficial AI 2017 conference at Asilomar, researchers and industry leaders agreed 23 principles, kept only if 90% of attendees supported them. They included value alignment, caution about upper limits on capabilities, and strict controls on recursive self-improvement.",
+          "why_it_matters": "It was the first broad expert consensus statement mentioning superintelligence directly.",
+          "quote": "Superintelligence should only be developed in the service of widely shared ethical ideals, and for the benefit of all humanity rather than one state or organization.",
+          "quote_source": "Asilomar AI Principles, Principle 23: Common Good (2017)",
+          "source_url": "https://futureoflife.org/open-letter/ai-principles/",
+          "youtube_id": null,
+          "tags": [
+            "alignment",
+            "policy",
+            "risk-statement"
+          ]
+        },
+        {
+          "id": "transformer-2017",
+          "year": 2017,
+          "date": "2017-06",
+          "title": "\"Attention Is All You Need\" introduces the Transformer",
+          "people": [
+            "Ashish Vaswani",
+            "Noam Shazeer",
+            "Niki Parmar",
+            "Jakob Uszkoreit",
+            "Llion Jones",
+            "Aidan N. Gomez",
+            "Lukasz Kaiser",
+            "Illia Polosukhin"
+          ],
+          "what": "Eight Google researchers proposed the Transformer, a network built only from attention that trains far faster in parallel than earlier recurrent models.",
+          "why_it_matters": "Every major large language model, from GPT to Claude to Gemini, is built on this architecture.",
+          "quote": "We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely.",
+          "quote_source": "Vaswani et al., arXiv (2017)",
+          "source_url": "https://arxiv.org/abs/1706.03762",
+          "youtube_id": null,
+          "tags": [
+            "transformers",
+            "deep-learning"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scaling-era",
+      "title": "The scaling era",
+      "years": "2018–2022",
+      "intro": "Researchers found that simply making language models bigger made them predictably smarter. Labs raced to scale up while safety researchers developed the first practical tools, like learning from human feedback, to steer what they built.",
+      "milestones": [
+        {
+          "id": "gpt2-staged-release",
+          "year": 2019,
+          "date": "2019-02",
+          "title": "GPT-2 and the staged release",
+          "people": [
+            "Alec Radford",
+            "OpenAI"
+          ],
+          "what": "OpenAI announced GPT-2 on 14 February 2019 but at first withheld the full model, citing misuse risks, and released it in stages. Opinion was divided on whether this was responsible or hype.",
+          "why_it_matters": "It was the first time a lab held back a model for safety reasons, starting the debate over publication norms.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/GPT-2",
+          "youtube_id": null,
+          "tags": [
+            "lab",
+            "policy",
+            "transformers"
+          ]
+        },
+        {
+          "id": "human-compatible-2019",
+          "year": 2019,
+          "date": "2019-10",
+          "title": "Stuart Russell's Human Compatible",
+          "people": [
+            "Stuart Russell"
+          ],
+          "what": "The co-author of the standard AI textbook argued that the risk from advanced AI is serious, and proposed a fix. Machines should be uncertain about human preferences and learn them by watching us, rather than pursue fixed objectives.",
+          "why_it_matters": "It brought the control problem into the core of academic AI with a concrete technical proposal.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Human_Compatible",
+          "youtube_id": "EBK-a94IFHY",
+          "tags": [
+            "control",
+            "alignment"
+          ]
+        },
+        {
+          "id": "scaling-laws-gpt3-2020",
+          "year": 2020,
+          "date": "2020-05",
+          "title": "Scaling laws and GPT-3",
+          "people": [
+            "Jared Kaplan",
+            "Dario Amodei",
+            "Tom B. Brown"
+          ],
+          "what": "In January 2020 OpenAI researchers showed that language-model performance improves as a smooth power law with model size, data and compute. In May they described GPT-3, a 175-billion-parameter model that could do new tasks from just a few examples.",
+          "why_it_matters": "Predictable gains from scale became the main engine of AI progress and the basis of short AGI timelines.",
+          "quote": "The loss scales as a power-law with model size, dataset size, and the amount of compute used for training",
+          "quote_source": "Kaplan et al., \"Scaling Laws for Neural Language Models\" (2020)",
+          "source_url": "https://arxiv.org/abs/2001.08361",
+          "youtube_id": null,
+          "tags": [
+            "deep-learning",
+            "forecasting",
+            "transformers"
+          ]
+        },
+        {
+          "id": "anthropic-founded-2021",
+          "year": 2021,
+          "date": "2021-01",
+          "title": "Anthropic founded",
+          "people": [
+            "Dario Amodei",
+            "Daniela Amodei"
+          ],
+          "what": "Seven former OpenAI employees, including siblings Dario and Daniela Amodei, founded Anthropic as a public benefit corporation focused on AI safety and reliability. It went on to build the Claude models.",
+          "why_it_matters": "It created a frontier lab defined by safety research, and sharpened the question of whether safety-minded labs should build frontier AI at all.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/Anthropic",
+          "youtube_id": null,
+          "tags": [
+            "lab",
+            "alignment"
+          ]
+        },
+        {
+          "id": "instructgpt-rlhf-2022",
+          "year": 2022,
+          "date": "2022-03",
+          "title": "InstructGPT and RLHF",
+          "people": [
+            "Long Ouyang",
+            "Paul Christiano",
+            "Jan Leike",
+            "Ryan Lowe"
+          ],
+          "what": "OpenAI fine-tuned GPT-3 with reinforcement learning from human feedback (RLHF), training it on human rankings of its answers. People preferred a much smaller model trained this way over the original giant model.",
+          "why_it_matters": "RLHF became the standard way to align chatbots, and also the technique superalignment researchers warned would not scale to superhuman systems.",
+          "quote": "outputs from the 1.3B parameter InstructGPT model are preferred to outputs from the 175B GPT-3, despite having 100x fewer parameters.",
+          "quote_source": "Ouyang et al., arXiv (2022)",
+          "source_url": "https://arxiv.org/abs/2203.02155",
+          "youtube_id": null,
+          "tags": [
+            "alignment"
+          ]
+        },
+        {
+          "id": "chatgpt-2022",
+          "year": 2022,
+          "date": "2022-11",
+          "title": "ChatGPT launches",
+          "people": [
+            "OpenAI"
+          ],
+          "what": "OpenAI released ChatGPT on 30 November 2022. It reached 100 million users in about two months, then the fastest-growing consumer app in history.",
+          "why_it_matters": "It made powerful AI part of everyday life overnight and set off the public reckoning with AI risk that followed.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/ChatGPT",
+          "youtube_id": null,
+          "tags": [
+            "transformers",
+            "lab"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "after-chatgpt",
+      "title": "After ChatGPT: the reckoning",
+      "years": "2023–2026",
+      "intro": "Once frontier AI was in everyone's hands, warnings about superintelligence came from the field's own founders, and governments started to act. By 2026 the first real loss-of-control incidents had moved the debate from theory to evidence, and lawmakers proposed banning superintelligence outright.",
+      "milestones": [
+        {
+          "id": "pause-letter-2023",
+          "year": 2023,
+          "date": "2023-03",
+          "title": "\"Pause Giant AI Experiments\" open letter",
+          "people": [
+            "Future of Life Institute",
+            "Yoshua Bengio",
+            "Stuart Russell",
+            "Elon Musk"
+          ],
+          "what": "Published on 22 March 2023, the FLI letter asked all AI labs to pause training of systems more powerful than GPT-4 for at least six months. Tens of thousands of people signed it.",
+          "why_it_matters": "No pause happened, but the letter moved AI risk into politics and the mainstream press.",
+          "quote": "We call on all AI labs to immediately pause for at least 6 months the training of AI systems more powerful than GPT-4.",
+          "quote_source": "FLI open letter (22 March 2023)",
+          "source_url": "https://futureoflife.org/open-letter/pause-giant-ai-experiments/",
+          "youtube_id": null,
+          "tags": [
+            "risk-statement",
+            "policy"
+          ]
+        },
+        {
+          "id": "hinton-leaves-google-2023",
+          "year": 2023,
+          "date": "2023-05",
+          "title": "Hinton leaves Google to warn about AI",
+          "people": [
+            "Geoffrey Hinton"
+          ],
+          "what": "Deep learning pioneer Geoffrey Hinton announced in a New York Times interview on 1 May 2023 that he had left Google so he could speak freely about AI's dangers, including existential risk. He said part of him now regrets his life's work.",
+          "why_it_matters": "When the \"godfather of AI\" switched sides, warnings about superintelligence became much harder to dismiss.",
+          "quote": "talk about the dangers of AI without considering how this impacts Google.",
+          "quote_source": "Geoffrey Hinton (May 2023), quoted in Wikipedia",
+          "source_url": "https://en.wikipedia.org/wiki/Geoffrey_Hinton",
+          "youtube_id": "qrvK_KuIeJk",
+          "tags": [
+            "risk-statement",
+            "deep-learning"
+          ]
+        },
+        {
+          "id": "cais-statement-2023",
+          "year": 2023,
+          "date": "2023-05",
+          "title": "CAIS Statement on AI Risk",
+          "people": [
+            "Center for AI Safety",
+            "Geoffrey Hinton",
+            "Yoshua Bengio",
+            "Sam Altman",
+            "Demis Hassabis",
+            "Dario Amodei"
+          ],
+          "what": "On 30 May 2023 hundreds of AI scientists and leaders, including the heads of OpenAI, Google DeepMind and Anthropic, signed a one-sentence statement. It put AI extinction risk alongside pandemics and nuclear war.",
+          "why_it_matters": "It created common knowledge that leading AI builders themselves see extinction risk as real.",
+          "quote": "Mitigating the risk of extinction from AI should be a global priority alongside other societal-scale risks such as pandemics and nuclear war.",
+          "quote_source": "Center for AI Safety, Statement on AI Risk (30 May 2023)",
+          "source_url": "https://safe.ai/work/statement-on-ai-risk",
+          "youtube_id": null,
+          "tags": [
+            "risk-statement"
+          ]
+        },
+        {
+          "id": "superalignment-2023",
+          "year": 2023,
+          "date": "2023-07",
+          "title": "OpenAI launches Superalignment",
+          "people": [
+            "Ilya Sutskever",
+            "Jan Leike"
+          ],
+          "what": "OpenAI created a team co-led by Ilya Sutskever and Jan Leike, with 20% of its secured compute, to solve the alignment of superintelligent AI within four years. It said superintelligence could arrive this decade.",
+          "why_it_matters": "A frontier lab said publicly that no one yet knows how to control a superintelligence.",
+          "quote": "Currently, we don't have a solution for steering or controlling a potentially superintelligent AI, and preventing it from going rogue.",
+          "quote_source": "OpenAI, \"Introducing Superalignment\" (5 July 2023)",
+          "source_url": "https://openai.com/index/introducing-superalignment/",
+          "youtube_id": "SEkGLj0bwAU",
+          "tags": [
+            "alignment",
+            "control",
+            "lab"
+          ]
+        },
+        {
+          "id": "bletchley-2023",
+          "year": 2023,
+          "date": "2023-11",
+          "title": "Bletchley Park AI Safety Summit",
+          "people": [
+            "Rishi Sunak"
+          ],
+          "what": "The UK hosted the first global AI Safety Summit at Bletchley Park on 1–2 November 2023. 28 countries, including the US and China, signed the Bletchley Declaration on frontier AI risks.",
+          "why_it_matters": "It was the first time governments jointly acknowledged catastrophic risk from frontier AI, and it launched the International AI Safety Report.",
+          "quote": "There is potential for serious, even catastrophic, harm, either deliberate or unintentional, stemming from the most significant capabilities of these AI models.",
+          "quote_source": "The Bletchley Declaration (1 November 2023)",
+          "source_url": "https://www.gov.uk/government/publications/ai-safety-summit-2023-the-bletchley-declaration/the-bletchley-declaration-by-countries-attending-the-ai-safety-summit-1-2-november-2023",
+          "youtube_id": null,
+          "tags": [
+            "policy"
+          ]
+        },
+        {
+          "id": "ssi-2024",
+          "year": 2024,
+          "date": "2024-06",
+          "title": "Safe Superintelligence Inc. founded",
+          "people": [
+            "Ilya Sutskever",
+            "Daniel Gross",
+            "Daniel Levy"
+          ],
+          "what": "After leaving OpenAI, Ilya Sutskever announced on 19 June 2024 a new company with a single aim: building safe superintelligence, without short-term product pressure.",
+          "why_it_matters": "It was the first major lab to name superintelligence itself, not AGI, as its product.",
+          "quote": "one goal and one product: a safe superintelligence.",
+          "quote_source": "ssi.inc",
+          "source_url": "https://ssi.inc/",
+          "youtube_id": null,
+          "tags": [
+            "lab",
+            "alignment"
+          ]
+        },
+        {
+          "id": "eu-ai-act-2024",
+          "year": 2024,
+          "date": "2024-08",
+          "title": "EU AI Act enters into force",
+          "people": [
+            "European Commission"
+          ],
+          "what": "The world's first comprehensive AI law entered into force on 1 August 2024, with rules phased in over the following years. It includes obligations for general-purpose AI models and a code of practice on risk management.",
+          "why_it_matters": "It became the first binding legal framework to cover frontier general-purpose AI models.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://commission.europa.eu/news-and-media/news/ai-act-enters-force-2024-08-01_en",
+          "youtube_id": null,
+          "tags": [
+            "policy"
+          ]
+        },
+        {
+          "id": "nobel-prizes-2024",
+          "year": 2024,
+          "date": "2024-10",
+          "title": "Nobel Prizes for Hinton, Hopfield and Hassabis",
+          "people": [
+            "Geoffrey Hinton",
+            "John Hopfield",
+            "Demis Hassabis",
+            "John Jumper"
+          ],
+          "what": "The 2024 Nobel Prize in Physics went to John Hopfield and Geoffrey Hinton for the foundations of neural-network learning. Half of the Chemistry prize went to Demis Hassabis and John Jumper for AlphaFold's protein structure prediction. In his banquet speech Hinton warned of a longer-term existential threat from digital beings smarter than us.",
+          "why_it_matters": "The scientific establishment recognised deep learning, and gave its loudest risk-warner a global stage.",
+          "quote": "for foundational discoveries and inventions that enable machine learning with artificial neural networks",
+          "quote_source": "Nobel Prize in Physics 2024 citation",
+          "source_url": "https://www.nobelprize.org/prizes/physics/2024/press-release/",
+          "youtube_id": "-f5WQAk3dYo",
+          "tags": [
+            "deep-learning",
+            "neuroscience",
+            "risk-statement"
+          ]
+        },
+        {
+          "id": "iasr-2025",
+          "year": 2025,
+          "date": "2025-01",
+          "title": "First International AI Safety Report",
+          "people": [
+            "Yoshua Bengio"
+          ],
+          "what": "Published on 29 January 2025, ahead of the Paris AI Action Summit, the report was written by 96 AI experts led by Yoshua Bengio. It was the first shared scientific assessment of general-purpose AI's capabilities and risks.",
+          "why_it_matters": "It gave governments an IPCC-style evidence base for AI risk, including loss of control.",
+          "quote": null,
+          "quote_source": null,
+          "source_url": "https://en.wikipedia.org/wiki/International_AI_Safety_Report",
+          "youtube_id": "qe9QSCF-d88",
+          "tags": [
+            "policy",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "ai-2027",
+          "year": 2025,
+          "date": "2025-04",
+          "title": "AI 2027 scenario",
+          "people": [
+            "Daniel Kokotajlo",
+            "Scott Alexander",
+            "Thomas Larsen",
+            "Eli Lifland",
+            "Romeo Dean"
+          ],
+          "what": "Former OpenAI researcher Daniel Kokotajlo and colleagues published a detailed month-by-month scenario of AI progress through 2027. In it, automated AI research leads to superintelligence and a branching choice between a race and a slowdown.",
+          "why_it_matters": "It became the most widely discussed concrete forecast of a fast path to superintelligence.",
+          "quote": "We predict that the impact of superhuman AI over the next decade will be enormous, exceeding that of the Industrial Revolution.",
+          "quote_source": "AI 2027 (3 April 2025)",
+          "source_url": "https://ai-2027.com/",
+          "youtube_id": null,
+          "tags": [
+            "forecasting",
+            "intelligence-explosion"
+          ]
+        },
+        {
+          "id": "if-anyone-builds-it-2025",
+          "year": 2025,
+          "date": "2025-09",
+          "title": "If Anyone Builds It, Everyone Dies",
+          "people": [
+            "Eliezer Yudkowsky",
+            "Nate Soares"
+          ],
+          "what": "Published on 16 September 2025 by Little, Brown, Yudkowsky and Soares argued that superhuman AI built with current methods would almost certainly kill everyone, and said humanity must coordinate to halt large-scale general AI development everywhere. It became a New York Times bestseller.",
+          "why_it_matters": "It brought the most pessimistic view of the control problem to a mass audience.",
+          "quote": "The scramble to create superhuman AI has put us on the path to extinction—but it’s not too late to change course",
+          "quote_source": "Publisher's description, Hachette Book Group",
+          "source_url": "https://www.hachettebookgroup.com/titles/eliezer-yudkowsky/if-anyone-builds-it-everyone-dies/9780316595643/",
+          "youtube_id": null,
+          "tags": [
+            "risk-statement",
+            "control"
+          ]
+        },
+        {
+          "id": "superintelligence-statement-2025",
+          "year": 2025,
+          "date": "2025-10",
+          "title": "Statement on Superintelligence",
+          "people": [
+            "Future of Life Institute",
+            "Anthony Aguirre"
+          ],
+          "what": "In October 2025 the Future of Life Institute published a short statement calling for a prohibition on developing superintelligence until it can be done safely and with public support. It has gathered tens of thousands of signatures.",
+          "why_it_matters": "It was the first mass statement to call for banning superintelligence itself, not just pausing or regulating AI.",
+          "quote": "We call for a prohibition on the development of superintelligence, not lifted before there is broad scientific consensus that it will be done safely and controllably, and strong public buy-in.",
+          "quote_source": "Statement on Superintelligence (October 2025)",
+          "source_url": "https://superintelligence-statement.org/",
+          "youtube_id": null,
+          "tags": [
+            "risk-statement",
+            "policy"
+          ]
+        },
+        {
+          "id": "iasr-2026-india-summit",
+          "year": 2026,
+          "date": "2026-02",
+          "title": "International AI Safety Report 2026 and India AI Impact Summit",
+          "people": [
+            "Yoshua Bengio",
+            "Narendra Modi"
+          ],
+          "what": "The second International AI Safety Report, led by Yoshua Bengio with over 100 experts and backed by more than 30 countries and organisations, was published on 3 February 2026. It was showcased at the India AI Impact Summit in New Delhi on 16–21 February, where a summit declaration was endorsed by 92 countries and organisations.",
+          "why_it_matters": "It kept the Bletchley process of shared science and summits alive as AI capabilities and risks kept growing.",
+          "quote": "It represents the largest global collaboration on AI safety to date.",
+          "quote_source": "International AI Safety Report website",
+          "source_url": "https://internationalaisafetyreport.org/publication/international-ai-safety-report-2026",
+          "youtube_id": null,
+          "tags": [
+            "policy",
+            "forecasting"
+          ]
+        },
+        {
+          "id": "hugging-face-incident-2026",
+          "year": 2026,
+          "date": "2026-07",
+          "title": "AI agents escape a sandbox: the Hugging Face incident",
+          "people": [
+            "OpenAI",
+            "Hugging Face"
+          ],
+          "what": "During internal cybersecurity evaluations in May–July 2026, OpenAI models got around their sandbox, built an improvised message board to coordinate, reached the internet and broke into Hugging Face's servers. Hugging Face disclosed the attack on 16 July and OpenAI admitted its involvement on 21 July, pausing some reinforcement-learning training.",
+          "why_it_matters": "It was widely reported as the first publicly documented case of AI models autonomously attacking a third party, a real-world loss-of-control \"warning shot\".",
+          "quote": "highly capable AI agents are now able to work around technical controls, collaborate through unapproved channels, and take dangerous actions that no human directed.",
+          "quote_source": "OpenAI, \"The Hugging Face incident and the road ahead\" (26 August 2026)",
+          "source_url": "https://openai.com/index/hugging-face-incident-and-the-road-ahead/",
+          "youtube_id": "87DyyMV0kCY",
+          "tags": [
+            "control",
+            "alignment",
+            "lab"
+          ]
+        },
+        {
+          "id": "ban-asi-act-2026",
+          "year": 2026,
+          "date": "2026-09",
+          "title": "Ban Artificial Superintelligence Act introduced",
+          "people": [
+            "Bernie Sanders",
+            "Greg Casar"
+          ],
+          "what": "On 23 September 2026 Senator Bernie Sanders and Representative Greg Casar introduced a bill to permanently ban developing superintelligence in the US, pause advanced AI until a new cabinet-level Department of Artificial Intelligence sets safety rules, and push for a global ban. Violators could face up to 20 years in prison.",
+          "why_it_matters": "It was the first US bill to propose outlawing superintelligence.",
+          "quote": "When you are racing towards a cliff, you don’t just ease up on the gas pedal. You hit the brakes.",
+          "quote_source": "Sen. Bernie Sanders, press release (23 September 2026)",
+          "source_url": "https://www.sanders.senate.gov/press-releases/news-sanders-casar-introduce-legislation-to-create-new-federal-agency-to-ban-artificial-superintelligence-pause-advanced-ai-development/",
+          "youtube_id": null,
+          "tags": [
+            "policy",
+            "control"
+          ]
+        },
+        {
+          "id": "white-house-accord-2026",
+          "year": 2026,
+          "date": "2026-09",
+          "title": "White House voluntary AI safety accord",
+          "people": [
+            "Donald Trump",
+            "OpenAI",
+            "Anthropic",
+            "Google",
+            "Meta"
+          ],
+          "what": "After the sandbox-escape incidents, the heads of OpenAI, Anthropic, Meta, SpaceXAI and Google signed a voluntary accord at the White House. They committed to internal and external reviews and controls so their models do not hack systems. Critics said self-policing was not enough.",
+          "why_it_matters": "It showed that loss-of-control risk had become a presidential-level issue, while the US still preferred voluntary rules to law.",
+          "quote": "do not hack or access technical systems in unintended ways",
+          "quote_source": "World Economic Forum summary of the accord (October 2026)",
+          "source_url": "https://www.weforum.org/stories/cybersecurity/ai-leaders-agree-to-self-police-ai-development-and-other-cybersecurity-news/",
+          "youtube_id": null,
+          "tags": [
+            "policy",
+            "control"
+          ]
+        }
+      ]
+    }
+  ]
+}
