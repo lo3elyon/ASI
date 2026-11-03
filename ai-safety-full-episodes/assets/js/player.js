@@ -107,7 +107,9 @@
     if (!e) return;
     hideCountdown();
     tick(true); flush();
-    if (L().QUEUE.includes(id)) { h().setQueue(L().QUEUE.filter((x) => x !== id)); A.views && A.views.paintQueueCount(); }
+    // playing never edits the queue (a queued episode stays until you remove it); a Play all / playlist / path line-up ends
+    // once you play something that is not on it
+    if (L().SESSION && L().SESSION.ids.length && !L().SESSION.ids.includes(id)) h().clearSession();
     const start = o.at != null ? Math.floor(o.at) : resumePoint(e);
     if (P.cur && P.cur.id !== e.id && !o.back) { P.backStack = (P.backStack || []).filter((x) => x !== P.cur.id).concat(P.cur.id).slice(-30); }
     P.cur = e; P.sess = null; P.sessId = null; P.run = null; P.lastMedia = null; P.lastRate = 0; P.chIdx = -1; P.loop = null; P.errCode = null;
@@ -1733,7 +1735,7 @@
       if (th) {
         const a = th.dataset.th, e = P.cur;
         if (a === "fav") { const on = h().toggleFav(e.id); A.views.refreshCardsFor(e.id); A.fx && A.fx.celebrate("fav", th, on); }
-        if (a === "queue") { const on = h().toggleQueue(e.id); A.views.paintQueueCount(); A.views.refreshCardsFor(e.id); A.fx && A.fx.celebrate("queue", th, on); }
+        if (a === "queue") { const on = h().toggleQueue(e.id, "theater"); A.views.paintQueueCount(); A.views.refreshCardsFor(e.id); A.fx && A.fx.celebrate("queue", th, on); }
         if (a === "watched") toggleWatchedCur();
         if (a === "playlist" && A.feat) A.feat.playlistPicker(e.id, th);
         if (a === "link") A.views.copyLinkAt(e.id, curTime());
