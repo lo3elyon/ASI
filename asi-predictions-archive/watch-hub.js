@@ -119,7 +119,11 @@
     var sp = speakers(v);
     if (!sp.length) return '<p class="x-wh__muted">' + (v.c ? "Channel: " + esc(v.c) + ". " : "") + "No speaker profile is linked to this video.</p>";
     return sp.slice(0, 3).map(function (p) {
-      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).slice(0, 4);
+      /* newest first, then id: an explicit order, not object-key order */
+      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).sort(function (a, b) {
+        var x = String(VIDS[a].d && VIDS[a].d !== "None" ? VIDS[a].d : ""), y = String(VIDS[b].d && VIDS[b].d !== "None" ? VIDS[b].d : "");
+        return (y < x ? -1 : y > x ? 1 : 0) || (a < b ? -1 : a > b ? 1 : 0);
+      }).slice(0, 4);
       var bio = bioOf(p), role = [p.role, p.org].filter(Boolean).join(" · ");
       return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" loading="lazy" decoding="async" width="56" height="56">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") +
         '<div class="x-wh__spwho"><p class="x-wh__name">' + esc(p.name) + "</p>" + (role ? '<p class="x-wh__role">' + esc(role) + "</p>" : "") + "</div></div>" +
@@ -134,7 +138,11 @@
   };
 
   /* [key, label, icon, tooltip] */
-  var TABS = [["about", "About", "ℹ", "About this talk"], ["hl", "Highlights", "✦", "Context highlights"], ["sp", "Speaker", "👤", "Speaker profile"]];
+  var TABS = [["about", "About", "ℹ", "About this talk"], ["ch", "Chapters", "≡", "Chapters"], ["tr", "Transcript", "¶", "Transcript"], ["sum", "Summary", "✎", "Summary and key claims"],
+    ["hl", "Highlights", "✦", "Context highlights"], ["sp", "Speaker", "👤", "Speaker profile"]];
+  /* the notes tabs (player-notes.js) show only for videos that have them */
+  var NOTE_TABS = { ch: 1, tr: 1, sum: 1 };
+  var NX = function () { return window.ArchiveNotes || null; };
   var UPTAB = ["up", "Up next", "▶", "Up next in this window"];
   var FOLD = "asiWatch.panelHidden";
   var folded = false;
@@ -206,10 +214,23 @@
       var c = up && up.querySelector('[aria-current="true"]'); if (!c || !isSide()) return;
       body.scrollTop += c.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
     };
+    var syncTabs = function () {
+      var v = inst.current && inst.current(), nx = NX(), lost = false;
+      tabEls.forEach(function (b) {
+        var k = b.getAttribute("data-t"); if (!NOTE_TABS[k]) return;
+        var on = !!(v && nx && nx.has(v, k));
+        b.hidden = !on;
+        if (!on && k === cur) lost = true;
+      });
+      if (lost) select("about");
+      return lost;
+    };
     var paint = function (force, anim) {
       var v = inst.current && inst.current();
       if (!v || !v.id) { box.hidden = true; host.classList.remove("has-wh"); return; }
       box.hidden = false; host.classList.add("has-wh");
+      syncTabs();
+      body.setAttribute("data-t", cur);
       body.setAttribute("aria-labelledby", uid + "-" + cur);
       if (cur === "up") {
         pane.hidden = true; up.hidden = false;
@@ -220,7 +241,8 @@
       if (!force && last === v.id + cur) { if (anim) { slideIn(); body.scrollTop = 0; } edges(); return; }
       last = v.id + cur;
       load();
-      pane.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
+      if (NOTE_TABS[cur] && NX()) { pane.innerHTML = ""; NX().render(cur, v, pane, inst); }
+      else pane.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
       body.scrollTop = 0; /* each video and tab starts at its top */
       slideIn();
       edges();
@@ -289,6 +311,8 @@
       inst.on("state", function () { paintProg(); });
     }
     inst._whPaint = function () { paint(false); paintProg(); };
+    /* a transcript that failed to load: its tab goes away quietly, and the panel falls back to About if it was showing */
+    inst._whSync = function () { if (syncTabs()) keep(function () { paint(true); }); };
   };
   /* one remembered choice for every player: hiding the panel in one hides it in all */
   var panels = [];
@@ -306,7 +330,7 @@
   }, 1000);
 
   /* ---------- Continue watching row + history drawer ---------- */
-  var list = function () { return Object.keys(W).map(function (id) { var r = W[id]; return { id: id, r: r }; }).filter(function (x) { return x.r && x.r.last; }).sort(function (a, b) { return b.r.last - a.r.last; }); };
+  var list = function () { return Object.keys(W).map(function (id) { var r = W[id]; return { id: id, r: r }; }).filter(function (x) { return x.r && x.r.last; }).sort(function (a, b) { return b.r.last - a.r.last || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0); }); };
   var vidOf = function (id) { load(); return VIDS[id] || { id: id, t: (W[id] && W[id].title) || "Video", c: (W[id] && W[id].c) || "", p: [] }; };
 
   var row = null, rowFlushing = false;

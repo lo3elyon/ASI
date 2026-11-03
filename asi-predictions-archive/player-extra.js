@@ -45,7 +45,7 @@
   var SHORTCUTS = [
     ["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"],
     ["↑ / ↓", "Volume up or down 10%"], ["M", "Mute or unmute"], ["F", "Fullscreen"], ["T", "Theater mode (wide window in the pop-out)"],
-    ["C", "Captions on or off"], ["0 – 9", "Jump to 0% – 90% of the video"], [", / .", "Back or forward one frame, while paused"],
+    ["C", "Site captions on or off"], ["+ / −", "Larger or smaller captions"], ["0 – 9", "Jump to 0% – 90% of the video"], [", / .", "Back or forward one frame, while paused"],
     ["Shift + N", "Next video"], ["Shift + P", "Previous video"], ["Shift + > / <", "Faster or slower"], ["R", "Loop this video"],
     ["I", "Picture-in-picture: pop out or dock"], ["Scroll on 🔊", "Volume up or down"], ["?", "This sheet"], ["Esc", "Close this sheet or the ⚙ menu"]
   ];
@@ -87,7 +87,7 @@
 
     /* the ⚙ button and its menu: speed, A–B repeat, loop, then links; narrow players move more controls in */
     btns.insertAdjacentHTML("beforeend",
-      '<button class="x-ap__b x-apx-more" type="button" data-x="more" aria-haspopup="true" aria-expanded="false" aria-controls="' + id + '" aria-label="Settings: speed, A–B repeat, loop" title="Settings: speed, A–B repeat, loop">' + IC.more + "</button>");
+      '<button class="x-ap__b x-apx-more" type="button" data-x="more" aria-haspopup="true" aria-expanded="false" aria-controls="' + id + '" aria-label="Settings: speed, A–B repeat, captions, loop" title="Settings: speed, A–B repeat, captions, loop">' + IC.more + "</button>");
     bar.insertAdjacentHTML("beforeend",
       '<div class="x-apx-menu" id="' + id + '" role="group" aria-label="Settings" hidden>' +
         '<div class="x-apx-sec"><p class="x-apx-h">Speed</p><div class="x-apx-speeds" role="group" aria-label="Playback speed">' +
@@ -167,20 +167,8 @@
     range.addEventListener("change", function () { inst.say(V.vol ? "Volume " + V.vol + "%" : "Muted"); });
     x.paintVol();
 
-    /* captions */
-    var paintCC = function () { ccB.setAttribute("aria-pressed", S.cc); };
-    var noCC = function () { S.cc = false; ccB.hidden = true; paintCC(); };
-    var setCC = function (on, quiet) {
-      var yt = inst.yt();
-      if (!yt) { if (!quiet) inst.say("Captions work once the video is playing."); return; }
-      try {
-        if (on) { yt.loadModule("captions"); yt.setOption("captions", "track", { languageCode: "en" }); }
-        else yt.unloadModule("captions");
-        S.cc = on; S.ccOn = on; paintCC();
-        if (!quiet) inst.say(on ? "Captions on" : "Captions off");
-      } catch (e) { noCC(); if (!quiet) inst.say("Captions are not available here."); }
-    };
-    var toggleCC = function () { if (ccB.hidden) { inst.say("Captions are not available here."); return; } setCC(!S.cc); };
+    /* captions are drawn by the site from the transcript (player-notes.js); YouTube's own captions stay off */
+    var toggleCC = function () { if (inst.ccToggle) inst.ccToggle(); else inst.say("Captions are not available here."); };
 
     /* loop */
     var toggleLoop = function () {
@@ -190,17 +178,8 @@
 
     /* site captions off: YouTube's own captions module is unloaded so no captions render */
     var dropCC = function () { var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
-    inst.on("ready", function (yt) {
-      S.ccOn = false;
-      x.applyVol();
-      if (!yt || typeof yt.loadModule !== "function" || typeof yt.setOption !== "function") noCC();
-      if (!S.cc) dropCC();
-    });
-    inst.on("state", function (s) {
-      if (s !== 1 && s !== 3) return;
-      if (S.cc) { if (!S.ccOn) setCC(true, true); } /* keep captions on across videos once the reader turned them on */
-      else dropCC();
-    });
+    inst.on("ready", function () { x.applyVol(); dropCC(); });
+    inst.on("state", function (s) { if (s === 1 || s === 3) dropCC(); });
     inst.on("ended", function (yt) {
       if (!S.loop || !yt || !yt.seekTo) return false;
       try { yt.seekTo(0, true); yt.playVideo(); showFlash("loop"); } catch (e) { return false; }
@@ -339,7 +318,10 @@
     var showTip = function (frac) {
       var d = inst.duration ? inst.duration() : 0; if (!tip || !(d > 0)) return;
       placeTrack();
-      tip.textContent = fmt(frac * d);
+      var ct = inst.chapterAt ? inst.chapterAt(frac * d) : "";
+      tip.textContent = "";
+      if (ct) { var cs = document.createElement("span"); cs.className = "x-apx-tipch"; cs.textContent = ct; tip.appendChild(cs); }
+      tip.appendChild(document.createTextNode(fmt(frac * d)));
       tip.style.left = (frac * 100) + "%";
       tip.hidden = false;
     };
@@ -369,6 +351,7 @@
     inst.on("key", function (ev) {
       var k = ev.key, tag = ev.target && ev.target.tagName;
       if (k === "Escape") { if (isOpen()) { closeMenu(true); return true; } return false; }
+      if (k === "+" || k === "=" || k === "-" || k === "_" || k === "−") { if (!inst.ccSize) return false; inst.ccSize(k === "+" || k === "=" ? 25 : -25); return true; }
       if (k === "ArrowUp" || k === "ArrowDown") { if (tag === "INPUT") return false; setVol((V.muted ? 0 : V.vol) + (k === "ArrowUp" ? 10 : -10)); inst.flash("vol:" + (V.muted ? 0 : V.vol)); return true; }
       /* 0–9 jump to that tenth of the video */
       if (/^[0-9]$/.test(k) && !ev.shiftKey) {

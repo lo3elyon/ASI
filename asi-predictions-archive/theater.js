@@ -31,15 +31,19 @@
     if (v.k) kinds[v.k] = (kinds[v.k] || 0) + 1;
   });
   if (AP.library) AP.library(V);
-  var newest = function (a, b) { return (b.d || "").localeCompare(a.d || "") || 0; };
-  var oldest = function (a, b) { return (a.d ? 0 : 1) - (b.d ? 0 : 1) || (a.d || "").localeCompare(b.d || ""); };
+  /* Deterministic order: the sort key (date), then person name, then id. */
+  var cmpStr = function (a, b) { a = String(a == null ? "" : a); b = String(b == null ? "" : b); return a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0); };
+  var raw = function (a, b) { a = String(a || ""); b = String(b || ""); return a < b ? -1 : a > b ? 1 : 0; };
+  var tie = function (a, b) { return cmpStr(a.names && a.names[0], b.names && b.names[0]) || cmpStr(a.id, b.id); };
+  var newest = function (a, b) { return raw(b.d, a.d) || tie(a, b); };
+  var oldest = function (a, b) { return (a.d ? 0 : 1) - (b.d ? 0 : 1) || raw(a.d, b.d) || tie(a, b); };
   var newestDatedFirst = function (a, b) { return (a.d ? 0 : 1) - (b.d ? 0 : 1) || newest(a, b); };
 
   /* ---------- markup ---------- */
-  var KINDS = Object.keys(kinds).sort(function (a, b) { return kinds[b] - kinds[a]; });
+  var KINDS = Object.keys(kinds).sort(function (a, b) { return kinds[b] - kinds[a] || cmpStr(a, b); });
   var chip = function (attr, val, label) { return '<button class="x-f" type="button" aria-pressed="false" ' + attr + '="' + esc(val) + '">' + esc(label).replace(/ (\d+)$/, ' <span class="x-n">$1</span>') + "</button>"; };
   var withVideos = {}; V.forEach(function (v) { v.p.forEach(function (id) { withVideos[id] = 1; }); });
-  var names = PEOPLE.filter(function (p) { return withVideos[p.id]; }).sort(function (a, b) { return a.name.localeCompare(b.name); });
+  var names = PEOPLE.filter(function (p) { return withVideos[p.id]; }).sort(function (a, b) { return cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
 
   host.innerHTML =
     '<div class="x-tt">' +
@@ -78,6 +82,7 @@
     var secs = v.len ? String(v.len).split(":").reduce(function (a, b) { return a * 60 + (+b || 0); }, 0) : 0;
     return '<span class="x-th__thumb"><img src="' + AP.thumb(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' + len + (v.k ? '<span class="x-th__kind" data-k="' + esc(v.k) + '">' + esc(v.k) + "</span>" : "") +
       (pr.watched ? '<span class="x-th__done">✓ Watched</span>' : "") +
+      (window.ArchiveNotes && ArchiveNotes.hasCC(v.id) ? '<span class="x-th__cc" title="Transcript and captions">CC</span>' : "") +
       (!pr.watched && pr.pos && secs ? '<span class="x-th__bar" style="width:' + Math.min(100, (pr.pos / secs) * 100).toFixed(1) + '%"></span>' : "") + "</span>";
   };
   var sub = function (v) { return [v.names.slice(0, 2).join(", ") || v.c, AP.fmtDate(v.d)].filter(Boolean).join(" · "); };

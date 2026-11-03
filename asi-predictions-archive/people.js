@@ -6,6 +6,7 @@
   var $ = function (id) { return document.getElementById(id); };
   var PEOPLE = read("d-people"), V = read("d-videos"), PREDS = read("d-preds"), ENTRIES = read("d-entries");
   if (!PEOPLE.length) return;
+  var cmpStr = function (a, b) { a = String(a == null ? "" : a); b = String(b == null ? "" : b); return a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0); };
   var byId = {}, idx = {};
   PEOPLE.forEach(function (p, i) { byId[p.id] = p; idx[p.id] = i; p.hay = [p.name, p.role, p.org, p.group].join(" ").toLowerCase(); });
   var entryById = {}; ENTRIES.forEach(function (e) { entryById[e.id] = e; });
@@ -62,7 +63,7 @@
   var F = { q: "", group: "", neuro: false, sort: "f" }, shown = 0, list = [], PAGE = 60;
   var counts = {}; PEOPLE.forEach(function (p) { counts[p.group] = (counts[p.group] || 0) + 1; });
   var nNeuro = PEOPLE.filter(function (p) { return p.neuro; }).length;
-  var groups = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a]; });
+  var groups = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a] || cmpStr(a, b); });
   var chip = function (attr, val, label, on) { return '<button class="x-f" type="button" aria-pressed="' + !!on + '" ' + attr + '="' + esc(val) + '">' + esc(label).replace(/ (\d+)$/, ' <span class="x-n">$1</span>') + "</button>"; };
   var paintChips = function () {
     $("pchips").innerHTML = chip("data-pg", "", "All " + PEOPLE.length, !F.group && !F.neuro) + chip("data-pn", "1", "🧠 Neuroscientists " + nNeuro, F.neuro) +
@@ -91,8 +92,10 @@
       if (F.neuro && !p.neuro) return false;
       return terms.every(function (t) { return p.hay.indexOf(t) >= 0; });
     });
-    if (F.sort === "az") list.sort(function (a, b) { return a.name.localeCompare(b.name); });
-    else if (F.sort === "v") list.sort(function (a, b) { return (b.n_videos || 0) - (a.n_videos || 0) || idx[a.id] - idx[b.id]; });
+    /* every order is explicit: the sort key, then name, then id */
+    if (F.sort === "az") list.sort(function (a, b) { return cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
+    else if (F.sort === "v") list.sort(function (a, b) { return (b.n_videos || 0) - (a.n_videos || 0) || cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
+    else list.sort(function (a, b) { return idx[a.id] - idx[b.id] || cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
     $("pcount").textContent = list.length + (list.length === 1 ? " person" : " people");
     $("pgrid").innerHTML = list.length ? "" : '<p class="fineprint">No one matches. Try another name or group.</p>';
     shown = 0; more(); paintChips();
@@ -160,22 +163,29 @@
   var thumbUrl = function (id) { return AP ? AP.thumb(id) : "https://i.ytimg.com/vi/" + id + "/hqdefault.jpg"; };
   var vmeta = function (v) { return esc([v.c, AP && AP.fmtDate(v.d), v.len].filter(Boolean).join(" · ")); };
   /* Person-page rows open the video in the in-page window (player.js); the page stays put. */
+  /* the thumbnail, with a static CC badge when the talk has a transcript */
+  var vimg = function (v) {
+    var img = '<img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />';
+    return window.ArchiveNotes && ArchiveNotes.hasCC(v.id) ? '<span class="x-pv__th">' + img + '<span class="x-pv__cc" title="Transcript and captions">CC</span></span>' : img;
+  };
   var vrow = function (v) {
-    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
+    return '<a class="x-pv__v" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '">' + vimg(v) +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></a>";
   };
   /* Up-next rows on the watch page load into its player in place. */
   var wrow = function (v, on) {
-    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '"><img src="' + thumbUrl(v.id) + '" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
+    return '<button class="x-pv__v" type="button" data-wv="' + esc(v.id) + '" aria-current="' + !!on + '">' + vimg(v) +
       "<span><b>" + esc(v.t) + "</b><small>" + vmeta(v) + "</small></span></button>";
   };
 
   var render = function (p) {
     var i = idx[p.id], prev = PEOPLE[(i - 1 + PEOPLE.length) % PEOPLE.length], next = PEOPLE[(i + 1) % PEOPLE.length];
-    var vids = (vidsOf[p.id] || []).slice().sort(function (a, b) { return String(b.d === "None" ? "" : b.d).localeCompare(String(a.d === "None" ? "" : a.d)); });
+    var dOf = function (v) { return v.d === "None" || v.d == null ? "" : String(v.d); };
+    var vName = function (v) { var id = (v.p || [])[0]; return id && byId[id] ? byId[id].name : ""; };
+    var vids = (vidsOf[p.id] || []).slice().sort(function (a, b) { var x = dOf(a), y = dOf(b); return (y < x ? -1 : y > x ? 1 : 0) || cmpStr(vName(a), vName(b)) || cmpStr(a.id, b.id); });
     var name = p.name.toLowerCase();
     var preds = PREDS.filter(function (r) { return String(r.who || "").toLowerCase().indexOf(name) >= 0; });
-    var ents = (p.entries || []).map(function (id) { return entryById[id]; }).filter(Boolean).sort(function (a, b) { return (a.year || 0) - (b.year || 0); });
+    var ents = (p.entries || []).map(function (id) { return entryById[id]; }).filter(Boolean).sort(function (a, b) { return (a.year || 0) - (b.year || 0) || cmpStr(a.person, b.person) || cmpStr(a.id, b.id); });
     var related = PEOPLE.filter(function (x) { return x.group === p.group && x.id !== p.id; }).slice(0, 8);
     var links = [];
     var D = detail()[p.id] || {};

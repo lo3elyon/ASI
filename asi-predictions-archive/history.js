@@ -24,7 +24,9 @@
   var PLAY = '<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>';
 
   /* ---------- mini-map ---------- */
-  var sorted = all.slice().sort(function (a, b) { return a.year - b.year; });
+  var cmpStr = function (a, b) { a = String(a == null ? "" : a); b = String(b == null ? "" : b); return a.localeCompare(b, "en") || (a < b ? -1 : a > b ? 1 : 0); };
+  var mPerson = function (m) { return m.person || (m.people && m.people[0]) || ""; };
+  var sorted = all.slice().sort(function (a, b) { return (a.year - b.year) || cmpStr(mPerson(a), mPerson(b)) || cmpStr(a.id, b.id); });
   /* One row of full-size tap targets: each dot sits at its year, nudged right only where
      dense years would make dots overlap; the decade ticks follow the same warped scale. */
   var prevX = -DOT;

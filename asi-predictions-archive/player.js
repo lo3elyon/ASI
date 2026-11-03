@@ -2,6 +2,17 @@
    Nothing plays until the reader presses Play. */
 (function () {
   "use strict";
+  /* Esc while the site player is in its own fullscreen: exit fullscreen first and stop there.
+     Registered first, on window in the capture phase, so it runs before every other Esc handler
+     (closing the window, the pop-out, menus or dialogs). */
+  window.addEventListener("keydown", function (ev) {
+    if (ev.key !== "Escape" && ev.key !== "Esc") return;
+    var d = document, fe = d.fullscreenElement || d.webkitFullscreenElement;
+    if (!fe) return;
+    ev.preventDefault(); ev.stopImmediatePropagation(); ev.stopPropagation();
+    var ex = d.exitFullscreen || d.webkitExitFullscreen;
+    if (ex) { try { var r = ex.call(d); if (r && r.catch) r.catch(function () {}); } catch (e) {} }
+  }, true);
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var pad = function (n) { return (n < 10 ? "0" : "") + n; };
   var fmt = function (s) {
@@ -157,7 +168,7 @@
       '<dialog class="x-ap__sheet" aria-label="Keyboard shortcuts">' +
         "<h3>Keyboard shortcuts</h3>" +
         "<dl>" +
-          [["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"], ["M", "Mute"], ["F", "Fullscreen"],
+          [["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"], ["M", "Mute"], ["F", "Fullscreen"], ["C", "Site captions on or off"], ["+ / −", "Larger or smaller captions"],
             ["T", "Theater mode"], ["I", "Pop out or dock"], ["Shift + N / P", "Next or previous video"], ["Shift + > / <", "Faster or slower"], ["?", "This sheet"]]
             .map(function (r) { return "<div><dt><kbd>" + r[0] + "</kbd></dt><dd>" + r[1] + "</dd></div>"; }).join("") +
         "</dl>" +
@@ -593,7 +604,7 @@
       else if (a === "back10") skip(-10);
       else if (a === "fwd10") skip(10);
       else if (a === "mute") mute();
-      else if (a === "theater") theater();
+      else if (a === "theater") { if (opts.onTheaterKey) opts.onTheaterKey(ev); else theater(); }
       else if (a === "fs") fullscreen();
       else if (a === "pop") Pop.fromInstance(self, false);
       else if (a === "native") setNative(true);
@@ -870,7 +881,12 @@
       if (pressed != null) b.setAttribute("aria-pressed", pressed ? "true" : "false");
     };
     var isWide = false, wPrev = 0;
-    var paintWide = function () { setBtn("wide", isWide ? IC.unwide : IC.wide, isWide ? "Exit wide window (T)" : "Wide window (T)", isWide); };
+    var paintWide = function () {
+      setBtn("wide", isWide ? IC.unwide : IC.wide, isWide ? "Exit wide window (T)" : "Wide window (T)", isWide);
+      /* the window's own Theater button mirrors the same state */
+      var tb2 = inst && inst.root.querySelector('[data-a="theater"]');
+      if (tb2) { tb2.setAttribute("aria-pressed", isWide ? "true" : "false"); tb2.setAttribute("title", (isWide ? "Exit wide window" : "Wide window") + " (T)"); if (!tb2.querySelector("svg")) tb2.textContent = isWide ? "Exit theater" : "Theater"; }
+    };
     var setWide = function (on) {
       on = !!on;
       if (!el || on === isWide) { paintWide(); return; }
@@ -883,6 +899,26 @@
         place(); requestAnimationFrame(place);
       }
       paintWide();
+    };
+    /* The header's Wide window / Theater toggle. One synchronous state flip on the very first click:
+       a pending close is cancelled rather than raced, the window stops being an auto pop-out (so the
+       Theater's in-view check can no longer dock it away mid-switch), the same event can never toggle
+       twice, and the playback position is carried across the switch. */
+    var wideAt = 0;
+    var toggleWide = function (ev) {
+      if (ev) { if (ev.__xWide) return; ev.__xWide = true; }
+      var t = Date.now(); if (t - wideAt < 80) return; wideAt = t;
+      if (!el || el.hidden) return;
+      if (leaveT) { clearTimeout(leaveT); leaveT = 0; el.classList.remove("is-leave"); if (bd) bd.classList.remove("is-leave"); }
+      auto = false;
+      if (isMin) restore();
+      var st = inst ? inst.state() : null, at = st && st.playing ? st.time : null, vid = st && st.video ? st.video.id : null;
+      keepScroll(function () { setWide(!isWide); });
+      /* if the switch ever reloaded the frame, resume where it was */
+      if (at != null) requestAnimationFrame(function () { requestAnimationFrame(function () {
+        var c = inst.current(), s2 = inst.state();
+        if (c && c.id === vid && !s2.playing && !inst.started()) inst.playAt(at);
+      }); });
     };
     var build = function () {
       if (el) return;
@@ -920,7 +956,7 @@
         floating: true,
         onChange: function (v) { paintTitle(v); paintList(); },
         onPlayState: function (on) { paintPill(on); paintLinks(); },
-        onTheaterKey: function () { setWide(!isWide); }
+        onTheaterKey: function (ev) { toggleWide(ev); }
       });
 
       /* header buttons: each one bound directly, acting on the first click; the bar itself is never a drag target */
@@ -928,14 +964,17 @@
         if (a === "mode") { modal ? shrink() : expand(); }
         else if (a === "min") minimize();
         else if (a === "dock") dock();
-        else if (a === "wide") setWide(!isWide);
+        else if (a === "wide") toggleWide(ev);
         else if (a === "fs") inst.fullscreen();
         else if (a === "close") close();
         else if (a === "yt") { paintLinks(); if (inst.isPlaying()) inst.pause(); return; }
         if (ev) ev.preventDefault();
       };
       el.querySelectorAll(".x-pop__tools [data-p]").forEach(function (b) {
-        b.addEventListener("click", function (ev) { ev.stopPropagation(); act(b.dataset.p, ev); });
+        if (b.__xBound) return; b.__xBound = true; /* exactly one handler per button */
+        b.addEventListener("click", function (ev) { ev.stopPropagation(); if (b.dataset.p !== "yt") ev.stopImmediatePropagation(); act(b.dataset.p, ev); });
+        /* presses on the header buttons never reach a document-level outside-click closer */
+        ["pointerdown", "mousedown", "touchstart"].forEach(function (t) { b.addEventListener(t, function (ev) { ev.stopPropagation(); }, { passive: true }); });
       });
       el.addEventListener("click", function (ev) {
         var qb = ev.target.closest("[data-pq]");

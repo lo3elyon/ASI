@@ -181,7 +181,16 @@
     var P = (read("d-preds") || []).filter(function (p) { return p && p.prediction && p.status; });
     var GROUP = function (s) { s = s.toLowerCase(); return s.indexOf("came true") === 0 ? "Came true" : s.indexOf("wrong") === 0 ? "Wrong" : s.indexOf("partial") === 0 ? "Partially true" : "Not yet / too early"; };
     var OPTS = ["Came true", "Partially true", "Wrong", "Not yet / too early"];
-    var order = P.map(function (_, i) { return i; }).sort(function () { return Math.random() - 0.5; });
+    /* a seeded, reproducible shuffle (no Math.random): the same order every load, a new one each "again" round */
+    var round = 0;
+    var shuffle = function (n, seed) {
+      var s = (seed * 2654435761) >>> 0 || 1, a = [];
+      for (var k = 0; k < n; k++) a.push(k);
+      var rnd = function () { s = (s + 0x6d2b79f5) >>> 0; var t = Math.imul(s ^ (s >>> 15), 1 | s); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+      for (var j = n - 1; j > 0; j--) { var r = Math.floor(rnd() * (j + 1)), tmp = a[j]; a[j] = a[r]; a[r] = tmp; }
+      return a;
+    };
+    var order = shuffle(P.length, 1);
     var i = 0, score = 0, streak = 0, best = +(localStorage.getItem("asiQuizBest") || 0);
     var paint = function () {
       if (!P.length) { el.innerHTML = '<p class="x-ln__lead">The quiz needs the prediction data, which did not load.</p>'; return; }
@@ -212,7 +221,7 @@
       if (src) return; /* Source: the browser opens it in a new tab as usual */
       var btn = e.target.closest("button");
       if (btn) { e.preventDefault(); if (btn.getAttribute("type") !== "button") btn.type = "button"; }
-      if (e.target.closest('[data-q="again"]')) { i = 0; score = 0; streak = 0; order.sort(function () { return Math.random() - 0.5; }); steady(function () { el.style.minHeight = ""; paint(); }); return; }
+      if (e.target.closest('[data-q="again"]')) { i = 0; score = 0; streak = 0; round++; order = shuffle(P.length, round + 1); steady(function () { el.style.minHeight = ""; paint(); }); return; }
       if (e.target.closest('[data-q="next"]')) { i++; steady(paint); return; }
       var b = e.target.closest(".x-ln__opt"); if (!b || b.disabled) return;
       var p = P[order[i]], right = GROUP(p.status), ok = b.getAttribute("data-o") === right;
@@ -231,7 +240,9 @@
     if (still) return;
     var box = document.createElement("div"); box.className = "x-ln__conf"; box.setAttribute("aria-hidden", "true");
     var cols = ["#f59e0b", "#06b6d4", "#f43f5e", "#22c55e", "#a78bfa"];
-    for (var n = 0; n < 60; n++) { var s = document.createElement("i"); s.style.left = Math.random() * 100 + "%"; s.style.background = cols[n % 5]; s.style.animationDelay = Math.random() * 0.6 + "s"; s.style.setProperty("--dx", (Math.random() * 200 - 100) + "px"); box.appendChild(s); }
+    /* fixed, evenly spread pieces (golden-ratio steps), no Math.random */
+    var fr = function (k, m) { var x = (k * 0.6180339887 + m * 0.7548776662) % 1; return x < 0 ? x + 1 : x; };
+    for (var n = 0; n < 60; n++) { var s = document.createElement("i"); s.style.left = (fr(n, 0) * 100).toFixed(2) + "%"; s.style.background = cols[n % 5]; s.style.animationDelay = (fr(n, 1) * 0.6).toFixed(2) + "s"; s.style.setProperty("--dx", (fr(n, 2) * 200 - 100).toFixed(1) + "px"); box.appendChild(s); }
     el.appendChild(box); setTimeout(function () { box.remove(); }, 3200);
   };
 

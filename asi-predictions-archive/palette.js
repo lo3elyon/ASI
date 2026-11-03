@@ -31,7 +31,7 @@
         for (var j = 0; j < terms.length; j++) if (r.hay.indexOf(terms[j]) < 0) { ok = false; break; }
         if (ok) { var p = r.key.indexOf(terms[0]); hits.push({ r: r, s: p === 0 ? 0 : p > 0 ? 1 : 2 }); }
       }
-      hits.sort(function (a, b) { return a.s - b.s; });
+      hits.sort(function (a, b) { var x = String(a.r.t), y = String(b.r.t), u = String(a.r.id), w = String(b.r.id); return a.s - b.s || x.localeCompare(y, "en") || (u < w ? -1 : u > w ? 1 : 0); });
       if (hits.length) out.push({ g: g, n: hits.length, list: hits.slice(0, 6).map(function (x) { return x.r; }) });
     });
     return out;
