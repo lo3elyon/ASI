@@ -107,10 +107,9 @@
       else { F.group = b.getAttribute("data-pg") === F.group ? "" : b.getAttribute("data-pg"); F.neuro = false; }
       apply();
     });
+    /* profiles parsed before the first paint, so card bios never change (and cards never resize) afterwards */
+    detail();
     apply();
-    /* Card bios switch to the first background sentence once the profiles are parsed, in idle time. */
-    var idle = window.requestIdleCallback || function (f) { return setTimeout(f, 1500); };
-    idle(function () { detail(); }, { timeout: 4000 });
   }
 
   /* ---------- person page ---------- */

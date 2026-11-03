@@ -171,7 +171,7 @@ mark { background: color-mix(in srgb, var(--x-e0) 45%, transparent); }
 .x-era h3 { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; color: var(--ei); }
 .x-era h3::before { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--ec); box-shadow: 0 0 12px var(--ec); }
 .x-era h3 .pill { background: color-mix(in srgb, var(--ec) 20%, var(--fill-primary-on)); color: var(--text-primary); }
-.x-grid { gap: 12px; margin-top: 10px; align-items: start; }
+.x-grid { gap: 14px; margin-top: 10px; align-items: start; }
 .x-predbox { background: color-mix(in srgb, var(--ec) 9%, var(--fill-tertiary)); border-left: 3px solid var(--ec); }
 .x-lite { box-shadow: 0 0 0 1px var(--stroke-secondary); }
 .x-play span { background: var(--x-e2); color: var(--x-ink-dark); box-shadow: 0 0 0 6px color-mix(in srgb, var(--x-e2) 30%, transparent), 0 6px 24px -4px var(--x-e2); }
@@ -475,8 +475,8 @@ body { overflow-x: clip; }
 .x-pc__talks svg { width: 14px; height: 14px; padding: 3px; border-radius: 50%; background: var(--x-e2); color: var(--x-ink-dark); }
 
 /* ---------- archive and prediction masonry, theater, person page ---------- */
-.x-grid { column-width: 340px; column-width: min(100%, 340px); column-gap: 14px; }
-.x-grid > * { margin: 0 0 14px; }
+.x-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: start; gap: 14px; }
+.x-grid > * { margin: 0; }
 .x-tt__grid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 14px; padding: 4px; align-items: stretch; }
 .x-vc { display: grid; gap: 8px; align-content: start; padding: 12px 8px 10px; background: linear-gradient(180deg, color-mix(in srgb, var(--ec) 10%, var(--fill-primary-on)) 0%, var(--fill-primary-on) 120px); }
 .x-vc > span:last-child { padding-inline: 4px; min-width: 0; }

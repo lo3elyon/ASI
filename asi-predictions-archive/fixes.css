@@ -133,20 +133,15 @@ html, body, .main, #theater, #ttRows, .x-tt__lib, #people-view { overflow-anchor
 #ttTop, #ttPlayer, .x-ap, .x-pop { overflow-anchor: none; }
 
 /* reserved space: thumbnails 16:9, portraits and avatars square, before the image arrives */
-.x-lite img, .x-th__thumb img, .x-hi__vid img, .x-pv__v img, .x-ap__poster img, .x-ap__upin img, .x-wh__mini img, .x-cw__th img { aspect-ratio: 16 / 9; }
+.x-lite img, .x-th__thumb img, .x-hi__vid img, .x-pv__v img, .x-ap__poster img, .x-wh__mini img, .x-cw__th img { aspect-ratio: 16 / 9; }
 .x-pav img, .x-av img, .x-gal img, .x-ap__person img, .x-wh__sphead img { aspect-ratio: 1 / 1; }
 
 /* lazy lists: the sentinel is a 1px line, and while more remain it holds a fixed-height placeholder */
-.x-sent { height: 1px; }
-.x-sent.x-lazy-ph { height: 200px; }
+.x-sent, .x-sent.x-lazy-ph { height: 0; }
 
 /* =====================================================================
    Watch hub panel (About, Highlights, Speaker)
    ===================================================================== */
-.x-wh__body { max-height: min(60vh, 460px); overflow-y: auto; overscroll-behavior: contain; overflow-wrap: break-word; scrollbar-width: thin; }
-.x-wh__desc { position: relative; }
-.x-wh__desc .x-wh__p { margin: 0 0 10px; max-width: 70ch; }
-.x-wh__desc.is-clamped { max-height: 7.6em; overflow: hidden; -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent); mask-image: linear-gradient(to bottom, black 55%, transparent); }
 .x-wh__toggle {
   display: inline-flex; align-items: center; min-height: 32px; margin: 0 0 12px; padding: 0 12px;
   border: 1px solid var(--stroke-primary); border-radius: var(--r-pill); background: none; color: inherit;
@@ -220,18 +215,12 @@ html, body, .main, #theater, #ttRows, .x-tt__lib, #people-view { overflow-anchor
     max-height: calc(100vh - 32px - 50px); max-height: calc(100dvh - 32px - 50px);
   }
   .x-pop.is-modal .x-pop__body > .x-ap__slot { flex: none; }
-  .x-pop.is-modal .x-pop__body > .x-wh { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; margin: 0; border-radius: 0 0 0 var(--r-l); border-width: 1px 0 0; }
-  .x-pop.is-modal.is-solo .x-pop__body > .x-wh { border-radius: 0 0 var(--r-l) var(--r-l); }
-  .x-pop.is-modal .x-pop__body > .x-wh > .x-wh__tabs { flex: none; }
-  .x-pop.is-modal .x-pop__body > .x-wh > .x-wh__body { flex: 1 1 auto; min-height: 0; max-height: none; }
   .x-pop.is-modal .x-ap__wrap { border-radius: 0; }
   .x-pop.is-modal .x-pop__side { min-height: 0; overflow: hidden; }
   .x-pop.is-modal .x-pop__list { overflow-y: auto; scrollbar-width: thin; }
 }
 @media (max-width: 899px) {
   .x-pop.is-modal .x-pop__win { overflow-y: auto; }
-  .x-pop.is-modal .x-wh { margin: 0; border-radius: 0; border-width: 1px 0 0; }
-  .x-pop.is-modal .x-wh__body { max-height: none; }
 }
 
 /* =====================================================================
@@ -249,8 +238,6 @@ html, body, .main, #theater, #ttRows, .x-tt__lib, #people-view { overflow-anchor
 .x-cw__m { white-space: nowrap; text-overflow: ellipsis; }
 .x-whd__it { transition: background-color var(--dur-quick) var(--ease-out); }
 .x-whd__it:focus-visible { outline: 2px solid var(--x-e1, var(--fill-primary)); outline-offset: -2px; }
-.x-wh__tab { transition: opacity var(--dur-quick) var(--ease-out), background-color var(--dur-quick) var(--ease-out); border-radius: var(--r-s) var(--r-s) 0 0; }
-.x-wh__tab:hover { background: var(--hover-wash); }
 @media (prefers-reduced-motion: reduce) {
   .x-wh__row, .x-wh__toggle, .x-pop__q, .x-tt__rec, .x-vc, .x-cw__card, .x-pv__v, .x-wh__tab { transition: none; }
 }
@@ -324,6 +311,4 @@ html, body, .main, #theater, #ttRows, .x-tt__lib, #people-view { overflow-anchor
 .x-pop .x-ap.is-native .x-ap__wrap, .x-pop.x-ap.is-native .x-ap__wrap { border-radius: 0; }
 .x-pop .x-ap__under .x-ap__back { background: var(--hero-glass); color: var(--hero-text); box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
 .x-tt__top .x-ap__under .x-ap__back { background: rgba(255, 255, 255, 0.08); color: #f5f5f7; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.14); }
-/* F5: the About / Highlights / Speaker panel keeps one height; long content scrolls inside it */
-.x-wh__body { box-sizing: border-box; height: 280px; max-height: none; overflow-y: auto; }
-@media (max-width: 599px) { .x-wh__body { height: 240px; } }
+/* F5 (replaced): the About / Highlights / Speaker panel sits beside the video, see watch-panel.css */

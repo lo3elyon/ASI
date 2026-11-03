@@ -1,5 +1,5 @@
 /* Watch hub add-on: per-second watch tracking for every ArchivePlayer (site or YouTube controls),
-   an info panel under each player (About, Context highlights, Speaker), a "Continue watching" row
+   an info panel beside each player (About, Context highlights, Speaker, Up next in the window), a "Continue watching" row
    at the top of the Theater, and a "My watch history" drawer. Never starts playback on its own. */
 (function () {
   "use strict";
@@ -51,7 +51,7 @@
     emit(v.id);
   };
 
-  /* ---------- info panel under each player ---------- */
+  /* ---------- info panel beside each player ---------- */
   var speakers = function (v) { load(); return (v.p || []).map(function (id) { return PEOPLE[id]; }).filter(Boolean); };
   var firstSentence = function (s) { s = String(s || ""); var m = s.match(/^.{20,260}?[.!?](\s|$)/); return m ? m[0].trim() : s.slice(0, 220); };
   var KINDS = { lecture: "lecture", talk: "talk", interview: "interview", podcast: "podcast", panel: "panel discussion", debate: "debate", hearing: "hearing", documentary: "documentary", archive: "archival clip", history: "historical clip", keynote: "keynote" };
@@ -65,22 +65,33 @@
   ];
   var topics = function (v) { var s = (v.t || "") + " " + (v.s || ""); var out = []; TOPICS.forEach(function (x) { if (x[0].test(s) && out.length < 4) out.push(x[1]); }); return out; };
 
+  var seq = 0;
+  var clip = function (s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n).replace(/\s+\S*$/, "") + "…" : s; };
+  var bioOf = function (p) { var d = DETAIL[p.id] || {}; return (d.background || [])[0] || p.bio || ""; };
+
+  /* About: title, channel · year · length chips, a 3-line summary, and the full description inline on request */
   var about = function (v) {
     var sp = speakers(v), y = AP.year ? AP.year(v.d) : 0, kind = KINDS[v.k] || (v.k ? v.k : "video");
-    var who = sp.length ? sp.map(function (p) { return p.name; }).join(", ") : (v.c || "the speaker");
+    var who = sp.length ? sp.map(function (p) { return p.name; }).join(", ") : "";
     /* "An" before a vowel sound: an interview, an archival clip */
     var art = /^[aeiou]/i.test(kind) ? "An " : "A ";
     var tp = topics(v);
-    var paras = [];
-    paras.push(art + esc(kind) + (who ? " featuring <b>" + esc(who) + "</b>" : "") + (v.c ? ", published on the " + esc(v.c) + " channel" : "") + (y ? " (" + y + ")" : "") + "." +
-      (tp.length ? " It touches on " + esc(tp.join(", ").toLowerCase()) + (y ? ", recorded in " + eraOf(y) : "") + "." : ""));
-    if (v.s) String(v.s).split(/\n\s*\n|\n/).map(function (s) { return s.trim(); }).filter(Boolean).forEach(function (s) { paras.push(esc(s)); });
-    if (sp[0]) { var bio = firstSentence((DETAIL[sp[0].id] && (DETAIL[sp[0].id].background || [])[0]) || sp[0].bio); if (bio) paras.push('<span class="x-wh__muted">About the speaker: ' + esc(bio) + "</span>"); }
-    var meta = [v.len ? "⏱ " + esc(v.len) : "", y ? "📅 " + y : "", v.k ? "🎙 " + esc(kind) : ""].filter(Boolean).map(function (m) { return '<span class="x-wh__chip">' + m + "</span>"; }).join("");
-    var long = paras.length > 2 || paras.join(" ").replace(/<[^>]+>/g, "").length > 360;
-    return '<div class="x-wh__desc' + (long ? " is-clamped" : "") + '">' + paras.map(function (p) { return '<p class="x-wh__p">' + p + "</p>"; }).join("") + "</div>" +
-      (long ? '<button type="button" class="x-wh__toggle" data-wh-more aria-expanded="false">Show more</button>' : "") +
-      '<div class="x-wh__chips">' + meta + tp.map(function (t) { return '<span class="x-wh__chip x-wh__chip--t">#' + esc(t) + "</span>"; }).join("") + "</div>";
+    var lead = art + esc(kind) + (who ? " featuring <b>" + esc(who) + "</b>" : "") + (tp.length ? " on " + esc(tp.join(", ").toLowerCase()) : "") + (y ? ", recorded in " + eraOf(y) : "") + ".";
+    var desc = v.s ? String(v.s).split(/\n+/).map(function (s) { return s.trim(); }).filter(Boolean).map(esc) : [];
+    var more = [];
+    if (sp[0]) { var bio = bioOf(sp[0]); if (bio) more.push('<p class="x-wh__p"><b>About ' + esc(sp[0].name) + ".</b> " + esc(clip(bio, 480)) + "</p>"); }
+    if (tp.length) more.push('<div class="x-wh__tags">' + tp.map(function (t) { return '<span class="x-wh__tag">#' + esc(t) + "</span>"; }).join("") + "</div>");
+    var chips = [v.c ? ["📺", v.c, "Channel"] : null, y ? ["📅", y, "Year"] : null, v.len ? ["⏱", v.len, "Length"] : null].filter(Boolean)
+      .map(function (c) { return '<span class="x-wh__chip" title="' + c[2] + '"><span aria-hidden="true">' + c[0] + "</span> " + esc(c[1]) + "</span>"; }).join("");
+    var id = "whf" + (++seq), sum = [lead].concat(desc).join(" ");
+    /* the summary shows three lines; the button appears when there is more to read */
+    var long = more.length || sum.replace(/<[^>]+>/g, "").length > 150;
+    return '<div class="x-wh__about">' +
+      '<h3 class="x-wh__title">' + esc(v.t) + "</h3>" +
+      (chips ? '<div class="x-wh__chips">' + chips + "</div>" : "") +
+      '<div class="x-wh__desc" id="' + id + '"><p class="x-wh__sum">' + sum + "</p>" + (more.length ? '<div class="x-wh__full">' + more.join("") + "</div>" : "") + "</div>" +
+      (long ? '<button type="button" class="x-wh__toggle" data-wh-more aria-expanded="false" aria-controls="' + id + '">Read full description</button>' : "") +
+      "</div>";
   };
 
   var highlights = function (v) {
@@ -96,57 +107,149 @@
     });
     if (!items.length) { var tp = topics(v); if (tp.length) items.push(["🏷️", "Topics", tp.join(" · ")]); }
     if (!items.length) return '<p class="x-wh__muted">No context highlights for this talk yet.</p>';
-    return '<p class="x-wh__note">Context highlights from the speaker\'s record in this archive, not timestamps from the video.</p><ul class="x-wh__hl">' +
-      items.slice(0, 6).map(function (x, i) { return '<li style="--i:' + i + '"><span class="x-wh__ico">' + x[0] + '</span><div><b>' + esc(x[1]) + "</b><p>" + esc(String(x[2]).slice(0, 260)) + "</p></div></li>"; }).join("") + "</ul>";
+    /* compact cards: icon, bold label, two lines; a tap opens the full text in place */
+    return '<p class="x-wh__info"><span aria-hidden="true">ⓘ</span> From the speaker\'s record, not video timestamps</p><ul class="x-wh__hl">' +
+      items.slice(0, 6).map(function (x, i) {
+        return '<li style="--i:' + i + '"><button type="button" class="x-wh__card" data-wh-card aria-expanded="false"><span class="x-wh__ico" aria-hidden="true">' + x[0] + '</span><span class="x-wh__ct"><b>' + esc(x[1]) + '</b><span class="x-wh__cx">' + esc(clip(x[2], 420)) + "</span></span></button></li>";
+      }).join("") + "</ul>";
   };
 
+  /* Speaker: avatar, name, role, a 2-line bio and the profile link, then compact rows of other talks */
   var speaker = function (v) {
     var sp = speakers(v);
     if (!sp.length) return '<p class="x-wh__muted">' + (v.c ? "Channel: " + esc(v.c) + ". " : "") + "No speaker profile is linked to this video.</p>";
     return sp.slice(0, 3).map(function (p) {
-      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).slice(0, 6);
-      return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" loading="lazy" decoding="async" width="56" height="56">' : '<span class="x-wh__av">' + esc(p.name[0]) + "</span>") +
-        '<div class="x-wh__spwho"><a class="x-wh__name" href="#/person/' + esc(p.id) + '">' + esc(p.name) + "</a><p>" + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p></div></div>" +
-        (more.length ? '<ul class="x-wh__talks" aria-label="Other talks by ' + esc(p.name) + '">' + more.map(function (id) {
+      var more = Object.keys(VIDS).filter(function (id) { return id !== v.id && (VIDS[id].p || []).indexOf(p.id) >= 0; }).slice(0, 4);
+      var bio = bioOf(p), role = [p.role, p.org].filter(Boolean).join(" · ");
+      return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" loading="lazy" decoding="async" width="56" height="56">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") +
+        '<div class="x-wh__spwho"><p class="x-wh__name">' + esc(p.name) + "</p>" + (role ? '<p class="x-wh__role">' + esc(role) + "</p>" : "") + "</div></div>" +
+        (bio ? '<p class="x-wh__bio">' + esc(clip(bio, 320)) + "</p>" : "") +
+        '<a class="x-wh__view" href="#/person/' + esc(p.id) + '">View profile <span aria-hidden="true">→</span></a>' +
+        (more.length ? '<p class="x-wh__sub">More talks</p><ul class="x-wh__talks" aria-label="Other talks by ' + esc(p.name) + '">' + more.map(function (id) {
           var x = VIDS[id];
           return '<li><button type="button" class="x-wh__row" data-wh-play="' + esc(id) + '" title="' + esc(x.t) + '"><img src="' + AP.thumb(id) + '" alt="" loading="lazy" decoding="async" width="96" height="54"><span class="x-wh__rowtx"><b>' + esc(x.t) + "</b>" + (x.len || x.c ? "<small>" + esc([x.c, x.len].filter(Boolean).join(" · ")) + "</small>" : "") + "</span></button></li>";
         }).join("") + "</ul>" : "") +
-        '<a class="x-wh__all" href="#/person/' + esc(p.id) + '">All talks by ' + esc(p.name) + " →</a>" +
         "</div>";
     }).join("");
   };
 
-  var TABS = [["about", "About"], ["hl", "Highlights"], ["sp", "Speaker"]];
+  /* [key, label, icon, tooltip] */
+  var TABS = [["about", "About", "ℹ", "About this talk"], ["hl", "Highlights", "✦", "Context highlights"], ["sp", "Speaker", "👤", "Speaker profile"]];
+  var UPTAB = ["up", "Up next", "▶", "Up next in this window"];
+  var FOLD = "asiWatch.panelHidden";
+  var folded = false;
+  try { folded = localStorage.getItem(FOLD) === "1"; } catch (e) {}
+  var wide = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : null;
+  var SIDE_MIN = 860; /* the player needs this much width to keep a good video beside a readable panel */
+  var still = function () { return !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches); };
+
+  /* Beside the video at 1100px and up (same height as the video box, icon rail on its outer edge);
+     under the video below that, with the rail as a segmented bar and no inner scroll. */
   var attachPanel = function (inst) {
     var host = inst.root; if (!host || host.querySelector(".x-wh")) return;
+    var pop = host.closest ? host.closest(".x-pop") : null;
+    var list = pop ? pop.querySelector(".x-pop__list") : null;
+    var tabs = TABS.concat(list ? [UPTAB] : []);
+    var uid = "wh" + (++seq);
     var box = document.createElement("div");
     box.className = "x-wh";
-    box.innerHTML = '<div class="x-wh__tabs" role="tablist">' + TABS.map(function (t, i) { return '<button type="button" role="tab" class="x-wh__tab" data-t="' + t[0] + '" aria-selected="' + (i === 0) + '">' + t[1] + "</button>"; }).join("") + '<span class="x-wh__ind" aria-hidden="true"></span><span class="x-wh__prog" aria-live="off"></span></div><div class="x-wh__body" role="tabpanel"></div>';
+    box.innerHTML =
+      '<div class="x-wh__main" id="' + uid + '-main">' +
+        '<p class="x-wh__prog" aria-live="off"></p>' +
+        '<div class="x-wh__body" id="' + uid + '-body" role="tabpanel" tabindex="-1"><div class="x-wh__pane"></div>' + (list ? '<div class="x-wh__up" hidden></div>' : "") + "</div>" +
+        '<button type="button" class="x-wh__down" data-wh-down hidden aria-label="Scroll the panel down">↓ more</button>' +
+      "</div>" +
+      '<div class="x-wh__rail">' +
+        '<div class="x-wh__tabs" role="tablist" aria-label="Video info">' + tabs.map(function (t, i) {
+          return '<button type="button" role="tab" class="x-wh__tab" id="' + uid + "-" + t[0] + '" data-t="' + t[0] + '" aria-selected="' + (i === 0) + '" aria-controls="' + uid + '-body" tabindex="' + (i === 0 ? 0 : -1) + '" data-wtip="' + t[3] + '">' +
+            '<span class="x-wh__ic" aria-hidden="true">' + t[2] + '</span><span class="x-wh__lb">' + t[1] + "</span></button>";
+        }).join("") + "</div>" +
+        '<button type="button" class="x-wh__fold" data-wh-fold aria-controls="' + uid + '-main"><span class="x-wh__ic" aria-hidden="true"></span><span class="x-wh__lb"></span></button>' +
+      "</div>";
     host.appendChild(box);
+    host.classList.add("has-wh");
+    if (list) box.querySelector(".x-wh__up").appendChild(list); /* the window's up-next list becomes the fourth tab */
     var cur = "about", last = null;
-    var body = box.querySelector(".x-wh__body"), ind = box.querySelector(".x-wh__ind"), prog = box.querySelector(".x-wh__prog");
-    var moveInd = function () { var b = box.querySelector('[data-t="' + cur + '"]'); if (b) { ind.style.width = b.offsetWidth + "px"; ind.style.transform = "translateX(" + b.offsetLeft + "px)"; } };
-    var paint = function (force) {
-      var v = inst.current && inst.current(); if (!v || !v.id) { box.hidden = true; return; }
-      box.hidden = false;
-      if (!force && last === v.id + cur) return; last = v.id + cur;
-      load();
-      body.classList.remove("is-in"); void body.offsetWidth;
-      body.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
-      body.scrollTop = 0; /* fixed-height panel: each video's content starts at its top */
-      body.classList.add("is-in");
-      moveInd();
+    var body = box.querySelector(".x-wh__body"), pane = box.querySelector(".x-wh__pane"), up = box.querySelector(".x-wh__up");
+    var prog = box.querySelector(".x-wh__prog"), down = box.querySelector(".x-wh__down"), foldB = box.querySelector(".x-wh__fold");
+    var tabEls = [].slice.call(box.querySelectorAll(".x-wh__tab"));
+    /* beside the video: a wide viewport, room in the player, and never in the small corner window */
+    var side = false;
+    var isSide = function () { return side; };
+    var layout = function () {
+      /* the wide window puts the video across the full width, with the panel under it */
+      var on = !!(wide && wide.matches) && host.clientWidth >= SIDE_MIN && !(pop && (!pop.classList.contains("is-modal") || pop.classList.contains("is-wide")));
+      if (on === side && host.classList.contains("is-wh-side") === on) return;
+      side = on; host.classList.toggle("is-wh-side", on);
+      orient(); edges();
     };
-    var paintProg = function () { var v = inst.current && inst.current(); var r = v && W[v.id]; prog.textContent = r && r.sec ? "Watched " + fmt(r.sec) + (r.pct ? " · " + r.pct + "%" : "") : ""; };
+
+    /* soft fade masks and the "more" chevron, only when the side panel has more to show */
+    var edges = function () {
+      var can = isSide() && !folded && !box.hidden && body.scrollHeight - body.clientHeight > 2;
+      var top = can && body.scrollTop > 2, bot = can && body.scrollHeight - body.clientHeight - body.scrollTop > 2;
+      body.classList.toggle("is-fade-top", top); body.classList.toggle("is-fade-bot", bot);
+      down.hidden = !bot;
+    };
+    var orient = function () { box.querySelector(".x-wh__tabs").setAttribute("aria-orientation", isSide() ? "vertical" : "horizontal"); };
+    var paintFold = function () {
+      box.classList.toggle("is-collapsed", folded); host.classList.toggle("is-wh-collapsed", folded);
+      foldB.setAttribute("aria-expanded", String(!folded));
+      foldB.setAttribute("aria-label", folded ? "Show the info panel" : "Hide the info panel");
+      foldB.setAttribute("data-wtip", folded ? "Show panel" : "Hide panel, video full width");
+      foldB.querySelector(".x-wh__ic").textContent = folded ? "⇤" : "⇥";
+      foldB.querySelector(".x-wh__lb").textContent = folded ? "Show" : "Hide";
+      edges();
+    };
+    var slideIn = function () { body.classList.remove("is-in"); void body.offsetWidth; body.classList.add("is-in"); };
+    var showCurrentInList = function () {
+      var c = up && up.querySelector('[aria-current="true"]'); if (!c || !isSide()) return;
+      body.scrollTop += c.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
+    };
+    var paint = function (force, anim) {
+      var v = inst.current && inst.current();
+      if (!v || !v.id) { box.hidden = true; host.classList.remove("has-wh"); return; }
+      box.hidden = false; host.classList.add("has-wh");
+      body.setAttribute("aria-labelledby", uid + "-" + cur);
+      if (cur === "up") {
+        pane.hidden = true; up.hidden = false;
+        if (anim) { slideIn(); body.scrollTop = 0; showCurrentInList(); }
+        edges(); return;
+      }
+      pane.hidden = false; if (up) up.hidden = true;
+      if (!force && last === v.id + cur) { if (anim) { slideIn(); body.scrollTop = 0; } edges(); return; }
+      last = v.id + cur;
+      load();
+      pane.innerHTML = cur === "about" ? about(v) : cur === "hl" ? highlights(v) : speaker(v);
+      body.scrollTop = 0; /* each video and tab starts at its top */
+      slideIn();
+      edges();
+    };
+    var paintProg = function () { var v = inst.current && inst.current(); var r = v && W[v.id]; prog.textContent = r && r.sec ? "Watched " + fmt(r.sec) + (r.pct ? " · " + r.pct + "%" : "") : ""; edges(); };
     var keep = AP.keepScroll || function (f) { return f(); };
+    var select = function (t) {
+      cur = t;
+      tabEls.forEach(function (b) { var on = b.getAttribute("data-t") === t; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
+    };
     box.addEventListener("click", function (e) {
-      var t = e.target.closest(".x-wh__tab"); if (t) { cur = t.getAttribute("data-t"); box.querySelectorAll(".x-wh__tab").forEach(function (b) { b.setAttribute("aria-selected", b === t); }); keep(function () { paint(); }); return; }
-      var mo = e.target.closest("[data-wh-more]");
-      if (mo) {
-        var d = mo.previousElementSibling, open = d.classList.toggle("is-clamped") === false;
-        mo.setAttribute("aria-expanded", open); mo.textContent = open ? "Show less" : "Show more";
+      var t = e.target.closest(".x-wh__tab");
+      if (t) {
+        var k = t.getAttribute("data-t"), reopen = folded && isSide();
+        if (k === cur && !reopen) return;
+        select(k);
+        keep(function () { if (reopen) setFold(false, true); paint(false, true); });
         return;
       }
+      if (e.target.closest("[data-wh-fold]")) { keep(function () { setFold(!folded, true); }); return; }
+      if (e.target.closest("[data-wh-down]")) { body.scrollBy({ top: Math.max(80, body.clientHeight * 0.85), behavior: still() ? "auto" : "smooth" }); return; }
+      var mo = e.target.closest("[data-wh-more]");
+      if (mo) {
+        var a = mo.closest(".x-wh__about"), open = a.classList.toggle("is-open");
+        mo.setAttribute("aria-expanded", String(open)); mo.textContent = open ? "Show less" : "Read full description";
+        edges(); return;
+      }
+      var cd = e.target.closest("[data-wh-card]");
+      if (cd) { var o = cd.getAttribute("aria-expanded") !== "true"; cd.setAttribute("aria-expanded", String(o)); edges(); return; }
       var pl = e.target.closest("[data-wh-play]");
       if (pl) {
         e.preventDefault();
@@ -158,18 +261,41 @@
       if (e.target.closest('a[href^="#/person/"]') && AP.isWatching && AP.isWatching()) AP.closePopout();
     });
     box.addEventListener("keydown", function (e) {
-      if (!e.target.classList.contains("x-wh__tab") || (e.key !== "ArrowRight" && e.key !== "ArrowLeft")) return;
-      var tabs = [].slice.call(box.querySelectorAll(".x-wh__tab")), i = tabs.indexOf(e.target) + (e.key === "ArrowRight" ? 1 : -1);
-      var n = tabs[(i + tabs.length) % tabs.length]; n.focus({ preventScroll: true }); n.click();
+      if (!e.target.classList.contains("x-wh__tab")) return;
+      var d = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[e.key]; if (!d) return;
+      e.preventDefault(); e.stopPropagation(); /* arrows move between tabs here, they do not seek the video */
+      var vis = tabEls.filter(function (b) { return b.offsetParent !== null; });
+      var n = vis[(vis.indexOf(e.target) + d + vis.length) % vis.length]; if (!n) return;
+      n.focus({ preventScroll: true }); n.click();
     });
-    window.addEventListener("resize", moveInd);
+    body.addEventListener("scroll", edges, { passive: true });
+    if ("ResizeObserver" in window) {
+      var ro = new ResizeObserver(function () { edges(); }); ro.observe(body); ro.observe(pane); if (up) ro.observe(up);
+      new ResizeObserver(function () { layout(); }).observe(host);
+    }
+    if (wide) { if (wide.addEventListener) wide.addEventListener("change", layout); else if (wide.addListener) wide.addListener(layout); }
+    window.addEventListener("resize", layout, { passive: true });
+    if (pop && "MutationObserver" in window) new MutationObserver(layout).observe(pop, { attributes: true, attributeFilter: ["class"] });
+    panels.push(function () { paintFold(); });
+    layout(); orient(); paintFold();
     paint(true);
     /* repainted only when the video changes or its play state changes, never on a timer */
     if (inst.on) {
-      inst.on("change", function () { keep(function () { paint(false); }); paintProg(); });
+      inst.on("change", function () {
+        /* a window with one video has no up-next list: fall back to About */
+        if (cur === "up" && pop && pop.classList.contains("is-solo")) select("about");
+        keep(function () { paint(false); }); paintProg();
+      });
       inst.on("state", function () { paintProg(); });
     }
     inst._whPaint = function () { paint(false); paintProg(); };
+  };
+  /* one remembered choice for every player: hiding the panel in one hides it in all */
+  var panels = [];
+  var setFold = function (on, save) {
+    folded = !!on;
+    if (save) { try { localStorage.setItem(FOLD, folded ? "1" : "0"); } catch (e) {} }
+    panels.forEach(function (f) { f(); });
   };
 
   var insts = [];
@@ -247,7 +373,7 @@
   var rowT = 0;
   var known = Object.keys(W).length;
   /* Static by design: the row is only redrawn when a new video is added to the history, never on a timer. */
-  document.addEventListener("watchprogress", function () { var n = Object.keys(W).length; if (n !== known) { known = n; (AP.keepScroll || function (f) { f(); })(paintRow); } });
+  /* The row is drawn once at load; while the page is open only its labels and bars update in place (onSaved). */
   /* painted once at load, not after a delay, so nothing below it shifts later */
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintRow); else paintRow();
 

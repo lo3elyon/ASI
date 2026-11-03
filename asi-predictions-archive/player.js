@@ -22,12 +22,21 @@
     if (p.length === 2) return MON[+p[1] - 1] + " " + p[0];
     return p[0];
   };
-  var SPEEDS = [0.75, 1, 1.25, 1.5, 1.75, 2];
+  var SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2];
   var ytUrl = function (id, t) { return "https://www.youtube.com/watch?v=" + id + (t > 0 ? "&t=" + Math.floor(t) + "s" : ""); };
   var ICON = {
     play: '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>',
     pause: '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" fill="currentColor"/></svg>',
-    big: '<svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>'
+    big: '<svg width="30" height="30" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>',
+    /* the play/pause glyph that morphs: two halves whose clip-paths move between a triangle and two bars */
+    pp: '<span class="x-pp" aria-hidden="true"></span><span class="x-rip" aria-hidden="true"></span>'
+  };
+  /* a brief ripple on a button: the class is cleared by the animation's own end, never a timer */
+  var ripple = function (b) {
+    if (!b) return;
+    var r = b.querySelector(".x-rip"); if (!r) return;
+    b.classList.remove("is-rip"); void b.offsetWidth; b.classList.add("is-rip");
+    if (!r.__x) { r.__x = 1; r.addEventListener("animationend", function () { b.classList.remove("is-rip"); }); }
   };
   var svg = function (d) { return '<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' + d + "</svg>"; };
   var IC = {
@@ -40,6 +49,8 @@
     yt: svg('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>'),
     close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
     restore: svg('<path d="M14 4h6v6M10 20H4v-6"/>'),
+    unwide: svg('<rect x="2" y="7" width="20" height="10" rx="1.5"/><path d="M6 12h4M8 10l2 2-2 2M18 12h-4M16 10l-2 2 2 2"/>'),
+    fsx: svg('<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>'),
     grip: svg('<path d="M20 12l-8 8M20 17l-3 3"/>'),
     expand: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 9h6v6"/>')
   };
@@ -47,6 +58,7 @@
   /* ---------- storage: resume position, watched state, autoplay toggle ---------- */
   var KEY = "asiArchive.player.v1";
   var store = { p: {}, w: {}, auto: false };
+  var LIB = [];
   try { var got = JSON.parse(window.localStorage.getItem(KEY)); if (got && typeof got === "object") { store.p = got.p || {}; store.w = got.w || {}; store.auto = !!got.auto; } } catch (e) {}
   var save = function () { try { window.localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {} };
   var listeners = [];
@@ -103,7 +115,7 @@
           '<div class="x-ap__screen">' +
             '<div class="x-ap__frame"></div>' +
             '<div class="x-ap__shield" aria-hidden="true"></div>' +
-            '<div class="x-ap__cover" hidden><span class="x-ap__cimg" aria-hidden="true"></span><button class="x-ap__big" type="button" data-a="toggle" aria-label="Play">' + ICON.big + '</button><span class="x-ap__spin" aria-hidden="true"></span><p class="x-ap__ctime"></p></div>' +
+            '<div class="x-ap__cover" hidden><span class="x-ap__cimg" aria-hidden="true"></span><button class="x-ap__big" type="button" data-a="toggle" aria-label="Play" title="Play (K)">' + ICON.pp + '</button><span class="x-ap__spin" aria-hidden="true"></span><p class="x-ap__ctime"></p></div>' +
             '<div class="x-ap__poster"></div>' +
             '<div class="x-ap__upnext" hidden></div>' +
             '<div class="x-ap__out"><p>Playing in the pop-out window</p><button class="x-ap__b x-ap__b--solid" type="button" data-a="dockhere">' + IC.dock + " Bring it back</button></div>" +
@@ -115,9 +127,9 @@
               '<span class="x-ap__time" data-r="dur">0:00</span>' +
             "</div>" +
             '<div class="x-ap__btns">' +
-              '<button class="x-ap__b" type="button" data-a="toggle" aria-label="Play or pause"></button>' +
-              '<button class="x-ap__b x-ap__t" type="button" data-a="back10" aria-label="Back 10 seconds">−10s</button>' +
-              '<button class="x-ap__b x-ap__t" type="button" data-a="fwd10" aria-label="Forward 10 seconds">+10s</button>' +
+              '<button class="x-ap__b x-ap__pp" type="button" data-a="toggle" aria-label="Play (K)" title="Play (K)">' + ICON.pp + '</button>' +
+              '<button class="x-ap__b x-ap__t" type="button" data-a="back10" aria-label="Back 10 seconds (J)" title="Back 10 seconds (J)">−10s</button>' +
+              '<button class="x-ap__b x-ap__t" type="button" data-a="fwd10" aria-label="Forward 10 seconds (L)" title="Forward 10 seconds (L)">+10s</button>' +
               '<label class="x-ap__speed x-ap__t"><span class="x-ap__sr">Speed</span><select class="x-ap__b" data-r="speed" aria-label="Playback speed">' +
                 SPEEDS.map(function (s) { return '<option value="' + s + '"' + (s === 1 ? " selected" : "") + ">" + s + "×</option>"; }).join("") +
               "</select></label>" +
@@ -126,7 +138,7 @@
               '<button class="x-ap__b x-ap__wide" type="button" data-a="theater" aria-pressed="false">Theater</button>' +
               '<button class="x-ap__b" type="button" data-a="fs">Fullscreen</button>' +
               '<button class="x-ap__b x-ap__ytb" type="button" data-a="native" aria-label="Switch to YouTube controls" data-tip="Switch to YouTube controls">' + svg('<rect x="2.5" y="5" width="19" height="14" rx="4"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/>') + "</button>" +
-              '<button class="x-ap__b x-ap__popb" type="button" data-a="pop" aria-label="Pop out (I)" data-tip="Pop out (I)">' + IC.pop + "</button>" +
+              '<button class="x-ap__b x-ap__popb" type="button" data-a="pop" aria-label="Picture-in-picture: pop out (I)" data-tip="Picture-in-picture (I)">' + IC.pop + "</button>" +
               '<button class="x-ap__b" type="button" data-a="keys" aria-label="Keyboard shortcuts">?</button>' +
             "</div>" +
           "</div>" +
@@ -146,7 +158,7 @@
         "<h3>Keyboard shortcuts</h3>" +
         "<dl>" +
           [["Space / K", "Play or pause"], ["J / L", "Back or forward 10 seconds"], ["← / →", "Back or forward 5 seconds"], ["M", "Mute"], ["F", "Fullscreen"],
-            ["T", "Theater mode"], ["I", "Pop out or dock"], ["N / P", "Next or previous video"], ["Shift + > / <", "Faster or slower"], ["?", "This sheet"]]
+            ["T", "Theater mode"], ["I", "Pop out or dock"], ["Shift + N / P", "Next or previous video"], ["Shift + > / <", "Faster or slower"], ["?", "This sheet"]]
             .map(function (r) { return "<div><dt><kbd>" + r[0] + "</kbd></dt><dd>" + r[1] + "</dd></div>"; }).join("") +
         "</dl>" +
         '<div class="links"><button class="btn" type="button" data-a="sheetclose">Close</button></div>' +
@@ -159,6 +171,12 @@
     var info = q(".x-ap__info"), ytA = q('[data-r="yt"]'), status = q(".x-ap__status"), sheet = q(".x-ap__sheet"), autoB = q('[data-a="auto"]');
 
     var say = function (t) { status.textContent = t; clearTimeout(say.t); say.t = setTimeout(function () { status.textContent = ""; }, 2500); };
+    /* end screen: closing it also stops any Autoplay-next countdown */
+    var upT = 0, upI = 0, upNext = null, upSugs = [];
+    var closeUp = function () {
+      clearTimeout(upT); clearInterval(upI); upT = upI = 0;
+      upnext.hidden = true; upnext.classList.remove("is-counting"); upnext.innerHTML = "";
+    };
     var now = function () { try { return P.yt && P.yt.getCurrentTime ? P.yt.getCurrentTime() || 0 : 0; } catch (e) { return 0; } };
 
     /* While the site player is not playing (before the first frame, paused or ended), the site's own cover hides
@@ -178,9 +196,16 @@
         fadeT = setTimeout(function () { fadeT = 0; cover.classList.remove("is-fading"); if (!root.classList.contains("is-cover")) cover.hidden = true; }, 320);
         return;
       }
+      var appearing = cover.hidden || !!fadeT;
       if (fadeT) { clearTimeout(fadeT); fadeT = 0; }
       cover.classList.remove("is-fading");
       cover.hidden = false;
+      /* on pause the big button fades back in showing ❚❚, then morphs to ▶ */
+      var bigB = cover.querySelector(".x-ap__big");
+      if (appearing && P.shown && !P.ended) {
+        bigB.classList.add("is-on");
+        requestAnimationFrame(function () { requestAnimationFrame(function () { bigB.classList.remove("is-on"); ripple(bigB); }); });
+      } else if (!P.playing) bigB.classList.remove("is-on");
       var src = "https://i.ytimg.com/vi/" + encodeURIComponent(P.video.id) + "/hqdefault.jpg";
       if (coverImg.dataset.src !== src) { coverImg.dataset.src = src; coverImg.style.backgroundImage = 'url("' + src + '")'; }
       var t = P.ended ? (P.dur || now()) : now();
@@ -188,7 +213,14 @@
       cover.querySelector(".x-ap__big").setAttribute("aria-label", (P.ended ? "Play again: " : "Play: ") + P.video.t);
     };
     var paintToggle = function () {
-      root.querySelectorAll('[data-a="toggle"]:not(.x-ap__big)').forEach(function (b) { b.innerHTML = P.playing ? ICON.pause : ICON.play; b.setAttribute("aria-label", P.playing ? "Pause" : "Play"); });
+      root.querySelectorAll('[data-a="toggle"]:not(.x-ap__big)').forEach(function (b) {
+        var was = b.classList.contains("is-on");
+        b.classList.toggle("is-on", P.playing);
+        var l = P.playing ? "Pause (K)" : "Play (K)";
+        b.setAttribute("aria-label", l); b.setAttribute("title", l);
+        if (was !== P.playing) ripple(b);
+      });
+      root.classList.toggle("is-paused-state", P.started && !P.playing);
       paintCover();
       root.classList.toggle("is-playing", P.playing);
       if (typeof wake === "function") wake();
@@ -204,7 +236,7 @@
       var pr = progress(v.id), len = v.len ? '<span class="x-ap__tag">' + esc(v.len) + "</span>" : "";
       poster.innerHTML =
         '<img src="https://i.ytimg.com/vi/' + esc(v.id) + '/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async" />' +
-        '<button class="x-ap__big" type="button" data-a="play" aria-label="Play: ' + esc(v.t) + '">' + ICON.big + "</button>" +
+        '<button class="x-ap__big" type="button" data-a="play" aria-label="Play: ' + esc(v.t) + '" title="Play (K)">' + ICON.pp + "</button>" +
         '<div class="x-ap__cap"><p class="x-ap__ctitle">' + esc(v.t) + "</p>" +
           '<p class="x-ap__cmeta">' + [esc(v.c), len].filter(Boolean).join(" ") +
           (pr.watched ? ' <span class="x-ap__tag x-ap__tag--done">✓ Watched</span>' : "") +
@@ -237,6 +269,7 @@
       if (tick) return;
       tick = setInterval(function () {
         paintTime();
+        emit("tick", now());
         /* the start cover's own time line follows playback too, until the cover fades */
         if (root.classList.contains("is-cover") && P.playing) paintCover();
         if (P.playing && ++saveT % 10 === 0) record(P.video.id, now(), P.dur);
@@ -253,7 +286,7 @@
       frame.innerHTML = "";
       root.classList.remove("is-started", "is-basic");
       seek.value = 0; seek.max = 0; tCur.textContent = "0:00"; tDur.textContent = "0:00";
-      upnext.hidden = true;
+      closeUp();
       paintToggle();
     };
 
@@ -285,7 +318,7 @@
       var v = P.video; if (!v) return;
       setActive(); P.suppress = false;
       if (P.started) { if (P.yt && P.yt.playVideo) { if (P.ended) { try { P.yt.seekTo(0, true); } catch (e) {} } P.yt.playVideo(); } return; }
-      P.started = true; P.suppress = false; upnext.hidden = true; P.pending = true;
+      P.started = true; P.suppress = false; closeUp(); P.pending = true;
       root.classList.add("is-started");
       paintCover();
       var start = P.startAt > 0 ? Math.floor(P.startAt) : progress(v.id).pos, tok = P.token, done = false;
@@ -327,7 +360,7 @@
                 if (tok !== P.token) return;
                 var s = e.data;
                 P.playing = s === 1 || s === 3;
-                if (s === 1) { P.ended = false; upnext.hidden = true; startTick(); paintTime(); }
+                if (s === 1) { P.ended = false; closeUp(); startTick(); paintTime(); }
                 if (s === 0 || s === 2) P.pending = false;
                 /* reveal: one-shot, armed by the first PLAYING and held for 2500ms; buffering again before it fires re-arms it */
                 if (s === 1 && !P.shown && !P.revealT) {
@@ -426,7 +459,7 @@
       say("Speed " + r + "×");
       if (P.started) emit("flash", "rate:" + r);
     };
-    var stepRate = function (dir) { var i = SPEEDS.indexOf(P.rate); i = Math.max(0, Math.min(SPEEDS.length - 1, (i < 0 ? 1 : i) + dir)); setRate(SPEEDS[i]); };
+    var stepRate = function (dir) { var i = SPEEDS.indexOf(P.rate); i = Math.max(0, Math.min(SPEEDS.length - 1, (i < 0 ? SPEEDS.indexOf(1) : i) + dir)); setRate(SPEEDS[i]); };
     var mute = function () {
       P.muted = !P.muted;
       try { if (P.yt) P.muted ? P.yt.mute() : P.yt.unMute(); } catch (e) {}
@@ -434,7 +467,10 @@
     };
     var theater = function () {
       P.wide = !P.wide;
-      q('[data-a="theater"]').setAttribute("aria-pressed", P.wide);
+      var tbn = q('[data-a="theater"]');
+      tbn.setAttribute("aria-pressed", P.wide);
+      tbn.textContent = P.wide ? "Exit theater" : "Theater";
+      tbn.setAttribute("title", (P.wide ? "Exit theater mode" : "Theater mode") + " (T)");
       root.classList.toggle("is-wide", P.wide);
       if (opts.onTheater) opts.onTheater(P.wide);
     };
@@ -466,16 +502,71 @@
       load(P.queue[i], { queue: P.queue, index: i });
       if (andPlay) play();
     };
-    var onEnded = function () {
-      var n = P.queue.length > 1 ? P.queue[(P.index + 1) % P.queue.length] : null;
-      if (!n) return;
-      if (store.auto) { setTimeout(function () { go(1, true); }, 0); return; }
-      upnext.innerHTML = '<div class="x-ap__upin"><p class="x-ap__uplab">Up next</p><img src="https://i.ytimg.com/vi/' + esc(n.id) + '/hqdefault.jpg" alt="" width="320" height="180" loading="lazy" decoding="async" />' +
-        '<p class="x-ap__ctitle">' + esc(n.t) + '</p><p class="x-ap__cmeta">' + esc(n.c || "") + "</p>" +
-        '<div class="x-ap__upbtns"><button class="x-ap__b x-ap__b--solid" type="button" data-a="upplay">' + ICON.play + " Play</button>" +
-        '<button class="x-ap__b" type="button" data-a="upcancel">Cancel</button></div></div>';
-      upnext.hidden = false;
+    /* a picked video joins the queue right after the current one, so Next still follows on */
+    var loadInQueue = function (v) {
+      var i = P.queue.indexOf(v);
+      if (i >= 0) { load(v, { queue: P.queue, index: i }); return; }
+      var qq = P.queue.slice(); qq.splice(P.index + 1, 0, v);
+      load(v, { queue: qq, index: P.index + 1 });
     };
+    /* suggestions: same person first, then same kind of talk, then the rest of the queue */
+    var suggest = function (cur, skip, n) {
+      var out = [], seen = {}; seen[cur.id] = 1; skip.forEach(function (x) { if (x) seen[x.id] = 1; });
+      var add = function (x) { if (out.length < n && x && x.id && !seen[x.id]) { seen[x.id] = 1; out.push(x); } };
+      var pool = LIB.length ? LIB : P.queue, cp = cur.p || [];
+      if (cp.length) pool.forEach(function (x) { if ((x.p || []).some(function (id) { return cp.indexOf(id) >= 0; })) add(x); });
+      if (cur.k) pool.forEach(function (x) { if (x.k === cur.k) add(x); });
+      P.queue.forEach(add);
+      return out;
+    };
+    var yr = function (v) { var m = String(v.d || "").match(/\d{4}/); return m ? m[0] : ""; };
+    var thumbUrl = function (id) { return "https://i.ytimg.com/vi/" + encodeURIComponent(id) + "/hqdefault.jpg"; };
+    var onEnded = function () {
+      var cur = P.video; if (!cur) return;
+      var n = P.queue.length > 1 ? P.queue[(P.index + 1) % P.queue.length] : null;
+      if (!n || n.id === cur.id) n = suggest(cur, [], 1)[0] || null;
+      if (!n) return;
+      upNext = n; upSugs = suggest(cur, [n], 3);
+      var auto = !!store.auto, SEC = 8, R = 20, C = (2 * Math.PI * R).toFixed(2);
+      var meta = [esc(n.c || ""), yr(n)].filter(Boolean).join(" · ");
+      upnext.innerHTML =
+        '<div class="x-ap__upbg" aria-hidden="true" style="background-image:url(&quot;' + thumbUrl(cur.id) + '&quot;)"></div>' +
+        '<div class="x-ap__upbox" role="group" aria-label="Up next">' +
+          '<div class="x-ap__upmain">' +
+            '<button class="x-ap__upthumb" type="button" data-a="upplay" aria-label="Play next: ' + esc(n.t) + '"><img src="' + thumbUrl(n.id) + '" alt="" width="480" height="270" decoding="async" />' +
+              (n.len ? '<span class="x-ap__updur">' + esc(n.len) + "</span>" : "") + "</button>" +
+            '<div class="x-ap__uptext">' +
+              '<p class="x-ap__uplab">Up next</p>' +
+              '<p class="x-ap__uptitle">' + esc(n.t) + "</p>" +
+              (meta ? '<p class="x-ap__upmeta">' + meta + "</p>" : "") +
+              '<div class="x-ap__upbtns">' +
+                '<button class="x-ap__b x-ap__b--solid x-ap__upgo" type="button" data-a="upplay" aria-label="Play next' + (auto ? ", starts in " + SEC + " seconds" : "") + '">' +
+                  (auto ? '<span class="x-ap__ring" aria-hidden="true"><svg viewBox="0 0 48 48" width="26" height="26"><circle cx="24" cy="24" r="' + R + '" class="x-ap__ringbg"/><circle cx="24" cy="24" r="' + R + '" class="x-ap__ringfg" style="stroke-dasharray:' + C + ";--c:" + C + ";animation-duration:" + SEC + 's"/></svg><b>' + SEC + "</b></span>" : '<span class="x-ap__upic" aria-hidden="true">▶</span>') +
+                  '<span class="x-ap__uplbl">Play next</span></button>' +
+                '<button class="x-ap__b x-ap__upghost" type="button" data-a="upreplay" aria-label="Replay"><span aria-hidden="true">↺</span><span class="x-ap__uplbl">Replay</span></button>' +
+                '<button class="x-ap__b x-ap__upghost" type="button" data-a="upcancel" aria-label="Close"><span aria-hidden="true">✕</span><span class="x-ap__uplbl">Close</span></button>' +
+              "</div>" +
+              (auto ? '<p class="x-ap__upnote" aria-live="polite">Autoplay next is on</p>' : "") +
+            "</div>" +
+          "</div>" +
+          (upSugs.length ? '<div class="x-ap__upsugs" aria-label="More suggestions">' + upSugs.map(function (s, i) {
+            return '<button class="x-ap__upsug" type="button" data-a="upsug" data-i="' + i + '" aria-label="Load ' + esc(s.t) + '"><span class="x-ap__upsth"><img src="' + thumbUrl(s.id) + '" alt="" width="160" height="90" loading="lazy" decoding="async" /></span><span class="x-ap__upst">' + esc(s.t) + "</span></button>";
+          }).join("") + "</div>" : "") +
+        "</div>";
+      upnext.hidden = false;
+      if (auto) {
+        upnext.classList.add("is-counting");
+        var left = SEC, num = upnext.querySelector(".x-ap__ring b");
+        upI = setInterval(function () { left = Math.max(0, left - 1); if (num) num.textContent = left; }, 1000);
+        upT = setTimeout(function () { var nx = upNext; closeUp(); if (nx) { loadInQueue(nx); play(); } }, SEC * 1000);
+      }
+    };
+    /* Esc closes the end screen first, before any other Esc handler runs */
+    window.addEventListener("keydown", function (ev) {
+      if (ev.key !== "Escape" || upnext.hidden || document.querySelector("dialog[open]") || document.querySelector(".x-apx-menu:not([hidden])")) return;
+      if (!root.isConnected || !root.offsetParent && !root.getClientRects().length) return;
+      ev.preventDefault(); ev.stopPropagation(); closeUp();
+    }, true);
 
     var copy = function () {
       /* always carries the current time, or the saved resume point before playback starts */
@@ -496,6 +587,7 @@
     root.addEventListener("click", function (ev) {
       var b = ev.target.closest("[data-a]"); if (!b || !root.contains(b)) return;
       var a = b.dataset.a;
+      if (a === "play" || a === "toggle") ripple(b);
       if (a === "play") play();
       else if (a === "toggle") toggle();
       else if (a === "back10") skip(-10);
@@ -513,8 +605,10 @@
       else if (a === "copy") copy();
       else if (a === "keys") showKeys();
       else if (a === "sheetclose") sheet.close();
-      else if (a === "upplay") go(1, true);
-      else if (a === "upcancel") upnext.hidden = true;
+      else if (a === "upplay") { var nx = upNext; closeUp(); if (nx) { loadInQueue(nx); play(); } }
+      else if (a === "upreplay") { closeUp(); if (P.started && P.yt && P.yt.seekTo) { try { P.yt.seekTo(0, true); } catch (e) {} P.yt.playVideo(); } else play(); }
+      else if (a === "upcancel") closeUp();
+      else if (a === "upsug") { var sv = upSugs[+b.dataset.i]; if (sv) { closeUp(); keepScroll(function () { loadInQueue(sv); }); } }
     });
     ytA.addEventListener("click", function () { if (P.started) pause(); paintLink(); });
     ytA.addEventListener("pointerenter", paintLink);
@@ -552,8 +646,8 @@
         case "m": mute(); return true;
         case "f": fullscreen(); return true;
         case "t": if (opts.onTheaterKey) opts.onTheaterKey(); else theater(); return true;
-        case "n": go(1, false); return true;
-        case "p": go(-1, false); return true;
+        case "n": if (!ev.shiftKey) return false; go(1, false); return true;
+        case "p": if (!ev.shiftKey) return false; go(-1, false); return true;
       }
       return false;
     };
@@ -578,7 +672,14 @@
       /* Stop and keep the poster; the position is saved so the poster offers Resume. */
       stop: function () { teardown(); paintPoster(); },
       playAt: function (t) { P.startAt = t > 0 ? t : 0; P.hold = Date.now() + 1500; if (P.started && P.yt && P.yt.seekTo && t > 0) { try { P.yt.seekTo(t, true); } catch (e) {} } play(); },
-      hold: function () { P.hold = Date.now() + 1500; },
+      hold: function (ms) { P.hold = Date.now() + (ms || 1500); },
+      setRate: setRate,
+      rate: function () { return P.rate; },
+      duration: function () { return P.dur; },
+      now: now,
+      seekTo: function (t) { if (P.yt && P.yt.seekTo && !P.basic) { try { P.yt.seekTo(Math.max(0, t), true); } catch (e) {} paintTime(); } },
+      flash: function (k) { emit("flash", k); },
+      seek: seek,
       suppress: function () { P.suppress = true; },
       setWide: function (on) { if (P.wide !== !!on) theater(); },
       isWide: function () { return P.wide; },
@@ -666,16 +767,25 @@
       if (L.hs == null) de.removeAttribute("style"); else de.setAttribute("style", L.hs);
       de.classList.remove("x-modal-open");
     };
+    /* wide is per shape: switching shape, minimising or closing drops it, and the corner window gets its width back */
+    var clearWide = function () {
+      if (!isWide) return;
+      isWide = false; el.classList.remove("is-wide");
+      if (!modal && wPrev) S.w = wPrev;
+      paintWide();
+    };
     var paintMode = function () {
       if (!modeB) return;
-      var l = modal ? "Shrink to mini player" : "Expand";
-      modeB.innerHTML = modal ? IC.pop : IC.expand;
-      modeB.setAttribute("aria-label", l); modeB.setAttribute("title", l);
+      var l = modal ? "Pop out to the corner (I)" : "Expand to the centre window";
+      setBtn("mode", modal ? IC.pop : IC.expand, l);
+      paintWide();
+      setBtn("min", isMin ? IC.restore : IC.min, isMin ? "Restore" : "Minimise", isMin);
       el.setAttribute("aria-label", modal ? "Video player" : "Mini player");
     };
     var setModal = function (on) {
       on = !!on;
       if (on === modal) return;
+      clearWide();
       modal = on;
       el.classList.toggle("is-modal", on);
       if (on) { el.setAttribute("role", "dialog"); el.setAttribute("aria-modal", "true"); }
@@ -746,11 +856,34 @@
     var paintTitle = function (v) { titleEl.textContent = v.t; titleEl.title = v.t; pillTitle.textContent = v.t; paintLinks(); };
     var paintPill = function (on) {
       if (!pillToggle) return;
-      pillToggle.innerHTML = on ? ICON.pause : ICON.play;
-      pillToggle.setAttribute("aria-label", on ? "Pause" : "Play");
+      pillToggle.classList.toggle("is-on", !!on);
+      pillToggle.setAttribute("aria-label", on ? "Pause (K)" : "Play (K)");
+      pillToggle.setAttribute("title", on ? "Pause (K)" : "Play (K)");
     };
 
-    var tb = function (a, label, icon) { return '<button class="x-pop__i" type="button" data-p="' + a + '" aria-label="' + label + '" title="' + label + '">' + icon + "</button>"; };
+    var tb = function (a, label, icon, pressed) { return '<button class="x-pop__i" type="button" data-p="' + a + '" aria-label="' + label + '" title="' + label + '"' + (pressed ? ' aria-pressed="false"' : "") + ">" + icon + "</button>"; };
+    /* one place that paints every header button's icon, label and pressed state */
+    var setBtn = function (k, icon, label, pressed) {
+      var b = el && el.querySelector('.x-pop__tools [data-p="' + k + '"]'); if (!b) return;
+      if (b.__ic !== icon) { b.__ic = icon; b.innerHTML = icon; }
+      b.setAttribute("aria-label", label); b.setAttribute("title", label);
+      if (pressed != null) b.setAttribute("aria-pressed", pressed ? "true" : "false");
+    };
+    var isWide = false, wPrev = 0;
+    var paintWide = function () { setBtn("wide", isWide ? IC.unwide : IC.wide, isWide ? "Exit wide window (T)" : "Wide window (T)", isWide); };
+    var setWide = function (on) {
+      on = !!on;
+      if (!el || on === isWide) { paintWide(); return; }
+      isWide = on;
+      el.classList.toggle("is-wide", on);
+      if (!modal) {
+        if (on) { wPrev = S.w; setWidth(Math.min(960, Math.floor(vw() * 0.9))); }
+        else setWidth(wPrev || 400);
+        if (!isMin) el.style.width = S.w + "px";
+        place(); requestAnimationFrame(place);
+      }
+      paintWide();
+    };
     var build = function () {
       if (el) return;
       bd = document.createElement("div");
@@ -765,8 +898,8 @@
           '<div class="x-pop__bar">' +
             '<p class="x-pop__title"></p>' +
             '<div class="x-pop__tools">' +
-              tb("mode", "Expand", IC.expand) + tb("min", "Minimize", IC.min) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Theater mode", IC.wide) + tb("fs", "Fullscreen", IC.fs) +
-              '<a class="x-pop__i" data-p="yt" href="#" target="_blank" rel="noopener" aria-label="Watch on YouTube at the current time" title="Watch on YouTube at the current time">' + IC.yt + "</a>" +
+              tb("mode", "Expand", IC.expand) + tb("min", "Minimise", IC.min, true) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Wide window (T)", IC.wide, true) + tb("fs", "Fullscreen (F)", IC.fs, true) +
+              '<a class="x-pop__i" data-p="yt" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Open on YouTube at the current time" title="Open on YouTube at the current time">' + IC.yt + "</a>" +
               tb("close", "Close (Esc)", IC.close) +
             "</div>" +
           "</div>" +
@@ -775,8 +908,8 @@
           '<button class="x-pop__grip" type="button" data-p="grip" aria-label="Resize: drag, or use the arrow keys">' + IC.grip + "</button>" +
         "</div>" +
         '<div class="x-pop__pill">' +
-          '<button class="x-pop__i" type="button" data-p="ptoggle" aria-label="Play">' + ICON.play + "</button>" +
-          '<button class="x-pop__pt" type="button" data-p="restore" aria-label="Restore the pop-out player"><span></span>' + IC.restore + "</button>" +
+          '<button class="x-pop__i x-pop__pp" type="button" data-p="ptoggle" aria-label="Play (K)" title="Play (K)">' + ICON.pp + "</button>" +
+          '<button class="x-pop__pt" type="button" data-p="restore" aria-label="Restore the window" title="Restore the window" aria-pressed="true"><span></span>' + IC.restore + "</button>" +
         "</div>";
       document.body.appendChild(el);
       var g = function (s) { return el.querySelector(s); };
@@ -787,9 +920,23 @@
         floating: true,
         onChange: function (v) { paintTitle(v); paintList(); },
         onPlayState: function (on) { paintPill(on); paintLinks(); },
-        onTheaterKey: function () { wide(); }
+        onTheaterKey: function () { setWide(!isWide); }
       });
 
+      /* header buttons: each one bound directly, acting on the first click; the bar itself is never a drag target */
+      var act = function (a, ev) {
+        if (a === "mode") { modal ? shrink() : expand(); }
+        else if (a === "min") minimize();
+        else if (a === "dock") dock();
+        else if (a === "wide") setWide(!isWide);
+        else if (a === "fs") inst.fullscreen();
+        else if (a === "close") close();
+        else if (a === "yt") { paintLinks(); if (inst.isPlaying()) inst.pause(); return; }
+        if (ev) ev.preventDefault();
+      };
+      el.querySelectorAll(".x-pop__tools [data-p]").forEach(function (b) {
+        b.addEventListener("click", function (ev) { ev.stopPropagation(); act(b.dataset.p, ev); });
+      });
       el.addEventListener("click", function (ev) {
         var qb = ev.target.closest("[data-pq]");
         if (qb) {
@@ -799,39 +946,33 @@
         }
         var b = ev.target.closest("[data-p]"); if (!b) { if (isMin && ev.target.closest(".x-pop__pill")) restore(); return; }
         var a = b.dataset.p;
-        if (a === "mode") modal ? shrink() : expand();
-        else if (a === "min") { ev.preventDefault(); ev.stopPropagation(); minimize(); }
-        else if (a === "restore") { ev.preventDefault(); ev.stopPropagation(); restore(); }
-        else if (a === "ptoggle") inst.toggle();
-        else if (a === "dock") dock();
-        else if (a === "wide") wide();
-        else if (a === "fs") inst.fullscreen();
-        else if (a === "close") close();
-        else if (a === "yt") { paintLinks(); if (inst.isPlaying()) inst.toggle(); }
+        if (a === "restore") { ev.preventDefault(); ev.stopPropagation(); restore(); }
+        else if (a === "ptoggle") { inst.toggle(); }
       });
       ytA.addEventListener("pointerenter", paintLinks);
       ytA.addEventListener("focus", paintLinks);
 
-      /* drag by the title bar */
-      bar.addEventListener("pointerdown", function (ev) {
-        if (modal || ev.button !== 0 || ev.target.closest("button, a")) return;
+      /* drag by the title only (corner window); the buttons beside it never start a drag */
+      titleEl.addEventListener("pointerdown", function (ev) {
+        if (modal || isMin || ev.button !== 0) return;
         ev.preventDefault();
-        try { bar.setPointerCapture(ev.pointerId); } catch (e) {}
+        try { titleEl.setPointerCapture(ev.pointerId); } catch (e) {}
         drag = { id: ev.pointerId, sx: ev.clientX, sy: ev.clientY, x: S.x, y: S.y };
         S.corner = null; el.classList.add("is-drag");
       });
-      bar.addEventListener("pointermove", function (ev) {
+      titleEl.addEventListener("pointermove", function (ev) {
         if (!drag || ev.pointerId !== drag.id) return;
         S.x = drag.x + ev.clientX - drag.sx; S.y = drag.y + ev.clientY - drag.sy; place();
       });
       var endDrag = function (ev) {
         if (!drag || ev.pointerId !== drag.id) return;
         drag = null; el.classList.remove("is-drag");
-        try { bar.releasePointerCapture(ev.pointerId); } catch (e) {}
+        try { titleEl.releasePointerCapture(ev.pointerId); } catch (e) {}
         snap();
       };
-      bar.addEventListener("pointerup", endDrag);
-      bar.addEventListener("pointercancel", endDrag);
+      titleEl.addEventListener("pointerup", endDrag);
+      titleEl.addEventListener("pointercancel", endDrag);
+      titleEl.addEventListener("lostpointercapture", endDrag);
 
       /* resize from the bottom-right handle; the video keeps 16:9 */
       var grip = g(".x-pop__grip"), rs = null;
@@ -867,7 +1008,7 @@
     };
 
     var unmark = function () { if (src) src.root.classList.remove("is-out"); };
-    var unMin = function () { if (isMin) { isMin = false; el.classList.remove("is-min"); win.inert = false; } };
+    var unMin = function () { if (isMin) { isMin = false; el.classList.remove("is-min"); win.inert = false; paintMode(); } };
     var show = function () {
       el.hidden = false;
       unMin();
@@ -916,7 +1057,7 @@
     };
     var hide = function () {
       unmark(); src = null; auto = false;
-      unMin();
+      unMin(); clearWide();
       el.hidden = true;
       if (modal) { setModal(false); refocus(); }
     };
@@ -931,8 +1072,14 @@
       if (!cur || cur.id !== st.video.id || st.playing) home.load(st.video, st.queue && st.queue.length ? { queue: st.queue, index: st.index } : null);
       else home.refresh();
       if (visible(home)) {
-        /* the page never moves on dock: the video goes back into its player wherever that is */
         if (st.playing) home.playAt(st.time);
+        /* the page stays put when the player is already on screen; when it is not, the player is brought into view,
+           or the docked video would be out of sight and pop straight back out */
+        var hr = home.root.getBoundingClientRect(), vis = Math.min(hr.bottom, vh()) - Math.max(hr.top, 0);
+        if (vis < Math.min(hr.height, vh()) * 0.5) {
+          home.hold(3000);
+          try { home.root.scrollIntoView({ block: "center", behavior: still() ? "auto" : "smooth" }); } catch (e) { home.root.scrollIntoView(); }
+        }
       }
       return home;
     };
@@ -959,6 +1106,7 @@
       if (!S.placed) S.placed = true;
       el.classList.remove("is-modal", "is-enter", "is-leave");
       isMin = true; el.classList.add("is-min"); el.style.width = ""; win.inert = true;
+      paintMode();
       place();
       requestAnimationFrame(place);
       var r = el.querySelector('[data-p="restore"]'); if (r) r.focus({ preventScroll: true });
@@ -967,6 +1115,7 @@
     var restore = function () {
       if (!isMin) return;
       isMin = false; el.classList.remove("is-min"); win.inert = false;
+      paintMode();
       setWidth(S.w); el.style.width = S.w + "px";
       place();
     };
@@ -1094,14 +1243,17 @@
       p.root.classList.toggle("is-fs", on);
       p.root.querySelectorAll('[data-a="fs"]').forEach(function (b) {
         var l = b.querySelector(".x-apx-lbl");
-        if (l) l.textContent = label; else b.textContent = label;
+        if (l) { l.textContent = label; var sv = b.querySelector("svg"); if (sv) sv.outerHTML = on ? IC.fsx : IC.fs; } else b.textContent = label;
+        b.setAttribute("title", label + " (F)");
         if (b.hasAttribute("aria-label")) b.setAttribute("aria-label", label + " (F)");
         if (b.hasAttribute("data-tip")) b.setAttribute("data-tip", label + " (F)");
         b.setAttribute("aria-pressed", on ? "true" : "false");
       });
     });
     document.querySelectorAll('.x-pop [data-p="fs"]').forEach(function (b) {
-      var on = !!fe && !!b.closest(".x-pop") && b.closest(".x-pop").contains(fe), label = on ? "Exit fullscreen" : "Fullscreen";
+      var on = !!fe && !!b.closest(".x-pop") && b.closest(".x-pop").contains(fe), label = on ? "Exit fullscreen (F)" : "Fullscreen (F)";
+      var ic = on ? IC.fsx : IC.fs;
+      if (b.__ic !== ic) { b.__ic = ic; b.innerHTML = ic; }
       b.setAttribute("aria-label", label); b.setAttribute("title", label); b.setAttribute("aria-pressed", on ? "true" : "false");
     });
   };
@@ -1128,6 +1280,8 @@
 
   window.ArchivePlayer = {
     keepScroll: keepScroll,
+    /* the full video library, for end-screen suggestions */
+    library: function (l) { if (Array.isArray(l)) LIB = l; },
     /* the saved resume position in seconds (0 when none or watched), and whether the player counts it watched */
     position: function (id) { return progress(id); },
     flush: flushAll,

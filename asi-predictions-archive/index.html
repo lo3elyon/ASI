@@ -55,8 +55,8 @@
     <link rel="stylesheet" href="hark.css?v=066db706" />
     <link rel="stylesheet" href="hark-charts.css?v=7d5ac824" />
     <link rel="stylesheet" href="hark-hero.css?v=a0abb3ca" />
-    <link rel="stylesheet" href="player.css?v=04fe0b5d" />
-    <link rel="stylesheet" href="watch-hub.css?v=5ed21fe7" />
+    <link rel="stylesheet" href="player.css?v=747f33dd" />
+    <link rel="stylesheet" href="watch-hub.css?v=f56b2fb8" />
     <link rel="stylesheet" href="learn.css?v=c01c2145" />
     <style>
       .x-wh__tab { min-height: var(--tap); }
@@ -98,9 +98,12 @@
       .x-era:first-child { margin-top: 0; }
       .x-era h3 { font: var(--type-title); }
       .x-era p { color: var(--text-secondary); max-width: 70ch; }
-      /* masonry: multi-columns, so short cards pack with no row gaps */
-      .x-grid { display: block; column-width: 340px; column-gap: 16px; margin-top: 16px; }
-      .x-grid > * { -webkit-column-break-inside: avoid; page-break-inside: avoid; break-inside: avoid; margin: 0 0 12px; width: 100%; }
+      /* stable grid: appending only adds cards at the end; existing cards never move */
+      .x-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr)); align-items: start; gap: 14px; margin-top: 16px; }
+      .x-grid > * { margin: 0; min-width: 0; }
+      .x-showmore { display: flex; justify-content: center; margin-top: 16px; }
+      .x-showmore[hidden] { display: none; }
+      .x-showmore .btn, .x-tt__more .btn, #pmore { min-height: var(--tap); cursor: pointer; }
       /* anchored jumps clear the sticky nav */
       .section, .section .head, .section h2, .main h1, .x-hi__tabs, .x-hi__item { scroll-margin-top: calc(var(--stick-top, 76px) + 8px); }
       .x-card { display: flex; flex-direction: column; gap: 10px; padding: 20px; border-radius: var(--r-m); background: var(--fill-tertiary); min-width: 0; }
@@ -171,8 +174,10 @@
       .x-ask form { display: flex; gap: 6px; }
       .x-ask form .x-input { min-width: 0; }
     </style>
-    <link rel="stylesheet" href="theme.css?v=8f14318e" />
-    <link rel="stylesheet" href="fixes.css?v=849f8710" />
+    <link rel="stylesheet" href="theme.css?v=fe6b93a4" />
+    <link rel="stylesheet" href="fixes.css?v=97b0d314" />
+    <link rel="stylesheet" href="watch-panel.css?v=5fb8d42f" />
+    <link rel="stylesheet" href="player-plus.css?v=92935ea4" />
     <script>
       /* Anchored jumps: lazy lists pause while a jump settles (goto.js runs every jump). */
       window.XJump = { active: false, _f: [], onEnd: function (f) { this._f.push(f); } };
@@ -241,7 +246,7 @@
             </div>
           </div>
           <div id="arch"></div>
-          <div id="sentinel" class="x-sent" aria-hidden="true"></div>
+          <div class="x-showmore" id="archMoreRow" hidden><button class="btn" type="button" id="archMore">Show more</button></div>
         </section>
 
         <section class="section" id="people" data-nav="People">
@@ -525,8 +530,9 @@
       }
       curGrid.insertAdjacentHTML("beforeend", card(e));
     }
-    /* a fixed-height placeholder holds the next batch's first space while more remain */
-    $("#sentinel").classList.toggle("x-lazy-ph", shown < list.length);
+    /* explicit Show more: nothing is appended unless the reader asks */
+    $("#archMoreRow").hidden = shown >= list.length;
+    $("#archMore").textContent = "Show more (" + (list.length - shown) + " left)";
   };
   var sync = function () {
     document.querySelectorAll("[data-era]").forEach(function (b) { b.setAttribute("aria-pressed", S.eras.has(+b.dataset.era)); });
@@ -541,16 +547,13 @@
     arch.innerHTML = ""; shown = 0; curEra = -1;
     $("#count").textContent = list.length + " of " + E.length + " entries";
     sync();
-    $("#sentinel").classList.remove("x-lazy-ph");
+    $("#archMoreRow").hidden = true;
     if (!list.length) arch.innerHTML = '<div class="x-empty"><p>No entries match these filters.</p><button class="btn" type="button" id="resetAll">Clear all filters</button></div>';
     else renderMore();
   };
   var reset = function () { S.q = ""; S.terms = []; $("#q").value = ""; S.eras.clear(); S.topics.clear(); S.video = false; S.focus = null; apply(); };
-  /* Loads more only while the reader scrolls here, never while a nav jump passes through. */
-  var nearSentinel = function () { var r = $("#sentinel").getBoundingClientRect(); return !$("main.main").hidden && r.top < window.innerHeight + 800 && r.top >= 0; };
-  /* never grows while the reader is past the list (sentinel above the viewport): that would push what they see down */
-  new IntersectionObserver(function (en) { if (en[0].isIntersecting && en[0].boundingClientRect.top >= 0 && shown < list.length && !(window.XJump && XJump.active)) renderMore(); }, { rootMargin: "800px" }).observe($("#sentinel"));
-  if (window.XJump) XJump.onEnd(function () { if (shown < list.length && nearSentinel()) renderMore(); });
+  /* The list grows only when the reader clicks Show more; no observer or timer appends cards. */
+  $("#archMore").addEventListener("click", function () { renderMore(); });
 
   var tmr;
   $("#q").addEventListener("input", function () {
@@ -754,12 +757,12 @@
   apply();
 })();
     </script>
-    <script src="player.js?v=ff48eee6"></script>
-    <script src="player-extra.js?v=f93042e4"></script>
-    <script src="watch-hub.js?v=a9d3d214"></script>
-    <script src="theater.js?v=70b416b0"></script>
+    <script src="player.js?v=47e377cb"></script>
+    <script src="player-extra.js?v=eaf20b43"></script>
+    <script src="watch-hub.js?v=4810ec96"></script>
+    <script src="theater.js?v=897f0d65"></script>
     <script src="archive.js?v=5cf5a9b4"></script>
-    <script src="people.js?v=fc2f0356"></script>
+    <script src="people.js?v=4bc90e70"></script>
     <script src="history.js?v=4f7e2343"></script>
     <script src="palette.js?v=e463e2b9"></script>
     <script src="learn.js?v=96f9ef18"></script>

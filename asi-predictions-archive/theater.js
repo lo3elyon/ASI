@@ -30,6 +30,7 @@
     byId[v.id] = v;
     if (v.k) kinds[v.k] = (kinds[v.k] || 0) + 1;
   });
+  if (AP.library) AP.library(V);
   var newest = function (a, b) { return (b.d || "").localeCompare(a.d || "") || 0; };
   var oldest = function (a, b) { return (a.d ? 0 : 1) - (b.d ? 0 : 1) || (a.d || "").localeCompare(b.d || ""); };
   var newestDatedFirst = function (a, b) { return (a.d ? 0 : 1) - (b.d ? 0 : 1) || newest(a, b); };
@@ -65,8 +66,7 @@
           "</div>" +
         "</div>" +
         '<div class="x-tt__grid" id="ttGrid"></div>' +
-        '<div class="x-tt__more"><button class="btn" type="button" id="ttMore">Load more</button></div>' +
-        '<div id="ttSent" class="x-sent" aria-hidden="true"></div>' +
+        '<div class="x-tt__more"><button class="btn" type="button" id="ttMore">Show more</button></div>' +
       "</div>" +
     "</div>";
   var $ = function (id) { return document.getElementById(id); };
@@ -117,8 +117,7 @@
     for (; shown < end; shown++) h += card(filtered[shown], "grid");
     grid.insertAdjacentHTML("beforeend", h);
     more.parentNode.hidden = shown >= filtered.length;
-    more.textContent = "Load more (" + num(filtered.length - shown) + " left)";
-    $("ttSent").classList.toggle("x-lazy-ph", shown < filtered.length);
+    more.textContent = "Show more (" + num(filtered.length - shown) + " left)";
     markCurrent();
   };
   var syncChips = function () {
@@ -130,7 +129,7 @@
   var apply = function () {
     filtered = V.filter(match).sort(F.sort === "new" ? newestDatedFirst : oldest);
     LISTS.grid = filtered;
-    grid.innerHTML = ""; shown = 0; $("ttSent").classList.remove("x-lazy-ph");
+    grid.innerHTML = ""; shown = 0;
     $("ttCount").textContent = num(filtered.length) + " of " + num(V.length) + " talks";
     syncChips();
     if (!filtered.length) { grid.innerHTML = '<div class="x-empty" style="grid-column: 1 / -1"><p>No talks match these filters.</p><button class="btn" type="button" id="ttReset">Clear all filters</button></div>'; more.parentNode.hidden = true; }
@@ -138,15 +137,7 @@
   };
   var reset = function () { F.terms = []; $("ttQ").value = ""; F.kinds.clear(); F.eras.clear(); F.picks = F.neuro = false; F.person = null; $("ttPerson").value = ""; };
   more.addEventListener("click", renderMore);
-  /* Auto-loads only while the reader scrolls the library, never while a nav jump passes through. */
-  var jumping = function () { return !!(window.XJump && window.XJump.active); };
-  if ("IntersectionObserver" in window) new IntersectionObserver(function (en) { if (en[0].isIntersecting && en[0].boundingClientRect.top >= 0 && shown && shown < filtered.length && !jumping()) renderMore(); }, { rootMargin: "600px" }).observe($("ttSent"));
-  if (window.XJump) window.XJump.onEnd(function () {
-    if (!shown || shown >= filtered.length) return;
-    var r = $("ttSent").getBoundingClientRect();
-    /* only when the reader is above the sentinel: growing the library under Learn would push Learn down */
-    if (r.top < window.innerHeight + 600 && r.top >= 0 && r.height) renderMore();
-  });
+  /* The library grows only on a Show more click; no observer or timer appends cards. */
 
   var tmr;
   $("ttQ").addEventListener("input", function () {
