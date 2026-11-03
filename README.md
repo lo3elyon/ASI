@@ -11,6 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
+<a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><img src="https://img.shields.io/badge/New-ASI%20Predictions%20Archive%3A%2078%20entries%2C%2030%20predictions-f59e0b?style=for-the-badge&logo=internetarchive&logoColor=white&labelColor=07111f" alt="ASI Predictions Archive"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Research%20Atlas%3A%20102%20orgs%2C%20228%20people-0891b2?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=07111f" alt="AI Safety Research Atlas"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Researcher%20Library%3A%20844%20videos%2C%20152%20researchers-10b981?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Researcher Library"></a>
 <a href="https://lo3elyon.github.io/ASI/future-of-asi/"><img src="https://img.shields.io/badge/Threshold-Threshold%20Round%203%3A%2025%20routes%2C%203D%20library%2C%20offline-22d3ee?style=for-the-badge&logo=githubpages&logoColor=white&labelColor=07111f" alt="Threshold: The Future of ASI"></a>
@@ -82,6 +83,7 @@ flowchart LR
     L --> E6["Black October 2026<br/>/black-october-2026/"]
     L --> E7["Jacob Coxon on YouTube<br/>/jacob-coxon-podcasts/"]
     L --> E8["AI Safety Full Episodes<br/>/ai-safety-full-episodes/<br/>357 eps, cinema player, Today's picks, Explore"]
+    L --> E12["Before It Was Real: ASI Predictions Archive<br/>/asi-predictions-archive/<br/>78 entries, 3 eras, 40 talks, 30 fact-checked predictions"]
     L --> E11["AI Safety Research Atlas<br/>/ai-safety-research-atlas/<br/>102 orgs, 228 people, 491 videos, warnings by theme"]
     L --> E10["AI Safety Researcher Library<br/>/ai-safety-researcher-library/<br/>152 researchers, 844 videos, paths, glossary"]
     L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>218 researchers, 1,386 signers, 25 routes, 3D library, offline"]
@@ -96,7 +98,7 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6,E7,E8,E9,E10,E11 live
+    class E1,E6,E7,E8,E9,E10,E11,E12 live
     class E2,E3,E4,E5 soon
     class V,B user
 ```
@@ -135,6 +137,12 @@ flowchart LR
 <b>Jacob Coxon on YouTube</b><br>
 <sub>20 hour-plus videos, role filter chips, search and a "Does he speak?" line on every card.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="assets/jacob-coxon-podcasts.jpg" width="92%" alt="Jacob Coxon on YouTube hero"></a>
+
+<br><br>
+
+<b>Before It Was Real: ASI Predictions Archive</b><br>
+<sub>75 years of superintelligence warnings in one searchable archive: 78 entries across three eras, an era timeline with the pivots (backprop, AlexNet, attention, Transformer, GPT-3, ChatGPT), 40 playable talks in a Media Theater, a Prediction Tracker grading 30 calls against Nov 2026, a portrait gallery and an offline "Ask the Archive" chat you can hide.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><img src="assets/asi-predictions-archive.jpg" width="92%" alt="ASI Predictions Archive: vintage computer archive fading into a glowing neural-network brain"></a>
 
 <br><br>
 
@@ -236,6 +244,13 @@ flowchart LR
 <td><sub>Story of his resignation and NYC Council testimony, 6 stat figures, colour-coded role legend, filter chips (Guest, Testimony, Clips, About him, Unverified), live search, 20 video cards with thumbnails, timestamps and summaries, caveats, every link</sub></td>
 <td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
 <td align="center"><sub>2026-10-27</sub></td>
+</tr>
+<tr>
+<td><a href="asi-predictions-archive/"><code>/asi-predictions-archive/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><b>Before It Was Real: ASI Predictions Archive</b></a><br><sub>What pioneers, researchers and neuroscientists said about superintelligence, the control problem and AI safety, from Turing (1951) to Nov 2026, split before deep learning / deep learning era / after ChatGPT, with predictions fact-checked</sub></td>
+<td><sub>Sticky search with highlights (press /), era and topic chips, video-only toggle, era timeline with 6 pivot markers, 78 cards with portraits, 🧠 neuroscientist badges, pull quotes, prediction pills and sources; Media Theater with 40 lite YouTube embeds, Prev/Next and recommendations; Prediction Tracker (30 calls, status chart, predicted-vs-target scatter, fact-check expanders); portrait lightbox; hide/show offline chat</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-11-03</sub></td>
 </tr>
 <tr>
 <td><a href="ai-safety-research-atlas/"><code>/ai-safety-research-atlas/</code></a></td>
@@ -818,6 +833,19 @@ flowchart LR
     class H,RD,VL,LP,GL,PR,VP a
 ```
 
+<a id="04h-asi-predictions-archive"></a>
+<h2>04h. Deep dive: Before It Was Real, the ASI Predictions Archive</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><img src="assets/asi-predictions-archive.jpg" width="100%" alt="ASI Predictions Archive"></a></td>
+<td valign="top">
+<img src="https://img.shields.io/badge/type-archive-f59e0b?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Nov%203%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/entries-78-2563eb?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/talks-40-ef4444?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/predictions-30-16a34a?style=flat-square&labelColor=07111f" alt=""><br><br>
+Going back into history: what did the people who build AI, and the neuroscientists who study the brain, predict about superintelligence before it felt real? <b>21 entries before deep learning</b> (Turing, Wiener, I.J. Good, Simon, Minsky, Moravec, Vinge, Kurzweil, Bill Joy, Yudkowsky, Bostrom, Hawkins, Hofstadter, Omohundro, Markram, Hassabis, Legg), <b>26 from the deep learning era</b> (AlexNet, attention, Bostrom's <i>Superintelligence</i>, Hawking, AlphaGo, Concrete Problems, the Transformer, Russell, Tegmark, GPT-2/3, Anthropic) and <b>31 after ChatGPT</b> (the pause letter, Hinton leaving Google, the CAIS statement, Superalignment, Bletchley, SSI, Nobel prizes, AI 2027, <i>If Anyone Builds It</i>, the Statement on Superintelligence, 2026 policy). The <b>Prediction Tracker</b> grades 30 calls as of 3 Nov 2026: 7 came true (1 on time, 4 early, 2 late), 2 partially, 5 wrong, 3 too early to tell and 13 with deadlines still ahead. Every YouTube ID was checked with YouTube oEmbed. Its own <a href="asi-predictions-archive/README.md">README</a> lists the data files and caveats.
+</td>
+</tr>
+</table>
+
 <a id="04g-research-atlas"></a>
 <h2>04g. Deep dive: AI Safety Research Atlas</h2>
 
@@ -1031,7 +1059,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg, ai-safety-research-atlas.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg, ai-safety-research-atlas.jpg, asi-predictions-archive.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -1045,6 +1073,9 @@ ASI/
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
 ├── future-of-asi/             Threshold: route on the future of ASI, 218 researchers, 1,375 videos, explosion/, library/, shared/, 10 unit course, tools, blog, docs
+├── asi-predictions-archive/   archive route: 78 entries, 3 eras, 40 talks, 30 fact-checked predictions
+│   ├── index.html  hero.jpg  README.md  era_*.json  predictions.json
+│   └── hark.css  hark-hero.css  hark-charts.css  hark.js  hark-charts.js  chart.js  datalabels.js
 ├── ai-safety-research-atlas/  directory route: 102 organisations, 228 people, 491 videos, warnings by theme, timeline
 │   ├── index.html  og.jpg  favicon.svg  sitemap.xml  README.md
 │   ├── assets/                app.js  app.css  cats.css  t.js
@@ -1255,6 +1286,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-11-03</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><b>Before It Was Real: ASI Predictions Archive</b></a> at <code>/asi-predictions-archive/</code>: 78 sourced entries on superintelligence, the control problem and AI safety across three eras (before deep learning 21, deep learning era 26, after ChatGPT 31), 40 oEmbed-verified talks with lite embeds and a Media Theater, a Prediction Tracker of 30 calls fact-checked on 3 Nov 2026 with a status chart and scatter, a portrait lightbox and a hide/show offline "Ask the Archive" chat.</td></tr>
 <tr><td><sub>2026-11-02</sub></td><td><b>AI Safety Full Episodes: six more episodes, 100 % on a full play, deep links, live History</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a> (357 in all): Joscha Bach on machine consciousness (MLST), Yann LeCun's Dartmouth keynote on world models, and four Classics (Buck Shlegeris on insider threats, AXRP 27 AI Control, Apollo's anti-scheming interview, Helen Toner on the jagged frontier); watching a whole episode now always ends at <i>Watched 100%</i>, <code>#/watch/&lt;id&gt;</code> links open the episode, and History refreshes live while you play.</td></tr>
 <tr><td><sub>2026-11-02</sub></td><td><b>AI Safety Full Episodes: Exact, honest progress + months that follow the data</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: progress is tracked per second (1-second bitset), shown as the true share with one decimal (e.g. 14.4 %, 99.2 %) with a "mm:ss of h:mm:ss watched (unique)" tooltip; 100 % and "Watched 100%" only when every second is played, "Marked watched" for manual marks; the 90 % auto-complete is gone everywhere; rewatching never adds minutes, coverage or XP (logged as a Rewatch, time spent kept apart); XP migrated without losing a level; November 2026 (and every later month) now gets its own card, heatmap block, filter chip and counts automatically.</td></tr>
 <tr><td><sub>2026-11-02</sub></td><td><b>AI Safety Full Episodes: Watch progress fix</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a>: watching an episode to the end counts again (progress, History and "completed" no longer stop at ~2 %), in every player mode, at 2× and in background tabs; earlier sessions are recovered once.</td></tr>
