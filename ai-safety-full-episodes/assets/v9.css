@@ -528,3 +528,11 @@ html[data-theme="light"] .theater__top .btn[aria-pressed="true"] { color: var(--
 html[data-perf="saver"] .wprog__ring { transition: none; }
 html[data-perf="saver"] .wprog--win, html[data-perf="saver"] .wprog--win .wprog__ring { animation: none; }
 @media (prefers-reduced-motion: reduce) { .wprog__ring { transition: none; } .wprog--win, .wprog--win .wprog__ring { animation: none; } }
+
+/* ---------- queue: explicit-only (one-time notice for older queues, "Watched" badge, Play these / Add these to queue) */
+.qbanner { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin: 0 0 16px; padding: 14px 44px 14px 16px; border-radius: var(--r2, 16px); border: 1px solid color-mix(in srgb, var(--amber, #f5b03b) 45%, var(--line2)); background: color-mix(in srgb, var(--amber, #f5b03b) 10%, var(--surf2)); }
+.qbanner p { margin: 0; max-width: 62ch; line-height: 1.45; }
+.qbanner .btn[disabled] { opacity: .5; cursor: not-allowed; }
+.qbanner__x { position: absolute; top: 8px; right: 8px; }
+.qwatched { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 700; color: var(--teal, #2dd4bf); background: color-mix(in srgb, var(--teal, #2dd4bf) 14%, transparent); border: 1px solid color-mix(in srgb, var(--teal, #2dd4bf) 35%, transparent); width: max-content; }
+.results__acts { display: inline-flex; flex-wrap: wrap; gap: 4px 14px; }
