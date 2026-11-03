@@ -100,7 +100,7 @@
       if (a === "play") { A.player.play(id); if (A.views.drawerOpen()) A.views.closeDrawer(); }
       if (a === "open") A.views.openDrawer(id);
       // in-place: only the pressed button (and its twins in other open views) change; the card node is kept
-      if (a === "queue") { const on = h().toggleQueue(id); A.views.paintQueueCount(); A.ui.toast(on ? "Added to queue" : "Removed from queue", { icon: on ? "➕" : "➖", ms: 1400 }); A.views.refreshCardsFor(id); A.fx && A.fx.celebrate("queue", act, on); if (VIEW === "queue") A.views.queueSync(id, on); }
+      if (a === "queue") { const on = h().toggleQueue(id, "card"); A.views.paintQueueCount(); A.ui.toast(on ? "Added to queue" : "Removed from queue", { icon: on ? "➕" : "➖", ms: 1400 }); A.views.refreshCardsFor(id); A.fx && A.fx.celebrate("queue", act, on); if (VIEW === "queue") A.views.queueSync(id, on); }
       if (a === "fav") { const on = h().toggleFav(id); A.ui.toast(on ? "Favourited" : "Unfavourited", { icon: on ? "❤️" : "🤍", ms: 1200 }); A.views.refreshCardsFor(id); A.fx && A.fx.celebrate("fav", act, on); }
       if (["watched", "menu", "later", "playlist", "sharecard", "playnext"].includes(a)) A.feat.act(a, id, act);
       return;
@@ -177,7 +177,7 @@
     closePalette();
     if (x.type === "action") x.a.run();
     else if (x.type === "sp") location.hash = `#/speaker/${x.s.slug}`;
-    else if (shift) { h().toggleQueue(x.e.id); A.views.paintQueueCount(); A.ui.toast("Queued", { icon: "➕", ms: 1200 }); }
+    else if (shift) { const n = h().addToQueue([x.e.id], "palette"); A.views.paintQueueCount(); A.views.refreshCardsFor(x.e.id); A.ui.toast(n ? "Added to queue" : "Already in your queue", { icon: "➕", ms: 1200 }); }
     else A.player.play(x.e.id);
   }
 
