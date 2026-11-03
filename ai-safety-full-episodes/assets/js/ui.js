@@ -128,12 +128,67 @@
   function metaText(e) { return `${metaDate(e)} · ${esc(e.durStr)}`; }
   function stateBadge(id) {
     const st = h().stateOf(id);
-    if (st === "done") return `<span class="ribbon ribbon--done" title="${esc(h().covTip(id))}">${ICON.check}${h().isManual(id) ? "Marked watched" : "Watched"}</span>`;
+    if (st === "done") return `<span class="ribbon ribbon--done" title="${esc(h().covTip(id))}">${ICON.check}${h().isManual(id) ? "Marked watched" : (h().L.H.eps[id] || {}).mfN ? "Completed (marked)" : "Watched"}</span>`;
     if (st === "progress") return `<span class="ribbon" title="${esc(h().covTip(id))}">${h().pctText(h().L.H.eps[id])}</span>`;
     return "";
   }
-  /* exact progress bar for a thumbnail: width floored to 0.1 %, tooltip "mm:ss of hh:mm:ss watched (unique)" */
-  function progBar(id, cls) { const r = h().L.H.eps[id]; if (!r || !(h().pctOf(id) > 0)) return ""; return `<span class="${cls || "thumb__bar"}" title="${esc(h().covTip(id))}"><i style="width:${h().pctWidth(r)}%"></i></span>`; }
+  /* exact progress bar for a thumbnail: width from the per-second share, tooltip "14:58 of 15:06 watched (unique) · 99%",
+   * plus subtle striped marks over the parts not watched yet that matter (A.hist.missed) */
+  function progBar(id, cls) { const r = h().L.H.eps[id]; if (!r || !(h().pctOf(id) > 0)) return ""; return `<span class="${cls || "thumb__bar"}" title="${esc(h().covTip(id))}"><i style="width:${h().pctWidth(r)}%"></i>${gapMarks(r)}</span>`; }
+  function gapMarks(r) {
+    if (!r || r.done) return "";
+    const m = h().missed(r); if (!m.length) return "";
+    const n = h().cells(r);
+    return m.slice(0, 16).map((x) => `<em class="gapmk" style="left:${((100 * x[0]) / n).toFixed(2)}%;width:${((100 * (x[1] - x[0])) / n).toFixed(2)}%"></em>`).join("");
+  }
+  /* The episode's progress card (theater page + episode drawer): a gradient ring with the whole-number share, the exact
+   * seconds, what is not watched yet (click a range to play it; "Mark this part watched" if tracking missed it), a button to
+   * continue from the first unwatched part (U) and "Mark fully watched". Repainted in place by paintProg(id). */
+  function progInner(id) {
+    const r = h().L.H.eps[id], e = STATE.byId.get(id);
+    if (!r || !e || !((r.covN || 0) > 0 || r.done)) return "";
+    const p = h().pctInt(r), man = !!(r.manual && !r.manual.partial), done = !!r.done, len = h().lenOf(r, e);
+    const real = done && !man && !r.mfN;
+    const head = done ? h().doneLabel(id) : `${h().pctText(r)} watched`;
+    const sub = `${h().ts(h().playedSec(r))} of ${h().ts(len)} watched` + (r.mfN ? ` · includes ${h().fmtSecs(r.mfN)} marked manually` : "") + (man ? " · marked by hand" : "");
+    const g = h().gaps(r), show = g.slice(0, 4);
+    const gl = g.length ? `<p class="wprog__gaps"><span class="wprog__gl">Not watched yet:</span> ${show.map((x) => `<span class="wprog__gap"><button type="button" class="linkbtn" data-gapjump="${id}|${x[0]}" title="Play from ${h().ts(x[0])}">${h().gapLabel(x)}</button><button type="button" class="wprog__fill" data-gapfill="${id}|${x[0]}|${x[1]}" title="Tracking missed it? Mark ${h().gapLabel(x)} as watched (labelled as marked manually; Undo for 10 s)">Mark this part watched</button></span>`).join("")}${g.length > show.length ? `<small class="muted">+${g.length - show.length} more</small>` : ""}</p>` : "";
+    const acts = !done && g.length ? `<p class="wprog__act"><button type="button" class="btn btn--sm" data-gapfirst="${id}">${ICON.play}<span>Continue from first unwatched part · ${h().ts(g[0][0])}</span> <kbd>U</kbd></button><button type="button" class="btn btn--sm btn--ghost" data-gapall="${id}">${ICON.check}<span>Mark fully watched</span></button></p>` : "";
+    return `<div class="wprog__ring ${real ? "is-real" : done ? "is-marked" : ""}" style="--wp:${p}" role="img" aria-label="${esc(head)}"><b>${done ? ICON.check : `${p}<small>%</small>`}</b></div>
+      <div class="wprog__tx"><p class="wprog__h">${esc(head)}</p><p class="wprog__sub" title="${esc(h().covTip(id))}">${esc(sub)}</p>${gl}${acts}</div>`;
+  }
+  function progCard(id) { const inner = progInner(id); return `<section class="wprog" data-wprog="${esc(id)}" aria-label="Your progress"${inner ? "" : " hidden"}>${inner}</section>`; }
+  function paintProg(id) {
+    const els = document.querySelectorAll(`[data-wprog="${id}"]`); if (!els.length) return;
+    const inner = progInner(id);
+    els.forEach((el) => { if (el._wp === inner) return; const was = el._wpDone; el._wp = inner; el.innerHTML = inner; el.hidden = !inner; const r = h().L.H.eps[id]; el._wpDone = !!(r && r.done); if (was === false && el._wpDone && A.fx && !RM) A.fx.play(el, "wprog--win", 1400); });
+  }
+  /* clicks on the progress card (and anywhere else that uses these attributes) */
+  const isCur = (id) => !!(A.P && A.P.cur && A.P.cur.id === id && A.P.yt && A.P.ready);
+  function playAt(id, t) { if (isCur(id)) A.player.seek(t, true); else A.player.play(id, { at: t, autoplay: true }); }
+  function refreshAll(id) { paintProg(id); A.views && A.views.refreshCardsFor && A.views.refreshCardsFor(id); A.picks && A.picks.sync && A.picks.sync(id); try { document.dispatchEvent(new CustomEvent("asfe:progress", { detail: { id, done: !!(h().L.H.eps[id] || {}).done } })); } catch (x) {} }
+  function saveCur(id) { if (isCur(id)) { try { A.player.tick(true); A.player.flush(); } catch (x) {} } }
+  document.addEventListener("click", (ev) => {
+    const t = ev.target.closest && ev.target.closest("[data-gapjump],[data-gapfill],[data-gapfirst],[data-gapall]"); if (!t) return;
+    ev.preventDefault();
+    if (t.dataset.gapjump) { const [id, s] = t.dataset.gapjump.split("|"); playAt(id, Number(s) || 0); return; }
+    if (t.dataset.gapfirst) { const id = t.dataset.gapfirst; saveCur(id); const g = h().gaps(h().L.H.eps[id])[0]; if (g) { playAt(id, g[0]); toast(`Continuing from the first unwatched part: ${h().ts(g[0])}`, { icon: "⏩", ms: 1600 }); } return; }
+    if (t.dataset.gapfill) {
+      const [id, a, z] = t.dataset.gapfill.split("|"); saveCur(id);
+      const res = h().markRange(id, Number(a), Number(z)); if (!res) return;
+      refreshAll(id);
+      const r = h().L.H.eps[id];
+      toast(`${h().ts(Number(a))}–${h().ts(Number(z))} marked as watched (${h().fmtSecs(res.add)}, labelled "marked manually")${res.done ? ` · <b>Completed (marked)</b>` : ` · now ${h().pctText(r)}`}`, { icon: "✍️", ms: 10000, force: true, action: { label: "Undo", fn: () => { res.undo(); refreshAll(id); } } });
+      return;
+    }
+    if (t.dataset.gapall) {
+      const id = t.dataset.gapall; saveCur(id);
+      if (!h().markWatched(id)) return;
+      refreshAll(id);
+      A.fx && A.fx.celebrate("watched", t, true);
+      toast("Marked fully watched (labelled \"Marked watched\", not \"Watched 100%\")", { icon: "✅", ms: 10000, force: true, action: { label: "Undo", fn: () => { h().unmarkWatched(id); refreshAll(id); } } });
+    }
+  });
   function card(e, o) {
     o = o || {};
     const L = h().L;
@@ -252,5 +307,5 @@
     (function step(t) { const k = Math.min(1, (t - t0) / dur); const v = end * (1 - Math.pow(1 - k, 3)); el.textContent = fmt ? fmt(v) : Math.round(v); if (k < 1) requestAnimationFrame(step); })(t0);
   }
 
-  A.ui = { progBar, thumbDate, flagBadges, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
+  A.ui = { progBar, gapMarks, progCard, progInner, paintProg, thumbDate, flagBadges, thumbBadges, metaDate, metaCore, cardMeta, metaText, ICON, toast, confirmBox, copy, avatar, photoOf, hasFace, artFor, speakerOf, thumbImg, whoLine, showLine, hl, card, shelf, skeletons, fmtViews, speakerCard, paintLevelChip, xpPop, levelUp, animateCount, stateBadge, confetti };
 })(window.ASFE);
