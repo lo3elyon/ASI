@@ -89,10 +89,9 @@
     if (g) {
       const p = PATHS.find((x) => x.id === (g.dataset.pathgo || g.dataset.pathq)); const eps = pathEps(p);
       const ids = eps.map((e) => e.id); const L = h().L;
-      const q = L.QUEUE.filter((x) => !ids.includes(x)); h().setQueue(ids.filter((x) => h().stateOf(x) !== "done").concat(q)); A.views.paintQueueCount();
-      if (g.dataset.pathgo) { const nx = eps.find((e) => h().stateOf(e.id) !== "done") || eps[0]; A.player.play(nx.id); }
-      else ui().toast(`Queued the “${esc(p.name)}” path`, { icon: "🧭", ms: 1800 });
-      A.fx && A.fx.celebrate("queue", g, true);
+      // Start / Continue path: plays the path as a transient line-up (never the queue); "Queue all" is the explicit add
+      if (g.dataset.pathgo) { const nx = eps.find((e) => h().stateOf(e.id) !== "done") || eps[0]; h().setSession(ids.slice(ids.indexOf(nx.id)), p.name); A.player.play(nx.id); }
+      else { const n = h().addToQueue(ids.filter((x) => h().stateOf(x) !== "done"), "path"); A.views.paintQueueCount(); ui().toast(n ? `Added ${n} from the “${esc(p.name)}” path to your queue` : `The “${esc(p.name)}” path is already in your queue`, { icon: "🧭", ms: 1800 }); A.fx && A.fx.celebrate("queue", g, true); }
     }
   });
   document.addEventListener("input", (ev) => { if (ev.target.id === "qwQ") { qf = ev.target.value; const box = $("#qwList"); if (box) { const tmp = document.createElement("div"); tmp.innerHTML = quoteHTML(); box.replaceWith(tmp.querySelector("#qwList")); } } });
