@@ -1,4 +1,5 @@
-/* AI Safety Full Episodes · Binge mode: in Theater, one episode after another. The line-up comes from your queue, then Today's
+/* AI Safety Full Episodes · Binge mode: in Theater, one episode after another. The line-up comes from the list you started with
+ * Play all / a playlist / a learning path (a transient line-up, never written to your queue), then your queue (read-only), then Today's
  * picks, then the current Browse filter (when one is set), then Up next. A slim "Up next in N s" bar (15 s by default, 5–60 s in Settings; play now / cancel), a queue
  * rail inside the theater, shuffle, repeat (off / one / all) and Shift+N / Shift+P for next / previous. Built by Aniruddha Adak. */
 (function (A) {
@@ -20,7 +21,9 @@
   function lineup(cur, n) {
     const curId = cur ? cur.id : null, seen = new Set([curId]), out = [];
     const add = (id, src, keepDone) => { if (!id || seen.has(id) || B.skip.has(id) || !STATE.byId.has(id)) return; if (!keepDone && h().stateOf(id) === "done") return; seen.add(id); out.push({ id, src }); };
-    (L().QUEUE || []).forEach((id) => add(id, "Queue"));
+    const S = L().SESSION;
+    if (S && S.ids.length) h().listAfter(S.ids, curId).forEach((id) => add(id, S.label || "Play all"));
+    h().listAfter(L().QUEUE || [], curId).forEach((id) => add(id, "Queue"));
     pickIds().forEach((id) => add(id, "Today's picks"));
     filterIds().forEach((id) => add(id, "Your filter"));
     if (cur) A.recs.upNext(cur, 20).forEach((x) => add(x.e.id, "Up next"));
@@ -101,7 +104,7 @@
       <button type="button" class="chip ${B.shuffle ? "is-on" : ""}" data-binge="shuffle" aria-pressed="${B.shuffle}">Shuffle</button>
       <button type="button" class="chip ${B.repeat !== "off" ? "is-on" : ""}" data-binge="repeat" aria-label="${rep} (click to change)">${rep}</button>
       <label class="brail__secs">Countdown <select data-bingesecs aria-label="Seconds before the next episode starts">${[5, 10, 15, 20, 30, 45, 60].map((n) => `<option value="${n}" ${secs() === n ? "selected" : ""}>${n} s</option>`).join("")}</select></label>
-      <span class="muted brail__src">${list.length ? `${list.length} lined up from your queue, Today's picks${A.recs.activeCount() ? ", your filter" : ""} and Up next` : "Nothing lined up"}</span></div>
+      <span class="muted brail__src">${list.length ? `${list.length} lined up from ${L().SESSION && L().SESSION.ids.length ? "your Play all list, " : ""}your queue, Today's picks${A.recs.activeCount() ? ", your filter" : ""} and Up next` : "Nothing lined up"}</span></div>
       ${list.length ? `<ol class="brail__row">${list.map((x, i) => { const e = STATE.byId.get(x.id); return `<li class="brail__it"><button type="button" class="brail__play" data-binge="play" data-id="${x.id}" title="${esc(e.title)}">${A.ui.thumbImg(e)}<span class="brail__n">${i + 1}</span><span class="brail__tx"><b>${esc(e.title)}</b><small>${esc(x.src)} · ${esc(e.durStr)}</small></span></button><button type="button" class="iconbtn iconbtn--sm brail__x" data-binge="drop" data-id="${x.id}" aria-label="Skip ${esc(e.title)} in this binge" title="Skip in this binge">✕</button></li>`; }).join("")}</ol>` : ""}`;
   }
   document.addEventListener("change", (ev) => { const sel = ev.target.closest && ev.target.closest("[data-bingesecs]"); if (!sel) return; B.secs = Number(sel.value); save(); $$sync(); A.ui.toast(`Next episode starts after ${secs()} s`, { ms: 1400 }); });
