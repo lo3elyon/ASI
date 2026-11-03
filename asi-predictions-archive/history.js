@@ -12,7 +12,13 @@
   var COLORS = ["var(--x-ch-0)", "var(--x-ch-1)", "var(--x-ch-2)", "var(--x-ch-3)", "var(--x-ch-4)", "var(--x-ch-5)", "var(--x-ch-6)", "var(--x-ch-7)"];
   var MIN = 1863, MAX = 2026, PPY = 8, DOT = 44;
   var personId = {};
-  P.forEach(function (p) { if (p && p.name) personId[p.name.toLowerCase()] = p.id; });
+  /* names match loosely: case, accents and middle initials ("Aidan N. Gomez" → "Aidan Gomez") are ignored */
+  var normName = function (s) {
+    s = String(s || "").toLowerCase();
+    try { s = s.normalize("NFD").replace(/[\u0300-\u036f]/g, ""); } catch (e) {}
+    return s.replace(/\b[a-z]\.\s*/g, " ").replace(/[^a-z0-9]+/g, " ").trim();
+  };
+  P.forEach(function (p) { if (p && p.name) { personId[p.name.toLowerCase()] = p.id; var k = normName(p.name); if (k && !personId[k]) personId[k] = p.id; } });
 
   var all = [];
   CH.forEach(function (c, ci) { c.milestones.forEach(function (m) { m._ci = ci; all.push(m); }); });
@@ -75,7 +81,7 @@
 
   var card = function (m) {
     var people = (m.people || []).map(function (n) {
-      var id = personId[String(n).toLowerCase()];
+      var id = personId[String(n).toLowerCase()] || personId[normName(n)];
       return id ? '<a class="x-hi__who" href="#/person/' + esc(id) + '">' + esc(n) + "</a>" : '<span class="x-hi__who is-plain">' + esc(n) + "</span>";
     }).join("");
     var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" data-watch="' + esc(m.youtube_id) + '" data-title="' + esc(m.title) + '" aria-label="Play here: ' + esc(m.title) + '">' +
@@ -132,11 +138,13 @@
 
   var showTab = function () {
     var t = host.querySelector('.x-hi__tab[data-ch="' + state.ch + '"]'), row = t && t.parentNode;
-    if (row) row.scrollTo({ left: t.offsetLeft - row.offsetLeft - 8, behavior: "smooth" });
+    /* 56px clears the strip's left arrow (motion.css pads the strip by the arrow's width) */
+    if (row) row.scrollTo({ left: Math.max(0, t.offsetLeft - row.offsetLeft - 56), behavior: "smooth" });
   };
   var flash = function (id) {
     var el = document.getElementById("hm-" + id); if (!el) return;
     if (window.XGoTo) window.XGoTo(el, { block: "center" }); else el.scrollIntoView({ block: "center" });
+    if (window.XMo && XMo.land) { XMo.land(el.querySelector(".x-hi__card") || el, "history"); return; }
     el.classList.remove("is-flash"); void el.offsetWidth; el.classList.add("is-flash");
     setTimeout(function () { el.classList.remove("is-flash"); }, 2200);
   };

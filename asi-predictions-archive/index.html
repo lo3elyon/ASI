@@ -180,6 +180,10 @@
     <link rel="stylesheet" href="player-notes.css?v=ae3f3cd4" />
     <link rel="stylesheet" href="polish.css?v=c9bd966e" />
     <link rel="stylesheet" href="refine.css?v=f148fe31" />
+    <link rel="stylesheet" href="motion.css?v=2c446d36" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
     <script>
       /* Anchored jumps: lazy lists pause while a jump settles (goto.js runs every jump). */
       window.XJump = { active: false, _f: [], onEnd: function (f) { this._f.push(f); } };
@@ -750,7 +754,8 @@
 
   var flash = function (el) {
     if (window.XGoTo) XGoTo(el); else el.scrollIntoView({ block: "start" });
-    el.classList.add("x-flash"); setTimeout(function () { el.classList.remove("x-flash"); }, 2200);
+    if (window.XMo && XMo.land) XMo.land(el);
+    else { el.classList.add("x-flash"); setTimeout(function () { el.classList.remove("x-flash"); }, 2200); }
   };
   var gotoEntry = function (id) {
     if (!list.some(function (e) { return e.id === id; })) reset();
@@ -930,18 +935,19 @@
   apply();
 })();
     </script>
-    <script src="player.js?v=a24589f8"></script>
-    <script src="player-extra.js?v=6bdd5d30"></script>
+    <script src="player.js?v=c67e1c60"></script>
+    <script src="player-extra.js?v=d4d82810"></script>
     <script src="watch-hub.js?v=d35a1877"></script>
-    <script src="player-notes.js?v=b951711a"></script>
+    <script src="player-notes.js?v=ca7b1ef9"></script>
     <script src="theater.js?v=1649025c"></script>
     <script src="archive.js?v=5cf5a9b4"></script>
     <script src="people.js?v=f5fbf30d"></script>
-    <script src="history.js?v=01fda1c1"></script>
-    <script src="palette.js?v=052fff6b"></script>
+    <script src="history.js?v=ea5b5ce0"></script>
+    <script src="palette.js?v=9eef47d2"></script>
     <script src="learn.js?v=99ae3c36"></script>
     <script src="fixes.js?v=6ad4a97c"></script>
-    <script src="polish.js?v=7708f9e8"></script>
+    <script src="polish.js?v=84b5be1c"></script>
     <script src="refine.js?v=45ade1aa"></script>
+    <script src="motion.js?v=08acbe7e"></script>
   </body>
 </html>

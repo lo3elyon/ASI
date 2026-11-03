@@ -125,7 +125,7 @@
       '<div class="x-pn-cs"><p class="x-apx-h">Text colour</p><div class="x-pn-sg x-pn-sg--4">' +
         Object.keys(COLORS).map(function (x) { return '<button class="x-ap__b x-pn-sw" type="button" data-pn="set" data-k="color" data-v="' + x + '" aria-pressed="false" aria-label="' + COLORS[x][0] + '" title="' + COLORS[x][0] + '"><span style="background:' + COLORS[x][1] + '"></span></button>'; }).join("") + "</div></div>" +
       '<div class="x-pn-cs"><p class="x-apx-h">Background</p><div class="x-pn-sg x-pn-sg--3">' + seg("bg", BGS) + "</div></div>" +
-      '<div class="x-pn-cs"><label class="x-pn-range" for="' + uid + '-op"><span class="x-apx-h">Opacity <span class="x-apx-abtx" data-pn-out="op">100%</span></span>' +
+      '<div class="x-pn-cs"><label class="x-pn-range" for="' + uid + '-op"><span class="x-apx-h x-mo-oph">' + svg('<rect x="3" y="7" width="18" height="10" rx="2.5"/><path d="M7 12h6M15 12h2"/>') + 'Caption background <span class="x-apx-abtx" data-pn-out="op">100%</span></span>' +
         '<input class="x-apx-range" id="' + uid + '-op" type="range" min="25" max="100" step="5" value="100" data-pn="op" /></label></div>' +
       '<div class="x-pn-cs"><p class="x-apx-h">Font</p><div class="x-pn-sg x-pn-sg--4">' + seg("font", FONTS) + "</div></div>" +
       '<div class="x-pn-cs"><p class="x-apx-h">Edge</p><div class="x-pn-sg x-pn-sg--3">' + seg("edge", EDGES) + "</div></div>" +
@@ -261,6 +261,7 @@
     var ytOff = function () {
       if (Y.key) ytCall(function (p) { if (typeof p.unloadModule === "function") p.unloadModule("captions"); });
       Y.key = ""; Y.size = null; Y.tries = 0; Y.track = false; inst._ytCC = false;
+      root.classList.remove("is-ytcc");
     };
     var pickTrack = function () {
       var list = null;
@@ -277,10 +278,11 @@
     var applyYT = function () {
       var v = cur();
       var want = !!(v && C.on && srcOf(v) === "yt" && inst.yt() && inst.started());
+      root.classList.toggle("is-ytcc", want);
       if (!want) { if (Y.key) ytOff(); return; }
       inst._ytCC = true;
       if (Y.key !== v.id) {
-        Y.key = v.id; Y.size = null; Y.tries = 0; Y.track = false;
+        Y.key = v.id; Y.size = null; Y.tries = 0; Y.track = false; Y.play = 0; Y.last = 0; Y.reload = false;
         ytCall(function (p) { if (typeof p.loadModule === "function") p.loadModule("captions"); });
         ytCall(function (p) { p.setOption("captions", "track", { languageCode: "en" }); });
       }
@@ -288,10 +290,16 @@
       if (Y.size !== s) { Y.size = s; ytCall(function (p) { p.setOption("captions", "fontSize", s); }); }
     };
     /* while playing, look for a track: 'en', else the first one; none after about 8s of playback means none at all */
+    /* YouTube fills the track list only after the captions module loads during playback (onApiChange).
+       Measured in seconds of playback: at 3s with no list, load the module once more; "none" only after that, at 6s. */
     var ytTick = function () {
       var v = cur(); if (!Y.key || !v || Y.key !== v.id || Y.track || !inst.isPlaying()) return;
       if (pickTrack()) return;
-      if (++Y.tries > 16) {
+      var n = Date.now();
+      if (Y.last && n - Y.last < 1500) Y.play = (Y.play || 0) + (n - Y.last);
+      Y.last = n;
+      if (Y.play >= 3000 && !Y.reload) { Y.reload = true; ytCall(function (p) { if (typeof p.loadModule === "function") p.loadModule("captions"); }); return; }
+      if (Y.play >= 6000) {
         YTNONE[v.id] = 1; ytOff();
         toast("No captions for this talk");
         paintBtn(); paintSet();
@@ -400,9 +408,9 @@
         if (i >= 0) {
           var s = st[i], nx = i + 1 < st.length ? st[i + 1] : s + 6;
           if (t < nx + 0.6 && t - s < 9) {
-            var p = i > 0 && s - st[i - 1] < 5 ? i - 1 : -1;
-            key = p + ":" + i;
-            html = (p >= 0 ? '<div class="x-pn-cap__l"><span>' + esc(tr.cues[p][1]) + "</span></div>" : "") + '<div class="x-pn-cap__l"><span>' + esc(tr.cues[i][1]) + "</span></div>";
+            /* one line block, two lines at most: auto-caption cues roll over each other, so the previous cue is never repeated */
+            key = "c" + i;
+            html = '<div class="x-pn-cap__l"><span>' + esc(tr.cues[i][1]) + "</span></div>";
           }
         }
       }
@@ -439,6 +447,15 @@
       S.capKey = null; update(); if (S.segD !== inst.duration()) paintSegs();
     });
     inst.on("ready", function () { Y.key = ""; Y.size = null; paintSegs(); S.capKey = null; update(); applyYT(); });
+    /* the player asks before it builds: CC on for a talk without a site transcript loads YouTube's captions from the start */
+    inst.on("ccwant", function (v) { return !!(C.on && v && srcOf(v) === "yt"); });
+    inst.ccWanted = function () { var v = cur(); return !!(C.on && v && srcOf(v) === "yt"); };
+    /* YouTube's captions module reports in: pick the English (or first) track and the size */
+    inst.on("apichange", function () {
+      var v = cur(); if (!Y.key || !v || Y.key !== v.id) return;
+      if (!Y.track) pickTrack();
+      Y.size = null; applyYT();
+    });
     inst.on("tick", function (t) { if (S.segD !== inst.duration()) paintSegs(); if (!S.timer) update(t); ytTick(); });
     inst.on("change", function (v) {
       stop();

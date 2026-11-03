@@ -97,6 +97,9 @@
       ? (html || '<p class="x-cp__empty">Nothing matches “' + esc(q) + "”. Try a surname, a year or a word like “alignment”.</p>")
       : '<p class="x-cp__empty">Type a name, year, title or channel. Try “Hinton”, “1965”, “alignment” or “Lex Fridman”.</p>';
     nEl.textContent = q.trim() ? total + " match" + (total === 1 ? "" : "es") : "";
+    /* ids and indexes follow the listed order exactly: cpo-0, cpo-1, … with no gaps */
+    var shown = listEl.querySelectorAll('[role="option"]');
+    [].forEach.call(shown, function (o, k) { o.id = "cpo-" + k; o.setAttribute("data-i", k); o.setAttribute("aria-posinset", k + 1); o.setAttribute("aria-setsize", shown.length); });
     setSel(opts.length ? 0 : -1);
   };
   var setSel = function (i) {

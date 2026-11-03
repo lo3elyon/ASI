@@ -181,7 +181,7 @@
        which kept re-arming the start cover ("Starting…") on captioned talks until a click. Skipped while the
        YouTube-captions fallback (player-notes.js) is on. */
     var dropped = false;
-    var dropCC = function () { if (inst._ytCC) return; var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
+    var dropCC = function () { if (inst._ytCC || (inst.ccWanted && inst.ccWanted())) return; var yt = inst.yt(); try { if (yt && typeof yt.unloadModule === "function") yt.unloadModule("captions"); } catch (e) {} };
     inst.on("change", function () { dropped = false; });
     inst.on("ready", function () { x.applyVol(); dropped = false; dropCC(); });
     inst.on("state", function (s) { if (s === 1 && !dropped) { dropped = true; dropCC(); } });

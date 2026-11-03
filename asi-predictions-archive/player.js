@@ -384,13 +384,15 @@
     /* Build the YouTube player. Only reached from play() (a user click or key) or from switching control modes. */
     var mount = function (start, auto) {
       var v = P.video, tok = P.token;
-      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = !!auto; P.ready = false; P.buffering = false;
+      clearTimeout(P.revealT); P.revealT = 0; P.shown = false; P.pending = !!auto; P.ready = false; P.buffering = false; P.retried = false;
       if (!auto) P.wantAt = -1;
       P.native = isNative(); root.classList.toggle("is-native", P.native);
       var host = document.createElement("div");
       frame.innerHTML = ""; frame.appendChild(host);
       var pv = { autoplay: auto ? 1 : 0, controls: P.native ? 1 : 0, disablekb: P.native ? 0 : 1, fs: P.native ? 1 : 0, iv_load_policy: 3,
-        cc_load_policy: 0, rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
+        cc_load_policy: 0, cc_lang_pref: "en", rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
+      /* YouTube captions wanted (CC on for a talk without a site transcript): ask YouTube to load them from the start */
+      if (emit("ccwant", v)) pv.cc_load_policy = 1;
       if (/^https?:/.test(location.origin)) pv.origin = location.origin;
         try {
           P.yt = new window.YT.Player(host, {
@@ -424,6 +426,8 @@
                 var s = e.data;
                 P.playing = s === 1 || s === 3;
                 if (s === 1) { P.ended = false; closeUp(); startTick(); paintTime(); }
+                /* a start the browser left at "unstarted" or "cued": ask once more, so one click is enough */
+                if ((s === -1 || s === 5) && P.started && !P.shown && !P.ended && !P.retried) { P.retried = true; try { e.target.playVideo(); } catch (x) {} }
                 if (s === 0 || s === 2) P.pending = false;
                 P.buffering = s === 3;
                 /* reveal: the moment YouTube reports PLAYING, the cover fades (150ms) */
@@ -434,6 +438,7 @@
                 paintToggle(); paintLink();
                 if (P.playing && !P.suppress) checkDock();
               },
+              onApiChange: function (e) { if (tok !== P.token) return; emit("apichange", e.target); },
               onError: function () { if (tok !== P.token) return; P.pending = false; paintCover(); say("YouTube could not play this video here. Try Watch on YouTube."); }
             }
           });
@@ -466,6 +471,9 @@
       clearTimeout(clickT); clickT = null;
       /* the second click of a double-click never toggles; the dblclick handler takes it */
       if (ev.detail > 1) return;
+      /* not playing yet (first play, or held at 0): play at once, inside the click, so the browser allows it */
+      if (!P.shown && !P.ended) { emit("flash", "play"); play(); return; }
+      if (!P.playing) { toggle(); return; }
       clickT = setTimeout(function () { clickT = null; toggle(); }, 220);
     });
     shield.addEventListener("dblclick", function (ev) { ev.preventDefault(); ev.stopPropagation(); clearTimeout(clickT); clickT = null; fullscreen(); });

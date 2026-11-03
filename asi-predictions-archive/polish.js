@@ -9,7 +9,7 @@
   var CHEV_D = '<svg class="x-dd__chev" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M6 9.5l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   /* ---------- 1. horizontal strips ---------- */
-  var STRIPS = ".x-hi__scroll, .x-tt__strip, .x-cw__row";
+  var STRIPS = ".x-hi__scroll, .x-hi__tabs, .x-tt__strip, .x-cw__row";
   var enhanceStrip = function (el) {
     if (el.__xstrip || !el.parentNode) return;
     el.__xstrip = true;
