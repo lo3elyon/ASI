@@ -498,11 +498,11 @@
     } else if (style === "short") {
       body = L1 + "<p>" + list.map(function (x) { return x.h + cite(x.n, x.d); }).join(" ") + "</p>";
     } else if (style === "kids") {
-      body = "<p>" + (S.lang === "bn" ? "সহজ ভাষায়, আর্কাইভ যা বলে:" : "Here is what the archive says, in simple words:") + "</p><ul class=\"x-ans__list x-ans__list--kids\">" + list.map(function (x) { return "<li>" + x.h + cite(x.n, x.d) + "</li>"; }).join("") + "</ul>";
+      body = "<p>" + (S.lang === "bn" ? "সহজ ভাষায়, আর্কাইভ যা বলে:" : "Here is what the archive says, in simple words:") + "</p><div class=\"x-ans__prose x-ans__prose--kids\">" + list.map(function (x) { return "<p>" + x.h + cite(x.n, x.d) + "</p>"; }).join("") + "</div>";
     } else if (style === "bullets") {
       body = '<ul class="x-ans__list">' + list.map(function (x) { return "<li>" + x.h + cite(x.n, x.d) + "</li>"; }).join("") + "</ul>";
     } else {
-      body = L1 + '<ul class="x-ans__list">' + list.map(function (x) { return "<li>" + x.h + cite(x.n, x.d) + "</li>"; }).join("") + "</ul>";
+      body = L1 + '<div class="x-ans__prose">' + list.map(function (x) { return "<p>" + x.h + cite(x.n, x.d) + "</p>"; }).join("") + "</div>";
     }
     var text = factText(body.replace(/<button[^>]*class="x-cite"[^>]*>(\d+)<\/button>/g, " [$1]"));
     return { html: body, text: text, cites: cites.map(function (d) { return { ref: srcRef(d), label: srcLabel(d), snip: snippet(d), k: d.k }; }), follow: follows(R, cites), fullCites: cites };

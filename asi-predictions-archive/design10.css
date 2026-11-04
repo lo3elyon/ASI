@@ -1,0 +1,101 @@
+/* design10.css: Batch 10. Decorative quote marks and section icon tiles. Loaded last.
+   design10.js sets data-d10 (section key), data-d10q (quote variant 0–2) and --d10h (hue, 0–240) per section.
+   Everything here is decorative: pseudo-elements or aria-hidden tiles, sized up front, nothing animates. */
+
+:root { --d10h: 189; }
+
+/* ---------- 5. big quotation marks ---------- */
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote) {
+  position: relative !important;
+  padding-top: 2.4rem !important;
+  padding-left: 3.6rem !important;
+  padding-right: 2.2rem !important;
+  padding-bottom: 0.9rem !important;
+  min-height: 4.2rem;
+  font-style: italic;
+}
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before,
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::after {
+  position: absolute !important;
+  pointer-events: none;
+  font-family: var(--x9-serif, Georgia, serif) !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  line-height: 1 !important;
+  opacity: 1 !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(135deg,
+    light-dark(hsl(var(--d10h) 85% 42%), hsl(var(--d10h) 90% 66%)),
+    light-dark(hsl(calc(var(--d10h) + 22) 85% 34%), hsl(calc(var(--d10h) + 22) 85% 56%)));
+  -webkit-background-clip: text;
+  background-clip: text;
+  speak: never;
+}
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before {
+  content: "\201C"; content: "\201C" / "";
+  left: 0.15rem !important; top: -0.35rem !important;
+  font-size: 5rem !important;
+}
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::after {
+  content: "\201D"; content: "\201D" / "";
+  right: 0.35rem; bottom: -0.9rem;
+  font-size: 2.6rem !important;
+}
+/* stable variants by section: 0 “ ”, 1 « », 2 ❝ ❞ */
+[data-d10q="1"] :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before { content: "\00AB"; content: "\00AB" / ""; font-size: 4.2rem !important; top: 0.05rem !important; }
+[data-d10q="1"] :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::after { content: "\00BB"; content: "\00BB" / ""; bottom: -0.3rem; font-size: 2.2rem !important; }
+[data-d10q="2"] :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before { content: "\275D"; content: "\275D" / ""; font-size: 4rem !important; top: 0.05rem !important; }
+[data-d10q="2"] :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::after { content: "\275E"; content: "\275E" / ""; bottom: -0.2rem; font-size: 2rem !important; }
+/* captions line up with the quote text */
+.x-pv__q figcaption, .x-hi__quote figcaption { padding-left: 3.6rem !important; }
+
+/* ---------- 6. icon tiles ---------- */
+.x-d10i {
+  display: inline-grid; place-items: center; flex: none;
+  width: 52px; height: 52px; border-radius: var(--r-s);
+  font: 400 28px/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+  font-style: normal; letter-spacing: 0; text-decoration: none !important;
+  background: linear-gradient(135deg,
+    light-dark(hsl(var(--d10h) 90% 88%), hsl(var(--d10h) 70% 26%)),
+    light-dark(hsl(calc(var(--d10h) + 22) 85% 78%), hsl(calc(var(--d10h) + 22) 70% 18%)));
+  box-shadow: inset 0 0 0 1px light-dark(hsl(var(--d10h) 70% 45% / 0.28), hsl(var(--d10h) 80% 65% / 0.3));
+  user-select: none; pointer-events: none;
+}
+/* section headings: the tile sits above the eyebrow */
+.x-d10i--head { width: 56px; height: 56px; font-size: 30px; margin: 0 0 12px; }
+.head.x-d10i--head-host { display: block; }
+.head.x-d10i--head-host > .x-d10i { display: grid; }
+.hero .x-d10i--head { display: none !important; }
+
+/* stat cards: the tile replaces the small line icon */
+.stat.x-d10i--stat-host .x-sti { display: none !important; }
+.x-d10i--stat { width: 44px; height: 44px; font-size: 24px; margin: 0 0 8px; }
+.stat.x-d10i--stat-host > .x-d10i { display: grid; }
+
+/* tabs: tile on the left, the label beside it */
+[role="tab"].x-d10i--tab-host {
+  display: inline-grid !important; grid-template-columns: auto 1fr; grid-auto-flow: row;
+  align-items: center; column-gap: 10px; text-align: left;
+}
+[role="tab"].x-d10i--tab-host > :not(.x-d10i) { grid-column: 2; }
+.x-d10i--tab { width: 40px; height: 40px; font-size: 22px; grid-row: 1 / span 3; grid-column: 1; }
+
+/* the player's side-rail tabs are too narrow for a tile */
+.x-wh__tab > .x-d10i, .x-ap [role="tab"] > .x-d10i { display: none !important; }
+
+/* board headers */
+.x-d10i--board-host { display: flex !important; align-items: center; gap: 10px; flex-wrap: wrap; }
+.x-d10i--board { width: 40px; height: 40px; font-size: 22px; }
+
+@media (max-width: 480px) {
+  .x-d10i--head { width: 48px; height: 48px; font-size: 26px; }
+  :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote) { padding-left: 3rem !important; }
+  :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before { font-size: 4rem !important; }
+  .x-pv__q figcaption, .x-hi__quote figcaption { padding-left: 3rem !important; }
+}
+
+/* ---------- 7. answers written as prose ---------- */
+.x-ans__prose { display: grid; gap: 8px; }
+.x-ans__prose p { margin: 0; }
+.x-ans__prose--kids { font-size: var(--size-heading, 17px); line-height: 1.5; }

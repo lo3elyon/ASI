@@ -120,8 +120,8 @@
       while (t < Y) { I = I + dt * R * I * Math.pow(I / 100, K); t += dt; if (!isFinite(I) || I > 1e15) { I = 1e15; } marks.forEach(function (m) { if (!cross[m] && I >= m) cross[m] = t; }); if (Math.round(t * 120) % 10 === 0) pts.push([t, I]); if (I >= 1e15) { pts.push([t, I]); break; } }
       if (pts[pts.length - 1][0] < Y) pts.push([Y, I]);
       el.querySelector("#s-r-o").textContent = R.toFixed(2); el.querySelector("#s-k-o").textContent = K.toFixed(1); el.querySelector("#s-y-o").textContent = Y;
-      var f = function (m, label) { return "<li><b>" + label + "</b> " + (cross[m] != null ? "after <b>" + cross[m].toFixed(1) + " years</b>" : "not within " + Y + " years") + "</li>"; };
-      out.innerHTML = "<ul>" + f(200, "2× human:") + f(1000, "10× human:") + f(1e6, "10,000× human:") + "</ul><p>" + (I >= 1e15 ? "💥 The curve blows up: a mathematical 'singularity' in finite time." : "End level: <b>" + fmtN(I / 100) + "×</b> human.") + "</p>";
+      var f = function (m, label) { return "<b>" + label + "</b> " + (cross[m] != null ? "after <b>" + cross[m].toFixed(1) + " years</b>" : "not within " + Y + " years"); };
+      out.innerHTML = "<p>It reaches " + f(200, "2× human") + ", " + f(1000, "10× human") + " and " + f(1e6, "10,000× human") + ".</p><p>" + (I >= 1e15 ? "💥 The curve blows up: a mathematical 'singularity' in finite time." : "End level: <b>" + fmtN(I / 100) + "×</b> human.") + "</p>";
       chart(cv, [{ pts: pts }], { log: true, xfmt: function (v) { return v + "y"; }, lines: [{ y: 100, label: "human level", color: "#14b8a6" }, { y: 1000, label: "10×", color: "#f59e0b" }] });
     };
     el.addEventListener("input", run);
@@ -202,7 +202,7 @@
       }
       var p = P[order[i]];
       el.innerHTML = '<div class="x-ln__qbar"><span>Question ' + (i + 1) + ' of 10</span><span class="x-ln__qscore">Score ' + score + " · Streak 🔥" + streak + '</span></div><div class="x-ln__qprog"><i style="width:' + (i * 10) + '%"></i></div>' +
-        '<blockquote class="x-ln__q">"' + esc(p.prediction) + '"<footer>— ' + esc(p.who) + ", " + esc(p.year_made) + (p.target_year ? " · aimed at " + esc(p.target_year) : "") + "</footer></blockquote><p class=\"x-ln__ask\">What happened?</p><div class=\"x-ln__opts\">" +
+        '<blockquote class="x-ln__q">' + esc(p.prediction) + '<footer>— ' + esc(p.who) + ", " + esc(p.year_made) + (p.target_year ? " · aimed at " + esc(p.target_year) : "") + "</footer></blockquote><p class=\"x-ln__ask\">What happened?</p><div class=\"x-ln__opts\">" +
         OPTS.map(function (o) { return '<button type="button" class="x-ln__opt" data-o="' + esc(o) + '">' + esc(o) + "</button>"; }).join("") + '</div><div class="x-ln__fb" aria-live="polite"></div>';
     };
     /* The quiz is self-contained: no click inside it reaches the page's global handlers ([data-watch] links,

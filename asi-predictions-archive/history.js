@@ -86,7 +86,7 @@
     }).join("");
     var vid = m.youtube_id ? '<a class="x-hi__vid" href="#/watch/' + esc(m.youtube_id) + '" data-watch="' + esc(m.youtube_id) + '" data-title="' + esc(m.title) + '" aria-label="Play here: ' + esc(m.title) + '">' +
       '<img src="https://i.ytimg.com/vi/' + esc(m.youtube_id) + '/hqdefault.jpg" alt="" width="480" height="270" loading="lazy" decoding="async" /><span class="x-hi__play">' + PLAY + "</span>" + (window.XDur ? XDur.html(m.youtube_id) : "") + "</a>" : "";
-    var quote = m.quote ? '<figure class="x-hi__quote"><blockquote>“' + esc(m.quote) + '”</blockquote>' + (m.quote_source ? "<figcaption>" + esc(m.quote_source) + "</figcaption>" : "") + "</figure>" : "";
+    var quote = m.quote ? '<figure class="x-hi__quote"><blockquote>' + esc(m.quote) + '</blockquote>' + (m.quote_source ? "<figcaption>" + esc(m.quote_source) + "</figcaption>" : "") + "</figure>" : "";
     return '<li class="x-hi__item" id="hm-' + esc(m.id) + '" style="--c:' + COLORS[m._ci % COLORS.length] + '">' +
       '<span class="x-hi__year">' + esc(m.year) + "</span>" +
       '<article class="x-hi__card">' +

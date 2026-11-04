@@ -1,0 +1,200 @@
+/* links9.css: Batch 9. Coloured underlines everywhere, a 10-hue highlight palette (red → blue, never violet or pink),
+   honest clickability, and the type system: Fraunces for headings and quotes, Space Grotesk for UI and body,
+   JetBrains Mono for numbers and timestamps, Noto Sans Bengali as the Bengali fallback. Loaded last.
+   links9.js sets data-h9 (0–9, a stable hash of the slug) on names, orgs and key terms. Nothing moves on hover. */
+
+/* ---------- type ---------- */
+:root {
+  --x9-serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, "Noto Sans Bengali", serif;
+  --x9-sans: "Space Grotesk", "Geist", -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Noto Sans Bengali", sans-serif;
+  --x9-mono: "JetBrains Mono", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, "Noto Sans Bengali", monospace;
+  --sans: var(--x9-sans);
+  --mono: var(--x9-mono);
+}
+body { font-family: var(--x9-sans); }
+
+h1, h2, .hero h1, .head h2, .x-pv h1, .x-pg h1 {
+  font-family: var(--x9-serif) !important;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+h3, .step h3, .cards h3 { font-family: var(--x9-serif); font-optical-sizing: auto; letter-spacing: -0.005em; }
+
+header.nav, header.nav a, header.nav button, .foot nav { font-family: var(--x9-sans); letter-spacing: 0.005em; }
+
+/* numbers and timestamps: tabular mono */
+.stat__fig, td.num, .num, time, .timeline__when,
+.breakdown dd, .photo-card__price,
+[class*="__time"], [class*="__ts"], [class*="__len"], [class*="__dur"], [class*="__year"] {
+  font-family: var(--x9-mono) !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+.stat__fig { font-weight: 400; }
+
+/* Space Grotesk runs wider than Geist: long role lines on person cards wrap instead of clipping */
+.x-pc { min-width: 0; overflow: hidden; }
+.x-pc__role { overflow-wrap: anywhere; word-break: break-word; text-wrap: wrap !important; letter-spacing: -0.01em; font-size: 12px; box-sizing: border-box; padding-inline: 0; align-self: stretch; width: 100%; max-width: 100%; min-width: 0; display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; hyphens: auto; }
+
+/* elements scrolled into view (by links, search or checks) clear the sticky dark nav and any bottom bar,
+   so their text never sits under the nav's #1d1d1f glass */
+html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 140px); scroll-padding-bottom: 96px; }
+.x-card, .x-pc, .x-ln__tabs, .x-ln__tab, .x-kw, a.x-nm, .x-quote, .x-who { scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 140px); scroll-margin-bottom: 96px; }
+
+/* labels and kickers: small caps */
+.hero__eyebrow, .head__eyebrow, .step__eyebrow, .callout__head, .stat__label,
+[class*="__eyebrow"], [class*="__kicker"], .x-am__lab {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.07em;
+  font-feature-settings: "c2sc", "smcp";
+}
+
+/* quotes: large italic serif, a coloured hanging mark, a rule in the era colour */
+.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .cards .quote, blockquote {
+  font-family: var(--x9-serif) !important;
+  font-style: italic;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  line-height: 1.42;
+}
+.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote {
+  position: relative;
+  border-left: 3px solid var(--ec, var(--c, var(--x-e1))) !important;
+  padding-left: 44px !important;
+  font-size: clamp(18px, 2vw, 21px);
+}
+.x-quote::before, .x-hi__quote blockquote::before, .x-pv__q blockquote::before {
+  content: "\201C";
+  position: absolute; left: 12px; top: -6px;
+  font: italic 600 50px/1 var(--x9-serif) !important;
+  color: var(--ec, var(--c, var(--x-e1)));
+  opacity: 1;
+}
+.x-pv__q blockquote::before { color: var(--gc, var(--ec, var(--x-e2))); }
+.x-pv__q figcaption, .x-hi__quote figcaption { padding-left: 47px; }
+
+/* ---------- the 10-hue palette ---------- */
+[data-h9="0"] { --k9: #ef4444; --k9i: light-dark(#991b1b, #fca5a5); --nh: 0 !important; }
+[data-h9="1"] { --k9: #f97316; --k9i: light-dark(#9a3412, #fdba74); --nh: 25 !important; }
+[data-h9="2"] { --k9: #f59e0b; --k9i: light-dark(#92400e, #fcd34d); --nh: 38 !important; }
+[data-h9="3"] { --k9: #eab308; --k9i: light-dark(#854d0e, #fde047); --nh: 48 !important; }
+[data-h9="4"] { --k9: #84cc16; --k9i: light-dark(#3f6212, #bef264); --nh: 84 !important; }
+[data-h9="5"] { --k9: #22c55e; --k9i: light-dark(#166534, #86efac); --nh: 142 !important; }
+[data-h9="6"] { --k9: #14b8a6; --k9i: light-dark(#115e59, #5eead4); --nh: 173 !important; }
+[data-h9="7"] { --k9: #06b6d4; --k9i: light-dark(#155e75, #67e8f9); --nh: 189 !important; }
+[data-h9="8"] { --k9: #0ea5e9; --k9i: light-dark(#075985, #7dd3fc); --nh: 199 !important; }
+[data-h9="9"] { --k9: #3b82f6; --k9i: light-dark(#1e40af, #93c5fd); --nh: 217 !important; }
+
+/* ---------- underlines: always coloured, 2px, offset 3px; hover thickens in place ---------- */
+:root {
+  --u9c: color-mix(in srgb, var(--x-e1, #06b6d4) 50%, transparent);
+  --u9f: var(--x-e1-ink, #0e7490);
+}
+a, button, .link, [role="link"] {
+  text-decoration-color: var(--u9c) !important;
+  text-decoration-thickness: 2px !important;
+  text-underline-offset: 3px !important;
+  text-decoration-skip-ink: auto;
+}
+a:hover, a:focus-visible, button:hover, button:focus-visible, .link:hover, .link:focus-visible, [role="link"]:hover, [role="link"]:focus-visible {
+  text-decoration-color: var(--u9f) !important;
+  text-decoration-thickness: 3px !important;
+}
+/* underlines drawn on a child of a link take the link's colour */
+a.x-org span, a .x-also__t, a.x-spl * { text-decoration-color: inherit !important; text-decoration-thickness: inherit !important; text-underline-offset: inherit !important; }
+
+/* items with their own hue: names, orgs, key terms */
+a[data-h9], [data-h9][data-go9] {
+  --u9c: color-mix(in srgb, var(--k9) 55%, transparent);
+  --u9f: var(--k9);
+}
+/* topics: their topic colour */
+a.x-tc, .x-tc[data-go9] {
+  --u9c: color-mix(in srgb, var(--tc-bd) 60%, transparent);
+  --u9f: var(--tc-bd);
+}
+/* source links: a teal underline */
+.x-src a, a.x-src, .x-srcc a, a.x-srcc, .x-pn-src a, a.x-pn-src, .x-also__a {
+  --u9c: color-mix(in srgb, #14b8a6 55%, transparent);
+  --u9f: light-dark(#0f766e, #5eead4);
+}
+
+/* ---------- inline highlights ---------- */
+:root:not(.x-kw-off) .x-kw[data-h9]:not(.x-tc) {
+  background: light-dark(color-mix(in srgb, var(--k9) 16%, transparent), color-mix(in srgb, var(--k9) 22%, transparent)) !important;
+  box-shadow: none !important;
+  color: var(--x9-hl-tx) !important;
+}
+:root:not(.x-kw-off) .x-kw.x-kw--y[data-h9] { color: var(--x9-hl-tx) !important; }
+:root:not(.x-kw-off) .x-kw.x-tc { box-shadow: none !important; }
+
+/* linked highlights: subtle coloured underline; hover goes full strength and thicker */
+:root:not(.x-kw-off) a.x-kw, :root:not(.x-kw-off) .x-kw[data-go9] {
+  cursor: pointer;
+  text-decoration-line: underline !important;
+  text-decoration-color: var(--u9c) !important;
+}
+:root:not(.x-kw-off) a.x-kw:hover, :root:not(.x-kw-off) a.x-kw:focus-visible,
+:root:not(.x-kw-off) .x-kw[data-go9]:hover, :root:not(.x-kw-off) .x-kw[data-go9]:focus-visible {
+  text-decoration-line: underline !important;
+  text-decoration-color: var(--u9f) !important;
+  text-decoration-thickness: 3px !important;
+}
+:root:not(.x-kw-off) .x-kw[data-go9]:focus-visible { outline: 2px solid var(--u9f); outline-offset: 1px; }
+
+/* plain highlights (no destination): no underline, no pointer */
+.x-kw:not(a):not([data-go9]), mark, .x-pn-cap b.x-kw, .x-pn-prev b.x-kw {
+  cursor: default;
+  text-decoration: none !important;
+}
+
+/* ---------- Batch 10 contrast fixes: readable at every width and in both themes ---------- */
+/* highlight text: the body ink in light, a light tint in dark; only background and underline carry the hue */
+:root { --x9-hl-tx: light-dark(#1d1d1f, #f1f5f9); }
+
+/* the scroll-in reveal left unrevealed text at opacity 0 (1:1) or mid-fade (2.8:1); content is static now */
+.x-rv, .x-rv.is-in, .x-rc, .x-rb, .x-rh > * { opacity: 1 !important; translate: none !important; transition: none !important; }
+
+/* person names: the body ink, never the hue on its own tint */
+a.x-nm, a[href^="#/person/"]:not(.x-pc):not(.btn), .x-kw[data-h9] { color: var(--x9-hl-tx) !important; text-shadow: none !important; }
+@media (hover: hover) { a.x-nm:not(.x-nm--box):hover { color: var(--x9-hl-tx) !important; text-shadow: none !important; } }
+a.x-nm:not(.x-nm--box):focus-visible { color: var(--x9-hl-tx) !important; text-shadow: none !important; }
+
+/* "Transcript & chapters" labels have no topic vars: give them a readable teal chip of their own */
+span.x-tc:not([data-tc]), .x-tc[title^="This talk has"] {
+  --tc-bg: light-dark(#e6f6f8, #123a40); --tc-hv: light-dark(#ccedf1, #18505a);
+  --tc-bd: light-dark(#0e7490, #22d3ee); --tc-tx: light-dark(#0b4f5e, #cffafe);
+  opacity: 1 !important;
+}
+:root[data-theme="light"] .x-tc[title^="This talk has"] { --tc-bg: #e6f6f8; --tc-bd: #0e7490; --tc-tx: #0b4f5e; }
+:root[data-theme="dark"] .x-tc[title^="This talk has"] { --tc-bg: #123a40; --tc-bd: #22d3ee; --tc-tx: #cffafe; }
+.x-tc { color: var(--tc-tx, var(--text-primary)) !important; background-color: var(--tc-bg, var(--fill-tertiary)) !important; }
+
+/* Learn tabs (Kids' corner and the rest): body ink on a light or dark surface */
+.x-ln .x-ln__tab, .x-ln__tab { color: var(--text-primary) !important; background-color: var(--fill-primary-on) !important; opacity: 1 !important; }
+.x-ln__tab[aria-selected="true"] { color: var(--text-primary) !important; background: color-mix(in srgb, #06b6d4 22%, var(--fill-primary-on)) !important; border-color: light-dark(#0e7490, #22d3ee) !important; }
+
+/* Kids' corner read-aloud: Read all, Stop and each 🔊 as real buttons */
+.x-vo-bar .x-vo-b, .x-vo-kids .x-vo-b {
+  background: light-dark(#0e7490, #67e8f9) !important; color: light-dark(#ffffff, #0b1720) !important;
+  border: 1px solid transparent !important; opacity: 1;
+}
+.x-vo-kids .x-vo-b[data-kids-stop] { background: var(--fill-primary-on) !important; color: var(--text-primary) !important; border-color: var(--stroke-primary) !important; }
+.x-vo-kids .x-vo-b:disabled { opacity: 1 !important; color: var(--text-secondary) !important; background: var(--fill-tertiary) !important; }
+.x-vo-b[aria-pressed="true"], .x-vo-b.is-speaking { background: light-dark(#1d1d1f, #f5f5f7) !important; color: light-dark(#f5f5f7, #1d1d1f) !important; }
+.x-ln__say, .x-ln__say.x-vo-say {
+  background: light-dark(#ffffff, #1d2a33) !important; color: light-dark(#0b4f5e, #cffafe) !important;
+  box-shadow: 0 0 0 1px light-dark(#0e7490, #22d3ee) !important; opacity: 1 !important;
+}
+.x-ln__say.x-vo-say.is-speaking { background: light-dark(#1d1d1f, #f5f5f7) !important; color: light-dark(#f5f5f7, #1d1d1f) !important; }
+:root[data-theme="light"] .x-vo-kids .x-vo-b:not([data-kids-stop]):not(:disabled) { background: #0e7490 !important; color: #fff !important; }
+:root[data-theme="dark"] .x-vo-kids .x-vo-b:not([data-kids-stop]):not(:disabled) { background: #67e8f9 !important; color: #0b1720 !important; }
+
+/* ---------- nothing moves under the cursor ---------- */
+/* the desktop 3D tilt and its glare overlay sat on top of card text at pointer widths: off */
+.x-card, .x-pi, .x-pc, .x-vc, .x-prc__c,
+.x-card:hover, .x-pi:hover, .x-pc:hover, .x-vc:hover, .x-prc__c:hover { transform: none !important; transform-style: flat !important; }
+.x-card::after, .x-pi::after, .x-pc::after, .x-vc::after, .x-prc__c::after { content: none !important; display: none !important; }
+.x-ln__tab:hover { transform: none !important; }
+.x-tc:hover, .x-tc:active, .x-tc:focus-visible, a.x-kw:hover, a.x-kw:active { transform: none !important; translate: none !important; scale: none !important; }

@@ -127,7 +127,7 @@
       h += (dp.length ? kp(dp, true) : '<p class="x-sp__from">From this archive</p>') + '<ul class="x-sp__ctx">' + list.map(function (o) {
         return "<li><span class=\"x-sp__k\">" + esc(o.k + (o.w ? " · " + o.w : "")) + "</span>" +
           '<p class="x-sp__t">' + esc(cut(o.t || o.l || host, 140)) + (o.by && o.by !== o.t ? " <small>" + esc(cut(o.by, 60)) + "</small>" : "") + "</p>" +
-          (o.q ? '<blockquote class="x-sp__q">“' + esc(cut(o.q, 180)) + "”</blockquote>" : "") + "</li>";
+          (o.q ? '<blockquote class="x-sp__q">' + esc(cut(o.q, 180)) + "</blockquote>" : "") + "</li>";
       }).join("") + "</ul>";
     }
     h += '<div class="x-sp__acts"><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Open source ↗</a>' +

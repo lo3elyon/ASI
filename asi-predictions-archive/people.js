@@ -294,7 +294,7 @@
       block("Key ideas", (p.key_ideas || []).length ? '<p class="x-pv__badges">' + p.key_ideas.map(function (k) { return '<span class="pill">' + esc(k) + "</span>"; }).join("") + "</p>" : "", "pv-ideas") +
       block("Books", (p.books || []).length ? '<ul class="x-pv__list">' + p.books.map(function (b) { return "<li>" + esc(typeof b === "string" ? b : [b.title, b.year].filter(Boolean).join(", ")) + "</li>"; }).join("") + "</ul>" : "", "pv-books") +
       block("Quotes", (p.quotes || []).map(function (q) {
-        return '<figure class="x-pv__q"><blockquote class="x-quote">“' + esc(q.text) + "”</blockquote><figcaption>" +
+        return '<figure class="x-pv__q"><blockquote class="x-quote">' + esc(q.text) + "</blockquote><figcaption>" +
           (q.url ? '<a class="link" href="' + esc(q.url) + '" target="_blank" rel="noopener">' + esc(q.source || "Source") + "</a>" : esc(q.source || "")) + (q.year ? " · " + esc(q.year) : "") + "</figcaption></figure>";
       }).join(""), "pv-quotes") +
       block("In the archive", ents.length ? '<ul class="x-pv__list">' + ents.map(function (e) {
@@ -373,7 +373,7 @@
       (e ? '<section class="x-pv__block"><h2 class="x-pv__h">In the archive</h2>' +
         '<p><span class="pill">' + esc(e.date || e.year || "") + '</span> <a class="link" href="#e-' + esc(e.id) + '" data-go-entry="' + esc(e.id) + '">' + esc(e.title) + "</a></p>" +
         (e.summary ? '<div class="prose"><p>' + esc(e.summary) + "</p></div>" : "") +
-        (e.quote ? '<figure class="x-pv__q"><blockquote class="x-quote">“' + esc(e.quote) + "”</blockquote>" + (e.person ? "<figcaption>" + esc(e.person) + "</figcaption>" : "") + "</figure>" : "") +
+        (e.quote ? '<figure class="x-pv__q"><blockquote class="x-quote">' + esc(e.quote) + "</blockquote>" + (e.person ? "<figcaption>" + esc(e.person) + "</figcaption>" : "") + "</figure>" : "") +
         "</section>" : "");
   };
   var showWatchInfo = function (v) {

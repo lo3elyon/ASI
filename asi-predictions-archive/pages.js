@@ -253,7 +253,7 @@
     var chips = '<div class="x-row" role="group" aria-label="Era"><span class="x-row__lab">Era</span>' +
       ERAS.map(function (e, i) { return '<button type="button" class="x-f" data-q-era="' + i + '" aria-pressed="false">' + esc(e.name) + "</button>"; }).join("") + "</div>";
     var items = QUOTES.map(function (q) {
-      return '<li class="x-pg__q" data-era="' + q.era + '" data-hay="' + esc((q.text + " " + q.who + " " + q.src).toLowerCase()) + '"><figure style="margin:0;display:grid;gap:10px"><blockquote>“' + esc(q.text) + "”</blockquote>" +
+      return '<li class="x-pg__q" data-era="' + q.era + '" data-hay="' + esc((q.text + " " + q.who + " " + q.src).toLowerCase()) + '"><figure style="margin:0;display:grid;gap:10px"><blockquote>' + esc(q.text) + "</blockquote>" +
         '<figcaption><a href="#/person/' + esc(q.pid) + '">' + esc(q.who) + "</a>" + (q.k.y ? "<span>" + esc(whenOf(q.k)) + "</span>" : "") +
         (q.url ? '<a class="link" href="' + esc(q.url) + '" target="_blank" rel="noopener">' + esc(q.src || "Source") + "</a>" : q.src ? "<span>" + esc(q.src) + "</span>" : "") +
         '<button type="button" class="x-vo-mini" data-vo-text="' + esc(q.text + " — " + q.who) + '" aria-label="Read aloud: quote by ' + esc(q.who) + '">' + SPEAKER + "</button></figcaption></figure></li>";
@@ -403,10 +403,10 @@
     return { title: "About", html: section("", head("About", "About the ASI History Archive.", "A fact-checked record of what people predicted about superintelligence, and what actually happened.")) +
       section("", '<div class="cards">' +
         '<div><h3>Who made it</h3><p>Created and maintained by <b>Aniruddha Adak</b>.</p></div>' +
-        "<div><h3>What is inside</h3><ul><li>" + fmtN(MILES.length) + " history milestones</li><li>" + fmtN(ENTRIES.length) + " archive entries</li><li>" + fmtN(PEOPLE.length) + " people</li><li>" + fmtN(VIDS.length) + " talks</li><li>" + fmtN(QUOTES.length) + " quotes</li><li>" + fmtN(PREDS.length) + " predictions</li></ul></div>" +
+        "<div><h3>What is inside</h3><p>" + fmtN(MILES.length) + " history milestones and " + fmtN(ENTRIES.length) + " archive entries, covering " + fmtN(PEOPLE.length) + " people.</p><p>" + fmtN(VIDS.length) + " talks, " + fmtN(QUOTES.length) + " quotes and " + fmtN(PREDS.length) + " predictions, each with its source.</p></div>" +
         "<div><h3>Method</h3><p>Every entry links its source. Predictions were checked against what happened, as of 3 Nov 2026. Where a forecast gave no exact year, the target year is an approximation.</p></div>" +
         "<div><h3>Talks</h3><p>Talks play in the page and never start on their own. Some are third-party uploads and may go offline. Only sources and “Watch on YouTube” open a new tab.</p></div>" +
-        '<div><h3>Keyboard</h3><ul><li><kbd>Ctrl</kbd> <kbd>K</kbd> or <kbd>/</kbd>: search everything, pages included</li><li><kbd>?</kbd> in the player: shortcuts</li><li><kbd>Esc</kbd>: close a menu or dialog</li></ul></div>' +
+        '<div><h3>Keyboard</h3><p>Press <kbd>Ctrl</kbd> <kbd>K</kbd> or <kbd>/</kbd> to search everything, pages included.</p><p>Press <kbd>?</kbd> in the player for its shortcuts, and <kbd>Esc</kbd> to close a menu or dialog.</p></div>' +
         '<div><h3>Make it yours</h3><p>Pick an era background, calmer motion, and the reading voice and speed.</p><div class="links"><button type="button" class="btn" data-cz-open>Customize</button></div></div>' +
       "</div>") };
   };
