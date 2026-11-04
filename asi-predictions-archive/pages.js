@@ -17,7 +17,7 @@
   var ymKey = function (d, y) { if (d) { var p = String(d).split("-"); var yy = +p[0], mm = +(p[1] || 0); if (yy) return { y: yy, m: mm, key: yy + (mm ? (mm - 1) / 12 : 0) }; } y = +y; return { y: y || 0, m: 0, key: y || 0 }; };
   var whenOf = function (k) { return k.m ? MON[k.m - 1] + " " + k.y : String(k.y || ""); };
   var initials = function (n) { return String(n || "").split(/\s+/).filter(function (w) { return /^[A-Za-z]/.test(w); }).slice(0, 2).map(function (w) { return w[0].toUpperCase(); }).join("") || "?"; };
-  var SPEAKER = '<span class="x-vo-ico" aria-hidden="true">🔊</span><span class="x-vo-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="x-vo-lbl">Listen</span>';
+  var SPEAKER = '<span class="x-vo-ico" aria-hidden="true"><i class="x-ic" data-ic="speaker"></i></span><span class="x-vo-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="x-vo-lbl">Listen</span>';
 
   /* ---------------------------------------------------------------------
      Data, normalised once, in a fixed order
@@ -67,24 +67,24 @@
 
   /* one topic table for the history tags, the archive and the talk tags (watch-hub.js) */
   var TOPICS = [
-    { slug: "superintelligence", name: "Superintelligence", ico: "🦸", re: /superintelligen|\basi\b|ultraintelligen/i, tags: [], al: [] },
-    { slug: "control", name: "The control problem", ico: "🧭", re: /control problem|stay in control|lose control|losing control|shut ?down|switch(ed)? (it )?off|off.?switch|corrigib|takeover|take over|disempower/i, tags: ["control"], al: ["control-problem"] },
-    { slug: "alignment", name: "Alignment", ico: "🎯", re: /align/i, tags: ["alignment"], al: [] },
-    { slug: "ai-risk", name: "AI risk & extinction", ico: "⚠️", re: /extinct|existential|catastroph|\bdoom|p\(doom\)|risk of|statement on/i, tags: ["risk-statement"], al: ["risk-statement", "risk", "safety"] },
-    { slug: "intelligence-explosion", name: "Intelligence explosion", ico: "🚀", re: /intelligence explosion|recursive(ly)? self|self-improv|singularity|ultraintelligent/i, tags: ["intelligence-explosion"], al: ["singularity"] },
-    { slug: "forecasting", name: "Forecasts & timelines", ico: "📅", re: /forecast|timeline|predict|\bby 20\d\d|within (a|the|\d+|ten|five|two|three) (few )?(years|decades)|surveyed|agi (by|in|within)/i, tags: ["forecasting"], al: ["forecasts", "agi-timelines", "timelines"] },
-    { slug: "policy", name: "Policy & governance", ico: "🏛️", re: /regulat|policy|governance|legislat|senate|congress|hearing|treaty|summit|executive order|\bai act\b|\blaw\b/i, tags: ["policy"], al: ["policy-governance", "governance"] },
-    { slug: "labs", name: "AI labs", ico: "🏢", re: /openai|deepmind|anthropic|\bxai\b|meta ai|\blabs?\b/i, tags: ["lab"], al: ["lab"] },
-    { slug: "neuroscience", name: "Neuroscience & the brain", ico: "🧠", re: /neuro|\bbrain|cortex|conscious|hippocamp/i, tags: ["neuroscience"], al: ["mind-brain", "neuro", "brain"] },
-    { slug: "deep-learning", name: "Deep learning", ico: "🕸️", re: /deep learning|neural net|backprop|alexnet|imagenet/i, tags: ["deep-learning"], al: [] },
-    { slug: "transformers", name: "Transformers & LLMs", ico: "💬", re: /transformer|attention is all|\bgpt|large language model|\bllms?\b|chatgpt/i, tags: ["transformers"], al: ["llms", "llm"] },
-    { slug: "scaling", name: "Scaling & compute", ico: "📈", re: /scaling|scale up|\bcompute\b|\bgpus?\b|training run/i, tags: [], al: [] },
-    { slug: "interpretability", name: "Interpretability", ico: "🔦", re: /interpretab|mechanistic|circuits?\b/i, tags: [], al: [] },
-    { slug: "ai-agents", name: "AI agents", ico: "🤖", re: /\bagents?\b|agentic/i, tags: [], al: ["agents"] },
-    { slug: "ethics", name: "Ethics", ico: "⚖️", re: /\bethic|fairness|\bbias|rights\b/i, tags: [], al: [] },
-    { slug: "robotics", name: "Robotics", ico: "🦾", re: /robot/i, tags: [], al: [] },
-    { slug: "fiction", name: "Fiction & culture", ico: "📚", re: /fiction|novel|erewhon|\bfilm\b|short story|science.fiction/i, tags: ["fiction"], al: ["culture"] },
-    { slug: "skeptics", name: "Skeptics", ico: "🤨", re: /skeptic|sceptic|hype|overblown|overpopulation on mars|decades away|far from/i, tags: [], al: ["skeptic"] }
+    { slug: "superintelligence", name: "Superintelligence", ico: "hero", re: /superintelligen|\basi\b|ultraintelligen/i, tags: [], al: [] },
+    { slug: "control", name: "The control problem", ico: "compass", re: /control problem|stay in control|lose control|losing control|shut ?down|switch(ed)? (it )?off|off.?switch|corrigib|takeover|take over|disempower/i, tags: ["control"], al: ["control-problem"] },
+    { slug: "alignment", name: "Alignment", ico: "target", re: /align/i, tags: ["alignment"], al: [] },
+    { slug: "ai-risk", name: "AI risk & extinction", ico: "warning", re: /extinct|existential|catastroph|\bdoom|p\(doom\)|risk of|statement on/i, tags: ["risk-statement"], al: ["risk-statement", "risk", "safety"] },
+    { slug: "intelligence-explosion", name: "Intelligence explosion", ico: "rocket", re: /intelligence explosion|recursive(ly)? self|self-improv|singularity|ultraintelligent/i, tags: ["intelligence-explosion"], al: ["singularity"] },
+    { slug: "forecasting", name: "Forecasts & timelines", ico: "calendar", re: /forecast|timeline|predict|\bby 20\d\d|within (a|the|\d+|ten|five|two|three) (few )?(years|decades)|surveyed|agi (by|in|within)/i, tags: ["forecasting"], al: ["forecasts", "agi-timelines", "timelines"] },
+    { slug: "policy", name: "Policy & governance", ico: "columns", re: /regulat|policy|governance|legislat|senate|congress|hearing|treaty|summit|executive order|\bai act\b|\blaw\b/i, tags: ["policy"], al: ["policy-governance", "governance"] },
+    { slug: "labs", name: "AI labs", ico: "building", re: /openai|deepmind|anthropic|\bxai\b|meta ai|\blabs?\b/i, tags: ["lab"], al: ["lab"] },
+    { slug: "neuroscience", name: "Neuroscience & the brain", ico: "brain", re: /neuro|\bbrain|cortex|conscious|hippocamp/i, tags: ["neuroscience"], al: ["mind-brain", "neuro", "brain"] },
+    { slug: "deep-learning", name: "Deep learning", ico: "network", re: /deep learning|neural net|backprop|alexnet|imagenet/i, tags: ["deep-learning"], al: [] },
+    { slug: "transformers", name: "Transformers & LLMs", ico: "llm", re: /transformer|attention is all|\bgpt|large language model|\bllms?\b|chatgpt/i, tags: ["transformers"], al: ["llms", "llm"] },
+    { slug: "scaling", name: "Scaling & compute", ico: "growth", re: /scaling|scale up|\bcompute\b|\bgpus?\b|training run/i, tags: [], al: [] },
+    { slug: "interpretability", name: "Interpretability", ico: "flashlight", re: /interpretab|mechanistic|circuits?\b/i, tags: [], al: [] },
+    { slug: "ai-agents", name: "AI agents", ico: "agent", re: /\bagents?\b|agentic/i, tags: [], al: ["agents"] },
+    { slug: "ethics", name: "Ethics", ico: "scales", re: /\bethic|fairness|\bbias|rights\b/i, tags: [], al: [] },
+    { slug: "robotics", name: "Robotics", ico: "arm", re: /robot/i, tags: [], al: [] },
+    { slug: "fiction", name: "Fiction & culture", ico: "book", re: /fiction|novel|erewhon|\bfilm\b|short story|science.fiction/i, tags: ["fiction"], al: ["culture"] },
+    { slug: "skeptics", name: "Skeptics", ico: "skeptic", re: /skeptic|sceptic|hype|overblown|overpopulation on mars|decades away|far from/i, tags: [], al: ["skeptic"] }
   ];
   var TBY = {}; TOPICS.forEach(function (t) { TBY[t.slug] = t; t.al.forEach(function (a) { TBY[a] = t; }); });
   var hits = {};
@@ -185,16 +185,18 @@
      Pages
      --------------------------------------------------------------------- */
   var PAGES = [
-    { id: "#/ask", t: "Ask", s: "Ask the Archive: answers with sources", ico: "💬", kw: "ask question chat answer assistant help" },
-    { id: "#/topics", t: "Topics", s: "Every theme in the archive, with counts", ico: "🏷️", kw: "tags themes" },
-    { id: "#/era/early", t: "Era: Before deep learning", s: "1950–2011", ico: "🕰️", kw: "era early 1950s 1960s turing good" },
-    { id: "#/era/deep", t: "Era: Deep learning", s: "2012–Nov 2022", ico: "🕸️", kw: "era deep learning alexnet bostrom" },
-    { id: "#/era/post", t: "Era: After ChatGPT", s: "Dec 2022–Nov 2026", ico: "💬", kw: "era post chatgpt 2023 2024 2025" },
-    { id: "#/quotes", t: "Quotes", s: "Every sourced quote, searchable", ico: "❝", kw: "quotes sayings" },
-    { id: "#/timeline", t: "Full timeline", s: "Milestones and entries by decade", ico: "📜", kw: "timeline chronology decades" },
-    { id: "#/compare", t: "Compare people", s: "Two or three side by side", ico: "⚖️", kw: "compare versus vs" },
-    { id: "#/stats", t: "Stats", s: "The archive in charts", ico: "📊", kw: "stats charts numbers" },
-    { id: "#/about", t: "About", s: "Sources, method and credits", ico: "ℹ️", kw: "about credits author aniruddha adak method" }
+    { id: "#/ask", t: "Ask", s: "Ask the Archive: answers with sources", ico: "ask", kw: "ask question chat answer assistant help" },
+    { id: "#/topics", t: "Topics", s: "Every theme in the archive, with counts", ico: "tag", kw: "tags themes" },
+    { id: "#/policy", t: "Policy & governance", s: "Laws, treaties, hearings and the people behind them", ico: "columns", kw: "policy governance regulation law senate treaty" },
+    { id: "#/safety", t: "Safety & alignment", s: "Alignment, control and the safety research around them", ico: "shield", kw: "safety alignment control problem interpretability" },
+    { id: "#/era/early", t: "Era: Before deep learning", s: "1950–2011", ico: "oldclock", kw: "era early 1950s 1960s turing good" },
+    { id: "#/era/deep", t: "Era: Deep learning", s: "2012–Nov 2022", ico: "network", kw: "era deep learning alexnet bostrom" },
+    { id: "#/era/post", t: "Era: After ChatGPT", s: "Dec 2022–Nov 2026", ico: "llm", kw: "era post chatgpt 2023 2024 2025" },
+    { id: "#/quotes", t: "Quotes", s: "Every sourced quote, searchable", ico: "quote", kw: "quotes sayings" },
+    { id: "#/timeline", t: "Full timeline", s: "Milestones and entries by decade", ico: "scroll", kw: "timeline chronology decades" },
+    { id: "#/compare", t: "Compare people", s: "Two or three side by side", ico: "compare", kw: "compare versus vs" },
+    { id: "#/stats", t: "Stats", s: "The archive in charts", ico: "stats", kw: "stats charts numbers" },
+    { id: "#/about", t: "About", s: "Sources, method and credits", ico: "info", kw: "about credits author aniruddha adak method" }
   ];
   window.XPages = { list: PAGES.concat(TOPICS.map(function (t) { return { id: "#/topic/" + t.slug, t: "Topic: " + t.name, s: "Milestones, entries, people, talks", kw: t.al.join(" ") }; })) };
 
@@ -276,7 +278,7 @@
       });
       apply();
     });
-    return { title: "Quotes", html: section("", head("Quotes", "What they said, in their own words.", fmtN(QUOTES.length) + " sourced quotes from " + fmtN(PEOPLE.filter(function (p) { return (p.quotes || []).length; }).length) + " people, oldest first. Search or filter by era; press 🔊 to hear one.") +
+    return { title: "Quotes", html: section("", head("Quotes", "What they said, in their own words.", fmtN(QUOTES.length) + " sourced quotes from " + fmtN(PEOPLE.filter(function (p) { return (p.quotes || []).length; }).length) + " people, oldest first. Search or filter by era; press Listen to hear one.") +
       '<div class="x-tools" style="position:static;box-shadow:none"><div class="x-pg__qbar"><input class="x-input" id="pgQ" type="search" placeholder="Search quotes, people, sources…" aria-label="Search quotes" autocomplete="off" /><span class="x-pg__count" id="pgQn" aria-live="polite"></span></div>' + chips + "</div>" +
       '<ul class="x-pg__quotes">' + items + "</ul>") };
   };
@@ -306,7 +308,9 @@
   var sortedPeople = PEOPLE.slice().sort(function (a, b) { return cmpStr(a.name, b.name) || cmpStr(a.id, b.id); });
   R.compare = function (arg) {
     var ids = String(arg || "").split(",").filter(function (id) { return PBY[id]; }).slice(0, 3);
-    if (ids.length < 2) ids = DEF_CMP.slice();
+    /* one person named (a person page's Compare button): keep them first, add the next default */
+    if (ids.length === 1) ids.push(DEF_CMP.filter(function (id) { return id !== ids[0]; })[0]);
+    if (ids.length < 2 || !ids[1]) ids = DEF_CMP.slice();
     var pick = function (n, sel) {
       return '<label>Person ' + n + ' <select data-cmp="' + (n - 1) + '">' + (n === 3 ? '<option value="">None</option>' : "") +
         sortedPeople.map(function (p) { return '<option value="' + esc(p.id) + '"' + (p.id === sel ? " selected" : "") + ">" + esc(p.name) + "</option>"; }).join("") + "</select></label>";
@@ -411,6 +415,11 @@
       "</div>") };
   };
 
+  /* #/policy and #/safety: topic-style pages drawn by fix15.js (XThemePage) from these shared helpers */
+  window.XPagesKit = { topicHits: topicHits, section: section, head: head, stats: stats, growing: growing, mileRow: mileRow, entryRow: entryRow, personChip: personChip, predRow: predRow, vidLink: vidLink, esc: esc, fmtN: fmtN };
+  R.policy = function () { return window.XThemePage ? XThemePage("policy") : { title: "Policy & governance", html: "" }; };
+  R.safety = function () { return window.XThemePage ? XThemePage("safety") : { title: "Safety & alignment", html: "" }; };
+
   /* ---------------------------------------------------------------------
      Router
      --------------------------------------------------------------------- */
@@ -421,7 +430,7 @@
   (pv || main).parentNode.insertBefore(host, (pv || main).nextSibling);
   var baseTitle = doc.title.replace(/^.* · (?=ASI History Archive)/, "");
   var parse = function (h) {
-    var m = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about|org|ask)(?:\/([^?#]*))?\/?$/.exec(h || "");
+    var m = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about|org|ask|policy|safety)(?:\/([^?#]*))?\/?$/.exec(h || "");
     return m ? { name: m[1], arg: m[2] ? decodeURIComponent(m[2]) : "" } : null;
   };
   var curKey = null, mainY = null, lastHash = null, onShow = [];
@@ -555,7 +564,7 @@
         '<fieldset><legend>Background strength</legend><div class="x-cz__opts">' + opt("czScrim", "strong", "Subtle", cz.scrim) + opt("czScrim", "soft", "Stronger", cz.scrim) + "</div></fieldset>" +
         '<fieldset><legend>Motion</legend><div class="x-cz__opts">' + opt("czMotion", "system", "Follow my device", cz.motion) + opt("czMotion", "calm", "Calm: no animation", cz.motion) + "</div></fieldset>" +
         (window.XHL ? '<fieldset><legend>Keywords</legend><div class="x-cz__opts"><label><input type="checkbox" name="czKw"' + (XHL.isOn() ? " checked" : "") + ' />Highlight keywords</label></div><p class="x-cz__hint">Colours people, organisations, topics and years in summaries, quotes, history and answers, each linking to its page.</p></fieldset>' : "") +
-        (window.XVoice && XVoice.ok ? '<fieldset><legend>Reading voice</legend><div class="x-cz__voice">' + XVoice.pickers() + '</div><p class="x-cz__hint">Used by every 🔊 button on the site, the Kids’ corner, quotes and Ask answers. The natural voice downloads only when you pick it.</p></fieldset>' : "") +
+        (window.XVoice && XVoice.ok ? '<fieldset><legend>Reading voice</legend><div class="x-cz__voice">' + XVoice.pickers() + '</div><p class="x-cz__hint">Used by every Listen button on the site, the Kids’ corner, quotes and Ask answers. The natural voice downloads only when you pick it.</p></fieldset>' : "") +
         '<div class="x-cz__foot"><button type="button" class="btn" data-cz-reset>Reset</button><button type="button" class="btn" data-cz-close>Done</button></div></form>';
       czDlg.querySelectorAll(".x-cz__sw[data-sw]").forEach(function (s) {
         var i = doc.querySelector('#x-era-imgs img[data-era="' + s.getAttribute("data-sw") + '"]');
@@ -572,16 +581,16 @@
      The nav: a More menu on desktop, the same links in the phone Sections sheet
      --------------------------------------------------------------------- */
   var nav = doc.querySelector("header.nav"), more = null, moreBtn = null, moreMenu = null;
-  var MENU = [["#/ask", "💬", "Ask the Archive"], ["#/topics", "🏷️", "Topics"], ["#/era/early", "🕰️", "Early era", "–2011"], ["#/era/deep", "🕸️", "Deep learning era", "2012–22"], ["#/era/post", "💬", "After ChatGPT", "2022–"],
-    ["#/quotes", "❝", "Quotes"], ["#/timeline", "📜", "Full timeline"], ["#/compare", "⚖️", "Compare people"], ["#/stats", "📊", "Stats"], ["#/about", "ℹ️", "About"]];
-  var menuLinks = function () { return MENU.map(function (m) { return '<li><a href="' + m[0] + '"><span class="x-more__ico" aria-hidden="true">' + m[1] + "</span>" + esc(m[2]) + (m[3] ? "<small>" + esc(m[3]) + "</small>" : "") + "</a></li>"; }).join(""); };
+  var MENU = [["#/ask", "ask", "Ask the Archive"], ["#/topics", "tag", "Topics"], ["#/policy", "columns", "Policy & governance"], ["#/safety", "shield", "Safety & alignment"], ["#/era/early", "oldclock", "Early era", "–2011"], ["#/era/deep", "network", "Deep learning era", "2012–22"], ["#/era/post", "llm", "After ChatGPT", "2022–"],
+    ["#/quotes", "quote", "Quotes"], ["#/timeline", "scroll", "Full timeline"], ["#/compare", "compare", "Compare people"], ["#/stats", "stats", "Stats"], ["#/about", "info", "About"]];
+  var menuLinks = function () { return MENU.map(function (m) { return '<li><a href="' + m[0] + '"><span class="x-more__ico" aria-hidden="true"><i class="x-ic" data-ic="' + m[1] + '"></i></span>' + esc(m[2]) + (m[3] ? "<small>" + esc(m[3]) + "</small>" : "") + "</a></li>"; }).join(""); };
   var mac = /Mac|iPhone|iPad/.test(navigator.platform || "");
   var closeMore = function (refocus) { if (!moreMenu || moreMenu.hidden) return; moreMenu.hidden = true; moreBtn.setAttribute("aria-expanded", "false"); if (refocus) moreBtn.focus({ preventScroll: true }); };
   if (nav && !nav.querySelector(".x-more")) {
     more = doc.createElement("div"); more.className = "x-more";
     more.innerHTML = '<button type="button" class="x-more__btn" aria-expanded="false" aria-controls="x-more-menu">More <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>' +
-      '<div class="x-more__menu" id="x-more-menu" hidden><nav aria-label="More pages"><ul>' + menuLinks() + '</ul></nav><hr /><ul><li><button type="button" data-cz-open><span class="x-more__ico" aria-hidden="true">🎨</span>Customize</button></li>' +
-      '<li><button type="button" data-more-search><span class="x-more__ico" aria-hidden="true">🔍</span>Search everything<small>' + (mac ? "⌘K" : "Ctrl K") + "</small></button></li></ul></div>";
+      '<div class="x-more__menu" id="x-more-menu" hidden><nav aria-label="More pages"><ul>' + menuLinks() + '</ul></nav><hr /><ul><li><button type="button" data-cz-open><span class="x-more__ico" aria-hidden="true"><i class="x-ic" data-ic="palette"></i></span>Customize</button></li>' +
+      '<li><button type="button" data-more-search><span class="x-more__ico" aria-hidden="true"><i class="x-ic" data-ic="search"></i></span>Search everything<small>' + (mac ? "⌘K" : "Ctrl K") + "</small></button></li></ul></div>";
     var anchor = nav.querySelector(".x-search-btn") || nav.querySelector(".theme-btn");
     anchor ? nav.insertBefore(more, anchor) : nav.appendChild(more);
     moreBtn = more.querySelector(".x-more__btn"); moreMenu = more.querySelector(".x-more__menu");
@@ -605,7 +614,7 @@
   var sheet = doc.getElementById("x-sheet");
   if (sheet && !sheet.querySelector(".x-sheet__more")) {
     var box = doc.createElement("div"); box.className = "x-sheet__more";
-    box.innerHTML = '<p class="x-sheet__lab">More pages</p><nav aria-label="More pages"><ul>' + menuLinks().replace(/<small>.*?<\/small>/g, "") + '</ul></nav><ul><li><button type="button" class="x-sheet__cz" data-cz-open>🎨 Customize</button></li></ul>';
+    box.innerHTML = '<p class="x-sheet__lab">More pages</p><nav aria-label="More pages"><ul>' + menuLinks().replace(/<small>.*?<\/small>/g, "") + '</ul></nav><ul><li><button type="button" class="x-sheet__cz" data-cz-open><i class="x-ic" data-ic="palette" aria-hidden="true"></i> Customize</button></li></ul>';
     sheet.appendChild(box);
     box.addEventListener("click", function (e) {
       if (e.target.closest("[data-cz-open]")) { var mb = doc.querySelector(".x-menu-btn"); if (mb && mb.getAttribute("aria-expanded") === "true") mb.click(); }

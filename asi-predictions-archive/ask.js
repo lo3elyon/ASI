@@ -333,6 +333,9 @@
   var DEF = { eras: [], pids: [], topic: "", cats: ["entries", "talks", "people", "predictions", "history"], y0: 1860, y1: 2026, style: "detailed", lang: "en", n: 8, verified: false };
   Object.keys(DEF).forEach(function (k) { if (ST.set[k] == null) ST.set[k] = Array.isArray(DEF[k]) ? DEF[k].slice() : DEF[k]; });
   var S = ST.set;
+  /* the reading language also has its own key, so it survives even when the chat store is trimmed or cleared */
+  var LANG_KEY = "asiArchive.lang";
+  try { var lg0 = localStorage.getItem(LANG_KEY); if (lg0 === "bn" || lg0 === "en") S.lang = lg0; } catch (e) {}
   var L = function (k) { return (LBL[S.lang] || LBL.en)[k] || LBL.en[k] || k; };
   var persist = function () {
     var tries = 0;
@@ -429,7 +432,7 @@
       if (p) out.push(bn ? esc(p.name) + " সম্পর্কে আর্কাইভে যা আছে:" : "What the archive records about <b>" + esc(p.name) + "</b>" + (p.role ? ", " + esc(p.role) : "") + ":");
     } else if (det.year) out.push(bn ? det.year + " সালের আশেপাশে আর্কাইভে যা আছে:" : "What the archive records around <b>" + det.year + "</b>:");
     else if (det.decade) out.push(bn ? det.decade + "-এর দশকে:" : "From the <b>" + det.decade + "s</b>:");
-    else if (det.era >= 0) out.push(bn ? ERAS[det.era] + " যুগ থেকে:" : "From the <b>" + ERAS[det.era] + "</b> era:");
+    else if (det.era >= 0) out.push(bn ? ERAS_BN[det.era] + " যুগ থেকে:" : "From the <b>" + ERAS[det.era] + "</b> era:");
     if (prs.length >= 2) {
       var c = { good: 0, bad: 0, open: 0, part: 0 };
       prs.forEach(function (d) { var k = stCls(d.st); if (k === "good") c.good++; else if (k === "bad") c.bad++; else if (k === "amber") c.part++; else c.open++; });
@@ -600,6 +603,16 @@
   /* =====================================================================
      The page
      ===================================================================== */
+  /* an icon from the one ICONS map (fix15.js draws the SVG into it) */
+  var IC = function (k) { return '<i class="x-ic" data-ic="' + k + '" aria-hidden="true"></i>'; };
+  /* Bengali labels for the era chips and suggested questions; a chip still asks the English question, which the index can match */
+  var SUGG_BN = [
+    ["ডিপ লার্নিংয়ের আগে", ["বুদ্ধিমত্তার বিস্ফোরণ নিয়ে আই. জে. গুড কী বলেছিলেন?", "যন্ত্রের নিয়ন্ত্রণ হারানো নিয়ে প্রথম কে সতর্ক করেছিলেন?", "অ্যালান টুরিং কী ভবিষ্যদ্বাণী করেছিলেন?", "কোন প্রথম দিকের ভবিষ্যদ্বাণী দেরিতে সত্য হয়েছে?"]],
+    ["ডিপ লার্নিং যুগ", ["সুপারইন্টেলিজেন্স বইয়ে নিক বস্ট্রম কী যুক্তি দিয়েছিলেন?", "অ্যান্ড্রু এনজি কেন এআই ঝুঁকিকে মঙ্গলে জনসংখ্যা বৃদ্ধির সঙ্গে তুলনা করেছিলেন?", "আলফাগো যখন লি সেডলকে হারাল, তখন কী হয়েছিল?", "নিয়ন্ত্রণ সমস্যা নিয়ে স্টুয়ার্ট রাসেল কী বলেছিলেন?"]],
+    ["চ্যাটজিপিটির পরে", ["গুগল ছাড়ার পর জেফ্রি হিন্টন কী সতর্ক করেছিলেন?", "২০২৩ সালের বিলুপ্তি বিবৃতিতে কী বলা হয়েছিল?", "কোন ভবিষ্যদ্বাণী আগেভাগেই সত্য হয়েছে?", "চ্যাটজিপিটির পরে সংশয়বাদীরা কী বলেন?"]]
+  ];
+  var ERAS_BN = ["ডিপ লার্নিংয়ের আগে", "ডিপ লার্নিং যুগ", "চ্যাটজিপিটির পরে"];
+  var eraName = function (i) { return (S.lang === "bn" ? ERAS_BN : ERAS)[i]; };
   var SUGG = [
     ["Before deep learning", ["What did I. J. Good say about an intelligence explosion?", "Who first warned about losing control of machines?", "What did Alan Turing predict?", "Which early predictions came true late?"]],
     ["Deep learning era", ["What did Nick Bostrom argue in Superintelligence?", "Why did Andrew Ng compare AI risk to overpopulation on Mars?", "What happened when AlphaGo beat Lee Sedol?", "What did Stuart Russell say about the control problem?"]],
@@ -617,13 +630,13 @@
       return '<li><button type="button" class="x-srcc" data-open="' + esc(c.ref) + '"><small><b>' + (i + 1) + "</b> " + esc(c.label) + "</small><span>" + (window.XHL ? XHL.mark(esc(c.snip), m.q) : esc(c.snip)) + "</span></button></li>";
     }).join("") + "</ol></details>" : "";
     return '<article class="x-am x-am--b" data-mid="' + esc(m.id) + '">' +
-      (m.smart != null ? '<div class="x-am__smart' + (m.smartDone ? " x-kw-scope" : "") + '"><p class="x-am__lab">✨ ' + esc(L("smartH")) + " · " + esc(m.model || "") + "</p>" + smartHtml(m.smart, m.cites || []) + "</div>" : "") +
+      (m.smart != null ? '<div class="x-am__smart' + (m.smartDone ? " x-kw-scope" : "") + '"><p class="x-am__lab">' + IC("sparkle") + " " + esc(L("smartH")) + " · " + esc(m.model || "") + "</p>" + smartHtml(m.smart, m.cites || []) + "</div>" : "") +
       '<div class="x-am__body x-kw-scope">' + m.html + "</div>" + src +
       '<div class="x-am__acts" role="group" aria-label="Answer actions">' +
         '<button type="button" class="x-am__b" data-a="copy">⧉ <span>' + esc(L("copy")) + "</span></button>" +
-        '<button type="button" class="x-am__b" data-a="read" aria-pressed="false">🔊 <span>' + esc(L("read")) + "</span></button>" +
-        '<button type="button" class="x-am__b" data-a="up" aria-pressed="' + (fb === 1) + '" aria-label="' + esc(L("good")) + '">👍</button>' +
-        '<button type="button" class="x-am__b" data-a="down" aria-pressed="' + (fb === -1) + '" aria-label="' + esc(L("bad")) + '">👎</button>' +
+        '<button type="button" class="x-am__b" data-a="read" aria-pressed="false">' + IC("speaker") + ' <span>' + esc(L("read")) + "</span></button>" +
+        '<button type="button" class="x-am__b" data-a="up" aria-pressed="' + (fb === 1) + '" aria-label="' + esc(L("good")) + '">' + IC("thumbup") + "</button>" +
+        '<button type="button" class="x-am__b" data-a="down" aria-pressed="' + (fb === -1) + '" aria-label="' + esc(L("bad")) + '">' + IC("thumbdown") + "</button>" +
         '<button type="button" class="x-am__b" data-a="regen">↻ <span>' + esc(L("regen")) + "</span></button></div>" +
       (m.follow && m.follow.length ? '<div class="x-am__fol"><p class="x-am__lab">' + esc(L("follow")) + "</p>" + m.follow.map(function (f) { return '<button type="button" class="x-f" data-a="ask" data-q="' + esc(f) + '">' + esc(f) + "</button>"; }).join("") + "</div>" : "") +
       "</article>";
@@ -631,8 +644,8 @@
   var suggHtml = function () {
     var era = P ? P.era : 2;
     return '<div class="x-askp__sugg"><p class="x-am__lab">' + esc(L("suggested")) + '</p><div class="x-askp__tabs" role="group" aria-label="' + esc(L("era")) + '">' +
-      SUGG.map(function (s, i) { return '<button type="button" class="x-f" data-a="era" data-i="' + i + '" aria-pressed="' + (i === era) + '">' + esc(s[0]) + "</button>"; }).join("") + "</div>" +
-      '<div class="x-askp__chips">' + SUGG[era][1].map(function (q) { return '<button type="button" class="x-f" data-a="ask" data-q="' + esc(q) + '">' + esc(q) + "</button>"; }).join("") + "</div></div>";
+      SUGG.map(function (s, i) { return '<button type="button" class="x-f" data-a="era" data-i="' + i + '" aria-pressed="' + (i === era) + '">' + esc(eraName(i)) + "</button>"; }).join("") + "</div>" +
+      '<div class="x-askp__chips">' + SUGG[era][1].map(function (q, j) { var lb = S.lang === "bn" ? SUGG_BN[era][1][j] : q; return '<button type="button" class="x-f" data-a="ask" data-q="' + esc(q) + '"' + (lb !== q ? ' lang="bn" title="' + esc(q) + '"' : "") + ">" + esc(lb) + "</button>"; }).join("") + "</div></div>";
   };
   var paintLog = function () {
     if (!P) return;
@@ -649,8 +662,8 @@
       var d = new Date(c.ts);
       return '<li class="x-askp__chat' + (c.id === ST.last ? " is-cur" : "") + '" data-id="' + esc(c.id) + '">' +
         (P.renaming === c.id ? '<input class="x-input" data-a="renin" value="' + esc(c.title) + '" aria-label="' + esc(L("rename")) + '" />'
-          : '<button type="button" class="x-askp__open" data-a="open"' + (c.id === ST.last ? ' aria-current="true"' : "") + ">" + (c.pin ? "📌 " : "") + esc(c.title) + "<small>" + d.toLocaleDateString(S.lang === "bn" ? "bn-BD" : "en-GB", { day: "numeric", month: "short" }) + " · " + Math.ceil(c.msgs.length / 2) + "</small></button>") +
-        '<span class="x-askp__cacts"><button type="button" data-a="pin" aria-label="' + esc(c.pin ? L("unpin") : L("pin")) + '" title="' + esc(c.pin ? L("unpin") : L("pin")) + '">📌</button><button type="button" data-a="ren" aria-label="' + esc(L("rename")) + '" title="' + esc(L("rename")) + '">✎</button><button type="button" data-a="del" aria-label="' + esc(L("del")) + '" title="' + esc(L("del")) + '">🗑</button></span></li>';
+          : '<button type="button" class="x-askp__open" data-a="open"' + (c.id === ST.last ? ' aria-current="true"' : "") + ">" + (c.pin ? IC("pin") + " " : "") + esc(c.title) + "<small>" + d.toLocaleDateString(S.lang === "bn" ? "bn-BD" : "en-GB", { day: "numeric", month: "short" }) + " · " + Math.ceil(c.msgs.length / 2) + "</small></button>") +
+        '<span class="x-askp__cacts"><button type="button" data-a="pin" aria-label="' + esc(c.pin ? L("unpin") : L("pin")) + '" title="' + esc(c.pin ? L("unpin") : L("pin")) + '">' + IC("pin") + '</button><button type="button" data-a="ren" aria-label="' + esc(L("rename")) + '" title="' + esc(L("rename")) + '">✎</button><button type="button" data-a="del" aria-label="' + esc(L("del")) + '" title="' + esc(L("del")) + '">' + IC("trash") + '</button></span></li>';
     }).join("") : '<li class="x-askp__none">' + esc(L("empty")) + "</li>";
     var inp = P.el.querySelector('[data-a="renin"]'); if (inp) { inp.focus(); inp.select(); }
   };
@@ -658,7 +671,7 @@
     if (!P) return;
     var box = P.el.querySelector(".x-askp__smart"); if (!box) return;
     var h = "";
-    if (LLM.state === "off") h = '<div class="x-askp__smartoff"><button type="button" class="btn" data-a="smart">✨ ' + esc(L("smart")) + "</button>" +
+    if (LLM.state === "off") h = '<div class="x-askp__smartoff"><button type="button" class="btn" data-a="smart">' + IC("sparkle") + " " + esc(L("smart")) + "</button>" +
       '<p class="fineprint x-askp__size">' + (S.lang === "bn" ? "ঐচ্ছিক: একটি ওপেন মডেল একবার ডাউনলোড হয় (প্রায় ৪০০ MB থেকে ১.৩ GB), তারপর আপনার ব্রাউজারেই চলে।" : "Optional: downloads an open model once (about 400 MB to 1.3 GB, picked for your device), then runs in your browser. Nothing downloads until you confirm.") + "</p></div>";
     else if (LLM.state === "ask") h = '<div class="x-askp__note"><p><b>' + esc(L("smart")) + ".</b> " + (S.lang === "bn" ? "একটি ওপেন মডেল (Qwen2.5) আপনার ব্রাউজারে ডাউনলোড হয়ে চলবে; প্রশ্ন কোথাও পাঠানো হয় না। আকার: " : "An open model (Qwen2.5) downloads once into your browser and runs on your device; no question leaves it. Download size: ") + esc(LLM.size) + (S.lang === "bn" ? "। এরপর ক্যাশে থাকে।" : ", then cached for next time. Archive answers keep working either way.") + '</p><div class="links"><button type="button" class="btn" data-a="smartgo">' + (S.lang === "bn" ? "ডাউনলোড করে চালু করুন" : "Download and turn on") + '</button><button type="button" class="btn" data-a="smartno">' + (S.lang === "bn" ? "বাতিল" : "Cancel") + "</button></div></div>";
     else if (LLM.state === "nogpu") h = '<div class="x-askp__note"><p>' + (S.lang === "bn" ? "এই ব্রাউজারে WebGPU নেই, তাই স্মার্ট উত্তর চলবে না। আর্কাইভের উত্তর আগের মতোই কাজ করবে।" : "This browser has no WebGPU, so smart answers cannot run here. Try a recent Chrome or Edge on a computer. Archive answers keep working as before.") + '</p><button type="button" class="btn" data-a="smartno">OK</button></div>';
@@ -690,7 +703,7 @@
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("lang")) + "</p>" + sel("lang", [["en", "English"], ["bn", "বাংলা"]], S.lang) + "</div>" +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("nSources")) + "</p>" + sel("n", [[3, "3"], [5, "5"], [8, "8"], [12, "12"]], S.n) + "</div>" +
       '<fieldset class="x-askp__f"><legend class="x-am__lab">' + esc(L("type")) + "</legend>" + [["entries", L("entries")], ["talks", L("talks")], ["people", L("peopleT")], ["predictions", L("predictions")], ["history", L("history")]].map(function (t) { return chk("cat", t[0], t[1], S.cats.indexOf(t[0]) >= 0); }).join("") + "</fieldset>" +
-      '<fieldset class="x-askp__f"><legend class="x-am__lab">' + esc(L("era")) + "</legend>" + ERAS.map(function (e, i) { return chk("era", i, e, S.eras.indexOf(i) >= 0); }).join("") + "</fieldset>" +
+      '<fieldset class="x-askp__f"><legend class="x-am__lab">' + esc(L("era")) + "</legend>" + ERAS.map(function (e, i) { return chk("era", i, eraName(i), S.eras.indexOf(i) >= 0); }).join("") + "</fieldset>" +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("topic")) + "</p>" + sel("topic", [["", L("anyTopic")]].concat(TOPICS.map(function (t) { return [t[0], t[1]]; })), S.topic) + "</div>" +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("people")) + '</p><div class="x-askp__pchips">' + S.pids.map(function (id) { var p = PBY[id]; return p ? '<button type="button" class="x-f" aria-pressed="true" data-a="prm" data-id="' + esc(id) + '">' + esc(p.name) + " ×</button>" : ""; }).join("") + "</div>" +
         '<div class="x-pac"><input class="x-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="x-askp-pl" data-f="padd" placeholder="' + esc(L("addPerson")) + '" aria-label="' + esc(L("addPerson")) + '" autocomplete="off" spellcheck="false" />' +
@@ -740,7 +753,7 @@
         smartAnswer(bot, A.fullCites, function (txt) {
           bot.smart = txt;
           var el = P && P.el.querySelector('[data-mid="' + bot.id + '"] .x-am__smart');
-          if (el) el.innerHTML = '<p class="x-am__lab">✨ ' + esc(L("smartH")) + " · " + esc(bot.model) + "</p>" + smartHtml(txt, bot.cites);
+          if (el) el.innerHTML = '<p class="x-am__lab">' + IC("sparkle") + " " + esc(L("smartH")) + " · " + esc(bot.model) + "</p>" + smartHtml(txt, bot.cites);
         }, function (txt, stopped) { bot.smart = txt + (stopped ? " …" : ""); bot.smartDone = true; persist(); paintLog(); });
       }
     }).catch(function () {
@@ -873,7 +886,7 @@
     else if (f === "n") S.n = +t.value;
     else if (f === "topic") S.topic = t.value;
     else if (f === "verified") S.verified = t.checked;
-    else if (f === "lang") { S.lang = t.value; persist(); remount(); return; }
+    else if (f === "lang") { S.lang = t.value; try { localStorage.setItem(LANG_KEY, S.lang); } catch (e) {} persist(); remount(); return; }
     else if (f === "cat" || f === "era") {
       var key = f === "cat" ? "cats" : "eras", val = f === "era" ? +t.value : t.value;
       S[key] = S[key].filter(function (x) { return x !== val; }); if (t.checked) S[key].push(val);

@@ -298,7 +298,7 @@
   subs.push(paintGeneric);
 
   /* =====================================================================
-     Kids' corner: Read all, Stop, speed and voice above the cards; each 🔊 toggles that card
+     Kids' corner: Read all, Stop, speed and voice above the cards; each Listen button toggles that card
      ===================================================================== */
   var all = false;
   var kidsBox = function () { return doc.querySelector(".x-ln__kids"); };
@@ -355,18 +355,18 @@
     var btns = box.querySelectorAll(".x-ln__say");
     if (!ok) {
       btns.forEach(function (b) { b.hidden = true; });
-      box.insertAdjacentHTML("beforebegin", '<p class="x-vo-note">Read-aloud is not available in this browser, so the 🔊 buttons are hidden. The cards still flip.</p>');
+      box.insertAdjacentHTML("beforebegin", '<p class="x-vo-note">Read-aloud is not available in this browser, so the Listen buttons are hidden. The cards still flip.</p>');
       return;
     }
     btns.forEach(function (b) {
       b.classList.remove("x-mo-say");
       b.classList.add("x-vo-say");
       b.setAttribute("aria-pressed", "false");
-      b.innerHTML = '<span class="x-vo-ico" aria-hidden="true">🔊</span>' + WAVE + '<span class="x-vo-lbl">Listen</span>';
+      b.innerHTML = '<span class="x-vo-ico" aria-hidden="true"><i class="x-ic" data-ic="speaker"></i></span>' + WAVE + '<span class="x-vo-lbl">Listen</span>';
     });
     box.insertAdjacentHTML("beforebegin",
       '<div class="x-vo-bar x-vo-kids" role="group" aria-label="Read aloud">' +
-        '<button type="button" class="x-vo-b" data-kids-all aria-pressed="false"><span class="x-vo-ico" aria-hidden="true">🔊</span>' + WAVE + '<span class="x-vo-lbl">Read all</span></button>' +
+        '<button type="button" class="x-vo-b" data-kids-all aria-pressed="false"><span class="x-vo-ico" aria-hidden="true"><i class="x-ic" data-ic="speaker"></i></span>' + WAVE + '<span class="x-vo-lbl">Read all</span></button>' +
         '<button type="button" class="x-vo-b" data-kids-stop disabled><span aria-hidden="true">■</span> Stop</button>' +
         pickers() +
         '<span class="x-vo-status" aria-live="polite"></span>' +
@@ -375,7 +375,7 @@
   };
   window.XVoice.mountKids = mountKids;
 
-  /* capture phase: the 🔊 buttons and the bar are handled here, before learn.js's one-shot speak */
+  /* capture phase: the Listen buttons and the bar are handled here, before learn.js's one-shot speak */
   doc.addEventListener("click", function (e) {
     var t = e.target;
     if (!t.closest) return;

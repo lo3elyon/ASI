@@ -86,8 +86,8 @@
     var more = [];
     if (sp[0]) { var bio = bioOf(sp[0]); if (bio) more.push('<p class="x-wh__p"><b>About ' + esc(sp[0].name) + ".</b> " + esc(clip(bio, 480)) + "</p>"); }
     if (tp.length) more.push('<div class="x-wh__tags">' + tp.map(function (t) { return '<a class="x-wh__tag x-tagl" href="#/topic/' + esc(String(t).toLowerCase().replace(/&/g, " ").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")) + '">#' + esc(t) + "</a>"; }).join("") + "</div>");
-    var chips = [v.c ? ["📺", v.c, "Channel"] : null, y ? ["📅", y, "Year"] : null, v.len ? ["⏱", v.len, "Length"] : null].filter(Boolean)
-      .map(function (c) { return '<span class="x-wh__chip" title="' + c[2] + '"><span aria-hidden="true">' + c[0] + "</span> " + esc(c[1]) + "</span>"; }).join("");
+    var chips = [v.c ? ["tv", v.c, "Channel"] : null, y ? ["year", y, "Year"] : null, v.len ? ["clock", v.len, "Length"] : null].filter(Boolean)
+      .map(function (c) { return '<span class="x-wh__chip" title="' + c[2] + '"><i class="x-ic" data-ic="' + c[0] + '" aria-hidden="true"></i> ' + esc(c[1]) + "</span>"; }).join("");
     var id = "whf" + (++seq), sum = [lead].concat(desc).join(" ");
     /* the summary shows three lines; the button appears when there is more to read */
     var long = more.length || sum.replace(/<[^>]+>/g, "").length > 150;
@@ -112,19 +112,19 @@
     var sp = speakers(v), items = [];
     sp.slice(0, 2).forEach(function (p) {
       var d = DETAIL[p.id] || {};
-      if (p.warning) items.push(["⚠️", p.name + " warns", p.warning]);
-      if (p.pdoom) items.push(["🎲", p.name + "'s risk estimate", p.pdoom]);
-      if (p.agi_year) items.push(["⏳", p.name + "'s AGI timeline", String(p.agi_year)]);
-      (d.predictions || []).slice(0, 2).forEach(function (r) { if (r && r.claim) items.push(["🔮", "Prediction" + (r.year ? " (" + r.year + ")" : ""), r.claim]); });
-      (p.quotes || []).slice(0, 1).forEach(function (q) { if (q && q.text) items.push(["💬", "In their words", q.text]); });
-      (p.key_ideas || []).length && items.push(["💡", "Key ideas", p.key_ideas.slice(0, 4).join(" · ")]);
+      if (p.warning) items.push(["warning", p.name + " warns", p.warning]);
+      if (p.pdoom) items.push(["dice", p.name + "'s risk estimate", p.pdoom]);
+      if (p.agi_year) items.push(["hourglass", p.name + "'s AGI timeline", String(p.agi_year)]);
+      (d.predictions || []).slice(0, 2).forEach(function (r) { if (r && r.claim) items.push(["crystal", "Prediction" + (r.year ? " (" + r.year + ")" : ""), r.claim]); });
+      (p.quotes || []).slice(0, 1).forEach(function (q) { if (q && q.text) items.push(["quote", "In their words", q.text]); });
+      (p.key_ideas || []).length && items.push(["bulb", "Key ideas", p.key_ideas.slice(0, 4).join(" · ")]);
     });
-    if (!items.length) { var tp = topics(v); if (tp.length) items.push(["🏷️", "Topics", tp.join(" · ")]); }
+    if (!items.length) { var tp = topics(v); if (tp.length) items.push(["tag", "Topics", tp.join(" · ")]); }
     if (!items.length) return '<p class="x-wh__muted">No context highlights for this talk yet.</p>';
     /* compact cards: icon, bold label, two lines; a tap opens the full text in place */
     return '<p class="x-wh__info"><span aria-hidden="true">ⓘ</span> From the speaker\'s record, not video timestamps</p><ul class="x-wh__hl">' +
       items.slice(0, 6).map(function (x, i) {
-        return '<li style="--i:' + i + '"><button type="button" class="x-wh__card" data-wh-card aria-expanded="false"><span class="x-wh__ico" aria-hidden="true">' + x[0] + '</span><span class="x-wh__ct"><b>' + esc(x[1]) + '</b><span class="x-wh__cx">' + esc(clip(x[2], 420)) + "</span></span></button></li>";
+        return '<li style="--i:' + i + '"><button type="button" class="x-wh__card" data-wh-card aria-expanded="false"><span class="x-wh__ico" aria-hidden="true"><i class="x-ic" data-ic="' + x[0] + '"></i></span><span class="x-wh__ct"><b>' + esc(x[1]) + '</b><span class="x-wh__cx">' + esc(clip(x[2], 420)) + "</span></span></button></li>";
       }).join("") + "</ul>";
   };
 
@@ -152,7 +152,7 @@
   };
 
   /* [key, label, icon, tooltip]: the same five tabs in every mode (page, theater, window, mini flyout, fullscreen) */
-  var TABS = [["about", "About", "ℹ", "About this talk"], ["ch", "Chapters", "≡", "Chapters"], ["tr", "Transcript", "¶", "Transcript"],
+  var TABS = [["about", "About", '<i class="x-ic" data-ic="info"></i>', "About this talk"], ["ch", "Chapters", "≡", "Chapters"], ["tr", "Transcript", "¶", "Transcript"],
     ["up", "Up next", "▶", "Up next and queue"], ["notes", "Notes", "✎", "Your notes and bookmarks"]];
   /* the notes tabs (player-notes.js) show only for videos that have them */
   var NOTE_TABS = { ch: 1, tr: 1 };
@@ -171,7 +171,7 @@
     return '<div class="x-wh__notes"><p class="x-pn-h">Your notes</p>' +
       '<label class="x-pn-sr" for="' + uid + '-note">Notes on this talk</label>' +
       '<textarea class="x-wh__note" id="' + uid + '-note" rows="5" placeholder="Write while you watch. Press the clock to drop in the current time." data-wh-note>' + esc(noteOf(v.id)) + "</textarea>" +
-      '<div class="x-wh__noterow"><button type="button" class="x-pn-btn" data-wh-stamp>⏱ Insert time</button><span class="x-wh__saved" aria-live="polite"></span></div>' +
+      '<div class="x-wh__noterow"><button type="button" class="x-pn-btn" data-wh-stamp><i class="x-ic" data-ic="clock" aria-hidden="true"></i> Insert time</button><span class="x-wh__saved" aria-live="polite"></span></div>' +
       '<p class="x-pn-cnote x-wh__nhelp">Saved on this device as you type. Bookmarks (B) are listed below.</p></div>';
   };
 
@@ -553,7 +553,7 @@
     var l = list().filter(function (x) { return !doneOf(x.id) && posOf(x.id) > 5; }).slice(0, 12), all = list();
     if (!all.length) { row.hidden = true; return; }
     row.hidden = false;
-    row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
+    row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open"><i class="x-ic" data-ic="history" aria-hidden="true"></i> My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
         return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (doneOf(x.id) ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">' + (posOf(x.id) > 0 ? "▶ Resume " + fmt(posOf(x.id)) : "▶ Play") + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
@@ -602,7 +602,7 @@
   /* painted once at load, not after a delay, so nothing below it shifts later */
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintRow); else paintRow();
   /* a talk started on this visit: once it is in the history (or first passes 5 s, moving it from "recent" to
-     "Continue watching"), the row is drawn again so it and the 🕘 My watch history pill appear without a reload.
+     "Continue watching"), the row is drawn again so it and the My watch history pill appear without a reload.
      It only redraws when that set changes, never just because time passed. */
   var rowSig = function () {
     var all = list(), cont = all.filter(function (x) { return !doneOf(x.id) && posOf(x.id) > 5; });

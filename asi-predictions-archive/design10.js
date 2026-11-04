@@ -23,7 +23,7 @@
     var r = route();
     if (!r) return "ideas";
     if (r.n === "topic") return POLICY[r.a] ? "policy" : SAFETY[r.a] ? "safety" : "ideas";
-    return { era: "history", timeline: "history", compare: "people", org: "people", person: "people", stats: "predictions", ask: "ask", about: "sources", quotes: "ideas", topics: "ideas", watch: "media" }[r.n] || "ideas";
+    return { era: "history", timeline: "history", compare: "people", org: "people", person: "people", stats: "predictions", ask: "ask", about: "sources", quotes: "ideas", topics: "ideas", watch: "media", policy: "policy", safety: "safety" }[r.n] || "ideas";
   };
   var tag = function (el, key) {
     if (!el || !KEYS[key]) return;
@@ -65,7 +65,7 @@
   };
   var R = 2, O = 24, A = 38, Y = 50, G = 142, T = 173, C = 189, S = 199, B = 217;
   var SEC = {
-    history: ["hourglass", A, O], archive: ["library", O, R], people: ["users", S, B], media: ["clapperboard", R, O],
+    history: ["hourglass", A, O], archive: ["library", O, R], people: ["users", S, B], media: ["clapperboard", A, Y],
     learn: ["graduationCap", G, T], tracker: ["target", T, C], portraits: ["image", B, S]
   };
   var SPARE = [["sparkles", Y, A], ["map", G, Y], ["layers", C, S], ["bookmark", R, A]];

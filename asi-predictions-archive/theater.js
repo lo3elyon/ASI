@@ -73,7 +73,7 @@
             '<input class="x-input" id="ttQ" type="search" placeholder="Search titles, channels, people, summaries…" aria-label="Search the video library" autocomplete="off" />' +
             '<select class="x-sel" id="ttSort" aria-label="Sort videos"><option value="new">Newest</option><option value="old">Oldest</option><option value="az">A–Z</option><option value="long">Longest</option></select>' +
           "</div>" +
-          '<div class="x-row"><span class="x-row__lab">Show</span>' + chip("data-tf", "picks", "Archive picks") + chip("data-tf", "neuro", "🧠 Neuroscience") + chip("data-tf", "cc", "CC Has transcript " + nCC) + "</div>" +
+          '<div class="x-row"><span class="x-row__lab">Show</span>' + chip("data-tf", "picks", "Archive picks") + chip("data-tf", "neuro", "Neuroscience").replace('">', '"><i class="x-ic" data-ic="brain" aria-hidden="true"></i> ') + chip("data-tf", "cc", "CC Has transcript " + nCC) + "</div>" +
           '<div class="x-row"><span class="x-row__lab">Type</span>' + KINDS.map(function (k) { return chip("data-tkind", k, k + " " + kinds[k]); }).join("") + "</div>" +
           '<div class="x-row"><span class="x-row__lab">Decade</span>' + DECS.map(function (d) { return chip("data-tdec", d, (d === "u" ? "Undated" : d + "s") + " " + decs[d]); }).join("") + "</div>" +
           '<div class="x-row">' +
@@ -81,6 +81,7 @@
             '<datalist id="ttPeople">' + names.map(function (p) { return '<option value="' + esc(p.name) + '"></option>'; }).join("") + "</datalist>" +
             '<span id="ttPersonChip"></span>' +
             '<span class="x-count" id="ttCount" aria-live="polite"></span>' +
+            '<button class="btn" type="button" id="ttClear" hidden>Clear filters</button>' +
           "</div>" +
         "</div>" +
         '<div class="x-tt__grid" id="ttGrid"></div>' +
@@ -122,7 +123,9 @@
   }).join("");
 
   /* ---------- library ---------- */
-  var F = { terms: [], kinds: new Set(), eras: new Set(), decs: new Set(), picks: false, neuro: false, cc: false, person: null, sort: "new" };
+  /* q and personQ hold the typed strings: an input's value is never written while it has focus */
+  var F = { terms: [], q: "", personQ: "", kinds: new Set(), eras: new Set(), decs: new Set(), picks: false, neuro: false, cc: false, person: null, sort: "new" };
+  var setVal = function (id, v) { var el = document.getElementById(id); if (el && document.activeElement !== el && el.value !== v) el.value = v; };
   var filtered = [], shown = 0, BATCH = 48, grid = $("ttGrid"), more = $("ttMore");
   var match = function (v) {
     if (F.picks && !v.pick) return false;
@@ -155,11 +158,13 @@
     LISTS.grid = filtered;
     grid.innerHTML = ""; shown = 0;
     $("ttCount").textContent = num(filtered.length) + " of " + num(V.length) + " talks";
+    $("ttClear").hidden = !(F.terms.length || F.q || F.personQ || F.person || F.kinds.size || F.eras.size || F.decs.size || F.picks || F.neuro || F.cc);
+    setVal("ttQ", F.q); setVal("ttPerson", F.personQ);
     syncChips();
     if (!filtered.length) { grid.innerHTML = '<div class="x-empty" style="grid-column: 1 / -1"><p>No talks match these filters.</p><button class="btn" type="button" id="ttReset">Clear all filters</button></div>'; more.parentNode.hidden = true; }
     else renderMore();
   };
-  var reset = function () { F.terms = []; $("ttQ").value = ""; F.kinds.clear(); F.eras.clear(); F.decs.clear(); F.picks = F.neuro = F.cc = false; F.person = null; $("ttPerson").value = ""; };
+  var reset = function () { F.terms = []; F.q = ""; F.personQ = ""; setVal("ttQ", ""); F.kinds.clear(); F.eras.clear(); F.decs.clear(); F.picks = F.neuro = F.cc = false; F.person = null; setVal("ttPerson", ""); };
   more.addEventListener("click", renderMore);
   /* The library grows only on a Show more click; no observer or timer appends cards. */
 
@@ -167,13 +172,17 @@
   $("ttQ").addEventListener("input", function () {
     clearTimeout(tmr);
     var el = this;
-    tmr = setTimeout(function () { var q = el.value.trim().toLowerCase(); F.terms = q ? q.split(/\s+/) : []; apply(); }, 120);
+    F.q = el.value;
+    tmr = setTimeout(function () { var q = F.q.trim().toLowerCase(); F.terms = q ? q.split(/\s+/) : []; apply(); }, 120);
   });
   $("ttSort").addEventListener("change", function () { F.sort = this.value; apply(); });
+  /* the typed name stays in the box (state F.personQ); an exact match sets the person filter, an empty box clears it */
   var pickPerson = function () {
-    var val = $("ttPerson").value.trim().toLowerCase(); if (!val) return;
+    F.personQ = $("ttPerson").value;
+    var val = F.personQ.trim().toLowerCase();
+    if (!val) { if (F.person) { F.person = null; apply(); } return; }
     var hit = names.filter(function (p) { return p.name.toLowerCase() === val; })[0];
-    if (hit) { F.person = hit.id; $("ttPerson").value = ""; apply(); }
+    if (hit && F.person !== hit.id) { F.person = hit.id; apply(); }
   };
   $("ttPerson").addEventListener("input", pickPerson);
   $("ttPerson").addEventListener("change", pickPerson);
@@ -182,7 +191,7 @@
     ev.preventDefault();
     var val = this.value.trim().toLowerCase(); if (!val) return;
     var hit = names.filter(function (p) { return p.name.toLowerCase().indexOf(val) >= 0; })[0];
-    if (hit) { F.person = hit.id; this.value = ""; apply(); }
+    if (hit) { F.person = hit.id; F.personQ = this.value; apply(); }
   });
 
   /* ---------- player and recommendations ---------- */
@@ -235,13 +244,16 @@
     var v = fallback(id, o.title);
     var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : null;
     /* A card picked while the Theater player is off-screen opens in the pop-out window; the page stays put. */
-    if (o.card && AP.popout && !player.inView()) { holdScroll(function () { AP.popout(v, { queue: q }); }); return; }
+    /* Until a talk is chosen the stage above the library stays hidden, so a card opens the pop-out window */
+    var top = $("ttTop");
+    if (o.card && AP.popout && (top.hidden || !player.inView())) { holdScroll(function () { AP.popout(v, { queue: q }); }); return; }
+    if (top.hidden) top.hidden = false;
     /* Loads the poster only; the page never moves and nothing plays until Play is pressed. */
     AP.keepScroll(function () { player.load(v, q ? { queue: q, index: q.indexOf(v) } : null); });
   };
 
   host.addEventListener("click", function (ev) {
-    var b = ev.target.closest("[data-tv],[data-tf],[data-tkind],[data-tera],[data-tdec],[data-see],#ttPersonClear,#ttReset");
+    var b = ev.target.closest("[data-tv],[data-tf],[data-tkind],[data-tera],[data-tdec],[data-see],#ttPersonClear,#ttReset,#ttClear");
     if (!b) return;
     if (b.dataset.tv) { ev.preventDefault(); if (b.blur) b.blur(); var list = LISTS[b.dataset.list]; select(b.dataset.tv, { queue: list, card: true }); return; }
     if (b.dataset.tf) F[b.dataset.tf] = !F[b.dataset.tf];
@@ -257,8 +269,8 @@
       $("ttSort").value = F.sort;
       apply(); if (window.XGoTo) window.XGoTo("library"); else $("library").scrollIntoView({ block: "start" }); return;
     }
-    else if (b.id === "ttPersonClear") F.person = null;
-    else if (b.id === "ttReset") reset();
+    else if (b.id === "ttPersonClear") { F.person = null; F.personQ = ""; setVal("ttPerson", ""); }
+    else if (b.id === "ttReset" || b.id === "ttClear") reset();
     apply();
   });
 
@@ -272,6 +284,6 @@
   window.ArchiveTheater = { select: select, player: player };
 
   apply();
-  var first = ROWS[0].list[0] || V[0];
-  if (first) select(first.id, { queue: ROWS[0].list.length ? ROWS[0].list : V });
+  /* #media opens on the library: no talk is loaded (first, last or resumed) until the reader picks one */
+  $("ttTop").hidden = true;
 })();

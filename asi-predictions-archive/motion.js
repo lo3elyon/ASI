@@ -82,7 +82,7 @@
 
   /* =====================================================================
      A. Kids' corner read-aloud: moved to voice.js (one narrator, attached by event delegation).
-     This older copy never runs, so the two cannot fight over the 🔊 buttons.
+     This older copy never runs, so the two cannot fight over the Listen buttons.
      ===================================================================== */
   false && safe(function () {
     var ss = window.speechSynthesis, ok = !!(ss && window.SpeechSynthesisUtterance);
@@ -172,7 +172,7 @@
       var btns = box.querySelectorAll(".x-ln__say");
       if (!ok) {
         btns.forEach(function (b) { b.hidden = true; b.style.display = "none"; });
-        box.insertAdjacentHTML("beforebegin", '<p class="x-say__note">Read-aloud is not available in this browser, so the 🔊 buttons are hidden. The cards still flip.</p>');
+        box.insertAdjacentHTML("beforebegin", '<p class="x-say__note">Read-aloud is not available in this browser, so the Listen buttons are hidden. The cards still flip.</p>');
         return;
       }
       btns.forEach(function (b) {
@@ -201,7 +201,7 @@
       });
     };
 
-    /* the 🔊 buttons: handled here (capture), so learn.js's one-shot speak never runs */
+    /* the Listen buttons: handled here (capture), so learn.js's one-shot speak never runs */
     doc.addEventListener("click", function (e) {
       var b = e.target.closest && e.target.closest(".x-ln__say");
       if (b) {

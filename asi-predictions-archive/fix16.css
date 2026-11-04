@@ -1,0 +1,50 @@
+/* fix16.css: player fixes from the batch-12 browser QA. Loaded last. */
+
+/* 1. one watched line under the seek bar, in every player (fix16.js writes it; the batch-12 line gives way) */
+.x-ap .x-ap__bar .s12-prog { display: none !important; }
+.x-ap .x-ap__bar .f16-prog {
+  display: block !important; visibility: visible !important;
+  height: 16px; margin: -2px 0 2px; padding: 0 8px; overflow: hidden; min-width: 0;
+}
+.x-ap .f16-prog__t {
+  margin: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font: 400 12px/16px var(--s12-mono, "Geist Mono", ui-monospace, monospace);
+  font-variant-numeric: tabular-nums; letter-spacing: 0;
+  color: var(--hero-text-muted, var(--hero-text));
+}
+.x-ap .f16-prog.is-empty .f16-prog__t { visibility: hidden; }
+
+/* 3. nothing above 2× unless Extension mode is on */
+html:not(.s12-ext) .x-ap [data-x="rate"]:is([data-rate="2.5"], [data-rate="3"]),
+.x-ap [data-x="rate"][hidden] { display: none !important; }
+
+/* 4. the speed badge: above the iframe, shield and cover; up for 1.5 s on a change and while the controls are up */
+.x-ap .x-ap__screen > .s12-badge { z-index: 30 !important; }
+.x-ap:not(.is-native) .x-ap__screen > .s12-badge.f16-show,
+.x-ap .x-ap__screen > .s12-badge.f16-flash {
+  display: inline-flex !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
+  transition: opacity 200ms var(--ease-out), visibility 0s linear 0s !important;
+}
+
+/* 5. phones: the dock is the bottom bar with Expand, Play and Close */
+@media (max-width: 599px) {
+  .x-pop.is-dk14 .x-dk { display: flex !important; }
+  .x-pop.is-dk14 .x-dk__tx { display: grid !important; order: 0; }
+  .x-pop.is-dk14 .x-dk__b { display: inline-flex !important; flex: none; width: var(--tap); height: var(--tap); }
+  .x-pop.is-dk14 .x-dk__b[data-dk="expand"] { order: 1; }
+  .x-pop.is-dk14 .x-dk__b[data-dk="pp"] { order: 2; }
+  .x-pop.is-dk14 .x-dk__b[data-dk="close"] { order: 3; }
+}
+.x-pop.is-dk14 .x-ap__big { display: none !important; }
+
+/* 6. while the player window is open, Back to top and Ask step aside */
+html.f16-pop .x-top,
+html.f16-pop .x-ask { display: none !important; }
+
+/* 6. the poster's Play, centred in the picture above the caption (fix16.js sets its top); smaller in a short picture */
+.x-ap .x-ap__poster > .x-ap__big { left: 50% !important; }
+.x-ap .x-ap__poster > .x-ap__big.f16-small {
+  width: 48px !important; height: 48px !important;
+  box-shadow: 0 0 0 5px rgba(6, 182, 212, 0.25), 0 0 20px 2px rgba(6, 182, 212, 0.45) !important;
+}
+.x-ap .x-ap__poster > .x-ap__big.f16-small .x-pp { width: 22px; height: 22px; }

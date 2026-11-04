@@ -5,7 +5,7 @@
 (function () {
   "use strict";
   var doc = document, de = doc.documentElement;
-  var PAGE = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about|org|ask)(\/|$)/;
+  var PAGE = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about|org|ask|policy|safety)(\/|$)/;
   var PERSON = /^#\/person\//;
   var lifted = false, touched = false;
 

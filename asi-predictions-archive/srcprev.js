@@ -1,7 +1,7 @@
 /* srcprev.js: Batch 5. A preview card on every external source link (not YouTube, not the footer credits).
    Desktop: hover for 250 ms, or keyboard focus, shows a card anchored to the link (flips above or below, max 380px);
    it stays open while the pointer is over it, and Esc closes it. Touch: the first tap opens the same card as a
-   bottom sheet instead of leaving; "Open source ↗" in it leaves. Previews come from source_previews.json by a
+   bottom sheet instead of leaving; "Open source" in it leaves. Previews come from source_previews.json by a
    normalised URL; a URL it lacks gets a card built from the archive's own text that cites it ("From this archive").
    Nothing moves under the cursor: the card floats in the top layer and the link itself never changes size. */
 (function () {
@@ -50,7 +50,13 @@
   var prev = function () {
     if (PREV) return PREV;
     PREV = {}; var d = read("d-srcprev") || {};
-    Object.keys(d).forEach(function (k) { PREV[norm(k)] = d[k]; });
+    /* a few previews were saved as UTF-8 read as Latin-1 (C1 control characters inside); decode them back */
+    var fix = function (s) { if (typeof s !== "string" || !/[\u0080-\u009f]/.test(s) || /[^\u0000-\u00ff]/.test(s)) return s; try { return decodeURIComponent(escape(s)); } catch (e) { return s; } };
+    Object.keys(d).forEach(function (k) {
+      var r = d[k];
+      if (r && typeof r === "object") { r.t = fix(r.t); r.s = fix(r.s); if (Array.isArray(r.p)) r.p = r.p.map(fix); }
+      PREV[norm(k)] = r;
+    });
     return PREV;
   };
   var ctx = function () {
@@ -130,7 +136,7 @@
           (o.q ? '<blockquote class="x-sp__q">' + esc(cut(o.q, 180)) + "</blockquote>" : "") + "</li>";
       }).join("") + "</ul>";
     }
-    h += '<div class="x-sp__acts"><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Open source ↗</a>' +
+    h += '<div class="x-sp__acts"><a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Open source <i class="x-ic" data-ic="external" aria-hidden="true"></i></a>' +
       '<button type="button" class="btn" data-sp-copy>Copy link</button><span class="x-sp__ok" role="status" aria-live="polite"></span></div>';
     return { html: h, label: "Source preview: " + ((has && d.t) || site) };
   };

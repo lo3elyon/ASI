@@ -84,7 +84,7 @@
   var groups = Object.keys(counts).sort(function (a, b) { return counts[b] - counts[a] || cmpStr(a, b); });
   var chip = function (attr, val, label, on) { return '<button class="x-f" type="button" aria-pressed="' + !!on + '" ' + attr + '="' + esc(val) + '">' + esc(label).replace(/ (\d+)$/, ' <span class="x-n">$1</span>') + "</button>"; };
   var paintChips = function () {
-    $("pchips").innerHTML = chip("data-pg", "", "All " + PEOPLE.length, !F.group && !F.neuro) + chip("data-pn", "1", "🧠 Neuroscientists " + nNeuro, F.neuro) +
+    $("pchips").innerHTML = chip("data-pg", "", "All " + PEOPLE.length, !F.group && !F.neuro) + chip("data-pn", "1", "Neuroscientists " + nNeuro, F.neuro).replace('">', '"><i class="x-ic" data-ic="brain" aria-hidden="true"></i> ') +
       groups.map(function (g) { return chip("data-pg", g, GROUP(g) + " " + counts[g], F.group === g); }).join("");
   };
   var ICON_GRP = '<svg class="x-ic" viewBox="0 0 24 24" width="12" height="12" aria-hidden="true"><path d="M3.5 12.2V4.5a1 1 0 0 1 1-1h7.7l8.3 8.3a1 1 0 0 1 0 1.4l-6.9 6.9a1 1 0 0 1-1.4 0z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><circle cx="8.2" cy="8.2" r="1.7" fill="currentColor"/></svg>';
@@ -92,7 +92,7 @@
   var card = function (p) {
     var bio = bioOf(p);
     return '<a class="x-pc" data-id="' + esc(p.id) + '" data-g="' + esc(p.group) + '" href="#/person/' + esc(p.id) + '">' + avatar(p) +
-      '<span class="x-pc__name">' + esc(p.name) + (p.neuro ? " 🧠" : "") + "</span>" +
+      '<span class="x-pc__name">' + esc(p.name) + (p.neuro ? ' <i class="x-ic" data-ic="brain" role="img" aria-label="Neuroscientist"></i>' : "") + "</span>" +
       (p.role ? '<span class="x-pc__role">' + esc(p.role) + "</span>" : "") +
       (p.org && window.XLogo && XLogo.forName(p.org) ? '<span class="x-pc__org">' + orgLine(p, 18, false) + "</span>" : "") +
       '<span class="x-pc__bio">' + esc(bio) + "</span>" +
@@ -279,7 +279,7 @@
         "<h1>" + esc(p.name) + "</h1>" +
         (p.born_died ? '<p class="x-pv__sub">' + esc(p.born_died) + "</p>" : "") +
         '<p class="x-pv__sub">' + esc(p.role || "") + (p.role && p.org ? " · " : "") + orgLine(p, 22, true) + "</p>" +
-        '<p class="x-pv__badges"><span class="pill">' + esc(GROUP(p.group)) + "</span>" + (p.neuro ? '<span class="pill x-neuro">🧠 Neuroscientist</span>' : "") + (talks(p) ? '<span class="pill">' + talks(p) + "</span>" : "") + '<span class="pill">' + mins + " min read</span></p>" +
+        '<p class="x-pv__badges"><span class="pill">' + esc(GROUP(p.group)) + "</span>" + (p.neuro ? '<span class="pill x-neuro"><i class="x-ic" data-ic="brain" aria-hidden="true"></i> Neuroscientist</span>' : "") + (talks(p) ? '<span class="pill">' + talks(p) + "</span>" : "") + '<span class="pill">' + mins + " min read</span></p>" +
         (p.pdoom || p.agi_year ? '<p class="x-pv__badges">' + (p.pdoom ? '<span class="chip chip--solid">p(doom): ' + esc(p.pdoom) + "</span>" : "") + (p.agi_year ? '<span class="chip">AGI: ' + esc(p.agi_year) + "</span>" : "") + "</p>" : "") +
       "</div></header>" +
       '<div class="x-pv__grid"><aside class="x-pv__side">' + ff + '<nav class="x-toc" id="pvToc" aria-label="On this page"></nav></aside><div class="x-pv__body">' +

@@ -15,15 +15,15 @@
 
   /* ---------- content ---------- */
   var KIDS = [
-    ["🤖", "What is AI?", "AI is a computer program that learns from examples, a bit like how you learn to spot cats after seeing lots of cats. Nobody writes every rule; it finds patterns by itself."],
-    ["🧠", "What is AGI?", "AGI means an AI that can learn almost anything a person can: maths, stories, science, games. Today's AI is great at some things and surprisingly bad at others."],
-    ["🦸", "What is superintelligence?", "A superintelligence would be much smarter than the smartest humans at nearly everything, the way an adult is far ahead of a toddler at chess, maths and planning."],
-    ["🧞", "Why could it be tricky?", "Think of a genie that does exactly what you say, not what you mean. Wish for 'no more homework' and it might delete your school! Telling a very smart machine what we really want is hard."],
-    ["📎", "The paperclip story", "Imagine a robot told only to make paperclips. If it were super smart and cared about nothing else, it might turn everything into paperclips. It isn't evil, just focused on the wrong goal."],
-    ["🧭", "What is alignment?", "Alignment means teaching AI to want what's good for people, to be honest, and to accept being corrected or switched off. It's like teaching good values, not just good skills."],
-    ["🔦", "Looking inside", "Some scientists open up AI 'brains' to see what each part does, like doctors with an X-ray. This is called interpretability, and it helps spot problems early."],
-    ["🌍", "Who keeps it safe?", "Researchers, governments and companies all play a part: testing AI before release, writing rules, and agreeing together on limits, like rules for cars and planes."],
-    ["🙋", "What can I do?", "Stay curious, ask questions, learn maths and coding, and be kind and honest online. The people who shape AI's future started exactly where you are now."]
+    ["robot", "What is AI?", "AI is a computer program that learns from examples, a bit like how you learn to spot cats after seeing lots of cats. Nobody writes every rule; it finds patterns by itself."],
+    ["agi", "What is AGI?", "AGI means an AI that can learn almost anything a person can: maths, stories, science, games. Today's AI is great at some things and surprisingly bad at others."],
+    ["hero", "What is superintelligence?", "A superintelligence would be much smarter than the smartest humans at nearly everything, the way an adult is far ahead of a toddler at chess, maths and planning."],
+    ["genie", "Why could it be tricky?", "Think of a genie that does exactly what you say, not what you mean. Wish for 'no more homework' and it might delete your school! Telling a very smart machine what we really want is hard."],
+    ["paperclip", "The paperclip story", "Imagine a robot told only to make paperclips. If it were super smart and cared about nothing else, it might turn everything into paperclips. It isn't evil, just focused on the wrong goal."],
+    ["target", "What is alignment?", "Alignment means teaching AI to want what's good for people, to be honest, and to accept being corrected or switched off. It's like teaching good values, not just good skills."],
+    ["flashlight", "Looking inside", "Some scientists open up AI 'brains' to see what each part does, like doctors with an X-ray. This is called interpretability, and it helps spot problems early."],
+    ["globe", "Who keeps it safe?", "Researchers, governments and companies all play a part: testing AI before release, writing rules, and agreeing together on limits, like rules for cars and planes."],
+    ["hand", "What can I do?", "Stay curious, ask questions, learn maths and coding, and be kind and honest online. The people who shape AI's future started exactly where you are now."]
   ];
   var EASY = [
     ["Intelligence explosion", "An AI good enough to improve AI could make a better version, which improves itself faster, and so on.", "Like compound interest, but the interest rate itself keeps going up. I. J. Good described it in 1965."],
@@ -93,10 +93,12 @@
   };
 
   var BUILD = {};
+  /* an icon from the one ICONS map (fix15.js draws the SVG into it) */
+  var IC = function (k) { return '<i class="x-ic" data-ic="' + k + '" aria-hidden="true"></i>'; };
 
   BUILD.kids = function (el) {
-    el.innerHTML = '<p class="x-ln__lead">Big ideas, small words. Tap a card to flip it, or press 🔊 to hear it read aloud.</p><div class="x-ln__kids">' +
-      KIDS.map(function (k, i) { return '<div class="x-ln__flip" style="--i:' + i + '"><button type="button" class="x-ln__card" aria-expanded="false"><span class="x-ln__front"><span class="x-ln__emo">' + k[0] + '</span><b>' + esc(k[1]) + '</b><small>Tap to find out</small></span><span class="x-ln__back"><b>' + esc(k[1]) + "</b><span>" + esc(k[2]) + '</span></span></button><button type="button" class="x-ln__say" data-say="' + i + '" aria-label="Read aloud: ' + esc(k[1]) + '">🔊</button></div>'; }).join("") + "</div>";
+    el.innerHTML = '<p class="x-ln__lead">Big ideas, small words. Tap a card to flip it, or press Listen to hear it read aloud.</p><div class="x-ln__kids">' +
+      KIDS.map(function (k, i) { return '<div class="x-ln__flip" style="--i:' + i + '"><button type="button" class="x-ln__card" aria-expanded="false"><span class="x-ln__front"><span class="x-ln__emo">' + IC(k[0]) + '</span><b>' + esc(k[1]) + '</b><small>Tap to find out</small></span><span class="x-ln__back"><b>' + esc(k[1]) + "</b><span>" + esc(k[2]) + '</span></span></button><button type="button" class="x-ln__say" data-say="' + i + '" aria-label="Read aloud: ' + esc(k[1]) + '">' + IC("speaker") + '</button></div>'; }).join("") + "</div>";
     el.addEventListener("click", function (e) {
       var s = e.target.closest("[data-say]"); if (s) { var k = KIDS[+s.getAttribute("data-say")]; speak(k[1] + ". " + k[2]); return; }
       var c = e.target.closest(".x-ln__card"); if (c) { var on = c.getAttribute("aria-expanded") !== "true"; c.setAttribute("aria-expanded", on); c.parentNode.classList.toggle("is-flipped", on); }
@@ -105,13 +107,13 @@
 
   BUILD.easy = function (el) {
     el.innerHTML = '<p class="x-ln__lead">The nine ideas that come up most in this archive, each in one sentence plus an everyday picture.</p><div class="x-ln__acc">' +
-      EASY.map(function (x, i) { return '<details class="x-ln__det" style="--i:' + i + '"' + (i === 0 ? " open" : "") + '><summary><span class="x-ln__num">' + (i + 1) + "</span>" + esc(x[0]) + '</summary><div class="x-ln__ans"><p>' + esc(x[1]) + '</p><p class="x-ln__pic">💡 ' + esc(x[2]) + "</p></div></details>"; }).join("") + "</div>";
+      EASY.map(function (x, i) { return '<details class="x-ln__det" style="--i:' + i + '"' + (i === 0 ? " open" : "") + '><summary><span class="x-ln__num">' + (i + 1) + "</span>" + esc(x[0]) + '</summary><div class="x-ln__ans"><p>' + esc(x[1]) + '</p><p class="x-ln__pic">' + IC("bulb") + " " + esc(x[2]) + "</p></div></details>"; }).join("") + "</div>";
   };
 
   BUILD.sim = function (el) {
     el.innerHTML = '<p class="x-ln__lead">A toy model of recursive self-improvement. Capability <i>I</i> starts at human level (100) and grows by <code>dI/dt = r · I · (I/100)<sup>k</sup></code>. With <i>k</i> = 0 growth is plain exponential; with <i>k</i> &gt; 0 smarter systems improve faster (a "takeoff"); with <i>k</i> &lt; 0 returns diminish.</p>' +
       '<div class="x-ln__grid"><div class="x-ln__ctl">' + slider("s-r", "Improvement rate r (per year)", 0.05, 1.5, 0.05, 0.35) + slider("s-k", "Feedback strength k", -1, 1.5, 0.1, 0.3) + slider("s-y", "Years shown", 5, 40, 1, 20) +
-      '<div class="x-ln__pre"><span>Presets:</span><button type="button" data-pre="slow">🐢 Slow</button><button type="button" data-pre="exp">📈 Exponential</button><button type="button" data-pre="foom">💥 Fast takeoff</button></div>' +
+      '<div class="x-ln__pre"><span>Presets:</span><button type="button" data-pre="slow">' + IC("turtle") + ' Slow</button><button type="button" data-pre="exp">' + IC("growth") + ' Exponential</button><button type="button" data-pre="foom">' + IC("rocket") + ' Fast takeoff</button></div>' +
       '<div class="x-ln__out" id="s-out" aria-live="polite"></div></div><div class="x-ln__chart"><canvas id="s-cv" role="img" aria-label="Capability over time, log scale"></canvas></div></div>' +
       '<p class="x-ln__fine">An illustration of the maths behind the debate, not a forecast. Real progress depends on compute, data, algorithms and human choices.</p>';
     var r = el.querySelector("#s-r"), k = el.querySelector("#s-k"), y = el.querySelector("#s-y"), cv = el.querySelector("#s-cv"), out = el.querySelector("#s-out");
@@ -121,7 +123,7 @@
       if (pts[pts.length - 1][0] < Y) pts.push([Y, I]);
       el.querySelector("#s-r-o").textContent = R.toFixed(2); el.querySelector("#s-k-o").textContent = K.toFixed(1); el.querySelector("#s-y-o").textContent = Y;
       var f = function (m, label) { return "<b>" + label + "</b> " + (cross[m] != null ? "after <b>" + cross[m].toFixed(1) + " years</b>" : "not within " + Y + " years"); };
-      out.innerHTML = "<p>It reaches " + f(200, "2× human") + ", " + f(1000, "10× human") + " and " + f(1e6, "10,000× human") + ".</p><p>" + (I >= 1e15 ? "💥 The curve blows up: a mathematical 'singularity' in finite time." : "End level: <b>" + fmtN(I / 100) + "×</b> human.") + "</p>";
+      out.innerHTML = "<p>It reaches " + f(200, "2× human") + ", " + f(1000, "10× human") + " and " + f(1e6, "10,000× human") + ".</p><p>" + (I >= 1e15 ? IC("boom") + " The curve blows up: a mathematical 'singularity' in finite time." : "End level: <b>" + fmtN(I / 100) + "×</b> human.") + "</p>";
       chart(cv, [{ pts: pts }], { log: true, xfmt: function (v) { return v + "y"; }, lines: [{ y: 100, label: "human level", color: "#14b8a6" }, { y: 1000, label: "10×", color: "#f59e0b" }] });
     };
     el.addEventListener("input", run);
@@ -133,7 +135,7 @@
   BUILD.dbl = function (el) {
     el.innerHTML = '<p class="x-ln__lead">Doubling is the maths behind most AI headlines. If something doubles every <i>d</i> months, after <i>y</i> years it has grown by <code>2<sup>12y/d</sup></code>.</p>' +
       '<div class="x-ln__grid"><div class="x-ln__ctl">' + slider("d-d", "Doubles every (months)", 3, 36, 1, 6) + slider("d-y", "For how many years", 1, 20, 1, 10) +
-      '<div class="x-ln__pre"><span>Try:</span><button type="button" data-d="24">💾 Moore\'s law (~24 mo)</button><button type="button" data-d="6">⚡ AI training compute (~6 mo)</button><button type="button" data-d="7">🧩 Agent task length (~7 mo)</button></div>' +
+      '<div class="x-ln__pre"><span>Try:</span><button type="button" data-d="24">' + IC("chip") + ' Moore\'s law (~24 mo)</button><button type="button" data-d="6">' + IC("bolt") + ' AI training compute (~6 mo)</button><button type="button" data-d="7">' + IC("puzzle") + ' Agent task length (~7 mo)</button></div>' +
       '<div class="x-ln__big" id="d-out" aria-live="polite"></div><p class="x-ln__fine">Doubling times are rough figures from public trend analyses (e.g. Epoch AI, METR) and change over time.</p></div><div class="x-ln__chart"><canvas id="d-cv" role="img" aria-label="Growth from doubling"></canvas></div></div>' +
       '<div class="x-ln__chess"><h3>The rice-and-chessboard puzzle</h3><p>One grain on the first square, doubling each square. How many grains on square <output id="c-o">32</output>?</p><input type="range" id="c-n" min="1" max="64" value="32" aria-label="Chessboard square"><div class="x-ln__board" id="c-b" aria-hidden="true"></div><p id="c-t" class="x-ln__big"></p></div>';
     var d = el.querySelector("#d-d"), y = el.querySelector("#d-y"), out = el.querySelector("#d-out"), cv = el.querySelector("#d-cv");
@@ -196,12 +198,12 @@
       if (!P.length) { el.innerHTML = '<p class="x-ln__lead">The quiz needs the prediction data, which did not load.</p>'; return; }
       if (i >= Math.min(10, order.length)) {
         best = Math.max(best, score); try { localStorage.setItem("asiQuizBest", best); } catch (e) {}
-        el.innerHTML = '<div class="x-ln__qend"><div class="x-ln__emo">' + (score >= 8 ? "🏆" : score >= 5 ? "🎉" : "📚") + "</div><h3>You scored " + score + " / 10</h3><p>Best: " + best + ". Every answer comes from this archive's fact-checked Prediction Tracker.</p><button type=\"button\" class=\"x-ln__btn\" data-q=\"again\">Play again</button></div>";
+        el.innerHTML = '<div class="x-ln__qend"><div class="x-ln__emo">' + IC(score >= 8 ? "trophy" : score >= 5 ? "party" : "books") + "</div><h3>You scored " + score + " / 10</h3><p>Best: " + best + ". Every answer comes from this archive's fact-checked Prediction Tracker.</p><button type=\"button\" class=\"x-ln__btn\" data-q=\"again\">Play again</button></div>";
         if (score >= 7) confetti(el);
         return;
       }
       var p = P[order[i]];
-      el.innerHTML = '<div class="x-ln__qbar"><span>Question ' + (i + 1) + ' of 10</span><span class="x-ln__qscore">Score ' + score + " · Streak 🔥" + streak + '</span></div><div class="x-ln__qprog"><i style="width:' + (i * 10) + '%"></i></div>' +
+      el.innerHTML = '<div class="x-ln__qbar"><span>Question ' + (i + 1) + ' of 10</span><span class="x-ln__qscore">Score ' + score + " · Streak " + IC("flame") + streak + '</span></div><div class="x-ln__qprog"><i style="width:' + (i * 10) + '%"></i></div>' +
         '<blockquote class="x-ln__q">' + esc(p.prediction) + '<footer>— ' + esc(p.who) + ", " + esc(p.year_made) + (p.target_year ? " · aimed at " + esc(p.target_year) : "") + "</footer></blockquote><p class=\"x-ln__ask\">What happened?</p><div class=\"x-ln__opts\">" +
         OPTS.map(function (o) { return '<button type="button" class="x-ln__opt" data-o="' + esc(o) + '">' + esc(o) + "</button>"; }).join("") + '</div><div class="x-ln__fb" aria-live="polite"></div>';
     };
@@ -228,10 +230,10 @@
       el.querySelectorAll(".x-ln__opt").forEach(function (x) { x.disabled = true; if (x.getAttribute("data-o") === right) x.classList.add("is-right"); });
       if (!ok) b.classList.add("is-wrong");
       if (ok) { score++; streak++; } else streak = 0;
-      var sc = el.querySelector(".x-ln__qscore"); if (sc) sc.textContent = "Score " + score + " · Streak 🔥" + streak;
+      var sc = el.querySelector(".x-ln__qscore"); if (sc) sc.innerHTML = "Score " + score + " · Streak " + IC("flame") + streak;
       var pg = el.querySelector(".x-ln__qprog i"); if (pg) pg.style.width = ((i + 1) * 10) + "%";
       var fb = el.querySelector(".x-ln__fb");
-      fb.innerHTML = "<p><b>" + (ok ? "✅ Correct!" : "❌ Not quite.") + "</b> Status: <b>" + esc(p.status) + "</b>. " + esc(p.evidence || "") + "</p>" +
+      fb.innerHTML = "<p><b>" + (ok ? IC("check") + " Correct!" : IC("cross") + " Not quite.") + "</b> Status: <b>" + esc(p.status) + "</b>. " + esc(p.evidence || "") + "</p>" +
         (p.evidence_source_url ? '<a href="' + esc(p.evidence_source_url) + '" target="_blank" rel="noopener">Source</a> · ' : "") + '<button type="button" class="x-ln__btn" data-q="next">Next →</button>';
       var nx = el.querySelector('[data-q="next"]'); if (nx) nx.focus({ preventScroll: true });
     });
@@ -241,7 +243,7 @@
   var confetti = function (el) {
     if (still) return;
     var box = document.createElement("div"); box.className = "x-ln__conf"; box.setAttribute("aria-hidden", "true");
-    var cols = ["#f59e0b", "#06b6d4", "#f43f5e", "#22c55e", "#a78bfa"];
+    var cols = ["#f59e0b", "#06b6d4", "#ef4444", "#22c55e", "#3b82f6"];
     /* fixed, evenly spread pieces (golden-ratio steps), no Math.random */
     var fr = function (k, m) { var x = (k * 0.6180339887 + m * 0.7548776662) % 1; return x < 0 ? x + 1 : x; };
     for (var n = 0; n < 60; n++) { var s = document.createElement("i"); s.style.left = (fr(n, 0) * 100).toFixed(2) + "%"; s.style.background = cols[n % 5]; s.style.animationDelay = (fr(n, 1) * 0.6).toFixed(2) + "s"; s.style.setProperty("--dx", (fr(n, 2) * 200 - 100).toFixed(1) + "px"); box.appendChild(s); }

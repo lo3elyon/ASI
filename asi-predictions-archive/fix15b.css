@@ -1,0 +1,78 @@
+/* fix15b.css: Batch 15, the rest. Loaded last. */
+
+/* 0. icons drawn by fix15b.js */
+i.x-ic[data-ic] { display: inline-flex; width: 1em; height: 1em; vertical-align: -0.125em; font-style: normal; }
+i.x-ic[data-ic] svg { width: 100%; height: 100%; }
+
+/* 2. Clear filters: the hidden attribute wins over .btn's display */
+#ttClear[hidden] { display: none !important; }
+
+/* 3. the Ask pill reads as active on #/ask */
+.nav .x-nav-ask[aria-current="page"] { background: var(--fill-primary-on); color: var(--text-primary); border-color: transparent; }
+
+/* 3. at 480px and below the section tabs come back as a scrollable strip on a second header row */
+@media (max-width: 480px) {
+  .page > header.nav { flex-wrap: wrap !important; justify-content: center; border-radius: var(--r-l); row-gap: 6px; }
+  .page > header.nav > .seg {
+    display: flex !important; order: 99; flex: 1 0 100% !important; width: 100%; max-width: 100%;
+    overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x proximity;
+  }
+  .page > header.nav > .seg a { scroll-snap-align: start; min-height: var(--tap); padding-inline: 12px; }
+}
+
+/* 4. the Ask button never covers content */
+.page { padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 88px); }
+@media (max-width: 1099px) {
+  .x-ask__toggle {
+    width: var(--tap); height: var(--tap); min-height: var(--tap); padding: 0 !important;
+    border-radius: 50%; font-size: 0 !important; line-height: 0; overflow: hidden;
+    display: grid; place-items: center;
+  }
+  .x-ask__toggle::before {
+    content: ""; width: 20px; height: 20px; background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M7.9 20A9 9 0 1 0 4 16.1L2 22z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linejoin='round'%3E%3Cpath d='M7.9 20A9 9 0 1 0 4 16.1L2 22z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+  .x-ask__toggle[aria-expanded="true"]::before {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.2' stroke-linecap='round'%3E%3Cpath d='M6 6l12 12M18 6L6 18'/%3E%3C/svg%3E");
+  }
+}
+html:has(.x-pop:not([hidden])) .x-ask,
+html.x-modal-open .x-ask,
+html.x-fsp-open .x-ask { display: none !important; }
+
+/* 5. no hues 250–340 */
+.x-qs__it:has(> a[href="#media"]) { --st: #f59e0b !important; }
+.x-stats a.stat[href="#media"] { --t: #f59e0b !important; }
+.x-qs__it:has(> a[href="#/timeline"]) .x-qs__th circle:nth-of-type(odd) { fill: #14b8a6; }
+.x-qs__it:has(> a[href="#/timeline"]) .x-qs__th circle:nth-of-type(even) { fill: #f59e0b; }
+.hero::before {
+  background:
+    radial-gradient(32% 30% at 22% 30%, color-mix(in srgb, #14b8a6 60%, transparent), transparent 70%),
+    radial-gradient(30% 28% at 78% 22%, color-mix(in srgb, #f59e0b 45%, transparent), transparent 70%),
+    radial-gradient(36% 32% at 62% 80%, color-mix(in srgb, #14b8a6 40%, transparent), transparent 70%) !important;
+}
+.x-qs__th--eras img { filter: grayscale(1) sepia(0.55) contrast(1.05); }
+
+/* 9. quote marks: the opening mark keeps its hue; the closing mark takes a different, stable one
+   (teal after a warm opening hue, amber after a cool one). :is(*, #x15) only lifts specificity. */
+:is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote):is(*, #x15)::after {
+  --x15h: var(--q1, var(--d10h, 38));
+  --x15c: calc(185 - 147 * clamp(0, (var(--x15h) - 120) * 1000, 1));
+  background-image: linear-gradient(135deg,
+    light-dark(hsl(var(--x15c) 85% 36%), hsl(var(--x15c) 85% 60%)),
+    light-dark(hsl(var(--x15c) 85% 36%), hsl(var(--x15c) 85% 60%))) !important;
+}
+
+/* 8. the "Link copied" toast */
+.x-f15toast {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 24px); z-index: 60;
+  transform: translate(-50%, 12px); opacity: 0; pointer-events: none;
+  padding: 10px 16px; border-radius: var(--r-pill);
+  background: var(--fill-primary); color: var(--text-primary-on); font: var(--type-label);
+  box-shadow: var(--hark-shadow);
+  transition: opacity var(--dur-quick) var(--ease-out), transform var(--dur-quick) var(--ease-out);
+}
+.x-f15toast.is-on { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { .x-f15toast { transition: none; } }
