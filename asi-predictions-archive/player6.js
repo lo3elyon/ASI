@@ -36,6 +36,7 @@
     }
     el.classList.add("x6-fit");
     if (el.classList.contains("is-modal") && el.classList.contains("is-wide")) return; /* fix18: the wide window is sized by CSS (fix18.css) */
+    if (el.classList.contains("is-modal") && window.F21fit && window.F21fit(inst, el)) return; /* fix21: the centred window reserves the panel's column or sheet */
     var modal = el.classList.contains("is-modal");
     var win = el.querySelector(".x-pop__win"), screen = inst.screen, slot = root.querySelector(".x-ap__slot");
     if (!win || !screen || !slot || !screen.offsetWidth) return;

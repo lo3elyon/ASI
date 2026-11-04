@@ -1490,6 +1490,8 @@
     create: create,
     popout: popout,
     watch: watch,
+    /* fix21: load the IFrame API ahead of the first Play (on page idle) */
+    preloadApi: function () { loadApi(function () {}); },
     isWatching: function () { return Pop.isModal(); },
     dock: function () { return Pop.dock(); },
     closePopout: function () { Pop.close(); },

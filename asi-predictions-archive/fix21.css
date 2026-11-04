@@ -1,0 +1,126 @@
+/* fix21.css: the centred window keeps the watch-hub panel (a right column from 1000px, a bottom sheet under it),
+   a quick cover fade, and the site / YouTube controls switch in every view. fix21.js sets f21-on, f21-side or
+   f21-sheet and the sizes (--f21-w, --f21-h, --f21-pw). Loaded last. */
+
+/* ---------- 1. the centred window, sized by fix21.js (player6 fitPop hands over) ---------- */
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) {
+  width: var(--f21-w, min(1280px, calc(100vw - 32px))) !important; max-width: calc(100vw - 16px) !important;
+  height: var(--f21-h, auto) !important;
+}
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) > .x-pop__win {
+  display: flex !important; flex-direction: column !important; height: 100% !important;
+  max-height: none !important; overflow: hidden !important;
+}
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) > .x-pop__win > .x-pop__bar { flex: none !important; position: relative !important; top: auto !important; }
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) > .x-pop__win > .x-pop__side,
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) > .x-pop__win > .x-pop__grip { display: none !important; }
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap:not(.is-fs):not(.is-fsp) {
+  position: relative; display: grid !important; flex: 1 1 auto !important; align-self: stretch !important;
+  min-height: 0 !important; max-height: none !important; overflow: hidden !important;
+  grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: minmax(0, 1fr) !important;
+  gap: 0 !important; transition: none !important;
+}
+/* the video: 16:9, letterboxed; the controls sit on its lower edge */
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap:not(.is-fs):not(.is-fsp) > .x-ap__slot {
+  grid-column: 1 !important; grid-row: 1 !important; display: flex !important; flex-direction: column;
+  align-items: center; justify-content: center; width: 100%; height: 100%; min-width: 0; min-height: 0;
+  container-type: size; background: #000; overflow: hidden;
+}
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap:not(.is-fs):not(.is-fsp) > .x-ap__slot > .x-ap__wrap {
+  flex: none !important; width: 100% !important; width: min(100cqw, 100cqh * 16 / 9) !important;
+  max-width: 100%; max-height: 100%; height: auto !important; border-radius: 0 !important;
+}
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap:not(.is-fs):not(.is-fsp) .x-ap__screen {
+  width: 100% !important; height: auto !important; max-height: none !important; aspect-ratio: 16 / 9 !important; flex: none !important;
+}
+.x-pop.is-modal.f21-on.f21-on:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap:not(.is-fs):not(.is-fsp) > .x-ap__slot > .x-ap__under { display: none !important; }
+
+/* 1000px and up: the panel is a right column (--f21-pw: its width, or the 44px rail when folded) */
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) {
+  grid-template-columns: minmax(0, 1fr) var(--f21-pw, 360px) !important; --wh-rail: 44px;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp):not(:has(> .x-wh:not([hidden]))) { grid-template-columns: minmax(0, 1fr) !important; }
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh {
+  grid-column: 2 !important; grid-row: 1 !important; position: relative; display: flex !important; flex-direction: row !important;
+  width: auto !important; height: 100% !important; min-width: 0; min-height: 0 !important; max-height: none !important;
+  margin: 0 !important; overflow: hidden !important; contain: size;
+  border: 0 !important; border-left: 1px solid var(--hero-glass-stroke, rgba(255, 255, 255, 0.12)) !important; border-radius: 0 !important;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh[hidden] { display: none !important; }
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh > .x-wh__main {
+  display: flex !important; flex-direction: column; flex: 1 1 auto; min-width: 0; min-height: 0;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh.is-wh-collapsed:not(.is-fs):not(.is-fsp) > .x-wh > .x-wh__main { display: none !important; }
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__body {
+  flex: 1 1 auto !important; min-height: 0 !important; max-height: none !important; overscroll-behavior: contain;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__body:not([data-t="tr"]) { overflow-x: hidden !important; overflow-y: auto !important; }
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__rail {
+  order: 1 !important; flex: 0 0 44px !important; width: 44px; flex-direction: column !important; padding: 8px 2px !important;
+  overflow-y: auto; scrollbar-width: none; border-bottom: 0 !important;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__tabs { flex-direction: column !important; flex: 0 0 auto !important; }
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh :is(.x-wh__tab, .x-wh__fold) {
+  width: 40px; min-width: 0 !important; min-height: var(--tap) !important; padding: 4px 0 !important;
+}
+.x-pop.is-modal.f21-on.f21-side:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__rail .x-wh__lb {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* under 1000px: a bottom sheet over the lower 45%; the video stays whole in the room above it */
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp):not(.is-wh-collapsed):has(> .x-wh:not([hidden])) > .x-ap__slot { height: 55% !important; align-self: start; }
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh {
+  position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; z-index: 12;
+  display: flex !important; flex-direction: column !important; width: auto !important; height: 45% !important; max-height: none !important;
+  margin: 0 !important; overflow: hidden !important; contain: none; grid-column: auto !important; grid-row: auto !important;
+  background: var(--hero-surface, #0b0f17) !important; border: 0 !important; border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+  border-radius: var(--r-m) var(--r-m) 0 0 !important; box-shadow: 0 -18px 40px -16px rgba(0, 0, 0, 0.8);
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh::before {
+  content: ""; position: absolute; top: 5px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); pointer-events: none;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh.is-wh-collapsed:not(.is-fs):not(.is-fsp) > .x-wh,
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh[hidden] { display: none !important; }
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__rail {
+  order: -1 !important; flex: none !important; flex-direction: row !important; width: auto !important; padding: 12px 6px 6px !important;
+  border: 0 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__tabs { flex-direction: row !important; flex: 1 1 auto !important; overflow-x: auto; scrollbar-width: none; }
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__fold { display: none !important; }
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__x { display: inline-flex !important; align-items: center; justify-content: center; }
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh > .x-wh__main {
+  display: flex !important; flex-direction: column; flex: 1 1 auto; min-height: 0;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-wh__body {
+  flex: 1 1 auto !important; min-height: 0 !important; max-height: none !important; overflow-x: hidden !important; overflow-y: auto !important;
+  overscroll-behavior: contain; padding: 14px 16px 18px;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp) > .x-wh .x-pn-list { max-height: none !important; }
+
+/* ---------- 2. the start cover fades within 300ms of PLAYING ---------- */
+.x-ap__cover.is-fading { transition-duration: 150ms !important; }
+
+/* ---------- 3. the controls switch ---------- */
+/* in the window's title bar: the same button style as its neighbours */
+.x-pop__tools .f21-ctlb[aria-pressed="true"] { color: #67e8f9; }
+/* in the page player and in fullscreen: a button on the video's top-right corner, fading with the controls */
+.x-ap .f21-ctl {
+  position: absolute; top: 10px; right: 10px; z-index: 6; display: none; align-items: center; justify-content: center;
+  width: var(--tap); height: var(--tap); padding: 0; border: 0; border-radius: var(--r-pill);
+  background: rgb(16 18 24 / 0.72); color: #f5f5f7; cursor: pointer;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.14); transition: opacity var(--dur-quick) var(--ease-out), background-color var(--dur-quick) var(--ease-out);
+}
+.x-ap .f21-ctl:hover { background: rgb(16 18 24 / 0.92); }
+.x-ap .f21-ctl:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+.x-ap.is-started:not(.is-native):not(.is-basic):not(.x-pop__body) > .x-ap__slot .f21-ctl,
+.x-ap.is-started.is-fs:not(.is-native):not(.is-basic) .f21-ctl { display: inline-flex; }
+.x-ap.is-idle:not(.is-native) .f21-ctl:not(:focus-visible),
+.x-ap.x7-rest:not(.is-native) .f21-ctl:not(:focus-visible),
+.x-ap.x7-clean .f21-ctl { opacity: 0; pointer-events: none; }
+/* YouTube-controls mode: the Theater button beside "Site controls" (the page player only; the window has its own) */
+.x-ap .x-sx-nat .f21-th { display: inline-flex; }
+.x-pop .x-ap .x-sx-nat .f21-th, .x-ap.is-fs .x-sx-nat .f21-th { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .x-ap .f21-ctl, .x-ap__cover.is-fading { transition: none !important; }
+}
