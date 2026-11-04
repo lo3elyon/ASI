@@ -1,0 +1,9 @@
+/* fix20: gear menu scrollbar always visible and colourful; no bottom fade over the last row */
+.x-ap .x-apx-menu, .x-ap .x-apx-menu.g13-menu, .x-ap .x-apx-menu.g13-menu[data-f18] {
+  scrollbar-width: thin !important; scrollbar-color: #14b8a6 rgb(255 255 255 / 0.10) !important;
+  scroll-padding-bottom: 16px; padding-bottom: 18px !important;
+}
+.x-ap .x-apx-menu[data-f18~="b"][data-f20end] { --f18-fb: 0px; }
+.x-ap .x-apx-menu.f20-cap { overflow-y: auto !important; }
+.x-ap .x-apx-menu::after { content: ""; display: block; grid-column: 1 / -1; height: 4px; border-radius: 2px; margin-top: 8px;
+  background: linear-gradient(90deg, #f59e0b, #14b8a6, #3b82f6); opacity: .75; }
