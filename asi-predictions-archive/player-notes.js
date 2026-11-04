@@ -126,7 +126,8 @@
   /* [label, settings]: each preset sets the look; on/off, size and position stay the reader's */
   var PRESETS = {
     classic: ["Classic", { color: "#ffffff", bg: "#080a0e", bgop: 62, font: "sans", edge: "none", kw: false, karaoke: false }],
-    neon: ["Neon", { color: "#67e8f9", bg: "#05070b", bgop: 35, font: "mono", edge: "glow", kw: true, karaoke: false }],
+    cinema: ["Cinema", { color: "#ffffff", bg: "#080a0e", bgop: 0, font: "serif", size: 150, edge: "shadow", kw: false, karaoke: false }],
+    colourful: ["Colourful", { color: "#ffffff", bg: "#1e293b", bgop: 55, font: "rounded", edge: "shadow", kw: true, karaoke: false }],
     era: ["Era colours", { color: "era", bg: "#080a0e", bgop: 55, font: "sans", edge: "shadow", kw: true, karaoke: false }],
     contrast: ["High contrast", { color: "#ffe14d", bg: "#000000", bgop: 100, font: "wide", edge: "outline", kw: false, karaoke: false }],
     minimal: ["Minimal", { color: "#ffffff", bg: "#080a0e", bgop: 0, font: "sans", edge: "shadow", kw: false, karaoke: false }],
