@@ -108,3 +108,6 @@
   .x-s26-box { padding: 0 10px 0 14px; }
   .x-s26-hit { padding: 12px 8px; }
 }
+
+/* fix 02:12: .main sets display:grid, which beat the hidden attribute, so the results stayed over other pages */
+.x-s26[hidden] { display: none !important; }
