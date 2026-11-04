@@ -63,6 +63,19 @@
     el.classList.add("x-tcav");
   };
 
+  /* person links: a stable hue from the name slug, kept to 0–240 (red → blue, never violet or pink), for the hover glow in resp8.css.
+     Short text-only links glow as text (x-nm); links that wrap a card or heading glow as a box (x-nm x-nm--box). */
+  var nameHue = function (a) {
+    var slug = (a.getAttribute("href") || "").slice(9).replace(/[?#/].*$/, "");
+    if (!slug || a.dataset.nh === slug) return;
+    var h = 0; for (var i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+    a.style.setProperty("--nh", String(h % 241));
+    a.dataset.nh = slug;
+    a.classList.add("x-nm");
+    var boxy = a.querySelector("h2, h3, h4, p, div, figure, img, .x-av") || (a.textContent || "").trim().length > 48;
+    a.classList.toggle("x-nm--box", !!boxy);
+  };
+
   var SKIP = ".nav, .foot, .x-cp, [role='listbox']";
   var scan = function (r) {
     if (!r || !r.querySelectorAll) return;
@@ -77,6 +90,7 @@
       if (s) paint(sel, s); else { sel.classList.remove("x-tc"); delete sel.dataset.tc; }
     });
     q(".x-pav__ini, .x-pg__ini, .x-av", avatar);
+    q('a[href^="#/person/"]', nameHue);
   };
 
   /* an avatar photo that fails for good (logos.js has no fallback left) shows initials in the topic gradient */

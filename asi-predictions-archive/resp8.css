@@ -1,0 +1,212 @@
+/* =====================================================================
+   resp8: responsive pass. Container-query list rows for every resizable
+   panel, short/narrow player shell, scroll boxes, popovers, no page overflow.
+   ===================================================================== */
+
+/* ---------- 0. The page never scrolls sideways; real culprits fixed below ---------- */
+html, body { overflow-x: clip; }
+.main, .section, .x-wv, .x-wv > *, .x-ap, .x-ap__slot, .x-hi__map, .x-et, .x-et__in { min-width: 0; max-width: 100%; }
+.main img, .main video, .main iframe, .main canvas, .main svg { max-width: 100%; }
+.main pre { max-width: 100%; overflow-x: auto; }
+/* only long URLs may break mid-word */
+.main a[href^="http"], .x-wh__body a[href^="http"], .x-sp a[href^="http"] { overflow-wrap: anywhere; }
+
+/* ---------- 1. Size containers: the panel, its tab bodies, and every list that lives in one ---------- */
+.x-wh, .x-wh__body, .x-pop__list, .x-wv__side { container-type: inline-size; }
+/* each list row measures itself, so it adapts wherever its list is placed or resized */
+.x-wh__row, .x-pop__q, .x-pv__v { container: xrow / inline-size; }
+.x-wh__row, .x-pv__v.x-pv__v { flex-wrap: wrap !important; flex-direction: row !important; }
+.x-pop__q.x-pop__q { grid-template-columns: auto minmax(0, 1fr); }
+.x-wh__rowtx, .x-pv__vtx, .x-pop__qtx { flex: 1 1 0; min-width: 0; overflow-wrap: normal; word-break: normal; }
+.x-wh .x-wh__rowtx small, .x-pv__vtx small, .x-pop__qtx small { overflow-wrap: normal; }
+
+/* 340-480px: thumbnail scales with the row, the title takes the rest */
+@container xrow (min-width: 340px) and (max-width: 480px) {
+  html body .x-wh__row > .x-dur-w,
+  html body .x-pv__v > .x-th16.x-th16,
+  html body .x-pop__q .x-pop__qth {
+    flex: 0 0 clamp(96px, 38cqi, 168px) !important; width: clamp(96px, 38cqi, 168px) !important;
+    height: auto !important; aspect-ratio: 16 / 9 !important;
+  }
+  html body .x-wh__row > .x-dur-w > img, html body .x-pop__q .x-pop__qth img {
+    flex: none !important; width: 100% !important; height: 100% !important; object-fit: cover;
+  }
+  .x-wh__rowtx b, .x-pv__vtx b, .x-pop__qtx b { -webkit-line-clamp: 2; line-clamp: 2; }
+}
+
+/* below 340px: stack. Full-width 16:9 thumb (duration badge kept), 2-line title, 1-line meta */
+@container xrow (max-width: 339.98px) {
+  html body .x-wh__row > .x-dur-w,
+  html body .x-pv__v > .x-th16.x-th16,
+  html body .x-pop__q .x-pop__qth {
+    flex: 1 1 100% !important; width: 100% !important; max-width: 100% !important;
+    height: auto !important; aspect-ratio: 16 / 9 !important; grid-column: 1 / -1;
+  }
+  html body .x-wh__row > .x-dur-w > img, html body .x-pop__q .x-pop__qth img {
+    flex: none !important; width: 100% !important; height: 100% !important; aspect-ratio: auto !important; object-fit: cover;
+  }
+  .x-wh__rowtx, .x-pv__vtx, .x-pop__qtx { flex: 1 1 100% !important; width: 100%; grid-column: 1 / -1; }
+  .x-wh__rowtx b, .x-pv__vtx b, .x-pop__qtx b {
+    display: -webkit-box !important; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden;
+  }
+  .x-wh .x-wh__rowtx small, .x-pv__vtx small, .x-pop__qtx small {
+    display: block; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+  }
+}
+
+/* Chapters, Transcript, Key moments, Notes: never wider than the tab body */
+.x-pn-ch, .x-pn-kc, .x-pn-list, .x-pn-sum, .x-pn-p, .x-wh__notes, .x6-km { min-width: 0; max-width: 100%; }
+.x-pn-chx, .x-pn-tx, .x-pn-q { flex: 1 1 0; min-width: 0; }
+.x-wh__note { box-sizing: border-box; width: 100%; max-width: 100%; }
+.x-wh__noterow { flex-wrap: wrap; }
+@container (max-width: 260px) {
+  .x-pn-row, .x-pn-line, .x-pn-kc li { flex-wrap: wrap; row-gap: 2px; }
+  .x-pn-chx, .x-pn-tx, .x-pn-q { flex-basis: 100%; }
+}
+
+/* "↓ more" never covers the last row: the scroller keeps room for the strip */
+.x-wh__main:has(> .x-wh__down:not([hidden])) > .x-wh__body { padding-bottom: calc(var(--tap) + 12px) !important; scroll-padding-bottom: calc(var(--tap) + 12px); }
+
+/* ---------- 2. Player shell: narrow or short screens put the panel under the video ---------- */
+@media (max-width: 900px), (max-height: 700px) {
+  .x-ap.has-wh.is-wh-side:not(.is-fs):not(.is-wh-fly), .x-ap.has-wh.is-wh-side.is-wh-collapsed:not(.is-fs):not(.is-wh-fly) {
+    grid-template-columns: minmax(0, 1fr) !important; row-gap: 12px;
+  }
+  .x-ap.has-wh:not(.is-fs):not(.is-wh-fly):not(.x-pop .x-ap) > .x-wh {
+    grid-column: 1 !important; grid-row: 2 !important; align-self: start; contain: none;
+    flex-direction: column !important; width: 100%; max-height: 60vh; max-height: 60dvh;
+  }
+  .x-ap.has-wh:not(.is-fs):not(.is-wh-fly):not(.x-pop .x-ap) > .x-wh .x-wh__main { flex: 1 1 auto; min-height: 0; }
+  .x-ap.has-wh:not(.is-fs):not(.is-wh-fly):not(.x-pop .x-ap) > .x-wh .x-wh__body {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain;
+  }
+  /* the rail becomes the horizontal tab bar above the body */
+  .x-ap.is-wh-side:not(.is-fs):not(.is-wh-fly) .x-wh__rail {
+    order: -1; flex: none; flex-direction: row; padding: 6px; border-left: 0;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  }
+  .x-ap.is-wh-side:not(.is-fs):not(.is-wh-fly) .x-wh__tabs { flex-direction: row; flex: 1 1 auto; min-width: 0; }
+  .x-ap.is-wh-side:not(.is-fs):not(.is-wh-fly) :is(.x-wh__tab, .x-wh__fold) { flex: 1 1 0; min-width: 0; min-height: var(--tap); }
+  .x-ap.is-wh-side:not(.is-fs):not(.is-wh-fly) .x-wh__fold { flex: none; margin-top: 0; }
+  .x-ap.is-wh-side:not(.is-fs):not(.is-wh-fly) :is(.x-wh__tab, .x-wh__fold)[data-wtip]::after { display: none !important; }
+}
+/* the picture never runs taller than the screen minus the control bar */
+.x-ap:not(.is-fs):not(.x-pop .x-ap) .x-ap__screen { max-height: calc(100vh - 52px - 24px); max-height: calc(100dvh - 52px - 24px); }
+.x-ap .x-ap__bar, .x-ap .x-ap__btns { min-width: 0; max-width: 100%; }
+
+/* ---------- 3. Nav: fits at every width, tabs scroll inside the pill ---------- */
+.nav { min-width: 0; max-width: calc(100vw - 2 * var(--gutter, 16px)); }
+.nav > * { flex: none; }
+.nav > .seg { flex: 0 1 auto; min-width: 0; }
+@media (max-width: 760px) {
+  .nav { max-width: calc(100vw - 16px); flex-wrap: nowrap; }
+}
+
+/* ---------- 4. Grids: every auto grid shrinks to one column instead of overflowing ---------- */
+.x-pgrid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 180px), 1fr)); }
+.x-orgs { grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+.x-pv__vids { grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); }
+.page .hero ul.x-qs { grid-template-columns: repeat(auto-fill, minmax(min(100%, 170px), 1fr)); }
+@media (min-width: 1600px) {
+  .x-pgrid { grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); }
+  .x-gal { grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); }
+}
+@media (min-width: 1100px) {
+  .x-tt__top .x-tt__recs { grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr)); }
+}
+
+/* ---------- 5. Tables, timelines and the History axis scroll in their own box ---------- */
+.table-wrap { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+.x-hi__scroll { max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; }
+.timeline, .x-hi__line { min-width: 0; max-width: 100%; }
+.x-et__eras { overflow-x: auto; scrollbar-width: thin; }
+.x-et__era { min-width: 96px; }
+
+/* ---------- 6. Popovers: modals, menus, tooltips, source previews, caption panel ---------- */
+dialog:not(.x-lb) { max-width: 92vw; max-height: 85vh; max-height: 85dvh; overflow: auto; overscroll-behavior: contain; }
+.x-lb { max-width: 92vw; max-height: 92dvh; }
+.x-cfm { max-width: min(92vw, 360px); }
+.x-cp { max-width: min(92vw, 640px); max-height: min(85dvh, 640px); }
+.x-ask__panel { max-width: min(92vw, 440px); max-height: 85dvh; }
+.x-sp--card { max-width: min(92vw, 380px); max-height: 85vh; max-height: 85dvh; overflow: auto; }
+.x-sp--sheet { max-width: min(100vw, 640px); max-height: 85dvh; overflow: auto; }
+.x-apx-menu { max-width: min(92vw, 300px); overflow-y: auto; overscroll-behavior: contain; }
+.cap8-p { max-width: min(92vw, 320px); max-height: min(85dvh, calc(100% - 20px)); overflow: auto; overscroll-behavior: contain; }
+.x-apx-tip, .x-apx-tipch { max-width: min(92vw, 260px); }
+.x-wh__tab[data-wtip]::after, .x-wh__fold[data-wtip]::after { max-width: min(92vw, 240px); white-space: normal; }
+
+/* ---------- 7. Fluid type ---------- */
+.head h2 { font-size: clamp(24px, 3.4vw + 12px, 42px); }
+.hero h1 { font-size: clamp(26px, 3.6vw + 12px, 54px); }
+.x-wv__title { font-size: clamp(18px, 1.2vw + 14px, 24px); }
+@media (min-width: 2200px) { .head h2 { font-size: 46px; } .hero h1 { font-size: 60px; } }
+
+/* =====================================================================
+   8. Follow-up: source-preview key points, hover glows, light polish
+   ===================================================================== */
+
+/* ---------- 8A. Source previews: the Key points block is always highlighted ---------- */
+.x-sp .x-sp__kp {
+  margin: 10px 0 2px; padding: 10px 12px 12px;
+  border-radius: var(--r-s); background: var(--fill-tertiary);
+  box-shadow: inset 3px 0 0 var(--fill-system-green);
+}
+.x-sp .x-sp__kp .x-sp__lab { margin: 0 0 6px; color: var(--text-primary) !important; }
+.x-sp .x-sp__kp .x-sp__pts { gap: 6px; }
+.x-sp .x-sp__kp .x-sp__pts > li { font: var(--type-small); }
+.x-sp .x-sp__from + .x-sp__kp { margin-top: 8px; }
+
+/* ---------- 8B. Hover glows: topic chips in their topic colour, names in a hue from their slug.
+   Only box-shadow, background, colour (and the text glow) transition; nothing changes size or moves. ---------- */
+.x-tc, a.x-nm {
+  transition: box-shadow 180ms ease, background-color 180ms ease, color 180ms ease, text-shadow 180ms ease !important;
+}
+.x-tc:hover, .x-tc:active, .x-tc:focus-visible,
+a.x-nm:hover, a.x-nm:active, a.x-nm:focus-visible { transform: none !important; translate: none !important; scale: none !important; }
+
+/* topic chips */
+@media (hover: hover) {
+  .x-tc:hover {
+    background: var(--tc-hv) !important;
+    box-shadow: inset 0 0 0 1px var(--tc-bd), 0 0 0 3px color-mix(in srgb, var(--tc-bd) 22%, transparent), 0 0 16px 0 color-mix(in srgb, var(--tc-bd) 45%, transparent) !important;
+  }
+  :root:not(.x-kw-off) a.x-kw--t.x-tc:hover { box-shadow: none !important; text-shadow: 0 0 10px color-mix(in srgb, var(--tc-bd) 70%, transparent); }
+}
+.x-tc:focus-visible {
+  outline: 2px solid var(--tc-bd) !important; outline-offset: 2px;
+  background: var(--tc-hv) !important;
+  box-shadow: 0 0 16px 0 color-mix(in srgb, var(--tc-bd) 45%, transparent) !important;
+}
+
+/* person names: --nh (0–240) is set per link by topiccolors.js */
+a.x-nm {
+  --nm: light-dark(hsl(var(--nh, 210) 72% 36%), hsl(var(--nh, 210) 80% 72%));
+  --nm-glow: hsl(var(--nh, 210) 85% 55% / 0.5);
+}
+@media (hover: hover) {
+  a.x-nm:not(.x-nm--box):hover { color: var(--nm) !important; text-shadow: 0 0 10px var(--nm-glow); }
+  a.x-nm.x-nm--box:hover { box-shadow: 0 0 0 1px var(--nm), 0 0 20px -2px var(--nm-glow) !important; }
+}
+a.x-nm:focus-visible { outline: 2px solid var(--nm) !important; outline-offset: 2px; }
+a.x-nm:not(.x-nm--box):focus-visible { color: var(--nm) !important; text-shadow: 0 0 10px var(--nm-glow); }
+a.x-nm.x-nm--box:focus-visible { box-shadow: 0 0 20px -2px var(--nm-glow) !important; }
+
+/* ---------- 8C. Light polish ---------- */
+/* scroll-in reveal: opacity plus a 6px rise, once (palette.js marks cards, blocks and headings; resp8.js marks sections and library cards) */
+.x-rc:not(.is-in), .x-rb:not(.is-in), .x-rh:not(.is-in) > * { translate: 0 6px; }
+.x-rv { opacity: 0; translate: 0 6px; transition: opacity 520ms var(--ease-out, ease-out), translate 520ms var(--ease-out, ease-out); }
+.x-rv.is-in { opacity: 1; translate: none; }
+
+/* buttons, tabs and menus ease in 180ms */
+.btn, .x-f, .x-hi__tab, .x-wh__tab, [role="tab"]:not(.nav *), [role="menuitem"], [role="option"] {
+  transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease, transform 180ms ease;
+}
+:where(button:not(.nav *)) { transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease, opacity 180ms ease; }
+@keyframes x8Fade { from { opacity: 0; } }
+[role="menu"]:not([hidden]), [role="listbox"]:not([hidden]), .x-apx-menu:not([hidden]) { animation: x8Fade 170ms ease; }
+
+@media (prefers-reduced-motion: reduce) {
+  .x-rv, .x-rv.is-in { opacity: 1; translate: none; transition: none; }
+  .x-tc, a.x-nm, .btn, .x-f, .x-hi__tab, .x-wh__tab, [role="tab"], [role="menuitem"], [role="option"], :where(button) { transition: none !important; }
+  [role="menu"], [role="listbox"], .x-apx-menu { animation: none !important; }
+}

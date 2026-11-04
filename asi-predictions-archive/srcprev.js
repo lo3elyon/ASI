@@ -20,11 +20,29 @@
     return (x.hostname.replace(/^www\./i, "") + x.pathname.replace(/\/+$/, "") + (ps.length ? "?" + ps.join("&") : "")).toLowerCase();
   };
   var hostOf = function (u) { try { return new URL(u).hostname.replace(/^www\./i, ""); } catch (e) { return ""; } };
+  /* one selector, matched by delegation on document, so links rendered later (person pages, tracker, history, Ask, Learn) all get the card */
+  var SEL = 'a[href^="http"]:not([href*="youtube.com"]):not([href*="youtu.be"])';
   var isExt = function (a) {
-    if (!a || a.tagName !== "A") return false;
+    if (!a || a.tagName !== "A" || !a.matches(SEL)) return false;
     var h = a.getAttribute("href") || "";
     if (!/^https?:\/\//i.test(h) || a.closest(".foot, .badge, .x-sp")) return false;
     return !YT.test(hostOf(h));
+  };
+  /* 2–3 whole sentences from the archive's own text, for a source with no key points */
+  var sents = function (txt) {
+    return String(txt || "").replace(/\s+/g, " ").trim().split(/(?<=[.!?…])\s+(?=[A-Z0-9“"‘(])/).filter(function (x) { return x.length > 24; });
+  };
+  var derive = function (texts) {
+    var out = [];
+    texts.forEach(function (t) { sents(t).forEach(function (x) { if (out.length < 3 && out.indexOf(x) < 0) out.push(x); }); });
+    if (!out.length) texts.some(function (t) { t = String(t || "").trim(); if (t) { out.push(t); return true; } return false; });
+    return out.slice(0, 3);
+  };
+  var kp = function (pts, arch) {
+    if (!pts.length) return "";
+    return (arch ? '<p class="x-sp__from">From this archive</p>' : "") +
+      '<div class="x-sp__kp"><p class="x-sp__lab">Key points</p><ul class="x-sp__pts">' +
+      pts.map(function (x) { return "<li>" + esc(cut(x, 190)) + "</li>"; }).join("") + "</ul></div>";
   };
 
   /* ---------- data, built on first use ---------- */
@@ -92,15 +110,23 @@
     if (has) {
       h += (d.t ? '<p class="x-sp__t">' + esc(cut(d.t, 160)) + "</p>" : "") + (d.s ? '<p class="x-sp__s">' + esc(cut(d.s, 320)) + "</p>" : "");
       var pts = (d.p || []).filter(Boolean).slice(0, 4);
-      if (pts.length) h += '<p class="x-sp__lab">Key points</p><ul class="x-sp__pts">' + pts.map(function (x) { return "<li>" + esc(cut(x, 170)) + "</li>"; }).join("") + "</ul>";
+      if (pts.length) h += kp(pts, false);
+      else {
+        /* no key points in the data: 2–3 sentences from the archive's text about this link, else from the summary */
+        var src = (ctx()[key] || []).slice(0, 3);
+        if (!src.length) src = [fromPage(a)];
+        var txt = []; src.forEach(function (o) { txt.push(o.s, o.p); });
+        txt.push(d.s);
+        h += kp(derive(txt.filter(Boolean)), true);
+      }
     } else {
       var list = (ctx()[key] || []).filter(function (o, i, arr) { return arr.indexOf(o) === i; }).slice(0, 3);
       if (!list.length) list = [fromPage(a)];
-      h += '<p class="x-sp__from">From this archive</p><ul class="x-sp__ctx">' + list.map(function (o) {
+      var dtx = []; list.forEach(function (o) { dtx.push(o.s, o.p); });
+      var dp = derive(dtx.filter(Boolean));
+      h += (dp.length ? kp(dp, true) : '<p class="x-sp__from">From this archive</p>') + '<ul class="x-sp__ctx">' + list.map(function (o) {
         return "<li><span class=\"x-sp__k\">" + esc(o.k + (o.w ? " · " + o.w : "")) + "</span>" +
           '<p class="x-sp__t">' + esc(cut(o.t || o.l || host, 140)) + (o.by && o.by !== o.t ? " <small>" + esc(cut(o.by, 60)) + "</small>" : "") + "</p>" +
-          (o.p ? '<p class="x-sp__s"><b>Prediction.</b> ' + esc(cut(o.p, 200)) + "</p>" : "") +
-          (o.s ? '<p class="x-sp__s">' + esc(cut(o.s, list.length > 1 ? 160 : 280)) + "</p>" : "") +
           (o.q ? '<blockquote class="x-sp__q">“' + esc(cut(o.q, 180)) + "”</blockquote>" : "") + "</li>";
       }).join("") + "</ul>";
     }
@@ -153,8 +179,9 @@
 
   var lastPtr = "", lastDown = 0;
   doc.addEventListener("pointerdown", function (ev) { lastPtr = ev.pointerType; lastDown = Date.now(); if (cur && !card.contains(ev.target) && !cur.contains(ev.target)) close(); }, true);
-  doc.addEventListener("pointerover", function (ev) {
-    if (ev.pointerType === "touch") return;
+  var touchy = function () { return lastPtr === "touch" && Date.now() - lastDown < 1200; };
+  doc.addEventListener("mouseover", function (ev) {
+    if (touchy()) return;
     if (card.contains(ev.target)) { clearTimeout(closeT); return; }
     var a = ev.target.closest && ev.target.closest("a");
     if (!isExt(a)) return;
@@ -164,8 +191,8 @@
     clearTimeout(openT);
     openT = setTimeout(function () { show(a); }, 250);
   });
-  doc.addEventListener("pointerout", function (ev) {
-    if (ev.pointerType === "touch") return;
+  doc.addEventListener("mouseout", function (ev) {
+    if (touchy()) return;
     var to = ev.relatedTarget;
     var a = ev.target.closest && ev.target.closest("a");
     if (isExt(a) && !(to && a.contains(to))) clearTimeout(openT);
