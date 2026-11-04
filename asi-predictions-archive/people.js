@@ -16,12 +16,19 @@
   var GROUP = function (g) { return String(g || "other").replace(/-/g, " ").replace(/^./, function (c) { return c.toUpperCase(); }); };
   var initials = function (n) { return String(n || "?").split(/\s+/).filter(Boolean).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase(); };
   var hue = function (s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 7; return h + 1; };
-  var photoOf = function (p) { return p.photo || (window.XLogo && XLogo.photo(p.id)) || ""; };
-  var avatar = function (p, cls) {
-    var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>", ph = photoOf(p);
-    return '<span class="x-pav ' + (cls || "") + '" aria-hidden="true">' + ini +
-      (ph ? '<img src="' + esc(ph) + '" alt="' + esc(p.name) + '" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
+  /* every person avatar (cards, search results, the person header, related people, talk chips) goes through
+     XLogo.face: the local portrait file first, then the people.json photo; initials only when none loads */
+  var srcsOf = function (p) {
+    if (window.XLogo && XLogo.face) return XLogo.face({ pid: p.id, photo: p.photo, org: false }).srcs;
+    return p.photo ? [p.photo] : [];
   };
+  var photoOf = function (p) { return srcsOf(p)[0] || ""; };
+  var avatar = function (p, cls) {
+    var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>", ss = srcsOf(p);
+    return '<span class="x-pav ' + (cls || "") + '" aria-hidden="true">' + ini +
+      (ss.length ? (window.XLogo && XLogo.img ? XLogo.img(ss, p.name, 64, 'loading="lazy" onerror="this.remove()"') : '<img src="' + esc(ss[0]) + '" alt="' + esc(p.name) + '" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()" />') : "") + "</span>";
+  };
+  window.XPeopleAvatar = avatar;
   /* the org name with its logo, when logos.json has one */
   var orgLine = function (p, size, link) {
     if (!p.org) return "";
@@ -65,8 +72,10 @@
   var norm = function (s) { return String(s || "").toLowerCase().replace(/\([^)]*\)/g, " ").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, " ").trim(); };
   var short = function (s) { return norm(s).split(" ").filter(function (w) { return w.length > 1; }).join(" "); };
   var nameIdx = {};
-  PEOPLE.forEach(function (p) { nameIdx[norm(p.name)] = p.id; nameIdx[short(p.name)] = nameIdx[short(p.name)] || p.id; });
-  var personOf = function (s) { return nameIdx[norm(s)] || nameIdx[short(s)] || null; };
+  /* first + last word too, so "Berthold K. P. Horn" finds "Berthold Horn" */
+  var fl = function (s) { var w = short(s).split(" "); return w.length > 1 ? w[0] + " " + w[w.length - 1] : ""; };
+  PEOPLE.forEach(function (p) { nameIdx[norm(p.name)] = p.id; nameIdx[short(p.name)] = nameIdx[short(p.name)] || p.id; var k = fl(p.name); if (k && !nameIdx["~" + k]) nameIdx["~" + k] = p.id; });
+  var personOf = function (s) { var k = fl(s); return nameIdx[norm(s)] || nameIdx[short(s)] || (k && nameIdx["~" + k]) || null; };
 
   /* ---------- grid ---------- */
   var F = { q: "", group: "", neuro: false, sort: "f" }, shown = 0, list = [], PAGE = 60;
@@ -301,6 +310,8 @@
 
     /* no inline player here: a talk opens only in the in-page window (player.js) */
     player = null;
+    /* keyword colours on the bio text: Background, In depth (Early life, Career…), Views, Career rows */
+    if (window.XHL && XHL.apply) view.querySelectorAll(".x-pv__lead, .x-bg p, .x-acc__body .prose p, .x-views p, .x-car__w, #pv-background .prose p").forEach(function (el) { try { XHL.apply(el); } catch (e) {} });
     view._vids = vids;
     view._nPreds = kinds.length + cards.length;
     paintToc();

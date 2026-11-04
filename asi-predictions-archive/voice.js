@@ -70,9 +70,13 @@
     return K.p;
   };
 
+  /* every Voice select lists both engines: the system voices, then the Natural (Kokoro) voices (value "k:<id>");
+     picking one from the other group switches the engine too */
   var voiceOpts = function () {
-    if (engine === "kokoro") return KVOICES.map(function (v) { return '<option value="' + v[0] + '"' + (v[0] === kvoice ? " selected" : "") + ">" + esc(v[1]) + "</option>"; }).join("");
-    return voices.length ? voices.map(function (v, i) { return '<option value="' + i + '"' + (v === voice ? " selected" : "") + ">" + esc(v.name) + " (" + esc(v.lang) + ")</option>"; }).join("") : '<option value="">Default voice</option>';
+    var sys = voices.length ? voices.map(function (v, i) { return '<option value="' + i + '"' + (engine === "system" && v === voice ? " selected" : "") + ">" + esc(v.name) + " (" + esc(v.lang) + ")</option>"; }).join("")
+      : '<option value=""' + (engine === "system" ? " selected" : "") + ">Default voice</option>";
+    var kk = KVOICES.map(function (v) { return '<option value="k:' + v[0] + '"' + (engine === "kokoro" && v[0] === kvoice ? " selected" : "") + ">Natural (Kokoro): " + esc(v[1]) + "</option>"; }).join("");
+    return (ssOk ? '<optgroup label="System voice">' + sys + "</optgroup>" : "") + '<optgroup label="Natural (Kokoro, on-device)">' + kk + "</optgroup>";
   };
   var rateOpts = function () { return RATES.map(function (r) { return '<option value="' + r + '"' + (r === rate ? " selected" : "") + ">" + r + "×</option>"; }).join(""); };
   var engOpts = function () { return '<option value="system"' + (engine === "system" ? " selected" : "") + '>System voice</option><option value="kokoro"' + (engine === "kokoro" ? " selected" : "") + ">Natural (Kokoro, on-device)</option>"; };
@@ -83,8 +87,16 @@
     paintK();
   };
   var setVoice = function (i) {
-    if (engine === "kokoro") { kvoice = i; pref.kvoice = i; save(); fillSelects(); return; }
-    voice = voices[+i] || voice; pref.voice = voice && voice.voiceURI; save(); fillSelects();
+    var s = String(i == null ? "" : i);
+    var kid = s.indexOf("k:") === 0 ? s.slice(2) : (engine === "kokoro" && KVOICES.some(function (v) { return v[0] === s; }) ? s : null);
+    if (kid) {
+      kvoice = kid; pref.kvoice = kid; save();
+      if (engine !== "kokoro") setEngine("kokoro"); else fillSelects();
+      return;
+    }
+    voice = voices[+s] || voice; pref.voice = voice && voice.voiceURI;
+    if (engine !== "system") { setEngine("system"); return; }
+    save(); fillSelects();
   };
   var setRate = function (r) { r = +r; if (RATES.indexOf(r) < 0) r = 1; rate = r; pref.rate = r; save(); fillSelects(); };
   var setEngine = function (e) {

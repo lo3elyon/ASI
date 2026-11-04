@@ -1,0 +1,136 @@
+/* =====================================================================
+   fixes7.css: the one authoritative rule set for the hero's Where to start card and its quick links
+   (every older hero/callout/tile rule in fixes.css, pages.css, fixes5.css and fixes6.css was deleted),
+   readable pressed pills in the player menus, the nav's Ask link and Customize gear, logo tiles on archive
+   cards, and the Ask panel's actions. Tokens only; class names start with x-.
+   The quick-links list is .x-qs (it used to share .x-st with the status chips, whose inline-pill look and icon
+   mask leaked onto it: the overflowing pill, the bullets and the run-together labels).
+   ===================================================================== */
+
+/* ---------- 1. Hero: content-sized (min-height only), the card in normal flow ---------- */
+.page .hero.x-hero-start {
+  display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto;
+  align-content: end; align-items: end;
+  height: auto; max-height: none; min-height: 0;
+  padding-bottom: 32px; box-sizing: border-box;
+}
+.page .hero.x-hero-start > .hero__copy { grid-column: 1; grid-row: 1; min-width: 0; }
+.page .hero.x-hero-start > aside.callout.x-start {
+  position: relative; inset: auto; transform: none; z-index: 2;
+  grid-column: 1; grid-row: 2; align-self: start; justify-self: stretch;
+  width: auto; max-width: none; min-width: 0; height: auto; max-height: none; min-height: 0;
+  margin: 0 12px; overflow: visible; box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr);
+  overflow-wrap: anywhere; white-space: normal;
+}
+.page .hero.x-hero-start > aside.callout.x-start > * { min-width: 0; max-width: 100%; }
+.page .hero.x-hero-start > aside.callout.x-start :is(.callout__head, .callout__lead) { white-space: normal; overflow-wrap: anywhere; }
+.page .hero.x-hero-start > aside.callout.x-start > .btn { justify-self: start; white-space: normal; text-align: center; box-sizing: border-box; }
+@media (min-width: 761px) {
+  .page .hero.x-hero-start { min-height: clamp(420px, 56vh, 560px); }
+  .page .hero.x-hero-start > aside.callout.x-start { margin: 0 24px; }
+}
+/* desktop (1100px and wider, any height): the card stands beside the title, top right, 320 to 440px wide;
+   the column is the card plus its 24px right margin, so the card can never pass the hero's right edge */
+@media (min-width: 1100px) {
+  .page .hero.x-hero-start {
+    grid-template-columns: minmax(0, 1fr) calc(clamp(320px, 30vw, 440px) + 24px); grid-template-rows: auto;
+    min-height: clamp(460px, 58vh, 640px);
+  }
+  .page .hero.x-hero-start > .hero__copy { grid-column: 1; grid-row: 1; align-self: end; padding-top: 56px; padding-bottom: 0; }
+  .page .hero.x-hero-start > aside.callout.x-start {
+    grid-column: 2; grid-row: 1; align-self: start;
+    width: auto; max-width: 440px; margin: 24px 24px 0 0;
+  }
+}
+
+/* ---------- 2. Quick links: icon, then the name on line 1 and the count pill on line 2 ---------- */
+.page .hero ul.x-qs {
+  list-style: none; margin: 2px 0 0; padding: 12px 0 0; border-top: 1px solid var(--stroke-secondary);
+  display: grid; gap: 8px; grid-template-columns: repeat(2, minmax(0, 1fr)); min-width: 0;
+}
+.page .hero ul.x-qs > li { list-style: none; margin: 0; padding: 0; min-width: 0; }
+.page .hero ul.x-qs > li::marker { content: none; }
+.page .hero ul.x-qs > li::before { content: none; }
+.page .hero ul.x-qs > .x-qs__it--wide { grid-column: 1 / -1; }
+@media (min-width: 761px) and (max-width: 1099px) {
+  .page .hero ul.x-qs { grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); }
+}
+/* the link is the still hit area; only the card inside it lifts */
+.x-qs__a { display: block; height: 100%; min-width: 0; border-radius: var(--r-s); color: var(--text-primary); text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.x-qs__a:focus-visible { outline: none; }
+.x-qs__card {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: center; gap: 10px;
+  height: 100%; min-height: 56px; min-width: 0; padding: 8px 10px 8px 8px; box-sizing: border-box;
+  border-radius: var(--r-s); border: 1px solid var(--stroke-secondary);
+  background: color-mix(in srgb, var(--fill-primary-on) 72%, transparent);
+  transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out), border-color var(--dur-quick) var(--ease-out);
+}
+.x-qs__a:hover .x-qs__card {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--st, var(--x-e1)) 55%, transparent);
+  background: var(--fill-primary-on);
+  box-shadow: 0 10px 22px -12px rgb(0 0 0 / 0.5);
+}
+.x-qs__a:active .x-qs__card { transform: none; box-shadow: none; }
+.x-qs__a:focus-visible .x-qs__card { outline: 2px solid var(--x-focus, var(--text-primary)); outline-offset: 2px; }
+.x-qs__th {
+  flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 10px; overflow: hidden;
+  background: color-mix(in srgb, var(--st, var(--x-e1)) 20%, var(--fill-primary-on));
+  color: color-mix(in srgb, var(--st, var(--x-e1)) 70%, var(--text-primary));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--st, var(--x-e1)) 35%, transparent);
+}
+.x-qs__th svg { display: block; }
+.x-qs__th--eras { display: flex; gap: 2px; width: 84px; padding: 0; background: var(--fill-tertiary); }
+.x-qs__th--eras img { flex: 1 1 0; min-width: 0; width: 0; height: 100%; max-width: none; object-fit: cover; aspect-ratio: auto; border-radius: 0; }
+.x-qs__tx { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; min-width: 0; }
+.x-qs__tx > b { display: block; max-width: 100%; font: var(--type-label); color: var(--text-primary); overflow-wrap: anywhere; white-space: normal; }
+.x-qs__tx > small {
+  display: inline-block; max-width: 100%; box-sizing: border-box;
+  padding: 1px 8px; border-radius: var(--r-pill);
+  background: var(--fill-tertiary); color: var(--text-secondary);
+  font: var(--type-caption); font-variant-numeric: tabular-nums; white-space: normal; overflow-wrap: anywhere;
+}
+@media (prefers-reduced-motion: reduce) {
+  .x-qs__card { transition: none; }
+  .x-qs__a:hover .x-qs__card { transform: none; }
+}
+
+/* ---------- 3. Player ⚙ Settings and Caption style: a pressed pill is accent-filled with dark ink, every theme ---------- */
+html .x-apx-menu .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick),
+html .x-apx-menu .x-ap__b.is-on:not(.x-pn-sw):not(.x-pn-pick),
+html .x-apx-menu .x-ap__b.is-active:not(.x-pn-sw):not(.x-pn-pick),
+:root[data-theme="dark"] .x-ap .x-apx-menu .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick),
+:root[data-theme="dark"] .x-apx-menu .x-pn-ccset .x-pn-sg > .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick),
+:root[data-theme="dark"] .x-apx-menu :is(.x-sx-speeds, .x-apx-abrow, .x-sx-row5, .x-sx-ql) > .x-ap__b[aria-pressed="true"] {
+  background: #06b6d4 !important; color: #04131a !important; font-weight: 600 !important;
+  box-shadow: none !important; opacity: 1 !important; text-shadow: none !important;
+}
+html .x-apx-menu .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick) *,
+html .x-apx-menu .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick)::after,
+html .x-apx-menu .x-ap__b:is(.is-on, .is-active):not(.x-pn-sw):not(.x-pn-pick) * { color: #04131a !important; opacity: 1 !important; }
+
+/* ---------- 4. Nav: the Ask link and the Customize gear beside the theme toggle ---------- */
+.nav .x-nav-ask { display: inline-flex; align-items: center; justify-content: center; text-decoration: none; flex: none; }
+@media (max-width: 760px), (pointer: coarse) { .nav .x-nav-ask { height: var(--tap); min-height: var(--tap); min-width: var(--tap); } }
+@media (max-width: 380px) { .nav .x-nav-ask { display: inline-flex; padding: 0 10px; } }
+.x-cz-btn {
+  flex: none; width: 36px; height: 36px; padding: 0;
+  display: grid; place-items: center; border: 0; border-radius: 50%;
+  background: var(--hover-wash-primary-on); color: var(--text-primary-on); cursor: pointer;
+}
+.x-cz-btn:hover { box-shadow: inset 0 0 0 100px var(--hover-wash-primary-on); }
+.x-cz-btn svg { display: block; }
+@media (max-width: 599px), (pointer: coarse) { .x-cz-btn { width: var(--tap); height: var(--tap); } }
+:root[data-theme="dark"] .nav.glass .x-cz-btn { background: #2c2c30; color: #f5f5f7; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nav.glass .x-cz-btn { background: #2c2c30; color: #f5f5f7; } }
+
+/* ---------- 5. Archive cards: an organisation's logo tile in the avatar slot ---------- */
+.x-av.x-av--tile { padding: 0; background: #fff; display: grid; place-items: center; overflow: hidden; }
+.x-av.x-av--tile .x-logo { box-shadow: none; padding: 0; width: 72%; height: 72%; background: transparent; border-radius: 0; }
+
+/* ---------- 6. Ask: the floating panel's actions, the Smart answers size notice ---------- */
+.x-ask__head .x-ask__acts { flex: none; flex-wrap: nowrap; gap: 6px; margin: 0; }
+.x-ask__head .x-ask__acts .btn { white-space: nowrap; }
+.x-askp__smartoff { display: grid; gap: 6px; justify-items: start; }
+.x-askp__smartoff .fineprint { margin: 0; }

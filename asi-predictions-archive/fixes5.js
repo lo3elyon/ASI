@@ -21,7 +21,7 @@
   window.XHeroCheck = function () {
     var hero = doc.querySelector(".hero"), c = hero && hero.querySelector(".x-start");
     if (!c) return null;
-    var h = hero.getBoundingClientRect(), r = c.getBoundingClientRect(), list = c.querySelector(".x-st");
+    var h = hero.getBoundingClientRect(), r = c.getBoundingClientRect(), list = c.querySelector(".x-qs");
     var l = list ? list.getBoundingClientRect() : r;
     return {
       viewport: innerWidth + "×" + innerHeight, hero: Math.round(h.width) + "×" + Math.round(h.height),

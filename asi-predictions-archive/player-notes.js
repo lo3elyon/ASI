@@ -261,7 +261,7 @@
       '<div class="x-pn-cs"><p class="x-apx-h">Background colour</p><div class="x-pn-sg x-pn-sg--7">' + sw("bg", BG_SW) +
         '<label class="x-ap__b x-pn-pick" title="Any background colour"><span class="x-ap__sr">Custom background colour</span><input type="color" data-pn="pick" data-k="bg" value="#080a0e" /></label><span></span></div></div>' +
       '<div class="x-pn-cs"><label class="x-pn-range" for="' + uid + '-op"><span class="x-apx-h">Background opacity <span class="x-apx-abtx" data-pn-out="op">62%</span></span>' +
-        '<input class="x-apx-range" id="' + uid + '-op" type="range" min="0" max="100" step="5" value="62" data-pn="op" aria-describedby="' + uid + '-opn" /></label>' +
+        '<input class="x-apx-range" id="' + uid + '-op" type="range" min="0" max="100" step="1" value="62" data-pn="op" aria-describedby="' + uid + '-opn" /></label>' +
         '<p class="x-pn-cnote" id="' + uid + '-opn">Only the box behind the words fades; the text stays solid.</p></div>' +
       '<div class="x-pn-cs"><p class="x-apx-h">Outline and shadow</p><div class="x-pn-sg x-pn-sg--4">' +
         Object.keys(EDGES).map(function (x) { return '<button class="x-ap__b" type="button" data-pn="set" data-k="edge" data-v="' + x + '" aria-pressed="false">' + EDGES[x][0] + "</button>"; }).join("") + "</div></div>" +
@@ -533,9 +533,12 @@
         pv.classList.toggle("is-kw", !!C.kw);
       }
       setEl.querySelector('[data-pn-out="size"]').textContent = C.size + "%";
-      setEl.querySelector('[data-pn-out="op"]').textContent = C.bgop + "%";
+      /* the label always reads the slider's own value, so the two can never disagree */
       var r = setEl.querySelector('[data-pn="op"]'); if (+r.value !== C.bgop) r.value = C.bgop;
-      r.style.setProperty("--x-ap-pct", C.bgop + "%");
+      var opv = +r.value;
+      setEl.querySelector('[data-pn-out="op"]').textContent = opv + "%";
+      r.setAttribute("aria-valuetext", opv + "%");
+      r.style.setProperty("--x-ap-pct", opv + "%");
       setEl.querySelector('[data-pn="size"][data-d="-25"]').disabled = C.size <= 75;
       setEl.querySelector('[data-pn="size"][data-d="25"]').disabled = C.size >= 200;
       var vv = cur(), src = srcOf(vv);

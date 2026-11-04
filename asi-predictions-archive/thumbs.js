@@ -34,7 +34,7 @@
   /* every class a thumbnail's length badge has ever had; the fallback never adds a second one */
   var BADGE = ".x-dur, .x-th__len, .x-th16__len, .x-pop__qlen, .x-ap__updur";
   /* not thumbnails: the live player's own layers, blurred backdrops, era photos, the hero's start tiles */
-  var SKIP = ".x-ap__cover, .x-ap__frame, .x-ap__upbg, .x-bgl, #x-era-imgs, .x-st";
+  var SKIP = ".x-ap__cover, .x-ap__frame, .x-ap__upbg, .x-bgl, #x-era-imgs, .x-qs";
   var RE = /(?:i\d?\.ytimg\.com\/vi(?:_webp)?|img\.youtube\.com\/vi)\/([^/?#]+)\//;
   var SEL = 'img[src*="ytimg.com/vi"], img[src*="img.youtube.com/vi"]';
   var idOf = function (src) { var m = RE.exec(src || ""); if (!m) return ""; try { return decodeURIComponent(m[1]); } catch (e) { return m[1]; } };

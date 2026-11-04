@@ -8,7 +8,9 @@
   var data = function (id) { try { return Hark.data(id) || []; } catch (e) { return []; } };
 
   /* ---------- index ---------- */
-  var IDX = { actions: [{ id: "watch-history", t: "Watch history", s: "Talks you started on this device", k: "action", hay: "watch history my watch history recently watched continue watching resume", key: "watch history" }], pages: [], people: [], history: [], entries: [], videos: [], preds: [] };
+  var IDX = { actions: [{ id: "ask", t: "Ask the Archive", s: "Answers with a source for every fact", k: "action", hay: "ask the archive question chat answer assistant help", key: "ask the archive" },
+    { id: "customize", t: "Customize", s: "Background, motion, reading voice, keyword highlights", k: "action", hay: "customize settings voice kokoro natural highlight keywords background motion", key: "customize" },
+    { id: "watch-history", t: "Watch history", s: "Talks you started on this device", k: "action", hay: "watch history my watch history recently watched continue watching resume", key: "watch history" }], pages: [], people: [], history: [], entries: [], videos: [], preds: [] };
   var LABEL = { actions: "Actions", pages: "Pages", people: "People", history: "History milestones", entries: "Archive entries", videos: "Videos", preds: "Predictions" };
   var KIND = { actions: "Action", pages: "Page", people: "Person", history: "Milestone", entries: "Entry", videos: "Video", preds: "Prediction" };
   var built = false;
@@ -45,7 +47,10 @@
     if (main && main.hidden) { location.hash = "#/"; setTimeout(fn, 80); } else fn();
   };
   var go = function (g, id) {
-    if (g === "actions") { if (id === "watch-history" && window.ArchiveWatch && ArchiveWatch.open) ArchiveWatch.open(); return; }
+    if (g === "actions") {
+      if (id === "ask") { location.hash = "#/ask"; return; }
+      if (id === "customize") { setTimeout(function () { var cb = doc.querySelector(".x-cz-btn, [data-cz-open]"); if (cb) cb.click(); }, 0); return; }
+      if (id === "watch-history" && window.ArchiveWatch && ArchiveWatch.open) ArchiveWatch.open(); return; }
     if (g === "pages") { location.hash = id; return; }
     if (g === "people") { location.hash = "#/person/" + id; return; }
     /* a video opens in the in-page window over whatever is on screen; the page stays where it is */

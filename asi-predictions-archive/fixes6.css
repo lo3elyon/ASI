@@ -4,47 +4,7 @@
    No :has() here, so every rule applies in every browser. Class names start with x-.
    ===================================================================== */
 
-/* ---------- 1. Hero: content-sized; the card in normal flow, 360 to 440px beside the title on desktop ---------- */
-.page .hero.x-hero-start { height: auto; max-height: none; }
-.page .hero.x-hero-start > .callout.x-start {
-  position: relative; inset: auto; transform: none;
-  height: auto; max-height: none; overflow: visible; box-sizing: border-box; min-width: 0;
-}
-.x-start .callout__lead, .x-start .callout__head { min-width: 0; overflow-wrap: break-word; white-space: normal; }
-.x-start > .btn { max-width: 100%; white-space: normal; text-align: center; box-sizing: border-box; }
-@media (min-width: 761px) {
-  .page .hero.x-hero-start {
-    display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto;
-    align-content: end; align-items: end; min-height: 0;
-  }
-  .page .hero.x-hero-start > .hero__copy { grid-column: 1; grid-row: 1; }
-  .page .hero.x-hero-start > .callout.x-start { grid-column: 1; grid-row: 2; width: auto; max-width: none; margin: 0 24px 24px; }
-}
-@media (min-width: 1100px) and (min-height: 761px) {
-  .page .hero.x-hero-start {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 440px); grid-template-rows: auto;
-    min-height: clamp(460px, 58vh, 640px); align-items: stretch;
-  }
-  .page .hero.x-hero-start > .hero__copy { grid-column: 1; grid-row: 1; align-self: end; padding-top: 56px; }
-  .page .hero.x-hero-start > .callout.x-start {
-    grid-column: 2; grid-row: 1; align-self: start;
-    width: 100%; min-width: 360px; max-width: 440px; justify-self: end;
-    margin: 24px 24px 24px 0; grid-template-columns: minmax(0, 1fr);
-  }
-  .page .hero.x-hero-start > .callout.x-start > .btn { justify-self: start; }
-}
-
-/* the tiles: name and count as two flex items with a gap; the count is a small pill; both wrap */
-.x-st__a { min-width: 0; }
-.x-st__card { min-width: 0; }
-.x-st__tx { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px; min-width: 0; flex: 1 1 auto; }
-.x-st__tx b { flex: 0 1 auto; min-width: 0; overflow-wrap: break-word; }
-.x-st__tx small {
-  display: inline-flex; align-items: center; flex: 0 1 auto; max-width: 100%; min-width: 0; box-sizing: border-box;
-  padding: 1px 8px; border-radius: var(--r-pill);
-  background: var(--fill-tertiary); color: var(--text-secondary);
-  font: var(--type-caption); font-variant-numeric: tabular-nums; white-space: normal; overflow-wrap: break-word;
-}
+/* (section 1, the hero's Where to start card, moved to fixes7.css as the one rule set) */
 
 /* ---------- 2. Duration badges inside every thumbnail wrapper ---------- */
 .x-lite, .x-cw__th, .x-hi__vid, .x-dur-host, .x-dur-w { position: relative; }

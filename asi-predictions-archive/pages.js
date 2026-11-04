@@ -115,7 +115,9 @@
   /* ---------------------------------------------------------------------
      Small renderers
      --------------------------------------------------------------------- */
-  var photoOf = function (p) { return p.photo || (window.XLogo && XLogo.photo(p.id)) || ""; };
+  /* the same portrait chain as people.js (XLogo.face): local portrait file, then the people.json photo */
+  var srcsOf = function (p) { return window.XLogo && XLogo.face ? XLogo.face({ pid: p.id, photo: p.photo, org: false }).srcs : (p.photo ? [p.photo] : []); };
+  var photoOf = function (p) { return srcsOf(p)[0] || ""; };
   var orgTile = function (name, size) { return window.XLogo ? XLogo.tile(name, size || 18) : ""; };
   /* every logo once, each linking to its organisation's page; n = people per org */
   var orgStrip = function () {
@@ -129,7 +131,8 @@
       }).join("") + "</ul>");
   };
   var personChip = function (p) {
-    return '<a class="x-pg__person" href="#/person/' + esc(p.id) + '">' + (photoOf(p) ? '<img src="' + esc(photoOf(p)) + '" alt="" width="32" height="32" loading="lazy" decoding="async" />' : '<span class="x-pg__ini" aria-hidden="true">' + esc(initials(p.name)) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
+    var ss = srcsOf(p);
+    return '<a class="x-pg__person" href="#/person/' + esc(p.id) + '">' + (ss.length ? XLogo.img(ss, "", 32, 'loading="lazy"') : '<span class="x-pg__ini" aria-hidden="true">' + esc(initials(p.name)) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
   };
   var vidLink = function (v) {
     return '<li><a class="link" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '">' + esc(v.t) + "</a>" +
@@ -440,8 +443,9 @@
       if (pv && !pv.hidden) pv.hidden = true;
       var fn = r.name === "topic" ? R.topic : r.name === "era" ? R.era : R[r.name];
       if (window.XAsk && XAsk.stop) XAsk.stop();
-      var out = fn(r.arg || (r.name === "era" ? "early" : ""));
+      /* reset before the page builds, so its growing lists and onShow hooks (the Ask page's mount) survive */
       growLists = {}; onShow = [];
+      var out = fn(r.arg || (r.name === "era" ? "early" : ""));
       host.innerHTML = '<div class="links x-pg__top"><a class="btn" href="#/" data-pg-home>← Back to the archive</a></div>' + out.html;
       var hero = host.querySelector(".x-pg__hero[data-era-img]");
       if (hero) { var im = eraImg(hero.getAttribute("data-era-img")); if (im) { im.className = "hero__img"; hero.insertBefore(im, hero.firstChild); } }

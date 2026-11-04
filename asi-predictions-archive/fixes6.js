@@ -40,7 +40,7 @@
     });
     /* background-image or poster thumbnails anywhere */
     doc.querySelectorAll('[style*="ytimg.com/vi"], [style*="img.youtube.com/vi"], [poster*="ytimg.com/vi"]').forEach(function (w) {
-      if (w.closest(".x-ap__cover, .x-ap__frame, .x-ap__upbg, .x-bgl, #x-era-imgs, .x-st, .x-ap__poster")) return;
+      if (w.closest(".x-ap__cover, .x-ap__frame, .x-ap__upbg, .x-bgl, #x-era-imgs, .x-qs, .x-ap__poster")) return;
       try { put(w, bgId(w)); } catch (e) {}
     });
   };

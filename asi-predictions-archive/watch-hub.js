@@ -533,13 +533,13 @@
     if (!row) { row = document.createElement("div"); row.className = "x-cw"; th.parentNode.insertBefore(row, th); }
     /* one source for the resume time: the player's saved position, flushed first so it matches "Resume from" */
     if (AP.flush) { rowFlushing = true; try { AP.flush(); } catch (e) {} rowFlushing = false; }
-    var l = list().filter(function (x) { return !x.r.done && posOf(x.id) > 5; }).slice(0, 12), all = list();
+    var l = list().filter(function (x) { return !x.r.done && Math.max(posOf(x.id), x.r.t || 0) > 5; }).slice(0, 12), all = list();
     if (!all.length) { row.hidden = true; return; }
     row.hidden = false;
     row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
-        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id)) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
+        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id) || x.r.t || 0) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
       }).join("") + "</div>";
   };
 
@@ -580,6 +580,19 @@
   /* The row is drawn once at load; while the page is open only its labels and bars update in place (onSaved). */
   /* painted once at load, not after a delay, so nothing below it shifts later */
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", paintRow); else paintRow();
+  /* a talk started on this visit: once it is in the history (or first passes 5 s, moving it from "recent" to
+     "Continue watching"), the row is drawn again so it and the 🕘 My watch history pill appear without a reload.
+     It only redraws when that set changes, never just because time passed. */
+  var rowSig = function () {
+    var all = list(), cont = all.filter(function (x) { return !x.r.done && Math.max(posOf(x.id), x.r.t || 0) > 5; });
+    return all.length + "|" + cont.map(function (x) { return x.id; }).slice(0, 12).join(",");
+  };
+  var lastSig = rowSig();
+  setInterval(function () {
+    var s = rowSig(); if (s === lastSig) return;
+    lastSig = s; known = Object.keys(W).length;
+    try { paintRow(); } catch (e) {}
+  }, 3000);
 
   window.ArchiveWatch = { history: function () { return W; }, open: openDrawer };
 })();
