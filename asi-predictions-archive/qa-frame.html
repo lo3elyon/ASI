@@ -1,9 +1,0 @@
-<!doctype html><meta charset="utf-8"><title>QA frame</title>
-<style>body{margin:0;background:#333;font:13px system-ui;color:#fff}#bar{padding:6px}iframe{display:block;border:0;background:#fff;margin:6px}</style>
-<div id="bar"></div><iframe id="f"></iframe>
-<script>
-var p=new URLSearchParams(location.search),w=+p.get('w')||390,h=+p.get('h')||844,hs=p.get('hash')||'',v=p.get('v')||Date.now();
-var f=document.getElementById('f');f.style.width=w+'px';f.style.height=h+'px';
-f.src='index.html?v='+v+(hs?'#'+hs:'');
-document.getElementById('bar').textContent='Viewport '+w+'×'+h+'  (change ?w=&h=&hash=)';
-</script>
