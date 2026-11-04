@@ -1,0 +1,186 @@
+/* fix18.css: wide window with the panel beside the video (bottom sheet under 900px), captions clear of the
+   seek bar, a reachable and colourful ⚙ menu, picture sliders in colour. Loaded last. */
+
+/* ---------- A. the wide window: the whole viewport, sized by CSS (player6 fitPop steps aside) ---------- */
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) {
+  width: calc(100vw - 16px) !important; max-width: none !important;
+  height: calc(100vh - 16px) !important; height: calc(100dvh - 16px) !important;
+}
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) > .x-pop__win {
+  display: flex !important; flex-direction: column !important; height: 100% !important;
+  max-height: none !important; overflow: hidden !important;
+}
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) > .x-pop__win > .x-pop__bar { flex: none !important; position: relative !important; top: auto !important; }
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) > .x-pop__win > .x-pop__side,
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) > .x-pop__win > .x-pop__grip { display: none !important; }
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap:not(.is-fs) {
+  position: relative; display: grid !important; flex: 1 1 auto !important; align-self: stretch !important;
+  min-height: 0 !important; max-height: none !important; overflow: hidden !important;
+  grid-template-columns: minmax(0, 1fr) !important; grid-template-rows: minmax(0, 1fr) !important;
+  gap: 0 !important; transition: none !important;
+}
+/* the video column: 16:9, letterboxed, centred vertically; the controls sit on its lower edge */
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap:not(.is-fs) > .x-ap__slot {
+  grid-column: 1 !important; grid-row: 1 !important; display: flex !important; flex-direction: column;
+  align-items: center; justify-content: center; width: 100%; height: 100%; min-width: 0; min-height: 0;
+  container-type: size; background: #000; overflow: hidden;
+}
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap:not(.is-fs) > .x-ap__slot > .x-ap__wrap {
+  flex: none !important; width: 100% !important; width: min(100cqw, 100cqh * 16 / 9) !important;
+  max-width: 100%; max-height: 100%; height: auto !important; border-radius: 0 !important;
+}
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap:not(.is-fs) .x-ap__screen {
+  width: 100% !important; height: auto !important; max-height: none !important; aspect-ratio: 16 / 9 !important; flex: none !important;
+}
+.x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap:not(.is-fs) > .x-ap__slot > .x-ap__under { display: none !important; }
+
+/* 900px and up: the panel is a column on the right, or the 44px rail when hidden; it scrolls on its own */
+@media (min-width: 900px) {
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) {
+    grid-template-columns: minmax(0, 1fr) var(--wh-w, 380px) !important; --wh-rail: 44px;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh.is-wh-collapsed:not(.is-fs) { grid-template-columns: minmax(0, 1fr) 44px !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs):not(:has(> .x-wh:not([hidden]))) { grid-template-columns: minmax(0, 1fr) !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh {
+    grid-column: 2 !important; grid-row: 1 !important; position: relative; display: flex !important; flex-direction: row !important;
+    width: auto !important; height: 100% !important; min-width: 0; min-height: 0 !important; max-height: none !important;
+    margin: 0 !important; overflow: hidden !important; contain: size;
+    border: 0 !important; border-left: 1px solid var(--hero-glass-stroke, rgba(255, 255, 255, 0.12)) !important; border-radius: 0 !important;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh[hidden] { display: none !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh > .x-wh__main {
+    display: flex !important; flex-direction: column; flex: 1 1 auto; min-width: 0; min-height: 0;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh.is-wh-collapsed:not(.is-fs) > .x-wh > .x-wh__main { display: none !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__body {
+    flex: 1 1 auto !important; min-height: 0 !important; max-height: none !important; overscroll-behavior: contain;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__body:not([data-t="tr"]) { overflow-x: hidden !important; overflow-y: auto !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__rail {
+    order: 1 !important; flex: 0 0 44px !important; width: 44px; flex-direction: column !important; padding: 8px 2px !important;
+    overflow-y: auto; scrollbar-width: none; border-bottom: 0 !important;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__tabs { flex-direction: column !important; flex: 0 0 auto !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh :is(.x-wh__tab, .x-wh__fold) {
+    width: 40px; min-width: 0 !important; min-height: var(--tap) !important; padding: 4px 0 !important;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__rail .x-wh__lb {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+}
+
+/* under 900px: the panel is a bottom sheet over the lower 45%; the video stays whole in the room above it */
+@media (max-width: 899.98px) {
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-wh-collapsed):has(> .x-wh:not([hidden])) > .x-ap__slot { height: 55% !important; align-self: start; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh {
+    position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; top: auto !important; z-index: 12;
+    display: flex !important; flex-direction: column !important; width: auto !important; height: 45% !important; max-height: none !important;
+    margin: 0 !important; overflow: hidden !important; contain: none; grid-column: auto !important; grid-row: auto !important;
+    background: var(--hero-surface, #0b0f17) !important; border: 0 !important; border-top: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: var(--r-m) var(--r-m) 0 0 !important; box-shadow: 0 -18px 40px -16px rgba(0, 0, 0, 0.8);
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh::before {
+    content: ""; position: absolute; top: 5px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: rgba(255, 255, 255, 0.28); pointer-events: none;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh.is-wh-collapsed:not(.is-fs) > .x-wh,
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh[hidden] { display: none !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__rail {
+    order: -1 !important; flex: none !important; flex-direction: row !important; width: auto !important; padding: 12px 6px 6px !important;
+    border: 0 !important; border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__tabs { flex-direction: row !important; flex: 1 1 auto !important; overflow-x: auto; scrollbar-width: none; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__fold { display: none !important; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__x { display: inline-flex !important; align-items: center; justify-content: center; }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh > .x-wh__main {
+    display: flex !important; flex-direction: column; flex: 1 1 auto; min-height: 0;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-wh__body {
+    flex: 1 1 auto !important; min-height: 0 !important; max-height: none !important; overflow-x: hidden !important; overflow-y: auto !important;
+    overscroll-behavior: contain; padding: 14px 16px 18px;
+  }
+  .x-pop.is-modal.is-wide.is-wide:not(.is-min):not(.is-dk14) .x-pop__body.x-ap.has-wh:not(.is-fs) > .x-wh .x-pn-list { max-height: none !important; }
+}
+
+/* ---------- B. captions clear the seek bar while the controls show (fix18.js writes --f18-lift) ---------- */
+.x-ap .x-pn-cap.f18-cap {
+  margin-bottom: var(--f18-lift, 0px) !important; margin-top: calc(-1 * var(--f18-lift, 0px)) !important;
+  transition-property: bottom, top, translate, margin !important;
+  transition-duration: var(--dur-quick), var(--dur-quick), 150ms, 150ms !important;
+  transition-timing-function: var(--ease-out) !important;
+}
+.x-ap .x-pn-cap.f18-cap.is-free, .x-ap .x-pn-cap.f18-cap.x7-free { transition: translate 150ms var(--ease-out), margin 150ms var(--ease-out) !important; }
+.x-ap .x-pn-cap.f18-cap.is-drag { transition: none !important; }
+
+/* ---------- C. the ⚙ menu: reachable last row, colourful scrollbar, fades, bottom sheet, jump chips ---------- */
+.x-ap .x-apx-menu.g13-menu[data-f18] {
+  padding-bottom: 16px !important; scroll-padding-top: 8px; scroll-padding-bottom: 16px;
+  scrollbar-width: auto !important; scrollbar-color: auto !important;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 var(--f18-ft, 0px), #000 calc(100% - var(--f18-fb, 0px)), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 var(--f18-ft, 0px), #000 calc(100% - var(--f18-fb, 0px)), transparent 100%);
+}
+.x-ap .x-apx-menu[data-f18~="t"] { --f18-ft: 22px; }
+.x-ap .x-apx-menu[data-f18~="b"] { --f18-fb: 28px; }
+.x-ap .x-apx-menu[data-f18]::-webkit-scrollbar { width: 6px; height: 6px; }
+.x-ap .x-apx-menu[data-f18]::-webkit-scrollbar-track { background: transparent; margin: 10px 0; }
+.x-ap .x-apx-menu[data-f18]::-webkit-scrollbar-thumb { border-radius: 3px; background: linear-gradient(180deg, #f59e0b, #14b8a6, #3b82f6); }
+@supports (-moz-appearance: none) {
+  .x-ap .x-apx-menu.g13-menu[data-f18] { scrollbar-width: thin !important; scrollbar-color: #14b8a6 transparent !important; }
+}
+/* under 520px of player width: a bottom sheet with a drag handle */
+.x-ap .x-apx-menu.g13-menu[data-f18~="s"] { border-radius: 14px 14px 10px 10px !important; padding-top: 0 !important; }
+.x-ap .x-apx-menu.g13-menu[data-f18~="s"]::before { display: none !important; }
+.x-ap .x-apx-menu .f18-hdl { display: none; }
+.x-ap .x-apx-menu[data-f18~="s"] > .f18-hdl {
+  grid-column: 1 / -1; position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: center;
+  height: 24px; margin: 0 -8px 4px; background: rgb(16 18 24 / 0.97); cursor: grab; touch-action: none;
+}
+.x-ap .x-apx-menu .f18-hdl i { display: block; width: 40px; height: 4px; border-radius: 2px; background: rgb(255 255 255 / 0.35); }
+/* Jump to section */
+.x-ap .x-apx-menu .f18-jump {
+  grid-column: 1 / -1; display: flex; gap: 6px; margin: 0 0 6px; padding: 0 0 8px; overflow-x: auto; scrollbar-width: none;
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+}
+.x-ap .x-apx-menu .f18-jump::-webkit-scrollbar { display: none; }
+.x-ap .x-apx-menu .f18-chip {
+  flex: none; min-height: var(--tap); padding: 0 12px; border: 1px solid var(--f18-c, #14b8a6); border-radius: var(--r-pill);
+  background: transparent; color: #f5f5f7; font: var(--type-tag); cursor: pointer;
+  transition: background-color var(--dur-quick) var(--ease-out);
+}
+.x-ap .x-apx-menu .f18-chip:nth-child(3n + 1) { --f18-c: #f59e0b; }
+.x-ap .x-apx-menu .f18-chip:nth-child(3n + 2) { --f18-c: #14b8a6; }
+.x-ap .x-apx-menu .f18-chip:nth-child(3n) { --f18-c: #3b82f6; }
+.x-ap .x-apx-menu .f18-chip:hover { background: color-mix(in srgb, var(--f18-c) 22%, transparent); }
+.x-ap .x-apx-menu .f18-chip:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+.x-ap .x-apx-menu .f18-chip[hidden] { display: none; }
+/* sleep timer row with the extra End button: two rows of three */
+.x-ap .x-apx-menu .x-sx-row5:has(.f18-send) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.x-ap .x-apx-menu .f18-more .x-ap__b { width: 100%; justify-content: flex-start; }
+
+/* Picture sliders: amber, teal and blue tracks; Reset picture in colour */
+.x-apx-menu .x7-sl input[data-x7r="b"] { --f18-c: #f59e0b; }
+.x-apx-menu .x7-sl input[data-x7r="c"] { --f18-c: #14b8a6; }
+.x-apx-menu .x7-sl input[data-x7r="s"] { --f18-c: #3b82f6; }
+.x-apx-menu .x7-sl input[data-x7r] { accent-color: var(--f18-c); }
+.x-apx-menu .x7-sl input[data-x7r]::-webkit-slider-runnable-track { background: linear-gradient(to right, var(--f18-c) var(--x-ap-pct, 50%), rgb(255 255 255 / 0.18) var(--x-ap-pct, 50%)) !important; }
+.x-apx-menu .x7-sl input[data-x7r]::-webkit-slider-thumb { background: var(--f18-c) !important; }
+.x-apx-menu .x7-sl input[data-x7r]::-moz-range-track { background: rgb(255 255 255 / 0.18) !important; }
+.x-apx-menu .x7-sl input[data-x7r]::-moz-range-progress { background: var(--f18-c) !important; }
+.x-apx-menu .x7-sl input[data-x7r]::-moz-range-thumb { background: var(--f18-c) !important; }
+.x-ap .g13-menu .x7-picreset, .x-ap .x-apx-menu .x7-picreset {
+  background: linear-gradient(90deg, rgb(245 158 11 / 0.2), rgb(20 184 166 / 0.2), rgb(59 130 246 / 0.2)) !important;
+  box-shadow: inset 0 0 0 1px rgb(20 184 166 / 0.55) !important; color: #fff !important;
+}
+.x-ap .g13-menu .x7-picreset:hover:not(:disabled) { background: linear-gradient(90deg, rgb(245 158 11 / 0.32), rgb(20 184 166 / 0.32), rgb(59 130 246 / 0.32)) !important; }
+
+/* toast over every window (the centred window sits at z-index 61) */
+.f18-toast {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom, 0px) + 24px); z-index: 2147483001;
+  transform: translateX(-50%); opacity: 0; pointer-events: none;
+  padding: 10px 16px; border-radius: var(--r-pill); background: #101218; color: #f5f5f7; font: var(--type-label);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.14), var(--hark-shadow); transition: opacity var(--dur-quick) var(--ease-out);
+}
+.f18-toast.is-on { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .x-ap .x-pn-cap.f18-cap, .x-ap .x-pn-cap.f18-cap.is-free, .x-ap .x-pn-cap.f18-cap.x7-free, .f18-toast { transition: none !important; }
+}

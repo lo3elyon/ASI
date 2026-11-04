@@ -210,7 +210,7 @@
     minimise();
   }, true);
   var onScrollIntent = function (ev) {
-    if (!live() || !outside(ev.target)) return;
+    if (!live() || !outside(ev.target) || (window.F18inside && window.F18inside(ev))) return;
     minimise();
   };
   window.addEventListener("wheel", onScrollIntent, { passive: true, capture: true });

@@ -35,6 +35,7 @@
       el.classList.remove("x6-fit"); return;
     }
     el.classList.add("x6-fit");
+    if (el.classList.contains("is-modal") && el.classList.contains("is-wide")) return; /* fix18: the wide window is sized by CSS (fix18.css) */
     var modal = el.classList.contains("is-modal");
     var win = el.querySelector(".x-pop__win"), screen = inst.screen, slot = root.querySelector(".x-ap__slot");
     if (!win || !screen || !slot || !screen.offsetWidth) return;
