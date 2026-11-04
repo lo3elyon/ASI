@@ -173,6 +173,12 @@
   };
   window.addEventListener("hashchange", route);
   window.addEventListener("popstate", route);
+  /* fix 02:05: routes changed with history.pushState/replaceState fire no hashchange, so the results stayed over the new page */
+  ["pushState", "replaceState"].forEach(function (k) {
+    var o = history[k]; if (typeof o !== "function" || o.__s26) return;
+    var w = function () { var r = o.apply(this, arguments); try { route(); if (typeof addBtn === "function") addBtn(); } catch (e) {} return r; };
+    w.__s26 = true; history[k] = w;
+  });
 
   /* ---------- clicks ---------- */
   var jumpTo = function (kind, id) {
@@ -248,6 +254,8 @@
     if (theme && theme.parentNode) theme.parentNode.insertBefore(b, theme); else nav.appendChild(b);
   };
   if (doc.readyState === "complete") addBtn(); else window.addEventListener("load", addBtn, { once: true });
+  /* fix 02:05: the header can be re-rendered after load; re-insert the button on route changes (idempotent) */
+  window.addEventListener("hashchange", addBtn); doc.addEventListener("DOMContentLoaded", addBtn);
 
   route();
   window.XSearch26 = { open: function (q) { location.hash = hashFor(q || ""); } };
