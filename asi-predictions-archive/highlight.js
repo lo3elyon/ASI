@@ -69,7 +69,7 @@
     var p = PPL[l];
     if (p && p.name === m) return tag("x-kw x-kw--p", "#/person/" + esc(p.id), esc(m));
     var o = ORG[l];
-    if (o && o.name === m) return tag("x-kw x-kw--o", "#/org/" + esc(o.o.slug), '<img src="' + esc(o.o.src) + '" alt="" width="14" height="14" loading="lazy" decoding="async" />' + esc(m));
+    if (o && o.name === m) return tag("x-kw x-kw--o", "#/org/" + esc(o.o.slug), (o.o.src ? '<img src="' + esc(o.o.src) + '" alt="" data-x25n="' + esc(o.name) + '" width="14" height="14"' + (XLogo.meta && XLogo.meta.dark[o.o.file] ? ' class="x25-kwdark"' : "") + ' loading="lazy" decoding="async" onerror="XLogo.fail(this)" />' : "") + esc(m));
     var t = TERM[l] || TERM[l.replace(/s$/, "")] || (MONTH_YEAR.test(m) ? null : (function () { for (var i = 0; i < TLIST.length; i++) if (TLIST[i].re.test(m)) return TLIST[i]; return null; })());
     if (t) {
       /* short all-caps terms only count in capitals ("ASI", "AGI", "LLM"), never as parts of ordinary words */

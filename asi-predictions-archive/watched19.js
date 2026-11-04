@@ -500,6 +500,40 @@
   doc.addEventListener("visibilitychange", function () { if (doc.hidden) flush(); });
   if (P && P.on) P.on("hide", flush);
 
+  /* batch 25: the watched store for "Mark as watched" (fix25.js). set(id, true, d) stores the whole [0, d] range as
+     complete; set(id, false) clears it; raw/restore carry the stored string for Undo. Every bar repaints at once. */
+  var repaint = function () {
+    any = true;
+    insts.forEach(function (inst) { try { paintInst(inst); } catch (e) {} });
+    try { paintDock(); } catch (e) {}
+    try { scanThumbs(); } catch (e) {}
+  };
+  window.XW19 = {
+    done: function (id) { var raw = lsGet(KEY + id); if (!raw && !MEM[id]) return false; var o = rec(id); return !!(o && o.c); },
+    figs: function (id) { return figs(id, null); },
+    raw: function (id) { saveAll(); return lsGet(KEY + id); },
+    set: function (id, on, d) {
+      if (!id) return;
+      if (on) {
+        d = +d > 0 ? +d : durOf(id, null) || 1;
+        MEM[id] = { r: [[0, d]], d: d, c: true, dirty: true, saved: 0 };
+        save(id);
+      } else {
+        MEM[id] = { r: [], d: 0, c: false, dirty: false, saved: 0 };
+        try { localStorage.removeItem(KEY + id); } catch (e) {}
+      }
+      insts.forEach(function (inst) { var S = inst.__w19; if (S && S.id === id) S.prev = null; });
+      repaint();
+    },
+    restore: function (id, raw) {
+      delete MEM[id];
+      if (raw) lsSet(KEY + id, raw); else { try { localStorage.removeItem(KEY + id); } catch (e) {} }
+      rec(id);
+      repaint();
+    },
+    repaint: repaint
+  };
+
   sync();
   setTimeout(scanThumbs, 800);
 })();

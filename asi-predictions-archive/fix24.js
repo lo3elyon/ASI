@@ -48,7 +48,7 @@
     }
     sec.classList.toggle("f24-cv", off);
   };
-  var cvIO = hasIO && ("contentVisibility" in docEl.style) ? new IntersectionObserver(function (en) {
+  var cvIO = false ? new IntersectionObserver(function (en) {
     en.forEach(function (e) { far.set(e.target, !e.isIntersecting); setCv(e.target); });
   }, { rootMargin: "1500px 0px 1500px 0px" }) : null;
   var refreshCv = function () { sections().forEach(function (s) { if (far.has(s)) setCv(s); }); };

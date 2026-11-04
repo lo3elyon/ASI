@@ -19,10 +19,10 @@
 
 /* ---------- 2. Rendering work ---------- */
 /* every top-level section remembers its rendered height, so skipping it never shifts the page */
-.main > section.section { contain-intrinsic-size: auto 900px; }
+/* hotfix 01:10: content-visibility toggling removed - it changed section heights while scrolling and shook the page */
 /* fix24.js adds this only while a section is well off screen, and never to the routed section or one holding the
    player or the dock */
-.main > section.section.f24-cv { content-visibility: auto; }
+.main > section.section, .main > section.section.f24-cv { content-visibility: visible !important; contain-intrinsic-size: none !important; }
 
 /* infinite background loops pause off screen and in a hidden tab */
 .hero.f24-off::before,
