@@ -378,8 +378,8 @@
         keep(function () { AP.watch(VIDS[id] || id); });
         return;
       }
-      /* a person link inside the video window closes the window first, so the page underneath is free to change */
-      if (e.target.closest('a[href^="#/person/"], a[href^="#/topic/"]') && AP.isWatching && AP.isWatching()) AP.closePopout();
+      /* a person link inside the video window minimises it to the corner dock (batch 14: never closes it), so the page underneath is free to change */
+      if (e.target.closest('a[href^="#/person/"], a[href^="#/topic/"]') && AP.isWatching && AP.isWatching() && window.XDock14) XDock14.minimise();
     });
     box.addEventListener("keydown", function (e) {
       if (!e.target.classList.contains("x-wh__tab")) return;

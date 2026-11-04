@@ -39,6 +39,8 @@
     return p[0];
   };
   var SPEEDS = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5, 3];
+  /* Extension mode (speed12.js): new players use www.youtube.com so browser speed extensions can reach the iframe */
+  var ytHost = function () { var on = false; try { on = localStorage.getItem("asi.speed12.ext") === "1"; } catch (e) {} return on ? "https://www.youtube.com" : "https://www.youtube-nocookie.com"; };
   var ytUrl = function (id, t) { return "https://www.youtube.com/watch?v=" + id + (t > 0 ? "&t=" + Math.floor(t) + "s" : ""); };
   var ICON = {
     play: '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>',
@@ -59,13 +61,13 @@
     pop: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><rect x="12" y="12" width="7" height="5" rx="1" fill="currentColor" stroke="none"/>'),
     min: svg('<path d="M6 17h12"/>'),
     dock: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M15 9l-5 5M10 10v4h4"/>'),
-    wide: svg('<rect x="2" y="7" width="20" height="10" rx="1.5"/>'),
+    wide: svg('<path d="M3 12h18M7 8l-4 4 4 4M17 8l4 4-4 4"/>'),
     fs: svg('<path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>'),
     tab: svg('<path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>'),
     yt: svg('<rect x="2.5" y="5.5" width="19" height="13" rx="4"/><path d="M10 9.5v5l4.5-2.5z" fill="currentColor"/>'),
     close: svg('<path d="M6 6l12 12M18 6L6 18"/>'),
     restore: svg('<path d="M14 4h6v6M10 20H4v-6"/>'),
-    unwide: svg('<rect x="2" y="7" width="20" height="10" rx="1.5"/><path d="M6 12h4M8 10l2 2-2 2M18 12h-4M16 10l-2 2 2 2"/>'),
+    unwide: svg('<path d="M2.5 12h7M21.5 12h-7M6.5 8.5l3.5 3.5-3.5 3.5M17.5 8.5L14 12l3.5 3.5"/>'),
     fsx: svg('<path d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>'),
     grip: svg('<path d="M20 12l-8 8M20 17l-3 3"/>'),
     expand: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 9h6v6"/>')
@@ -355,7 +357,7 @@
     var basic = function (start) {
       var v = P.video;
       P.basic = true; root.classList.add("is-basic");
-      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3" + (start ? "&start=" + start : "") +
+      frame.innerHTML = '<iframe src="' + ytHost() + '/embed/' + encodeURIComponent(v.id) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3" + (start ? "&start=" + start : "") +
         '" title="' + esc(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
       P.playing = true; paintToggle();
     };
@@ -404,7 +406,7 @@
       if (/^https?:/.test(location.origin)) pv.origin = location.origin;
         try {
           P.yt = new window.YT.Player(host, {
-            host: "https://www.youtube-nocookie.com",
+            host: ytHost(),
             videoId: v.id,
             width: "100%", height: "100%",
             playerVars: pv,
@@ -1022,7 +1024,7 @@
     var toggleWide = function (ev) {
       if (ev) { if (ev.__xWide) return; ev.__xWide = true; }
       var t = Date.now(); if (t - wideAt < 80) return; wideAt = t;
-      if (!el || el.hidden) return;
+      if (!el || el.hidden || el.classList.contains("is-dk14")) return;
       if (leaveT) { clearTimeout(leaveT); leaveT = 0; el.classList.remove("is-leave"); if (bd) bd.classList.remove("is-leave"); }
       auto = false;
       if (isMin) restore();
@@ -1039,7 +1041,7 @@
       bd = document.createElement("div");
       bd.className = "x-pop-bd"; bd.hidden = true;
       document.body.appendChild(bd);
-      bd.addEventListener("click", function () { close(); });
+      /* batch 14: a click on the dim never closes the player; dock14.js minimises it to the corner dock */
       el = document.createElement("section");
       el.className = "x-pop"; el.hidden = true;
       el.setAttribute("aria-label", "Mini player");
@@ -1053,7 +1055,7 @@
             '<div class="x-pop__tools">' +
               tb("mode", "Expand", IC.expand) + tb("min", "Minimise", IC.min, true) + tb("dock", "Dock in the Theater", IC.dock) + tb("wide", "Wide window (T)", IC.wide, true) + tb("fs", "Fullscreen (F)", IC.fs, true) +
               '<a class="x-pop__i" data-p="yt" href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="Open on YouTube at the current time" title="Open on YouTube at the current time">' + IC.yt + "</a>" +
-              tb("close", "Close (Esc)", IC.close) +
+              tb("close", "Close", IC.close) +
             "</div>" +
           "</div>" +
           '<div class="x-pop__body"></div>' +
@@ -1201,6 +1203,7 @@
     var open = function (v, o) {
       o = o || {};
       build();
+      dkRun("open");
       if (leaveT) { clearTimeout(leaveT); leaveT = 0; hide(); }
       unmark();
       src = o.src || null; auto = !!o.auto;
@@ -1238,9 +1241,25 @@
     };
     var hide = function () {
       unmark(); src = null; auto = false;
+      dkRun("hide");
       unMin(); clearWide();
       el.hidden = true;
       if (modal) { setModal(false); refocus(); }
+    };
+    /* batch 14 hooks for the corner dock (dock14.js) */
+    var dkHooks = { open: [], hide: [] };
+    var dkRun = function (n) { dkHooks[n].forEach(function (f) { try { f(); } catch (e) {} }); };
+    var dk = {
+      on: function (n, f) { if (dkHooks[n]) dkHooks[n].push(f); },
+      el: function () { return el; }, bd: function () { return bd; }, inst: function () { return inst; },
+      S: S, isOpen: isOpen,
+      isModal: function () { return modal; }, isWide: function () { return isWide; }, isMin: function () { return isMin; },
+      leaving: function () { return !!leaveT; },
+      setModal: function (on) { setModal(on); if (on) paintList(); },
+      setWide: function (on) { setWide(on); }, unMin: unMin,
+      setWidth: function (w) { setWidth(w); if (!modal && !isMin && el) el.style.width = S.w + "px"; },
+      place: function () { place(); }, ensureOnScreen: function () { ensureOnScreen(); },
+      close: function () { close(); }
     };
     /* Dock: move the video back into the page's player, keeping its time. */
     var dock = function () {
@@ -1311,6 +1330,7 @@
     return {
       open: open, fromInstance: fromInstance, dock: dock, close: close, toggleKey: toggleKey, isOpen: isOpen,
       isModal: function () { return isOpen() && modal; },
+      _dk: dk,
       menuOpen: function () { return !!(el && el.querySelector(".x-apx-menu:not([hidden])")); },
       autoFrom: function (s) { return isOpen() && auto && src === s; }
     };
@@ -1402,14 +1422,8 @@
     return !!(t && t.isContentEditable);
   };
   document.addEventListener("keydown", function (ev) {
-    /* Esc: close the in-page window when it is open, else leave Theater mode; the page never scrolls.
-       Skipped while a dialog, fullscreen, a player menu, or another open menu or drawer has Esc. */
-    if (ev.key === "Escape" && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !typing(ev) && !document.querySelector("dialog[open]") && !document.fullscreenElement && !document.webkitFullscreenElement && !Pop.menuOpen() &&
-        !document.querySelector('.x-sheet:not([hidden]), .x-whd:not([hidden]), .x-apx-menu:not([hidden]), .x-apx-more[aria-expanded="true"], [aria-controls="askPanel"][aria-expanded="true"], .x-menu-btn[aria-expanded="true"], #archBar.is-open')) {
-      if (Pop.isOpen()) { ev.preventDefault(); keepScroll(function () { Pop.close(); }); return; }
-      var wideOne = instances.filter(function (i) { return !i.floating && i.isWide && i.isWide(); })[0];
-      if (wideOne) { ev.preventDefault(); keepScroll(function () { wideOne.setWide(false); }); return; }
-    }
+    /* batch 14: Esc only exits fullscreen or closes open menus (their own handlers); it never closes,
+       minimises or reshapes the player. Only the X button closes it. */
     if ((ev.key === "i" || ev.key === "I") && !ev.ctrlKey && !ev.metaKey && !ev.altKey && !typing(ev) && !document.querySelector("dialog[open]")) {
       if (Pop.isOpen() || instances.some(function (i) { return !i.floating && i.current(); })) { ev.preventDefault(); Pop.toggleKey(); }
       return;
@@ -1479,6 +1493,7 @@
     isWatching: function () { return Pop.isModal(); },
     dock: function () { return Pop.dock(); },
     closePopout: function () { Pop.close(); },
+    _dock: Pop._dk,
     isPoppedOut: function () { return Pop.isOpen(); },
     progress: progress,
     onWatched: function (f) { listeners.push(f); },

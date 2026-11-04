@@ -1,0 +1,79 @@
+/* =====================================================================
+   Batch 14: the corner mini-player dock.
+   The player window itself (the same element and iframe, never moved or reloaded) takes this shape:
+   about 320px wide, bottom-right, draggable; a bar across the bottom on phones (under 600px).
+   ===================================================================== */
+.x-dk { display: none; }
+
+.x-pop.is-dk14:not(.is-modal):not(.is-min) {
+  width: min(320px, calc(100vw - 16px)) !important;
+  max-width: calc(100vw - 16px) !important;
+  z-index: 2147480990;
+  transform: none !important;
+}
+.x-pop.is-dk14 .x-pop__win { display: flex !important; flex-direction: column; overflow: hidden; max-height: none !important; }
+.x-pop.is-dk14 .x-pop__bar,
+.x-pop.is-dk14 .x-pop__side,
+.x-pop.is-dk14 .x-pop__grip,
+.x-pop.is-dk14 .x-pop__pill { display: none !important; }
+
+/* the video alone: no control bar, side panel or info under it while docked */
+.x-pop.is-dk14 .x-pop__body { display: block !important; max-height: none !important; overflow: hidden !important; }
+.x-pop.is-dk14 .x-pop__body > :not(.x-ap__slot):not(dialog) { display: none !important; }
+.x-pop.is-dk14 .x-ap__slot { max-width: none !important; width: 100%; }
+.x-pop.is-dk14 .x-ap__bar,
+.x-pop.is-dk14 .x-ap__under { display: none !important; }
+.x-pop.is-dk14 .x-ap__wrap { border-radius: var(--r-m) var(--r-m) 0 0 !important; }
+.x-pop.is-dk14 .x-ap__screen { max-height: none !important; }
+
+/* the dock's own bar: grip, title and watched %, play/pause, expand, close */
+.x-pop.is-dk14 .x-dk {
+  position: relative;
+  display: flex; align-items: center; gap: 2px;
+  min-height: 52px; padding: 4px 4px 6px 2px;
+  color: var(--hero-text);
+}
+.x-dk__grab {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 40px; padding: 0; border: 0; border-radius: var(--r-s);
+  background: none; color: var(--hero-text-muted, var(--hero-text)); cursor: grab; touch-action: none;
+}
+.x-pop.is-dk14.is-dk-drag .x-dk__grab, .x-pop.is-dk14.is-dk-drag .x-dk__tx { cursor: grabbing; }
+.x-dk__tx { flex: 1 1 auto; min-width: 0; display: grid; gap: 2px; cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none; }
+.x-dk__t { margin: 0; font: var(--type-tag); font-weight: var(--weight-medium); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-dk__m { margin: 0; font: var(--type-caption); color: var(--hero-text-muted, var(--hero-text)); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.x-dk__b {
+  flex: none; display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; padding: 0; border: 0; border-radius: var(--r-s);
+  background: none; color: var(--hero-text); cursor: pointer;
+}
+.x-dk__b:hover, .x-dk__grab:hover { background: var(--hero-glass); box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
+.x-dk__b:focus-visible, .x-dk__grab:focus-visible { outline: 2px solid var(--hero-text); outline-offset: -2px; }
+.x-dk__b svg, .x-dk__grab svg { display: block; }
+.x-dk__b .x-dk__pa { display: none; }
+.x-dk__b.is-on .x-dk__pl { display: none; }
+.x-dk__b.is-on .x-dk__pa { display: block; }
+/* the watched line along the bar's foot */
+.x-dk__line { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--hero-glass-stroke); pointer-events: none; }
+.x-dk__line i { display: block; height: 100%; width: 0; background: var(--hero-text); }
+@media (pointer: coarse) {
+  .x-dk__b { width: var(--tap); height: var(--tap); }
+  .x-dk__grab { height: var(--tap); }
+}
+
+/* phones: a bar across the bottom of the screen, the picture small at its left */
+@media (max-width: 599px) {
+  .x-pop.is-dk14:not(.is-modal):not(.is-min) {
+    left: 0 !important; right: 0 !important; top: auto !important; bottom: 0 !important;
+    width: 100% !important; max-width: 100% !important;
+  }
+  .x-pop.is-dk14 .x-pop__win { flex-direction: row; align-items: stretch; border-radius: var(--r-m) var(--r-m) 0 0; padding-bottom: env(safe-area-inset-bottom, 0px); }
+  .x-pop.is-dk14 .x-pop__body { flex: 0 0 120px; align-self: center; }
+  .x-pop.is-dk14 .x-ap__wrap { border-radius: var(--r-m) 0 0 0 !important; }
+  .x-pop.is-dk14 .x-dk { flex: 1 1 auto; min-width: 0; min-height: 68px; padding: 4px 4px 6px 8px; }
+  .x-pop.is-dk14 .x-dk__grab { display: none; }
+  .x-pop.is-dk14 .x-dk__tx { cursor: default; touch-action: auto; }
+  /* captions are too small to read in the thumbnail; they come back on expand */
+  .x-pop.is-dk14 .x-pn-cap { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) { .x-pop.is-dk14 { transition: none !important; } }

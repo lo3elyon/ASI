@@ -1,0 +1,123 @@
+/* speed12.css: Batch 12, loaded last. Speed badge and popover, watched line and ring, side-panel button,
+   cyan wide button, Extension mode. Nothing moves on hover; colours are green to red and cyan only. */
+:root { --s12-cyan: #0e7490; --s12-cyan-bar: #22d3ee; --s12-ring: #22c55e; --s12-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+:root[data-theme="dark"] { --s12-cyan: #22d3ee; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --s12-cyan: #22d3ee; } }
+
+/* scrolling into view lands at once: text never sits mid-scroll under the sticky dark nav */
+html, html[data-route] { scroll-behavior: auto !important; }
+
+/* ---------- speed badge, top right of the video ---------- */
+.x-ap .s12-badge {
+  position: absolute; top: 10px; right: 10px; z-index: 7;
+  display: inline-flex; align-items: center; gap: 0; padding: 0 2px;
+  border-radius: var(--r-pill); background: rgba(10, 12, 16, 0.72); color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+  -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 300ms var(--ease-out), visibility 0s linear 300ms;
+}
+.x-ap.is-started:not(.x7-rest):not(.is-idle):not(.is-native) .s12-badge,
+.x-ap:not(.is-native) .s12-badge.is-on,
+.x-ap:not(.is-native) .s12-badge:focus-within,
+html.s12-ext .x-ap.is-started:not(.is-native) .s12-badge {
+  opacity: 1; visibility: visible; pointer-events: auto;
+  transition: opacity 200ms var(--ease-out), visibility 0s linear 0s;
+}
+.x-ap.x7-clean:not(.s12-x) .s12-badge:not(.is-on) { opacity: 0; visibility: hidden; pointer-events: none; }
+.s12-badge button {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-width: 36px; min-height: var(--tap); padding: 0 8px; border: 0; border-radius: var(--r-pill);
+  background: none; color: inherit; cursor: pointer; font: var(--type-label);
+}
+.s12-badge .s12-badge__b { font-size: 18px; line-height: 1; min-width: var(--tap); }
+.s12-badge .s12-badge__n { font-family: var(--s12-mono); font-size: 13px; font-variant-numeric: tabular-nums; min-width: 5.2ch; text-align: left; }
+.s12-badge button:focus-visible { outline: 2px solid #fff; outline-offset: -3px; }
+.s12-badge button:active { background: rgba(255, 255, 255, 0.14); }
+@container xap (max-width: 359px) {
+  .x-ap .s12-badge { top: 6px; right: 6px; }
+  .s12-badge .s12-badge__v .s12-gauge { display: none; }
+}
+
+/* ---------- bar button ---------- */
+.x-ap .x-ap__btns > .s12-btn { gap: 5px; padding: 0 8px; flex: none; }
+.s12-btn .s12-btn__n { font-family: var(--s12-mono); font-size: 12px; font-variant-numeric: tabular-nums; min-width: 4.4ch; text-align: left; }
+.s12-btn[aria-expanded="true"] { box-shadow: inset 0 -2px 0 var(--s12-ring); }
+@container xap (max-width: 479px) {
+  .x-ap .x-ap__btns > .s12-btn { width: var(--tap); min-width: var(--tap); padding: 0; }
+  .s12-btn .s12-btn__n { display: none; }
+}
+/* one speed control: the old bar select and the ⚙ menu's speed rows give way to the popover */
+.x-ap .x-ap__btns > .x-ap__speed { display: none !important; }
+.x-apx-menu:not(.s12-pop) > .x-apx-sec:has(> .x-sx-speeds) { display: none !important; }
+
+/* ---------- speed popover ---------- */
+.x-ap .x-apx-menu.s12-pop { grid-template-columns: minmax(0, 1fr); gap: 4px; width: min(300px, calc(100% - 12px)); right: 6px; padding: 8px; }
+.x-ap .x-apx-menu.s12-pop[hidden] { display: none !important; }
+.s12-pop .s12-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin: 0; padding: 4px 6px 0; font: var(--type-tag); font-weight: var(--weight-medium); color: var(--hero-text); }
+.s12-pop .s12-h__v { font-family: var(--s12-mono); font-size: 13px; font-variant-numeric: tabular-nums; }
+.s12-pop .s12-h__sub { font-weight: var(--weight-regular); color: var(--hero-text-muted); font-size: 12px; }
+.s12-pop .s12-range { display: block; width: 100%; max-width: none; }
+.s12-pop .s12-chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; }
+.x-ap .x-apx-menu.s12-pop .s12-chip { justify-content: center; width: 100%; min-width: 0; padding: 0 4px; font-family: var(--s12-mono); font-size: 12px; font-variant-numeric: tabular-nums; box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
+.x-ap .x-apx-menu.s12-pop .s12-chip[aria-pressed="true"] { background: var(--hero-text); color: var(--x-ink-dark, var(--hero-surface)); box-shadow: none; }
+.s12-pop .s12-saved { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: 2px 0 0; padding: 8px 6px; border-top: 1px solid var(--hero-glass-stroke); font: var(--type-tag); color: var(--hero-text-muted); }
+.s12-pop .s12-saved__v { font-family: var(--s12-mono); font-weight: 500; font-size: 13px; font-variant-numeric: tabular-nums; color: var(--s12-ring); }
+.x-ap .x-apx-menu.s12-pop .s12-extb { justify-content: space-between; align-items: center; gap: 10px; min-height: var(--tap); padding: 8px 10px; white-space: normal; text-align: left; box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
+.s12-extb .s12-extb__t { display: grid; gap: 2px; font: var(--type-tag); font-weight: var(--weight-medium); }
+.s12-extb .s12-extb__t small { font-size: 12px; font-weight: var(--weight-regular); line-height: 1.35; color: var(--hero-text-muted); }
+.s12-extb .s12-extb__s { flex: none; min-width: 4ch; padding: 3px 8px; border-radius: var(--r-pill); font-size: 12px; text-align: center; box-shadow: inset 0 0 0 1px var(--hero-glass-stroke); }
+.s12-extb[aria-pressed="true"] .s12-extb__s { background: var(--s12-ring); color: #06240f; box-shadow: none; }
+.s12-pop .s12-note { margin: 0; padding: 2px 6px 4px; font-size: 12px; line-height: 1.4; color: var(--hero-text-muted); }
+
+/* ---------- watched line under the seek bar: fixed height, tabular numbers, every mode ---------- */
+.x-ap .x-ap__bar > .s12-prog {
+  display: block !important; visibility: visible; container: s12p / inline-size;
+  height: 16px; margin: -2px 0 2px; padding: 0 8px; overflow: hidden;
+}
+.s12-prog .s12-prog__in {
+  margin: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  font: 400 12px/16px var(--s12-mono); font-variant-numeric: tabular-nums; letter-spacing: 0;
+  color: var(--hero-text-muted, var(--hero-text));
+}
+.s12-prog.is-empty .s12-prog__in { visibility: hidden; }
+.s12-prog .s12-pm, .s12-prog .s12-ps { display: none; }
+@container s12p (max-width: 399px) { .s12-prog .s12-pl { display: none; } .s12-prog .s12-pm { display: inline; } }
+@container s12p (max-width: 279px) { .s12-prog .s12-pm { display: none; } .s12-prog .s12-ps { display: inline; } }
+
+/* ---------- watched ring around Play ---------- */
+.x-ap .x-ap__pp { position: relative; }
+.x-ap__pp .s12-ring { position: absolute; left: 50%; top: 50%; width: 38px; height: 38px; margin: -19px 0 0 -19px; pointer-events: none; overflow: visible; }
+.s12-ring circle { fill: none; stroke-width: 2; }
+.s12-ring .s12-ring__bg { stroke: var(--hero-glass-stroke, rgba(255, 255, 255, 0.2)); }
+.s12-ring .s12-ring__fg { stroke: var(--s12-ring); stroke-linecap: round; stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 400ms var(--ease-out); }
+@media (prefers-reduced-motion: reduce) { .s12-ring .s12-ring__fg { transition: none; } }
+
+/* ---------- side panel: one button in the bar, in every mode that has a panel ---------- */
+.x-ap .x-ap__btns > .x-sx-panelb,
+.x-ap .x-apx-menu .x-apx-dup[data-x="panel"],
+.x-ap .x-sx-top .x-sx-ob[data-x="panel"] { display: none !important; }
+.x-ap .x-ap__btns > .s12-panelb { display: inline-flex !important; flex: none; gap: 6px; padding: 0 10px; }
+.x-ap:not(.has-wh) .x-ap__btns > .s12-panelb { display: none !important; }
+.s12-panelb .s12-panelb__t { font: var(--type-tag); }
+.s12-panelb[aria-pressed="true"] { box-shadow: inset 0 -2px 0 var(--s12-cyan-bar); }
+@container xap (max-width: 719px) {
+  .x-ap .x-ap__btns > .s12-panelb { width: var(--tap); min-width: var(--tap); padding: 0; }
+  .s12-panelb .s12-panelb__t { display: none; }
+}
+
+/* ---------- wide / theatre: cyan, two arrows ---------- */
+.x-ap .s12-wide { color: var(--s12-cyan-bar); }
+.x-ap .s12-wide[aria-pressed="true"] { box-shadow: inset 0 -2px 0 var(--s12-cyan-bar); }
+.x-pop .x-pop__tools [data-p="wide"] { color: var(--s12-cyan); }
+.x-pop .x-pop__tools [data-p="wide"][aria-pressed="true"],
+.x-pop .x-pop__tools [data-p="wide"][aria-pressed="true"]:hover { background: var(--s12-cyan); color: #04212a; }
+
+/* ---------- Extension mode: the iframe takes clicks and keys; our controls stay up ---------- */
+html.s12-ext .x-ap .x-ap__shield { display: none !important; }
+html.s12-ext .x-ap .x-ap__frame, html.s12-ext .x-ap .x-ap__frame iframe { pointer-events: auto !important; }
+html.s12-ext .x-ap.x7-rest:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt) {
+  opacity: 1 !important; visibility: visible !important; pointer-events: auto !important;
+}
+html.s12-ext .x-ap.x7-rest:not(.is-native):not(.is-basic) .x-ap__screen,
+html.s12-ext .x-ap.x7-rest:not(.is-native):not(.is-basic) .x-ap__screen * { cursor: auto !important; }

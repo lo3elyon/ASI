@@ -1,0 +1,93 @@
+/* gear13.css: Batch 13, loaded last (after speed12).
+   1. One settings menu for every ⚙ and the speed popover: a dark glass card, 14px corners, an icon on every row,
+      readable in light and dark themes. gear13.js sets its place, width and max-height; a bottom sheet under 420px.
+   2. The seek-bar hover preview above the captions, and the captions' lift while it shows. */
+
+/* ---------- 1. the menu card ---------- */
+.x-ap .x-apx-menu.g13-menu {
+  --hero-text: #f5f5f7; --hero-text-muted: #c7c7cc; --hero-glass-stroke: rgb(255 255 255 / 0.16);
+  --hero-surface: #101218; --x-ink-dark: #101218;
+  position: absolute !important; z-index: 60 !important; box-sizing: border-box;
+  margin: 0 !important; padding: 8px !important; gap: 2px !important;
+  overflow-x: hidden !important; overflow-y: auto !important; overscroll-behavior: contain;
+  border-radius: 14px !important; border: 0 !important;
+  background: rgb(16 18 24 / 0.95) !important; color: #f5f5f7 !important;
+  -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.12), 0 18px 48px rgb(0 0 0 / 0.5) !important;
+  font: var(--type-small); text-align: left;
+  scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / 0.28) transparent;
+  color-scheme: dark;
+}
+.x-ap .x-apx-menu.g13-menu[hidden] { display: none !important; }
+.x-ap__bar:has(> .x-apx-menu.g13-open:not([hidden])) { z-index: 50 !important; }
+
+/* rows: icon, label, value */
+.x-ap .g13-menu .x-ap__b { color: #f5f5f7; gap: 10px; min-height: var(--tap); border-radius: 10px; background: transparent; }
+.x-ap .g13-menu .x-ap__b:hover { background: rgb(255 255 255 / 0.08); }
+.x-ap .g13-menu .x-ap__b:focus-visible { outline: 2px solid #67e8f9; outline-offset: -2px; }
+.x-ap .g13-menu .x-ap__b:disabled { color: #a1a1a6; }
+.x-ap .g13-menu .x-ap__b > svg { flex: none; width: 18px; height: 18px; color: #e5e5ea; }
+.x-ap .g13-menu .x-apx-lbl { color: inherit; }
+.x-ap .g13-menu .x-apx-sec { grid-column: 1 / -1; padding: 6px 0 2px; border-top: 1px solid rgb(255 255 255 / 0.1); }
+.x-ap .g13-menu > .x-apx-sec:first-child { border-top: 0; padding-top: 0; }
+.x-ap .g13-menu .x-apx-h,
+.x-ap .g13-menu .s12-h {
+  display: flex; align-items: center; gap: 10px; min-height: 32px; margin: 0; padding: 0 10px;
+  font: var(--type-label); color: #f5f5f7;
+}
+.x-ap .g13-menu .x-apx-h > .g13-ic, .x-ap .g13-menu .s12-h > .g13-ic, .x-ap .g13-menu .s12-saved > .g13-ic { flex: none; color: #e5e5ea; }
+.x-ap .g13-menu .x-apx-abtx, .x-ap .g13-menu .s12-h__sub { margin-left: auto; font: var(--type-caption); color: #c7c7cc; }
+.x-ap .g13-menu .s12-saved { display: flex; align-items: center; gap: 10px; padding: 0 10px; color: #c7c7cc; }
+.x-ap .g13-menu .s12-saved b { margin-left: auto; color: #f5f5f7; }
+.x-ap .g13-menu .s12-note, .x-ap .g13-menu .x-pn-cnote, .x-ap .g13-menu small { color: #c7c7cc; }
+.x-ap .g13-menu .x7-sl__n { display: inline-flex; align-items: center; gap: 8px; color: #f5f5f7; }
+.x-ap .g13-menu .x7-sl { grid-template-columns: minmax(96px, auto) minmax(80px, 1fr) 44px !important; }
+.x-ap .g13-menu .x7-sl__v, .x-ap .g13-menu output { color: #f5f5f7; }
+.x-ap .g13-menu .x-ap__sr { color: #c7c7cc; }
+.x-ap .g13-menu input[type="range"] { accent-color: #67e8f9; }
+/* chip groups: outlined, readable; the pressed chip keeps the batch-7 accent fill with dark ink */
+.x-ap .g13-menu :is(.x-apx-abrow, .x-sx-row5, .x-sx-ql, .x-apx-speeds, .x-pn-sg, .s12-chips) > .x-ap__b:not([aria-pressed="true"]):not(.x-pn-sw):not(.x-pn-pick) {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.2);
+}
+.x-ap .g13-menu .x-sx-rem::after { color: #c7c7cc; }
+
+/* bottom sheet: players under 420px wide */
+.x-ap .x-apx-menu.g13-menu.g13-sheet { border-radius: 14px !important; padding-top: 14px !important; }
+.x-ap .x-apx-menu.g13-menu.g13-sheet::before {
+  content: ""; position: absolute; top: 5px; left: 50%; width: 36px; height: 4px; margin-left: -18px;
+  border-radius: 2px; background: rgb(255 255 255 / 0.3);
+}
+
+/* ---------- 2. seek-bar hover preview ---------- */
+.x-ap.g13-tips .x-apx-tip { display: none !important; }
+.x-ap .g13-tip {
+  position: absolute; left: 0; top: 0; z-index: 40; box-sizing: border-box;
+  width: max-content; min-width: 56px; max-width: min(320px, calc(100% - 16px));
+  margin: 0; padding: 7px 10px 8px; border-radius: 10px;
+  background: rgb(14 16 22 / 0.96); color: #f5f5f7;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.14), 0 10px 28px rgb(0 0 0 / 0.45);
+  pointer-events: none; text-align: center; transition: none;
+}
+.x-ap .g13-tip.has-text { text-align: left; }
+.x-ap .g13-tip[hidden] { display: none !important; }
+.x-ap .g13-tip p { margin: 0; }
+.x-ap .g13-tip__ch { font: var(--type-caption); font-weight: var(--weight-medium); color: #c7c7cc; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x-ap .g13-tip__tx {
+  margin-top: 2px !important; font-family: var(--sans); font-size: 13px; line-height: 1.35; color: #f5f5f7;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; line-clamp: 2; overflow: hidden; overflow-wrap: anywhere;
+}
+.x-ap .g13-tip__t { margin-top: 3px !important; font-family: "Geist Mono", ui-monospace, monospace; font-size: 12px; font-weight: var(--weight-bold); font-variant-numeric: tabular-nums; color: #fff; }
+.x-ap .g13-tip [hidden] { display: none !important; }
+.x-ap.x7-clean .g13-tip, .x-ap.is-native .g13-tip { display: none !important; }
+
+/* captions lift out of the preview's way and settle back: translate only, 150ms */
+.x-ap .x-pn-cap {
+  transition-property: bottom, top, translate !important;
+  transition-duration: var(--dur-quick), var(--dur-quick), 150ms !important;
+  transition-timing-function: var(--ease-out) !important;
+}
+.x-ap .x-pn-cap.is-free, .x-ap .x-pn-cap.x7-free, .x-ap .x-pn-cap.is-drag { transition: translate 150ms var(--ease-out) !important; }
+@media (prefers-reduced-motion: reduce) {
+  .x-ap .x-pn-cap, .x-ap .x-pn-cap.is-free, .x-ap .x-pn-cap.x7-free { transition: none !important; }
+}
