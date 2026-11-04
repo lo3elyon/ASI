@@ -1073,7 +1073,7 @@ ASI/
 │   ├── hark.css  hark-hero.css  hark.js  hero.jpg
 │   └── README.md
 ├── future-of-asi/             Threshold: route on the future of ASI, 218 researchers, 1,375 videos, explosion/, library/, shared/, 10 unit course, tools, blog, docs
-├── asi-predictions-archive/   archive route: 78 entries, 3 eras, 40 talks, 30 fact-checked predictions
+├── asi-predictions-archive/   archive route: 78 entries, 3 eras, 3,296 talks, 320 people, Trust leaderboard, 30 fact-checked predictions
 │   ├── index.html  hero.jpg  README.md  entries_all/people/videos/history/predictions.json
 │   ├── player.js  theater.js  people.js  history.js  palette.js  archive.js
 │   └── theme.css  player.css  archive.css  hark*.css  hark*.js  chart.js  datalabels.js
