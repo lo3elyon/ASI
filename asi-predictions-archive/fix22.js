@@ -60,12 +60,8 @@
   });
 
   /* a write for this talk is allowed while its player is PLAYING, or at the moment it stops playing */
-  /* batch 25: an explicit "Mark as watched" (or its Undo) may write for its talk for the next 2 s */
-  var manual = {};
-  AP.allowWrite = function (id) { manual[String(id || "")] = Date.now(); };
   var allowed = function (id) {
     id = String(id || "");
-    if (manual[id] && Date.now() - manual[id] < 2000) return true;
     for (var i = 0; i < insts.length; i++) {
       var it = insts[i]; if (curId(it) !== id) continue;
       if (ytState(it) === 1) return true;

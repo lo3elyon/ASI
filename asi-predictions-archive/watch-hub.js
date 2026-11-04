@@ -94,7 +94,7 @@
     var long = more.length || sum.replace(/<[^>]+>/g, "").length > 150;
     /* speakers, linked to their profiles */
     var who2 = sp.length ? '<div class="x-wh__who" aria-label="Speakers">' + sp.map(function (p) {
-      return '<a class="x-wh__whoa" href="#/person/' + esc(p.id) + '">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" data-x25n="' + esc(p.name) + '" width="28" height="28" loading="lazy" decoding="async" onerror="window.XLogo&&XLogo.fail(this)">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
+      return '<a class="x-wh__whoa" href="#/person/' + esc(p.id) + '">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" width="28" height="28" loading="lazy" decoding="async">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
     }).join("") + "</div>" : "";
     var nx = NX(), claims = nx && nx.summary ? nx.summary(v) : "";
     return '<div class="x-wh__about">' +
@@ -140,7 +140,7 @@
         return (y < x ? -1 : y > x ? 1 : 0) || (a < b ? -1 : a > b ? 1 : 0);
       }).slice(0, 4);
       var bio = bioOf(p), role = [p.role, p.org].filter(Boolean).join(" · ");
-      return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" data-x25n="' + esc(p.name) + '" loading="lazy" decoding="async" width="56" height="56" onerror="window.XLogo&&XLogo.fail(this)">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") +
+      return '<div class="x-wh__sp"><div class="x-wh__sphead">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" loading="lazy" decoding="async" width="56" height="56">' : '<span class="x-wh__av" aria-hidden="true">' + esc(p.name[0]) + "</span>") +
         '<div class="x-wh__spwho"><p class="x-wh__name">' + esc(p.name) + "</p>" + (role ? '<p class="x-wh__role">' + esc(role) + "</p>" : "") + "</div></div>" +
         (bio ? '<p class="x-wh__bio">' + esc(clip(bio, 320)) + "</p>" : "") +
         '<a class="x-wh__view" href="#/person/' + esc(p.id) + '">View profile <span aria-hidden="true">→</span></a>' +
@@ -620,12 +620,5 @@
   /* batch 24: the set only changes while a player runs; one check when it closes and after any gesture */
   if (window.XIdle) XIdle.every(rowCheck, 3000, { final: true, poke: true }); else setInterval(rowCheck, 3000);
 
-  window.ArchiveWatch = {
-    history: function () { return W; }, open: openDrawer,
-    /* batch 25: "Mark as watched" writes W[id] itself, saves at once and updates the row in place: hold() keeps the
-       row from being redrawn for that change, so nothing on the page moves */
-    persist: function () { dirty = true; flush(); },
-    hold: function () { lastSig = rowSig(); known = Object.keys(W).length; },
-    row: function () { return row; }
-  };
+  window.ArchiveWatch = { history: function () { return W; }, open: openDrawer };
 })();

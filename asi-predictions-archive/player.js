@@ -277,10 +277,8 @@
       var v = P.video; if (!v) return;
       var meta = [v.c ? esc(v.c) : "", fmtDate(v.d) ? esc(fmtDate(v.d)) : "Undated", v.k ? '<span class="pill">' + esc(v.k) + "</span>" : "", v.len ? '<span class="pill">' + esc(v.len) + "</span>" : ""].filter(Boolean).join(" · ");
       var ppl = (v.p || []).map(function (id) {
-        var x = people[id], name = x ? x.name : String(id).split("-").map(function (w) { return w.charAt(0).toUpperCase() + w.slice(1); }).join(" ");
-        /* batch 25: a speaker with no profile in people.json gets a plain chip, not a dead #/person/ link */
-        if (!x) return '<span class="x-ap__person x25-noprof"><span>' + esc(name) + "</span></span>";
-        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" data-x25n="' + esc(name) + '" width="34" height="34" loading="lazy" decoding="async" onerror="window.XLogo&&XLogo.fail(this)" />' : "") + "<span>" + esc(name) + "</span></a>";
+        var x = people[id], name = x ? x.name : id;
+        return '<a class="x-ap__person" href="#/person/' + esc(id) + '">' + (x && x.photo ? '<img src="' + esc(x.photo) + '" alt="" width="34" height="34" loading="lazy" decoding="async" />' : "") + "<span>" + esc(name) + "</span></a>";
       }).join("");
       info.innerHTML = "<h3>" + esc(v.t) + '</h3><p class="x-ap__meta">' + meta + "</p>" +
         (v.s ? '<p class="x-ap__sum">' + esc(v.s) + "</p>" : "") +
@@ -1488,17 +1486,6 @@
     flush: flushAll,
     /* "Clear history": forget every saved position and watched mark */
     clearProgress: function () { store.p = {}; store.w = {}; save(); instances.forEach(function (i) { try { i.refresh(); } catch (e) {} }); },
-    /* batch 25: "Mark as watched" sets or clears one talk's watched mark (and resume position) without playing */
-    setWatched: function (id, on, pos) {
-      if (!id) return;
-      var was = !!store.w[id];
-      if (on) { store.w[id] = 1; delete store.p[id]; }
-      else { delete store.w[id]; if (pos > 0) store.p[id] = Math.floor(pos); else delete store.p[id]; }
-      save();
-      if (on && !was) notify(id);
-      saved.forEach(function (f) { try { f(id, progress(id)); } catch (e) {} });
-      instances.forEach(function (i) { try { var c = i.current && i.current(); if (c && c.id === id && !(i.started && i.started())) i.refresh(); } catch (e) {} });
-    },
     onSaved: function (f) { saved.push(f); },
     create: create,
     popout: popout,
