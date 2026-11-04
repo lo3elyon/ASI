@@ -1,0 +1,110 @@
+/* search26.css: the #/search page and its header button. Design tokens only; both themes follow them. */
+.x-s26 { padding-bottom: 48px; }
+.x-s26-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 0 14px 0 16px;
+  border: 1px solid var(--stroke-primary);
+  border-radius: var(--r-pill);
+  background: var(--fill-primary-on);
+  color: var(--text-secondary);
+}
+.x-s26-box:focus-within { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+.x-s26-box__ic { display: grid; place-items: center; flex: none; }
+.x-s26-box input {
+  flex: 1;
+  min-width: 0;
+  min-height: var(--tap);
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-primary);
+  font: var(--type-body);
+  font-size: max(16px, var(--size-body));
+}
+.x-s26-box input::placeholder { color: var(--text-secondary); }
+.x-s26-kbd {
+  flex: none;
+  padding: 2px 8px;
+  border: 1px solid var(--stroke-secondary);
+  border-radius: 6px;
+  font: var(--type-caption);
+  color: var(--text-secondary);
+}
+.x-s26-status { margin: 14px 4px 0; font: var(--type-small); color: var(--text-secondary); min-height: 1em; }
+.x-s26-empty { margin-top: 20px; }
+.x-s26-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.x-s26-chip {
+  min-height: var(--tap);
+  padding: 0 16px;
+  border: 1px solid var(--stroke-primary);
+  border-radius: var(--r-pill);
+  background: var(--fill-tertiary);
+  color: var(--text-primary);
+  font: var(--type-label);
+  cursor: pointer;
+}
+.x-s26-chip:hover, .x-s26-chip:focus-visible { border-color: var(--text-primary); }
+.x-s26-group { margin-top: 28px; }
+.x-s26-group h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 8px;
+  font: var(--type-body);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+.x-s26-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--stroke-secondary); }
+.x-s26-list li { border-bottom: 1px solid var(--stroke-secondary); }
+.x-s26-hit {
+  display: grid;
+  gap: 2px;
+  min-height: var(--tap);
+  padding: 12px 12px;
+  border-radius: var(--r-s);
+  color: var(--text-primary);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.x-s26-hit:hover, .x-s26-hit:focus-visible { background: var(--fill-tertiary); }
+.x-s26-hit:focus-visible { outline: 2px solid var(--text-primary); outline-offset: -2px; }
+.x-s26-hit b { font: var(--type-label); font-weight: var(--weight-medium); }
+.x-s26-hit small { font: var(--type-caption); color: var(--text-secondary); }
+.x-s26-hit span { font: var(--type-small); color: var(--text-secondary); }
+.x-s26-more { margin-top: 10px; min-height: var(--tap); }
+.x-s26-left { color: var(--text-secondary); font-weight: var(--weight-regular); }
+
+/* header button, matched to the theme button */
+.x-s26-hbtn {
+  flex: none;
+  width: 36px; height: 36px;
+  display: grid;
+  place-items: center;
+  margin-right: 6px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--hover-wash-primary-on);
+  color: var(--text-primary-on);
+  cursor: pointer;
+}
+/* nav buttons on a solid surface (the base wash is translucent), so text contrast holds in both themes */
+.nav.glass .x-nav-ask:not([aria-current]):not(.is-here),
+.nav.glass .x-s26-hbtn {
+  background-color: var(--fill-primary);
+  color: var(--text-primary-on);
+  box-shadow: inset 0 0 0 1px var(--stroke-primary-on);
+}
+.x-s26-hbtn:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+@media (pointer: coarse), (max-width: 640px) {
+  .x-s26-hbtn { width: var(--tap); height: var(--tap); }
+}
+@media (max-width: 480px) {
+  .x-s26-kbd { display: none; }
+  .x-s26-box { padding: 0 10px 0 14px; }
+  .x-s26-hit { padding: 12px 8px; }
+}
