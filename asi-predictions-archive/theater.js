@@ -135,6 +135,8 @@
     if (F.decs.size && !F.decs.has(v.dec)) return false;
     if (F.cc && !v.cc) return false;
     if (F.person && v.p.indexOf(F.person) < 0) return false;
+    /* batch 25: the Watched chip (fix25.js): 1 = watched only, 2 = hide watched */
+    if (F.w && window.X25W) { var wd = X25W.isDone(v.id); if (F.w === 1 ? !wd : wd) return false; }
     for (var i = 0; i < F.terms.length; i++) if (v.hay.indexOf(F.terms[i]) < 0) return false;
     return true;
   };
@@ -281,7 +283,7 @@
     });
   });
 
-  window.ArchiveTheater = { select: select, player: player };
+  window.ArchiveTheater = { select: select, player: player, filters: F, refilter: function () { apply(); } };
 
   apply();
   /* #media opens on the library: no talk is loaded (first, last or resumed) until the reader picks one */

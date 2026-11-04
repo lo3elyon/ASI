@@ -1,0 +1,33 @@
+/* cleanexit26: shown only in clean view; fades in on mouse move, out after 2.5 s. No movement, opacity only. */
+.x26-cx { display: none; }
+.x7-clean > .x26-cx {
+  display: inline-flex; align-items: center; gap: 6px;
+  position: absolute; top: 12px; right: 56px; z-index: 30;
+  padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.35);
+  background: rgba(10,14,22,.72); color: #fff; font: 600 13px/1 system-ui, sans-serif;
+  cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .2s ease, box-shadow .2s ease;
+}
+.x7-clean > .x26-cx.is-on, .x7-clean > .x26-cx:focus-visible { opacity: 1; pointer-events: auto; }
+.x7-clean > .x26-cx:hover { box-shadow: 0 0 0 3px rgba(45,212,191,.45); }
+@media (prefers-reduced-motion: reduce) { .x7-clean > .x26-cx { transition: none; } }
+
+/* Pressed toggles in the player bar and title bar (Theater ↔, Panel, CC, etc.) glow instead of filling solid,
+   so the icon and label stay visible (was cyan icon on a cyan fill). Glow only, no movement. */
+.x-ap .x-ap__btns > .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick),
+.x-ap .x-ap__btns > .x-ap__b[aria-pressed="true"]:not(.x-pn-sw):not(.x-pn-pick):hover,
+.x-ap .x-apt .x-ap__b[aria-pressed="true"],
+.x-pop .x-pop__tools [aria-pressed="true"],
+.x-pop .x-pop__tools [aria-pressed="true"]:hover {
+  background: rgba(34, 211, 238, .16) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1.5px rgba(103, 232, 249, .9), 0 0 14px rgba(34, 211, 238, .55) !important;
+}
+.x-ap .x-ap__btns > .x-ap__b[aria-pressed="true"] :is(svg, span),
+.x-ap .x-apt .x-ap__b[aria-pressed="true"] :is(svg, span),
+.x-pop .x-pop__tools [aria-pressed="true"] :is(svg, span) { color: #ffffff !important; opacity: 1 !important; }
+
+/* Gear menu stability: player.css anchors the menu with bottom, and fix18 also writes top, so the menu's height
+   changed every time fix18 re-placed it (on any scroll, e.g. the transcript following playback): it bounced up and
+   down and its last rows (caption style) fell off the bottom. With bottom released, its height is its content capped
+   by fix18's max-height, so the placement settles at once and the menu scrolls inside itself. */
+.x-ap .x-apx-menu:not([hidden]) { bottom: auto !important; height: auto !important; overflow-y: auto !important; overscroll-behavior: contain; }

@@ -318,7 +318,7 @@
     var ps = ids.map(function (id) { return PBY[id]; });
     var row = function (label, f, cls) { return '<tr><th scope="row">' + label + "</th>" + ps.map(function (p) { var v = f(p); return "<td" + (v ? (cls ? ' class="' + cls + '"' : "") : ' class="muted"') + ">" + (v || "—") + "</td>"; }).join("") + "</tr>"; };
     var table = '<div class="compare"><table><thead><tr><td></td>' + ps.map(function (p) {
-      return '<th scope="col">' + (photoOf(p) ? '<figure class="compare__media compare__media--photo"><img src="' + esc(photoOf(p)) + '" alt="' + esc(p.name) + '" width="240" height="240" loading="lazy" decoding="async" /></figure>' : "") +
+      return '<th scope="col">' + (photoOf(p) ? '<figure class="compare__media compare__media--photo"><img src="' + esc(photoOf(p)) + '" alt="' + esc(p.name) + '" width="240" height="240" loading="lazy" decoding="async" onerror="XLogo.fail(this)" /></figure>' : "") +
         esc(p.name) + "<small>" + esc(p.role || "") + "</small></th>";
     }).join("") + "</tr></thead><tbody>" +
       row("Organisation", function (p) {
