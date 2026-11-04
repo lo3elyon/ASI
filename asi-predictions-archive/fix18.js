@@ -106,7 +106,13 @@
     if (m.hidden || !m.isConnected) return;
     var root = m.closest(".x-ap"), wrap = m.closest(".x-ap__wrap") || root; if (!wrap) return;
     var W = wrap.getBoundingClientRect(); if (!(W.width > 0 && W.height > 0)) return;
-    var top = Math.max(W.top, 0), bot = Math.min(W.bottom, window.innerHeight); if (bot - top < 80) return;
+    var top = Math.max(W.top, 0), bot = Math.min(W.bottom, window.innerHeight);
+    /* fix20: never extend past an ancestor that clips (the window body, the slot), or the last rows hide */
+    for (var an = m.parentElement; an && an !== doc.body; an = an.parentElement) {
+      var cs = getComputedStyle(an); if (!/(hidden|auto|scroll|clip)/.test(cs.overflowY + " " + cs.overflowX)) continue;
+      var ar = an.getBoundingClientRect(); if (ar.height < 1) continue; if (ar.top > top) top = ar.top; if (ar.bottom < bot) bot = ar.bottom;
+    }
+    if (bot - top < 80) return;
     var ctl = bot; /* the top of the visible control bar: seek row or buttons */
     root.querySelectorAll(".x-ap__bar > .x-ap__seekrow, .x-ap__bar > .x-ap__btns").forEach(function (el) {
       if (!shown(el)) return; var r = el.getBoundingClientRect(); if (r.height > 0 && r.top > top && r.top < ctl) ctl = r.top;
