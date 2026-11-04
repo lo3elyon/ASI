@@ -39,6 +39,7 @@
       ["b", "c", "s"].forEach(function (k) {
         var inp = sec.querySelector('[data-x7r="' + k + '"]'), out = sec.querySelector('[data-x7o="' + k + '"]');
         if (inp && +inp.value !== PIC[k]) inp.value = PIC[k];
+        if (inp) inp.style.setProperty("--x-ap-pct", ((PIC[k] - +inp.min) / ((+inp.max - +inp.min) || 1) * 100) + "%");
         if (out) out.textContent = PIC[k] + "%";
       });
       var sum = sec.querySelector('[data-x7o="sum"]'); if (sum) sum.textContent = isDefPic() ? "Default" : "Custom";
@@ -108,6 +109,8 @@
       if (!siteMode() || ended || S.dragging) return true;
       if (root.querySelector('.x-apx-menu:not([hidden]), .x-dd__btn[aria-expanded="true"], [data-x="more"][aria-expanded="true"]')) return true;
       if (bar && bar.matches(":hover")) return true;
+      /* paused: focus left on a bar button (Space on ▶) never holds the controls up */
+      if (!root.classList.contains("is-playing")) return false;
       var a = document.activeElement;
       if (a && bar && bar.contains(a)) { try { if (a.matches(":focus-visible")) return true; } catch (e) {} }
       return false;
@@ -128,6 +131,9 @@
       if (ev.pointerType === "touch") return;
       if (Math.abs(ev.clientX - px) < 1 && Math.abs(ev.clientY - py) < 1) return;
       px = ev.clientX; py = ev.clientY; wake();
+      /* x7-wake brings the paused icon back; when it drops, the 1.5 s fade starts over */
+      root.classList.add("x7-wake");
+      clearTimeout(S.wakeT); S.wakeT = setTimeout(function () { root.classList.remove("x7-wake"); }, 200);
     });
     wrap.addEventListener("pointerdown", wake);
     wrap.addEventListener("pointerleave", function (ev) { if (ev.pointerType === "touch") return; if (!keep()) rest(); });
@@ -149,8 +155,10 @@
     var paintLive0 = function () {
       var started = root.classList.contains("is-started");
       var playing = root.classList.contains("is-playing");
-      if (!started) { played = false; ended = false; }
       if (started && playing) played = true;
+      try { var st = inst.state && inst.state(); if (st && st.playing) played = true; } catch (e) {}
+      if (S.has) played = true;
+      root.classList.toggle("x7-hasplayed", !!S.has);
       var live = started && played && !playing && !ended && !root.classList.contains("is-native") && !root.classList.contains("is-basic");
       var was = root.classList.contains("x7-live");
       root.classList.toggle("x7-played", played);
@@ -168,8 +176,17 @@
       for (var i = 0; i < recs.length; i++) if (strip7(recs[i].oldValue) !== strip7(root.getAttribute("class"))) { paintLive(); return; }
     }).observe(root, { attributes: true, attributeFilter: ["class"], attributeOldValue: true });
     if (inst.on) {
-      inst.on("state", function (s) { if (s === 0) ended = true; else if (s === 1) ended = false; paintLive(); });
-      inst.on("change", function () { played = false; ended = false; paintLive(); });
+      /* x7-hasplayed: YouTube reported PLAYING for this video; cleared only on a new video or at the end */
+      inst.on("state", function (s) {
+        if (s === 0) { ended = true; S.has = false; played = false; }
+        else if (s === 1) { ended = false; S.has = true; played = true; }
+        paintLive();
+      });
+      inst.on("change", function (v) {
+        var id = v && v.id != null ? String(v.id) : null;
+        if (id !== null && id === S.lastId) return;
+        S.lastId = id; S.has = false; played = false; ended = false; paintLive();
+      });
       inst.on("key", function (ev) {
         if ((ev.key === "h" || ev.key === "H") && !ev.shiftKey) { setClean(!S.clean); return true; }
         return false;
@@ -214,6 +231,10 @@
       paintPic();
     };
     addMenu();
+    /* a menu built or rebuilt later still gets Picture: check each time ⚙ opens */
+    root.addEventListener("click", function (ev) {
+      if (ev.target && ev.target.closest && ev.target.closest('[data-x="more"]')) { tries = 19; addMenu(); }
+    }, true);
   };
 
   /* menu actions */
@@ -267,8 +288,9 @@
   };
   window.addEventListener("pointerdown", function (ev) {
     if (ev.button !== 0 || drag) return;
-    /* the caption panel sits over the frame: its controls are never a caption drag */
-    if (ev.target && ev.target.closest && ev.target.closest(".x8-cp")) return;
+    /* only a press that lands on the caption itself is a drag: the cover, the big button and the bar keep their clicks */
+    var tg = ev.target && ev.target.closest ? ev.target : null;
+    if (!tg || !tg.closest(".x-pn-cap") || tg.closest(".x8-cp, .x-ap__big, .x-ap__bar, [data-x=\"cc\"]")) return;
     var h = capHit(ev.clientX, ev.clientY); if (!h) return;
     ev.preventDefault(); ev.stopImmediatePropagation();
     try { h.win.setPointerCapture(ev.pointerId); } catch (e) {}
@@ -311,7 +333,8 @@
   /* the click and double-click that follow a caption tap never reach the shield */
   ["click", "dblclick"].forEach(function (t) {
     window.addEventListener(t, function (ev) {
-      if (ev.target && ev.target.closest && ev.target.closest(".x-pn-cap__win")) { ev.stopImmediatePropagation(); ev.preventDefault(); }
+      var tg = ev.target && ev.target.closest ? ev.target : null;
+      if (tg && tg.closest(".x-pn-cap__win") && !tg.closest(".x-ap__big, .x-ap__bar")) { ev.stopImmediatePropagation(); ev.preventDefault(); }
     }, true);
   });
 
@@ -419,7 +442,12 @@
         });
         return out;
       };
+      /* data p[] always shows: if every point echoes the summary, show them anyway */
+      var native = [];
+      box.querySelectorAll(".x-sp__pts:not(.x7-kp) > li").forEach(function (li) { var t = li.textContent.trim(); if (t) native.push(t); });
+      if (!pts.length && native.length) pts = native;
       var final = keepPts(pts);
+      if (!final.length && pts.length) final = pts.slice();
       if (!final.length) final = keepPts(fromCtx(list));
       if (!final.length) {
         var extra = [];

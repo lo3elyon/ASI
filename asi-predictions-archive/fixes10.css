@@ -20,6 +20,16 @@
 /* the big button never grows under the pointer */
 .x-ap__big:hover, .x-ap__cover .x-ap__big:hover { transform: translate(-50%, -50%) !important; }
 
+/* ---------- paused after playback (x7-hasplayed, set by player7.js on YouTube PLAYING): the live frame,
+   no tint, no thumbnail; the icon fades 1.5 s after the last pointer move but stays clickable ---------- */
+.x-ap.x7-hasplayed.is-cover:not(.is-native):not(.is-basic) .x-ap__cover { background: transparent !important; animation: none !important; }
+.x-ap.x7-hasplayed.is-cover:not(.is-native):not(.is-basic) .x-ap__cover::after,
+.x-ap.x7-hasplayed.is-cover:not(.is-native):not(.is-basic) .x-ap__cimg { display: none !important; }
+.x-ap.x7-hasplayed.is-cover:not(.is-native):not(.is-basic) .x-ap__big { animation: x7fade 0.3s 1.5s forwards; }
+.x-ap.x7-hasplayed.is-cover.x7-wake:not(.is-native):not(.is-basic) .x-ap__big { animation: none; opacity: 1 !important; visibility: visible !important; }
+@keyframes x7fade { from { opacity: 1; } to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .x-ap.x7-hasplayed.is-cover:not(.is-native):not(.is-basic) .x-ap__big { animation-duration: 0.01s; } }
+
 /* ---------- rest: 1.5 s without pointer movement (or the pointer off the video), paused or playing ---------- */
 .x-ap.x7-live .x-ap__big, .x-ap.x7-live .x-ap__ctime,
 .x-ap.x7-played:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt, .x-sx-top) {
@@ -71,9 +81,11 @@
    ===================================================================== */
 .x-ap.x7-pic .x-ap__frame { filter: var(--x7-filter, none); }
 .x7-picsec { display: grid; gap: 2px; }
-.x7-sl { display: grid; grid-template-columns: minmax(76px, auto) minmax(0, 1fr) 44px; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 6px; }
+.x-apx-menu:not(.is-pn-cc) > .x7-picsec { grid-column: 1 / -1 !important; display: grid !important; visibility: visible !important; opacity: 1 !important; height: auto !important; overflow: visible !important; }
+.x-apx-menu .x7-sl { display: grid !important; grid-template-columns: 80px minmax(96px, 1fr) 44px; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 6px 0 10px; color: var(--hero-text); visibility: visible !important; }
 .x7-sl__n { font: var(--type-tag); }
-.x7-sl .x-apx-range { width: 100%; min-width: 0; min-height: 40px; }
+.x-apx-menu .x7-sl .x-apx-range { display: block !important; flex: none; width: 100% !important; max-width: none !important; min-width: 96px; height: var(--tap); min-height: 40px; opacity: 1 !important; visibility: visible !important; }
+.x-apx-menu .x7-picreset { grid-column: 1 / -1; justify-content: center; }
 .x7-sl__v { font: var(--type-tag); font-variant-numeric: tabular-nums; text-align: right; }
 .x7-picreset:disabled { opacity: 0.55; cursor: default; }
 .x7-viewsec { display: grid; gap: 2px; }
@@ -156,3 +168,8 @@
   .x7-toast, .x7-toast.is-on, .x-ap.x7-live .x-ap__big, .x-ap.x7-live .x-ap__ctime,
   .x-ap.x7-rest:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt, .x-sx-top, .x-ap__ctime), .x-ap.x7-rest.x7-live .x-ap__big { transition: none !important; }
 }
+
+/* source preview: Key points show in both themes */
+:root .x-sp .x-sp__lab, :root[data-theme] .x-sp .x-sp__lab { display: block !important; visibility: visible !important; opacity: 1 !important; color: var(--text-secondary) !important; }
+:root .x-sp .x-sp__pts, :root[data-theme] .x-sp .x-sp__pts { display: grid !important; visibility: visible !important; opacity: 1 !important; height: auto !important; }
+:root .x-sp .x-sp__pts > li, :root[data-theme] .x-sp .x-sp__pts > li { display: list-item !important; visibility: visible !important; opacity: 1 !important; color: var(--text-primary) !important; }

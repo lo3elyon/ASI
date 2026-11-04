@@ -90,7 +90,8 @@
       w.forEach(function (f) { try { f(r); } catch (e) {} });
       if (r.state === "fail") INST.forEach(function (i) { var v = i.current(); if (v && v.id === id) i._pnFail(); });
     };
-    if (!window.fetch) { settle(null); return; }
+    /* only talks in the caption list have a file: never request one that would 404 */
+    if (!window.fetch || !capSet()[id]) { settle(null); return; }
     var ctl = window.AbortController ? new AbortController() : null, to = 0;
     if (ctl) to = setTimeout(function () { ctl.abort(); }, 20000);
     fetch(CAP_URL + encodeURIComponent(id) + ".json", ctl ? { signal: ctl.signal } : undefined)
