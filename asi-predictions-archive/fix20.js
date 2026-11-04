@@ -5,7 +5,7 @@
   var rail = function (m) {
     var r = m.__f20r;
     if (!r) { r = doc.createElement("div"); r.className = "f20-thumb"; r.setAttribute("aria-hidden", "true"); m.__f20r = r; }
-    if (r.parentNode !== m.parentNode && m.parentNode) m.parentNode.appendChild(r);
+    var op = m.offsetParent || m.parentNode; if (op && r.parentNode !== op) op.appendChild(r);
     var need = !m.hidden && m.getClientRects().length && m.scrollHeight > m.clientHeight + 2;
     if (!need) { r.style.display = "none"; return; }
     var H = m.clientHeight, th = Math.max(28, H * H / m.scrollHeight), y = (H - th) * (m.scrollTop / (m.scrollHeight - H));
