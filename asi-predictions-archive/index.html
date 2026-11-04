@@ -65,6 +65,32 @@
       }
     </script>
     <script>
+      /* Run every ResizeObserver callback in the next frame, so a layout change it makes never loops inside one frame. */
+      (function () {
+        var RO = window.ResizeObserver;
+        if (!RO || RO.__x) return;
+        function X(cb) {
+          var pend = null, self;
+          var ro = new RO(function (entries) {
+            var first = !pend;
+            if (first) pend = new Map();
+            for (var i = 0; i < entries.length; i++) pend.set(entries[i].target, entries[i]);
+            if (!first) return;
+            requestAnimationFrame(function () {
+              var e = Array.from(pend.values()); pend = null;
+              try { cb(e, self); } catch (err) { setTimeout(function () { throw err; }); }
+            });
+          });
+          self = this;
+          this.observe = function (t, o) { ro.observe(t, o); };
+          this.unobserve = function (t) { ro.unobserve(t); };
+          this.disconnect = function () { ro.disconnect(); };
+        }
+        X.__x = true;
+        window.ResizeObserver = X;
+      })();
+    </script>
+    <script>
       /* Deep links: read the hash before the first paint, so a link to a page or section never shows the landing first.
          "page" hides the home page until its router has drawn the page; "section" keeps the home page invisible
          (laid out, so the jump can measure it) until it has landed. A 4s failsafe always reveals it. */
@@ -216,6 +242,7 @@
     <link rel="stylesheet" href="fixes7.css?v=10eff9cb" />
     <link rel="stylesheet" href="topiccolors.css?v=045f17d4" />
     <link rel="stylesheet" href="fixes9.css?v=4113e5c0" />
+    <link rel="stylesheet" href="player6.css?v=f62b2824" />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
@@ -1026,7 +1053,7 @@
     </script>
     <script src="player.js?v=a6d7f8b5"></script>
     <script src="player-extra.js?v=23dec0c0"></script>
-    <script src="watch-hub.js?v=f2509f43"></script>
+    <script src="watch-hub.js?v=0f69e073"></script>
     <script src="player-notes.js?v=d239205b"></script>
     <script src="theater.js?v=8352d7ed"></script>
     <script src="archive.js?v=5cf5a9b4"></script>
@@ -1048,5 +1075,6 @@
     <script src="fixes8.js?v=da42a394"></script>
     <script src="topiccolors.js?v=380b71bb"></script>
     <script src="srcprev.js?v=97510f54"></script>
+    <script src="player6.js?v=69cdf12e"></script>
   </body>
 </html>

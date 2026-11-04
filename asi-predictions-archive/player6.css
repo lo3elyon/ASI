@@ -1,0 +1,195 @@
+/* player6.css: Batch 6, loaded last. (1) the player window sized from the viewport, (2) one chapter-coloured
+   seek bar, (3) the transcript list, (4) caption extras, (5) the same controls in every mode, (6) tab accents,
+   (7) transcript tools, (8) colour and hover clean-up. Tokens and fixed dark-surface colours only. */
+
+/* =====================================================================
+   1. Viewport fit. player6.js measures the header, seek bar and control bar and writes the widths;
+      the window never runs past 100dvh minus its margins, so the control bar is always on screen.
+   ===================================================================== */
+.x-pop.is-modal.x6-fit, .x-pop.is-modal.is-solo.x6-fit, .x-pop.is-modal.is-wide.x6-fit, .x-pop.is-modal.is-solo.is-wide.x6-fit {
+  width: var(--p6-w, min(1280px, calc(100vw - 32px))) !important; max-width: none !important;
+}
+.x-pop.is-modal.x6-fit .x-pop__win {
+  display: flex !important; flex-direction: column; overflow: hidden !important;
+  max-height: var(--p6-h, calc(100dvh - 32px)) !important;
+}
+.x-pop.is-modal.x6-fit .x-pop__bar { flex: none; position: relative; }
+.x-pop.is-modal.x6-fit .x-pop__side { display: none !important; }
+/* video and the panel's rail side by side: the row is exactly the video box */
+.x-pop.is-modal.x6-fit .x-pop__body.is-wh-side:not(.is-fs) { display: grid !important; flex: none; min-height: 0; max-height: none !important; overflow: visible !important; align-self: stretch; }
+.x-pop.is-modal.x6-fit .x-pop__body.is-wh-side:not(.is-fs) > .x-wh { border-top: 0 !important; border-left: 1px solid var(--hero-glass-stroke, rgba(255, 255, 255, 0.12)); }
+.x-pop.is-modal.x6-fit .x-pop__body.is-wh-side .x-ap__wrap { border-radius: 0 0 0 var(--r-l); }
+/* the panel under the video: the video stays whole, only the panel scrolls */
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side):not(.is-fs) {
+  display: flex !important; flex-direction: column; flex: 1 1 auto; min-height: 0; max-height: none !important; overflow: hidden !important; align-self: stretch;
+}
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side):not(.is-fs) > * { flex: none; }
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side):not(.is-fs) > .x-wh { flex: 1 1 auto; min-height: 0; border-top: 1px solid var(--hero-glass-stroke, rgba(255, 255, 255, 0.12)); }
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side):not(.is-fs) > .x-wh .x-wh__rail { flex: none; }
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side):not(.is-fs) > .x-wh .x-wh__body {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin;
+}
+.x-pop.is-modal.x6-fit .x-pop__body:not(.is-wh-side) .x-ap__wrap { border-radius: 0; }
+/* the window's width is solved from its height, so the panel column snaps instead of animating mid-measure */
+.x-pop.is-modal.x6-fit .x-pop__body.x-ap.has-wh { transition: none !important; }
+/* the hard limit: the picture is never taller than the room left under the header, so the seek bar and the
+   control bar (which sit on the picture's lower edge) are always on screen, in every mode */
+.x-pop.x6-fit:not(.is-min) .x-pop__body:not(.is-fs):not(.is-fsp) .x-ap__screen,
+.x-ap.x6-in:not(.is-fs):not(.is-fsp) .x-ap__screen { max-height: var(--p6-vh, none); }
+/* the corner window: no wider than the height allows */
+.x-pop.x6-fit:not(.is-modal):not(.is-min) { max-width: var(--p6-max, 90vw) !important; }
+/* inline players: beside the panel the whole row narrows; stacked, the video narrows and centres */
+.x-ap.x6-in.is-wh-side:not(.is-fs) { max-width: var(--p6-max, none); margin-inline: auto; }
+.x-ap.x6-in:not(.is-wh-side):not(.is-fs) > .x-ap__slot { max-width: var(--p6-slot, none); margin-inline: auto; width: 100%; }
+
+/* =====================================================================
+   2. Seek bar: one bar per player. With chapters, the chapter segments are the track itself:
+      each in its chapter colour, dim ahead of the playhead and full behind it.
+   ===================================================================== */
+.x-ap.has-chsegs .x-ap__seek { position: relative; z-index: 1; }
+.x-ap.has-chsegs .x-ap__seek::-webkit-slider-runnable-track { background: transparent !important; box-shadow: none !important; }
+.x-ap.has-chsegs .x-ap__seek::-moz-range-track { background: transparent !important; }
+.x-ap.has-chsegs .x-ap__seek::-moz-range-progress { background: transparent !important; }
+.x-ap.has-chsegs .x-apx-track { z-index: 0; }
+.x-ap.has-chsegs .x-pn-segs i {
+  position: absolute; top: 50% !important; height: 5px !important; margin: -2.5px 0 0 !important; overflow: hidden;
+  border-radius: 3px; border-right: 2px solid transparent; box-sizing: border-box; opacity: 1 !important;
+  background: color-mix(in srgb, var(--c, var(--x-e1)) 34%, rgba(255, 255, 255, 0.16)) !important; background-clip: padding-box !important;
+}
+.x-ap.has-chsegs .x-pn-segs i:last-child { border-right: 0; }
+.x-ap.has-chsegs .x-pn-segs i::after {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0;
+  width: clamp(0%, calc((var(--p6p, 0) - var(--a, 0)) / var(--w, 100) * 100%), 100%);
+  background: var(--c, var(--x-e1));
+}
+
+/* =====================================================================
+   3. Transcript: the list fills the panel (flex: 1, min-height: 0), runs full width,
+      its copy icons float over the line, and a fixed fade sits at its top and bottom edges.
+   ===================================================================== */
+.x-ap.is-wh-side .x-wh__body[data-t="tr"],
+.x-ap.is-fs > .x-wh .x-wh__body[data-t="tr"],
+.x-ap.is-wh-fly > .x-wh .x-wh__body[data-t="tr"],
+.x-pop.is-modal.x6-fit .x-pop__body .x-wh__body[data-t="tr"] {
+  display: flex !important; flex-direction: column; flex: 1 1 auto; min-height: 0; overflow: hidden !important;
+  -webkit-mask-image: none !important; mask-image: none !important;
+}
+:is(.x-ap.is-wh-side .x-wh__body, .x-ap.is-fs > .x-wh .x-wh__body, .x-ap.is-wh-fly > .x-wh .x-wh__body, .x-pop.is-modal.x6-fit .x-pop__body .x-wh__body)[data-t="tr"] > .x-wh__pane,
+:is(.x-ap.is-wh-side .x-wh__body, .x-ap.is-fs > .x-wh .x-wh__body, .x-ap.is-wh-fly > .x-wh .x-wh__body, .x-pop.is-modal.x6-fit .x-pop__body .x-wh__body)[data-t="tr"] .x-pn-tr,
+:is(.x-ap.is-wh-side .x-wh__body, .x-ap.is-fs > .x-wh .x-wh__body, .x-ap.is-wh-fly > .x-wh .x-wh__body, .x-pop.is-modal.x6-fit .x-pop__body .x-wh__body)[data-t="tr"] .x-pn-trwrap {
+  display: flex; flex-direction: column; flex: 1 1 0; min-height: 0;
+}
+:is(.x-ap.is-wh-side .x-wh__body, .x-ap.is-fs > .x-wh .x-wh__body, .x-ap.is-wh-fly > .x-wh .x-wh__body, .x-pop.is-modal.x6-fit .x-pop__body .x-wh__body)[data-t="tr"] .x-pn-list {
+  flex: 1 1 0 !important; min-height: 0 !important; max-height: none !important; height: auto; overflow-y: auto;
+}
+.x-pn-tr > * { flex: none; }
+.x-pn-tr > .x-pn-trwrap { flex: 1 1 auto; }
+.x-pn-list {
+  padding: 12px 0 28px !important; scroll-padding-block: 12px 28px;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14px, #000 calc(100% - 28px), transparent 100%);
+}
+.x-pn-list .x-pn-line { position: relative; width: 100%; padding-right: 8px !important; }
+.x-pn-list .x-pn-tx { font-size: calc(var(--size-small) * var(--x6-trs, 1)); }
+.x-pn-list .x-pn-acts {
+  position: absolute; top: 2px; right: 2px; z-index: 1; display: inline-flex; gap: 2px; padding: 2px;
+  border-radius: var(--r-s); background: var(--x-ink-dark, #111318); color: #f5f5f7;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14), var(--hark-shadow);
+  opacity: 0; pointer-events: none; transition: opacity var(--dur-quick) var(--ease-out);
+}
+.x-pn-list .x-pn-acts .x-pn-ib { color: inherit; background: none; }
+.x-pn-list .x-pn-acts .x-pn-ib.is-done { color: #4ade80; }
+.x-pn-list .x-pn-line:hover .x-pn-acts, .x-pn-list .x-pn-line:focus-within .x-pn-acts { opacity: 1; pointer-events: auto; }
+.x-pn-list .x-pn-line.is-now .x-pn-acts { opacity: 0; pointer-events: none; }
+.x-pn-list .x-pn-line.is-now:hover .x-pn-acts, .x-pn-list .x-pn-line.is-now:focus-within .x-pn-acts { opacity: 1; pointer-events: auto; }
+@media (hover: none) {
+  .x-pn-list .x-pn-line.is-now .x-pn-acts { opacity: 1; pointer-events: auto; }
+}
+/* Highlight words off: names and terms read as plain text */
+.x-pn-list.x6-nohl .x-kw { background: none !important; box-shadow: none !important; padding: 0 !important; margin: 0 !important; font-weight: inherit !important; }
+
+/* =====================================================================
+   4. Captions: the chosen look always wins, and the extra controls (weight, width, spacing)
+   ===================================================================== */
+.x-ap .x-pn-cap__win {
+  color: var(--x-pn-col, #fff) !important; font-family: var(--x-pn-font, var(--sans)) !important;
+  font-size: var(--x-pn-fs, 16px) !important; text-shadow: var(--x-pn-edge, none) !important;
+  font-weight: var(--x6-cap-wt, 500) !important; letter-spacing: var(--x6-cap-ls, 0); max-width: var(--x6-cap-mw, 100%) !important;
+}
+.x-ap .x-pn-cap__l > span { background: var(--x-pn-bg, rgba(8, 10, 14, 0.62)) !important; }
+.x-ap .x-pn-cap.is-nobg .x-pn-cap__l > span { background: none !important; }
+.x-pn-cap:not(.is-kw) b.x-kw { color: inherit !important; font-weight: inherit !important; }
+.x-pn-prev__l { font-weight: var(--x6-cap-wt, 500); letter-spacing: var(--x6-cap-ls, 0); }
+.x-pn-cap.is-drag .x-pn-cap__win { outline: 1px dashed rgba(255, 255, 255, 0.6); outline-offset: 4px; }
+.x6-cs .x-pn-sg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; }
+.x6-cs .x-ap__b { justify-content: center; min-width: 0; min-height: var(--tap); }
+.x6-cs .x-ap__b[aria-pressed="true"] { background: var(--hero-glass); box-shadow: inset 0 0 0 1px var(--x-e1, var(--hero-glass-stroke)); }
+
+/* =====================================================================
+   5. The same controls in every mode: Theater, Fullscreen and Pop out on the bar of the window too;
+      narrow players move them into the ⚙ menu at the same breakpoints as everywhere else.
+   ===================================================================== */
+.x-pop .x-ap .x-ap__btns > .x-ap__wide, .x-pop .x-ap .x-ap__btns > [data-a="fs"], .x-pop .x-ap .x-ap__btns > .x-ap__popb { display: inline-flex; }
+.x-pop.is-narrow .x-ap .x-ap__btns > .x-ap__t:not(.x-ap__speed) { display: inline-flex; }
+@container xap (max-width: 759px) {
+  .x-pop .x-ap .x-apx-menu .x-apx-dup[data-dup="md"][data-a] { display: inline-flex !important; }
+}
+@container xap (max-width: 519px) {
+  .x-pop .x-ap .x-apx-menu .x-apx-dup[data-dup="sm"][data-a] { display: inline-flex !important; }
+}
+
+/* =====================================================================
+   6. Tab accents: each tab keeps its own colour on its icon, its bar and its selected tint
+   ===================================================================== */
+.x-wh__tab[data-t="about"] { --x6-tc: #f59e0b; --x6-ti: light-dark(#a35207, #fbbf24); }
+.x-wh__tab[data-t="ch"] { --x6-tc: #f97316; --x6-ti: light-dark(#b8400b, #fb923c); }
+.x-wh__tab[data-t="tr"] { --x6-tc: #06b6d4; --x6-ti: light-dark(#0e7490, #22d3ee); }
+.x-wh__tab[data-t="up"] { --x6-tc: #10b981; --x6-ti: light-dark(#047857, #34d399); }
+.x-wh__tab[data-t="notes"] { --x6-tc: #ef4444; --x6-ti: light-dark(#b91c1c, #f87171); }
+.x-wh__tab .x-wh__ic { color: var(--x6-ti, inherit); }
+.x-wh__tab::before, .x-ap.is-wh-side .x-wh__tab::before { background: var(--x6-tc, var(--x-e1)) !important; }
+.x-wh__tab[aria-selected="true"] {
+  background: color-mix(in srgb, var(--x6-tc, var(--x-e1)) 15%, transparent) !important;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--x6-tc, var(--x-e1)) 45%, transparent) !important;
+}
+.x-wh__tab[aria-selected="true"] .x-wh__ic { filter: none; }
+.x-wh__tab:focus-visible { outline-color: var(--x6-tc, var(--x-e1)); }
+
+/* =====================================================================
+   7. Transcript tools: Key moments pills, Highlight words, A− / A+, Jump to now
+   ===================================================================== */
+.x6-trx { display: flex; align-items: center; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.x6-trx::-webkit-scrollbar { display: none; }
+.x6-trx > * { flex: none; }
+.x6-trx .x-pn-btn[aria-pressed="true"] { background: color-mix(in srgb, var(--x-e1, currentColor) 16%, transparent); border-color: color-mix(in srgb, var(--x-e1, currentColor) 55%, transparent); }
+.x6-trx .x6-sz { min-width: var(--tap); padding: 0 10px; }
+.x6-trx .x-pn-btn:disabled { opacity: 0.45; cursor: default; }
+.x6-km { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding: 2px 0; }
+.x6-km::-webkit-scrollbar { display: none; }
+.x6-km__h { flex: none; align-self: center; margin: 0 2px 0 0; font: var(--type-tag); text-transform: uppercase; letter-spacing: 0.06em; color: color-mix(in srgb, currentColor 72%, transparent); }
+.x6-pill {
+  flex: none; display: inline-flex; align-items: center; gap: 6px; max-width: 240px; min-height: var(--tap); padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--x6-pc, var(--x-e1)) 50%, transparent); border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--x6-pc, var(--x-e1)) 12%, transparent); color: inherit; font: var(--type-tag); cursor: pointer;
+  transition: background-color var(--dur-quick) var(--ease-out);
+}
+.x6-pill:hover { background: color-mix(in srgb, var(--x6-pc, var(--x-e1)) 24%, transparent); }
+.x6-pill:focus-visible { outline: 2px solid var(--x6-pc, var(--x-e1)); outline-offset: 1px; }
+.x6-pill b { font-family: "Geist Mono", ui-monospace, monospace; font-weight: var(--weight-regular); font-variant-numeric: tabular-nums; }
+.x6-pill span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* =====================================================================
+   8. No violet, purple or pink; nothing moves on hover
+   ===================================================================== */
+:root { --chart-4: light-dark(#a3ad8c, #b8c1a2); }
+.x-pn-prev { background: linear-gradient(135deg, #1f2937, #0b0f17 60%, #2a1d10) !important; }
+.x-ln__conf i:nth-child(5n) { background: #22c55e !important; }
+#portraits { --x-tint: var(--x-ch-5, #c58a3a); }
+.x-tc:hover, .x-ln__tab:hover, .x-ln__opt:hover:not(:disabled), .x-cw__btn:hover, .stats.x-stats .stat:hover { transform: none !important; }
+.x-ln__flip:not(.is-flipped):hover .x-ln__card { transform: none !important; }
+.x-card:hover, .x-pi:hover, .x-pc:hover, .x-vc:hover, .x-prc__c:hover { transform: none !important; }
+.x-wh__down:hover { transform: translateX(-50%) !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .x-pn-list .x-pn-acts, .x6-pill { transition: none; }
+}

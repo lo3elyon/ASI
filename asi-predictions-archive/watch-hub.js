@@ -244,7 +244,7 @@
       host.classList.toggle("is-fs-side", fs && !sheet);
       if (fs) applyW();
       /* the wide window puts the video across the full width, with the panel under it */
-      var on = !fs && !!(wide && wide.matches) && host.clientWidth >= SIDE_MIN && !(pop && (!pop.classList.contains("is-modal") || pop.classList.contains("is-wide")));
+      var on = !fs && !!(wide && wide.matches) && host.clientWidth >= SIDE_MIN && !(pop && !pop.classList.contains("is-modal"));
       if (on === side && host.classList.contains("is-wh-side") === on) return;
       side = on; host.classList.toggle("is-wh-side", on);
       orient(); edges();
