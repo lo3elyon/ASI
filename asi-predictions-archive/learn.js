@@ -9,8 +9,8 @@
   var still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   var TABS = [
-    ["kids", "🧒 Kids' corner"], ["easy", "📘 Easy explainers"], ["sim", "🚀 Explosion simulator"],
-    ["dbl", "📈 Doubling maths"], ["risk", "🎲 Risk chain"], ["quiz", "🧠 Prediction quiz"]
+    ["kids", "Kids' corner"], ["easy", "Easy explainers"], ["sim", "Explosion simulator"],
+    ["dbl", "Doubling maths"], ["risk", "Risk chain"], ["quiz", "Prediction quiz"]
   ];
 
   /* ---------- content ---------- */
@@ -135,7 +135,7 @@
       '<div class="x-ln__grid"><div class="x-ln__ctl">' + slider("d-d", "Doubles every (months)", 3, 36, 1, 6) + slider("d-y", "For how many years", 1, 20, 1, 10) +
       '<div class="x-ln__pre"><span>Try:</span><button type="button" data-d="24">💾 Moore\'s law (~24 mo)</button><button type="button" data-d="6">⚡ AI training compute (~6 mo)</button><button type="button" data-d="7">🧩 Agent task length (~7 mo)</button></div>' +
       '<div class="x-ln__big" id="d-out" aria-live="polite"></div><p class="x-ln__fine">Doubling times are rough figures from public trend analyses (e.g. Epoch AI, METR) and change over time.</p></div><div class="x-ln__chart"><canvas id="d-cv" role="img" aria-label="Growth from doubling"></canvas></div></div>' +
-      '<div class="x-ln__chess"><h3>🏰 The rice-and-chessboard puzzle</h3><p>One grain on the first square, doubling each square. How many grains on square <output id="c-o">32</output>?</p><input type="range" id="c-n" min="1" max="64" value="32" aria-label="Chessboard square"><div class="x-ln__board" id="c-b" aria-hidden="true"></div><p id="c-t" class="x-ln__big"></p></div>';
+      '<div class="x-ln__chess"><h3>The rice-and-chessboard puzzle</h3><p>One grain on the first square, doubling each square. How many grains on square <output id="c-o">32</output>?</p><input type="range" id="c-n" min="1" max="64" value="32" aria-label="Chessboard square"><div class="x-ln__board" id="c-b" aria-hidden="true"></div><p id="c-t" class="x-ln__big"></p></div>';
     var d = el.querySelector("#d-d"), y = el.querySelector("#d-y"), out = el.querySelector("#d-out"), cv = el.querySelector("#d-cv");
     var run = function () {
       var D = +d.value, Y = +y.value, f = Math.pow(2, 12 * Y / D), pts = [];

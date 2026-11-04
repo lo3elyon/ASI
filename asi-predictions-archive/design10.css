@@ -50,46 +50,57 @@
 /* captions line up with the quote text */
 .x-pv__q figcaption, .x-hi__quote figcaption { padding-left: 3.6rem !important; }
 
+/* ---------- 5b. multicolour quotes: a stable 10-step cycle by position (nth-of-type of the quote's card, figure or row) ----------
+   1st, 11th, ...: the current marks and colours above, untouched.
+   2nd: the earlier orange/gold left bar. 3rd to 10th: teal, red, sky, lime, blue, orange, green, yellow.
+   Only allowed hues (no violet, purple or pink). Each step's mark gradient, left bar and faint tint share one hue;
+   the quote text keeps its own colour, so AA contrast holds in both themes (the tint is at most 12% over the page). */
+:is(.x-card:nth-of-type(10n+2) > .x-quote, .x-pv__q:nth-of-type(10n+2) > blockquote, .x-pg__q:nth-of-type(10n+2) blockquote, .x-hi__quote:nth-of-type(10n+2) > blockquote, .cards > div:nth-of-type(10n+2) > .quote, li:nth-of-type(10n+2) > .x-sp__q, .x-ln__q:nth-of-type(10n+2)) { --q1: 38; --q2: 25; --qbar: light-dark(#d97706, #f59e0b); }
+:is(.x-card:nth-of-type(10n+3) > .x-quote, .x-pv__q:nth-of-type(10n+3) > blockquote, .x-pg__q:nth-of-type(10n+3) blockquote, .x-hi__quote:nth-of-type(10n+3) > blockquote, .cards > div:nth-of-type(10n+3) > .quote, li:nth-of-type(10n+3) > .x-sp__q, .x-ln__q:nth-of-type(10n+3)) { --q1: 173; --q2: 185; }
+:is(.x-card:nth-of-type(10n+4) > .x-quote, .x-pv__q:nth-of-type(10n+4) > blockquote, .x-pg__q:nth-of-type(10n+4) blockquote, .x-hi__quote:nth-of-type(10n+4) > blockquote, .cards > div:nth-of-type(10n+4) > .quote, li:nth-of-type(10n+4) > .x-sp__q, .x-ln__q:nth-of-type(10n+4)) { --q1: 0; --q2: 14; }
+:is(.x-card:nth-of-type(10n+5) > .x-quote, .x-pv__q:nth-of-type(10n+5) > blockquote, .x-pg__q:nth-of-type(10n+5) blockquote, .x-hi__quote:nth-of-type(10n+5) > blockquote, .cards > div:nth-of-type(10n+5) > .quote, li:nth-of-type(10n+5) > .x-sp__q, .x-ln__q:nth-of-type(10n+5)) { --q1: 199; --q2: 210; }
+:is(.x-card:nth-of-type(10n+6) > .x-quote, .x-pv__q:nth-of-type(10n+6) > blockquote, .x-pg__q:nth-of-type(10n+6) blockquote, .x-hi__quote:nth-of-type(10n+6) > blockquote, .cards > div:nth-of-type(10n+6) > .quote, li:nth-of-type(10n+6) > .x-sp__q, .x-ln__q:nth-of-type(10n+6)) { --q1: 84; --q2: 100; }
+:is(.x-card:nth-of-type(10n+7) > .x-quote, .x-pv__q:nth-of-type(10n+7) > blockquote, .x-pg__q:nth-of-type(10n+7) blockquote, .x-hi__quote:nth-of-type(10n+7) > blockquote, .cards > div:nth-of-type(10n+7) > .quote, li:nth-of-type(10n+7) > .x-sp__q, .x-ln__q:nth-of-type(10n+7)) { --q1: 217; --q2: 205; }
+:is(.x-card:nth-of-type(10n+8) > .x-quote, .x-pv__q:nth-of-type(10n+8) > blockquote, .x-pg__q:nth-of-type(10n+8) blockquote, .x-hi__quote:nth-of-type(10n+8) > blockquote, .cards > div:nth-of-type(10n+8) > .quote, li:nth-of-type(10n+8) > .x-sp__q, .x-ln__q:nth-of-type(10n+8)) { --q1: 25; --q2: 38; }
+:is(.x-card:nth-of-type(10n+9) > .x-quote, .x-pv__q:nth-of-type(10n+9) > blockquote, .x-pg__q:nth-of-type(10n+9) blockquote, .x-hi__quote:nth-of-type(10n+9) > blockquote, .cards > div:nth-of-type(10n+9) > .quote, li:nth-of-type(10n+9) > .x-sp__q, .x-ln__q:nth-of-type(10n+9)) { --q1: 142; --q2: 160; }
+:is(.x-card:nth-of-type(10n+10) > .x-quote, .x-pv__q:nth-of-type(10n+10) > blockquote, .x-pg__q:nth-of-type(10n+10) blockquote, .x-hi__quote:nth-of-type(10n+10) > blockquote, .cards > div:nth-of-type(10n+10) > .quote, li:nth-of-type(10n+10) > .x-sp__q, .x-ln__q:nth-of-type(10n+10)) { --q1: 50; --q2: 40; }
+:is(.x-card:not(:nth-of-type(10n+1)) > .x-quote, .x-pv__q:not(:nth-of-type(10n+1)) > blockquote, .x-pg__q:not(:nth-of-type(10n+1)) blockquote, .x-hi__quote:not(:nth-of-type(10n+1)) > blockquote, .cards > div:not(:nth-of-type(10n+1)) > .quote, li:not(:nth-of-type(10n+1)) > .x-sp__q, .x-ln__q:not(:nth-of-type(10n+1))) {
+  border-left: 3px solid var(--qbar, light-dark(hsl(var(--q1) 80% 40%), hsl(var(--q1) 85% 60%))) !important;
+  /* an opaque tint, mixed into the page colour, so the text contrast is measured against what is actually shown */
+  background: light-dark(color-mix(in srgb, hsl(var(--q1) 90% 50%) 7%, var(--fill-primary-on, #fff)), color-mix(in srgb, hsl(var(--q1) 90% 55%) 12%, var(--fill-primary-on, #111))) !important;
+  border-radius: 0 var(--r-s) var(--r-s) 0;
+}
+:is(.x-card:not(:nth-of-type(10n+1)) > .x-quote, .x-pv__q:not(:nth-of-type(10n+1)) > blockquote, .x-pg__q:not(:nth-of-type(10n+1)) blockquote, .x-hi__quote:not(:nth-of-type(10n+1)) > blockquote, .cards > div:not(:nth-of-type(10n+1)) > .quote, li:not(:nth-of-type(10n+1)) > .x-sp__q, .x-ln__q:not(:nth-of-type(10n+1)))::before,
+:is(.x-card:not(:nth-of-type(10n+1)) > .x-quote, .x-pv__q:not(:nth-of-type(10n+1)) > blockquote, .x-pg__q:not(:nth-of-type(10n+1)) blockquote, .x-hi__quote:not(:nth-of-type(10n+1)) > blockquote, .cards > div:not(:nth-of-type(10n+1)) > .quote, li:not(:nth-of-type(10n+1)) > .x-sp__q, .x-ln__q:not(:nth-of-type(10n+1)))::after {
+  background-image: linear-gradient(135deg,
+    light-dark(hsl(var(--q1) 85% 40%), hsl(var(--q1) 90% 64%)),
+    light-dark(hsl(var(--q2) 85% 33%), hsl(var(--q2) 85% 55%))) !important;
+}
+
 /* ---------- 6. icon tiles ---------- */
 .x-d10i {
   display: inline-grid; place-items: center; flex: none;
   width: 52px; height: 52px; border-radius: var(--r-s);
-  font: 400 28px/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  font-style: normal; letter-spacing: 0; text-decoration: none !important;
-  background: linear-gradient(135deg,
-    light-dark(hsl(var(--d10h) 90% 88%), hsl(var(--d10h) 70% 26%)),
-    light-dark(hsl(calc(var(--d10h) + 22) 85% 78%), hsl(calc(var(--d10h) + 22) 70% 18%)));
-  box-shadow: inset 0 0 0 1px light-dark(hsl(var(--d10h) 70% 45% / 0.28), hsl(var(--d10h) 80% 65% / 0.3));
+  font-size: 0; line-height: 0; color: #fff;
+  /* a vivid two-stop gradient between neighbouring allowed hues (red, orange, amber, yellow, green, teal, cyan, sky, blue),
+     dark enough under the white line icon in both themes */
+  background: linear-gradient(135deg, hsl(var(--d10h) 88% 44%), hsl(var(--d10h2, var(--d10h)) 85% 36%));
+  box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.18), 0 2px 8px -2px hsl(var(--d10h) 80% 40% / 0.45);
   user-select: none; pointer-events: none;
 }
-/* section headings: the tile sits above the eyebrow */
-.x-d10i--head { width: 56px; height: 56px; font-size: 30px; margin: 0 0 12px; }
-.head.x-d10i--head-host { display: block; }
-.head.x-d10i--head-host > .x-d10i { display: grid; }
-.hero .x-d10i--head { display: none !important; }
-
-/* stat cards: the tile replaces the small line icon */
-.stat.x-d10i--stat-host .x-sti { display: none !important; }
-.x-d10i--stat { width: 44px; height: 44px; font-size: 24px; margin: 0 0 8px; }
-.stat.x-d10i--stat-host > .x-d10i { display: grid; }
-
-/* tabs: tile on the left, the label beside it */
-[role="tab"].x-d10i--tab-host {
-  display: inline-grid !important; grid-template-columns: auto 1fr; grid-auto-flow: row;
-  align-items: center; column-gap: 10px; text-align: left;
-}
-[role="tab"].x-d10i--tab-host > :not(.x-d10i) { grid-column: 2; }
-.x-d10i--tab { width: 40px; height: 40px; font-size: 22px; grid-row: 1 / span 3; grid-column: 1; }
-
-/* the player's side-rail tabs are too narrow for a tile */
-.x-wh__tab > .x-d10i, .x-ap [role="tab"] > .x-d10i { display: none !important; }
-
-/* board headers */
-.x-d10i--board-host { display: flex !important; align-items: center; gap: 10px; flex-wrap: wrap; }
-.x-d10i--board { width: 40px; height: 40px; font-size: 22px; }
+.x-d10i svg { display: block; width: 28px; height: 28px; stroke: #fff; fill: none; }
+.x-d10i::before, .x-d10i::after { content: none !important; }
+/* one tile per section or page, above its main heading (and its eyebrow) */
+.x-d10i--head { display: grid !important; width: 56px; height: 56px; margin: 0 0 12px; }
+.head.x-d10i--host { display: block; }
+.x-pv__head .x-d10i--head { width: 48px; height: 48px; margin-bottom: 10px; }
+.x-pv__head .x-d10i svg { width: 24px; height: 24px; }
+/* the home hero never carries one */
+.x-hero-start .x-d10i { display: none !important; }
 
 @media (max-width: 480px) {
-  .x-d10i--head { width: 48px; height: 48px; font-size: 26px; }
+  .x-d10i--head { width: 48px; height: 48px; }
+  .x-d10i--head svg { width: 24px; height: 24px; }
   :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote) { padding-left: 3rem !important; }
   :is(.x-quote, .x-hi__quote blockquote, .x-pv__q blockquote, .x-pg__q blockquote, .x-ln__q, .x-sp__q, .cards .quote)::before { font-size: 4rem !important; }
   .x-pv__q figcaption, .x-hi__quote figcaption { padding-left: 3rem !important; }
@@ -167,31 +178,5 @@ a.x-kw--p, a.x-kw--person, a.x-pg__person {
   a.x-tc, button.x-tc, .x-hi__chip.x-tc, a.x-kw--p, a.x-kw--person, a.x-pg__person { transition: none !important; }
 }
 
-/* ---------- 10. content headings get the section's icon tile ---------- */
-[data-d10="history"] { --d10ico: "⏳"; }
-[data-d10="predictions"] { --d10ico: "🧭"; }
-[data-d10="media"] { --d10ico: "🎬"; }
-[data-d10="people"] { --d10ico: "👥"; }
-[data-d10="ask"] { --d10ico: "💬"; }
-[data-d10="learn"] { --d10ico: "🎓"; }
-[data-d10="sources"] { --d10ico: "📚"; }
-[data-d10="policy"] { --d10ico: "⚖️"; }
-[data-d10="safety"] { --d10ico: "🛡️"; }
-[data-d10="ideas"] { --d10ico: "💡"; }
-:is(#person-view, #archive, #tracker, #history, #learn) :is(h2, h3):not(.head *):not(.x-ap *):not(.x-wh *):not(.x-pn *):not([role="tab"] *):not(.x-sp *):not(.photo-card *):not(.sr-only):not(.visually-hidden):not(.x-d10i--board-host)::before {
-  content: var(--d10ico, "💡"); content: var(--d10ico, "💡") / "";
-  display: inline-grid !important; place-items: center; flex: none;
-  width: 40px !important; height: 40px !important; margin: 0 10px 0 0; vertical-align: middle;
-  border-radius: var(--r-s) !important;
-  font: 400 22px/1 "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
-  font-style: normal; letter-spacing: 0; text-transform: none;
-  background: linear-gradient(135deg,
-    light-dark(hsl(var(--d10h) 90% 88%), hsl(var(--d10h) 70% 26%)),
-    light-dark(hsl(calc(var(--d10h) + 22) 85% 78%), hsl(calc(var(--d10h) + 22) 70% 18%))) !important;
-  box-shadow: inset 0 0 0 1px light-dark(hsl(var(--d10h) 70% 45% / 0.28), hsl(var(--d10h) 80% 65% / 0.3)) !important;
-  position: static !important;
-  user-select: none; pointer-events: none;
-}
-@media (max-width: 480px) {
-  :is(#person-view, #archive, #tracker, #history, #learn) :is(h2, h3):not(.head *):not(.x-ap *):not(.x-wh *):not(.x-pn *):not([role="tab"] *):not(.x-sp *):not(.photo-card *):not(.sr-only):not(.visually-hidden):not(.x-d10i--board-host)::before { width: 34px !important; height: 34px !important; font-size: 19px; margin-right: 8px; }
-}
+/* ---------- 10. (removed) the ::before tiles on person-page, archive, tracker, history and learn sub-headings ----------
+   Only design10.js's one tile per section or page remains (section 6). */

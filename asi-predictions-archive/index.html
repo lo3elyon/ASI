@@ -27,6 +27,17 @@
     <meta name="twitter:title" content="ASI History Archive: 75 Years of Superintelligence Predictions" />
     <meta name="twitter:description" data-count-tpl="{talks} talks, {people} people and {milestones} milestones: what researchers predicted about superintelligence, and what actually happened." content="Talks, people and milestones: what researchers predicted about superintelligence, and what actually happened." />
     <meta name="twitter:image" content="https://lo3elyon.github.io/ASI/asi-predictions-archive/hero.jpg" />
+    <script>
+      /* Boot guard: a reload or deep link to a page (#/...) or section (#media) keeps the body hidden until boot.js
+         has drawn or landed it, so the landing never shows first. The cover takes the saved theme's background. */
+      (function(){var h=location.hash;if(h&&h!=="#"&&h!=="#/"){document.documentElement.classList.add("x-boot");window.__xBootJump=true;}if("scrollRestoration" in history)history.scrollRestoration="manual";})();
+      (function(){var t=null;try{t=localStorage.getItem("hark-theme");}catch(e){}if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);document.documentElement.classList.add("x-still");if(t!=="light"&&t!=="dark")t=window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.style.setProperty("--x-boot-bg",t==="dark"?"#1d1d1f":"#f5f5f7");})();
+    </script>
+    <style>
+      html.x-boot body { visibility: hidden; }
+      html.x-still *, html.x-still *::before, html.x-still *::after { transition: none !important; animation-delay: 0s !important; animation-duration: 0s !important; }
+      html.x-boot { background: var(--x-boot-bg, #0b0d12); scroll-behavior: auto !important; }
+    </style>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -483,7 +494,7 @@
     <script src="logos.js?v=a61a007c"></script>
     <script src="highlight.js?v=feba7d08"></script>
     <script src="masonry.js?v=35573a79"></script>
-    <script src="goto.js?v=5f14f525"></script>
+    <script src="goto.js?v=1a43f178"></script>
     <script src="chart.js?v=e6452e2b"></script>
     <script src="datalabels.js?v=f3adb031"></script>
     <script src="hark-charts.js?v=b41dd0f1"></script>
@@ -1058,17 +1069,17 @@
     <script src="player-notes.js?v=e28cc82b"></script>
     <script src="theater.js?v=8352d7ed"></script>
     <script src="archive.js?v=5cf5a9b4"></script>
-    <script src="people.js?v=f4b2700d"></script>
+    <script src="people.js?v=b669e423"></script>
     <script src="history.js?v=36ee8846"></script>
     <script src="palette.js?v=f9281054"></script>
-    <script src="learn.js?v=f5f40d53"></script>
+    <script src="learn.js?v=c9302d25"></script>
     <script src="fixes.js?v=6ad4a97c"></script>
     <script src="polish.js?v=84b5be1c"></script>
     <script src="refine.js?v=225b0dfa"></script>
-    <script src="motion.js?v=84149003"></script>
+    <script src="motion.js?v=73675c2d"></script>
     <script src="voice.js?v=95ceb6e9"></script>
     <script src="ask.js?v=487a4e7d"></script>
-    <script src="pages.js?v=b7f97b1a"></script>
+    <script src="pages.js?v=194ecc81"></script>
     <script src="fixes4.js?v=9f9f1a6d"></script>
     <script src="fixes5.js?v=a254d1ab"></script>
     <script src="fixes6.js?v=8839b981"></script>
@@ -1084,7 +1095,8 @@
     <script src="player8.js?v=1fca8698"></script>
     <script src="resp8.js?v=b1d29327"></script>
     <script src="links9.js?v=adb1fe9f"></script>
-    <link rel="stylesheet" href="design10.css?v=5607bb69" />
-    <script src="design10.js?v=ffa43c76"></script>
+    <link rel="stylesheet" href="design10.css?v=d4878371" />
+    <script src="design10.js?v=09930049"></script>
+    <script src="boot.js?v=64aeb2df"></script>
   </body>
 </html>

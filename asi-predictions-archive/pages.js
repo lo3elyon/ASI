@@ -202,7 +202,7 @@
   R.topics = function () {
     var cards = TOPICS.map(function (t) {
       var h = topicHits(t);
-      return '<div><h3><a href="#/topic/' + t.slug + '"><span aria-hidden="true">' + t.ico + "</span> " + esc(t.name) + "</a></h3>" +
+      return '<div><h3><a href="#/topic/' + t.slug + '">' + esc(t.name) + "</a></h3>" +
         '<p class="x-pg__card-n">' + [[h.miles.length, "milestones"], [h.entries.length, "entries"], [h.people.length, "people"], [h.vids.length, "talks"], [h.preds.length, "predictions"]]
           .filter(function (x) { return x[0]; }).map(function (x) { return fmtN(x[0]) + " " + (x[0] === 1 ? x[1].replace(/ies$/, "y").replace(/s$/, "").replace(/^people$/, "person") : x[1]); }).join(" · ") + "</p></div>";
     }).join("");
@@ -213,7 +213,7 @@
     if (!t) return { title: "Topic not found", html: section("", head("Topics", "No topic called “" + esc(slug) + "”.", 'Pick one from <a class="link" href="#/topics">all topics</a>.')) };
     var h = topicHits(t), parts = [];
     var idx = TOPICS.indexOf(t), prev = TOPICS[(idx - 1 + TOPICS.length) % TOPICS.length], next = TOPICS[(idx + 1) % TOPICS.length];
-    parts.push(section("", head("Topic", '<span aria-hidden="true">' + t.ico + "</span> " + esc(t.name), "Everything in the archive that mentions " + esc(t.name.toLowerCase()) + ", oldest first. Talks are newest first.",
+    parts.push(section("", head("Topic", esc(t.name), "Everything in the archive that mentions " + esc(t.name.toLowerCase()) + ", oldest first. Talks are newest first.",
       '<div class="x-pg__acts"><a class="btn" href="#/topic/' + prev.slug + '">← ' + esc(prev.name) + '</a><a class="btn" href="#/topics">All topics</a><a class="btn" href="#/topic/' + next.slug + '">' + esc(next.name) + " →</a></div>")));
     parts.push(stats([[h.miles.length, "Milestones"], [h.entries.length, "Archive entries"], [h.people.length, "People"], [h.vids.length, "Talks"], [h.preds.length, "Predictions"]]));
     if (h.miles.length) parts.push(section("", head("", "History milestones") + growing("tm-" + t.slug, h.miles, mileRow, 12, '<ol class="timeline">', "</ol>")));
@@ -476,6 +476,8 @@
   };
   window.addEventListener("hashchange", route);
   window.addEventListener("popstate", route);
+  /* boot.js: draw the current #/ page again if the first route did not */
+  window.XPagesRoute = function () { lastHash = null; route(); };
 
   /* clicks inside a page */
   var home = function (fn) {

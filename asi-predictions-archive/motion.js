@@ -66,7 +66,9 @@
   window.XMo.land = function (el) {
     if (!el || !el.classList) return;
     var sec = el.closest && el.closest("section.section[id]");
-    if (sec && !/^#\/./.test(location.hash) && window.history && history.replaceState) {
+    /* never rewrite the address in the first 2 s after load, so a reload or deep link keeps its hash */
+    var booting = window.performance && performance.now ? performance.now() < 2000 : false;
+    if (sec && !booting && !/^#\/./.test(location.hash) && window.history && history.replaceState) {
       try { history.replaceState(history.state, "", "#" + sec.id); } catch (e) {}
     }
     if (!/^(A|BUTTON|INPUT|SELECT|TEXTAREA|SUMMARY)$/.test(el.tagName) && !el.hasAttribute("tabindex")) el.setAttribute("tabindex", "-1");

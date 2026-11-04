@@ -53,7 +53,9 @@
   var jump = function (y) {
     var prev = root.style.scrollBehavior;
     root.style.scrollBehavior = "auto";
-    try { window.scrollTo({ top: y, left: window.scrollX, behavior: "auto" }); } catch (e) { window.scrollTo(window.scrollX, y); }
+    /* during boot (window.__xBootJump, set in the head) or for an { instant: true } call, never animate */
+    var how = window.__xBootJump || (cur && cur.instant) ? "instant" : "auto";
+    try { window.scrollTo({ top: y, left: window.scrollX, behavior: how }); } catch (e) { window.scrollTo(window.scrollX, y); }
     root.style.scrollBehavior = prev;
   };
   var align = function () {
@@ -81,7 +83,7 @@
     stop();
     lastCall = Date.now();
     var hd = headOf(el);
-    var c = cur = { el: hd, head: hd !== el, block: opts.block === "center" ? "center" : "start", offset: +opts.offset || 0 };
+    var c = cur = { el: hd, head: hd !== el, block: opts.block === "center" ? "center" : "start", offset: +opts.offset || 0, instant: !!opts.instant };
     if (opts.push && el.id) {
       var h = "#" + el.id;
       if (location.hash !== h) {
@@ -162,7 +164,7 @@
   var hashLoad = function () {
     if (touched || !mainShown()) return;
     var el = sectionTarget(location.hash);
-    if (el) goTo(el);
+    if (el) goTo(el, { instant: true });
   };
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", hashLoad); else setTimeout(hashLoad, 0);
   if (doc.readyState !== "complete") window.addEventListener("load", hashLoad);

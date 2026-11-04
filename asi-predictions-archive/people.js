@@ -533,4 +533,6 @@
   window.addEventListener("popstate", route);
   route();
   booted = true;
+  /* boot.js: draw the current #/person page again if the first route did not */
+  window.XPeopleRoute = function () { var b = booted; booted = false; lastHash = null; try { route(); } finally { booted = b; } };
 })();
