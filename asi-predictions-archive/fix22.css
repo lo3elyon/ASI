@@ -1,0 +1,71 @@
+/* fix22.css: batch 22, loaded last (after fix21).
+   1. the parked window (fix22.js): gone from view and from the accessibility tree
+   2. the poster frame over the window until PLAYING
+   4. People cards clear the sticky nav; secondary text at 4.5:1 or more in both themes; stat tiles fit at 375px
+   5. the centred window's bottom sheet (under 1000px) sits below the video and its controls; its tabs scroll */
+
+/* ---------- 1. parked ---------- */
+.x-pop.f22-parked, .x-pop.f22-parked[hidden] {
+  display: none !important; position: fixed !important; left: -10000px !important; top: -10000px !important;
+  visibility: hidden !important; pointer-events: none !important;
+}
+
+/* ---------- 2. the handoff poster ---------- */
+.x-ap .f22-hand {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none; overflow: hidden;
+  background: var(--hero-surface, #161f39); opacity: 1; transition: opacity 150ms var(--ease-out);
+}
+.x-ap .f22-hand img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.x-ap .f22-hand.is-out { opacity: 0; }
+
+/* ---------- 4a. the sticky nav never covers the People grid or a person page ---------- */
+#people, #pgrid, #pgrid .x-pc, .x-tools, #person-view, #person-view [id], .x-pv__block {
+  scroll-margin-top: calc(env(safe-area-inset-top, 0px) + 12px + var(--nav-h, 56px) + 16px);
+}
+
+/* ---------- 4b. secondary text: at least 4.5:1 on the page and on grey cards, both themes ---------- */
+:root { --text-secondary: light-dark(#545458, #c7c7cc); }
+:root[data-theme="light"] { --text-secondary: #545458; }
+:root[data-theme="dark"] { --text-secondary: #c7c7cc; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --text-secondary: #c7c7cc; } }
+.main :is(.muted, .sub, .fineprint, .head__sub, .x-count, .x-pv__sub, .x-pc__role, .x-cw__m, .photo-card__meta, .x-pg__card-n, .stat__label):not(:is(.x-ap, .x-pop, .hero, .x-tt__top, .nav) *),
+.main :is(.x-pc, .x-card, .x-vc, .x-pv__v, .x-cw__card, .cards > div) small:not(:is(.x-ap, .x-pop, .hero, .x-tt__top) *) {
+  color: var(--text-secondary); opacity: 1;
+}
+:root[data-theme="dark"] .main .stat__label { color: #d1d1d6; }
+
+/* ---------- 4c. stat tiles at 375px: nothing clipped ---------- */
+.stats.x-stats .stat:hover { transform: none; }
+.stats.x-stats .stat__fig, .stats.x-stats .stat__label { min-width: 0; white-space: normal; text-overflow: clip; overflow-wrap: anywhere; }
+@media (max-width: 420px) {
+  .stats.x-stats .stat { overflow: visible; column-gap: 8px; padding: 10px; padding-left: 10px; }
+  .stats.x-stats .stat:nth-child(n) { padding-left: 10px; }
+  .stats.x-stats .x-sti { width: 30px; height: 30px; border-radius: 9px; }
+  .stats.x-stats .stat__fig { font-size: clamp(18px, 5.6vw, 22px); }
+  .stats.x-stats .stat__label { line-height: 1.25; }
+}
+
+/* ---------- 5. under 1000px: the sheet is its own row below the video, never over the controls ---------- */
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp):not(.is-wh-collapsed):has(> .x-wh:not([hidden])) {
+  grid-template-rows: minmax(0, 1fr) 45% !important;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp):not(.is-wh-collapsed):has(> .x-wh:not([hidden])) > .x-ap__slot {
+  grid-row: 1 !important; height: 100% !important; align-self: stretch;
+}
+.x-pop.is-modal.f21-on.f21-sheet:not(.is-min):not(.is-dk14):not(.is-wide) .x-pop__body.x-ap.has-wh:not(.is-fs):not(.is-fsp):not(.is-wh-collapsed) > .x-wh:not([hidden]) {
+  position: relative !important; inset: auto !important; grid-row: 2 !important; grid-column: 1 !important;
+  height: auto !important; min-height: 0 !important; z-index: 1;
+}
+/* the sheet's tabs: one row that scrolls sideways (360px and up) */
+.x-pop.is-modal.f21-on.f21-sheet .x-pop__body.x-ap.has-wh > .x-wh .x-wh__rail { min-width: 0; max-width: 100%; }
+.x-pop.is-modal.f21-on.f21-sheet .x-pop__body.x-ap.has-wh > .x-wh .x-wh__tabs {
+  flex: 1 1 auto !important; min-width: 0 !important; overflow-x: auto !important; overflow-y: hidden !important;
+  overscroll-behavior-x: contain; scroll-snap-type: x proximity; touch-action: pan-x; scrollbar-width: none;
+}
+.x-pop.is-modal.f21-on.f21-sheet .x-pop__body.x-ap.has-wh > .x-wh .x-wh__tabs::-webkit-scrollbar { display: none; }
+.x-pop.is-modal.f21-on.f21-sheet .x-pop__body.x-ap.has-wh > .x-wh .x-wh__tab {
+  flex: 0 0 auto !important; min-width: 68px !important; padding: 6px 10px !important; scroll-snap-align: start; white-space: nowrap;
+}
+.x-pop.is-modal.f21-on.f21-sheet .x-pop__body.x-ap.has-wh > .x-wh .x-wh__x { flex: none; }
+
+@media (prefers-reduced-motion: reduce) { .x-ap .f22-hand { transition: none; } }
