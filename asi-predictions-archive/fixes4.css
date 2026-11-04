@@ -1,0 +1,84 @@
+/* =====================================================================
+   fixes4.css: the windowed video picture, the corner player, duration badges, the footer credit and
+   theme-paired panels. Class names start with x-. Nothing here moves or resizes on hover.
+   ===================================================================== */
+
+/* ---------- 1. Windowed player: the picture is always on show ----------
+   Outside fullscreen the video box keeps a real 16:9 size whatever its parents do (no flex shrink, no 0-width
+   collapse from the bar's size container), it is its own stacking context, and the iframe is cropped by offset
+   rather than by transform, so no clip or compositing layer can hide the picture while the sound plays.
+   The only layer above the iframe while playing is the transparent click shield. */
+.x-ap:not(.is-fs) .x-ap__slot { width: 100%; min-width: 0; }
+.x-ap:not(.is-fs) .x-ap__wrap { width: 100%; }
+.x-ap:not(.is-fs) .x-ap__screen { flex: none; width: 100%; height: auto; min-height: 0; aspect-ratio: 16 / 9; isolation: isolate; }
+.x-ap__frame { z-index: 0; overflow: hidden; }
+.x-ap__frame iframe { visibility: visible; opacity: 1; }
+.x-ap.is-started:not(.is-basic):not(.is-native) .x-ap__frame iframe {
+  top: -60px !important; bottom: auto !important; height: calc(100% + 120px) !important; transform: none !important;
+}
+/* YouTube's own captions: crop only the title strip, and end the frame above the control bar (never less than 70%) */
+.x-ap.is-ytcc.is-started:not(.is-basic):not(.is-native) .x-ap__frame iframe,
+.x-ap.is-started:not(.is-basic):not(.is-native):has(.x-apx-cc.is-yt[aria-pressed="true"]) .x-ap__frame iframe {
+  top: -52px !important; bottom: auto !important; transform: none !important;
+  height: max(70%, calc(100% + 52px - max(0px, var(--x-pn-barh, 100px) - 14px))) !important;
+}
+/* while it plays, the start cover and the poster are gone, never left on top of the picture */
+.x-ap.is-started.is-playing:not(.is-cover) .x-ap__cover:not(.is-fading) { display: none; }
+.x-ap.is-started .x-ap__poster { display: none; }
+/* a card that holds a live player never tilts in 3D (an iframe inside a 3D context can lose its picture) */
+.x-card:has(.x-ap__frame iframe), .x-pi:has(.x-ap__frame iframe), .x-pc:has(.x-ap__frame iframe), .x-vc:has(.x-ap__frame iframe), .x-prc__c:has(.x-ap__frame iframe) {
+  transform: none !important; transform-style: flat !important;
+}
+/* the guard in fixes4.js lifts a player whose picture another layer covers */
+.x-ap.x-lift > .x-ap__slot { position: relative; z-index: 5; }
+
+/* ---------- 2. Corner (mini) player: above every page layer, with a visible drag handle ---------- */
+.x-pop:not(.is-modal) { z-index: 2147482000; }
+.x-pop.is-modal { z-index: 2147481001; }
+.x-pop-bd { z-index: 2147481000; }
+.x-pop__drag { display: none; }
+.x-pop:not(.is-modal):not(.is-min) .x-pop__drag {
+  display: inline-flex; align-items: center; justify-content: center; flex: none; width: 32px; min-height: var(--tap); margin-left: -8px;
+  border: 0; border-radius: var(--r-s); background: none; color: var(--hero-text-muted); cursor: grab; touch-action: none; user-select: none; -webkit-user-select: none;
+}
+.x-pop__drag:hover { color: var(--hero-text); background: var(--hero-glass); }
+.x-pop__drag:focus-visible { outline: 2px solid var(--x-e1, var(--hero-text)); outline-offset: -2px; }
+.x-pop.is-drag .x-pop__drag { cursor: grabbing; }
+@media (pointer: coarse) { .x-pop:not(.is-modal):not(.is-min) .x-pop__drag { width: var(--tap); } }
+/* the minimised pill is always fully on screen */
+.x-pop.is-min { max-width: calc(100vw - 16px); }
+
+/* ---------- 3. Duration badges on every talk thumbnail, bottom right, like YouTube ---------- */
+.x-dur-host { position: relative; }
+.x-dur-w { position: relative; display: inline-block; flex: none; align-self: flex-start; max-width: 100%; line-height: 0; vertical-align: top; }
+.x-dur-w > img { display: block; }
+.x-dur, .x-th__len, .x-th16__len, .x-pop__qlen, .x-ap__updur {
+  background: rgb(8 10 14 / 0.86) !important; color: #fff !important; font-variant-numeric: tabular-nums; letter-spacing: 0.01em;
+}
+.x-dur {
+  position: absolute; right: 6px; bottom: 6px; z-index: 2; padding: 1px 6px; border-radius: 6px;
+  font: var(--weight-medium) var(--size-caption) / 18px var(--sans); white-space: nowrap; pointer-events: none;
+}
+/* the progress strip at a thumbnail's foot stays visible under the badge */
+.x-cw__th .x-dur { bottom: 10px; }
+/* "Play here" sits bottom left, the badge bottom right: they never overlap */
+.x-ph { left: 8px; right: auto; max-width: calc(100% - 84px); }
+
+/* ---------- 4. Footer credit ---------- */
+.x-credit__me b { color: inherit; }
+.x-social { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.x-social a {
+  display: inline-flex; align-items: center; justify-content: center; width: var(--tap); height: var(--tap); border-radius: var(--r-pill);
+  color: var(--text-secondary); box-shadow: inset 0 0 0 1px var(--stroke-secondary); transition: color var(--dur-quick) var(--ease-out), background-color var(--dur-quick) var(--ease-out);
+}
+.x-social a:hover { color: var(--text-primary); background: var(--fill-tertiary); }
+.x-social a:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; }
+
+/* ---------- 5. Theme pairs: text always takes its colour from the same context as its background ---------- */
+.x-pn-cnote, .x-pn-ccv { color: color-mix(in srgb, currentColor 72%, transparent); }
+.x-pn-src { color: inherit; background: color-mix(in srgb, currentColor 8%, transparent); }
+.x-whd__it .x-cw__bar { background: var(--stroke-primary); }
+.x-whd__bd { background: rgb(8 10 16 / 0.45); }
+
+/* ---------- 6. Deep links land without a jump ---------- */
+html[data-route] { scroll-behavior: auto !important; }
