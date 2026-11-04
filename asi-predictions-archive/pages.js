@@ -115,8 +115,21 @@
   /* ---------------------------------------------------------------------
      Small renderers
      --------------------------------------------------------------------- */
+  var photoOf = function (p) { return p.photo || (window.XLogo && XLogo.photo(p.id)) || ""; };
+  var orgTile = function (name, size) { return window.XLogo ? XLogo.tile(name, size || 18) : ""; };
+  /* every logo once, each linking to its organisation's page; n = people per org */
+  var orgStrip = function () {
+    if (!window.XLogo) return "";
+    var L = XLogo.list(); if (!L.length) return "";
+    var nOf = function (o) { return PEOPLE.filter(function (p) { return p.org && XLogo.slugOf(p.org) === o.slug; }).length; };
+    return section("orgs", head("Organisations", "The labs, universities and groups in the archive.", fmtN(L.length) + " organisations. Pick one to see its people, entries and predictions.") +
+      '<ul class="x-orgs">' + L.map(function (o) {
+        var n = nOf(o);
+        return '<li><a href="#/org/' + esc(o.slug) + '">' + XLogo.tile(o, 32) + "<span>" + esc(o.name) + (n ? "<small>" + fmtN(n) + (n === 1 ? " person" : " people") + "</small>" : "") + "</span></a></li>";
+      }).join("") + "</ul>");
+  };
   var personChip = function (p) {
-    return '<a class="x-pg__person" href="#/person/' + esc(p.id) + '">' + (p.photo ? '<img src="' + esc(p.photo) + '" alt="" width="32" height="32" loading="lazy" decoding="async" />' : '<span class="x-pg__ini" aria-hidden="true">' + esc(initials(p.name)) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
+    return '<a class="x-pg__person" href="#/person/' + esc(p.id) + '">' + (photoOf(p) ? '<img src="' + esc(photoOf(p)) + '" alt="" width="32" height="32" loading="lazy" decoding="async" />' : '<span class="x-pg__ini" aria-hidden="true">' + esc(initials(p.name)) + "</span>") + "<span>" + esc(p.name) + "</span></a>";
   };
   var vidLink = function (v) {
     return '<li><a class="link" href="#/watch/' + esc(v.id) + '" data-watch="' + esc(v.id) + '" data-title="' + esc(v.t) + '">' + esc(v.t) + "</a>" +
@@ -169,6 +182,7 @@
      Pages
      --------------------------------------------------------------------- */
   var PAGES = [
+    { id: "#/ask", t: "Ask", s: "Ask the Archive: answers with sources", ico: "💬", kw: "ask question chat answer assistant help" },
     { id: "#/topics", t: "Topics", s: "Every theme in the archive, with counts", ico: "🏷️", kw: "tags themes" },
     { id: "#/era/early", t: "Era: Before deep learning", s: "1950–2011", ico: "🕰️", kw: "era early 1950s 1960s turing good" },
     { id: "#/era/deep", t: "Era: Deep learning", s: "2012–Nov 2022", ico: "🕸️", kw: "era deep learning alexnet bostrom" },
@@ -297,10 +311,14 @@
     var ps = ids.map(function (id) { return PBY[id]; });
     var row = function (label, f, cls) { return '<tr><th scope="row">' + label + "</th>" + ps.map(function (p) { var v = f(p); return "<td" + (v ? (cls ? ' class="' + cls + '"' : "") : ' class="muted"') + ">" + (v || "—") + "</td>"; }).join("") + "</tr>"; };
     var table = '<div class="compare"><table><thead><tr><td></td>' + ps.map(function (p) {
-      return '<th scope="col">' + (p.photo ? '<figure class="compare__media compare__media--photo"><img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" width="240" height="240" loading="lazy" decoding="async" /></figure>' : "") +
+      return '<th scope="col">' + (photoOf(p) ? '<figure class="compare__media compare__media--photo"><img src="' + esc(photoOf(p)) + '" alt="' + esc(p.name) + '" width="240" height="240" loading="lazy" decoding="async" /></figure>' : "") +
         esc(p.name) + "<small>" + esc(p.role || "") + "</small></th>";
     }).join("") + "</tr></thead><tbody>" +
-      row("Organisation", function (p) { return esc(p.org || ""); }) +
+      row("Organisation", function (p) {
+        if (!p.org) return "";
+        var s = window.XLogo && XLogo.slugOf(p.org);
+        return s ? '<a class="x-org" href="#/org/' + esc(s) + '">' + orgTile(p.org, 22) + "<span>" + esc(p.org) + "</span></a>" : esc(p.org);
+      }) +
       row("Group", function (p) { return esc(String(p.group || "").replace(/-/g, " ")); }) +
       row("Country", function (p) { return esc(p.country || ""); }) +
       row("Risk estimate", function (p) { return esc(p.pdoom || ""); }) +
@@ -351,7 +369,32 @@
       '<script type="application/json" id="pgStatsData">' + block.replace(/</g, "\\u003c") + "<\/script>" +
       section("", '<figure class="chart"><figcaption class="chart__cap">Milestones and archive entries by decade<small>Count per decade, ' + esc(dl[0]) + "s to " + esc(dl[dl.length - 1]) + 's</small></figcaption><div class="chart__canvas"><canvas id="pgDec" role="img" aria-label="Milestones and archive entries per decade, stacked"></canvas></div></figure>') +
       section("", '<figure class="chart"><figcaption class="chart__cap">Talks by the year they were recorded; ' + esc(peakY) + " has the most, " + fmtN(yrs[peakY] || 0) + '<small>Dated talks from 2000 on · ' + fmtN(undated) + ' talks have no date</small></figcaption><div class="chart__canvas"><canvas id="pgYrs" role="img" aria-label="Talks per year since 2000; ' + esc(peakY) + ' is the peak"></canvas></div></figure>') +
-      section("", '<figure class="chart"><figcaption class="chart__cap">People by group; ' + esc(glist[0].replace(/-/g, " ")) + " is the largest, " + fmtN(grp[glist[0]]) + '<small>Count of people</small></figcaption><div class="chart__canvas chart__canvas--tall"><canvas id="pgGrp" role="img" aria-label="People per group, largest first"></canvas></div></figure>') };
+      section("", '<figure class="chart"><figcaption class="chart__cap">People by group; ' + esc(glist[0].replace(/-/g, " ")) + " is the largest, " + fmtN(grp[glist[0]]) + '<small>Count of people</small></figcaption><div class="chart__canvas chart__canvas--tall"><canvas id="pgGrp" role="img" aria-label="People per group, largest first"></canvas></div></figure>') +
+      orgStrip() };
+  };
+  /* #/org/<slug>: everything tied to one organisation, found by every name logos.json gives it */
+  R.org = function (slug) {
+    var o = window.XLogo && XLogo.bySlug(slug);
+    if (!o) return { title: "Organisation not found", html: section("", head("Organisations", "No organisation called “" + esc(slug) + "”.", 'See <a class="link" href="#/stats">every organisation</a>.')) };
+    var names = o.names.map(function (n) { return n.replace(/\s*\([^)]*\)/g, "").trim(); }).filter(function (n, i, a) { return n.length > 2 && a.indexOf(n) === i && !/ and |&|\//.test(n); });
+    if (names.indexOf(o.name) < 0) names.unshift(o.name);
+    var re = new RegExp("\\b(" + names.map(function (n) { return n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }).join("|") + ")\\b", "i");
+    var ppl = PEOPLE.filter(function (p) { return p.org && XLogo.slugOf(p.org) === slug; }).sort(function (a, b) { return cmpStr(a.name, b.name); });
+    var ents = ENTRIES.filter(function (e) { return XLogo.slugOf(e.person) === slug || re.test(e.hay); });
+    var prs = PREDS.filter(function (p) { return re.test(p.who + " " + p.prediction + " " + (p.evidence || "")); });
+    var mls = MILES.filter(function (m) { return re.test(m.hay); });
+    var parts = [section("", head("Organisation", XLogo.tile(o, 40, "x-logo--head") + " " + esc(o.name), [[ppl.length, "people"], [ents.length, "archive entries"], [mls.length, "milestones"], [prs.length, "predictions"]].filter(function (x) { return x[0]; }).map(function (x) { return fmtN(x[0]) + " " + x[1]; }).join(" · ") || "Nothing else in the archive names it yet.",
+      '<div class="x-pg__acts"><a class="btn" href="#/stats">All organisations</a><a class="btn" href="#/ask" data-ask-seed="' + esc("What did " + o.name + " say about superintelligence?") + '">Ask about ' + esc(o.name) + "</a></div>"))];
+    if (ppl.length) parts.push(section("", head("", "People", "") + '<div class="x-pg__people">' + ppl.map(personChip).join("") + "</div>"));
+    if (ents.length) parts.push(section("", head("", "Archive entries", "Oldest first.") + growing("og-e", ents, function (e) { return entryRow(e, true); }, 12, '<ol class="timeline">', "</ol>")));
+    if (mls.length) parts.push(section("", head("", "History milestones", "") + growing("og-m", mls, mileRow, 8, '<ol class="timeline">', "</ol>")));
+    if (prs.length) parts.push(section("", head("", "Predictions", "") + growing("og-p", prs, predRow, 8, '<ol class="timeline">', "</ol>")));
+    return { title: o.name, html: parts.join("") };
+  };
+  /* #/ask: the full Ask the Archive page; ask.js draws it */
+  R.ask = function () {
+    onShow.push(function () { var m = host.querySelector("#x-ask-page"); if (m && window.XAsk) XAsk.mountPage(m); });
+    return { title: "Ask the Archive", html: '<div id="x-ask-page" class="x-askp"></div>' };
   };
   R.about = function () {
     return { title: "About", html: section("", head("About", "About the ASI History Archive.", "A fact-checked record of what people predicted about superintelligence, and what actually happened.")) +
@@ -375,7 +418,7 @@
   (pv || main).parentNode.insertBefore(host, (pv || main).nextSibling);
   var baseTitle = doc.title.replace(/^.* · (?=ASI History Archive)/, "");
   var parse = function (h) {
-    var m = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about)(?:\/([^?#]*))?\/?$/.exec(h || "");
+    var m = /^#\/(topics|topic|era|quotes|timeline|compare|stats|about|org|ask)(?:\/([^?#]*))?\/?$/.exec(h || "");
     return m ? { name: m[1], arg: m[2] ? decodeURIComponent(m[2]) : "" } : null;
   };
   var curKey = null, mainY = null, lastHash = null, onShow = [];
@@ -396,6 +439,7 @@
       if (main) main.hidden = true;
       if (pv && !pv.hidden) pv.hidden = true;
       var fn = r.name === "topic" ? R.topic : r.name === "era" ? R.era : R[r.name];
+      if (window.XAsk && XAsk.stop) XAsk.stop();
       var out = fn(r.arg || (r.name === "era" ? "early" : ""));
       growLists = {}; onShow = [];
       host.innerHTML = '<div class="links x-pg__top"><a class="btn" href="#/" data-pg-home>← Back to the archive</a></div>' + out.html;
@@ -488,10 +532,11 @@
         if (t.name === "czBg") { cz.bg = t.value; saveCz(); bgShown = undefined; setBg(pageEra); }
         else if (t.name === "czScrim") { cz.scrim = t.value; saveCz(); setBg(pageEra); }
         else if (t.name === "czMotion") { cz.motion = t.value; saveCz(); applyMotion(); }
+        else if (t.name === "czKw" && window.XHL) XHL.setOn(t.checked);
       });
       czDlg.addEventListener("click", function (e) {
         if (e.target === czDlg || e.target.closest("[data-cz-close]")) czDlg.close();
-        else if (e.target.closest("[data-cz-reset]")) { cz = { bg: "auto", scrim: "strong", motion: "system" }; saveCz(); applyMotion(); bgShown = undefined; setBg(pageEra); fill(); }
+        else if (e.target.closest("[data-cz-reset]")) { cz = { bg: "auto", scrim: "strong", motion: "system" }; saveCz(); if (window.XHL) XHL.setOn(true); applyMotion(); bgShown = undefined; setBg(pageEra); fill(); }
       });
       czDlg.addEventListener("close", function () { if (czFrom && czFrom.focus && doc.contains(czFrom)) czFrom.focus({ preventScroll: true }); });
     }
@@ -503,7 +548,8 @@
           '<p class="x-cz__hint">A fixed picture behind the page. It never changes on its own.</p></fieldset>' +
         '<fieldset><legend>Background strength</legend><div class="x-cz__opts">' + opt("czScrim", "strong", "Subtle", cz.scrim) + opt("czScrim", "soft", "Stronger", cz.scrim) + "</div></fieldset>" +
         '<fieldset><legend>Motion</legend><div class="x-cz__opts">' + opt("czMotion", "system", "Follow my device", cz.motion) + opt("czMotion", "calm", "Calm: no animation", cz.motion) + "</div></fieldset>" +
-        (window.XVoice && XVoice.ok ? '<fieldset><legend>Reading voice</legend><div class="x-cz__voice">' + XVoice.pickers() + '</div><p class="x-cz__hint">Used by every 🔊 button on the site.</p></fieldset>' : "") +
+        (window.XHL ? '<fieldset><legend>Keywords</legend><div class="x-cz__opts"><label><input type="checkbox" name="czKw"' + (XHL.isOn() ? " checked" : "") + ' />Highlight keywords</label></div><p class="x-cz__hint">Colours people, organisations, topics and years in summaries, quotes, history and answers, each linking to its page.</p></fieldset>' : "") +
+        (window.XVoice && XVoice.ok ? '<fieldset><legend>Reading voice</legend><div class="x-cz__voice">' + XVoice.pickers() + '</div><p class="x-cz__hint">Used by every 🔊 button on the site, the Kids’ corner, quotes and Ask answers. The natural voice downloads only when you pick it.</p></fieldset>' : "") +
         '<div class="x-cz__foot"><button type="button" class="btn" data-cz-reset>Reset</button><button type="button" class="btn" data-cz-close>Done</button></div></form>';
       czDlg.querySelectorAll(".x-cz__sw[data-sw]").forEach(function (s) {
         var i = doc.querySelector('#x-era-imgs img[data-era="' + s.getAttribute("data-sw") + '"]');
@@ -520,7 +566,7 @@
      The nav: a More menu on desktop, the same links in the phone Sections sheet
      --------------------------------------------------------------------- */
   var nav = doc.querySelector("header.nav"), more = null, moreBtn = null, moreMenu = null;
-  var MENU = [["#/topics", "🏷️", "Topics"], ["#/era/early", "🕰️", "Early era", "–2011"], ["#/era/deep", "🕸️", "Deep learning era", "2012–22"], ["#/era/post", "💬", "After ChatGPT", "2022–"],
+  var MENU = [["#/ask", "💬", "Ask the Archive"], ["#/topics", "🏷️", "Topics"], ["#/era/early", "🕰️", "Early era", "–2011"], ["#/era/deep", "🕸️", "Deep learning era", "2012–22"], ["#/era/post", "💬", "After ChatGPT", "2022–"],
     ["#/quotes", "❝", "Quotes"], ["#/timeline", "📜", "Full timeline"], ["#/compare", "⚖️", "Compare people"], ["#/stats", "📊", "Stats"], ["#/about", "ℹ️", "About"]];
   var menuLinks = function () { return MENU.map(function (m) { return '<li><a href="' + m[0] + '"><span class="x-more__ico" aria-hidden="true">' + m[1] + "</span>" + esc(m[2]) + (m[3] ? "<small>" + esc(m[3]) + "</small>" : "") + "</a></li>"; }).join(""); };
   var mac = /Mac|iPhone|iPad/.test(navigator.platform || "");

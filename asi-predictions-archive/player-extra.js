@@ -127,6 +127,7 @@
           '<button class="x-ap__b" type="button" data-x="abC" title="Clear A and B">Clear</button>' +
         "</div></div>" +
         '<button class="x-ap__b x-apx-loop" type="button" data-x="loop" aria-pressed="false" aria-label="Loop (R)">' + IC.loop + '<span class="x-apx-lbl">Loop video</span></button>' +
+        '<button class="x-ap__b x-apx-hist" type="button" data-x="history">' + svg('<path d="M3.5 12a8.5 8.5 0 1 0 2.5-6M3.5 4v4h4M12 7.5V12l3 2"/>') + lbl("Watch history") + "</button>" +
         '<div class="x-apx-slot" data-slot="top"></div>' +
         '<button class="x-ap__b" type="button" data-x="copy">' + IC.copy + lbl("Copy link") + "</button>" +
         '<a class="x-ap__b" data-x="yt" href="#" target="_blank" rel="noopener">' + IC.yt + lbl("YouTube") + "</a>" +
@@ -358,6 +359,13 @@
       if (a === "mute") toggleMute();
       else if (a === "cc") toggleCC();
       else if (a === "loop") toggleLoop();
+      else if (a === "history") {
+        closeMenu(false);
+        var fsEl = document.fullscreenElement || document.webkitFullscreenElement;
+        var openH = function () { if (window.ArchiveWatch && ArchiveWatch.open) ArchiveWatch.open(); };
+        if (fsEl) { var ex = document.exitFullscreen || document.webkitExitFullscreen; try { var pr = ex && ex.call(document); if (pr && pr.then) pr.then(openH, openH); else openH(); } catch (e) { openH(); } }
+        else openH();
+      }
       else if (a === "more") { if (isOpen()) closeMenu(false); else openMenu(); }
       else if (a === "copy") { var c = act('[data-a="copy"]'); if (c) c.click(); var l = b.querySelector(".x-apx-lbl"); l.textContent = "Copied"; setTimeout(function () { l.textContent = "Copy link"; closeMenu(false); }, 900); }
       else if (a === "yt") { paintProxies(); if (inst.isPlaying()) inst.pause(); closeMenu(false); }

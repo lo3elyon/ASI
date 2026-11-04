@@ -1356,7 +1356,7 @@
     if (!v || !v.id) return;
     if (!Array.isArray(v.p)) v.p = [];
     var q = o.queue && o.queue.indexOf(v) >= 0 ? o.queue : related(v);
-    Pop.open(v, { modal: true, queue: q, index: q.indexOf(v) });
+    Pop.open(v, o.at > 0 ? { modal: true, queue: q, index: q.indexOf(v), at: o.at } : { modal: true, queue: q, index: q.indexOf(v) });
   };
 
   /* Every video link outside the Theater opens the in-page window; none ever opens a tab or leaves the page. */

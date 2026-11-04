@@ -8,14 +8,24 @@
   "use strict";
   var doc = document;
   var norm = window.XLen || function (s) { return String(s || "").replace(/^0:(?=\d)/, ""); };
-  var LEN = {}, N = 0;
-  try {
-    ((window.Hark && Hark.data && Hark.data("d-videos")) || []).forEach(function (v) {
+  var LEN = {}, N = 0, lastTry = -1e9;
+  /* read lazily and again while still empty (at most every 200ms): the data block may not be readable the moment this file runs */
+  var load = function () {
+    var now = Date.now();
+    if (N || now - lastTry < 200) return;
+    lastTry = now;
+    var list = [];
+    try { list = (window.Hark && Hark.data && Hark.data("d-videos")) || []; } catch (e) { list = []; }
+    if (!list.length) {
+      try { var el = doc.getElementById("d-videos"); if (el && el.textContent.trim()) list = JSON.parse(el.textContent); } catch (e) { list = []; }
+    }
+    (list || []).forEach(function (v) {
       if (v && v.id && v.len) { var t = norm(v.len); if (t) { LEN[v.id] = t; N++; } }
     });
-  } catch (e) {}
+  };
+  load();
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
-  var len = function (id) { return (id && LEN[id]) || ""; };
+  var len = function (id) { if (!N) load(); return (id && LEN[id]) || ""; };
   var html = function (id, cls) {
     var l = len(id);
     return l ? '<span class="x-dur' + (cls ? " " + cls : "") + '" data-dur="' + esc(id) + '">' + l + "</span>" : "";

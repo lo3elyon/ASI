@@ -25,6 +25,8 @@
 
   /* ---------- transcripts: fetched once per video per session, only when that video opens ---------- */
   var TR = {};
+  /* read-only view of the transcripts loaded so far, so Ask the Archive can search their text */
+  window.XTranscripts = { loaded: function () { var o = {}; Object.keys(TR).forEach(function (k) { if (TR[k].state === "ok") o[k] = TR[k].data; }); return o; } };
   var INST = [];
   var groupCues = function (cues) {
     var out = [], cur = null;
@@ -431,7 +433,12 @@
       inst.say(t);
     };
     var YTNONE = AP._ytNoCC || (AP._ytNoCC = {});
-    var srcOf = function (v) { return !v ? "" : hasCC(v.id) ? "site" : YTNONE[v.id] ? "none" : "yt"; };
+    /* the actual state: a loaded transcript (or site captions on screen) wins over the "none" flag */
+    var srcOf = function (v) {
+      if (!v) return "";
+      if (trOf(v.id) || hasCC(v.id) || (S.capLive && S.capLive === v.id)) return "site";
+      return YTNONE[v.id] ? "none" : "yt";
+    };
     var ytSize = function () { return C.size <= 75 ? -1 : C.size >= 175 ? 3 : Math.round((C.size - 100) / 25); };
     var Y = { key: "", size: null, tries: 0, track: false };
     var ytCall = function (f) { var p = inst.yt(); if (!p) return false; try { f(p); return true; } catch (e) { return false; } };
@@ -643,7 +650,11 @@
           }
         }
       }
-      if (key !== S.capKey) { S.capKey = key; capWin.innerHTML = html; }
+      if (key !== S.capKey) {
+        S.capKey = key; capWin.innerHTML = html;
+        /* site captions just appeared: the CC button's label follows what is on screen */
+        if (key && S.capLive !== v.id) { S.capLive = v.id; if (YTNONE[v.id]) delete YTNONE[v.id]; paintBtn(); paintSet(); }
+      }
       if (key && C.karaoke && S.capW) {
         var cn = Math.ceil(S.capW * frac(t, S.capS, S.capE));
         if (cn !== S.capN) { S.capN = cn; tint(capWin, cn); }

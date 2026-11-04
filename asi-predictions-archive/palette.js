@@ -8,9 +8,9 @@
   var data = function (id) { try { return Hark.data(id) || []; } catch (e) { return []; } };
 
   /* ---------- index ---------- */
-  var IDX = { pages: [], people: [], history: [], entries: [], videos: [], preds: [] };
-  var LABEL = { pages: "Pages", people: "People", history: "History milestones", entries: "Archive entries", videos: "Videos", preds: "Predictions" };
-  var KIND = { pages: "Page", people: "Person", history: "Milestone", entries: "Entry", videos: "Video", preds: "Prediction" };
+  var IDX = { actions: [{ id: "watch-history", t: "Watch history", s: "Talks you started on this device", k: "action", hay: "watch history my watch history recently watched continue watching resume", key: "watch history" }], pages: [], people: [], history: [], entries: [], videos: [], preds: [] };
+  var LABEL = { actions: "Actions", pages: "Pages", people: "People", history: "History milestones", entries: "Archive entries", videos: "Videos", preds: "Predictions" };
+  var KIND = { actions: "Action", pages: "Page", people: "Person", history: "Milestone", entries: "Entry", videos: "Video", preds: "Prediction" };
   var built = false;
   var build = function () {
     if (built) return; built = true;
@@ -45,6 +45,7 @@
     if (main && main.hidden) { location.hash = "#/"; setTimeout(fn, 80); } else fn();
   };
   var go = function (g, id) {
+    if (g === "actions") { if (id === "watch-history" && window.ArchiveWatch && ArchiveWatch.open) ArchiveWatch.open(); return; }
     if (g === "pages") { location.hash = id; return; }
     if (g === "people") { location.hash = "#/person/" + id; return; }
     /* a video opens in the in-page window over whatever is on screen; the page stays where it is */
@@ -84,21 +85,21 @@
   var opts = [], sel = -1, lastFocus = null;
 
   var render = function () {
-    var q = inp.value, res = search(q), html = "", n = 0, total = 0;
+    var q = inp.value, res = q.trim() ? search(q) : [{ g: "actions", n: IDX.actions.length, list: IDX.actions }], html = "", n = 0, total = 0;
     opts = [];
     res.forEach(function (grp) {
       total += grp.n;
       html += '<div role="group" class="x-cp__grp-' + grp.g + '" aria-label="' + LABEL[grp.g] + '"><p class="x-cp__g" aria-hidden="true">' + LABEL[grp.g] + " · " + grp.n + "</p>";
       grp.list.forEach(function (r) {
         opts.push({ g: grp.g, id: r.id });
-        html += '<div class="x-cp__o" role="option" id="cpo-' + n + '" data-i="' + n + '" aria-selected="false"><b>' + esc(r.t) + "</b><small>" + esc(r.s) + '</small><span class="x-cp__k">' + esc(KIND[grp.g]) + "</span></div>";
+        html += '<div class="x-cp__o" role="option" id="cpo-' + n + '" data-i="' + n + '" aria-selected="false"><b>' + (window.XHL ? XHL.mark(esc(r.t), q) : esc(r.t)) + "</b><small>" + (window.XHL ? XHL.mark(esc(r.s), q) : esc(r.s)) + '</small><span class="x-cp__k">' + esc(KIND[grp.g]) + "</span></div>";
         n++;
       });
       html += "</div>";
     });
     listEl.innerHTML = q.trim()
       ? (html || '<p class="x-cp__empty">Nothing matches “' + esc(q) + "”. Try a surname, a year or a word like “alignment”.</p>")
-      : '<p class="x-cp__empty">Type a name, year, title or channel. Try “Hinton”, “1965”, “alignment”, “Lex Fridman”, or a page like “quotes”, “timeline” or “compare”.</p>';
+      : html + '<p class="x-cp__empty">Type a name, year, title or channel. Try “Hinton”, “1965”, “alignment”, “Lex Fridman”, or a page like “quotes”, “timeline” or “compare”.</p>';
     nEl.textContent = q.trim() ? total + " match" + (total === 1 ? "" : "es") : "";
     /* ids and indexes follow the listed order exactly: cpo-0, cpo-1, … with no gaps */
     var shown = listEl.querySelectorAll('[role="option"]');

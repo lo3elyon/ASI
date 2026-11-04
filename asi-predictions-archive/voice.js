@@ -1,42 +1,99 @@
-/* voice.js: the site's one narrator (speechSynthesis), and the Kids' corner read-aloud built on it.
-   Nothing speaks until a reader presses a button; pressing the same button again stops it.
-   Everything attaches by event delegation on document, so markup rendered later (learn.js, pages.js) just works. */
+/* voice.js: the site's one narrator, and the Kids' corner read-aloud built on it.
+   Two engines: "System voice" (speechSynthesis; prefers voices named Natural, Neural, Google or Online) and
+   "Natural (Kokoro, on-device)" (kokoro-js, Kokoro-82M q8, WebGPU else WASM), which downloads only after a reader
+   picks it, with its size and a progress bar; the browser caches it. Both read sentence by sentence, with play,
+   pause, stop, speed and the current sentence shown in the narrator bar. Nothing speaks until a reader presses a
+   button. Everything attaches by event delegation on document, so markup rendered later just works. */
 (function () {
   "use strict";
   var doc = document;
-  var ss = window.speechSynthesis, ok = !!(ss && window.SpeechSynthesisUtterance);
+  var ss = window.speechSynthesis, ssOk = !!(ss && window.SpeechSynthesisUtterance);
   var KEY = "asiArchive.say.v1", pref = {};
   try { pref = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { pref = {}; }
   var save = function () { try { localStorage.setItem(KEY, JSON.stringify(pref)); } catch (e) {} };
   var RATES = [0.75, 1, 1.25, 1.5];
   var rate = RATES.indexOf(+pref.rate) >= 0 ? +pref.rate : 1, voices = [], voice = null;
+  var engine = pref.engine === "kokoro" ? "kokoro" : "system";
+  var ok = ssOk || !!window.WebAssembly;
   var tok = 0, keep = 0, cur = null, subs = [];
   var android = /Android/i.test(navigator.userAgent || "");
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var WAVE = '<span class="x-vo-wave" aria-hidden="true"><i></i><i></i><i></i><i></i></span>';
+  var KVOICES = [["af_heart", "Heart (US, female)"], ["af_bella", "Bella (US, female)"], ["af_nicole", "Nicole (US, female)"], ["af_sarah", "Sarah (US, female)"],
+    ["am_michael", "Michael (US, male)"], ["am_adam", "Adam (US, male)"], ["bf_emma", "Emma (UK, female)"], ["bf_isabella", "Isabella (UK, female)"],
+    ["bm_george", "George (UK, male)"], ["bm_lewis", "Lewis (UK, male)"]];
+  var kvoice = KVOICES.some(function (v) { return v[0] === pref.kvoice; }) ? pref.kvoice : "af_heart";
 
-  /* ---------- voices: English ones, Indian then British then US English first, local before network ---------- */
+  /* ---------- system voices: natural-sounding ones first, then Indian, British, US English, local before network ---------- */
+  var quality = function (v) { return /natural|neural/i.test(v.name) ? 0 : /google|online/i.test(v.name) ? 1 : 2; };
   var rank = function (v) { var l = (v.lang || "").replace("_", "-").toLowerCase(); return l === "en-in" ? 0 : l === "en-gb" ? 1 : l === "en-us" ? 2 : 3; };
   var loadVoices = function () {
-    if (!ok) return;
+    if (!ssOk) return;
     var list = (ss.getVoices() || []).filter(function (v) { return /^en([-_]|$)/i.test(v.lang || ""); });
-    list.sort(function (a, b) { return rank(a) - rank(b) || (b.localService === true) - (a.localService === true) || String(a.name).localeCompare(String(b.name)); });
+    list.sort(function (a, b) { return quality(a) - quality(b) || rank(a) - rank(b) || (b.localService === true) - (a.localService === true) || String(a.name).localeCompare(String(b.name)); });
     voices = list;
     voice = list.filter(function (v) { return v.voiceURI === pref.voice; })[0] || list[0] || null;
     fillSelects();
   };
+
+  /* ---------- Kokoro: loaded on demand ---------- */
+  var K = { tts: null, p: null, state: "idle", pct: 0, files: {}, err: "", device: "" };
+  var KSIZE = "about 90 MB";
+  var paintK = function () {
+    doc.querySelectorAll("[data-vo-kstatus]").forEach(function (el) {
+      var s = K.state;
+      el.hidden = engine !== "kokoro";
+      el.innerHTML = s === "loading" ? '<span>Downloading the Kokoro voice (' + KSIZE + ', once; then cached): ' + Math.round(K.pct) + '%</span><progress max="100" value="' + Math.round(K.pct) + '"></progress>'
+        : s === "ready" ? "<span>Kokoro is ready, running on " + (K.device === "webgpu" ? "WebGPU" : "WebAssembly") + " on this device.</span>"
+        : s === "error" ? "<span>The Kokoro voice could not load (" + esc(K.err) + "). Reading with the system voice instead.</span>"
+        : "<span>Natural voice: " + KSIZE + " download the first time it reads, then cached. It runs on this device.</span>";
+    });
+  };
+  var ensureKokoro = function () {
+    if (K.p) return K.p;
+    K.state = "loading"; K.pct = 0; K.files = {}; paintK();
+    var progress = function (d) {
+      if (!d || d.status !== "progress" || !d.file) return;
+      K.files[d.file] = { l: d.loaded || 0, t: d.total || 0 };
+      var l = 0, t = 0; Object.keys(K.files).forEach(function (f) { l += K.files[f].l; t += K.files[f].t; });
+      K.pct = t ? (l / t) * 100 : d.progress || 0; paintK();
+    };
+    var load = function (m, device) {
+      K.device = device;
+      return m.KokoroTTS.from_pretrained("onnx-community/Kokoro-82M-v1.0-ONNX", { dtype: "q8", device: device, progress_callback: progress });
+    };
+    K.p = import("https://cdn.jsdelivr.net/npm/kokoro-js/+esm").then(function (m) {
+      var dev = navigator.gpu ? "webgpu" : "wasm";
+      return load(m, dev).catch(function (e) { if (dev === "webgpu") return load(m, "wasm"); throw e; });
+    }).then(function (tts) { K.tts = tts; K.state = "ready"; paintK(); return tts; })
+      .catch(function (e) { K.state = "error"; K.err = (e && e.message ? e.message : "network").slice(0, 80); K.p = null; paintK(); throw e; });
+    return K.p;
+  };
+
   var voiceOpts = function () {
+    if (engine === "kokoro") return KVOICES.map(function (v) { return '<option value="' + v[0] + '"' + (v[0] === kvoice ? " selected" : "") + ">" + esc(v[1]) + "</option>"; }).join("");
     return voices.length ? voices.map(function (v, i) { return '<option value="' + i + '"' + (v === voice ? " selected" : "") + ">" + esc(v.name) + " (" + esc(v.lang) + ")</option>"; }).join("") : '<option value="">Default voice</option>';
   };
   var rateOpts = function () { return RATES.map(function (r) { return '<option value="' + r + '"' + (r === rate ? " selected" : "") + ">" + r + "×</option>"; }).join(""); };
+  var engOpts = function () { return '<option value="system"' + (engine === "system" ? " selected" : "") + '>System voice</option><option value="kokoro"' + (engine === "kokoro" ? " selected" : "") + ">Natural (Kokoro, on-device)</option>"; };
   var fillSelects = function () {
     doc.querySelectorAll("select[data-vo-voice]").forEach(function (s) { s.innerHTML = voiceOpts(); });
     doc.querySelectorAll("select[data-vo-rate]").forEach(function (s) { s.value = String(rate); });
+    doc.querySelectorAll("select[data-vo-engine]").forEach(function (s) { s.value = engine; });
+    paintK();
   };
-  var setVoice = function (i) { voice = voices[+i] || voice; pref.voice = voice && voice.voiceURI; save(); fillSelects(); };
+  var setVoice = function (i) {
+    if (engine === "kokoro") { kvoice = i; pref.kvoice = i; save(); fillSelects(); return; }
+    voice = voices[+i] || voice; pref.voice = voice && voice.voiceURI; save(); fillSelects();
+  };
   var setRate = function (r) { r = +r; if (RATES.indexOf(r) < 0) r = 1; rate = r; pref.rate = r; save(); fillSelects(); };
+  var setEngine = function (e) {
+    engine = e === "kokoro" ? "kokoro" : "system"; pref.engine = engine; save();
+    stop(); fillSelects();
+    if (engine === "kokoro") ensureKokoro().catch(function () {});
+  };
 
-  /* ---------- speaking: long text goes out sentence by sentence, so Chrome never cuts it off ---------- */
+  /* ---------- speaking: long text goes out sentence by sentence ---------- */
   var chunks = function (text) {
     var parts = String(text || "").replace(/\s+/g, " ").trim().match(/[^.!?…]+[.!?…]+["”’)]*\s*|[^.!?…]+$/g) || [];
     var out = [], buf = "";
@@ -44,61 +101,155 @@
     if (buf.trim()) out.push(buf.trim());
     return out;
   };
-  var emit = function () { var s = { speaking: !!cur, id: cur ? cur.id : null }; subs.forEach(function (f) { try { f(s); } catch (e) {} }); };
-  var stop = function () {
+  var emit = function () {
+    var s = { speaking: !!cur, id: cur ? cur.id : null, paused: !!(cur && cur.paused), i: cur ? cur.i : -1, n: cur ? cur.list.length : 0, sentence: cur && cur.i >= 0 ? cur.list[cur.i] : "" };
+    subs.forEach(function (f) { try { f(s); } catch (e) {} });
+  };
+  var audio = null, prefetch = null;
+  var halt = function () {
     tok++; clearInterval(keep); clearTimeout(speak.wd);
-    if (ok) ss.cancel();
+    if (ssOk) ss.cancel();
+    if (audio) { try { audio.pause(); } catch (e) {} if (audio.__url) URL.revokeObjectURL(audio.__url); audio = null; }
+    prefetch = null;
+  };
+  var stop = function () {
+    halt();
     all = false;
     cur = null;
     emit();
+  };
+  var speakSystem = function (list, o, my) {
+    if (!ssOk) { cur = null; emit(); return; }
+    var i = 0, began = false;
+    var done = function () { if (my !== tok) return; clearInterval(keep); clearTimeout(speak.wd); cur = null; emit(); if (o.onend) o.onend(); };
+    var next = function () {
+      if (my !== tok) return;
+      if (i >= list.length) { done(); return; }
+      var idx = i++;
+      var u = new SpeechSynthesisUtterance(list[idx]);
+      if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = "en-GB";
+      u.rate = 0.95 * rate;
+      u.onstart = function () { if (my !== tok) return; began = true; clearTimeout(speak.wd); if (cur) { cur.live = true; cur.i = idx; emit(); } };
+      u.onend = next;
+      u.onerror = function (e) { if (my !== tok) return; if (e && (e.error === "interrupted" || e.error === "canceled")) return; next(); };
+      ss.speak(u);
+      if (ss.paused && !(cur && cur.paused)) ss.resume();
+    };
+    setTimeout(next, 80);
+    speak.wd = setTimeout(function () { if (my !== tok || began || ss.speaking) return; tok++; all = false; cur = null; emit(); }, 4000);
+    if (!android) keep = setInterval(function () { if (my !== tok || !ss.speaking || (cur && cur.paused)) return; ss.pause(); ss.resume(); }, 10000);
+  };
+  var speakKokoro = function (list, o, my) {
+    var gen = function (i) { return K.tts.generate(list[i], { voice: kvoice, speed: rate }).then(function (a) { return a.toBlob(); }); };
+    var play = function (i, blobP) {
+      if (my !== tok) return;
+      if (i >= list.length) { cur = null; emit(); if (o.onend) o.onend(); return; }
+      blobP.then(function (blob) {
+        if (my !== tok) return;
+        if (i + 1 < list.length) prefetch = gen(i + 1);
+        var url = URL.createObjectURL(blob);
+        audio = new Audio(url); audio.__url = url;
+        audio.onended = function () { URL.revokeObjectURL(url); if (my !== tok) return; play(i + 1, prefetch || gen(i + 1)); };
+        cur.i = i; cur.live = true; emit();
+        if (!cur.paused) audio.play().catch(function () {});
+      }).catch(function () { if (my !== tok) return; play(i + 1, i + 1 < list.length ? gen(i + 1) : Promise.resolve(null)); });
+    };
+    ensureKokoro().then(function () { if (my === tok) play(0, gen(0)); }).catch(function () {
+      if (my !== tok) return;
+      speakSystem(list, o, my);
+    });
   };
   var speak = function (text, o) {
     o = o || {};
     if (!ok) return false;
     var list = chunks(text); if (!list.length) return false;
-    var my = ++tok, i = 0, began = false;
-    ss.cancel(); clearInterval(keep); clearTimeout(speak.wd);
-    /* the pressed state shows at once, on the click; the 'start' event confirms it and 'end' clears it */
-    cur = { id: o.id || "x", live: false }; emit();
-    var done = function () { if (my !== tok) return; clearInterval(keep); clearTimeout(speak.wd); cur = null; emit(); if (o.onend) o.onend(); };
-    var next = function () {
-      if (my !== tok) return;
-      if (i >= list.length) { done(); return; }
-      var u = new SpeechSynthesisUtterance(list[i++]);
-      if (voice) { u.voice = voice; u.lang = voice.lang; } else u.lang = "en-GB";
-      u.rate = 0.95 * rate;
-      u.onstart = function () { if (my !== tok) return; began = true; clearTimeout(speak.wd); if (cur) { cur.live = true; emit(); } };
-      u.onend = next;
-      u.onerror = function (e) { if (my !== tok) return; if (e && (e.error === "interrupted" || e.error === "canceled")) return; next(); };
-      ss.speak(u);
-      if (ss.paused) ss.resume();
-    };
-    /* Chrome drops an utterance spoken in the same tick as cancel(); a short gap avoids it */
-    setTimeout(next, 80);
-    /* if the browser never starts speaking (no voice, blocked), the buttons go back to rest after 4s */
-    speak.wd = setTimeout(function () { if (my !== tok || began || ss.speaking) return; tok++; all = false; cur = null; emit(); }, 4000);
-    /* Chrome pauses long speech after ~15s; a pause/resume nudge keeps it going (not on Android, where pause ends it) */
-    if (!android) keep = setInterval(function () { if (my !== tok || !ss.speaking) return; ss.pause(); ss.resume(); }, 10000);
+    halt();
+    var my = ++tok;
+    cur = { id: o.id || "x", live: false, list: list, i: -1, paused: false }; emit();
+    if (engine === "kokoro") speakKokoro(list, o, my); else speakSystem(list, o, my);
     return true;
   };
+  var pause = function () {
+    if (!cur || cur.paused) return;
+    cur.paused = true;
+    if (audio) audio.pause(); else if (ssOk) ss.pause();
+    emit();
+  };
+  var resume = function () {
+    if (!cur || !cur.paused) return;
+    cur.paused = false;
+    if (audio) audio.play().catch(function () {}); else if (ssOk) ss.resume();
+    emit();
+  };
 
-  /* the voice and speed pickers, for any bar that wants them */
+  /* the engine, voice and speed pickers, for any bar that wants them */
   var pickers = function () {
-    return '<label class="x-vo-lab">Speed <select data-vo-rate aria-label="Reading speed">' + rateOpts() + "</select></label>" +
-      '<label class="x-vo-lab">Voice <select data-vo-voice aria-label="Voice">' + voiceOpts() + "</select></label>";
+    return '<label class="x-vo-lab">Engine <select data-vo-engine aria-label="Voice engine">' + engOpts() + "</select></label>" +
+      '<label class="x-vo-lab">Speed <select data-vo-rate aria-label="Reading speed">' + rateOpts() + "</select></label>" +
+      '<label class="x-vo-lab">Voice <select data-vo-voice aria-label="Voice">' + voiceOpts() + "</select></label>" +
+      '<p class="x-vo-k" data-vo-kstatus' + (engine === "kokoro" ? "" : " hidden") + "></p>";
   };
   doc.addEventListener("change", function (e) {
     var t = e.target;
-    if (t.matches && t.matches("select[data-vo-voice]")) setVoice(t.value);
-    else if (t.matches && t.matches("select[data-vo-rate]")) setRate(t.value);
+    if (!t.matches) return;
+    if (t.matches("select[data-vo-voice]")) setVoice(t.value);
+    else if (t.matches("select[data-vo-rate]")) setRate(t.value);
+    else if (t.matches("select[data-vo-engine]")) setEngine(t.value);
   });
 
   window.XVoice = {
-    ok: ok, speak: speak, stop: stop, pickers: pickers, setRate: setRate, setVoice: setVoice,
+    ok: ok, speak: speak, stop: stop, pause: pause, resume: resume, pickers: pickers, setRate: setRate, setVoice: setVoice, setEngine: setEngine,
+    engine: function () { return engine; },
     rate: function () { return rate; },
     isSpeaking: function (id) { return !!cur && (id == null || cur.id === id); },
     on: function (f) { subs.push(f); }
   };
+
+  /* =====================================================================
+     Narrator bar: shows while anything reads; play/pause, stop, speed, engine and the sentence being read
+     ===================================================================== */
+  var bar = null;
+  var paintBar = function (s) {
+    if (!s.speaking) { if (bar) bar.hidden = true; return; }
+    if (!bar) {
+      bar = doc.createElement("div");
+      bar.className = "x-nar glass"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Narrator");
+      bar.innerHTML = '<button type="button" class="x-vo-b" data-nar="pp" aria-label="Pause">⏸</button><button type="button" class="x-vo-b" data-nar="stop" aria-label="Stop">■</button>' +
+        '<p class="x-nar__s" aria-live="off"><small></small><span></span></p>' +
+        '<label class="x-vo-lab"><span class="x-nar__lab">Speed</span> <select data-vo-rate aria-label="Reading speed">' + rateOpts() + "</select></label>" +
+        '<label class="x-vo-lab"><span class="x-nar__lab">Engine</span> <select data-vo-engine aria-label="Voice engine">' + engOpts() + "</select></label>" +
+        '<p class="x-vo-k x-nar__k" data-vo-kstatus hidden></p>';
+      doc.body.appendChild(bar);
+      bar.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-nar]"); if (!b) return;
+        if (b.getAttribute("data-nar") === "stop") stop();
+        else if (cur && cur.paused) resume(); else pause();
+      });
+    }
+    bar.hidden = false;
+    var pp = bar.querySelector('[data-nar="pp"]');
+    pp.textContent = s.paused ? "▶" : "⏸"; pp.setAttribute("aria-label", s.paused ? "Resume" : "Pause");
+    bar.querySelector(".x-nar__s small").textContent = s.i >= 0 ? "Sentence " + (s.i + 1) + " of " + s.n + (s.paused ? " · paused" : "") : engine === "kokoro" && K.state !== "ready" ? "Preparing the natural voice…" : "Starting…";
+    bar.querySelector(".x-nar__s span").textContent = s.sentence || "";
+    paintK();
+  };
+  subs.push(paintBar);
+  /* the sentence being read, marked in the text it came from (when that text is a [data-vo-read] block) */
+  subs.push(function (s) {
+    doc.querySelectorAll(".x-vo-now").forEach(function (m) { var p = m.parentNode; while (m.firstChild) p.insertBefore(m.firstChild, m); p.removeChild(m); p.normalize(); });
+    if (!s.speaking || !s.sentence || !/^g:/.test(s.id)) return;
+    var src = doc.getElementById(s.id.slice(2)); if (!src) return;
+    var needle = s.sentence.slice(0, 40), w = doc.createTreeWalker(src, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) {
+      var at = n.nodeValue.indexOf(needle); if (at < 0) continue;
+      var len = Math.min(s.sentence.length, n.nodeValue.length - at);
+      var r = doc.createRange(); r.setStart(n, at); r.setEnd(n, at + len);
+      var mk = doc.createElement("mark"); mk.className = "x-vo-now";
+      try { r.surroundContents(mk); } catch (e) {}
+      break;
+    }
+  });
+  doc.addEventListener("keydown", function (e) { if (e.key === "Escape" && cur && !doc.querySelector("dialog[open]")) stop(); });
 
   /* =====================================================================
      Generic "Listen" buttons: <button data-vo-read="elementId"> or <button data-vo-text="…">
@@ -154,14 +305,14 @@
       }
     });
     if (cur && !/^k:/.test(cur.id)) all = false;
-    var bar = doc.querySelector(".x-vo-kids");
-    if (bar) {
-      var ra = bar.querySelector("[data-kids-all]");
+    var kbar = doc.querySelector(".x-vo-kids");
+    if (kbar) {
+      var ra = kbar.querySelector("[data-kids-all]");
       ra.setAttribute("aria-pressed", all ? "true" : "false");
       ra.classList.toggle("is-speaking", all);
       ra.querySelector(".x-vo-lbl").textContent = all ? "Reading all…" : "Read all";
-      bar.querySelector("[data-kids-stop]").disabled = !(cur && /^k:/.test(cur.id));
-      var st = bar.querySelector(".x-vo-status");
+      kbar.querySelector("[data-kids-stop]").disabled = !(cur && /^k:/.test(cur.id));
+      var st = kbar.querySelector(".x-vo-status");
       if (st) st.textContent = idx >= 0 ? "Reading card " + (idx + 1) + " of " + box.querySelectorAll(".x-ln__flip").length : "";
     }
   };
@@ -200,7 +351,7 @@
         pickers() +
         '<span class="x-vo-status" aria-live="polite"></span>' +
       "</div>");
-    paintKids();
+    paintKids(); paintK();
   };
   window.XVoice.mountKids = mountKids;
 
@@ -226,9 +377,9 @@
     var tab = t.closest(".x-ln__tab");
     if (tab && tab.getAttribute("data-ln") !== "kids" && cur && /^k:/.test(cur.id)) stop();
   }, true);
-  window.addEventListener("pagehide", function () { if (ok) ss.cancel(); });
+  window.addEventListener("pagehide", function () { if (ssOk) ss.cancel(); if (audio) audio.pause(); });
 
-  if (ok) {
+  if (ssOk) {
     loadVoices();
     if (ss.addEventListener) ss.addEventListener("voiceschanged", loadVoices); else ss.onvoiceschanged = loadVoices;
   }

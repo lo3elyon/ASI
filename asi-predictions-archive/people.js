@@ -16,10 +16,19 @@
   var GROUP = function (g) { return String(g || "other").replace(/-/g, " ").replace(/^./, function (c) { return c.toUpperCase(); }); };
   var initials = function (n) { return String(n || "?").split(/\s+/).filter(Boolean).map(function (w) { return w[0]; }).slice(0, 2).join("").toUpperCase(); };
   var hue = function (s) { var h = 0; for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 7; return h + 1; };
+  var photoOf = function (p) { return p.photo || (window.XLogo && XLogo.photo(p.id)) || ""; };
   var avatar = function (p, cls) {
-    var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>";
+    var ini = '<span class="x-pav__ini" style="--x-ring: var(--chart-' + hue(p.id) + ')">' + esc(initials(p.name)) + "</span>", ph = photoOf(p);
     return '<span class="x-pav ' + (cls || "") + '" aria-hidden="true">' + ini +
-      (p.photo ? '<img src="' + esc(p.photo) + '" alt="' + esc(p.name) + '" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
+      (ph ? '<img src="' + esc(ph) + '" alt="' + esc(p.name) + '" width="64" height="64" loading="lazy" decoding="async" onerror="this.remove()" />' : "") + "</span>";
+  };
+  /* the org name with its logo, when logos.json has one */
+  var orgLine = function (p, size, link) {
+    if (!p.org) return "";
+    var lg = window.XLogo && XLogo.forName(p.org);
+    if (!lg) return esc(p.org);
+    var inner = XLogo.tile(lg, size || 18) + "<span>" + esc(p.org) + "</span>";
+    return link ? '<a class="x-org" href="#/org/' + esc(lg.slug) + '">' + inner + "</a>" : '<span class="x-org">' + inner + "</span>";
   };
   var talks = function (p) { var n = p.n_videos || (vidsOf[p.id] || []).length; return n ? n + (n === 1 ? " talk" : " talks") : ""; };
 
@@ -76,6 +85,7 @@
     return '<a class="x-pc" data-id="' + esc(p.id) + '" data-g="' + esc(p.group) + '" href="#/person/' + esc(p.id) + '">' + avatar(p) +
       '<span class="x-pc__name">' + esc(p.name) + (p.neuro ? " 🧠" : "") + "</span>" +
       (p.role ? '<span class="x-pc__role">' + esc(p.role) + "</span>" : "") +
+      (p.org && window.XLogo && XLogo.forName(p.org) ? '<span class="x-pc__org">' + orgLine(p, 18, false) + "</span>" : "") +
       '<span class="x-pc__bio">' + esc(bio) + "</span>" +
       '<span class="x-pc__meta"><span class="pill x-pc__grp">' + ICON_GRP + esc(GROUP(p.group)) + "</span>" + (talks(p) ? '<span class="pill x-pc__talks">' + ICON_PLAY + talks(p) + "</span>" : "") + "</span></a>";
   };
@@ -256,10 +266,10 @@
 
     view.innerHTML =
       '<div class="links x-pv__top"><a class="btn" href="#people" data-back>← Back</a></div>' +
-      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (p.photo ? '<img class="x-pv__bg" src="' + esc(p.photo) + '" alt="" aria-hidden="true" width="400" height="400" decoding="async" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
+      '<header class="x-pv__head" data-g="' + esc(p.group) + '">' + (photoOf(p) ? '<img class="x-pv__bg" src="' + esc(photoOf(p)) + '" alt="" aria-hidden="true" width="400" height="400" decoding="async" onerror="this.remove()" />' : "") + avatar(p, "x-pav--big") + "<div>" +
         "<h1>" + esc(p.name) + "</h1>" +
         (p.born_died ? '<p class="x-pv__sub">' + esc(p.born_died) + "</p>" : "") +
-        '<p class="x-pv__sub">' + esc([p.role, p.org].filter(Boolean).join(" · ")) + "</p>" +
+        '<p class="x-pv__sub">' + esc(p.role || "") + (p.role && p.org ? " · " : "") + orgLine(p, 22, true) + "</p>" +
         '<p class="x-pv__badges"><span class="pill">' + esc(GROUP(p.group)) + "</span>" + (p.neuro ? '<span class="pill x-neuro">🧠 Neuroscientist</span>' : "") + (talks(p) ? '<span class="pill">' + talks(p) + "</span>" : "") + '<span class="pill">' + mins + " min read</span></p>" +
         (p.pdoom || p.agi_year ? '<p class="x-pv__badges">' + (p.pdoom ? '<span class="chip chip--solid">p(doom): ' + esc(p.pdoom) + "</span>" : "") + (p.agi_year ? '<span class="chip">AGI: ' + esc(p.agi_year) + "</span>" : "") + "</p>" : "") +
       "</div></header>" +
