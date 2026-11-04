@@ -75,7 +75,7 @@
       /* short all-caps terms only count in capitals ("ASI", "AGI", "LLM"), never as parts of ordinary words */
       if (/^[A-Z]{2,4}s?$/.test(t.src.replace(/\?|\\/g, "")) && m !== m.toUpperCase() && !/s$/.test(m)) return null;
       if (t.src === "ASI" && m !== "ASI") return null;
-      return tag("x-kw x-kw--t", "#/topic/" + esc(t.slug), esc(m), ' data-c="' + t.c + '"');
+      return tag("x-kw x-kw--t", "#/topic/" + esc(t.slug), esc(m), ' data-c="' + t.c + '" data-tc="' + esc(t.slug) + '"');
     }
     if (MONTH_YEAR.test(m)) return '<span class="x-kw x-kw--y">' + esc(m) + "</span>";
     return null;

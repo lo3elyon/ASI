@@ -201,7 +201,7 @@
         return;
       }
       var p = P[order[i]];
-      el.innerHTML = '<div class="x-ln__qbar"><span>Question ' + (i + 1) + ' of 10</span><span>Score ' + score + " · Streak 🔥" + streak + '</span></div><div class="x-ln__qprog"><i style="width:' + (i * 10) + '%"></i></div>' +
+      el.innerHTML = '<div class="x-ln__qbar"><span>Question ' + (i + 1) + ' of 10</span><span class="x-ln__qscore">Score ' + score + " · Streak 🔥" + streak + '</span></div><div class="x-ln__qprog"><i style="width:' + (i * 10) + '%"></i></div>' +
         '<blockquote class="x-ln__q">"' + esc(p.prediction) + '"<footer>— ' + esc(p.who) + ", " + esc(p.year_made) + (p.target_year ? " · aimed at " + esc(p.target_year) : "") + "</footer></blockquote><p class=\"x-ln__ask\">What happened?</p><div class=\"x-ln__opts\">" +
         OPTS.map(function (o) { return '<button type="button" class="x-ln__opt" data-o="' + esc(o) + '">' + esc(o) + "</button>"; }).join("") + '</div><div class="x-ln__fb" aria-live="polite"></div>';
     };
@@ -228,6 +228,8 @@
       el.querySelectorAll(".x-ln__opt").forEach(function (x) { x.disabled = true; if (x.getAttribute("data-o") === right) x.classList.add("is-right"); });
       if (!ok) b.classList.add("is-wrong");
       if (ok) { score++; streak++; } else streak = 0;
+      var sc = el.querySelector(".x-ln__qscore"); if (sc) sc.textContent = "Score " + score + " · Streak 🔥" + streak;
+      var pg = el.querySelector(".x-ln__qprog i"); if (pg) pg.style.width = ((i + 1) * 10) + "%";
       var fb = el.querySelector(".x-ln__fb");
       fb.innerHTML = "<p><b>" + (ok ? "✅ Correct!" : "❌ Not quite.") + "</b> Status: <b>" + esc(p.status) + "</b>. " + esc(p.evidence || "") + "</p>" +
         (p.evidence_source_url ? '<a href="' + esc(p.evidence_source_url) + '" target="_blank" rel="noopener">Source</a> · ' : "") + '<button type="button" class="x-ln__btn" data-q="next">Next →</button>';

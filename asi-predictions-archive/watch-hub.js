@@ -25,10 +25,17 @@
   var W = {};
   try { W = JSON.parse(localStorage.getItem(KEY)) || {}; } catch (e) { W = {}; }
   var dirty = false;
+  /* older saves kept a second copy of the position (t, pct, done); the player's store is the only one now */
+  Object.keys(W).forEach(function (id) { var r = W[id]; if (r && ("t" in r || "pct" in r || "done" in r)) { delete r.t; delete r.pct; delete r.done; dirty = true; } });
   var flush = function () { if (!dirty) return; dirty = false; try { localStorage.setItem(KEY, JSON.stringify(W)); } catch (e) {} };
   setInterval(flush, 5000);
   window.addEventListener("pagehide", function () { dirty = true; flush(); });
   document.addEventListener("visibilitychange", function () { if (document.hidden) { dirty = true; flush(); } });
+
+  /* the one resume position: the player's saved store, read by "Resume from", Continue watching and the history */
+  var posOf = function (id) { var p = AP.position && AP.position(id); return p && p.pos > 0 ? p.pos : 0; };
+  var doneOf = function (id) { var p = AP.position && AP.position(id); return !!(p && p.watched); };
+  var pctOf = function (x) { var d = (x.r && x.r.dur) || 0, p = posOf(x.id); return doneOf(x.id) ? 100 : d ? Math.min(100, Math.round(p / d * 100)) : 0; };
 
   var emit = function (id) { try { document.dispatchEvent(new CustomEvent("watchprogress", { detail: { id: id, rec: W[id] } })); } catch (e) {} };
 
@@ -41,10 +48,8 @@
     try { t = yt.getCurrentTime() || 0; dur = yt.getDuration() || 0; st = yt.getPlayerState(); } catch (e) { return; }
     var r = W[v.id] || (W[v.id] = { t: 0, dur: 0, sec: 0, count: 0, first: Date.now() });
     if (st === 1) { r.sec = (r.sec || 0) + 1; if (!r._on) { r._on = 1; r.count = (r.count || 0) + 1; } } else r._on = 0;
-    if (t > 0) r.t = Math.floor(t);
+    /* the position itself lives only in the player's store (ArchivePlayer.position); here just time watched and length */
     if (dur > 0) r.dur = Math.floor(dur);
-    r.pct = r.dur ? Math.min(100, Math.round(r.t / r.dur * 100)) : 0;
-    if (r.pct >= 90) r.done = 1;
     r.last = Date.now();
     r.title = v.t || r.title || ""; r.c = v.c || r.c || "";
     dirty = true;
@@ -254,7 +259,12 @@
       var can = scrolls() && (isFly() || !folded) && !box.hidden && body.scrollHeight - body.clientHeight > 2;
       var top = can && body.scrollTop > 2, bot = can && body.scrollHeight - body.clientHeight - body.scrollTop > 2;
       body.classList.toggle("is-fade-top", top); body.classList.toggle("is-fade-bot", bot);
-      down.hidden = !bot;
+      /* "↓ more" sits in its own footer strip under the scrolling list: the strip is there whenever the panel scrolls
+         (so the list never resizes), and its button only goes invisible at the bottom */
+      down.hidden = !can;
+      down.classList.toggle("is-off", !bot);
+      if (bot) { down.removeAttribute("tabindex"); down.removeAttribute("aria-hidden"); }
+      else { if (down === document.activeElement) body.focus({ preventScroll: true }); down.tabIndex = -1; down.setAttribute("aria-hidden", "true"); }
     };
     var orient = function () { box.querySelector(".x-wh__tabs").setAttribute("aria-orientation", isSide() ? "vertical" : "horizontal"); };
     var paintFold = function () {
@@ -308,7 +318,7 @@
       slideIn();
       edges();
     };
-    var paintProg = function () { var v = inst.current && inst.current(); var r = v && W[v.id]; prog.textContent = r && r.sec ? "Watched " + fmt(r.sec) + (r.pct ? " · " + r.pct + "%" : "") : ""; edges(); };
+    var paintProg = function () { var v = inst.current && inst.current(); var r = v && W[v.id], pc = r ? pctOf({ id: v.id, r: r }) : 0; prog.textContent = r && r.sec ? "Watched " + fmt(r.sec) + (pc ? " · " + pc + "%" : "") : ""; edges(); };
     var keep = AP.keepScroll || function (f) { return f(); };
     var select = function (t) {
       cur = t;
@@ -515,11 +525,7 @@
 
   var row = null, rowFlushing = false;
   /* resume time from the player's store (AP.position); the tracker's own r.t only when the player has none */
-  var posOf = function (id) {
-    if (AP.position) { var p = AP.position(id); return p && p.pos > 0 ? p.pos : 0; }
-    return (W[id] && W[id].t) || 0;
-  };
-  var pctOf = function (x) { var d = x.r.dur || 0, p = posOf(x.id); return x.r.done ? 100 : d ? Math.min(100, Math.round(p / d * 100)) : 0; };
+
   /* on pause, close and pagehide the player flushes; the matching card's label and bar update in place (no layout change) */
   if (AP.onSaved) AP.onSaved(function (id) {
     if (rowFlushing || !row || row.hidden) return;
@@ -533,13 +539,13 @@
     if (!row) { row = document.createElement("div"); row.className = "x-cw"; th.parentNode.insertBefore(row, th); }
     /* one source for the resume time: the player's saved position, flushed first so it matches "Resume from" */
     if (AP.flush) { rowFlushing = true; try { AP.flush(); } catch (e) {} rowFlushing = false; }
-    var l = list().filter(function (x) { return !x.r.done && Math.max(posOf(x.id), x.r.t || 0) > 5; }).slice(0, 12), all = list();
+    var l = list().filter(function (x) { return !doneOf(x.id) && posOf(x.id) > 5; }).slice(0, 12), all = list();
     if (!all.length) { row.hidden = true; return; }
     row.hidden = false;
     row.innerHTML = '<div class="x-cw__head"><h3 class="x-cw__h">' + (l.length ? "Continue watching" : "Your recent talks") + '</h3><button type="button" class="x-cw__btn" data-cw="open">🕘 My watch history <span class="x-cw__n">' + all.length + "</span></button></div>" +
       '<div class="x-cw__row">' + (l.length ? l : all.slice(0, 8)).map(function (x, i) {
         var v = vidOf(x.id);
-        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (x.r.done ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">▶ Resume ' + fmt(posOf(x.id) || x.r.t || 0) + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
+        return '<button type="button" class="x-cw__card" style="--i:' + i + '" data-cw-play="' + esc(x.id) + '"><span class="x-cw__th"><img src="' + AP.thumb(x.id) + '" alt="" loading="lazy" decoding="async" width="240" height="135">' + (window.XDur ? XDur.html(x.id) : "") + '<span class="x-cw__bar"><i style="width:' + pctOf(x) + '%"></i></span>' + (doneOf(x.id) ? '<span class="x-cw__done">✓ Watched</span>' : '<span class="x-cw__res">' + (posOf(x.id) > 0 ? "▶ Resume " + fmt(posOf(x.id)) : "▶ Play") + "</span>") + '</span><span class="x-cw__t">' + esc(v.t) + '</span><span class="x-cw__m">' + esc(v.c || "") + " · " + ago(x.r.last) + "</span></button>";
       }).join("") + "</div>";
   };
 
@@ -552,7 +558,7 @@
       drawer.addEventListener("click", onClick);
       document.addEventListener("keydown", function (e) { if (e.key === "Escape" && drawer && !drawer.hidden) closeDrawer(); });
     }
-    var all = list(), tot = all.reduce(function (s, x) { return s + (x.r.sec || 0); }, 0), done = all.filter(function (x) { return x.r.done; }).length;
+    var all = list(), tot = all.reduce(function (s, x) { return s + (x.r.sec || 0); }, 0), done = all.filter(function (x) { return doneOf(x.id); }).length;
     drawer.querySelector(".x-whd__stats").innerHTML = '<div><b>' + all.length + "</b><span>talks started</span></div><div><b>" + done + "</b><span>finished</span></div><div><b>" + fmt(tot) + "</b><span>time watched</span></div>";
     drawer.querySelector(".x-whd__list").innerHTML = all.length ? all.map(function (x) {
       var v = vidOf(x.id);
@@ -570,7 +576,11 @@
     var a = c.getAttribute("data-cw");
     if (a === "open") openDrawer();
     else if (a === "close") closeDrawer();
-    else if (a === "clear") { if (window.confirm("Clear your watch history on this device?")) { W = {}; dirty = true; flush(); closeDrawer(); paintRow(); } }
+    else if (a === "clear") {
+      var wipe = function () { W = {}; dirty = true; flush(); if (AP.clearProgress) AP.clearProgress(); closeDrawer(); paintRow(); };
+      if (!window.XConfirm) return;
+      XConfirm({ title: "Clear your watch history?", text: "Every talk, resume position and progress bar saved on this device will be removed.", ok: "Clear history", cancel: "Cancel", anchor: c }).then(function (yes) { if (yes) wipe(); });
+    }
   };
   document.addEventListener("click", function (e) { if (row && row.contains(e.target)) onClick(e); });
 
@@ -584,7 +594,7 @@
      "Continue watching"), the row is drawn again so it and the 🕘 My watch history pill appear without a reload.
      It only redraws when that set changes, never just because time passed. */
   var rowSig = function () {
-    var all = list(), cont = all.filter(function (x) { return !x.r.done && Math.max(posOf(x.id), x.r.t || 0) > 5; });
+    var all = list(), cont = all.filter(function (x) { return !doneOf(x.id) && posOf(x.id) > 5; });
     return all.length + "|" + cont.map(function (x) { return x.id; }).slice(0, 12).join(",");
   };
   var lastSig = rowSig();

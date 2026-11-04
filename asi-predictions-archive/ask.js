@@ -117,7 +117,7 @@
         if (o.topic && (" " + D.tp + " ").indexOf(" " + o.topic + " ") < 0) continue;
         if ((o.y0 || o.y1) && D.y && (D.y < (o.y0 || 0) || D.y > (o.y1 || 9999))) continue;
         if ((o.y0 > 1860 || o.y1 < 2026) && !D.y) continue;
-        if (o.verified && D.k === "pr" && !/^(Came|Wrong|Partial)/.test(D.st)) continue;
+        if (o.verified && (D.k !== "pr" || !/^(Came|Wrong|Partial)/.test(D.st))) continue;
         if (!s) s = 0.6;
         if (hasP) s = s * 2 + 2;
         if (hasP && D.k === "pe") s += 3;
@@ -311,13 +311,13 @@
      ===================================================================== */
   var LBL = {
     en: { title: "Ask the Archive", sub: "Answers built only from this archive, with a source for every fact.", newChat: "New chat", chats: "Chats", searchChats: "Search chats", pin: "Pin", unpin: "Unpin", rename: "Rename", del: "Delete", exportMd: "Export Markdown", exportJson: "Export JSON",
-      filters: "Filters", era: "Era", people: "People", addPerson: "Add a person", topic: "Topic", anyTopic: "Any topic", type: "Type", years: "Years", from: "From", to: "To", style: "Answer style", lang: "Language", nSources: "Sources", verified: "Only verified predictions",
+      filters: "Filters", era: "Era", people: "People", addPerson: "Add a person", topic: "Topic", anyTopic: "Any topic", type: "Type", years: "Years", from: "From", to: "To", style: "Answer style", lang: "Language", nSources: "Sources", verified: "Only verified predictions (cites verified prediction items only; entries and history excluded)",
       send: "Ask", stop: "Stop", copy: "Copy", copied: "Copied", read: "Read aloud", regen: "Regenerate", edit: "Edit question", good: "Helpful", bad: "Not helpful", suggested: "Try asking", follow: "Follow-up questions", sourcesH: "Sources",
       placeholder: "Ask about a person, a year, a prediction or a topic…", entries: "Entries", talks: "Talks", peopleT: "People", predictions: "Predictions", history: "History",
       short: "Short", detailed: "Detailed", kids: "For kids", bullets: "Bullet points", timeline: "Timeline", noMatch: "Nothing in the archive matches that directly.", closest: "Closest people and topics", searching: "Searching the archive…",
       smart: "Smart answers (runs on your device)", smartOn: "Smart answers on", smartOff: "Turn off", smartH: "Smart answer", indexing: "Building the search index…", ready: "documents indexed", open: "Open", resetF: "Reset filters", empty: "No chats yet.", openPage: "Open in Ask page", keys: "Enter to ask · Shift+Enter for a new line · Esc stops · / focuses" },
     bn: { title: "আর্কাইভকে জিজ্ঞাসা করুন", sub: "উত্তর শুধু এই আর্কাইভ থেকে, প্রতিটি তথ্যের সূত্রসহ।", newChat: "নতুন চ্যাট", chats: "চ্যাট", searchChats: "চ্যাট খুঁজুন", pin: "পিন", unpin: "আনপিন", rename: "নাম বদলান", del: "মুছুন", exportMd: "Markdown রপ্তানি", exportJson: "JSON রপ্তানি",
-      filters: "ফিল্টার", era: "যুগ", people: "ব্যক্তি", addPerson: "ব্যক্তি যোগ করুন", topic: "বিষয়", anyTopic: "যেকোনো বিষয়", type: "ধরন", years: "সাল", from: "থেকে", to: "পর্যন্ত", style: "উত্তরের ধরন", lang: "ভাষা", nSources: "সূত্র", verified: "শুধু যাচাই করা ভবিষ্যদ্বাণী",
+      filters: "ফিল্টার", era: "যুগ", people: "ব্যক্তি", addPerson: "ব্যক্তি যোগ করুন", topic: "বিষয়", anyTopic: "যেকোনো বিষয়", type: "ধরন", years: "সাল", from: "থেকে", to: "পর্যন্ত", style: "উত্তরের ধরন", lang: "ভাষা", nSources: "সূত্র", verified: "শুধু যাচাই করা ভবিষ্যদ্বাণী (শুধু যাচাই করা ভবিষ্যদ্বাণী উদ্ধৃত হবে; এন্ট্রি ও ইতিহাস বাদ)",
       send: "জিজ্ঞাসা", stop: "থামুন", copy: "কপি", copied: "কপি হয়েছে", read: "পড়ে শোনান", regen: "আবার তৈরি করুন", edit: "প্রশ্ন সম্পাদনা", good: "সহায়ক", bad: "সহায়ক নয়", suggested: "জিজ্ঞাসা করে দেখুন", follow: "পরবর্তী প্রশ্ন", sourcesH: "সূত্র",
       placeholder: "কোনো ব্যক্তি, সাল, ভবিষ্যদ্বাণী বা বিষয় নিয়ে জিজ্ঞাসা করুন…", entries: "এন্ট্রি", talks: "আলোচনা", peopleT: "ব্যক্তি", predictions: "ভবিষ্যদ্বাণী", history: "ইতিহাস",
       short: "সংক্ষিপ্ত", detailed: "বিস্তারিত", kids: "শিশুদের জন্য", bullets: "বুলেট পয়েন্ট", timeline: "সময়রেখা", noMatch: "আর্কাইভে সরাসরি মিল পাওয়া যায়নি।", closest: "কাছাকাছি ব্যক্তি ও বিষয়", searching: "আর্কাইভ খোঁজা হচ্ছে…",
@@ -363,7 +363,7 @@
         var det = detect(q);
         return call({ op: "search", q: q, o: optsFrom(s, det) }).then(function (m) {
           var r = m.res || { hits: [] };
-          return { q: q, det: det, terms: r.terms || [], hits: (r.hits || []).map(function (h) { return { d: DOCS[h.i], s: h.s }; }).filter(function (h) { return h.d; }) };
+          return { q: q, det: det, terms: r.terms || [], hits: (r.hits || []).map(function (h) { return { d: DOCS[h.i], s: h.s }; }).filter(function (h) { return h.d && (!s.verified || (h.d.k === "pr" && /^(Came|Wrong|Partial)/.test(h.d.st || ""))); }) };
         });
       });
     });
@@ -693,7 +693,8 @@
       '<fieldset class="x-askp__f"><legend class="x-am__lab">' + esc(L("era")) + "</legend>" + ERAS.map(function (e, i) { return chk("era", i, e, S.eras.indexOf(i) >= 0); }).join("") + "</fieldset>" +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("topic")) + "</p>" + sel("topic", [["", L("anyTopic")]].concat(TOPICS.map(function (t) { return [t[0], t[1]]; })), S.topic) + "</div>" +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("people")) + '</p><div class="x-askp__pchips">' + S.pids.map(function (id) { var p = PBY[id]; return p ? '<button type="button" class="x-f" aria-pressed="true" data-a="prm" data-id="' + esc(id) + '">' + esc(p.name) + " ×</button>" : ""; }).join("") + "</div>" +
-        '<input class="x-input" list="x-askp-pl" data-f="padd" placeholder="' + esc(L("addPerson")) + '" aria-label="' + esc(L("addPerson")) + '" autocomplete="off" /><datalist id="x-askp-pl">' + PEOPLE.slice().sort(function (a, b) { return a.name.localeCompare(b.name); }).map(function (p) { return '<option value="' + esc(p.name) + '"></option>'; }).join("") + "</datalist></div>" +
+        '<div class="x-pac"><input class="x-input" type="text" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="x-askp-pl" data-f="padd" placeholder="' + esc(L("addPerson")) + '" aria-label="' + esc(L("addPerson")) + '" autocomplete="off" spellcheck="false" />' +
+        '<ul class="x-pac__list" id="x-askp-pl" role="listbox" aria-label="' + esc(L("addPerson")) + '" hidden></ul></div></div>' +
       '<div class="x-askp__f"><p class="x-am__lab">' + esc(L("years")) + ' <output data-o="yr">' + S.y0 + "–" + S.y1 + "</output></p>" +
         '<label class="x-askp__rng">' + esc(L("from")) + ' <input type="range" min="1860" max="2026" step="1" value="' + S.y0 + '" data-f="y0" /></label>' +
         '<label class="x-askp__rng">' + esc(L("to")) + ' <input type="range" min="1860" max="2026" step="1" value="' + S.y1 + '" data-f="y1" /></label></div>' +
@@ -800,7 +801,15 @@
     else if (a === "open") { stopAll(); ST.last = id; persist(); paintChats(); paintLog(); }
     else if (a === "pin") { var c1 = chatById(id); c1.pin = !c1.pin; persist(); paintChats(); }
     else if (a === "ren") { P.renaming = id; paintChats(); }
-    else if (a === "del") { var c2 = chatById(id); if (c2 && confirm((S.lang === "bn" ? "মুছবেন: " : "Delete “") + c2.title + (S.lang === "bn" ? "?" : "”?"))) { ST.chats = ST.chats.filter(function (x) { return x.id !== id; }); if (ST.last === id) ST.last = ST.chats.length ? ST.chats[ST.chats.length - 1].id : null; persist(); paintChats(); paintLog(); } }
+    else if (a === "del") {
+      var c2 = chatById(id); if (!c2) return;
+      var bn = S.lang === "bn";
+      var doDel = function () { ST.chats = ST.chats.filter(function (x) { return x.id !== id; }); if (ST.last === id) ST.last = ST.chats.length ? ST.chats[ST.chats.length - 1].id : null; persist(); paintChats(); paintLog(); };
+      if (window.XConfirm) XConfirm({ title: bn ? "চ্যাট মুছবেন?" : "Delete this chat?", text: "“" + c2.title + "”" + (bn ? " এই ডিভাইস থেকে মুছে যাবে।" : " will be removed from this device."), ok: bn ? "মুছুন" : "Delete", cancel: bn ? "বাতিল" : "Cancel", anchor: b }).then(function (yes) {
+        if (!yes) return; doDel();
+        var nb = P && P.el.querySelector('[data-a="new"]'); if (nb && (!doc.activeElement || doc.activeElement === doc.body || !doc.contains(doc.activeElement))) nb.focus({ preventScroll: true });
+      });
+    }
     else if (a === "md") { var c3 = curChat(); if (c3) download("ask-the-archive-" + c3.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").slice(0, 40) + ".md", chatMd(c3), "text/markdown"); }
     else if (a === "json") download("ask-the-archive-chats.json", JSON.stringify({ exported: new Date().toISOString(), chats: ST.chats }, null, 2), "application/json");
     else if (a === "stop") stopAll();
@@ -813,10 +822,51 @@
     else if (a === "smartgo") { LLM.state = "off"; loadLLM(); }
     else if (a === "smartno") { LLM.state = LLM.eng ? "ready" : "off"; paintSmart(); }
     else if (a === "smarttog") { LLM.on = !LLM.on; paintSmart(); }
+    else if (a === "acpick") acPick(+b.getAttribute("data-i"));
     else if (a === "prm") { S.pids = S.pids.filter(function (p) { return p !== b.getAttribute("data-id"); }); persist(); repaintOpts(); }
     else if (a === "resetf") { ["eras", "pids", "topic", "cats", "y0", "y1", "n", "verified"].forEach(function (k) { S[k] = Array.isArray(DEF[k]) ? DEF[k].slice() : DEF[k]; }); persist(); repaintOpts(); }
   };
   var repaintOpts = function () { if (P) P.el.querySelector(".x-askp__optsin").innerHTML = optHtml(); };
+  /* "Add a person": a combobox with a listbox of matching people (arrows + Enter or a click adds a chip, Esc closes) */
+  var AC = { items: [], act: -1 };
+  var acEls = function () { var inp = P && P.el.querySelector('[data-f="padd"]'), list = P && P.el.querySelector("#x-askp-pl"); return inp && list ? { inp: inp, list: list } : null; };
+  var acClose = function () {
+    var e = acEls(); AC.items = []; AC.act = -1; if (!e) return;
+    e.list.hidden = true; e.list.innerHTML = ""; e.inp.setAttribute("aria-expanded", "false"); e.inp.removeAttribute("aria-activedescendant");
+  };
+  var acSet = function (i) {
+    var e = acEls(); if (!e || !AC.items.length) return;
+    AC.act = (i + AC.items.length) % AC.items.length;
+    [].forEach.call(e.list.children, function (li, k) { li.setAttribute("aria-selected", String(k === AC.act)); });
+    var cur = e.list.children[AC.act]; e.inp.setAttribute("aria-activedescendant", cur.id);
+    var lt = e.list.scrollTop, top = cur.offsetTop, bot = top + cur.offsetHeight;
+    if (top < lt) e.list.scrollTop = top; else if (bot > lt + e.list.clientHeight) e.list.scrollTop = bot - e.list.clientHeight;
+  };
+  var acPaint = function () {
+    var e = acEls(); if (!e) return;
+    var n = normN(e.inp.value); if (!n) { acClose(); return; }
+    var pool = PEOPLE.length ? PEOPLE : (data("d-people") || []), hits = [];
+    pool.forEach(function (p) {
+      if (S.pids.indexOf(p.id) >= 0) return;
+      var nm = normN(p.name), k = nm.indexOf(n); if (k < 0) return;
+      hits.push([k === 0 ? 0 : nm.charAt(k - 1) === " " ? 1 : 2, p]);
+    });
+    hits.sort(function (a, b) { return a[0] - b[0] || a[1].name.localeCompare(b[1].name); });
+    AC.items = hits.slice(0, 8).map(function (h) { return h[1]; });
+    if (!AC.items.length) { acClose(); return; }
+    e.list.innerHTML = AC.items.map(function (p, i) {
+      return '<li role="option" id="x-askp-po-' + i + '" aria-selected="false" data-a="acpick" data-i="' + i + '">' + esc(p.name) + (p.role ? "<small>" + esc(first(p.role, 60)) + "</small>" : "") + "</li>";
+    }).join("");
+    e.list.hidden = false; e.inp.setAttribute("aria-expanded", "true"); e.list.scrollTop = 0;
+    acSet(0);
+  };
+  var acPick = function (i) {
+    var p = AC.items[i]; if (!p) return;
+    acClose();
+    if (S.pids.indexOf(p.id) < 0) { S.pids.push(p.id); persist(); }
+    repaintOpts();
+    var inp = P.el.querySelector('[data-f="padd"]'); if (inp) inp.focus({ preventScroll: true });
+  };
   var onChange = function (e) {
     var t = e.target, f = t.getAttribute && t.getAttribute("data-f"); if (!f || !P) return;
     if (f === "style") S.style = t.value;
@@ -839,11 +889,20 @@
   };
   var onInput = function (e) {
     var t = e.target;
-    if (t.getAttribute("data-a") === "chatq") { P.chatQ = t.value; paintChats(); t.focus(); }
+    if (t.getAttribute("data-f") === "padd") acPaint();
+    else if (t.getAttribute("data-a") === "chatq") { P.chatQ = t.value; paintChats(); t.focus(); }
     else if (t.getAttribute("data-f") === "y0" || t.getAttribute("data-f") === "y1") onChange(e);
   };
   var onKey = function (e) {
     var t = e.target;
+    if (t.getAttribute("data-f") === "padd" && !e.isComposing) {
+      var open = AC.items.length > 0;
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") { e.preventDefault(); if (!open) acPaint(); else acSet(AC.act + (e.key === "ArrowDown" ? 1 : -1)); }
+      else if (e.key === "Enter") { e.preventDefault(); if (open && AC.act >= 0) acPick(AC.act); else { var pd = pidOfName(t.value); if (pd && S.pids.indexOf(pd) < 0) { S.pids.push(pd); persist(); repaintOpts(); var ni = P.el.querySelector('[data-f="padd"]'); if (ni) ni.focus(); } } }
+      else if (e.key === "Escape" && open) { e.preventDefault(); e.stopPropagation(); acClose(); }
+      else if (e.key === "Tab") acClose();
+      return;
+    }
     if (t.matches("textarea") && e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); var v = t.value; t.value = ""; ask(v); }
     else if (t.getAttribute("data-a") === "renin" && (e.key === "Enter" || e.key === "Escape")) {
       e.preventDefault(); var c = chatById(P.renaming); if (c && e.key === "Enter" && t.value.trim()) c.title = t.value.trim().slice(0, 80); P.renaming = null; persist(); paintChats();
@@ -858,6 +917,8 @@
       el.addEventListener("change", onChange);
       el.addEventListener("input", onInput);
       el.addEventListener("keydown", onKey);
+      el.addEventListener("mousedown", function (e) { if (e.target.closest && e.target.closest(".x-pac__list")) e.preventDefault(); });
+      el.addEventListener("focusout", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-f") === "padd" && !(e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest(".x-pac__list"))) setTimeout(acClose, 0); });
       el.addEventListener("focusout", function (e) { if (e.target.getAttribute && e.target.getAttribute("data-a") === "renin" && P && P.renaming) { var c = chatById(P.renaming); if (c && e.target.value.trim()) c.title = e.target.value.trim().slice(0, 80); P.renaming = null; persist(); setTimeout(paintChats, 0); } });
       el.querySelector || 0;
     }

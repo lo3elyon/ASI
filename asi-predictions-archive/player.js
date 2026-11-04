@@ -1471,6 +1471,8 @@
     remember: function () { return !store.nr; },
     setRemember: function (on) { store.nr = !on; save(); instances.forEach(function (i) { try { i.refresh(); } catch (e) {} }); },
     flush: flushAll,
+    /* "Clear history": forget every saved position and watched mark */
+    clearProgress: function () { store.p = {}; store.w = {}; save(); instances.forEach(function (i) { try { i.refresh(); } catch (e) {} }); },
     onSaved: function (f) { saved.push(f); },
     create: create,
     popout: popout,

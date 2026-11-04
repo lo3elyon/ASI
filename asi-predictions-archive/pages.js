@@ -540,7 +540,7 @@
       });
       czDlg.addEventListener("click", function (e) {
         if (e.target === czDlg || e.target.closest("[data-cz-close]")) czDlg.close();
-        else if (e.target.closest("[data-cz-reset]")) { cz = { bg: "auto", scrim: "strong", motion: "system" }; saveCz(); if (window.XHL) XHL.setOn(true); applyMotion(); bgShown = undefined; setBg(pageEra); fill(); }
+        else if (e.target.closest("[data-cz-reset]")) { cz = { bg: "auto", scrim: "strong", motion: "system" }; saveCz(); if (window.XHL) XHL.setOn(true); if (window.XVoice && XVoice.reset) XVoice.reset(); applyMotion(); bgShown = undefined; setBg(pageEra); fill(); }
       });
       czDlg.addEventListener("close", function () { if (czFrom && czFrom.focus && doc.contains(czFrom)) czFrom.focus({ preventScroll: true }); });
     }

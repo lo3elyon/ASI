@@ -209,8 +209,16 @@
     else if (t.matches("select[data-vo-engine]")) setEngine(t.value);
   });
 
+  /* back to the defaults: system engine, 1×, the best-ranked system voice, Heart for Kokoro */
+  var reset = function () {
+    stop();
+    pref = {}; try { localStorage.removeItem(KEY); } catch (e) {}
+    engine = "system"; rate = 1; kvoice = "af_heart"; voice = voices[0] || null;
+    fillSelects();
+  };
+
   window.XVoice = {
-    ok: ok, speak: speak, stop: stop, pause: pause, resume: resume, pickers: pickers, setRate: setRate, setVoice: setVoice, setEngine: setEngine,
+    ok: ok, speak: speak, stop: stop, pause: pause, resume: resume, pickers: pickers, setRate: setRate, setVoice: setVoice, setEngine: setEngine, reset: reset,
     engine: function () { return engine; },
     rate: function () { return rate; },
     isSpeaking: function (id) { return !!cur && (id == null || cur.id === id); },
