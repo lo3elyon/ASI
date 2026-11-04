@@ -32,7 +32,8 @@
   TOPIC.forEach(function (t) { t[0].split("|").forEach(function (w) { parts.push({ src: w, kind: "t", slug: t[1], c: t[2] }); }); });
 
   var PPL = {}, ORG = {};
-  var people = []; try { people = Hark.data("d-people") || []; } catch (e) {}
+  /* hark-charts.js (Hark.data) loads after this file: read the inline block directly when it is absent */
+  var people = []; try { if (window.Hark && Hark.data) people = Hark.data("d-people") || []; else { var pe = doc.getElementById("d-people"), pt = pe && pe.textContent.trim(); people = pt ? JSON.parse(pt) : []; } } catch (e) {}
   people.forEach(function (p) {
     var n = String(p.name || "").replace(/\s*\([^)]*\)/g, "").trim();
     if (n.split(/\s+/).length < 2 || n.length < 6) return;

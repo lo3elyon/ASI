@@ -5,7 +5,13 @@
 (function () {
   "use strict";
   var doc = document;
-  var D = {}; try { D = Hark.data("d-logos") || {}; } catch (e) { D = {}; }
+  /* Hark.data comes from hark-charts.js, which loads after this file: read the inline block directly when it is absent */
+  var read = function (id) {
+    if (window.Hark && Hark.data) return Hark.data(id);
+    var el = doc.getElementById(id), t = el && el.textContent.trim();
+    return t ? JSON.parse(t) : null;
+  };
+  var D = {}; try { D = read("d-logos") || {}; } catch (e) { D = {}; }
   var ORGS = D.orgs || {}, PHOTOS = D.people_photos || {};
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var SRC = {};
@@ -19,7 +25,7 @@
   var lower = {}; Object.keys(ORGS).forEach(function (k) { lower[k.toLowerCase()] = k; var s = strip(k).toLowerCase(); if (s && !(s in lower)) lower[s] = k; });
 
   /* one entry per logo (slug), with a readable display name: the people's most used org name, else the shortest plain key */
-  var people = []; try { people = Hark.data("d-people") || []; } catch (e) { people = []; }
+  var people = []; try { people = read("d-people") || []; } catch (e) { people = []; }
   var useN = {}; people.forEach(function (p) { if (p.org) useN[p.org] = (useN[p.org] || 0) + 1; });
   var SLUGS = {}, LIST = [];
   Object.keys(ORGS).sort().forEach(function (k) {
