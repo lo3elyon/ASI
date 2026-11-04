@@ -473,7 +473,7 @@
 
   /* ---------- the loops ---------- */
   var n = 0;
-  setInterval(function () {
+  var loop19 = function () {
     n++;
     insts.forEach(function (inst) { try { sample(inst); if (inst.__w19.was) any = true; } catch (e) {} });
     if (n % 2 === 0) {
@@ -482,7 +482,15 @@
       try { sync(); } catch (e) {}
     }
     if (n % 8 === 0) { saveAll(); scanThumbs(); }
-  }, 250);
+  };
+  /* batch 24: only while a player is open (background playback still samples); when it stops, paint and save once */
+  var last19 = function () {
+    insts.forEach(function (inst) { try { paintInst(inst); } catch (e) {} });
+    try { paintDock(); } catch (e) {}
+    try { sync(); } catch (e) {}
+    try { saveAll(); scanThumbs(); } catch (e) {}
+  };
+  if (window.XIdle) XIdle.every(loop19, 250, { final: last19 }); else setInterval(loop19, 250);
 
   var flush = function () {
     insts.forEach(function (inst) { var S = inst.__w19; if (S && S.id && S.was) { try { sample(inst); } catch (e) {} } });

@@ -208,11 +208,13 @@
     setCls(docEl, "f16-dock", on && docked());
   };
 
-  setInterval(function () {
+  var loop16 = function () {
     insts.forEach(function (inst) { var S = inst.__f16; if (S) { try { tick(inst, S, false); } catch (e) {} } });
     if (!P) return;
     paintPage(); dockLine(); phoneShape();
-  }, 250);
+  };
+  /* batch 24: only while a player is open and the tab is visible; one last pass when it closes, and after any gesture */
+  if (window.XIdle) XIdle.every(loop16, 250, { final: true, poke: true }); else setInterval(loop16, 250);
   if (phone.addEventListener) phone.addEventListener("change", phoneShape);
 
   /* Expand on a phone opens the centred window (the corner shape is the dock there) */
@@ -303,7 +305,11 @@
     });
   };
   patchSheets();
-  setInterval(patchSheets, 1000);
+  /* batch 24: the shortcut sheets open from a click or a key, so patch right after those; the timer only runs with a player */
+  if (window.XIdle) {
+    XIdle.every(patchSheets, 1000, { poke: true });
+    ["click", "keydown"].forEach(function (t) { doc.addEventListener(t, function () { setTimeout(patchSheets, 0); }, true); });
+  } else setInterval(patchSheets, 1000);
 
   /* ---------- 7. Esc never closes, docks or reshapes the window ---------- */
   window.addEventListener("keydown", function (e) {

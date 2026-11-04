@@ -28,7 +28,8 @@
   /* older saves kept a second copy of the position (t, pct, done); the player's store is the only one now */
   Object.keys(W).forEach(function (id) { var r = W[id]; if (r && ("t" in r || "pct" in r || "done" in r)) { delete r.t; delete r.pct; delete r.done; dirty = true; } });
   var flush = function () { if (!dirty) return; dirty = false; try { localStorage.setItem(KEY, JSON.stringify(W)); } catch (e) {} };
-  setInterval(flush, 5000);
+  /* batch 24: saves pile up only while a player runs, so the 5s flush runs only then, with a last flush when it stops */
+  if (window.XIdle) XIdle.every(flush, 5000, { final: true }); else setInterval(flush, 5000);
   window.addEventListener("pagehide", function () { dirty = true; flush(); });
   document.addEventListener("visibilitychange", function () { if (document.hidden) { dirty = true; flush(); } });
 
@@ -526,9 +527,11 @@
   var insts = [];
   AP.onCreate(function (inst) { insts.push(inst); try { attachPanel(inst); } catch (e) {} });
   /* tracking only: counts seconds watched into storage; it redraws nothing */
-  setInterval(function () {
+  var track = function () {
     insts.forEach(function (i) { if (i.root && i.root.isConnected) { try { tick(i); } catch (e) {} } });
-  }, 1000);
+  };
+  /* batch 24: only while a player is open (a talk playing in a background tab still counts) */
+  if (window.XIdle) XIdle.every(track, 1000); else setInterval(track, 1000);
 
   /* ---------- Continue watching row + history drawer ---------- */
   var list = function () { return Object.keys(W).map(function (id) { var r = W[id]; return { id: id, r: r }; }).filter(function (x) { return x.r && x.r.last; }).sort(function (a, b) { return b.r.last - a.r.last || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0); }); };
@@ -609,11 +612,13 @@
     return all.length + "|" + cont.map(function (x) { return x.id; }).slice(0, 12).join(",");
   };
   var lastSig = rowSig();
-  setInterval(function () {
+  var rowCheck = function () {
     var s = rowSig(); if (s === lastSig) return;
     lastSig = s; known = Object.keys(W).length;
     try { paintRow(); } catch (e) {}
-  }, 3000);
+  };
+  /* batch 24: the set only changes while a player runs; one check when it closes and after any gesture */
+  if (window.XIdle) XIdle.every(rowCheck, 3000, { final: true, poke: true }); else setInterval(rowCheck, 3000);
 
   window.ArchiveWatch = { history: function () { return W; }, open: openDrawer };
 })();

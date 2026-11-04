@@ -455,7 +455,8 @@
   window.addEventListener("resize", queueGuard, { passive: true });
 
   /* ---------- once a second: progress, rate, time saved, panel state ---------- */
-  setInterval(function () {
+  /* batch 24: only while a player is open and the tab is visible; one pass after any gesture and when it closes */
+  (window.XIdle ? function (f, ms) { XIdle.every(f, ms, { final: true, poke: true }); } : setInterval)(function () {
     watchPop();
     patchSheets();
     insts.forEach(function (inst) {

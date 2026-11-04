@@ -1,4 +1,4 @@
-/* fixes7.js: the nav's Ask link and Customize gear (kept in place whatever redraws the nav), the floating Ask
+/* fixes7.js: the nav's Ask link (batch 24 removed the Customize gear), the floating Ask
    panel's "Open full page" link closing the panel, and window.XAudit with askPageMounted, heroFits, badgeCounts
    and pressedPillContrast. Static: runs at load and when the nav changes, never on a timer. */
 (function () {
@@ -6,7 +6,6 @@
   var doc = document;
 
   /* ---------- 1. Nav: Ask (a visible link, not only in More) and the Customize gear next to the theme toggle ---------- */
-  var GEAR = '<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.2a3.2 3.2 0 1 0 0-6.4 3.2 3.2 0 0 0 0 6.4z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M19.4 13.5a7.6 7.6 0 0 0 0-3l2-1.6-2-3.4-2.4 1a7.5 7.5 0 0 0-2.6-1.5L14 2.5h-4l-.4 2.5A7.5 7.5 0 0 0 7 6.5l-2.4-1-2 3.4 2 1.6a7.6 7.6 0 0 0 0 3l-2 1.6 2 3.4 2.4-1a7.5 7.5 0 0 0 2.6 1.5l.4 2.5h4l.4-2.5a7.5 7.5 0 0 0 2.6-1.5l2.4 1 2-3.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>';
   var busy = false;
   var ensureNav = function () {
     var nav = doc.querySelector("header.nav"); if (!nav || busy) return;
@@ -22,23 +21,11 @@
       if (before && ask.nextElementSibling !== before) nav.insertBefore(ask, before);
       else if (!before && ask.parentNode !== nav) nav.appendChild(ask);
       if (location.hash === "#/ask") ask.setAttribute("aria-current", "page"); else ask.removeAttribute("aria-current");
-
-      var gear = nav.querySelector(".x-cz-btn");
-      if (!gear) {
-        gear = doc.createElement("button"); gear.type = "button"; gear.className = "x-cz-btn";
-        gear.setAttribute("data-cz-open", ""); gear.setAttribute("aria-label", "Customize: voice, keyword highlights, background, motion");
-        gear.title = "Customize"; gear.innerHTML = GEAR;
-      }
-      if (theme && gear.nextElementSibling !== theme) nav.insertBefore(gear, theme);
-      else if (!theme && gear.parentNode !== nav) nav.appendChild(gear);
+      /* batch 24: no Customize gear in the nav any more (Customise lives in the footer, the More menu and Ctrl/⌘K).
+         The old childList MutationObserver that kept re-inserting the gear before the theme button is gone too. */
     } finally { busy = false; }
   };
-  var watchNav = function () {
-    var nav = doc.querySelector("header.nav"); if (!nav || !("MutationObserver" in window)) return;
-    var q = 0;
-    new MutationObserver(function () { if (busy || q) return; q = requestAnimationFrame(function () { q = 0; ensureNav(); }); }).observe(nav, { childList: true });
-  };
-  var boot = function () { ensureNav(); watchNav(); };
+  var boot = function () { ensureNav(); };
   if (doc.readyState === "loading") doc.addEventListener("DOMContentLoaded", boot); else boot();
   window.addEventListener("load", ensureNav);
   window.addEventListener("hashchange", ensureNav);

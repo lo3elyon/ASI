@@ -124,7 +124,9 @@
   window.addEventListener("click", function (ev) {
     if (ev.target.closest && ev.target.closest('.x-dk [data-dk="pp"]')) { setTimeout(paintDock, 120); setTimeout(paintDock, 400); }
   }, true);
-  setInterval(function () { var e = popEl(); if (e && !e.hidden && e.classList.contains("is-dk14")) paintDock(); }, 500);
+  /* batch 24: runs only while a player is open and the tab is visible (XIdle, set before the deferred scripts) */
+  var dockSync = function () { var e = popEl(); if (e && !e.hidden && e.classList.contains("is-dk14")) paintDock(); };
+  if (window.XIdle) XIdle.every(dockSync, 500, { final: true }); else setInterval(dockSync, 500);
 
   /* ================= 1. park on X, for 90s ================= */
   var PARK_MS = 90000;

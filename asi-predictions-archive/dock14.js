@@ -104,8 +104,9 @@
     var on = !!st.playing, pp = bar.querySelector('[data-dk="pp"]'), l = on ? "Pause" : "Play";
     setCls(pp, "is-on", on); setAttr(pp, "aria-label", l); setAttr(pp, "title", l);
   };
-  var startTimer = function () { if (!timer) timer = setInterval(paint, 500); };
-  var stopTimer = function () { if (timer) { clearInterval(timer); timer = 0; } };
+  /* batch 24: through XIdle, so the 500ms repaint also rests while the tab is hidden */
+  var startTimer = function () { if (!timer) timer = window.XIdle ? XIdle.every(paint, 500) : setInterval(paint, 500); if (window.XIdle) XIdle.check(); };
+  var stopTimer = function () { if (timer) { if (window.XIdle) XIdle.clear(timer); else clearInterval(timer); timer = 0; } };
 
   /* ---------- playback carry-over: the same iframe keeps playing; this only puts right anything that slipped ---------- */
   var snapshot = function () {

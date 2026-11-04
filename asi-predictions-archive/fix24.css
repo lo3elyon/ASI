@@ -1,0 +1,124 @@
+/* fix24: batch 24, loaded last.
+   1. The footer's Customise link (a button styled as the library's .link) now that the nav has no gear.
+      The background grain no longer jitters: it was a fixed layer animating every 200ms behind the glass nav, so
+      the header (and the gear in it) seemed to shake on its own through the nav's backdrop blur.
+   2. Off-screen top-level sections skip rendering (content-visibility, toggled by fix24.js only while a section is
+      far from the screen), and the infinite background animations pause off-screen, in a hidden tab, and stop
+      under reduced motion. No hover movement, nothing new animates. */
+
+/* ---------- 1. Customise in the footer ---------- */
+.foot .f24-cz {
+  appearance: none; -webkit-appearance: none;
+  margin: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none;
+  font: inherit; color: inherit; cursor: pointer;
+}
+.foot .f24-cz:focus-visible { outline: 2px solid var(--text-primary); outline-offset: 2px; border-radius: 4px; }
+
+/* nothing in the header moves on its own: the grain stays as a still texture */
+.x-grain { animation: none !important; transform: none !important; }
+
+/* ---------- 2. Rendering work ---------- */
+/* every top-level section remembers its rendered height, so skipping it never shifts the page */
+.main > section.section { contain-intrinsic-size: auto 900px; }
+/* fix24.js adds this only while a section is well off screen, and never to the routed section or one holding the
+   player or the dock */
+.main > section.section.f24-cv { content-visibility: auto; }
+
+/* infinite background loops pause off screen and in a hidden tab */
+.hero.f24-off::before,
+.main > .section.f24-off::before,
+html.f24-hidden .hero::before,
+html.f24-hidden .main > .section::before { animation-play-state: paused !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before, .main > .section::before, .x-grain { animation: none !important; }
+}
+html.x-calm .hero::before, html.x-calm .main > .section::before, html.x-calm .x-grain { animation: none !important; }
+
+/* ---------- 0. Nothing on the page shakes (batch 24 follow-up) ----------
+   Every layer that moved on its own or with the scroll is now still, whatever the saved Customise settings:
+   - the hero aurora (theme.css x-aurora: translate, rotate and scale, 26s infinite)
+   - the section tints (motion.css xDrift: a background-position loop on layers wider than the page)
+   - the background grain (motion.css xGrain: a fixed 200% layer jumping 5 times a second)
+   - the cursor glow (a fixed layer moved with the pointer) and the hero photo's scroll parallax
+   - the hover tilt and lift on cards, and the wiggle and flip of the prediction status icons
+   The colours, tints and the grain texture stay; only their movement goes. The Learn quiz's wrong-answer shake
+   (learn.css lnShake) is the one shake left, as feedback. */
+html:not(.x-modal-open) { scrollbar-gutter: stable; }
+.hero::before { animation: none !important; transform: none !important; will-change: auto !important; }
+.main > .section::before { animation: none !important; background-position: 0 0 !important; }
+.x-grain { animation: none !important; transform: none !important; }
+.x-glow { display: none !important; }
+.hero__img { transform: none !important; will-change: auto !important; }
+html.x-calm .x-net { display: none !important; }
+.x-st::before, .x-st--bad:hover::before, .x-st--amber:hover::before, *:hover > .x-meta > .x-st::before { animation: none !important; rotate: none !important; }
+@media (hover: hover) and (pointer: fine) {
+  .x-card:hover, .x-pi:hover, .x-pc:hover, .x-vc:hover, .x-prc__c:hover, .x-pv__v:hover { transform: none !important; }
+}
+/* no infinite loop on a page-level container */
+html, body, .page, .main, .main > .section, header.nav, .foot { animation: none !important; }
+
+/* ---------- 4. Trust page: no holes at the end of a card grid ----------
+   The grids get fixed column counts from the width of their own block (container queries), so the last row is
+   known: a lone last card spans the row, and in a 3-column grid two last cards fill it (the second spans 2). */
+#tr-wall, #tr-judge, .x-tr-pane, .x-tr-det { container-type: inline-size; }
+.x-tr-claims > .x-tr-empty { grid-column: 1 / -1; }
+
+/* claim cards in a person's tabs: about 280px each */
+.x-tr-pane > .x-tr-claims { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 572px) and (max-width: 863.98px) {
+  .x-tr-pane > .x-tr-claims { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .x-tr-pane > .x-tr-claims > :nth-child(2n + 1):last-child { grid-column: 1 / -1; }
+}
+@container (min-width: 864px) and (max-width: 1155.98px) {
+  .x-tr-pane > .x-tr-claims { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .x-tr-pane > .x-tr-claims > :nth-child(3n + 1):last-child { grid-column: 1 / -1; }
+  .x-tr-pane > .x-tr-claims > :nth-child(3n + 2):last-child { grid-column: span 2; }
+}
+@container (min-width: 1156px) {
+  .x-tr-pane > .x-tr-claims { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .x-tr-pane > .x-tr-claims > :nth-child(4n + 1):last-child { grid-column: 1 / -1; }
+  .x-tr-pane > .x-tr-claims > :nth-child(4n + 1):nth-last-child(2),
+  .x-tr-pane > .x-tr-claims > :nth-child(4n + 2):last-child,
+  .x-tr-pane > .x-tr-claims > :nth-child(4n + 3):last-child { grid-column: span 2; }
+}
+
+/* the verdict wall: about 260px each */
+#trWallGrid { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 532px) and (max-width: 803.98px) {
+  #trWallGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #trWallGrid > :nth-child(2n + 1):last-child { grid-column: 1 / -1; }
+}
+@container (min-width: 804px) and (max-width: 1075.98px) {
+  #trWallGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #trWallGrid > :nth-child(3n + 1):last-child { grid-column: 1 / -1; }
+  #trWallGrid > :nth-child(3n + 2):last-child { grid-column: span 2; }
+}
+@container (min-width: 1076px) {
+  #trWallGrid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  #trWallGrid > :nth-child(4n + 1):last-child { grid-column: 1 / -1; }
+  #trWallGrid > :nth-child(4n + 1):nth-last-child(2),
+  #trWallGrid > :nth-child(4n + 2):last-child,
+  #trWallGrid > :nth-child(4n + 3):last-child { grid-column: span 2; }
+}
+
+/* "How to judge anyone": five cards as one row, 3 + 2, or 2 + 2 + 1 with the last spanning */
+#tr-judge > .cards.x-tr-judge { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 540px) and (max-width: 859.98px) {
+  #tr-judge > .cards.x-tr-judge { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #tr-judge > .cards.x-tr-judge > :nth-child(2n + 1):last-child { grid-column: 1 / -1; }
+}
+@container (min-width: 860px) and (max-width: 1079.98px) {
+  #tr-judge > .cards.x-tr-judge { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  #tr-judge > .cards.x-tr-judge > * { grid-column: span 2; }
+  #tr-judge > .cards.x-tr-judge > :nth-child(3n + 1):last-child { grid-column: 1 / -1; }
+  #tr-judge > .cards.x-tr-judge > :nth-child(3n + 1):nth-last-child(2),
+  #tr-judge > .cards.x-tr-judge > :nth-child(3n + 2):last-child { grid-column: span 3; }
+}
+@container (min-width: 1080px) {
+  #tr-judge > .cards.x-tr-judge { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+}
+
+/* Trust them most on / Be careful about / Incentives: three across, or one under another, never 2 + 1 */
+.x-tr-det > .x-tr-boxes { grid-template-columns: minmax(0, 1fr); }
+@container (min-width: 720px) { .x-tr-det > .x-tr-boxes { grid-template-columns: repeat(3, minmax(0, 1fr)); } }

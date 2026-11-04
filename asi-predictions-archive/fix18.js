@@ -82,9 +82,11 @@
     }
     if (Math.abs(need - cur) > 1 || (need === 0 && cur !== 0)) { cap.__f18 = need; cap.style.setProperty("--f18-lift", need + "px"); }
   };
-  setInterval(function () {
+  var lift18 = function () {
     insts.forEach(function (inst) { if (inst.root && inst.root.isConnected) { try { liftCaps(inst); } catch (e) {} } });
-  }, 120);
+  };
+  /* batch 24: captions only show with a started player, so this runs only then (and with the tab visible) */
+  if (window.XIdle) XIdle.every(lift18, 120, { final: true }); else setInterval(lift18, 120);
 
   /* ================= C. the ⚙ menu ================= */
   var ctrlOf = function (m) { var r = m.closest(".x-ap") || doc; return m.id ? r.querySelector('[aria-controls="' + m.id + '"]') : null; };

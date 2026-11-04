@@ -639,7 +639,7 @@
         '<div class="x-ap__upbg" aria-hidden="true" style="background-image:url(&quot;' + thumbUrl(cur.id) + '&quot;)"></div>' +
         '<div class="x-ap__upbox" role="group" aria-label="Up next">' +
           '<div class="x-ap__upmain">' +
-            '<button class="x-ap__upthumb" type="button" data-a="upplay" aria-label="Play next: ' + esc(n.t) + '"><img src="' + thumbUrl(n.id) + '" alt="" width="480" height="270" decoding="async" />' +
+            '<button class="x-ap__upthumb" type="button" data-a="upplay" aria-label="Play next: ' + esc(n.t) + '"><img src="' + thumbUrl(n.id) + '" alt="" width="480" height="270" loading="lazy" decoding="async" />' +
               (window.XDur ? XDur.html(n.id, "x-ap__updur") : n.len ? '<span class="x-dur x-ap__updur">' + esc(n.len) + "</span>" : "") + "</button>" +
             '<div class="x-ap__uptext">' +
               '<p class="x-ap__uplab">Up next</p>' +

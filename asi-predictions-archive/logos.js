@@ -72,7 +72,7 @@
   };
   var img = function (srcs, alt, size, attrs) {
     if (!srcs || !srcs.length) return "";
-    return '<img src="' + esc(srcs[0]) + '"' + (srcs.length > 1 ? " data-fb='" + esc(JSON.stringify(srcs.slice(1))) + "'" : "") + ' alt="' + esc(alt || "") + '" width="' + (size || 48) + '" height="' + (size || 48) + '" decoding="async"' + (attrs ? " " + attrs : "") + " />";
+    return '<img src="' + esc(srcs[0]) + '"' + (srcs.length > 1 ? " data-fb='" + esc(JSON.stringify(srcs.slice(1))) + "'" : "") + ' alt="' + esc(alt || "") + '" width="' + (size || 48) + '" height="' + (size || 48) + '" decoding="async"' + (attrs && /\bloading=/.test(attrs) ? "" : ' loading="lazy"') + (attrs ? " " + attrs : "") + " />";
   };
   /* runs before every other error handler (this file loads first), so a fallback gets its turn before initials */
   doc.addEventListener("error", function (ev) {
