@@ -10,11 +10,12 @@
     var ask = nav.querySelector(".x-nav-ask");
     if (onAsk()) {
       nav.querySelectorAll('[aria-current]').forEach(function (a) { if (a !== ask) a.removeAttribute("aria-current"); });
-      if (ask) { ask.setAttribute("aria-current", "page"); ask.classList.add("is-here"); }
+      if (ask && ask.getAttribute("aria-current") !== "page") ask.setAttribute("aria-current", "page");
+      if (ask && !ask.classList.contains("is-here")) ask.classList.add("is-here");
     } else if (ask) { if (ask.getAttribute("aria-current") === "page") ask.removeAttribute("aria-current"); ask.classList.remove("is-here"); }
     busy = false;
   };
-  new MutationObserver(function () { if (onAsk()) paint(); }).observe(nav, { subtree: true, attributes: true, attributeFilter: ["aria-current"] });
+  new MutationObserver(function (recs) { if (!onAsk()) return; var ask = nav.querySelector(".x-nav-ask"); if (recs.some(function (r) { return r.target !== ask && r.target.hasAttribute("aria-current"); })) paint(); }).observe(nav, { subtree: true, attributes: true, attributeFilter: ["aria-current"] });
   window.addEventListener("hashchange", paint);
   window.addEventListener("popstate", function () { setTimeout(paint, 0); });
   paint();
