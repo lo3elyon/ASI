@@ -84,7 +84,8 @@
     if (r) { if (r.state === "loading") r.waits.push(cb); else cb(r); return; }
     r = TR[id] = { state: "loading", waits: [cb] };
     var settle = function (data) {
-      if (data) { r.state = "ok"; r.data = data; } else r.state = "fail";
+      /* a talk outside the caption list whose file exists after all gets site captions too */
+      if (data) { r.state = "ok"; r.data = data; capSet()[id] = 1; } else r.state = "fail";
       var w = r.waits; r.waits = [];
       w.forEach(function (f) { try { f(r); } catch (e) {} });
       if (r.state === "fail") INST.forEach(function (i) { var v = i.current(); if (v && v.id === id) i._pnFail(); });
@@ -178,6 +179,10 @@
     ["interpretability", "interpretability", "Interpretability"], ["intelligence explosion|singularity", "intelligence-explosion", "Intelligence explosion"],
     ["deep learning|neural net(?:work)?s?", "deep-learning", "Deep learning"], ["large language models?|\\bLLMs?\\b|transformers?", "transformers", "LLMs"]
   ];
+  /* organisations named in talks: coloured with the Labs topic, linking to it */
+  var ORGS = ["OpenAI", "Anthropic", "Google DeepMind", "DeepMind", "Google Brain", "Hugging Face", "Microsoft", "xAI", "Cohere", "Nvidia",
+    "Machine Intelligence Research Institute", "MIRI", "Future of Humanity Institute", "Future of Life Institute", "Center for AI Safety",
+    "Redwood Research", "Apollo Research", "METR", "Open Philanthropy", "AI Safety Institute", "Mila", "Conjecture", "Safe Superintelligence"];
   var KW = null;
   var kwIndex = function () {
     if (KW) return KW;
@@ -187,8 +192,13 @@
       if (!p || !p.name || !p.id || p.name.length < 5 || !/\s/.test(p.name)) return;
       var key = p.name.toLowerCase();
       if (KW.map[key]) return;
-      KW.map[key] = { href: "#/person/" + p.id, kind: "person", label: p.name };
+      KW.map[key] = { href: "#/person/" + p.id, kind: "person", label: p.name, g: p.group || "" };
       alts.push(p.name.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+    });
+    ORGS.forEach(function (o) {
+      var key = o.toLowerCase(); if (KW.map[key]) return;
+      KW.map[key] = { href: "#/topic/labs", kind: "org", label: o, tc: "labs" };
+      alts.push(o.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "\\b");
     });
     alts.sort(function (a, b) { return b.length - a.length; });
     TERMS.forEach(function (t, i) { alts.push("(?<t" + i + ">" + t[0] + ")"); });
@@ -206,7 +216,7 @@
     while ((m = K.re.exec(text))) {
       if (!m[0]) { K.re.lastIndex++; continue; }
       var k = K.map[m[0].toLowerCase()] || null;
-      if (!k && m.groups) { for (var i = 0; i < TERMS.length; i++) { if (m.groups["t" + i]) { k = { href: "#/topic/" + TERMS[i][1], kind: "term", label: TERMS[i][2] }; break; } } }
+      if (!k && m.groups) { for (var i = 0; i < TERMS.length; i++) { if (m.groups["t" + i]) { var tc0 = window.XTopicColor ? XTopicColor.canon(TERMS[i][1]) : ""; k = { href: "#/topic/" + TERMS[i][1], kind: "term", label: TERMS[i][2], tc: tc0 || "" }; break; } } }
       if (!k) continue;
       if (m.index > last) out.push({ t: text.slice(last, m.index), k: null });
       out.push({ t: m[0], k: k });
@@ -225,7 +235,12 @@
       else inner = esc(s.t);
       if (!s.k) html += inner;
       else if (o.link) html += '<a class="x-kw x-kw--' + s.k.kind + '" href="' + esc(s.k.href) + '" title="' + esc((s.k.kind === "person" ? "Profile: " : "Topic: ") + s.k.label) + '">' + inner + "</a>";
-      else html += '<b class="x-kw x-kw--' + s.k.kind + '">' + inner + "</b>";
+      else {
+        /* the keyword's topic, for "Colourful words": a term's own topic, a person's group, Labs for an organisation */
+        var tc = s.k.tc || "";
+        if (!tc && s.k.g && window.XTopicColor && XTopicColor.group) { try { tc = XTopicColor.group(s.k.g) || ""; } catch (e) {} }
+        html += '<b class="x-kw x-kw--' + s.k.kind + '"' + (tc ? ' data-tc="' + tc + '"' : "") + ">" + inner + "</b>";
+      }
     });
     return { html: html, words: ctr.n };
   };
@@ -434,10 +449,18 @@
     };
     var YTNONE = AP._ytNoCC || (AP._ytNoCC = {});
     /* the actual state: a loaded transcript (or site captions on screen) wins over the "none" flag */
+    /* one caption layer, always the site's: "site" (a transcript), "wait" (being fetched) or "none". YouTube's own
+       captions are never turned on here; player8.js keeps them unloaded. */
     var srcOf = function (v) {
       if (!v) return "";
       if (trOf(v.id) || hasCC(v.id) || (S.capLive && S.capLive === v.id)) return "site";
-      return YTNONE[v.id] ? "none" : "yt";
+      var r0 = TR[v.id];
+      return r0 && r0.state === "loading" ? "wait" : "none";
+    };
+    /* a talk outside the caption list: ask the caption source once whether it has a file after all */
+    var probe = function (v) {
+      if (!v || TR[v.id] || hasCC(v.id)) return;
+      getTr(v.id, function (rr) { if (rr.state === "ok") trArrived(v); });
     };
     var ytSize = function () { return C.size <= 75 ? -1 : C.size >= 175 ? 3 : Math.round((C.size - 100) / 25); };
     var Y = { key: "", size: null, tries: 0, track: false };
@@ -459,24 +482,16 @@
       return true;
     };
     /* idempotent: called on every repaint, on ready, on state changes and on video change */
+    /* YouTube's captions are never loaded by the site (that drew a second caption layer that C could not turn off) */
     var applyYT = function () {
-      var v = cur();
-      var want = !!(v && C.on && srcOf(v) === "yt" && inst.yt() && inst.started());
-      root.classList.toggle("is-ytcc", want);
-      if (!want) { if (Y.key) ytOff(); return; }
-      inst._ytCC = true;
-      if (Y.key !== v.id) {
-        Y.key = v.id; Y.size = null; Y.tries = 0; Y.track = false; Y.play = 0; Y.last = 0; Y.reload = false;
-        ytCall(function (p) { if (typeof p.loadModule === "function") p.loadModule("captions"); });
-        ytCall(function (p) { p.setOption("captions", "track", { languageCode: "en" }); });
-      }
-      var s = ytSize();
-      if (Y.size !== s) { Y.size = s; ytCall(function (p) { p.setOption("captions", "fontSize", s); }); }
+      root.classList.remove("is-ytcc"); inst._ytCC = false;
+      if (Y.key) ytOff();
     };
     /* while playing, look for a track: 'en', else the first one; none after about 8s of playback means none at all */
     /* YouTube fills the track list only after the captions module loads during playback (onApiChange).
        Measured in seconds of playback: at 3s with no list, load the module once more; "none" only after that, at 6s. */
     var ytTick = function () {
+      if (!inst._ytCC) return;
       var v = cur(); if (!Y.key || !v || Y.key !== v.id || Y.track || !inst.isPlaying()) return;
       if (pickTrack()) return;
       var n = Date.now();
@@ -494,8 +509,8 @@
       var v = cur(), src = srcOf(v);
       b.setAttribute("aria-pressed", String(!!C.on));
       b.classList.remove("is-na");
-      b.classList.toggle("is-yt", src === "yt");
-      var l = src === "site" ? "Captions (C): site captions" : src === "yt" ? "Captions (C): YouTube auto captions" : "Captions (C): none for this talk";
+      b.classList.remove("is-yt");
+      var l = src === "none" ? "Captions (C): none for this talk · hold for caption style" : "Captions (C) · hold for caption style";
       b.setAttribute("aria-label", l); b.setAttribute("data-tip", l);
     };
     var menu = root.querySelector(".x-apx-menu"), setEl = null;
@@ -542,14 +557,13 @@
       setEl.querySelector('[data-pn="size"][data-d="-25"]').disabled = C.size <= 75;
       setEl.querySelector('[data-pn="size"][data-d="25"]').disabled = C.size >= 200;
       var vv = cur(), src = srcOf(vv);
-      var v = menu.querySelector(".x-pn-ccv"); if (v) v.textContent = C.on ? (src === "yt" ? "YouTube · " : src === "site" ? "Site · " : "") + C.size + "%" : "Off";
+      var v = menu.querySelector(".x-pn-ccv"); if (v) v.textContent = !C.on ? "Off" : src === "none" ? "None" : "On";
       var so = setEl.querySelector('[data-pn-out="src"]');
       if (so) {
         so.setAttribute("data-src", src);
-        so.textContent = src === "site" ? "Site captions · from this talk's transcript" : src === "yt" ? "YouTube auto captions" + (Y.track && Y.lang ? " · " + Y.lang : "") + " · YouTube draws these, so only Size applies" : "No captions for this talk";
+        so.textContent = src === "site" ? "Site captions · from this talk's transcript" : src === "wait" ? "Looking for this talk's captions…" : "No captions for this talk";
       }
-      /* YouTube captions only take the size setting, so the style controls apply to site captions */
-      setEl.classList.toggle("is-yt", src !== "site");
+      setEl.classList.remove("is-yt");
     };
     var setSize = function (d) {
       var n = Math.max(75, Math.min(200, C.size + d));
@@ -558,11 +572,13 @@
     };
     inst.ccToggle = function () {
       setC("on", !C.on);
-      var v = cur(), src = srcOf(v);
+      var v = cur();
       if (!C.on) { toast("Captions off"); return; }
-      if (src === "site") toast("Captions on · site captions");
-      else if (src === "none" || (inst.started() && !inst.yt())) toast("No captions for this talk");
-      else toast(inst.started() ? "Captions on · YouTube auto captions" : "Captions on · YouTube auto captions start with playback");
+      probe(v);
+      var src = srcOf(v);
+      if (src === "site") toast("Captions on");
+      else if (src === "wait") toast("Captions on · looking for this talk's captions…");
+      else toast("No captions for this talk");
     };
     inst.ccSize = setSize;
     /* the chapter under a time, for the seek bar's hover preview */
@@ -629,7 +645,12 @@
     var tint = function (box, n) {
       if (!box) return;
       var ws = box.querySelectorAll(".w");
-      for (var i = 0; i < ws.length; i++) { var on = i < n; if (ws[i].classList.contains("is-said") !== on) ws[i].classList.toggle("is-said", on); }
+      for (var i = 0; i < ws.length; i++) {
+        var on = i < n, now = i === n - 1;
+        if (ws[i].classList.contains("is-said") !== on) ws[i].classList.toggle("is-said", on);
+        /* the word being spoken now, for "Highlight current word" */
+        if (ws[i].classList.contains("is-cur") !== now) ws[i].classList.toggle("is-cur", now);
+      }
     };
     var frac = function (t, a, b) { return b > a ? Math.max(0, Math.min(1, (t - a) / (b - a))) : 1; };
     var lineHtml = function (g, words) { return richHtml(g.x, { link: true, words: words }); };
@@ -706,21 +727,34 @@
           if (ln !== S.lineN) { S.lineN = ln; tint(S.list.children[gi], ln); }
         }
       }
+      /* the virtualised transcript (player8.js) follows from the same frame */
+      if (inst._x8follow) inst._x8follow(t, tr);
     };
-    var start = function () { if (!S.timer) S.timer = setInterval(function () { update(); }, 250); };
-    var stop = function () { clearInterval(S.timer); S.timer = 0; };
+    /* follow-along runs on animation frames, at most ten times a second, and only while playing */
+    var start = function () {
+      if (S.timer) return;
+      var last = 0;
+      var loop = function (ts) {
+        S.timer = requestAnimationFrame(loop);
+        if (ts - last < 100) return;
+        last = ts; update();
+      };
+      S.timer = requestAnimationFrame(loop);
+    };
+    var stop = function () { cancelAnimationFrame(S.timer); S.timer = 0; };
     inst.on("state", function (s) {
       if (s === 1) start(); else stop();
       /* the transcript may still be on its way at the first frame: ask again so captions show without a click */
       var v = cur();
       if (s === 1 && v && hasCC(v.id) && !trOf(v.id)) getTr(v.id, function () { trArrived(v); });
       if (s === 1 || s === 3) applyYT();
+      /* CC on for a talk with no captions anywhere: say so once when it starts, instead of turning on YouTube's */
+      if (s === 1 && v && C.on && srcOf(v) === "none" && S.noneSaid !== v.id) { S.noneSaid = v.id; toast("No captions for this talk"); }
       S.capKey = null; update(); if (S.segD !== inst.duration()) paintSegs();
     });
     inst.on("ready", function () { Y.key = ""; Y.size = null; paintSegs(); S.capKey = null; update(); applyYT(); });
-    /* the player asks before it builds: CC on for a talk without a site transcript loads YouTube's captions from the start */
-    inst.on("ccwant", function (v) { return !!(C.on && v && srcOf(v) === "yt"); });
-    inst.ccWanted = function () { var v = cur(); return !!(C.on && v && srcOf(v) === "yt"); };
+    inst.ccWanted = function () { return false; };
+    inst._pnToast = toast;
     /* YouTube's captions module reports in: pick the English (or first) track and the size */
     inst.on("apichange", function () {
       var v = cur(); if (!Y.key || !v || Y.key !== v.id) return;
@@ -740,10 +774,16 @@
       Y.key = ""; Y.size = null; Y.tries = 0; Y.track = false; inst._ytCC = false;
       S.vid = v && v.id; S.capKey = null; capWin.innerHTML = ""; S.chI = -2; S.gi = -2; S.follow = true; S.sec = null;
       if (v && hasCC(v.id)) getTr(v.id, function () { trArrived(v); });
+      else if (v && C.on) probe(v);
       paintCap(); paintSegs(); paintBtn(); paintSet(); update();
     });
-    /* a transcript that failed to load: captions fall back to YouTube's own */
-    inst._pnFail = function () { paintBtn(); paintSet(); capWin.innerHTML = ""; S.capKey = null; applyYT(); if (inst._whSync) inst._whSync(); };
+    /* a transcript that failed to load: no captions (YouTube's stay off) */
+    inst._pnFail = function () {
+      paintBtn(); paintSet(); capWin.innerHTML = ""; S.capKey = null; applyYT();
+      var v = cur();
+      if (C.on && v && inst.started() && S.noneSaid !== v.id) { S.noneSaid = v.id; toast("No captions for this talk"); }
+      if (inst._whSync) inst._whSync();
+    };
     inst._pnPaint = function () { paintCap(); paintSet(); paintBtn(); S.capKey = null; update(); applyYT(); };
     inst._pnUpdate = update;
 
@@ -760,6 +800,8 @@
     var fillTranscript = function (v, box) {
       var tr = trOf(v.id), list = box.querySelector(".x-pn-list"), meta = box.querySelector(".x-pn-trmeta");
       if (!tr) { meta.textContent = "The transcript could not be loaded."; return; }
+      /* player8.js draws only the visible lines ±30 and follows playback itself (via inst._x8follow) */
+      if (inst._x8tr) { S.list = null; S.meta = null; S.chip = null; S.gi = -2; inst._x8tr(v, box, tr); return; }
       list.innerHTML = tr.groups.map(function (g, i) {
         return '<div class="x-pn-line" role="listitem" data-pn-seek="' + g.t + '" data-gi="' + i + '">' +
           '<button type="button" class="x-pn-time" data-pn-seek="' + g.t + '" aria-label="Play from ' + fmt(g.t) + '">' + fmt(g.t) + "</button>" +
@@ -989,7 +1031,20 @@
     summary: function (v) { var n = v && notesOf(v.id); return n && (n.s || n.ww || (n.kc && n.kc.length)) ? summaryHtml(n) : ""; },
     /* text with names and key terms as chips linking to #/person/<id> and #/topic/<slug> */
     rich: function (text) { return richHtml(String(text || ""), { link: true }).html; },
-    render: function (key, v, pane, inst) { if (inst && inst._pnRender) inst._pnRender(key, v, pane); }
+    render: function (key, v, pane, inst) { if (inst && inst._pnRender) inst._pnRender(key, v, pane); },
+    /* for player8.js: the one shared caption state and the transcript source */
+    api: {
+      C: function () { return C; },
+      setC: function (k, v) { setC(k, v); },
+      repaint: everywhere,
+      getTr: getTr,
+      trOf: trOf,
+      trState: function (id) { var r = TR[id]; return r ? r.state : ""; },
+      forget: function (id) { if (TR[id] && TR[id].state === "fail") delete TR[id]; },
+      listed: function (id) { return !!capSet()[id]; },
+      rich: function (text, o) { return richHtml(String(text || ""), o || {}); },
+      prov: PROV
+    }
   };
 
   AP.onCreate(setup);

@@ -104,5 +104,7 @@
     }
   }).observe(doc.body, { childList: true, subtree: true });
 
-  window.XTopicColor = { slugs: SLUGS.slice(), canon: canon, of: function (s) { s = canon(s); return s ? PAL[IDX[s]] : null; } };
+  window.XTopicColor = { slugs: SLUGS.slice(), canon: canon, of: function (s) { s = canon(s); return s ? PAL[IDX[s]] : null; },
+    /* a person's topic from their people.json group */
+    group: function (g) { return canon(GRP[g] || g); } };
 })();

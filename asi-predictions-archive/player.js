@@ -355,7 +355,7 @@
     var basic = function (start) {
       var v = P.video;
       P.basic = true; root.classList.add("is-basic");
-      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1" + (start ? "&start=" + start : "") +
+      frame.innerHTML = '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(v.id) + "?autoplay=1&rel=0&modestbranding=1&playsinline=1&cc_load_policy=0&iv_load_policy=3" + (start ? "&start=" + start : "") +
         '" title="' + esc(v.t) + '" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>';
       P.playing = true; paintToggle();
     };
@@ -400,8 +400,7 @@
       /* fs stays 0 in both modes: fullscreen is always the site's whole watch shell (video and panel), never the bare iframe */
       var pv = { autoplay: auto ? 1 : 0, controls: P.native ? 1 : 0, disablekb: P.native ? 0 : 1, fs: 0, iv_load_policy: 3,
         cc_load_policy: 0, cc_lang_pref: "en", rel: 0, modestbranding: 1, playsinline: 1, start: start || 0 };
-      /* YouTube captions wanted (CC on for a talk without a site transcript): ask YouTube to load them from the start */
-      if (emit("ccwant", v)) pv.cc_load_policy = 1;
+      /* YouTube's own captions always start off (cc_load_policy 0): the site draws the one caption layer (player8.js) */
       if (/^https?:/.test(location.origin)) pv.origin = location.origin;
         try {
           P.yt = new window.YT.Player(host, {

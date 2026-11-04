@@ -48,7 +48,7 @@
     ["↑ / ↓", "Volume up or down 10%"], ["M", "Mute or unmute"], ["Shift + > / <", "Faster or slower (0.25× – 3×)"],
     ["F", "Fullscreen: video and side panel"], ["\\", "Show or hide the side panel"], ["T", "Theater mode (wide window in the pop-out)"], ["I", "Picture-in-picture: the site's mini player"],
     ["Y", "Switch between the site player and YouTube controls"],
-    ["C", "Captions on or off (site captions, or YouTube's when a talk has no transcript)"], ["+ / −", "Larger or smaller captions"],
+    ["C", "Captions on or off · right-click or hold CC for caption style"], ["+ / −", "Larger or smaller captions"],
     ["A", "A–B loop: set A, then B, then clear"], ["R", "Loop this video"], ["B", "Bookmark this moment"],
     ["Shift + N", "Next video"], ["Shift + P", "Previous video"],
     ["Scroll on 🔊", "Volume up or down"], ["?", "This sheet"], ["Esc", "Close this sheet or the ⚙ menu; leave fullscreen"]
@@ -357,7 +357,7 @@
       var b = ev.target.closest("[data-x], [data-a]"); if (!b || !root.contains(b)) return;
       var a = b.getAttribute("data-x");
       if (a === "mute") toggleMute();
-      else if (a === "cc") toggleCC();
+      /* the CC button has one listener, in player8.js (tap toggles, long-press opens the caption panel) */
       else if (a === "loop") toggleLoop();
       else if (a === "history") {
         closeMenu(false);
@@ -510,7 +510,7 @@
       if (k === "\\") { togglePanel(); return true; }
       switch (k.toLowerCase()) {
         case "m": toggleMute(); return true;
-        case "c": toggleCC(); return true;
+        /* C is handled once, by player8.js: a second handler here toggled twice and cancelled out */
         case "r": toggleLoop(); return true;
         case "a": if (ev.shiftKey) return false; if (AB.a == null) setA(); else if (AB.b == null) setB(); else clearAB(false); return true;
       }

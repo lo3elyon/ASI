@@ -76,7 +76,7 @@
         of the video must be the iframe or its transparent shield. Anything else is put right and logged.
      --------------------------------------------------------------------- */
   var players = [];
-  var OK_OVER = ".x-ap__shield, .x-ap__bar, .x-apx-menu, .x-sx-top, .x-sx-nat, .x-pn-cap, .x-ap__upnext, .x-apt, .x-ap__sheet";
+  var OK_OVER = ".x-ap__shield, .x-ap__bar, .x-apx-menu, .x-sx-top, .x-sx-nat, .x-pn-cap, .x-ap__upnext, .x-apt, .x-ap__sheet, .x8-cp";
   var LEGIT = ".x-pop, dialog, .x-dd__menu, .x-whd, .x-ask, .x-wh, .nav, .x-nar";
   var check = function (inst, fix) {
     var root = inst.root, screen = inst.screen, out = { mode: "", ok: true, issues: [] };

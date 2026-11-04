@@ -194,7 +194,7 @@
       (more.length ? '<p class="x-pn-h x-wh__uph">Related talks</p><ol class="x-wh__uplist">' + more.map(function (x) { return row(x, -1, false); }).join("") + "</ol>" : "") +
       (q.length <= 1 && !more.length ? '<p class="x-wh__muted">Nothing queued after this talk.</p>' : "");
   };
-  var FOLD = "asiWatch.panelHidden";
+  var FOLD = "asiWatch.panelHidden", TAB_KEY = "asi.panelTab8";
   var folded = false;
   try { folded = localStorage.getItem(FOLD) === "1"; } catch (e) {}
   var wide = window.matchMedia ? window.matchMedia("(min-width: 1100px)") : null;
@@ -229,7 +229,9 @@
     host.appendChild(box);
     host.classList.add("has-wh");
     if (list) box.querySelector(".x-wh__up").appendChild(list); /* the window's up-next list becomes the fourth tab */
-    var cur = "about", last = null;
+    /* the last tab opened, in any player, is the one every next video opens on */
+    var cur = (function () { var t = ""; try { t = localStorage.getItem(TAB_KEY) || ""; } catch (e) {} return tabs.some(function (x) { return x[0] === t; }) ? t : "about"; })(), last = null, stale = false;
+    var savedTab = function () { var t = ""; try { t = localStorage.getItem(TAB_KEY) || ""; } catch (e) {} return tabs.some(function (x) { return x[0] === t; }) ? t : ""; };
     var body = box.querySelector(".x-wh__body"), pane = box.querySelector(".x-wh__pane"), up = box.querySelector(".x-wh__up");
     var prog = box.querySelector(".x-wh__prog"), down = box.querySelector(".x-wh__down"), foldB = box.querySelector(".x-wh__fold");
     var tabEls = [].slice.call(box.querySelectorAll(".x-wh__tab"));
@@ -277,7 +279,8 @@
       edges();
       if (inst._sxPanelPaint) inst._sxPanelPaint();
     };
-    var slideIn = function () { body.classList.remove("is-in"); void body.offsetWidth; body.classList.add("is-in"); };
+    /* tab switches are instant: no slide, and no forced layout read (offsetWidth) to restart one */
+    var slideIn = function () { body.classList.remove("is-in"); };
     var showCurrentInList = function () {
       var c = up && up.querySelector('[aria-current="true"]'); if (!c || !scrolls()) return;
       body.scrollTop += c.getBoundingClientRect().top - body.getBoundingClientRect().top - 12;
@@ -298,6 +301,9 @@
       if (!v || !v.id) { box.hidden = true; host.classList.remove("has-wh"); return; }
       box.hidden = false; host.classList.add("has-wh");
       syncTabs();
+      /* lazy: a folded panel draws nothing; the active tab is drawn when it opens again */
+      if (folded && !isFly()) { stale = true; last = null; edges(); return; }
+      stale = false;
       body.setAttribute("data-t", cur);
       body.setAttribute("aria-labelledby", uid + "-" + cur);
       if (cur === "up") {
@@ -330,6 +336,7 @@
         var k = t.getAttribute("data-t"), reopen = folded && !isFly();
         if (k === cur && !reopen) return;
         select(k);
+        try { localStorage.setItem(TAB_KEY, k); } catch (e2) {}
         keep(function () { if (reopen) setFold(false, true); paint(false, true); });
         return;
       }
@@ -487,13 +494,17 @@
     if (wide) { if (wide.addEventListener) wide.addEventListener("change", layout); else if (wide.addListener) wide.addListener(layout); }
     window.addEventListener("resize", layout, { passive: true });
     if (pop && "MutationObserver" in window) new MutationObserver(layout).observe(pop, { attributes: true, attributeFilter: ["class"] });
-    panels.push(function () { paintFold(); });
+    panels.push(function () { paintFold(); if (stale && !folded) paint(true); });
+    if (cur === "up" && pop && pop.classList.contains("is-solo")) cur = "about";
+    select(cur);
     layout(); orient(); paintFold();
     paint(true);
     /* repainted only when the video changes or its play state changes, never on a timer */
     if (inst.on) {
       inst.on("change", function () {
         /* a window with one video has no up-next list: fall back to About */
+        /* every next video opens on the last tab opened in any player */
+        var st = savedTab(); if (st && st !== cur) select(st);
         if (cur === "up" && pop && pop.classList.contains("is-solo")) select("about");
         keep(function () { paint(false); }); paintProg();
       });

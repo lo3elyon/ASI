@@ -1,0 +1,158 @@
+/* fixes10.css: Batch 7, loaded last. (1) the paused frame stays clean and real, controls rest after 1.5 s,
+   clean view; (2) draggable captions above the shield; (3) picture filter; (4) the side panel's "more" strip,
+   the transcript tools and the history tab strip never cover or overflow; (5) colour fixes; (6) history map.
+   Tokens and fixed dark-surface colours only; nothing moves on hover. */
+
+/* =====================================================================
+   1. Pause after playback: the live frame, no thumbnail, no tint
+   ===================================================================== */
+.x-ap.x7-live .x-ap__cover { background: transparent !important; animation: none !important; }
+.x-ap.x7-live .x-ap__cover::after, .x-ap.x7-live .x-ap__cimg { display: none !important; }
+.x-ap.x7-live.is-cover .x-pn-cap { display: flex; }
+/* YouTube's pause overlays (title strip, "More videos", watermark) sit at the iframe's edges: while paused the
+   offset crop grows evenly on both sides, so the picture keeps its exact size and place and the overlays fall
+   outside the clipped box. Only when the iframe stays width-limited (player7.js sets x7-crop). */
+.x-ap.x7-live.x7-crop.is-started:not(.is-basic):not(.is-native):not(.is-ytcc):not(:has(.x-apx-cc.is-yt[aria-pressed="true"])) .x-ap__frame iframe {
+  top: -180px !important; bottom: auto !important; height: calc(100% + 360px) !important; transform: none !important;
+}
+/* every layer that catches clicks over the picture is fully transparent */
+.x-ap .x-ap__shield { background: transparent !important; box-shadow: none !important; }
+/* the big button never grows under the pointer */
+.x-ap__big:hover, .x-ap__cover .x-ap__big:hover { transform: translate(-50%, -50%) !important; }
+
+/* ---------- rest: 1.5 s without pointer movement (or the pointer off the video), paused or playing ---------- */
+.x-ap.x7-live .x-ap__big, .x-ap.x7-live .x-ap__ctime,
+.x-ap.x7-played:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt, .x-sx-top) {
+  transition: opacity 300ms var(--ease-out), visibility 0s linear 0s;
+}
+.x-ap.x7-rest:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt, .x-sx-top, .x-ap__ctime),
+.x-ap.x7-rest.x7-live .x-ap__big {
+  opacity: 0 !important; visibility: hidden !important; pointer-events: none !important;
+  transition: opacity 300ms var(--ease-out), visibility 0s linear 300ms !important;
+}
+.x-ap.x7-rest:not(.is-native):not(.is-basic) .x-ap__screen,
+.x-ap.x7-rest:not(.is-native):not(.is-basic) .x-ap__screen * { cursor: none !important; }
+/* with the bar gone, bottom captions settle where they sit while playing idle */
+.x-ap.x7-rest:not(.is-basic) .x-pn-cap.is-bottom:not(.x7-free) { bottom: max(6%, 18px) !important; }
+
+/* ---------- clean view (H): nothing over the picture ---------- */
+.x-ap.x7-clean :is(.x-ap__bar, .x-apt, .x-sx-top, .x-sx-nat, .x-ap__ctime, .x-ap__big, .x-ap__spin, .x-apx-flash, .x-pn-toast, .x-apx-tip, .x-wh__down) {
+  opacity: 0 !important; visibility: hidden !important; pointer-events: none !important; transition: none !important;
+}
+.x-ap.x7-clean .x-wh__tab::after, .x-ap.x7-clean .x-wh__fold::after { display: none !important; }
+.x-ap.x7-clean:not(.x7-cleancaps) .x-pn-cap { display: none !important; }
+.x-ap.x7-clean .x-pn-cap.is-bottom:not(.x7-free) { bottom: max(6%, 18px) !important; }
+.x7-toast {
+  position: absolute; left: 50%; top: 14px; z-index: 9; max-width: calc(100% - 24px); transform: translateX(-50%);
+  padding: 6px 14px; border-radius: var(--r-pill); background: rgba(5, 7, 11, 0.86); color: #f5f5f7;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18); font: var(--type-small); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transition: opacity 300ms var(--ease-out), visibility 0s linear 300ms;
+}
+.x7-toast.is-on { opacity: 1; visibility: visible; transition: opacity 200ms var(--ease-out), visibility 0s; }
+
+/* =====================================================================
+   2. Captions: above the shield and the cover, draggable anywhere inside the frame
+   ===================================================================== */
+.x-ap .x-pn-cap { z-index: 8; }
+.x-ap .x-pn-cap .x-pn-cap__win { pointer-events: auto; cursor: grab; touch-action: none; }
+.x-ap .x-pn-cap.is-drag .x-pn-cap__win { cursor: grabbing; }
+/* a free position: the block's centre at (--x7-cx, --x7-cy); the text area narrows near an edge, so it wraps
+   instead of leaving the frame */
+.x-ap .x-pn-cap.x7-free {
+  top: var(--x7-cy, 80%) !important; bottom: auto !important; left: 3% !important; right: 3% !important;
+  transform: translateY(-50%) !important; transition: none !important; box-sizing: border-box;
+  padding-left: max(0%, calc((var(--x7-cx, 50%) - 50%) * 2)); padding-right: max(0%, calc((50% - var(--x7-cx, 50%)) * 2));
+}
+.x-ap.x7-rest .x-pn-cap .x-pn-cap__win { cursor: none; }
+
+/* =====================================================================
+   3. Picture: brightness, contrast, saturation on the frame wrapper
+   ===================================================================== */
+.x-ap.x7-pic .x-ap__frame { filter: var(--x7-filter, none); }
+.x7-picsec { display: grid; gap: 2px; }
+.x7-sl { display: grid; grid-template-columns: minmax(76px, auto) minmax(0, 1fr) 44px; align-items: center; gap: 8px; min-height: var(--tap); padding: 0 6px; }
+.x7-sl__n { font: var(--type-tag); }
+.x7-sl .x-apx-range { width: 100%; min-width: 0; min-height: 40px; }
+.x7-sl__v { font: var(--type-tag); font-variant-numeric: tabular-nums; text-align: right; }
+.x7-picreset:disabled { opacity: 0.55; cursor: default; }
+.x7-viewsec { display: grid; gap: 2px; }
+
+/* =====================================================================
+   4. Panels: nothing covers a row, nothing overflows
+   ===================================================================== */
+/* "↓ more" is a row of its own under the scrolling list, never over it, and never moves on hover */
+.x-wh .x-wh__down, .x-wh .x-wh__down:hover, .x-wh .x-wh__down:focus-visible {
+  position: relative !important; left: auto !important; right: auto !important; bottom: auto !important; top: auto !important;
+  transform: none !important; flex: none !important; order: 99;
+}
+.x-wh__main { display: flex; flex-direction: column; min-height: 0; }
+.x-wh__main > .x-wh__body { min-height: 0; }
+/* the strip already says there is more: the list's last visible row is never faded under it */
+.x-wh__main:has(> .x-wh__down:not([hidden])) > .x-wh__body { --fb: 0px !important; scroll-padding-bottom: 12px; }
+
+/* transcript tools and Key moments stay inside the panel: the tools wrap, the moments scroll sideways */
+.x-wh__main, .x-wh__body, .x-wh__pane, .x-pn-tr, .x-pn-trbar, .x-pn-trtools, .x-pn-trwrap { min-width: 0; max-width: 100%; }
+.x-pn-trbar { flex-wrap: wrap; }
+.x-pn-trtools .x-pn-btn { min-width: 0; }
+.x6-trx { flex-wrap: wrap !important; overflow: visible !important; min-width: 0; max-width: 100%; }
+.x6-km { contain: inline-size; width: 100%; max-width: 100%; min-width: 0; overflow-x: auto !important; overscroll-behavior-x: contain; }
+.x6-km .x6-pill { max-width: min(240px, 80%); }
+
+/* the history tab strip: its scroll buttons sit beside the tabs, outside the scroll area */
+.x-strip.is-scrollable:has(> .x-hi__tabs) { padding-inline: 48px; }
+.x-strip.is-scrollable:has(> .x-hi__tabs) > .x-strip__sc.x-hi__tabs { padding-left: 0 !important; padding-right: 0 !important; scroll-padding-inline: 0; }
+.x-strip:has(> .x-hi__tabs) > .x-strip__btn--l { left: 0; }
+.x-strip:has(> .x-hi__tabs) > .x-strip__btn--r { right: 0; }
+.x-strip:has(> .x-hi__tabs).can-l { --x-fl: 12px; }
+.x-strip:has(> .x-hi__tabs).can-r { --x-fr: 12px; }
+
+/* =====================================================================
+   5. Colours: no violet, purple, pink or magenta
+   ===================================================================== */
+/* Policy: petrol, not cobalt (text ≥ 5.4:1 on its tint and hover tint in both themes) */
+.x-tc[data-tc="policy"] {
+  --tc-bg: light-dark(#e8f3f5, #1a3236) !important; --tc-hv: light-dark(#c9e3e8, #24484e) !important;
+  --tc-bd: light-dark(#3a8c9c, #4aa3b3) !important; --tc-tx: light-dark(#1f5f6b, #8fd0db) !important;
+}
+:root[data-theme="dark"] .x-tc[data-tc="policy"] { --tc-bg: #1a3236 !important; --tc-hv: #24484e !important; --tc-bd: #4aa3b3 !important; --tc-tx: #8fd0db !important; }
+:root[data-theme="light"] .x-tc[data-tc="policy"] { --tc-bg: #e8f3f5 !important; --tc-hv: #c9e3e8 !important; --tc-bd: #3a8c9c !important; --tc-tx: #1f5f6b !important; }
+.x-tcav[style*="#2431a8"] { --av1: #17707f !important; --av2: #0f5560 !important; }
+/* gradients end in green, not pink: teal → amber → green */
+:root { --x-grad: linear-gradient(90deg, #14b8a6, #f59e0b 55%, #22c55e); }
+.x-navind, .nav > .x-prog { background: linear-gradient(90deg, #14b8a6, #f59e0b 55%, #22c55e) !important; }
+.nav > .x-prog { box-shadow: 0 0 8px -1px color-mix(in srgb, #14b8a6 70%, transparent); }
+.x-wave-div stop:nth-child(1) { stop-color: #14b8a6; }
+.x-wave-div stop:nth-child(2) { stop-color: #f59e0b; }
+.x-wave-div stop:nth-child(3) { stop-color: #22c55e; }
+.x-hi__axis::after { background: linear-gradient(90deg, #14b8a6, #f59e0b, #22c55e); }
+.x-ap.is-wh-side .x-wh__tab::before { background: var(--x6-tc, #14b8a6) !important; }
+/* tab accents: About sky blue, Chapters orange, Transcript cyan, Up next green, Notes gold */
+.x-wh__tab[data-t="about"] { --x6-tc: #0ea5e9; --x6-ti: light-dark(#0369a1, #7dd3fc); }
+.x-wh__tab[data-t="notes"] { --x6-tc: #eab308; --x6-ti: light-dark(#a16207, #fde047); }
+:root[data-theme="dark"] .x-wh__tab[data-t="about"] { --x6-ti: #7dd3fc; }
+:root[data-theme="light"] .x-wh__tab[data-t="about"] { --x6-ti: #0369a1; }
+:root[data-theme="dark"] .x-wh__tab[data-t="notes"] { --x6-ti: #fde047; }
+:root[data-theme="light"] .x-wh__tab[data-t="notes"] { --x6-ti: #a16207; }
+/* dark surfaces (window, fullscreen) always take the light inks */
+.x-pop.is-modal .x-wh__tab[data-t="about"], .x-ap.is-fs .x-wh__tab[data-t="about"] { --x6-ti: #7dd3fc; }
+.x-pop.is-modal .x-wh__tab[data-t="notes"], .x-ap.is-fs .x-wh__tab[data-t="notes"] { --x6-ti: #fde047; }
+
+/* =====================================================================
+   6. History timeline
+   ===================================================================== */
+.x-hi__ticks { overflow: visible; z-index: 2; }
+.x-hi__tick { white-space: nowrap; line-height: 16px; z-index: 2; padding: 0 2px; }
+.x-hi__tick.x7-hide { visibility: hidden; }
+.x-hi__scroll { padding-bottom: 6px; }
+/* a person without a page reads exactly like a linked one */
+.x-hi__who.is-plain {
+  color: var(--text-primary) !important; opacity: 1 !important;
+  background: var(--fill-primary-on) !important; border: 1px solid var(--stroke-secondary) !important;
+  padding-left: 12px !important; padding-right: 12px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .x7-toast, .x7-toast.is-on, .x-ap.x7-live .x-ap__big, .x-ap.x7-live .x-ap__ctime,
+  .x-ap.x7-rest:not(.is-native):not(.is-basic) :is(.x-ap__bar, .x-apt, .x-sx-top, .x-ap__ctime), .x-ap.x7-rest.x7-live .x-ap__big { transition: none !important; }
+}

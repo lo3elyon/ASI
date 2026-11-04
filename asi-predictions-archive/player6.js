@@ -156,7 +156,7 @@
   }, { passive: true });
   /* a mode change can animate (the panel's column, the window's entry): fit now, and once more when it has settled */
   /* classes that only flip with playback state never change the layout */
-  var QUIET = /^is-(idle|playing|paused|buffering|seeking|hover|kw|drag)$/;
+  var QUIET = /^(is-(idle|playing|paused|buffering|seeking|hover|kw|drag)|x7-.+)$/;
   var layoutKey = function (c) { return String(c || "").split(/\s+/).filter(function (x) { return x && !QUIET.test(x); }).sort().join(" "); };
   var lateT = 0;
   var refitLate = function () { refit(); clearTimeout(lateT); lateT = setTimeout(refit, 340); };
@@ -380,14 +380,8 @@
     insts.forEach(function (i) { if (i.root.isConnected) { swapSwatches(i.root); addCX(i.root); cleanSaved(i.root); } });
   };
   var rescan = function () { if (!scanQ) scanQ = window.requestAnimationFrame(scan); };
-  if ("MutationObserver" in window) new MutationObserver(function (recs) {
-    for (var i = 0; i < recs.length; i++) {
-      var r = recs[i];
-      /* captions, transcript lines and seek-bar tips change all the time: nothing to add there */
-      if (r.target.closest && r.target.closest(".x-pn-list, .x-pn-cap, .x-ap__seekrow, .x-ap__status")) continue;
-      for (var j = 0; j < r.addedNodes.length; j++) { var n = r.addedNodes[j]; if (n.nodeType === 1) { rescan(); return; } }
-    }
-  }).observe(document.body, { childList: true, subtree: true });
+  /* no page-wide observer (it slowed the load): the transcript pane (player8.js) calls this when it draws */
+  window.X6 = { rescan: rescan };
 
   AP.onCreate(function (inst) {
     if (!inst || !inst.root || insts.indexOf(inst) >= 0) return;
