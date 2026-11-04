@@ -39,10 +39,15 @@
       });
     });
     insts.forEach(function (i) {
-      if (on && i.ccWanted && i.ccToggle) { try { if (!i.ccWanted()) i.ccToggle(); } catch (e) {} }
+      syncInst(i);
       dropYT(i);
     });
   };
+
+  /* keep player-notes' own caption flag equal to cap8.on, both ways */
+  function syncInst(i) {
+    if (i && i.ccIsOn && i.ccToggle) { try { if (i.ccIsOn() !== on) i.ccToggle(); } catch (e) {} }
+  }
 
   var instFor = function (el) {
     for (var k = 0; k < insts.length; k++) if (el && insts[k].root && insts[k].root.contains(el)) return insts[k];
@@ -56,6 +61,12 @@
     apply();
     var i = instFor(from);
     if (i && typeof i.say === "function") { try { i.say(on ? "Captions on" : "Captions off"); } catch (e) {} }
+  };
+
+  /* the one source of truth for captions on/off */
+  window.Cap8 = {
+    set: function (v, from) { if (!!v !== on) toggle(from); else apply(); },
+    get: function () { return on; }
   };
 
   var typing = function (t) {
@@ -282,6 +293,8 @@
     if (!inst || !inst.root || insts.indexOf(inst) >= 0) return;
     insts.push(inst);
     addMenu(inst, 0);
+    syncInst(inst);
+    setTimeout(function () { syncInst(inst); }, 0); /* in case player-notes wires after us */
     if (typeof inst.on === "function") {
       try { inst.on("ready", function () { apply(); setTimeout(function () { dropYT(inst); }, 600); }); } catch (e) {}
       try { inst.on("state", function (s) { if (s === 1) dropYT(inst); }); } catch (e) {}

@@ -293,7 +293,7 @@
     x.paintVol();
 
     /* captions are drawn by the site from the transcript (player-notes.js); YouTube's own captions stay off */
-    var toggleCC = function () { if (inst.ccToggle) inst.ccToggle(); else inst.say("Captions are not available here."); };
+    var toggleCC = function () { if (window.Cap8) window.Cap8.set(!window.Cap8.get()); else if (inst.ccToggle) inst.ccToggle(); else inst.say("Captions are not available here."); };
 
     /* loop */
     var toggleLoop = function () {

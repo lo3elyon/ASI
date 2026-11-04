@@ -581,6 +581,12 @@
       else if (src === "wait") toast("Captions on · looking for this talk's captions…");
       else toast("No captions for this talk");
     };
+    inst.ccIsOn = function () { return !!C.on; };
+    /* route on/off through player8 (window.Cap8) when present, so there is one source of truth */
+    var ccSet = function (want, from) {
+      if (window.Cap8 && typeof window.Cap8.set === "function") { try { window.Cap8.set(!!want, from); return; } catch (e) {} }
+      if (!!want !== !!C.on) inst.ccToggle();
+    };
     inst.ccSize = setSize;
     /* the chapter under a time, for the seek bar's hover preview */
     var secs = function () {
@@ -979,14 +985,14 @@
         if (rv && rp) { delete TR[rv.id]; paintBtn(); paintSet(); inst._pnRender("tr", rv, rp);
           getTr(rv.id, function (rr) { if (cur() === rv && rr.state === "ok") { ytOff(); S.capKey = null; update(); paintBtn(); paintSet(); } }); }
       }
-      else if (a === "ccon") { if (!C.on) inst.ccToggle(); var ep = b.closest(".x-pn-empty"); if (ep) b.outerHTML = '<p class="x-pn-cnote">CC is on: YouTube’s captions show while the talk plays.</p>'; }
+      else if (a === "ccon") { ccSet(true, b); var ep = b.closest(".x-pn-empty"); if (ep) b.outerHTML = '<p class="x-pn-cnote">CC is on: YouTube’s captions show while the talk plays.</p>'; }
       else if (a === "resume") { setFollow(true); S.gi = -2; update(); }
       else if (a === "copy") copyText(b);
       else if (a === "ccmenu" && menu) { menu.classList.add("is-pn-cc"); paintSet(); menu.scrollTop = 0; var f = menu.querySelector(".x-pn-ccback"); if (f) f.focus({ preventScroll: true }); }
       else if (a === "ccback" && menu) { menu.classList.remove("is-pn-cc"); var o = menu.querySelector(".x-pn-ccopen"); if (o) o.focus({ preventScroll: true }); }
       else if (a === "set") {
         var k = b.getAttribute("data-k"), v = b.getAttribute("data-v");
-        if (k === "on") { if ((v === "1") !== C.on) inst.ccToggle(); }
+        if (k === "on") { ccSet(v === "1", b); paintSet(); }
         else if (k === "pos") { C.y = null; setC("pos", v); }
         else if (k === "lines") setC("lines", +v);
         else setC(k, v);
