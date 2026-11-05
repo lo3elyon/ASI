@@ -2,3 +2,6 @@
 img.x35-sq { object-fit: contain !important; object-position: center !important; background: #fff !important; border-radius: 4px !important; padding: 1px !important; box-sizing: border-box; image-rendering: auto; }
 .x-kw.x-kw--o img.x35-sq { width: 16px !important; height: 16px !important; vertical-align: -3px !important; margin-right: .3em !important; box-shadow: 0 0 0 1px rgba(127,127,127,.35); }
 .x-logo.x35-sqw img.x35-sq { width: 100% !important; height: 100% !important; }
+/* QA asi-qa-33: keep icon and name together; slightly larger, less padding so thin marks (Meta) stay strong */
+.x-kw.x-kw--o { white-space: nowrap; }
+.x-kw.x-kw--o img.x35-sq { width: 18px !important; height: 18px !important; padding: 1px !important; vertical-align: -4px !important; object-fit: contain !important; object-position: center !important; }
