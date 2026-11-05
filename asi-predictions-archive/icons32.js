@@ -42,7 +42,8 @@
      so small OpenAI chips use the OpenAI symbol instead (public domain, Wikimedia Commons "OpenAI logo 2025 (symbol).svg") */
   var marks = function (root) {
     if (!root || root.nodeType !== 1) return;
-    var list = root.matches && root.matches(".x25-lg-crop") ? [root] : root.querySelectorAll ? root.querySelectorAll(".x25-lg-crop") : [];
+    var SEL = ".x25-lg-crop, .x-kw";
+    var list = root.matches && root.matches(SEL) ? [root] : root.querySelectorAll ? root.querySelectorAll(SEL) : [];
     [].forEach.call(list, function (lg) { var im = lg.querySelector('img[src*="logo-openai.svg"]'); if (im) { im.src = im.getAttribute("src").replace("logo-openai.svg", "logo-openai-mark.svg"); lg.classList.add("x32-oa"); } });
   };
   var start = function () {
