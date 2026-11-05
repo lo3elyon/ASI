@@ -1,0 +1,21 @@
+/* credit34.css: colourful footer credit and profile icons (brand-coloured tiles, glow on hover, no movement) */
+.x-credit__me b { background: linear-gradient(90deg, #f59e0b, #22c55e, #06b6d4, #3b82f6); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; }
+.x-credit__me { text-decoration-color: #14b8a6 !important; }
+.x-social { gap: 8px !important; margin-top: 10px !important; }
+.x-social a { --b: #64748b; color: #fff !important; background: var(--b) !important; width: 36px; height: 36px; border-radius: 11px; display: inline-grid !important; place-items: center;
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--b) 40%, transparent); transition: box-shadow .2s ease, filter .2s ease; }
+.x-social a:hover, .x-social a:focus-visible { background: var(--b) !important; filter: brightness(1.12); box-shadow: 0 0 0 2px color-mix(in srgb, var(--b) 55%, transparent), 0 0 18px color-mix(in srgb, var(--b) 70%, transparent); }
+.x-social a[href*="github.com"] { --b: #24292f; }
+.x-social a[href*="linkedin.com"] { --b: #0a66c2; }
+.x-social a[href*="x.com"] { --b: #0f1419; background: linear-gradient(135deg, #0f1419, #1e293b) !important; }
+.x-social a[href*="dev.to"] { --b: #0a0a0a; }
+.x34-web a { --b: #0d9488; background: linear-gradient(135deg, #f59e0b, #0d9488) !important; }
+.x34-yt a { --b: #e11d2a; }
+.x34-hn a { --b: #2962ff; }
+.x34-lab a { --b: #16a34a; }
+.x34-gl a { --b: #e24329; }
+.x34-fu a { --b: #ca8a04; }
+.x34-rp a { --b: #f26207; }
+.x34-hp a { --b: #0891b2; }
+.x-social a[href*="dev.to"] svg rect { fill: #fff; }
+.x-social a[href*="dev.to"] svg path { fill: #0a0a0a; }

@@ -2,7 +2,7 @@
 (function () {
   "use strict";
   var el = document.getElementById("x-load");
-  var t0 = window.__xLoadT0 || 0, SLOW = /[?&]dbg=loader/.test(location.search), MIN = SLOW ? 60000 : 650, MAX = SLOW ? 60000 : 6000;
+  var t0 = window.__xLoadT0 || 0, SLOW = /[?&]dbg=loader/.test(location.search), MIN = SLOW ? 60000 : (window.__xLoadMin || 650), MAX = SLOW ? 60000 : 6000;
   if (SLOW && el) el.addEventListener("click", function () { el.classList.add("is-done"); });
   if (SLOW) document.documentElement.classList.add("x-load-slow");
   var done = false;
@@ -44,7 +44,8 @@
   };
   window.addEventListener("hashchange", changed);
   window.addEventListener("popstate", changed);
-  ["pushState", "replaceState"].forEach(function (k) {
+  /* pushState only: motion.js updates the hash with replaceState while you scroll, which is not a page change */
+  ["pushState"].forEach(function (k) {
     var orig = history[k];
     if (typeof orig !== "function") return;
     history[k] = function () { var r = orig.apply(this, arguments); try { setTimeout(changed, 0); } catch (e) {} return r; };

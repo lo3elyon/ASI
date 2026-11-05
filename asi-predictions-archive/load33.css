@@ -1,0 +1,59 @@
+/* load33.css: personalised page intros (first load inside #x-load, page changes in #x-intro33). Fixed layers only. */
+#x-load.x33-on .xl-box.x33-mini { position: absolute; left: 50%; bottom: 22px; transform: translateX(-50%); gap: 8px; padding: 0; }
+#x-load.x33-on .x33-mini .xl-orb { width: 40px; height: 40px; }
+#x-load.x33-on .x33-mini .xl-orb i:nth-child(2) { inset: 6px; } #x-load.x33-on .x33-mini .xl-orb i:nth-child(3) { inset: 12px; } #x-load.x33-on .x33-mini .xl-orb b { inset: 16px; }
+#x-load.x33-on .x33-mini .xl-name { display: none; }
+#x-load.x33-on .x33-mini .xl-sub { font-size: 12px; }
+.x33-first { position: absolute; inset: 0; display: grid; align-content: center; overflow: hidden; }
+#x-intro33 { position: fixed; inset: 0; z-index: 2147482999; display: grid; align-content: center; overflow: hidden; pointer-events: none; opacity: 0; visibility: hidden;
+  background: radial-gradient(900px 500px at 50% 30%, rgba(20,184,166,.18), transparent 60%), radial-gradient(700px 400px at 80% 90%, rgba(245,158,11,.14), transparent 60%), var(--x-boot-bg, #0b0f17);
+  color: #f5f5f7; transition: opacity 220ms ease, visibility 0s linear 220ms; }
+html[data-theme="light"] #x-intro33, html[data-theme="light"] .x33-first { color: #111827; }
+html[data-theme="light"] #x-intro33 { background: radial-gradient(900px 500px at 50% 30%, rgba(20,184,166,.16), transparent 60%), radial-gradient(700px 400px at 80% 90%, rgba(245,158,11,.14), transparent 60%), #f5f5f7; }
+#x-intro33.is-on { opacity: 1; visibility: visible; pointer-events: auto; transition: opacity 160ms ease; }
+.x33-x { position: absolute; top: 16px; right: 16px; width: 40px; height: 40px; border-radius: 12px; border: 0; display: grid; place-items: center; cursor: pointer; color: #fff; background: linear-gradient(135deg, #f59e0b, #14b8a6); z-index: 2; }
+.x33-x:hover { box-shadow: 0 0 18px rgba(20,184,166,.7); }
+.x33-in { display: grid; gap: 14px; width: 100%; }
+.x33-head { display: grid; justify-items: center; text-align: center; padding: 0 20px 6px; gap: 6px; }
+.x33-t { margin: 0; font-size: clamp(26px, 4.4vw, 54px); font-weight: 800; line-height: 1.05; letter-spacing: -.01em;
+  background: linear-gradient(90deg, #f59e0b, #22c55e, #06b6d4, #3b82f6, #ef4444); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.x33-s { margin: 0; font-size: clamp(14px, 1.6vw, 18px); opacity: .8; max-width: 60ch; }
+.x33-q { margin: 4px 0 0; max-width: 62ch; font-size: clamp(14px, 1.5vw, 17px); font-style: italic; opacity: .9; }
+.x33-row { overflow: hidden; width: 100%; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.x33-track { display: flex; gap: 14px; width: max-content; animation: x33-run 26s linear infinite; padding: 4px 0; }
+.x33-row--rev .x33-track { animation-direction: reverse; animation-duration: 30s; }
+.x33-row--c .x33-track { animation-duration: 40s; }
+#x-intro33 .x33-track { animation-duration: 9s; } #x-intro33 .x33-row--rev .x33-track { animation-duration: 11s; } #x-intro33 .x33-row--c .x33-track { animation-duration: 15s; }
+.x33-f { position: relative; flex: none; width: 92px; display: grid; justify-items: center; gap: 6px; }
+.x33-f::before { content: ""; width: 84px; height: 84px; border-radius: 50%; grid-area: 1 / 1; background: conic-gradient(var(--c), #14b8a6, #f59e0b, var(--c)); }
+.x33-f__i, .x33-f img { grid-area: 1 / 1; width: 76px; height: 76px; border-radius: 50%; margin-top: 4px; }
+.x33-f__i { display: grid; place-items: center; font-weight: 800; font-size: 22px; color: #fff; background: color-mix(in srgb, var(--c) 75%, #0b0f17); }
+.x33-f img { object-fit: cover; background: #1f2937; }
+.x33-f em { font-style: normal; font-size: 12px; line-height: 1.2; text-align: center; opacity: .85; max-width: 92px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.x33-f__b { position: absolute; top: 58px; right: 4px; min-width: 30px; padding: 2px 6px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #0b0f17; background: linear-gradient(135deg, #fde68a, #22c55e); }
+.x33-v { position: relative; flex: none; width: 210px; height: 118px; border-radius: 14px; overflow: hidden; background: color-mix(in srgb, var(--c) 45%, #0b0f17); box-shadow: 0 0 0 2px color-mix(in srgb, var(--c) 60%, transparent); }
+.x33-v img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.x33-v b { position: absolute; right: 6px; top: 6px; font-size: 11px; padding: 1px 6px; border-radius: 6px; background: rgba(0,0,0,.75); color: #fff; }
+.x33-v em { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 8px 6px; font-style: normal; font-size: 12px; line-height: 1.25; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.85)); }
+.x33-c { flex: none; width: 280px; display: grid; gap: 6px; padding: 12px 14px; border-radius: 14px; border-left: 4px solid var(--c); background: color-mix(in srgb, var(--c) 14%, transparent); font-size: 13px; line-height: 1.35; }
+.x33-c b { color: var(--c); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+.x33-c span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.x33-hero { position: relative; display: grid; place-items: center; width: 150px; height: 150px; }
+.x33-hero .x33-f { width: 150px; }
+.x33-hero .x33-f::before { width: 132px; height: 132px; }
+.x33-hero .x33-f__i, .x33-hero .x33-f img { width: 120px; height: 120px; margin-top: 6px; }
+.x33-hero .x33-f em { display: none; }
+.x33-hero .x33-f__b { top: 104px; right: 0; font-size: 13px; }
+.x33-hero__ring { position: absolute; inset: -6px; border-radius: 50%; border: 3px dashed var(--c); animation: x33-spin 6s linear infinite; }
+.x33-bar { justify-self: center; width: min(320px, 70vw); height: 4px; border-radius: 4px; background: rgba(127,127,127,.25); overflow: hidden; margin-top: 6px; }
+.x33-bar span { display: block; height: 100%; width: 100%; transform-origin: 0 50%; background: linear-gradient(90deg, #f59e0b, #22c55e, #06b6d4, #3b82f6); animation: x33-fill var(--x33-dur, 1700ms) linear forwards; }
+.x33-first .x33-bar { display: none; }
+@keyframes x33-run { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes x33-spin { to { transform: rotate(360deg); } }
+@keyframes x33-fill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+/* boot stillness rule (html.x-still *) zeroes animations; the intro keeps its own */
+html.x-still .x33-track { animation-duration: 26s !important; } html.x-still .x33-row--rev .x33-track { animation-duration: 30s !important; } html.x-still .x33-row--c .x33-track { animation-duration: 40s !important; }
+html.x-still .x33-hero__ring { animation-duration: 6s !important; }
+@media (max-width: 600px) { .x33-f { width: 72px; } .x33-f::before { width: 64px; height: 64px; } .x33-f__i, .x33-f img { width: 58px; height: 58px; } .x33-f__b { top: 44px; } .x33-v { width: 160px; height: 90px; } .x33-c { width: 220px; } .x33-row:nth-of-type(n+4) { display: none; } }
+@media (max-height: 640px) { .x33-row--v:last-child, .x33-in > .x33-row:nth-child(4) { display: none; } }
+@media (prefers-reduced-motion: reduce) { .x33-track, .x33-hero__ring, .x33-bar span { animation: none !important; } }
