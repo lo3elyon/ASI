@@ -6,3 +6,6 @@
 .y37-ic--ctrl { flex: none; }
 .y37-ctrl:hover, .y37-ctrl:focus-visible { box-shadow: 0 0 0 1px rgba(45, 212, 191, .45), 0 0 12px rgba(45, 212, 191, .25); }
 @media (prefers-reduced-motion: reduce) { .y37-ic--watch { transition: none; } }
+/* QA 23:10: keep the pop-out header on one row (the wider logo pushed Close down) */
+.x-pop__tools .y37-ic--watch { width: 18px; height: 13px; }
+.x-pop__tools { flex-wrap: nowrap; }
