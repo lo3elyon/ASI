@@ -57,3 +57,4 @@ html.x-still .x33-hero__ring { animation-duration: 6s !important; }
 @media (max-width: 600px) { .x33-f { width: 72px; } .x33-f::before { width: 64px; height: 64px; } .x33-f__i, .x33-f img { width: 58px; height: 58px; } .x33-f__b { top: 44px; } .x33-v { width: 160px; height: 90px; } .x33-c { width: 220px; } .x33-row:nth-of-type(n+4) { display: none; } }
 @media (max-height: 640px) { .x33-row--v:last-child, .x33-in > .x33-row:nth-child(4) { display: none; } }
 @media (prefers-reduced-motion: reduce) { .x33-track, .x33-hero__ring, .x33-bar span { animation: none !important; } }
+#x-load .x33-x { position: absolute; top: 16px; right: 16px; z-index: 3; }

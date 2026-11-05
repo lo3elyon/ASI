@@ -70,3 +70,6 @@ html[data-theme="light"] .t33-dlg__card { background: #fff; }
 .t33-badge { position: absolute; top: 6px; right: 6px; padding: 2px 7px; border-radius: 999px; font-size: 12px; font-weight: 800; color: #0b0f17; background: var(--o); box-shadow: 0 0 10px color-mix(in srgb, var(--o) 60%, transparent); }
 @container (max-width: 520px) { .t33-fx summary { grid-template-columns: 1fr auto; } .t33-fx__bar { grid-column: 1 / -1; order: 3; } .t33-fx__w { display: none; } }
 @media (max-width: 520px) { .t33-fx summary { grid-template-columns: 1fr auto; } .t33-fx__bar { grid-column: 1 / -1; order: 3; } .t33-fx__w { display: none; } .t33-f input, .t33-f select { min-width: 0; width: 100%; } .t33-ctl > label { flex: 1 1 100%; } }
+/* contrast lift (QA asi-qa-33) */
+.t33-tile__m, .t33-fx__w, .t33-count, .t33-src small { opacity: .92 !important; }
+.t33-f input::placeholder { opacity: .8; }

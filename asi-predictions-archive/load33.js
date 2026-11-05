@@ -53,7 +53,8 @@
     m = h.match(/^#([a-z][\w-]*)$/); if (m) return m[1];
     return "home";
   };
-  var ICON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">';
+  var ICON0 = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">';
+  var ICON = ICON0;
   var build = function (key) {
     var P = byVideos(), T = trustOf(), title = "", sub = "", rows = "", hero = "";
     var k = key.split(":")[0], arg = key.slice(k.length + 1);
@@ -117,7 +118,10 @@
   /* first load: the load31 screen gets this page's intro */
   var first = document.getElementById("x-load");
   if (first && !first.classList.contains("is-done")) {
-    try { var box = first.querySelector(".xl-box"); var wrap = document.createElement("div"); wrap.className = "x33-first"; wrap.innerHTML = build(keyOf(location.hash)); if (box) box.classList.add("x33-mini"); first.appendChild(wrap); first.classList.add("x33-on"); } catch (e) {}
+    try { var box = first.querySelector(".xl-box"); var wrap = document.createElement("div"); wrap.className = "x33-first"; wrap.innerHTML = build(keyOf(location.hash)); if (box) box.classList.add("x33-mini"); first.appendChild(wrap); first.classList.add("x33-on");
+      var skip = function () { if (first.classList.contains("is-done")) return; first.classList.add("is-done"); first.setAttribute("aria-hidden", "true"); setTimeout(function () { if (first.parentNode) first.parentNode.removeChild(first); }, 600); document.removeEventListener("keydown", skip, true); };
+      var xb = document.createElement("button"); xb.type = "button"; xb.className = "x33-x"; xb.setAttribute("aria-label", "Skip intro"); xb.innerHTML = ICON + '<path d="M6 6l12 12M18 6L6 18"/></svg>';
+      first.appendChild(xb); first.addEventListener("click", skip); document.addEventListener("keydown", skip, true); } catch (e) {}
   }
 
   /* page changes */
