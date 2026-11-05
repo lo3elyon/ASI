@@ -1,0 +1,9 @@
+/* fix29.css: stop the Media Theater shake (2026-11-05).
+   player6.js re-fits the inline player from its own measurements (--p6-vh, --p6-max, --p6-slot) and re-runs on every
+   class change, on scroll and on a 650ms retry. On the Theater the measurements answered each other, so the black box
+   flipped between ~353px and ~733px tall and pushed every section below it up and down.
+   Inline players (not the corner or centred window) now ignore those variables and keep one fixed rule:
+   full width, 16:9, never taller than the screen under the nav. The pop-out windows are untouched. */
+.x-ap.x6-in:not(.is-fs):not(.is-fsp):not(.x-pop .x-ap) .x-ap__screen { max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); }
+.x-ap.x6-in.is-wh-side:not(.is-fs):not(.x-pop .x-ap) { max-width: none; }
+.x-ap.x6-in:not(.is-wh-side):not(.is-fs):not(.x-pop .x-ap) > .x-ap__slot { max-width: none; }
