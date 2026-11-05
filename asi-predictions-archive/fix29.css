@@ -5,5 +5,8 @@
    Inline players (not the corner or centred window) now ignore those variables and keep one fixed rule:
    full width, 16:9, never taller than the screen under the nav. The pop-out windows are untouched. */
 .x-ap.x6-in:not(.is-fs):not(.is-fsp):not(.x-pop .x-ap) .x-ap__screen { max-height: calc(100vh - 76px); max-height: calc(100dvh - 76px); }
-.x-ap.x6-in.is-wh-side:not(.is-fs):not(.x-pop .x-ap) { max-width: none; }
+/* root cause (found with the ?dbg=shake overlay): player6.css gives the side layout margin-inline:auto, which makes the
+   Theater's grid item shrink to its content (1302px → 625px). Below 860px watch-hub.js drops the side layout, the player
+   grows back to 1302px, the side layout returns, and so on about four times a second. Keep it stretched. */
+.x-ap.x6-in.is-wh-side:not(.is-fs):not(.x-pop .x-ap) { max-width: none; margin-inline: 0; justify-self: stretch; width: auto; }
 .x-ap.x6-in:not(.is-wh-side):not(.is-fs):not(.x-pop .x-ap) > .x-ap__slot { max-width: none; }
