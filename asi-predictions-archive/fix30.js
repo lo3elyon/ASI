@@ -15,3 +15,31 @@
   };
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
 })();
+
+/* fix30 part 2: picking a talk card, Next or Previous on Media never moves the page.
+   QA saw the page jump ~720px after a card click, which pushed the stage off screen; Next then sent the playing video
+   to the corner window. For 900ms after such a click the scroll position is put back, unless the reader scrolls,
+   touches or presses a key themselves. */
+(function () {
+  "use strict";
+  var hold = function () {
+    var x = window.scrollX, y = window.scrollY, until = Date.now() + 900, stop = false;
+    var quit = function () { stop = true; ["wheel", "touchstart", "keydown"].forEach(function (t) { window.removeEventListener(t, quit, true); }); };
+    ["wheel", "touchstart", "keydown"].forEach(function (t) { window.addEventListener(t, quit, { capture: true, passive: true }); });
+    var tick = function () {
+      if (stop) return;
+      if (document.documentElement.classList.contains("x-modal-open")) { quit(); return; }
+      if (Math.abs(window.scrollY - y) > 1) { try { window.scrollTo({ left: x, top: y, behavior: "instant" }); } catch (e) { window.scrollTo(x, y); } }
+      if (Date.now() < until) requestAnimationFrame(tick); else quit();
+    };
+    requestAnimationFrame(tick);
+  };
+  document.addEventListener("click", function (ev) {
+    if (ev.button !== 0) return;
+    var t = ev.target && ev.target.closest && ev.target.closest('[data-tv], #ttPlayer [data-a="next"], #ttPlayer [data-a="prev"]');
+    if (!t || !t.closest("#ttTop, #ttRows, #library, .x-tt")) return;
+    var top = document.getElementById("ttTop");
+    if (!top || top.hidden) return;
+    hold();
+  }, true);
+})();

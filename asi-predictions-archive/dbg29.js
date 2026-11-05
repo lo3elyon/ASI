@@ -27,5 +27,6 @@
     last = s;
     box.textContent = "SHAKE DEBUG  flips(ttTop height changes)=" + flips + "\nnow: top=" + s.top + " player=" + s.pl + " kids=" + s.kids + " screen=" + s.scr + " maxH=" + s.mh + " slot=" + s.slot + " vars=" + s.vars + " hostW=" + s.hw + " hostMaxW/W=" + s.hmw + " whPanels=" + s.whn + " mq1100=" + s.mm + " vw=" + s.vw + "\ntopCls: " + s.tc + "\n y=" + s.y + " docH=" + s.dh + "\nroot: " + s.rc + "\n--- changes (newest first) ---\n" + log.join("\n");
   };
+  ["wheel", "keydown", "pointerdown", "touchstart"].forEach(function (t) { window.addEventListener(t, function (e) { var k = t + (e.key ? ":" + e.key : ""); if (log[0] && log[0].indexOf("INPUT " + t) > 0) return; log.unshift(((Date.now() - t0) / 1000).toFixed(1) + "s INPUT " + k); log.length = Math.min(log.length, 14); }, { capture: true, passive: true }); });
   setInterval(tick, 100);
 })();
