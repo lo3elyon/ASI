@@ -287,16 +287,27 @@
     if (id !== S.id) { if (S.id) save(S.id); S.id = id; S.prev = null; }
     var playing = false;
     try { playing = !!(id && inst.started && inst.started() && inst.state().playing); } catch (e) {}
-    if (!playing) { if (S.was && S.id) save(S.id); S.was = false; S.prev = null; return; }
+    /* batch 36: the gap allowed between two samples follows the real time that passed (timers slow down when the
+       page is busy or hidden) and any speed up to 16x (an extension can set speeds the site does not know about).
+       Every seek the site makes clears S.prev (see wire), so skips never count. At the end the last stretch counts. */
+    var wallS = S.pt ? (Date.now() - S.pt) / 1000 : 0.25, rt = 1;
+    try { rt = Math.max(1, +inst.rate() || 1); } catch (e) {}
+    var okGap = function (dt) { return dt > 0 && dt <= Math.max(rt * 1.6, 16) * Math.max(wallS, 0.05) + 0.5; };
+    if (!playing) {
+      try {
+        if (S.prev != null && id) { var nE = +inst.now() || 0, dE = durOf(id, inst); if (dE > 0 && nE >= dE - 1.5 && okGap(nE - S.prev)) { var oE = rec(id); oE.r.push([S.prev, Math.min(dE, Math.max(nE, dE))]); oE.r = merge(oE.r); oE.dirty = true; } }
+      } catch (e) {}
+      if (S.was && S.id) save(S.id); S.was = false; S.prev = null; S.pt = 0; return;
+    }
     S.was = true;
-    var now = 0, rate = 1;
-    try { now = +inst.now() || 0; rate = +inst.rate() || 1; } catch (e) { return; }
+    var now = 0;
+    try { now = +inst.now() || 0; } catch (e) { return; }
     var o = rec(id);
     if (S.prev != null) {
       var dt = now - S.prev;
-      if (dt > 0 && dt <= 1.5 * rate * 0.25 + 0.1) { o.r.push([S.prev, now]); o.r = merge(o.r); o.dirty = true; }
+      if (okGap(dt)) { o.r.push([S.prev, now]); o.r = merge(o.r); o.dirty = true; }
     }
-    S.prev = now; /* a jump either way is a seek: the next sample starts from here */
+    S.prev = now; S.pt = Date.now(); /* a jump either way is a seek: the next sample starts from here */
     if (o.dirty && Date.now() - o.saved >= 2000) { durOf(id, inst); save(id); }
   };
 
@@ -390,6 +401,7 @@
     track.className = "w19-track"; track.setAttribute("aria-hidden", "true");
     track.innerHTML = '<span class="w19-bar"></span>';
     inst.__w19 = { id: null, prev: null, was: false, bar: bar, line: line, lineT: line.querySelector(".w19-line__t"), btn: line.querySelector(".w19-resume"), track: track, trackIn: track.firstChild, whp: null };
+    ["seekTo", "seek", "playAt"].forEach(function (k) { var f = inst[k]; if (typeof f !== "function") return; inst[k] = function () { if (inst.__w19) { inst.__w19.prev = null; inst.__w19.pt = 0; } return f.apply(this, arguments); }; });
     if (inst.on) {
       try {
         inst.on("state", function () { var S = inst.__w19; if (S.id && !inst.isPlaying()) { S.prev = null; save(S.id); } paintInst(inst); });
@@ -399,6 +411,10 @@
     paintInst(inst);
   };
   AP.onCreate(function (inst) { try { wire(inst); } catch (e) {} });
+  /* batch 36: a click on any seek bar or skip control, or a seek key, starts a fresh sample, so jumps never count as watched */
+  var unseek = function () { insts.forEach(function (i) { if (i.__w19) { i.__w19.prev = null; i.__w19.pt = 0; } }); };
+  doc.addEventListener("pointerdown", function (e) { if (e.target.closest && e.target.closest(".x-ap__seekrow, .x-ap__seek, .x-dk__line, [data-skip], [class*='skip'], .x-ch, .x-chap, [data-t]")) unseek(); }, true);
+  doc.addEventListener("keydown", function (e) { if (/^(ArrowLeft|ArrowRight|j|l|J|L|Home|End|[0-9])$/.test(e.key)) unseek(); }, true);
 
   doc.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest('[data-w19="resume"]'); if (!b || b.disabled) return;
