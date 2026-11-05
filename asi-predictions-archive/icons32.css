@@ -1,0 +1,5 @@
+/* icons32.css: the inline icons that replace text symbols sit on the text line and take its colour */
+.x-i32 { display: inline-flex; align-items: center; justify-content: center; width: 1em; height: 1em; vertical-align: -0.14em; line-height: 1; }
+.x-i32 svg { width: 1em; height: 1em; display: block; }
+.x-th__done .x-i32, .x-cw__done .x-i32, .x-ap__tag--done .x-i32 { color: #10b981; margin-right: 0.15em; }
+.x-logo.x25-lg-crop.x32-oa img { object-fit: contain; object-position: center; }

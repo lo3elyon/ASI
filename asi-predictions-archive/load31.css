@@ -39,4 +39,4 @@ html.x-still #x-load .xl-orb b, html.x-still #x-load .xl-bar span { animation-du
 html.x-still #x-load { transition: opacity 380ms ease, visibility 0s linear 380ms !important; }
 @media (prefers-reduced-motion: reduce) { html.x-still #x-load .xl-orb i, html.x-still #x-load .xl-orb b, html.x-still #x-load .xl-bar span { animation: none !important; } }
 /* test mode (?dbg=loader): the page-change bar runs for 3s so it can be seen in screenshots */
-html.x-load-slow #x-route.is-on { animation-duration: 3s; }
+html.x-load-slow #x-route.is-on { animation-duration: 12s; }

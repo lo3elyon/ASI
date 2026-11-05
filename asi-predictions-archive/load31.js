@@ -2,7 +2,8 @@
 (function () {
   "use strict";
   var el = document.getElementById("x-load");
-  var t0 = window.__xLoadT0 || 0, SLOW = /[?&]dbg=loader/.test(location.search), MIN = SLOW ? 8000 : 650, MAX = SLOW ? 9000 : 6000;
+  var t0 = window.__xLoadT0 || 0, SLOW = /[?&]dbg=loader/.test(location.search), MIN = SLOW ? 60000 : 650, MAX = SLOW ? 60000 : 6000;
+  if (SLOW && el) el.addEventListener("click", function () { el.classList.add("is-done"); });
   if (SLOW) document.documentElement.classList.add("x-load-slow");
   var done = false;
   var finish = function () {
