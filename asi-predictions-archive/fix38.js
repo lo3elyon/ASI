@@ -66,8 +66,8 @@
   var addRecord = function () {
     var view = doc.getElementById("person-view"); if (!view || view.hidden) return;
     var m = /^#\/person\/([^/?#]+)/.exec(location.hash || ""); if (!m) return;
+    if (view.querySelector('.x25-trcard a[href^="#/trust/"]')) { view.querySelectorAll(".f38-rec").forEach(function (x) { x.remove(); }); return; }
     var card = view.querySelector(".t33-pcard"); if (!card || card.querySelector(".f38-rec")) return;
-    if (view.querySelector('.x25-trcard a[href^="#/trust/"]')) return;
     var b = card.querySelector("button[data-t33]");
     var a = doc.createElement("a"); a.className = "btn f38-rec"; a.href = "#/trust/" + m[1]; a.textContent = "Full trust record";
     if (b) b.after(a); else card.appendChild(a);
