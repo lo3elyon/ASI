@@ -136,7 +136,7 @@
       '<p class="t33-dlg__o"><b>' + (o == null ? "\u2013" : Math.round(o) + "%") + "</b> " + (o == null ? "" : (o / 10).toFixed(1) + "/10") + ' <span>\u00B1' + margin(p) + " \u00B7 confidence " + p.conf + "%</span></p></div></div>" +
       '<p class="t33-dlg__note">' + (p.ed ? "Reviewed claim by claim: all nine factors have data." : "Data-based only so far: the five review factors need a claim-by-claim check with sources, so they are left out of the average rather than guessed.") + " The overall is the weighted average of the factors with data; the \u00B1 band grows when data is thin.</p>" +
       '<div class="t33-fxs">' + rows + "</div>" + (src ? '<h4>Sources</h4><ul class="t33-src">' + src + "</ul>" : "") +
-      '<div class="t33-dlg__acts">' + (document.querySelector && BY[id] && p.ph && p.ph.indexOf("face-") !== 0 ? '<a class="btn" href="#/person/' + esc(id) + '">Full profile</a>' : "") + (p.ed ? '<a class="btn" href="#/trust/' + esc(id) + '">Claim-by-claim review</a>' : "") + "</div></div>";
+      '<div class="t33-dlg__acts">' + (BY[id] ? '<a class="btn" href="#/person/' + esc(id) + '">Full profile</a>' : "") + (p.ed ? '<a class="btn" href="#/trust/' + esc(id) + '">Claim-by-claim review</a>' : "") + "</div></div>";
     dlg.classList.add("is-on"); S.open = id;
     var x = dlg.querySelector(".t33-dlg__x"); if (x) x.focus({ preventScroll: true });
   };

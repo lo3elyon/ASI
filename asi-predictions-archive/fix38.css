@@ -1,0 +1,7 @@
+/* fix38.css: one Full profile per Trust row (keep the top one), clear profile badge on board tiles. */
+#trList .x-tr-det__acts > a.btn[href^="#/person/"] { display: none !important; }
+#trList .x25-profrow .btn { box-shadow: 0 0 0 1px rgba(20, 184, 166, .45); }
+#trList .x25-profrow .btn:hover, #trList .x25-profrow .btn:focus-visible { box-shadow: 0 0 0 1px rgba(20, 184, 166, .8), 0 0 14px rgba(20, 184, 166, .35); }
+.t33-tile .f38-pf { display: inline-block; margin-top: 4px; padding: 1px 8px; border-radius: 999px; font-size: .68rem; font-weight: 600; letter-spacing: .01em;
+  color: #0f766e; background: rgba(20, 184, 166, .12); box-shadow: inset 0 0 0 1px rgba(20, 184, 166, .4); }
+html.dark .t33-tile .f38-pf, [data-theme="dark"] .t33-tile .f38-pf { color: #5eead4; background: rgba(45, 212, 191, .12); }
