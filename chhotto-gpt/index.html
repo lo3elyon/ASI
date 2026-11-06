@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>ছোট্ট-GPT · Chhotto-GPT — a Bengali transformer that learns Tagore in your browser</title>
+<meta name="description" content="A GPT written from scratch in plain JavaScript (own autograd, no libraries) that trains on Rabindranath Tagore's Gitanjali live in your browser. Watch the loss fall, see attention, probe next-token probabilities, train it on your own text." />
+<meta property="og:title" content="ছোট্ট-GPT — train a Bengali GPT in your browser" />
+<meta property="og:image" content="../assets/chhotto-gpt.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Tiro+Bangla&family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+<style>
+:root{--ink:#0d1512;--ink2:#14211c;--card:#182a23;--line:#2a4238;--paper:#f3ead7;--saffron:#f4a62a;--leaf:#2fbf8a;--sky:#38bdf8;--red:#ef5b4c;--mut:#9fb5ab}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(1200px 600px at 80% -10%,#1f3b2f 0,transparent 60%),var(--ink);color:#e9f1ec;font-family:Inter,"Hind Siliguri",system-ui,sans-serif;line-height:1.55}
+a{color:var(--saffron)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+header.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+header.top a{color:var(--mut);text-decoration:none;font-size:14px}
+.hero{padding:40px 0 30px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}
+.kicker{font-family:"JetBrains Mono";color:var(--leaf);font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+h1{font-family:"Tiro Bangla",serif;font-size:clamp(42px,6vw,76px);line-height:1.05;margin:.2em 0;color:var(--paper)}
+h1 small{display:block;font-family:Inter;font-size:.32em;color:var(--saffron);font-weight:800;letter-spacing:.02em;margin-top:10px}
+.lede{font-size:18px;color:#cfe0d7;max-width:640px}
+.lede b{color:var(--paper)}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:8px 12px;font-family:"JetBrains Mono";font-size:13px}
+.stat b{color:var(--saffron);font-size:16px}
+.leaf{background:linear-gradient(160deg,#e8d9b5,#d9c28f);color:#3b2a12;border-radius:18px;padding:22px 24px;font-family:"Tiro Bangla",serif;font-size:21px;line-height:1.7;box-shadow:0 30px 80px #0008,inset 0 0 0 1px #0002;transform:rotate(1.2deg);position:relative;min-height:230px}
+.leaf:before{content:"";position:absolute;inset:10px;border:1px dashed #6b4e1f55;border-radius:12px;pointer-events:none}
+.leaf .who{font-family:Inter;font-size:12px;color:#6b4e1f;margin-top:10px;letter-spacing:.06em;text-transform:uppercase}
+#leafText{white-space:pre-wrap}
+.caret{display:inline-block;width:2px;height:1em;background:#3b2a12;vertical-align:-3px;animation:b 1s steps(1) infinite}@keyframes b{50%{opacity:0}}
+section{padding:34px 0}
+h2{font-family:"Hind Siliguri";font-size:30px;margin:0 0 6px;color:var(--paper)}
+h2 .en{font-family:Inter;font-size:15px;color:var(--mut);font-weight:400;margin-left:8px}
+.sub{color:var(--mut);margin:0 0 18px;max-width:820px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{margin:0 0 10px;font-size:15px;letter-spacing:.04em;text-transform:uppercase;color:var(--leaf);font-family:"JetBrains Mono"}
+button,.btn{font:600 14px Inter;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;background:var(--saffron);color:#231505}
+button.ghost{background:transparent;color:#e9f1ec;border:1px solid var(--line)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+label{font-size:13px;color:var(--mut)}
+input[type=range]{accent-color:var(--saffron);width:150px}
+select,textarea,input[type=text]{background:var(--ink2);color:#e9f1ec;border:1px solid var(--line);border-radius:10px;padding:9px 11px;font:15px "Hind Siliguri",Inter}
+textarea{width:100%;min-height:90px;resize:vertical}
+canvas{width:100%;display:block;background:var(--ink2);border-radius:12px}
+.mono{font-family:"JetBrains Mono";font-size:13px}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:12px 0}
+.meter div{background:var(--ink2);border-radius:10px;padding:8px 10px}
+.meter span{display:block;font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.06em}
+.meter b{font-family:"JetBrains Mono";font-size:18px;color:var(--paper)}
+.timeline{max-height:360px;overflow:auto;display:flex;flex-direction:column;gap:8px}
+.snap{background:var(--ink2);border-left:3px solid var(--saffron);border-radius:8px;padding:8px 12px}
+.snap .s{font-family:"JetBrains Mono";font-size:11px;color:var(--mut)}
+.snap .t{font-family:"Tiro Bangla",serif;font-size:17px;white-space:pre-wrap;color:var(--paper)}
+.bars .b{display:grid;grid-template-columns:42px 1fr 56px;gap:8px;align-items:center;margin:3px 0;font-family:"JetBrains Mono";font-size:13px}
+.bars .ch{font-family:"Tiro Bangla";font-size:20px;text-align:center;background:var(--ink2);border-radius:6px}
+.bars .fill{height:16px;border-radius:5px;background:linear-gradient(90deg,var(--leaf),var(--saffron));transition:width .25s}
+.att{display:flex;flex-wrap:wrap;gap:2px;margin-top:8px}
+.att span{font-family:"Tiro Bangla";font-size:20px;padding:3px 4px;border-radius:5px;min-width:18px;text-align:center}
+.heads{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.heads button{padding:5px 10px;font-size:12px}
+.heads button.on{background:var(--leaf)}
+.out{font-family:"Tiro Bangla",serif;font-size:20px;line-height:1.75;white-space:pre-wrap;background:#e8d9b5;color:#3b2a12;border-radius:12px;padding:16px;min-height:120px}
+.out .p{color:#8a5a14;background:#f4a62a33;border-radius:4px}
+.arch{display:flex;flex-direction:column;align-items:center;gap:6px}
+.arch .n{background:var(--ink2);border:1px solid var(--line);border-radius:10px;padding:8px 14px;font-family:"JetBrains Mono";font-size:13px;text-align:center;width:min(100%,420px)}
+.arch .n.blk{border-color:var(--saffron)}
+.arch .a{color:var(--mut)}
+.tag{display:inline-block;font-family:"JetBrains Mono";font-size:11px;padding:3px 8px;border-radius:999px;background:#2fbf8a22;color:var(--leaf);margin:2px}
+.note{font-size:13px;color:var(--mut)}
+footer{padding:40px 0;color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+.pill{display:inline-flex;gap:6px;align-items:center;background:var(--ink2);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mut)}.dot.on{background:var(--leaf);box-shadow:0 0 10px var(--leaf)}
+details{background:var(--ink2);border-radius:10px;padding:10px 14px;margin:8px 0}
+summary{cursor:pointer;font-weight:600}
+code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5px;border-radius:5px}
+@media (max-width:860px){.hero,.g2,.g3{grid-template-columns:1fr}.meter{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a href="../">← ASI hub</a><span class="pill"><span class="dot" id="dot"></span><span id="status">লোড হচ্ছে… loading</span></span></header>
+
+<div class="hero">
+  <div>
+    <div class="kicker">from-scratch transformer · runs 100% in your browser</div>
+    <h1>ছোট্ট-GPT<small>A tiny Bengali GPT that learns Tagore while you watch</small></h1>
+    <p class="lede">No PyTorch. No TensorFlow. No API. Just <b>~275 lines of hand-written JavaScript</b>: a tensor autograd engine, multi-head causal attention, AdamW and a GPT, all checked against numerical gradients. Press <b>শুরু</b> and your laptop trains a language model on <b>রবীন্দ্রনাথের গীতাঞ্জলি</b>, from random noise to Bengali verse.</p>
+    <div class="stats">
+      <span class="stat">params <b id="sParams">—</b></span>
+      <span class="stat">vocab <b id="sVocab">—</b> chars</span>
+      <span class="stat">corpus <b id="sChars">—</b> chars</span>
+      <span class="stat">layers <b>2</b> · heads <b>4</b> · ctx <b>32</b></span>
+    </div>
+  </div>
+  <div class="leaf"><div id="leafText"></div><span class="caret"></span><div class="who" id="leafWho">ছোট্ট-GPT লিখছে… · the pretrained model, writing live</div></div>
+</div>
+
+<section id="train">
+  <h2>১. প্রশিক্ষণ ল্যাব <span class="en">Training lab</span></h2>
+  <p class="sub">Every 50 steps the model writes a fresh line, so you can watch it go from মাত্রাহীন গোলমাল (noise) to words, to rhyme. Loss is cross-entropy in nats; a random guess over the alphabet starts near <span class="mono" id="lnV">4.4</span>.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Loss curve</h3>
+      <canvas id="chart" height="260"></canvas>
+      <div class="meter">
+        <div><span>step</span><b id="mStep">0</b></div>
+        <div><span>train loss</span><b id="mLoss">—</b></div>
+        <div><span>val loss</span><b id="mVal">—</b></div>
+        <div><span>steps / sec</span><b id="mSps">—</b></div>
+      </div>
+      <div class="row">
+        <button id="bStart">▶ শুরু · Train</button>
+        <button class="ghost" id="bPause" disabled>⏸ থামাও</button>
+        <button class="ghost" id="bReset">↺ Fresh random model</button>
+        <button class="ghost" id="bPre">⚡ Load pretrained</button>
+      </div>
+      <div class="row" style="margin-top:12px">
+        <label>learning rate <input type="range" id="lr" min="-4" max="-1.8" step="0.05" value="-2.5"> <span class="mono" id="lrv">0.003</span></label>
+        <label>batch <select id="bs"><option>4</option><option selected>8</option><option>16</option></select></label>
+        <label>seed text <input type="text" id="seedText" value="আমার" style="width:110px"></label>
+      </div>
+      <p class="note">Grad-norm: <span class="mono" id="mGn">—</span> · clipped at 1.0 · 100-step warmup · AdamW (β=0.9/0.99, wd 0.01)</p>
+    </div>
+    <div class="card">
+      <h3>Watch it learn to write</h3>
+      <div class="timeline" id="timeline"><div class="note">Press ▶ to start. The first snapshots are pure noise; that is the point.</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="probe">
+  <h2>২. মডেলের মনের ভেতর <span class="en">Inside its head</span></h2>
+  <p class="sub">Type any Bengali. The model reads the last 32 characters and shows what it thinks comes next, and which earlier characters each attention head looked at to decide. Click a bar to append that character.</p>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Next-character probabilities</h3>
+      <input type="text" id="probeIn" value="আমার মাথা নত করে দাও হে তোমার" style="width:100%">
+      <div class="row" style="margin:10px 0"><label>temperature <input type="range" id="temp" min="0.2" max="1.6" step="0.05" value="1"> <span class="mono" id="tv">1.00</span></label></div>
+      <div class="bars" id="bars"></div>
+    </div>
+    <div class="card">
+      <h3>Attention of the last character</h3>
+      <div class="heads" id="heads"></div>
+      <div class="att" id="att"></div>
+      <p class="note">Brighter = more attention. Heads specialise: some stare at the previous character (spelling: হসন্ত, কার-চিহ্ন), some look back for a space or the start of a word.</p>
+    </div>
+  </div>
+</section>
+
+<section id="write">
+  <h2>৩. কবিতা লেখাও <span class="en">Make it write</span></h2>
+  <p class="sub">Give it the start of a line and let it continue. Low temperature = safe and repetitive; high = wild and inventive. It has only ever read one book, so treat it like a very small, very devoted student of Tagore.</p>
+  <div class="card">
+    <div class="row">
+      <input type="text" id="genIn" value="তোমার" style="flex:1;min-width:200px">
+      <label>length <select id="genN"><option>120</option><option selected>240</option><option>480</option></select></label>
+      <label>temperature <input type="range" id="gtemp" min="0.3" max="1.5" step="0.05" value="0.75"> <span class="mono" id="gtv">0.75</span></label>
+      <button id="bGen">✍ লেখো</button>
+    </div>
+    <div class="out" id="genOut" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="byo">
+  <h2>৪. নিজের লেখা দিয়ে শেখাও <span class="en">Train it on your own text</span></h2>
+  <p class="sub">Paste anything: your DEV posts, a WhatsApp export, Nazrul, Jibanananda, code, English. The vocabulary is rebuilt from your text, the model is re-initialised, and training starts from zero. Nothing leaves your browser.</p>
+  <div class="card">
+    <textarea id="byoText" placeholder="এখানে পেস্ট করো (at least ~3,000 characters works best)…"></textarea>
+    <div class="row" style="margin-top:10px">
+      <button id="bByo">🔁 Train on this text</button>
+      <button class="ghost" id="bBack">↩ Back to Gitanjali</button>
+      <button class="ghost" id="bSave">💾 Download weights (.json)</button>
+      <span class="note" id="byoNote"></span>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <h2>৫. কীভাবে কাজ করে <span class="en">How it works</span></h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>The architecture</h3>
+      <div class="arch">
+        <div class="n">characters → ids (vocab <span id="aV">≈86</span>)</div><div class="a">↓</div>
+        <div class="n">token embedding (64) + position embedding (32×64)</div><div class="a">↓</div>
+        <div class="n blk">Block × 2<br>LayerNorm → 4-head causal self-attention → residual<br>LayerNorm → MLP 64→256→64 (GELU) → residual</div><div class="a">↓</div>
+        <div class="n">final LayerNorm → linear head → softmax over characters</div><div class="a">↓</div>
+        <div class="n">sample the next character, append, repeat</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>What is hand-written</h3>
+      <span class="tag">Tensor + tape autograd</span><span class="tag">matmul fwd/bwd</span><span class="tag">fused causal attention bwd</span><span class="tag">LayerNorm bwd</span><span class="tag">GELU (tanh)</span><span class="tag">softmax cross-entropy</span><span class="tag">AdamW</span><span class="tag">grad clipping</span><span class="tag">xorshift RNG</span><span class="tag">Web Worker training</span><span class="tag">int8 checkpoints</span>
+      <details open><summary>Why characters, not words?</summary><p class="note">Bengali has ~50 base letters plus কার-চিহ্ন, হসন্ত and যুক্তাক্ষর (conjuncts). Learning at the Unicode code-point level means the model has to discover for itself that ্ glues consonants together and that া follows a consonant, which is exactly what you see happen in the timeline.</p></details>
+      <details><summary>Is the gradient really right?</summary><p class="note">Yes. <code>gradcheck.js</code> perturbs random weights in every tensor and compares the analytic gradient with a finite difference. Worst relative error at build time: <b>0.0017</b>.</p></details>
+      <details><summary>How big is this compared with real LLMs?</summary><p class="note">About 113 thousand parameters. GPT-2 small has 124 million (≈1,100× more); frontier models have hundreds of billions to trillions. Same idea, same maths, a few million times less compute.</p></details>
+      <details><summary>The corpus</summary><p class="note">Rabindranath Tagore, <i>Gitanjali</i> (1910/1913 Bengali edition), public domain, from <a href="https://bn.wikisource.org/wiki/%E0%A6%97%E0%A7%80%E0%A6%A4%E0%A6%BE%E0%A6%9E%E0%A7%8D%E0%A6%9C%E0%A6%B2%E0%A6%BF_(%E0%A7%A7%E0%A7%AF%E0%A7%A7%E0%A7%A9)">Bengali Wikisource</a>. 92% train / 8% validation split.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>Built for the ASI hub by <a href="https://github.com/aniruddhaadak80">Aniruddha Adak</a> · engine: <code>engine.js</code> · worker: <code>worker.js</code> · Python twin: <code>train.py</code> · MIT. <br>“আমার মাথা নত করে দাও হে তোমার চরণ-ধূলার তলে” — রবীন্দ্রনাথ ঠাকুর</footer>
+</div>
+
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  let W = new Worker('worker.js'), corpus = '', pre = null, ready = false, running = false, hist = [], vhist = [], mode = 'tagore', pid = 0;
+  let headSel = '0-0', lastAtt = null, lastCtx = null;
+  const fmt = n => n.toLocaleString('en-IN');
+
+  function decodeCkpt(c) { // int8 base64 -> float arrays
+    return { cfg: c.cfg, step: c.step, w: c.w.map(t => { const b = atob(t.q), a = new Float32Array(b.length);
+      for (let i = 0; i < b.length; i++) { let v = b.charCodeAt(i); if (v > 127) v -= 256; a[i] = v * t.s; } return a; }) };
+  }
+  function setStatus(t, on) { $('#status').textContent = t; $('#dot').classList.toggle('on', !!on); }
+  function init(text, ckpt) {
+    ready = false; hist = []; vhist = []; draw();
+    W.postMessage({ type: 'init', text, checkpoint: ckpt || null });
+  }
+  W.onmessage = handle;
+  function handle(e) {
+    const m = e.data;
+    if (m.type === 'ready') {
+      ready = true; $('#sParams').textContent = fmt(m.params); $('#sVocab').textContent = m.vocab.length; $('#sChars').textContent = fmt(m.chars);
+      $('#aV').textContent = m.vocab.length; $('#lnV').textContent = Math.log(m.vocab.length).toFixed(2); $('#mStep').textContent = m.step;
+      setStatus(m.step ? 'pretrained · ' + m.step + ' steps' : 'random weights · press ▶', false);
+      probe(); if (m.step) { leafWrite(); }
+    } else if (m.type === 'progress') {
+      hist.push([m.step, m.loss]); if (m.val != null) vhist.push([m.step, m.val]);
+      $('#mStep').textContent = m.step; $('#mLoss').textContent = m.loss.toFixed(3); $('#mSps').textContent = m.sps.toFixed(1); $('#mGn').textContent = m.gradNorm.toFixed(2);
+      if (m.val != null) $('#mVal').textContent = m.val.toFixed(3);
+      if (m.sample != null) addSnap(m.step, m.loss, m.sample);
+      draw(); setStatus('training · step ' + m.step, true);
+      if (m.sample != null) probe();
+    } else if (m.type === 'predicted') renderProbe(m);
+    else if (m.type === 'generated') { if (m.id === 'leaf') typeLeaf(m.text); else renderGen(m.text); }
+    else if (m.type === 'exported') { const blob = new Blob([JSON.stringify(m.ckpt)], { type: 'application/json' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'chhotto-gpt-weights.json'; a.click(); }
+  }
+  function addSnap(step, loss, text) {
+    const tl = $('#timeline'); if (tl.querySelector('.note')) tl.innerHTML = '';
+    const d = document.createElement('div'); d.className = 'snap';
+    d.innerHTML = `<div class="s">step ${step} · loss ${loss.toFixed(3)}</div><div class="t"></div>`;
+    d.querySelector('.t').textContent = ($('#seedText').value || '') + text; tl.prepend(d);
+    while (tl.children.length > 60) tl.lastChild.remove();
+  }
+  // chart
+  function draw() {
+    const c = $('#chart'), dpr = devicePixelRatio || 1, w = c.clientWidth, h = 260; c.width = w * dpr; c.height = h * dpr;
+    const g = c.getContext('2d'); g.scale(dpr, dpr); g.clearRect(0, 0, w, h);
+    const pad = 34, all = hist.concat(vhist); if (!all.length) { g.fillStyle = '#9fb5ab'; g.font = '13px Inter'; g.fillText('loss will appear here', pad, h / 2); return; }
+    const xmax = Math.max(...all.map(p => p[0]), 10), ymax = Math.max(4.6, ...all.map(p => p[1])), ymin = 0;
+    const X = s => pad + (w - pad - 10) * s / xmax, Y = v => h - pad + (ymin - v) * (h - pad - 12) / (ymax - ymin);
+    g.strokeStyle = '#2a4238'; g.fillStyle = '#9fb5ab'; g.font = '11px JetBrains Mono';
+    for (let v = 0; v <= ymax; v += 1) { g.beginPath(); g.moveTo(pad, Y(v)); g.lineTo(w - 10, Y(v)); g.stroke(); g.fillText(v.toFixed(0), 8, Y(v) + 4); }
+    g.fillText('step ' + xmax, w - 80, h - 10);
+    const line = (pts, col, wd) => { if (!pts.length) return; g.strokeStyle = col; g.lineWidth = wd; g.beginPath(); pts.forEach((p, i) => i ? g.lineTo(X(p[0]), Y(p[1])) : g.moveTo(X(p[0]), Y(p[1]))); g.stroke(); };
+    // smoothed train
+    let s = null; const sm = hist.map(p => (s = s == null ? p[1] : s * 0.9 + p[1] * 0.1, [p[0], s]));
+    line(hist, '#f4a62a33', 1); line(sm, '#f4a62a', 2.2); line(vhist, '#38bdf8', 2);
+    g.fillStyle = '#f4a62a'; g.fillText('train', w - 120, 20); g.fillStyle = '#38bdf8'; g.fillText('val', w - 70, 20);
+  }
+  window.addEventListener('resize', draw);
+  // probe
+  let probeT = null;
+  function probe() { if (!ready) return; clearTimeout(probeT); probeT = setTimeout(() => W.postMessage({ type: 'predict', text: $('#probeIn').value, temp: +$('#temp').value }), 60); }
+  function renderProbe(m) {
+    const bars = $('#bars'); bars.innerHTML = ''; if (m.empty) return;
+    const mx = m.top[0][1];
+    m.top.forEach(([ch, p]) => { const d = document.createElement('div'); d.className = 'b'; d.style.cursor = 'pointer';
+      const shown = ch === ' ' ? '␣' : ch === '\n' ? '↵' : (/[\u09BE-\u09CD\u0981-\u0983]/.test(ch) ? '◌' + ch : ch);
+      d.innerHTML = `<div class="ch"></div><div><div class="fill" style="width:${(p / mx * 100).toFixed(1)}%"></div></div><div>${(p * 100).toFixed(1)}%</div>`;
+      d.querySelector('.ch').textContent = shown; d.onclick = () => { $('#probeIn').value += ch; probe(); }; bars.appendChild(d); });
+    lastAtt = m.att; lastCtx = m.ctx; renderHeads(); renderAtt();
+  }
+  function renderHeads() { const hd = $('#heads'); hd.innerHTML = '';
+    lastAtt.forEach((L, l) => L.forEach((_, h) => { const b = document.createElement('button'); b.className = 'ghost' + (headSel === l + '-' + h ? ' on' : '');
+      b.textContent = `L${l + 1}·H${h + 1}`; b.onclick = () => { headSel = l + '-' + h; renderHeads(); renderAtt(); }; hd.appendChild(b); })); }
+  function renderAtt() { const [l, h] = headSel.split('-').map(Number), a = lastAtt[l][h], mx = Math.max(...a), el = $('#att'); el.innerHTML = '';
+    lastCtx.forEach((ch, i) => { const s = document.createElement('span'); const v = a[i] / mx;
+      s.style.background = `rgba(47,191,138,${(0.08 + 0.92 * v).toFixed(3)})`; s.style.color = v > .55 ? '#0d1512' : '#e9f1ec';
+      s.title = (a[i] * 100).toFixed(1) + '%'; s.textContent = ch === ' ' ? '␣' : ch === '\n' ? '↵' : ch; el.appendChild(s); }); }
+  // generation
+  function renderGen(t) { const o = $('#genOut'); o.innerHTML = ''; const p = document.createElement('span'); p.className = 'p'; p.textContent = $('#genIn').value; o.append(p, document.createTextNode(t)); }
+  // hero leaf typewriter
+  let leafTimer = null;
+  function leafWrite() { W.postMessage({ type: 'generate', text: '\n', n: 160, temp: 0.7, id: 'leaf' }); }
+  function typeLeaf(t) { clearInterval(leafTimer); const el = $('#leafText'); el.textContent = ''; const chars = Array.from(t.replace(/^\s+/, '')); let i = 0;
+    leafTimer = setInterval(() => { if (i >= chars.length) { clearInterval(leafTimer); setTimeout(leafWrite, 4000); return; } el.textContent += chars[i++]; }, 55); }
+
+  // controls
+  $('#bStart').onclick = () => { if (!ready) return; W.postMessage({ type: 'start' }); running = true; $('#bStart').disabled = true; $('#bPause').disabled = false; };
+  $('#bPause').onclick = () => { W.postMessage({ type: 'pause' }); running = false; $('#bStart').disabled = false; $('#bPause').disabled = true; setStatus('paused · step ' + $('#mStep').textContent, false); };
+  const stopUI = () => { W.postMessage({ type: 'pause' }); running = false; $('#bStart').disabled = false; $('#bPause').disabled = true; $('#timeline').innerHTML = '<div class="note">Press ▶ to start.</div>'; };
+  $('#bReset').onclick = () => { stopUI(); init(mode === 'tagore' ? corpus : $('#byoText').value, null); };
+  $('#bPre').onclick = () => { if (!pre) return; stopUI(); mode = 'tagore'; init(corpus, pre); };
+  const lrSet = () => { const v = Math.pow(10, +$('#lr').value); $('#lrv').textContent = v.toFixed(4); W.postMessage({ type: 'opts', opts: { lr: v } }); };
+  $('#lr').oninput = lrSet;
+  $('#bs').onchange = () => W.postMessage({ type: 'opts', opts: { B: +$('#bs').value } });
+  $('#seedText').oninput = () => W.postMessage({ type: 'opts', opts: { seedText: $('#seedText').value } });
+  $('#probeIn').oninput = probe; $('#temp').oninput = () => { $('#tv').textContent = (+$('#temp').value).toFixed(2); probe(); };
+  $('#gtemp').oninput = () => $('#gtv').textContent = (+$('#gtemp').value).toFixed(2);
+  $('#bGen').onclick = () => ready && W.postMessage({ type: 'generate', text: $('#genIn').value, n: +$('#genN').value, temp: +$('#gtemp').value });
+  $('#bByo').onclick = () => { const t = $('#byoText').value; if (t.length < 500) { $('#byoNote').textContent = 'Need at least 500 characters.'; return; }
+    stopUI(); mode = 'byo'; init(t, null); $('#byoNote').textContent = 'New model ready on your text. Press ▶ in the lab.'; $('#seedText').value = Array.from(t).slice(0, 4).join(''); W.postMessage({ type: 'opts', opts: { seedText: $('#seedText').value } }); location.hash = 'train'; };
+  $('#bBack').onclick = () => { stopUI(); mode = 'tagore'; init(corpus, pre); $('#byoNote').textContent = ''; };
+  $('#bSave').onclick = () => W.postMessage({ type: 'export' });
+
+  Promise.all([fetch('corpus.txt').then(r => r.text()), fetch('checkpoint.json').then(r => r.json()).catch(() => null)]).then(([t, c]) => {
+    corpus = t; pre = c ? decodeCkpt(c) : null; if (!pre) $('#bPre').disabled = true;
+    W.postMessage({ type: 'opts', opts: { seedText: $('#seedText').value, lr: Math.pow(10, +$('#lr').value) } });
+    init(corpus, pre);
+  });
+})();
+</script>
+</body>
+</html>

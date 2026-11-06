@@ -11,6 +11,7 @@
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="https://img.shields.io/badge/Explainer-Black%20October%202026-ef4444?style=for-the-badge&logo=hackthebox&logoColor=white&labelColor=07111f" alt="Black October 2026 explainer"></a>
 <a href="https://lo3elyon.github.io/ASI/jacob-coxon-podcasts/"><img src="https://img.shields.io/badge/Guide-Jacob%20Coxon%20on%20YouTube-3b82f6?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="Jacob Coxon video guide"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><img src="https://img.shields.io/badge/App-AI%20Safety%20Full%20Episodes-f59e0b?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Full Episodes app"></a>
+<a href="https://lo3elyon.github.io/ASI/chhotto-gpt/"><img src="https://img.shields.io/badge/New-%E0%A6%9B%E0%A7%8B%E0%A6%9F%E0%A7%8D%E0%A6%9F--GPT%3A%20train%20a%20Bengali%20GPT%20in%20your%20browser-2fbf8a?style=for-the-badge&logo=javascript&logoColor=white&labelColor=07111f" alt="Chhotto-GPT"></a>
 <a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><img src="https://img.shields.io/badge/New-ASI%20Predictions%20Archive%3A%20320%20people%2C%202%2C073%20talks%2C%20history-f59e0b?style=for-the-badge&logo=internetarchive&logoColor=white&labelColor=07111f" alt="ASI Predictions Archive"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-research-atlas/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Research%20Atlas%3A%20102%20orgs%2C%20228%20people-0891b2?style=for-the-badge&logo=googlemaps&logoColor=white&labelColor=07111f" alt="AI Safety Research Atlas"></a>
 <a href="https://lo3elyon.github.io/ASI/ai-safety-researcher-library/"><img src="https://img.shields.io/badge/New-AI%20Safety%20Researcher%20Library%3A%20844%20videos%2C%20152%20researchers-10b981?style=for-the-badge&logo=youtube&logoColor=white&labelColor=07111f" alt="AI Safety Researcher Library"></a>
@@ -27,6 +28,7 @@
 <img src="https://img.shields.io/badge/AI%20safety%20episodes-325%20(Jul%E2%80%93Oct)-f59e0b?style=flat-square&labelColor=07111f" alt="325 full episodes">
 <img src="https://img.shields.io/badge/researcher%20library-152%20people%20%C2%B7%20844%20videos-10b981?style=flat-square&labelColor=07111f" alt="Researcher library">
 <img src="https://img.shields.io/badge/research%20atlas-102%20orgs%20%C2%B7%20228%20people%20%C2%B7%20491%20videos-0891b2?style=flat-square&labelColor=07111f" alt="Research atlas">
+<img src="https://img.shields.io/badge/chhotto--GPT-113k%20params%20%C2%B7%20own%20autograd%20%C2%B7%200%20libraries-2fbf8a?style=flat-square&labelColor=07111f" alt="Chhotto-GPT">
 <img src="https://img.shields.io/github/last-commit/lo3elyon/ASI?style=flat-square&color=14b8a6&labelColor=07111f" alt="Last commit">
 <img src="https://img.shields.io/github/repo-size/lo3elyon/ASI?style=flat-square&color=f59e0b&labelColor=07111f" alt="Repo size">
 
@@ -41,6 +43,7 @@
 <td align="center"><a href="#04b-black-october"><b>Black October</b></a></td>
 <td align="center"><a href="#04c-jacob-coxon"><b>Jacob Coxon</b></a></td>
 <td align="center"><a href="#04d-full-episodes"><b>Full episodes</b></a></td>
+<td align="center"><a href="#04i-chhotto-gpt"><b>ছোট্ট-GPT</b></a></td>
 <td align="center"><a href="#05-watch"><b>Videos</b></a></td>
 <td align="center"><a href="#06-people"><b>Team</b></a></td>
 <td align="center"><a href="#07-architecture"><b>Architecture</b></a></td>
@@ -65,8 +68,8 @@
 <div align="center">
 <table>
 <tr>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/7-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes, AI Safety Researcher Library, AI Safety Research Atlas</sub></td>
-<td align="center" width="25%"><img src="https://img.shields.io/badge/4-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, LLMs, alignment, history</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/10-live%20routes-14b8a6?style=for-the-badge&labelColor=07111f" alt=""><br><sub>ছোট্ট-GPT (train a Bengali GPT in your browser), ASI Predictions Archive, Threshold: The Future of ASI, AI 2027 and AI 2040, Black October 2026, Jacob Coxon on YouTube, AI Safety Full Episodes, AI Safety Researcher Library, AI Safety Research Atlas</sub></td>
+<td align="center" width="25%"><img src="https://img.shields.io/badge/3-coming%20soon-f59e0b?style=for-the-badge&labelColor=07111f" alt=""><br><sub>AGI, alignment, history</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/1%2C741-linked%20videos-ef4444?style=for-the-badge&labelColor=07111f" alt=""><br><sub>focus mode player, video guides, a 325-episode library app and a 1,375-video ASI watch room</sub></td>
 <td align="center" width="25%"><img src="https://img.shields.io/badge/0-build%20steps-10b981?style=for-the-badge&labelColor=07111f" alt=""><br><sub>open index.html and go</sub></td>
 </tr>
@@ -88,7 +91,7 @@ flowchart LR
     L --> E10["AI Safety Researcher Library<br/>/ai-safety-researcher-library/<br/>152 researchers, 844 videos, paths, glossary"]
     L --> E9["Threshold: The Future of ASI<br/>/future-of-asi/<br/>218 researchers, 1,386 signers, 25 routes, 3D library, offline"]
     L -.-> E2["What is AGI, really<br/>coming soon"]
-    L -.-> E3["How LLMs work<br/>coming soon"]
+    L --> E13["ছোট্ট-GPT: How LLMs work, by building one<br/>/chhotto-gpt/<br/>from-scratch JS transformer, trains on Tagore live"]
     L -.-> E4["Alignment, simply<br/>coming soon"]
     L -.-> E5["Timeline of AI<br/>coming soon"]
     E1 --> B(["Back to ASI home"])
@@ -98,8 +101,8 @@ flowchart LR
     classDef soon fill:#2a1d05,stroke:#f59e0b,stroke-dasharray:5 4,color:#fde68a
     classDef user fill:#07111f,stroke:#84cc16,stroke-width:2px,color:#ecfccb
     class H,L,G,T hub
-    class E1,E6,E7,E8,E9,E10,E11,E12 live
-    class E2,E3,E4,E5 soon
+    class E1,E6,E7,E8,E9,E10,E11,E12,E13 live
+    class E2,E4,E5 soon
     class V,B user
 ```
 
@@ -125,6 +128,12 @@ flowchart LR
 <b>The Black October 2026 explainer</b><br>
 <sub>30 incidents, animated attack chains, charts, a self-check and a quiz.</sub><br><br>
 <a href="https://lo3elyon.github.io/ASI/black-october-2026/"><img src="assets/black-october.jpg" width="92%" alt="Black October 2026 hero"></a>
+
+<br><br>
+
+<b>ছোট্ট-GPT: train a Bengali GPT in your browser</b><br>
+<sub>A transformer written from scratch in plain JavaScript learns Rabindranath Tagore's Gitanjali on your own laptop: live loss curve, samples every 50 steps, next-character probabilities, attention heatmaps per head, and train-it-on-your-own-text.</sub><br><br>
+<a href="https://lo3elyon.github.io/ASI/chhotto-gpt/"><img src="assets/chhotto-gpt.jpg" width="92%" alt="Chhotto-GPT cover: a palm-leaf manuscript dissolving into a neural network"></a>
 
 <br><br>
 
@@ -216,6 +225,13 @@ flowchart LR
 <th align="left">What you get</th>
 <th align="center">Status</th>
 <th align="center">Added</th>
+</tr>
+<tr>
+<td><a href="chhotto-gpt/"><code>/chhotto-gpt/</code></a></td>
+<td><a href="https://lo3elyon.github.io/ASI/chhotto-gpt/"><b>ছোট্ট-GPT: Train a Bengali GPT in Your Browser</b></a><br><sub>How LLMs actually work, by building one: a 2-layer, 4-head, 113k-parameter character-level GPT with a hand-written autograd engine, trained live on Tagore's Gitanjali (1913)</sub></td>
+<td><sub>Training lab in a Web Worker (start/pause, learning rate, batch, loss + val curve, steps/sec, grad-norm), "watch it learn to write" timeline every 50 steps, pretrained int8 checkpoint, next-character probability bars (click to append), attention heatmap for all 8 heads, temperature-controlled poem writer, train on your own pasted text, download weights, gradient-checked engine, 65-line NumPy twin</sub></td>
+<td align="center"><img src="https://img.shields.io/badge/live-14b8a6?style=flat-square" alt="live"></td>
+<td align="center"><sub>2026-11-06</sub></td>
 </tr>
 <tr>
 <td><a href="ai-2027-2040/"><code>/ai-2027-2040/</code></a></td>
@@ -872,6 +888,31 @@ flowchart LR
     class H,D,W,T,V,TL,O,P,L a
 ```
 
+<a id="04i-chhotto-gpt"></a>
+<h2>04i. Deep dive: ছোট্ট-GPT, a Bengali GPT you train in your browser</h2>
+
+<table>
+<tr>
+<td width="45%" valign="top"><a href="https://lo3elyon.github.io/ASI/chhotto-gpt/"><img src="assets/chhotto-gpt.jpg" width="100%" alt="Chhotto-GPT"></a></td>
+<td valign="top">
+<img src="https://img.shields.io/badge/type-interactive%20ML%20lab-2fbf8a?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/added-Nov%206%2C%202026-14b8a6?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/params-113k-f4a62a?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/libraries-0-84cc16?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/gradcheck-max%20rel%20err%200.0017-38bdf8?style=flat-square&labelColor=07111f" alt=""> <img src="https://img.shields.io/badge/corpus-Gitanjali%201913-ef5b4c?style=flat-square&labelColor=07111f" alt=""><br><br>
+The "How LLMs actually work" tile is finally live, and instead of describing an LLM it <b>is</b> one. <code>engine.js</code> is a from-scratch tensor library with a recording tape: matmul, bias, residual add, LayerNorm, tanh-GELU, fused multi-head causal attention and softmax cross-entropy, each with its own hand-derived backward pass, plus AdamW, warmup and gradient clipping. On top sits a GPT (2 blocks, 4 heads, 64-dim, 32-character context, ~113k parameters). Training runs in a Web Worker on <b>91 poems of রবীন্দ্রনাথ ঠাকুরের গীতাঞ্জলি</b> (≈39k characters, public domain via Bengali Wikisource). You see the loss fall from ln(84) ≈ 4.4, a new sample every 50 steps (noise → letters → কার-চিহ্ন in the right places → words → line breaks and rhyme), next-character probabilities for any prompt and the attention pattern of every head. Paste your own text and it re-learns from zero; download the weights when you are done. A 65-line NumPy twin (<code>train.py</code>) does the same maths in Python. Full guide in its <a href="chhotto-gpt/README.md">README</a>.
+</td>
+</tr>
+</table>
+
+```mermaid
+flowchart LR
+    C["corpus.txt<br/>Gitanjali, 91 poems"] --> TK["char tokenizer<br/>84 symbols"]
+    TK --> W["worker.js<br/>batches · warmup · AdamW"]
+    W --> E["engine.js<br/>tape autograd + GPT"]
+    E -->|loss, samples| UI["index.html<br/>lab · probe · writer"]
+    CK["checkpoint.json<br/>int8 pretrained"] --> W
+    U["your pasted text"] --> TK
+    classDef a fill:#0d2a20,stroke:#2fbf8a,color:#e9f1ec
+    class C,TK,W,E,UI,CK,U a
+```
+
 <a id="05-watch"></a>
 <img src="docs/readme/h-videos.svg" width="100%" alt="05 Watch: Talks in focus mode">
 
@@ -1059,7 +1100,7 @@ ASI/
 ├── index.html                 landing hub (home route)
 ├── css/                       landing styles (hark.css, hark-hero.css)
 ├── js/                        landing interactions (hark.js)
-├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg, ai-safety-research-atlas.jpg, asi-predictions-archive.jpg)
+├── assets/                    landing images (asi-hero.jpg, hero.jpg, black-october.jpg, jacob-coxon-podcasts.jpg, chhotto-gpt.jpg, ai-safety-full-episodes.jpg, future-of-asi.jpg, ai-safety-researcher-library.jpg, ai-safety-research-atlas.jpg, asi-predictions-archive.jpg)
 ├── ai-2027-2040/              explainer route
 │   ├── index.html
 │   ├── css/  js/  assets/
@@ -1092,6 +1133,10 @@ ASI/
 │   ├── manifest.webmanifest  favicon.svg  favicon.ico  apple-touch-icon.png  robots.txt  sitemap.xml  sw.js
 │   ├── assets/                app.bundle.js  app.min.css  js/  brand/  speakers/  data-inline.js  cover.jpg
 │   ├── data/                  episodes.json  roster.json  photos.json  manifest.json  daily/
+│   └── README.md
+├── chhotto-gpt/               ML lab route: from-scratch JS GPT trained live on Tagore's Gitanjali
+│   ├── index.html  engine.js  worker.js  corpus.txt  checkpoint.json
+│   ├── gradcheck.js  pretrain.js  pretrain-log.json  train.py (NumPy twin)
 │   └── README.md
 ├── docs/readme/               README art: banner, headers, carousels, shots, team
 ├── README.md
@@ -1231,6 +1276,11 @@ A local server is better than opening the file directly, because some browsers b
 <img src="docs/readme/h-faq.svg" width="100%" alt="11 FAQ">
 
 <details>
+<summary><b>Does ছোট্ট-GPT really train in the browser, with no library?</b></summary>
+<br>Yes. Every forward and backward pass is plain JavaScript on Float32Arrays inside a Web Worker; nothing is sent to a server. <code>gradcheck.js</code> compares every tensor's analytic gradient with finite differences (worst relative error 0.0017 at build time). On a typical laptop it runs about 8 to 12 steps a second at batch 8, so you see real Bengali words within a few minutes. The pretrained checkpoint was produced by <code>pretrain.js</code> with the same engine, then quantised to int8.
+</details>
+
+<details>
 <summary><b>How was the AI Safety Research Atlas researched</b></summary>
 <br>Five research passes opened each organisation's own website, quoted its tagline, simplified its mission and key work into plain English with links to the originals, and recorded the risks it warns about and the precautions it recommends. Duplicates were merged, people merged across organisations and videos merged by YouTube id. Closures, renames and mergers up to November 2026 are badged. People without a verifiable photo show initials rather than a guessed face. Themes for warnings are assigned by keyword rules, so a few lines may sit in a neighbouring theme.
 </details>
@@ -1287,6 +1337,7 @@ A local server is better than opening the file directly, because some browsers b
 
 <table>
 <tr><th align="left">Date</th><th align="left">Change</th></tr>
+<tr><td><sub>2026-11-06</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/chhotto-gpt/"><b>ছোট্ট-GPT: Train a Bengali GPT in Your Browser</b></a> at <code>/chhotto-gpt/</code>, replacing the "How LLMs actually work" coming-soon tile: a from-scratch tape-autograd engine and 2-layer, 4-head, ~113k-parameter GPT in vanilla JS (gradient-checked), trained in a Web Worker on 91 Gitanjali poems; live loss and validation curve, 50-step sample timeline, int8 pretrained checkpoint, next-character probability bars, per-head attention heatmaps, temperature writer, train-on-your-own-text and weight download; plus a 65-line NumPy twin.</td></tr>
 <tr><td><sub>2026-11-03</sub></td><td><b>ASI Predictions Archive v2</b> at <a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><code>/asi-predictions-archive/</code></a>: History section (8 chapters, 59 sourced milestones, mini-map, 21 videos), 320 people each with a page (<code>#/person/&lt;id&gt;</code>, incl. 18 neuroscientists/philosophers and 31 pioneers), 2,073 verified talks in a rebuilt Theater, a shared player that plays only on click (custom controls, mini-player, queue, shortcuts, resume), ⌘K search palette, era colour system and content-sized cards.</td></tr>
 <tr><td><sub>2026-11-03</sub></td><td>Added <a href="https://lo3elyon.github.io/ASI/asi-predictions-archive/"><b>Before It Was Real: ASI Predictions Archive</b></a> at <code>/asi-predictions-archive/</code>: 78 sourced entries on superintelligence, the control problem and AI safety across three eras (before deep learning 21, deep learning era 26, after ChatGPT 31), 40 oEmbed-verified talks with lite embeds and a Media Theater, a Prediction Tracker of 30 calls fact-checked on 3 Nov 2026 with a status chart and scatter, a portrait lightbox and a hide/show offline "Ask the Archive" chat.</td></tr>
 <tr><td><sub>2026-11-02</sub></td><td><b>AI Safety Full Episodes: six more episodes, 100 % on a full play, deep links, live History</b> at <a href="https://lo3elyon.github.io/ASI/ai-safety-full-episodes/"><code>/ai-safety-full-episodes/</code></a> (357 in all): Joscha Bach on machine consciousness (MLST), Yann LeCun's Dartmouth keynote on world models, and four Classics (Buck Shlegeris on insider threats, AXRP 27 AI Control, Apollo's anti-scheming interview, Helen Toner on the jagged frontier); watching a whole episode now always ends at <i>Watched 100%</i>, <code>#/watch/&lt;id&gt;</code> links open the episode, and History refreshes live while you play.</td></tr>
@@ -1342,6 +1393,7 @@ A local server is better than opening the file directly, because some browsers b
 <tr><td><b>AI Safety Full Episodes</b></td><td><a href="https://www.youtube.com/watch?v=Qpuj1nhcxiI">PBD Podcast #868</a>, <a href="https://www.youtube.com/watch?v=JIMXEuT_ZAU">The Ezra Klein Show</a>, <a href="https://www.youtube.com/watch?v=qDzg-xvkeXw">The Diary Of A CEO</a>, <a href="https://www.youtube.com/watch?v=IejFLhF8efQ">NYC Council hearing</a>, <a href="https://www.youtube.com/watch?v=LlGNBPJW8Ww">UK Parliament committee</a>, <a href="https://www.youtube.com/watch?v=tjAg_KxApmw">Machine Gods</a>, plus every link in <a href="ai-safety-full-episodes/data/episodes.json">episodes.json</a></td></tr>
 <tr><td><b>Threshold: The Future of ASI</b></td><td><a href="https://bluedot.org/">BlueDot Impact</a>, <a href="https://www.redwoodresearch.org/">Redwood Research</a>, <a href="https://arxiv.org/abs/2312.06942">AI Control paper</a>, <a href="https://www.safe.ai/work/statement-on-ai-risk">CAIS statement</a>, <a href="https://en.wikipedia.org/wiki/P(doom)">P(doom) table</a>, plus every link in <a href="future-of-asi/data/researchers.json">researchers.json</a>, <a href="future-of-asi/data/videos.json">videos.json</a> and <a href="future-of-asi/data/timeline.json">timeline.json</a></td></tr>
 <tr><td><b>AI Safety Research Atlas</b></td><td>Each organisation's own site (linked on its profile), for example <a href="https://www.apolloresearch.ai/">Apollo Research</a>, <a href="https://intelligence.org/">MIRI</a>, <a href="https://www.aisi.gov.uk/">UK AISI</a>, <a href="https://www.governance.ai/">GovAI</a>, <a href="https://alignment.anthropic.com/">Anthropic Alignment Science</a>, <a href="https://metr.org/">METR</a>, <a href="https://www.redwoodresearch.org/">Redwood Research</a>, <a href="https://futureoflife.org/">FLI</a>; plus YouTube pages for 491 videos</td></tr>
+<tr><td><b>ছোট্ট-GPT</b></td><td><a href="https://bn.wikisource.org/wiki/%E0%A6%97%E0%A7%80%E0%A6%A4%E0%A6%BE%E0%A6%9E%E0%A7%8D%E0%A6%9C%E0%A6%B2%E0%A6%BF_(%E0%A7%A7%E0%A7%AF%E0%A7%A7%E0%A7%A9)">Gitanjali (1913), Bengali Wikisource</a>, <a href="https://arxiv.org/abs/1706.03762">Attention Is All You Need</a>, <a href="https://github.com/karpathy/nanoGPT">nanoGPT</a> and <a href="https://github.com/karpathy/micrograd">micrograd</a> (inspiration), <a href="https://arxiv.org/abs/1711.05101">AdamW</a></td></tr>
 <tr><td><b>AI Futures Project</b></td><td><a href="https://ai-futures.org/">Home</a>, <a href="https://ai-futures.org/about/">Team</a>, <a href="https://www.aifuturesmodel.com/">AI Futures Model</a>, <a href="https://blog.aifutures.org/">Blog</a></td></tr>
 </table>
 
