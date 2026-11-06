@@ -1,0 +1,29 @@
+/* polish40.css: Trust page polish (owner 2026-11-06 "enhance design, visuals, motion"). Add-only.
+   Motion only on scroll-in and open; hover is glow only (no transform). No violet/pink. */
+/* reviewed rows: rank-coloured accent and soft glow */
+#trList > li.x-tr-row { position: relative; overflow: hidden; }
+#trList > li.x-tr-row::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: linear-gradient(180deg, #14b8a6, #22c55e); opacity: .55; }
+#trList > li.x-tr-row:nth-child(1)::before { background: linear-gradient(180deg, #f59e0b, #eab308); opacity: .9; }
+#trList > li.x-tr-row:nth-child(2)::before { background: linear-gradient(180deg, #94a3b8, #cbd5e1); opacity: .9; }
+#trList > li.x-tr-row:nth-child(3)::before { background: linear-gradient(180deg, #ea580c, #f97316); opacity: .9; }
+#trList > li.x-tr-row:hover { box-shadow: 0 0 0 1px rgba(20, 184, 166, .35), 0 8px 28px -12px rgba(20, 184, 166, .45); }
+/* score tiles: colour strip from the score, glow on hover */
+.t33-tile { position: relative; overflow: hidden; transition: box-shadow .25s ease, border-color .25s ease; }
+.t33-tile::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: linear-gradient(90deg, transparent, var(--o, #14b8a6), transparent); opacity: .85; }
+.t33-tile:hover, .t33-tile:focus-visible { box-shadow: 0 0 0 1px color-mix(in srgb, var(--o, #14b8a6) 55%, transparent), 0 10px 30px -14px var(--o, #14b8a6); }
+.t33-tile__o { background: linear-gradient(135deg, var(--o, #14b8a6), color-mix(in srgb, var(--o, #14b8a6) 55%, #0ea5e9)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* panel: blurred backdrop */
+#t33dlg.is-on { backdrop-filter: blur(6px) saturate(1.1); -webkit-backdrop-filter: blur(6px) saturate(1.1); }
+/* scroll-in reveal (once per element) */
+.f40-pre { opacity: 0; translate: 0 10px; }
+.f40-in { opacity: 1; translate: 0 0; transition: opacity .5s ease, translate .5s cubic-bezier(.2, .8, .2, 1); }
+.f40-in .t33-mini i, .t33-pcard__bars.f40-in u, .t33-fx__bar i { animation: f40grow .9s cubic-bezier(.2, .8, .2, 1) both; }
+.f40-in .t33-mini i { transform-origin: bottom; animation-name: f40rise; }
+@keyframes f40grow { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes f40rise { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+#t33dlg.is-on .t33-dlg__card { animation: f40pop .28s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes f40pop { from { opacity: 0; translate: 0 12px; } to { opacity: 1; translate: 0 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .f40-pre { opacity: 1; translate: none; }
+  .f40-in, .f40-in *, #t33dlg.is-on .t33-dlg__card { transition: none !important; animation: none !important; }
+}
