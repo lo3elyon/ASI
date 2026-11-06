@@ -27,3 +27,7 @@
   .f40-pre { opacity: 1; translate: none; }
   .f40-in, .f40-in *, #t33dlg.is-on .t33-dlg__card { transition: none !important; animation: none !important; }
 }
+/* QA 15:27: make the tile strip and the score gradient clearly visible */
+.t33-tile::before { height: 4px; background: linear-gradient(90deg, var(--o, #14b8a6), color-mix(in srgb, var(--o, #14b8a6) 40%, #0ea5e9)); opacity: 1; }
+.t33-tile__o { background-image: linear-gradient(120deg, var(--o, #14b8a6) 20%, #0ea5e9 110%); }
+#trList > li.x-tr-row::before { width: 5px; opacity: 1; }
