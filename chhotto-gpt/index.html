@@ -81,8 +81,22 @@ summary{cursor:pointer;font-weight:600}
 code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5px;border-radius:5px}
 @media (max-width:860px){.hero,.g2,.g3{grid-template-columns:1fr}.meter{grid-template-columns:repeat(2,1fr)}}
 </style>
+<link rel="stylesheet" href="extras.css" />
 </head>
-<body>
+<body class="mode-simple">
+<div class="progress" id="prog"></div>
+<canvas id="bgfx"></canvas>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+<div class="help" id="help"><div class="card"><h3>Keyboard shortcuts</h3>
+<p><span class="kbd">Space</span> train / pause</p><p><span class="kbd">G</span> write with confidence colours</p><p><span class="kbd">E</span> refresh embedding map</p><p><span class="kbd">S</span> next story step</p><p><span class="kbd">T</span> light / dark theme</p><p><span class="kbd">?</span> this help</p><button id="helpX">ঠিক আছে</button></div></div>
+<nav class="secnav" id="secnav">
+  <a href="#story">০ গল্প</a><a href="#train">১ ট্রেনিং</a><a href="#embed">২ শব্দ-মানচিত্র</a><a href="#probe">৩ মনের ভেতর</a><a href="#grid">৪ attention grid</a><a href="#write">৫ লেখাও</a><a href="#confw">৬ আত্মবিশ্বাস</a><a href="#builder">৭ নিজের মডেল</a><a href="#byo">৮ নিজের লেখা</a><a href="#gloss">৯ শব্দকোষ</a><a href="#quiz">১০ কুইজ</a><a href="#how">কীভাবে</a>
+  <span class="sp"></span>
+  <span class="toggle" id="modeT"><button data-m="simple" class="on">সহজ</button><button data-m="adv">Advanced</button></span>
+  <button class="ghost" id="themeB" title="theme (T)">☀︎</button>
+  <button class="ghost" id="helpB" title="shortcuts (?)">⌨</button>
+</nav>
 <div class="wrap">
 <header class="top"><a href="../">← ASI hub</a><span class="pill"><span class="dot" id="dot"></span><span id="status">লোড হচ্ছে… loading</span></span></header>
 
@@ -100,6 +114,20 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   </div>
   <div class="leaf"><div id="leafText"></div><span class="caret"></span><div class="who" id="leafWho">ছোট্ট-GPT লিখছে… · the pretrained model, writing live</div></div>
 </div>
+
+<section id="story" class="reveal">
+  <h2>০. এক মিনিটে বুঝে নাও: GPT কীভাবে ভাবে <span class="en">Story mode: one real prediction, step by step</span></h2>
+  <p class="sub">This is the model actually running, not a cartoon. Type a few words, then walk through the six steps it takes to choose the next character. Press ▶ Autoplay to watch it all happen.</p>
+  <div class="simple">সহজ কথায়: মডেলটা একটা খুব মনোযোগী ছাত্রের মতো। সে আগের লেখাগুলো পড়ে, প্রতিটা অক্ষরকে সংখ্যায় বদলায়, তারপর ঠিক করে <b>পরের অক্ষর কোনটা হওয়ার সম্ভাবনা সবচেয়ে বেশি</b>। এটাই LLM-এর পুরো রহস্য, শুধু বিশাল আকারে।</div>
+  <div class="card">
+    <div class="row" style="margin-bottom:12px"><input type="text" id="storyIn" value="আমার প্রাণের মাঝে" style="flex:1;min-width:220px"><button id="storyGo">↻ এই লেখা দিয়ে</button><button class="ghost" id="storyAuto">▶ Autoplay</button></div>
+    <div class="story">
+      <div class="steps" id="steps"></div>
+      <div><div class="stage" id="stage"><h4>…</h4></div>
+        <div class="storybar"><button class="ghost" id="sPrev">← আগে</button><button id="sNext">পরে →</button><div class="dots" id="sdots"></div></div></div>
+    </div>
+  </div>
+</section>
 
 <section id="train">
   <h2>১. প্রশিক্ষণ ল্যাব <span class="en">Training lab</span></h2>
@@ -134,6 +162,18 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   </div>
 </section>
 
+<section id="embed" class="reveal">
+  <h2>২খ. অক্ষরের মানচিত্র <span class="en">Embedding map: how the model arranges letters in its mind</span></h2>
+  <p class="sub">Each character lives as a 64-number vector. We squash those 64 dimensions to 2 with PCA and plot them. Train for a while and watch similar letters drift together: vowel signs cluster, consonants cluster, punctuation goes its own way.</p>
+  <div class="simple">সহজ কথায়: মডেলটা নিজে নিজেই বুঝে ফেলে যে <b>া ি ী ু</b> একরকম কাজ করে, আর <b>ক খ গ</b> আরেকরকম। কেউ তাকে শেখায়নি, শুধু লেখা পড়ে শিখেছে।</div>
+  <div class="card">
+    <canvas id="emb" height="460"></canvas>
+    <div class="legend"><span><i style="background:#f4a62a"></i>স্বরবর্ণ vowels</span><span><i style="background:#2fbf8a"></i>ব্যঞ্জন consonants</span><span><i style="background:#38bdf8"></i>কার-চিহ্ন / হসন্ত signs</span><span><i style="background:#ef5b4c"></i>space, punctuation, digits</span></div>
+    <div class="row" style="margin-top:10px"><button id="embB">↻ Refresh map (E)</button><label><input type="checkbox" id="embAuto" checked> auto-refresh while training</label><span class="note" id="embNote"></span></div>
+    <div class="adv">PCA via power iteration on the centred token-embedding matrix wte ∈ ℝ^(V×C); 2 components, 40 iterations, Gram–Schmidt deflation. Positions tween over 600 ms.</div>
+  </div>
+</section>
+
 <section id="probe">
   <h2>২. মডেলের মনের ভেতর <span class="en">Inside its head</span></h2>
   <p class="sub">Type any Bengali. The model reads the last 32 characters and shows what it thinks comes next, and which earlier characters each attention head looked at to decide. Click a bar to append that character.</p>
@@ -153,6 +193,16 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   </div>
 </section>
 
+<section id="grid" class="reveal">
+  <h2>৩খ. পুরো attention ছবি <span class="en">Full attention grid: every character, every head</span></h2>
+  <p class="sub">Row = the character doing the looking, column = the character being looked at. The triangle shape is the causal mask: a GPT can never peek at the future. Hover any cell for its exact weight.</p>
+  <div class="simple">সহজ কথায়: প্রতিটা অক্ষর আগের কোন অক্ষরগুলোর দিকে কতটা "তাকিয়ে" আছে, সেটা এই ছকে দেখা যায়। উজ্জ্বল ঘর মানে বেশি মনোযোগ।</div>
+  <div class="card">
+    <div class="row"><input type="text" id="gridIn" value="তোমার সোনার থালায় সাজাব আজ" style="flex:1;min-width:220px"><select id="gridHead"></select><button id="gridB">Show</button><label><input type="checkbox" id="gridAvg"> average all heads</label></div>
+    <canvas id="gridC" height="520" style="margin-top:12px"></canvas>
+  </div>
+</section>
+
 <section id="write">
   <h2>৩. কবিতা লেখাও <span class="en">Make it write</span></h2>
   <p class="sub">Give it the start of a line and let it continue. Low temperature = safe and repetitive; high = wild and inventive. It has only ever read one book, so treat it like a very small, very devoted student of Tagore.</p>
@@ -164,6 +214,40 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
       <button id="bGen">✍ লেখো</button>
     </div>
     <div class="out" id="genOut" style="margin-top:12px"></div>
+  </div>
+</section>
+
+<section id="confw" class="reveal">
+  <h2>৫খ. আত্মবিশ্বাসের রঙে লেখা <span class="en">Confidence writer: see how sure it is about every character</span></h2>
+  <p class="sub">The model writes live, and each character is coloured by the probability it gave that choice: green = very sure, amber = guessing, red = a wild pick. The line below tracks uncertainty (entropy) as it writes.</p>
+  <div class="simple">সহজ কথায়: সবুজ অক্ষর মানে মডেল নিশ্চিত ছিল, লাল মানে আন্দাজে লিখেছে। শব্দের মাঝখানে সাধারণত সবুজ, নতুন শব্দের শুরুতে লাল, ঠিক মানুষের মতোই!</div>
+  <div class="card">
+    <div class="row"><input type="text" id="cIn" value="আমি" style="flex:1;min-width:160px"><label>temperature <input type="range" id="cT" min="0.3" max="1.5" step="0.05" value="0.8"> <span class="mono" id="cTv">0.80</span></label><button id="cB">✍ লেখো (G)</button><button class="ghost" id="cMulti">🌡 Compare 3 temperatures</button></div>
+    <div class="conf" id="cOut" style="margin-top:12px"></div>
+    <canvas class="spark" id="spark"></canvas>
+    <div class="meter"><div><span>avg confidence</span><b id="cAvg">—</b></div><div><span>avg entropy</span><b id="cEnt">—</b></div><div><span>sure picks (&gt;80%)</span><b id="cSure">—</b></div><div><span>wild picks (&lt;10%)</span><b id="cWild">—</b></div></div>
+    <div class="cols3" id="cols3" style="display:none"><div><div class="lab">T = 0.4 · সাবধানী</div><div class="out" id="t1"></div></div><div><div class="lab">T = 0.8 · সুষম</div><div class="out" id="t2"></div></div><div><div class="lab">T = 1.3 · পাগলাটে</div><div class="out" id="t3"></div></div></div>
+    <div class="adv">confidence = p(chosen | context) after temperature; entropy H = −Σ p log p (nats). Max entropy for V symbols is ln V.</div>
+  </div>
+</section>
+
+<section id="builder" class="reveal">
+  <h2>৬খ. নিজের মডেল বানাও <span class="en">Model builder: design your own GPT and train it</span></h2>
+  <p class="sub">Change the shape of the network, see its size update live, then build it and train from scratch in the lab. Bigger is smarter but slower: you feel the real trade-off every AI lab faces.</p>
+  <div class="simple">সহজ কথায়: <b>Layers</b> = কতবার ভাবে, <b>Heads</b> = একসাথে কতদিকে তাকায়, <b>Width</b> = প্রতিটা অক্ষরের জন্য কত সংখ্যা মনে রাখে, <b>Context</b> = কত পেছনের লেখা পড়তে পারে।</div>
+  <div class="card">
+    <div class="bgrid">
+      <div class="knob"><label>Layers</label><b id="kL">2</b><input type="range" id="bL" min="1" max="4" value="2"></div>
+      <div class="knob"><label>Heads</label><b id="kH">4</b><input type="range" id="bH" min="0" max="3" value="2"></div>
+      <div class="knob"><label>Width (C)</label><b id="kC">64</b><input type="range" id="bC" min="0" max="3" value="2"></div>
+      <div class="knob"><label>Context</label><b id="kT">32</b><input type="range" id="bT" min="0" max="2" value="1"></div>
+    </div>
+    <div class="row" style="margin-top:14px;justify-content:space-between">
+      <div><span class="big" id="bP">—</span> <span class="note">parameters · <span id="bSpeed"></span></span>
+        <div class="cmp" style="width:300px"><i id="bBar"></i></div><span class="note" id="bCmp"></span></div>
+      <div class="row"><button id="bBuild">🧱 Build &amp; go to lab</button><button class="ghost" id="bDefault">Default (pretrained shape)</button></div>
+    </div>
+    <div class="adv">params = V·C + T·C + L·(12C² + 13C) + 2C + C·V   (QKV 3C²+3C, proj C²+C, MLP 8C²+5C, 2 LayerNorms 4C)</div>
   </div>
 </section>
 
@@ -181,6 +265,15 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   </div>
 </section>
 
+<section id="gloss" class="reveal">
+  <h2>৯. শব্দকোষ <span class="en">Glossary: tap a card to flip it</span></h2>
+  <div class="gl" id="glc"></div>
+</section>
+<section id="quiz" class="reveal">
+  <h2>১০. নিজেকে যাচাই করো <span class="en">Quick quiz</span></h2>
+  <div class="card"><div id="qz"></div><p class="note">Score: <b id="qs">0</b> / <span id="qn">0</span></p></div>
+</section>
+
 <section id="how">
   <h2>৫. কীভাবে কাজ করে <span class="en">How it works</span></h2>
   <div class="grid g2">
@@ -196,7 +289,7 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
     </div>
     <div class="card">
       <h3>What is hand-written</h3>
-      <span class="tag">Tensor + tape autograd</span><span class="tag">matmul fwd/bwd</span><span class="tag">fused causal attention bwd</span><span class="tag">LayerNorm bwd</span><span class="tag">GELU (tanh)</span><span class="tag">softmax cross-entropy</span><span class="tag">AdamW</span><span class="tag">grad clipping</span><span class="tag">xorshift RNG</span><span class="tag">Web Worker training</span><span class="tag">int8 checkpoints</span>
+      <span class="tag">Tensor + tape autograd</span><span class="tag">matmul fwd/bwd</span><span class="tag">fused causal attention bwd</span><span class="tag">LayerNorm bwd</span><span class="tag">GELU (tanh)</span><span class="tag">softmax cross-entropy</span><span class="tag">AdamW</span><span class="tag">grad clipping</span><span class="tag">xorshift RNG</span><span class="tag">Web Worker training</span><span class="tag">int8 checkpoints</span><span class="tag">PCA by power iteration</span><span class="tag">streaming sampler</span><span class="tag">entropy meter</span><span class="tag">configurable architecture</span>
       <details open><summary>Why characters, not words?</summary><p class="note">Bengali has ~50 base letters plus কার-চিহ্ন, হসন্ত and যুক্তাক্ষর (conjuncts). Learning at the Unicode code-point level means the model has to discover for itself that ্ glues consonants together and that া follows a consonant, which is exactly what you see happen in the timeline.</p></details>
       <details><summary>Is the gradient really right?</summary><p class="note">Yes. <code>gradcheck.js</code> perturbs random weights in every tensor and compares the analytic gradient with a finite difference. Worst relative error at build time: <b>0.0017</b>.</p></details>
       <details><summary>How big is this compared with real LLMs?</summary><p class="note">About 113 thousand parameters. GPT-2 small has 124 million (≈1,100× more); frontier models have hundreds of billions to trillions. Same idea, same maths, a few million times less compute.</p></details>
@@ -222,11 +315,11 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   function setStatus(t, on) { $('#status').textContent = t; $('#dot').classList.toggle('on', !!on); }
   function init(text, ckpt) {
     ready = false; hist = []; vhist = []; draw();
-    W.postMessage({ type: 'init', text, checkpoint: ckpt || null });
+    W.postMessage({ type: 'init', text, checkpoint: (window.CG_CFG ? null : ckpt) || null, cfg: window.CG_CFG || null });
   }
   W.onmessage = handle;
   function handle(e) {
-    const m = e.data;
+    const m = e.data; (window.CG_X || []).forEach(f => { try { f(m); } catch (err) { console.error(err); } });
     if (m.type === 'ready') {
       ready = true; $('#sParams').textContent = fmt(m.params); $('#sVocab').textContent = m.vocab.length; $('#sChars').textContent = fmt(m.chars);
       $('#aV').textContent = m.vocab.length; $('#lnV').textContent = Math.log(m.vocab.length).toFixed(2); $('#mStep').textContent = m.step;
@@ -300,7 +393,7 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   $('#bPause').onclick = () => { W.postMessage({ type: 'pause' }); running = false; $('#bStart').disabled = false; $('#bPause').disabled = true; setStatus('paused · step ' + $('#mStep').textContent, false); };
   const stopUI = () => { W.postMessage({ type: 'pause' }); running = false; $('#bStart').disabled = false; $('#bPause').disabled = true; $('#timeline').innerHTML = '<div class="note">Press ▶ to start.</div>'; };
   $('#bReset').onclick = () => { stopUI(); init(mode === 'tagore' ? corpus : $('#byoText').value, null); };
-  $('#bPre').onclick = () => { if (!pre) return; stopUI(); mode = 'tagore'; init(corpus, pre); };
+  $('#bPre').onclick = () => { if (!pre) return; window.CG_CFG = null; stopUI(); mode = 'tagore'; init(corpus, pre); };
   const lrSet = () => { const v = Math.pow(10, +$('#lr').value); $('#lrv').textContent = v.toFixed(4); W.postMessage({ type: 'opts', opts: { lr: v } }); };
   $('#lr').oninput = lrSet;
   $('#bs').onchange = () => W.postMessage({ type: 'opts', opts: { B: +$('#bs').value } });
@@ -310,7 +403,8 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   $('#bGen').onclick = () => ready && W.postMessage({ type: 'generate', text: $('#genIn').value, n: +$('#genN').value, temp: +$('#gtemp').value });
   $('#bByo').onclick = () => { const t = $('#byoText').value; if (t.length < 500) { $('#byoNote').textContent = 'Need at least 500 characters.'; return; }
     stopUI(); mode = 'byo'; init(t, null); $('#byoNote').textContent = 'New model ready on your text. Press ▶ in the lab.'; $('#seedText').value = Array.from(t).slice(0, 4).join(''); W.postMessage({ type: 'opts', opts: { seedText: $('#seedText').value } }); location.hash = 'train'; };
-  $('#bBack').onclick = () => { stopUI(); mode = 'tagore'; init(corpus, pre); $('#byoNote').textContent = ''; };
+  $('#bBack').onclick = () => { stopUI(); window.CG_CFG = null; mode = 'tagore'; init(corpus, pre); $('#byoNote').textContent = ''; };
+  window.CG = { W, init: (t, c) => { stopUI(); init(t, c); }, get ready() { return ready; }, get corpus() { return corpus; }, get pre() { return pre; }, get mode() { return mode; } };
   $('#bSave').onclick = () => W.postMessage({ type: 'export' });
 
   Promise.all([fetch('corpus.txt').then(r => r.text()), fetch('checkpoint.json').then(r => r.json()).catch(() => null)]).then(([t, c]) => {
@@ -320,5 +414,6 @@ code{font-family:"JetBrains Mono";font-size:.9em;background:#0006;padding:1px 5p
   });
 })();
 </script>
+<script src="extras.js"></script>
 </body>
 </html>

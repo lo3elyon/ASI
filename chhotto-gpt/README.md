@@ -14,6 +14,7 @@
 <img src="https://img.shields.io/badge/dependencies-0-84cc16?style=flat-square&labelColor=0d1512" alt="">
 <img src="https://img.shields.io/badge/gradcheck-0.0017%20max%20rel%20err-2fbf8a?style=flat-square&labelColor=0d1512" alt="">
 <img src="https://img.shields.io/badge/corpus-Gitanjali%20(1913)-ef5b4c?style=flat-square&labelColor=0d1512" alt="">
+<img src="https://img.shields.io/badge/v2-12%20sections%20%C2%B7%20story%20mode%20%C2%B7%20builder-f4a62a?style=flat-square&labelColor=0d1512" alt="">
 <img src="https://img.shields.io/badge/runs-100%25%20client%20side-14b8a6?style=flat-square&labelColor=0d1512" alt="">
 
 </div>
@@ -32,6 +33,37 @@ The best way to understand how an LLM works is to build one and watch it learn. 
 | **৩. Make it write** | Prompt + length + temperature → a Tagore-flavoured continuation on a palm-leaf card. |
 | **৪. Train on your own text** | Paste anything (DEV posts, Nazrul, code, English). Vocabulary is rebuilt, weights re-initialised, training starts from zero. 💾 downloads the weights as JSON. Nothing leaves the browser. |
 | **৫. How it works** | Architecture diagram, what is hand-written, why characters, how big vs real LLMs. |
+
+## New in v2 (2026-11-06): more to see, touch and understand
+
+Everything from v1 is still here; v2 only **adds**.
+
+| New section / feature | What it does |
+|---|---|
+| **০. Story mode** | One real prediction walked through in 6 animated steps: text → ids → 64-number embedding (colour bars) → attention arcs drawn as SVG → probability bars → the winning character flies in. ➕ appends it and runs again; ▶ Autoplay writes a poem one step at a time. |
+| **২খ. Embedding map** | Live 2-D PCA (power iteration in the worker) of all 84 character vectors, colour-coded vowels / consonants / কার-চিহ্ন / other, smooth 600 ms tweens, auto-refresh while training, hover for Unicode code point. Watch vowel signs cluster as it learns. |
+| **৩খ. Full attention grid** | T×T heatmap for any of the 8 heads or the average, causal triangle visible, axis labels in Bengali, hover for each weight. |
+| **৫খ. Confidence writer** | Streams text with every character coloured by the probability it was chosen with (green sure → red wild), entropy sparkline, avg confidence, sure/wild pick counters. |
+| **🌡 Temperature compare** | Same prompt at T = 0.4 / 0.8 / 1.3 side by side. |
+| **৬খ. Model builder** | Sliders for layers (1–4), heads (1/2/4/8), width (32–96), context (16–48); live parameter count, relative compute per step, comparison with GPT-2 small; 🧱 builds it and sends you to the lab. |
+| **৯. Glossary** | 12 flip cards, Bengali term + English + plain-Bengali meaning. |
+| **১০. Quiz** | 5 questions with explanations and a perfect-score toast. |
+| **সহজ / Advanced toggle** | সহজ shows plain-Bengali explanation boxes in every section; Advanced shows the maths (loss, AdamW, attention, param formula). Remembered in localStorage. |
+| **Motion & design** | Sticky section nav with active highlight, scroll progress bar, scroll-reveal, drifting Bengali-letter background (30 fps, paused in hidden tabs), button ripples, 3-D tilt on the palm-leaf card, milestone toasts as loss falls (অক্ষর চিনছে → শব্দ বানাচ্ছে → কবিতার ছন্দ আসছে!). All motion off under `prefers-reduced-motion`. |
+| **☀︎ / ☾ Theme** | New palm-leaf light theme alongside the night theme. |
+| **⌨ Shortcuts** | `Space` train/pause · `G` confidence writer · `E` embedding map · `S` next story step · `T` theme · `?` help. |
+
+```mermaid
+flowchart LR
+    W["worker.js"] -->|story| S["০ Story mode"]
+    W -->|embeds · PCA| M["২খ Embedding map"]
+    W -->|fullatt| G["৩খ Attention grid"]
+    W -->|stream| C["৫খ Confidence writer + 🌡 compare"]
+    B["৬খ Model builder"] -->|cfg| W
+    X["extras.js"] --- S & M & G & C & B
+    classDef a fill:#0d2a20,stroke:#f4a62a,color:#e9f1ec
+    class W,S,M,G,C,B,X a
+```
 
 ## Sample from the pretrained checkpoint (2,770 steps, temperature 0.75)
 
@@ -91,6 +123,8 @@ sequenceDiagram
 | `corpus.txt` | 39k chars | 91 Gitanjali poems cleaned from Bengali Wikisource. |
 | `checkpoint.json` | 152 KB | Pretrained weights, int8 per-tensor quantised (base64). |
 | `pretrain.js` / `pretrain-log.json` | | Node script that made the checkpoint (batch 16, cosine LR, 540 s) and its loss log. |
+| `extras.js` | ~250 | v2: story mode, embedding map, attention grid, confidence writer, temperature compare, builder, glossary, quiz, motion, theme, shortcuts, toasts. |
+| `extras.css` | ~130 | v2 design: nav, reveal, flip cards, light theme, reduced-motion rules. |
 | `gradcheck.js` | | Finite-difference check of every tensor's gradient. |
 | `train.py` | 65 | NumPy twin: a 1-block GPT with hand-written backprop, `python train.py corpus.txt`. |
 
@@ -131,4 +165,5 @@ Corpus: Rabindranath Tagore, *Gitanjali* (1913), public domain, via [Bengali Wik
 
 | Date | Change |
 |---|---|
+| 2026-11-06 | **v2**: story mode, embedding map, full attention grid, confidence writer, temperature compare, model builder, glossary, quiz, সহজ/Advanced toggle, light theme, motion, shortcuts, toasts. Worker gains `embeds`, `fullatt`, `stream`, `story` messages; nothing removed. Smoke-tested in jsdom with the real worker. |
 | 2026-11-06 | First release: engine, lab, probe, writer, BYO text, pretrained checkpoint, NumPy twin. |
